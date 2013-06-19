@@ -1,0 +1,551 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{202AA157-2689-48C7-B3C0-3D10C4E3783A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>softwareMech.My.MyApplication</StartupObject>
+    <RootNamespace>softwareMech</RootNamespace>
+    <AssemblyName>softwareMech</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <ApplicationIcon>SSP1.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>softwareMech.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>softwareMech.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComponentesSolucion2008, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\ComponentesSolucion2008\ComponentesSolucion2008\bin\Release\ComponentesSolucion2008.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.Framework, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.InfoStore, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AcercaDeForm.designer.vb">
+      <DependentUpon>AcercaDeForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AcercaDeForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="aperturaSolicitudForm.Designer.vb">
+      <DependentUpon>aperturaSolicitudForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="aperturaSolicitudForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="aprobarSolicitudForm.designer.vb">
+      <DependentUpon>aprobarSolicitudForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="aprobarSolicitudForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambiarContraseñaUsuForm.designer.vb">
+      <DependentUpon>CambiarContraseñaUsuForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CambiarContraseñaUsuForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cColorComboBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="cConfigFormControls.vb" />
+    <Compile Include="chekeoSolicitudReqForm.Designer.vb">
+      <DependentUpon>chekeoSolicitudReqForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="chekeoSolicitudReqForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ColorClass.vb" />
+    <Compile Include="CometarioForm.designer.vb">
+      <DependentUpon>CometarioForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CometarioForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConexionModule.vb" />
+    <Compile Include="configuracionColorForm.designer.vb">
+      <DependentUpon>configuracionColorForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="configuracionColorForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="crearMaterialForm.Designer.vb">
+      <DependentUpon>crearMaterialForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="crearMaterialForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrystalReport1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport3.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport3.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport4.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport4.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSetAlmacen.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetAlmacen.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetAlmacen.vb">
+      <DependentUpon>DataSetAlmacen.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DatasetAlmacenModule.vb" />
+    <Compile Include="MantCuentas.Designer.vb">
+      <DependentUpon>MantCuentas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantCuentas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gerenciaOrdenDesembolsoForm.Designer.vb">
+      <DependentUpon>gerenciaOrdenDesembolsoForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="gerenciaOrdenDesembolsoForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InformeCotizacionForm.Designer.vb">
+      <DependentUpon>InformeCotizacionForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InformeCotizacionForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InformeOrdenCompraForm.Designer.vb">
+      <DependentUpon>InformeOrdenCompraForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InformeOrdenCompraForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="jalarCotizacionForm.Designer.vb">
+      <DependentUpon>jalarCotizacionForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="jalarCotizacionForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="jalarOrdenCompra1Form.designer.vb">
+      <DependentUpon>jalarOrdenCompra1Form.vb</DependentUpon>
+    </Compile>
+    <Compile Include="jalarOrdenCompra1Form.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="jalarOrdenCompraForm.designer.vb">
+      <DependentUpon>jalarOrdenCompraForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="jalarOrdenCompraForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="jalarSolicitud1Form.designer.vb">
+      <DependentUpon>jalarSolicitud1Form.vb</DependentUpon>
+    </Compile>
+    <Compile Include="jalarSolicitud1Form.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="jalarSolicitudForm.designer.vb">
+      <DependentUpon>jalarSolicitudForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="jalarSolicitudForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.designer.vb">
+      <DependentUpon>LoginForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantAreaMatForm.Designer.vb">
+      <DependentUpon>MantAreaMatForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantAreaMatForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantCargoForm.Designer.vb">
+      <DependentUpon>MantCargoForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantCargoForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantFormaPagoForm.designer.vb">
+      <DependentUpon>MantFormaPagoForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantFormaPagoForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantIdentidadForm.designer.vb">
+      <DependentUpon>MantIdentidadForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantIdentidadForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mantLugarForm.Designer.vb">
+      <DependentUpon>mantLugarForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="mantLugarForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantMaterialForm.designer.vb">
+      <DependentUpon>MantMaterialForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantMaterialForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantOrdenDesembolsoForm.Designer.vb">
+      <DependentUpon>MantOrdenDesembolsoForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantOrdenDesembolsoForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantPersonalForm.designer.vb">
+      <DependentUpon>MantPersonalForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantPersonalForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantSolicitudReqForm.Designer.vb">
+      <DependentUpon>MantSolicitudReqForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantSolicitudReqForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantTipoMatForm.designer.vb">
+      <DependentUpon>MantTipoMatForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantTipoMatForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantTipoPagoForm.designer.vb">
+      <DependentUpon>MantTipoPagoForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantTipoPagoForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantUniMedForm.Designer.vb">
+      <DependentUpon>MantUniMedForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantUniMedForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Num2LetEsp.vb" />
+    <Compile Include="pantallaInicialForm.designer.vb">
+      <DependentUpon>pantallaInicialForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pantallaInicialForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="registraCotizacionForm.Designer.vb">
+      <DependentUpon>registraCotizacionForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="registraCotizacionForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="registraDocCompra.Designer.vb">
+      <DependentUpon>registraDocCompra.vb</DependentUpon>
+    </Compile>
+    <Compile Include="registraDocCompra.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="registraOrdenCompraForm.Designer.vb">
+      <DependentUpon>registraOrdenCompraForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="registraOrdenCompraForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportViewerCotizacionForm.Designer.vb">
+      <DependentUpon>ReportViewerCotizacionForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewerCotizacionForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportViewerOrdenCompraForm.Designer.vb">
+      <DependentUpon>ReportViewerOrdenCompraForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewerOrdenCompraForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportViewerSolicitudForm.Designer.vb">
+      <DependentUpon>ReportViewerSolicitudForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewerSolicitudForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="seleProveedorForm.Designer.vb">
+      <DependentUpon>seleProveedorForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="seleProveedorForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashScreen.designer.vb">
+      <DependentUpon>SplashScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ValidarCamposModule.vb" />
+    <Compile Include="varFuncPublicasModule.vb" />
+    <Compile Include="waitForm.designer.vb">
+      <DependentUpon>waitForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="waitForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AcercaDeForm.resx">
+      <DependentUpon>AcercaDeForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="aperturaSolicitudForm.resx">
+      <DependentUpon>aperturaSolicitudForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="aprobarSolicitudForm.resx">
+      <DependentUpon>aprobarSolicitudForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CambiarContraseñaUsuForm.resx">
+      <DependentUpon>CambiarContraseñaUsuForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chekeoSolicitudReqForm.resx">
+      <DependentUpon>chekeoSolicitudReqForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CometarioForm.resx">
+      <DependentUpon>CometarioForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="configuracionColorForm.resx">
+      <DependentUpon>configuracionColorForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="crearMaterialForm.resx">
+      <DependentUpon>crearMaterialForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport3.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport3.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport4.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport4.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantCuentas.resx">
+      <DependentUpon>MantCuentas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gerenciaOrdenDesembolsoForm.resx">
+      <DependentUpon>gerenciaOrdenDesembolsoForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformeCotizacionForm.resx">
+      <DependentUpon>InformeCotizacionForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformeOrdenCompraForm.resx">
+      <DependentUpon>InformeOrdenCompraForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="jalarCotizacionForm.resx">
+      <DependentUpon>jalarCotizacionForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="jalarOrdenCompra1Form.resx">
+      <DependentUpon>jalarOrdenCompra1Form.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="jalarOrdenCompraForm.resx">
+      <DependentUpon>jalarOrdenCompraForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="jalarSolicitud1Form.resx">
+      <DependentUpon>jalarSolicitud1Form.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="jalarSolicitudForm.resx">
+      <DependentUpon>jalarSolicitudForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantAreaMatForm.resx">
+      <DependentUpon>MantAreaMatForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantCargoForm.resx">
+      <DependentUpon>MantCargoForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantFormaPagoForm.resx">
+      <DependentUpon>MantFormaPagoForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantIdentidadForm.resx">
+      <DependentUpon>MantIdentidadForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mantLugarForm.resx">
+      <DependentUpon>mantLugarForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantMaterialForm.resx">
+      <DependentUpon>MantMaterialForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantOrdenDesembolsoForm.resx">
+      <DependentUpon>MantOrdenDesembolsoForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantPersonalForm.resx">
+      <DependentUpon>MantPersonalForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantSolicitudReqForm.resx">
+      <DependentUpon>MantSolicitudReqForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantTipoMatForm.resx">
+      <DependentUpon>MantTipoMatForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantTipoPagoForm.resx">
+      <DependentUpon>MantTipoPagoForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantUniMedForm.resx">
+      <DependentUpon>MantUniMedForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pantallaInicialForm.resx">
+      <DependentUpon>pantallaInicialForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="registraCotizacionForm.resx">
+      <DependentUpon>registraCotizacionForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="registraDocCompra.resx">
+      <DependentUpon>registraDocCompra.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="registraOrdenCompraForm.resx">
+      <DependentUpon>registraOrdenCompraForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewerCotizacionForm.resx">
+      <DependentUpon>ReportViewerCotizacionForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewerOrdenCompraForm.resx">
+      <DependentUpon>ReportViewerOrdenCompraForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewerSolicitudForm.resx">
+      <DependentUpon>ReportViewerSolicitudForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="seleProveedorForm.resx">
+      <DependentUpon>seleProveedorForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashScreen.resx">
+      <DependentUpon>SplashScreen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="waitForm.resx">
+      <DependentUpon>waitForm.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DataSetAlmacen.xsc">
+      <DependentUpon>DataSetAlmacen.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetAlmacen.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetAlmacen.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSetAlmacen.xss">
+      <DependentUpon>DataSetAlmacen.xsd</DependentUpon>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SSP1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
