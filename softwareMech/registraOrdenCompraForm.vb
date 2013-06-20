@@ -1390,7 +1390,7 @@ Public Class registraOrdenCompraForm
         jala.ShowDialog()
 
         If CInt(vCod2) = 0 Then 'se cancelo
-            MsgBox("SE CANCELO")
+            'MsgBox("SE CANCELO")
             Exit Sub
         Else
         End If

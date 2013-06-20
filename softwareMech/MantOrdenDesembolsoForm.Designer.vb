@@ -429,20 +429,20 @@ Partial Class MantOrdenDesembolsoForm
         Me.Panel2.Controls.Add(Me.Label7)
         Me.Panel2.Location = New System.Drawing.Point(14, 136)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(892, 146)
+        Me.Panel2.Size = New System.Drawing.Size(892, 119)
         Me.Panel2.TabIndex = 4
         '
         'txtNroDet
         '
-        Me.txtNroDet.Location = New System.Drawing.Point(291, 120)
+        Me.txtNroDet.Location = New System.Drawing.Point(626, 92)
         Me.txtNroDet.Name = "txtNroDet"
-        Me.txtNroDet.Size = New System.Drawing.Size(274, 20)
+        Me.txtNroDet.Size = New System.Drawing.Size(261, 20)
         Me.txtNroDet.TabIndex = 322
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(154, 123)
+        Me.Label15.Location = New System.Drawing.Point(629, 78)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(135, 13)
         Me.Label15.TabIndex = 321
@@ -450,7 +450,7 @@ Partial Class MantOrdenDesembolsoForm
         '
         'txtNroCta
         '
-        Me.txtNroCta.Location = New System.Drawing.Point(291, 98)
+        Me.txtNroCta.Location = New System.Drawing.Point(336, 92)
         Me.txtNroCta.Name = "txtNroCta"
         Me.txtNroCta.Size = New System.Drawing.Size(274, 20)
         Me.txtNroCta.TabIndex = 320
@@ -458,7 +458,7 @@ Partial Class MantOrdenDesembolsoForm
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(228, 101)
+        Me.Label14.Location = New System.Drawing.Point(333, 78)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(66, 13)
         Me.Label14.TabIndex = 319
@@ -466,7 +466,7 @@ Partial Class MantOrdenDesembolsoForm
         '
         'txtBan
         '
-        Me.txtBan.Location = New System.Drawing.Point(291, 75)
+        Me.txtBan.Location = New System.Drawing.Point(41, 92)
         Me.txtBan.Name = "txtBan"
         Me.txtBan.Size = New System.Drawing.Size(274, 20)
         Me.txtBan.TabIndex = 318
@@ -474,7 +474,7 @@ Partial Class MantOrdenDesembolsoForm
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(154, 78)
+        Me.Label13.Location = New System.Drawing.Point(39, 78)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(140, 13)
         Me.Label13.TabIndex = 317
@@ -597,7 +597,7 @@ Partial Class MantOrdenDesembolsoForm
         Me.Panel3.Controls.Add(Me.txtOrden)
         Me.Panel3.Controls.Add(Me.Label17)
         Me.Panel3.Controls.Add(Me.Label16)
-        Me.Panel3.Location = New System.Drawing.Point(14, 283)
+        Me.Panel3.Location = New System.Drawing.Point(14, 255)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(892, 37)
         Me.Panel3.TabIndex = 5
@@ -690,16 +690,16 @@ Partial Class MantOrdenDesembolsoForm
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel4.Controls.Add(Me.ListView1)
         Me.Panel4.Controls.Add(Me.Label19)
-        Me.Panel4.Location = New System.Drawing.Point(14, 321)
+        Me.Panel4.Location = New System.Drawing.Point(14, 294)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(892, 59)
+        Me.Panel4.Size = New System.Drawing.Size(892, 86)
         Me.Panel4.TabIndex = 6
         '
         'ListView1
         '
         Me.ListView1.Location = New System.Drawing.Point(146, -1)
         Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(734, 59)
+        Me.ListView1.Size = New System.Drawing.Size(624, 86)
         Me.ListView1.TabIndex = 320
         Me.ListView1.UseCompatibleStateImageBehavior = False
         '

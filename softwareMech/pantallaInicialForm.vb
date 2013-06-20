@@ -98,6 +98,18 @@ Public Class pantallaInicialForm
 
     End Sub
 
+    Private Sub pantallaInicialForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+        If vSCodTipoUsu = 3 Then  ' 3=gerencia de construcciones
+            opcReq3.PerformClick()  'Aprueba por defecto su pantalla AprobarSolicitudReqForm.vb  Hubeer
+        End If
+        If vSCodTipoUsu = 2 Then  '2=gerencia general 
+            opcOrdDes2.PerformClick()  'Aprueba por defecto su pantalla gerenciaOrdenDesembolsoForm.vb  Freddy
+        End If
+        If vSCodTipoUsu = 5 Then  '5=Tesoreria 
+            opcOrdDes3.PerformClick()  'Aprueba por defecto su pantalla tesoreriaOrdenDesembolsoForm.vb  Yoel
+        End If
+    End Sub
+
     Private Sub PermisosAlmacenero()
 
     End Sub
@@ -352,9 +364,15 @@ Public Class pantallaInicialForm
         mant.Show()
     End Sub
 
-    Private Sub CuentasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CuentasToolStripMenuItem.Click
-        Dim mant As New MantCuentas
+    Private Sub opcOrdDes3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDes3.Click
+        Dim mant As New tesoreriaOrdenDesembolsoForm
         mant.MdiParent = Me
         mant.Show()
+    End Sub
+
+    Private Sub opcReq3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcReq3.Click
+        Dim seg As New AprobaSolicitudReqForm
+        seg.MdiParent = Me
+        seg.Show()
     End Sub
 End Class

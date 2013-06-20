@@ -305,7 +305,7 @@ Public Class gerenciaOrdenDesembolsoForm
 
             If BindingSource1.Item(BindingSource1.Position)(14) = 0 Then 'no existe firma insertar
                 'TPersDesem
-                comandoInsert2(BindingSource1.Item(BindingSource1.Position)(0), vPass, 1, 2, "")  '1=aprobado  2=gerencia
+                comandoInsert2(BindingSource1.Item(BindingSource1.Position)(0), vPass, 1, 2, "", Now.Date)  '1=aprobado  2=gerencia
                 cmInserTable2.Transaction = myTrans
                 If cmInserTable2.ExecuteNonQuery() < 1 Then
                     wait.Close()
@@ -369,16 +369,17 @@ Public Class gerenciaOrdenDesembolsoForm
     End Sub
 
     Dim cmInserTable2 As SqlCommand
-    Private Sub comandoInsert2(ByVal idOP As Integer, ByVal codPers As Integer, ByVal estado As Integer, ByVal tipo As Integer, ByVal obs As String)
+    Private Sub comandoInsert2(ByVal idOP As Integer, ByVal codPers As Integer, ByVal estado As Integer, ByVal tipo As Integer, ByVal obs As String, ByVal fecha As String)
         cmInserTable2 = New SqlCommand
         cmInserTable2.CommandType = CommandType.Text
-        cmInserTable2.CommandText = "insert into TPersDesem(idOP,codPers,estDesem,tipoA,obserDesem) values(@id,@codP,@est,@tipo,@obs)"
+        cmInserTable2.CommandText = "insert into TPersDesem(idOP,codPers,estDesem,tipoA,obserDesem,fecFir) values(@id,@codP,@est,@tipo,@obs,@fec)"
         cmInserTable2.Connection = Cn
         cmInserTable2.Parameters.Add("@id", SqlDbType.Int, 0).Value = idOP
         cmInserTable2.Parameters.Add("@codP", SqlDbType.Int, 0).Value = codPers 'vPass
         cmInserTable2.Parameters.Add("@est", SqlDbType.Int, 0).Value = estado '1=Aprobado
         cmInserTable2.Parameters.Add("@tipo", SqlDbType.Int, 0).Value = tipo '1=Solicitante
         cmInserTable2.Parameters.Add("@obs", SqlDbType.VarChar, 100).Value = obs
+        cmInserTable2.Parameters.Add("@fec", SqlDbType.Date).Value = fecha
     End Sub
 
     Dim cmUpdateTable3 As SqlCommand
@@ -425,7 +426,7 @@ Public Class gerenciaOrdenDesembolsoForm
 
             If BindingSource1.Item(BindingSource1.Position)(14) = 0 Then 'no existe firma insertar
                 'TPersDesem
-                comandoInsert2(BindingSource1.Item(BindingSource1.Position)(0), vPass, 2, 2, vObs)  '2=observado  2=gerencia
+                comandoInsert2(BindingSource1.Item(BindingSource1.Position)(0), vPass, 2, 2, vObs, Now.Date)  '2=observado  2=gerencia
                 cmInserTable2.Transaction = myTrans
                 If cmInserTable2.ExecuteNonQuery() < 1 Then
                     wait.Close()
@@ -521,7 +522,7 @@ Public Class gerenciaOrdenDesembolsoForm
 
             If BindingSource1.Item(BindingSource1.Position)(14) = 0 Then 'no existe firma insertar
                 'TPersDesem
-                comandoInsert2(BindingSource1.Item(BindingSource1.Position)(0), vPass, 3, 2, vObs)  '3=denegado  2=gerencia
+                comandoInsert2(BindingSource1.Item(BindingSource1.Position)(0), vPass, 3, 2, vObs, Now.Date)  '3=denegado  2=gerencia
                 cmInserTable2.Transaction = myTrans
                 If cmInserTable2.ExecuteNonQuery() < 1 Then
                     wait.Close()

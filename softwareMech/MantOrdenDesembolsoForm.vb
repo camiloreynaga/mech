@@ -385,6 +385,10 @@ Public Class MantOrdenDesembolsoForm
                 Else
                     cbF2.BackColor = Color.FromName(Color.White.Name)
                     cbF2.SelectedIndex = -1
+
+                    txtNom2.Clear()
+                    txtDni2.Clear()
+                    txtObs2.Clear()
                 End If
 
                 'extraer a TESORERIA
@@ -406,6 +410,10 @@ Public Class MantOrdenDesembolsoForm
                 Else
                     cbF3.BackColor = Color.FromName(Color.White.Name)
                     cbF3.SelectedIndex = -1
+
+                    txtNom3.Clear()
+                    txtDni3.Clear()
+                    txtObs3.Clear()
                 End If
 
                 'extraer a CONTABILIDAD
@@ -427,6 +435,10 @@ Public Class MantOrdenDesembolsoForm
                 Else
                     cbF4.BackColor = Color.FromName(Color.White.Name)
                     cbF4.SelectedIndex = -1
+
+                    txtNom4.Clear()
+                    txtDni4.Clear()
+                    txtObs4.Clear()
                 End If
 
                 selePagoDesem()
@@ -672,7 +684,7 @@ Public Class MantOrdenDesembolsoForm
 
             If codPersDes = 0 Then 'no existe firma insertar
                 'TPersDesem
-                comandoInsert2(BindingSource3.Item(BindingSource3.Position)(0), vPass, opcion, 1, vObs)  '1=solicitante
+                comandoInsert2(BindingSource3.Item(BindingSource3.Position)(0), vPass, opcion, 1, vObs, date1.Value.Date)  '1=solicitante
                 cmInserTable2.Transaction = myTrans
                 If cmInserTable2.ExecuteNonQuery() < 1 Then
                     wait.Close()
@@ -816,7 +828,7 @@ Public Class MantOrdenDesembolsoForm
             Dim idOP As Integer = cmInserTable1.Parameters("@Identity").Value
 
             'TPersDesem
-            comandoInsert2(idOP, vPass, 1, 1, txtObs1.Text.Trim())  '1=aprobado  1=solicitante
+            comandoInsert2(idOP, vPass, 1, 1, txtObs1.Text.Trim(), date1.Value.Date)  '1=aprobado  1=solicitante
             cmInserTable2.Transaction = myTrans
             If cmInserTable2.ExecuteNonQuery() < 1 Then
                 wait.Close()
@@ -948,16 +960,17 @@ Public Class MantOrdenDesembolsoForm
     End Sub
 
     Dim cmInserTable2 As SqlCommand
-    Private Sub comandoInsert2(ByVal idOP As Integer, ByVal codPers As Integer, ByVal estado As Integer, ByVal tipo As Integer, ByVal obs As String)
+    Private Sub comandoInsert2(ByVal idOP As Integer, ByVal codPers As Integer, ByVal estado As Integer, ByVal tipo As Integer, ByVal obs As String, ByVal fecha As String)
         cmInserTable2 = New SqlCommand
         cmInserTable2.CommandType = CommandType.Text
-        cmInserTable2.CommandText = "insert into TPersDesem(idOP,codPers,estDesem,tipoA,obserDesem) values(@id,@codP,@est,@tipo,@obs)"
+        cmInserTable2.CommandText = "insert into TPersDesem(idOP,codPers,estDesem,tipoA,obserDesem,fecFir) values(@id,@codP,@est,@tipo,@obs,@fec)"
         cmInserTable2.Connection = Cn
         cmInserTable2.Parameters.Add("@id", SqlDbType.Int, 0).Value = idOP
         cmInserTable2.Parameters.Add("@codP", SqlDbType.Int, 0).Value = codPers 'vPass
         cmInserTable2.Parameters.Add("@est", SqlDbType.Int, 0).Value = estado '1=Aprobado
         cmInserTable2.Parameters.Add("@tipo", SqlDbType.Int, 0).Value = tipo '1=Solicitante
         cmInserTable2.Parameters.Add("@obs", SqlDbType.VarChar, 100).Value = obs
+        cmInserTable2.Parameters.Add("@fec", SqlDbType.Date).Value = fecha
     End Sub
 
     Private Sub btnModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnModificar.Click
@@ -1284,7 +1297,7 @@ Public Class MantOrdenDesembolsoForm
         jala.ShowDialog()
 
         If CInt(vCod2) = 0 Then 'se cancelo
-            MsgBox("SE CANCELO")
+            'MsgBox("SE CANCELO")
             Exit Sub
         Else
         End If
@@ -1487,5 +1500,9 @@ Public Class MantOrdenDesembolsoForm
         cmUpdateTable13.Parameters.Add("@est", SqlDbType.Int, 0).Value = 3 '3 = anulado
         cmUpdateTable13.Parameters.Add("@hist", SqlDbType.VarChar, 200).Value = BindingSource3.Item(BindingSource3.Position)(6) & " ANULO " & Now.Date & " " & vPass & "-" & vSUsuario
         cmUpdateTable13.Parameters.Add("@idOP", SqlDbType.Int, 0).Value = BindingSource3.Item(BindingSource3.Position)(0)
+    End Sub
+
+    Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
+
     End Sub
 End Class

@@ -275,7 +275,7 @@ Public Class jalarOrdenCompra1Form
             Dim idOP As Integer = cmInserTable2.Parameters("@Identity").Value
 
             'TPersDesem
-            comandoInsert3(idOP, vPass, 1, 1, "")  '1=aprobado  1=solicitante
+            comandoInsert3(idOP, vPass, 1, 1, "", Now.Date)  '1=aprobado  1=solicitante
             cmInserTable3.Transaction = myTrans
             If cmInserTable3.ExecuteNonQuery() < 1 Then
                 wait.Close()
@@ -377,16 +377,17 @@ Public Class jalarOrdenCompra1Form
     End Sub
 
     Dim cmInserTable3 As SqlCommand
-    Private Sub comandoInsert3(ByVal idOP As Integer, ByVal codPers As Integer, ByVal estado As Integer, ByVal tipo As Integer, ByVal obs As String)
+    Private Sub comandoInsert3(ByVal idOP As Integer, ByVal codPers As Integer, ByVal estado As Integer, ByVal tipo As Integer, ByVal obs As String, ByVal fecha As String)
         cmInserTable3 = New SqlCommand
         cmInserTable3.CommandType = CommandType.Text
-        cmInserTable3.CommandText = "insert into TPersDesem(idOP,codPers,estDesem,tipoA,obserDesem) values(@id,@codP,@est,@tipo,@obs)"
+        cmInserTable3.CommandText = "insert into TPersDesem(idOP,codPers,estDesem,tipoA,obserDesem,fecFir) values(@id,@codP,@est,@tipo,@obs,@fec)"
         cmInserTable3.Connection = Cn
         cmInserTable3.Parameters.Add("@id", SqlDbType.Int, 0).Value = idOP
         cmInserTable3.Parameters.Add("@codP", SqlDbType.Int, 0).Value = codPers 'vPass
         cmInserTable3.Parameters.Add("@est", SqlDbType.Int, 0).Value = estado '1=Aprobado
         cmInserTable3.Parameters.Add("@tipo", SqlDbType.Int, 0).Value = tipo '1=Solicitante
         cmInserTable3.Parameters.Add("@obs", SqlDbType.VarChar, 100).Value = obs
+        cmInserTable3.Parameters.Add("@fec", SqlDbType.Date).Value = fecha
     End Sub
 
     Dim cmInserTable1 As SqlCommand
