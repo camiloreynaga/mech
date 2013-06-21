@@ -233,6 +233,12 @@
     <Compile Include="MantCargoForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MantCuentas.Designer.vb">
+      <DependentUpon>MantCuentas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantCuentas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MantFormaPagoForm.designer.vb">
       <DependentUpon>MantFormaPagoForm.vb</DependentUpon>
     </Compile>
@@ -444,6 +450,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MantCargoForm.resx">
       <DependentUpon>MantCargoForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantCuentas.resx">
+      <DependentUpon>MantCuentas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MantFormaPagoForm.resx">
       <DependentUpon>MantFormaPagoForm.vb</DependentUpon>

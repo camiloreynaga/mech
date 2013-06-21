@@ -97,7 +97,7 @@ Public Class MantOrdenDesembolsoForm
             vfVan1 = True   'para selePersDesem() se llama dentro de enlazarText()
             vfVan2 = True
             leerProvee()
-            enlazarText()
+            ' enlazarText()
 
             wait.Close()
             Me.Cursor = Cursors.Default
@@ -108,6 +108,11 @@ Public Class MantOrdenDesembolsoForm
             Me.Close()
             Exit Sub
         End Try
+
+        ' Deseleccionado las filas de la grilla
+        dgTabla1.ClearSelection()
+        dgTabla1.FirstDisplayedScrollingRowIndex = -1
+
     End Sub
 
     Private Sub cbProv_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbProv.SelectedIndexChanged
@@ -126,6 +131,9 @@ Public Class MantOrdenDesembolsoForm
     End Sub
 
     Private Sub ModificarColumnasDGV()
+
+        
+
         With dgTabla1
             .Columns(0).Visible = False
             .Columns(1).Visible = False
@@ -171,6 +179,10 @@ Public Class MantOrdenDesembolsoForm
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .RowHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
+
+            'deseleccionando las filas de la grilla
+
+
         End With
     End Sub
 
@@ -275,7 +287,10 @@ Public Class MantOrdenDesembolsoForm
     End Function
 
     Private Sub dgTabla1_CurrentCellChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgTabla1.CurrentCellChanged
-        enlazarText()
+        If dgTabla1.SelectedRows.Count > 0 Then
+            enlazarText()
+        End If
+
     End Sub
 
     Dim vfVan2 As Boolean = False
