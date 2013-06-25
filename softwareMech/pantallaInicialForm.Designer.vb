@@ -79,6 +79,7 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.SeguimientoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -309,7 +310,7 @@ Partial Class pantallaInicialForm
         '
         'opcOrdDes
         '
-        Me.opcOrdDes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrdDes1, Me.opcOrdDes2, Me.opcOrdDes3, Me.ToolStripSeparator12, Me.opcOrdDes4})
+        Me.opcOrdDes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrdDes1, Me.opcOrdDes2, Me.opcOrdDes3, Me.ToolStripSeparator12, Me.opcOrdDes4, Me.SeguimientoToolStripMenuItem})
         Me.opcOrdDes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.opcOrdDes.Image = CType(resources.GetObject("opcOrdDes.Image"), System.Drawing.Image)
         Me.opcOrdDes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -555,6 +556,12 @@ Partial Class pantallaInicialForm
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'SeguimientoToolStripMenuItem
+        '
+        Me.SeguimientoToolStripMenuItem.Name = "SeguimientoToolStripMenuItem"
+        Me.SeguimientoToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.SeguimientoToolStripMenuItem.Text = "Seguimiento"
+        '
         'pantallaInicialForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -635,4 +642,5 @@ Partial Class pantallaInicialForm
     Friend WithEvents opcOrdDes2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents opcOrdDes3 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents opcReq3 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SeguimientoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

@@ -351,6 +351,12 @@
     <Compile Include="ReportViewerSolicitudForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SeguimientoOrdenDesembolsoForm.Designer.vb">
+      <DependentUpon>SeguimientoOrdenDesembolsoForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SeguimientoOrdenDesembolsoForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="seleProveedorForm.Designer.vb">
       <DependentUpon>seleProveedorForm.vb</DependentUpon>
     </Compile>
@@ -507,6 +513,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerSolicitudForm.resx">
       <DependentUpon>ReportViewerSolicitudForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeguimientoOrdenDesembolsoForm.resx">
+      <DependentUpon>SeguimientoOrdenDesembolsoForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="seleProveedorForm.resx">
       <DependentUpon>seleProveedorForm.vb</DependentUpon>

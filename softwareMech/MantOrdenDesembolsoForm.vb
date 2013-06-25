@@ -97,7 +97,15 @@ Public Class MantOrdenDesembolsoForm
             vfVan1 = True   'para selePersDesem() se llama dentro de enlazarText()
             vfVan2 = True
             leerProvee()
-            ' enlazarText()
+
+            'dgTabla1.ClearSelection()
+            'dgTabla1.FirstDisplayedScrollingRowIndex = -1
+
+
+            Dim d As Integer = dgTabla1.FirstDisplayedScrollingRowIndex
+
+
+            ' = -1
 
             wait.Close()
             Me.Cursor = Cursors.Default
@@ -109,10 +117,15 @@ Public Class MantOrdenDesembolsoForm
             Exit Sub
         End Try
 
-        ' Deseleccionado las filas de la grilla
-        dgTabla1.ClearSelection()
-        dgTabla1.FirstDisplayedScrollingRowIndex = -1
+        Dim seleccionados As Integer = dgTabla1.SelectedRows.Count
 
+
+
+        'dgTabla1.FirstDisplayedScrollingRowIndex = -1
+        enlazarText()
+        ' Deseleccionado las filas de la grilla
+        'dgTabla1.ClearSelection()
+        
     End Sub
 
     Private Sub cbProv_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbProv.SelectedIndexChanged
@@ -131,8 +144,6 @@ Public Class MantOrdenDesembolsoForm
     End Sub
 
     Private Sub ModificarColumnasDGV()
-
-        
 
         With dgTabla1
             .Columns(0).Visible = False
@@ -287,9 +298,9 @@ Public Class MantOrdenDesembolsoForm
     End Function
 
     Private Sub dgTabla1_CurrentCellChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgTabla1.CurrentCellChanged
-        If dgTabla1.SelectedRows.Count > 0 Then
-            enlazarText()
-        End If
+        'If dgTabla1.SelectedRows.Count > 0 Then
+        enlazarText()
+        'End If
 
     End Sub
 
@@ -300,65 +311,71 @@ Public Class MantOrdenDesembolsoForm
             If BindingSource3.Count = 0 Then
                 'desEnlazarText()
             Else
-                date1.Value = BindingSource3.Item(BindingSource3.Position)(4)
-                txtMon.Text = BindingSource3.Item(BindingSource3.Position)(7)
-                txtDet.Text = BindingSource3.Item(BindingSource3.Position)(8)
-                txtTot.Text = BindingSource3.Item(BindingSource3.Position)(9)
-                cbMon.SelectedValue = BindingSource3.Item(BindingSource3.Position)(33)
-                cambiarNroTotalLetra()
-                cbObra.SelectedValue = BindingSource3.Item(BindingSource3.Position)(11)
-                cbProv.SelectedValue = BindingSource3.Item(BindingSource3.Position)(12)
-                txtBan.Text = BindingSource3.Item(BindingSource3.Position)(13)
-                txtNroCta.Text = BindingSource3.Item(BindingSource3.Position)(14)
-                txtNroDet.Text = BindingSource3.Item(BindingSource3.Position)(15)
-                txtOrden.Text = recuperarNroOrdenCompra(BindingSource3.Item(BindingSource3.Position)(0)).Trim()
-                txtDato.Text = BindingSource3.Item(BindingSource3.Position)(16)
+                If dgTabla1.FirstDisplayedScrollingRowIndex >= 0 Then
 
-                txtNroFac.Text = BindingSource3.Item(BindingSource3.Position)(18)
-                txtNroBol.Text = BindingSource3.Item(BindingSource3.Position)(20)
-                txtNroGuia.Text = BindingSource3.Item(BindingSource3.Position)(22)
-                txtNroReci.Text = BindingSource3.Item(BindingSource3.Position)(28)
-                txtNroVou.Text = BindingSource3.Item(BindingSource3.Position)(24)
-                txtNroVouD.Text = BindingSource3.Item(BindingSource3.Position)(26)
-                txtOtro.Text = BindingSource3.Item(BindingSource3.Position)(30)
-                txtNroCon.Text = BindingSource3.Item(BindingSource3.Position)(31)
-                txtFec.Text = BindingSource3.Item(BindingSource3.Position)(32)
 
-                If BindingSource3.Item(BindingSource3.Position)(17) = 1 Then 'Fact check
-                    checkB1.Checked = True
-                Else 'NO chekeado
-                    checkB1.Checked = False
+                    date1.Value = BindingSource3.Item(BindingSource3.Position)(4)
+                    txtMon.Text = BindingSource3.Item(BindingSource3.Position)(7)
+                    txtDet.Text = BindingSource3.Item(BindingSource3.Position)(8)
+                    txtTot.Text = BindingSource3.Item(BindingSource3.Position)(9)
+                    cbMon.SelectedValue = BindingSource3.Item(BindingSource3.Position)(33)
+                    cambiarNroTotalLetra()
+                    cbObra.SelectedValue = BindingSource3.Item(BindingSource3.Position)(11)
+                    cbProv.SelectedValue = BindingSource3.Item(BindingSource3.Position)(12)
+                    txtBan.Text = BindingSource3.Item(BindingSource3.Position)(13)
+                    txtNroCta.Text = BindingSource3.Item(BindingSource3.Position)(14)
+                    txtNroDet.Text = BindingSource3.Item(BindingSource3.Position)(15)
+                    txtOrden.Text = recuperarNroOrdenCompra(BindingSource3.Item(BindingSource3.Position)(0)).Trim()
+                    txtDato.Text = BindingSource3.Item(BindingSource3.Position)(16)
+
+                    txtNroFac.Text = BindingSource3.Item(BindingSource3.Position)(18)
+                    txtNroBol.Text = BindingSource3.Item(BindingSource3.Position)(20)
+                    txtNroGuia.Text = BindingSource3.Item(BindingSource3.Position)(22)
+                    txtNroReci.Text = BindingSource3.Item(BindingSource3.Position)(28)
+                    txtNroVou.Text = BindingSource3.Item(BindingSource3.Position)(24)
+                    txtNroVouD.Text = BindingSource3.Item(BindingSource3.Position)(26)
+                    txtOtro.Text = BindingSource3.Item(BindingSource3.Position)(30)
+                    txtNroCon.Text = BindingSource3.Item(BindingSource3.Position)(31)
+                    txtFec.Text = BindingSource3.Item(BindingSource3.Position)(32)
+
+                    If BindingSource3.Item(BindingSource3.Position)(17) = 1 Then 'Fact check
+                        checkB1.Checked = True
+                    Else 'NO chekeado
+                        checkB1.Checked = False
+                    End If
+                    If BindingSource3.Item(BindingSource3.Position)(19) = 1 Then 'Boleta check
+                        checkB2.Checked = True
+                    Else 'NO chekeado
+                        checkB2.Checked = False
+                    End If
+                    If BindingSource3.Item(BindingSource3.Position)(21) = 1 Then 'guia remision check
+                        checkB3.Checked = True
+                    Else 'NO chekeado
+                        checkB3.Checked = False
+                    End If
+                    If BindingSource3.Item(BindingSource3.Position)(27) = 1 Then 'Recibo check
+                        checkB4.Checked = True
+                    Else 'NO chekeado
+                        checkB4.Checked = False
+                    End If
+                    If BindingSource3.Item(BindingSource3.Position)(23) = 1 Then 'Voucher check
+                        checkB5.Checked = True
+                    Else 'NO chekeado
+                        checkB5.Checked = False
+                    End If
+                    If BindingSource3.Item(BindingSource3.Position)(25) = 1 Then 'Voucher detraccion check
+                        checkB6.Checked = True
+                    Else 'NO chekeado
+                        checkB6.Checked = False
+                    End If
+                    If BindingSource3.Item(BindingSource3.Position)(29) = 1 Then 'Otro check
+                        checkB7.Checked = True
+                    Else 'NO chekeado
+                        checkB7.Checked = False
+                    End If
+
                 End If
-                If BindingSource3.Item(BindingSource3.Position)(19) = 1 Then 'Boleta check
-                    checkB2.Checked = True
-                Else 'NO chekeado
-                    checkB2.Checked = False
-                End If
-                If BindingSource3.Item(BindingSource3.Position)(21) = 1 Then 'guia remision check
-                    checkB3.Checked = True
-                Else 'NO chekeado
-                    checkB3.Checked = False
-                End If
-                If BindingSource3.Item(BindingSource3.Position)(27) = 1 Then 'Recibo check
-                    checkB4.Checked = True
-                Else 'NO chekeado
-                    checkB4.Checked = False
-                End If
-                If BindingSource3.Item(BindingSource3.Position)(23) = 1 Then 'Voucher check
-                    checkB5.Checked = True
-                Else 'NO chekeado
-                    checkB5.Checked = False
-                End If
-                If BindingSource3.Item(BindingSource3.Position)(25) = 1 Then 'Voucher detraccion check
-                    checkB6.Checked = True
-                Else 'NO chekeado
-                    checkB6.Checked = False
-                End If
-                If BindingSource3.Item(BindingSource3.Position)(29) = 1 Then 'Otro check
-                    checkB7.Checked = True
-                Else 'NO chekeado
-                    checkB7.Checked = False
-                End If
+
 
                 selePersDesem() 'select a todo el personal que esta autorizando
 
