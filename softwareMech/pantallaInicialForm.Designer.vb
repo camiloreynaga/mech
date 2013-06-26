@@ -56,6 +56,7 @@ Partial Class pantallaInicialForm
         Me.opcOrdDes3 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator
         Me.opcOrdDes4 = New System.Windows.Forms.ToolStripMenuItem
+        Me.SeguimientoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator
         Me.opcDoc = New System.Windows.Forms.ToolStripDropDownButton
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator
@@ -79,7 +80,7 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.SeguimientoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.TransporteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -275,7 +276,7 @@ Partial Class pantallaInicialForm
         '
         'opcOrden
         '
-        Me.opcOrden.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrden1, Me.opcOrden2})
+        Me.opcOrden.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrden1, Me.opcOrden2, Me.TransporteToolStripMenuItem})
         Me.opcOrden.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.opcOrden.Image = CType(resources.GetObject("opcOrden.Image"), System.Drawing.Image)
         Me.opcOrden.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -361,6 +362,12 @@ Partial Class pantallaInicialForm
         Me.opcOrdDes4.Name = "opcOrdDes4"
         Me.opcOrdDes4.Size = New System.Drawing.Size(270, 22)
         Me.opcOrdDes4.Text = "Mant. Modalidad de Pago"
+        '
+        'SeguimientoToolStripMenuItem
+        '
+        Me.SeguimientoToolStripMenuItem.Name = "SeguimientoToolStripMenuItem"
+        Me.SeguimientoToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.SeguimientoToolStripMenuItem.Text = "Seguimiento"
         '
         'ToolStripSeparator5
         '
@@ -556,11 +563,11 @@ Partial Class pantallaInicialForm
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'SeguimientoToolStripMenuItem
+        'TransporteToolStripMenuItem
         '
-        Me.SeguimientoToolStripMenuItem.Name = "SeguimientoToolStripMenuItem"
-        Me.SeguimientoToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
-        Me.SeguimientoToolStripMenuItem.Text = "Seguimiento"
+        Me.TransporteToolStripMenuItem.Name = "TransporteToolStripMenuItem"
+        Me.TransporteToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.TransporteToolStripMenuItem.Text = "Transporte"
         '
         'pantallaInicialForm
         '
@@ -643,4 +650,5 @@ Partial Class pantallaInicialForm
     Friend WithEvents opcOrdDes3 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents opcReq3 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SeguimientoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TransporteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

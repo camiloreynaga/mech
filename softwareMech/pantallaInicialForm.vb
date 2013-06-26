@@ -381,4 +381,11 @@ Public Class pantallaInicialForm
         seg.MdiParent = Me
         seg.Show()
     End Sub
+
+    Private Sub TransporteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TransporteToolStripMenuItem.Click
+        Dim Trans As New MantenimientoTransporteForm
+        Trans.MdiParent = Me
+        Trans.Show()
+
+    End Sub
 End Class
