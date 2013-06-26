@@ -830,7 +830,7 @@ Public Class MantPersonalForm
                 BindingSource1.Position = BindingSource1.Find("nombre", vfCampo1)
 
                 'Clase definida y con miembros shared en la biblioteca ComponentesRAS
-                StatusBarClass.messageBarraEstado("  Registro fué actualizado con exito...")
+                StatusBarClass.messageBarraEstado("  Registro fue actualizado con éxito...")
                 wait.Close()
             Catch f As Exception
                 wait.Close()
@@ -922,7 +922,7 @@ Public Class MantPersonalForm
 
             enlazarText()
             'Clase definida y con miembros shared en la biblioteca ComponentesRAS
-            StatusBarClass.messageBarraEstado("  Registro fué eliminado con exito...")
+            StatusBarClass.messageBarraEstado("  Registro fue eliminado con éxito...")
             wait.Close()
         Catch f As Exception
             wait.Close()

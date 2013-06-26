@@ -140,9 +140,10 @@ Partial Class SeguimientoOrdenDesembolsoForm
         'dgDesembolso
         '
         Me.dgDesembolso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgDesembolso.Location = New System.Drawing.Point(6, 19)
+        Me.dgDesembolso.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgDesembolso.Location = New System.Drawing.Point(3, 16)
         Me.dgDesembolso.Name = "dgDesembolso"
-        Me.dgDesembolso.Size = New System.Drawing.Size(806, 136)
+        Me.dgDesembolso.Size = New System.Drawing.Size(815, 157)
         Me.dgDesembolso.TabIndex = 0
         '
         'TabControl1
