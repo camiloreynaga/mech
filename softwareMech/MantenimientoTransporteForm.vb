@@ -154,7 +154,8 @@ Public Class MantenimientoTransporteForm
     ''' <remarks></remarks>
 
     Private Sub enlazartext()
-        If BindingSource0.Position = -1 Then
+        If dgTransportes.Rows.Count = 0 Then
+            'If BindingSource0.Position = -1 Then
             Exit Sub
         Else
             txtRazonSocial.Text = BindingSource0.Item(BindingSource0.Position)(1) ' Razon Social
@@ -290,8 +291,6 @@ Public Class MantenimientoTransporteForm
 
         Me.BackColor = BackColorP
         'dando color a los labels
-        'Label6.ForeColor = ForeColorLabel
-
         For index As Integer = 0 To GroupBox1.Controls.Count - 1
             If TypeOf GroupBox1.Controls(index) Is Label Then
 
@@ -300,7 +299,6 @@ Public Class MantenimientoTransporteForm
             End If
         Next
         'Dando color a los botones
-
         For index As Integer = 0 To Me.Controls.Count - 1
             If TypeOf Me.Controls(index) Is Button Then
 
@@ -313,17 +311,20 @@ Public Class MantenimientoTransporteForm
     Private Sub ModificarColumnasDGV()
         Dim oConfigGrilla As New cConfigFormControls
 
-        dgTransportes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        'dgTransportes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
         With dgTransportes
-            .Columns("codET").HeaderText = "Cod"
-            .Columns("codET").Width = 40
+            .Columns("codET").Visible = False
             .Columns("nombre").HeaderText = "Razon Social"
-            .Columns("nombre").Width = 140
+            .Columns("nombre").Width = 160
             .Columns("ruc").HeaderText = "RUC"
+            .Columns("ruc").Width = 90
             .Columns("dir").HeaderText = "Dirección"
+            .Columns("dir").Width = 260
             .Columns("fono").HeaderText = "Teléfonos"
+            .Columns("fono").Width = 120
             .Columns("contacto").HeaderText = "Contacto"
+            .Columns("contacto").Width = 160
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP

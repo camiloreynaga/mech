@@ -148,10 +148,7 @@ Public Class MantCuentas
 
     End Sub
 
-    ''' <summary>
-    ''' configura los colores 
-    ''' </summary>
-    ''' <remarks></remarks>
+
     Private Sub ConfigurarColorControl()
 
         Me.BackColor = BackColorP
@@ -220,11 +217,10 @@ Public Class MantCuentas
             .Columns("moneda").HeaderText = "Moneda"
             .Columns("moneda").Width = 100
             .Columns("estado").HeaderText = "Estado"
-            .Columns("idCue").Visible = False
             .Columns("codMon").Visible = False
             .Columns("codBan").Visible = False
             .Columns("codEstado").Visible = False
-            '.Columns(0).Visible = False
+            .Columns("idCue").Visible = False
 
         End With
 
@@ -367,7 +363,7 @@ Public Class MantCuentas
     Private Function ValidarBco() As Boolean
         Dim retorna As Boolean = True
         If validaCampoVacioMinCaracNoNumer(txtBanco.Text().Trim, 3) Then
-            MessageBox.Show("Ingreso un nombre validao, minimo tres caracteres: ", nomNegocio, Nothing, MessageBoxIcon.Information)
+            MessageBox.Show("Ingreso un nombre valido, mínimo tres caracteres: ", nomNegocio, Nothing, MessageBoxIcon.Information)
             txtBanco.Focus()
             txtBanco.SelectAll()
             retorna = False
@@ -403,6 +399,34 @@ Public Class MantCuentas
 
 
     End Function
+
+    ''' <summary>
+    ''' obtiene la cantidad de pagos relacionada con una cuenta
+    ''' </summary>
+    ''' <param name="cod"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function recuperarPagos(ByVal cod As Integer) As Integer
+
+        Dim cmdComando As SqlCommand = New SqlCommand
+        cmdComando.CommandType = CommandType.Text
+        cmdComando.CommandText = "SELECT count(codPagD) from TPagoDesembolso where idCue =" & cod
+        cmdComando.Connection = Cn
+        Return cmdComando.ExecuteScalar
+
+    End Function
+
+
+    Private Function recuperarCuentasBco(ByVal cod As Integer) As Integer
+
+        Dim cmdComando As SqlCommand = New SqlCommand
+        cmdComando.CommandType = CommandType.Text
+        cmdComando.CommandText = "SELECT count(idCue) from TCuentaBan where codBan =" & cod
+        cmdComando.Connection = Cn
+        Return cmdComando.ExecuteScalar
+
+    End Function
+
 #End Region
 
 
@@ -427,38 +451,35 @@ Public Class MantCuentas
         DatosIniciales()
         ModificarColumnasDGV()
 
+
+
+        'configuracion de botones
         ConfigurarColorControl()
 
-        'Para Encapsular en otro metodo
-
-
-        dgCuentas.RowHeadersVisible = False
-        With dgCuentas
-            .Columns(0).Visible = False
-            .Columns("nroCue").Visible = False
-            .Columns("moneda").Visible = False
-            .Columns("estado").Visible = False
-        End With
 
 
         btnNuevoBco.Enabled = True
         btnModificarBco.Enabled = False
         btnEliminarBco.Enabled = False
+
         Panel2.Enabled = False
+
         btnModificarCta.Enabled = False
         btnEliminarCta.Enabled = False
         btnNuevoCta.Enabled = False
         lsEstado.Enabled = False
 
-        'txtBanco.Focus()
 
-        dgBancos.ClearSelection()
-        dgCuentas.ClearSelection()
-        'dgBancos.FirstDisplayedScrollingRowIndex = -1
+        Try
+            dgBancos.ClearSelection()
+            dgCuentas.ClearSelection()
 
-        'dgCuentas.FirstDisplayedScrollingRowIndex = -1
+            ' dgBancos.FirstDisplayedScrollingRowIndex = -1
+        Catch ex As Exception
 
+            MessageBox.Show(ex.Message)
 
+        End Try
 
 
 
@@ -478,22 +499,12 @@ Public Class MantCuentas
         Panel2.Enabled = True
 
         btnNuevoCta.Enabled = True
-
-        With dgCuentas
-            .Columns("nroCue").Visible = True
-            .Columns("moneda").Visible = True
-            .Columns("estado").Visible = True
-        End With
-
         dgCuentas.ClearSelection()
-
         txtCuenta.Clear()
         cboMoneda.SelectedIndex = 0
         lsEstado.Enabled = False
 
         txtCuenta.Focus()
-
-        'dgCuentas.FirstDisplayedScrollingRowIndex = -1
 
     End Sub
 
@@ -642,49 +653,66 @@ Public Class MantCuentas
             Exit Sub
         End If
 
-        Dim finalMyTrans As Boolean = False
-
-        Dim myTrans As SqlTransaction = Cn.BeginTransaction
-        Dim wait As New waitForm
-        wait.Show()
-
-        Try
-            StatusBarClass.messageBarraEstado("  ELIMINANDO REGISTROS...")
-            comandoDeleteBco(BindingSource1.Item(BindingSource1.Position)(0))
-
-            cmDeleteTableBco.Transaction = myTrans
-            If cmDeleteTableBco.ExecuteNonQuery() < 1 Then
-                myTrans.Rollback()
-                MessageBox.Show("No se puede eliminar banco porque esta actualmente compartiendo...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                Me.Close()
-                Exit Sub
-
-            End If
-            Me.Refresh()
-
-            myTrans.Commit()
-            StatusBarClass.messageBarraEstado("  REGISTRO FUE ELIMINADO CON EXITO...")
-            finalMyTrans = True
-
-            dsAlmacen.Tables("TCuentaBancaria").Clear()
-            dsAlmacen.Tables("TBanco").Clear()
-            daTabla2.Fill(dsAlmacen, "TBanco")
-            daTabla1.Fill(dsAlmacen, "TCuentaBancaria")
+        'Valida relación con Cuentas Bancarias
+        If recuperarCuentasBco(dgBancos.Rows(BindingSource1.Position).Cells("codBan").Value) > 0 Then
+            StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... BANCO TIENE CUENTAS ASIGNADAS...")
+            Exit Sub
+        End If
 
 
-        Catch f As Exception
-            If finalMyTrans Then
-                MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Information)
-                Me.Close()
-            Else
-                'deshace la transaccion
-                myTrans.Rollback()
-                MessageBox.Show("Tipo de exception: " & f.Message & Chr(13) & "NO SE ELIMINO EL REGISTRO SELECCIONADO...", nomNegocio, Nothing, MessageBoxIcon.Information)
-            End If
-        Finally
-            wait.Close()
+        Dim resultado As DialogResult = MessageBox.Show("Está seguro de eliminar esté registro?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resultado = Windows.Forms.DialogResult.Yes Then
 
-        End Try
+            Dim finalMyTrans As Boolean = False
+
+            Dim myTrans As SqlTransaction = Cn.BeginTransaction
+            Dim wait As New waitForm
+            wait.Show()
+
+            Try
+                StatusBarClass.messageBarraEstado("  ELIMINANDO REGISTROS...")
+                comandoDeleteBco(BindingSource1.Item(BindingSource1.Position)(0))
+
+                cmDeleteTableBco.Transaction = myTrans
+                If cmDeleteTableBco.ExecuteNonQuery() < 1 Then
+                    myTrans.Rollback()
+                    MessageBox.Show("No se puede eliminar banco porque esta actualmente compartiendo...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+
+                End If
+                Me.Refresh()
+
+                myTrans.Commit()
+                StatusBarClass.messageBarraEstado("  REGISTRO FUE ELIMINADO CON EXITO...")
+                finalMyTrans = True
+
+                dsAlmacen.Tables("TCuentaBancaria").Clear()
+                dsAlmacen.Tables("TBanco").Clear()
+                daTabla2.Fill(dsAlmacen, "TBanco")
+                daTabla1.Fill(dsAlmacen, "TCuentaBancaria")
+
+
+            Catch f As Exception
+                If finalMyTrans Then
+                    MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Information)
+                    Me.Close()
+                Else
+                    'deshace la transaccion
+                    myTrans.Rollback()
+                    MessageBox.Show("Tipo de exception: " & f.Message & Chr(13) & "NO SE ELIMINO EL REGISTRO SELECCIONADO...", nomNegocio, Nothing, MessageBoxIcon.Information)
+                End If
+            Finally
+                wait.Close()
+
+            End Try
+
+        Else
+            Exit Sub
+
+        End If
+
+        
 
     End Sub
 
@@ -750,68 +778,68 @@ Public Class MantCuentas
     Private Sub btnModificarCta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnModificarCta.Click
 
         Dim _nroCtaTemp As String = BindingSource2.Item(BindingSource2.Position)(1)
+
         If _nroCtaTemp.ToUpper() <> txtCuenta.Text.Trim().ToUpper() Then
             If ValidarCta() = False Then
                 Exit Sub
-
-            Else
-
-                Me.Refresh()
-                Dim finalMyTrans As Boolean = False
-
-                Dim myTrans As SqlTransaction = Cn.BeginTransaction()
-
-                Dim wait As New waitForm
-                wait.Show()
-
-                Try
-                    StatusBarClass.messageBarraEstado(" ESPERE POR FAVOR, GUARDANDO INFORMACION....")
-
-                    Dim _estado As Integer
-
-                    If lsEstado.SelectedIndex = 0 Then
-                        _estado = 1
-                    Else
-                        _estado = 0
-                    End If
-
-                    comandoUpdateCta(txtCuenta.Text.Trim(), cboMoneda.SelectedValue, _estado, BindingSource1.Item(BindingSource1.Position)(0), BindingSource2.Item(BindingSource2.Position)(0))
-                    cmUpdateTableCta.Transaction = myTrans
-
-                    If cmUpdateTableCta.ExecuteNonQuery() < 1 Then
-                        myTrans.Rollback()
-                        MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                        Me.Close()
-                    End If
-
-                    myTrans.Commit()
-                    finalMyTrans = True
-
-                    dsAlmacen.Tables("TCuentaBancaria").Clear()
-                    daTabla1.Fill(dsAlmacen, "TCuentaBancaria")
-
-                    BindingSource2.Position = BindingSource2.Find("nroCue", txtCuenta.Text.Trim())
-                    StatusBarClass.messageBarraEstado("  Registro fué actualizado con exito...")
-
-                Catch f As Exception
-                    If finalMyTrans Then
-                        MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                        Me.Close()
-                        Exit Sub
-                    Else
-                        myTrans.Rollback()
-                        MessageBox.Show(f.Message & Chr(13) & "NO SE ACTUALIZO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                        Me.Close()
-                        Exit Sub
-                    End If
-
-                Finally
-                    wait.Close()
-
-                End Try
-
             End If
         End If
+
+        Me.Refresh()
+        Dim finalMyTrans As Boolean = False
+
+        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
+
+        Dim wait As New waitForm
+        wait.Show()
+
+        Try
+            StatusBarClass.messageBarraEstado(" ESPERE POR FAVOR, GUARDANDO INFORMACION....")
+
+            Dim _estado As Integer
+
+            If lsEstado.SelectedIndex = 0 Then
+                _estado = 1
+            Else
+                _estado = 0
+            End If
+
+            comandoUpdateCta(txtCuenta.Text.Trim(), cboMoneda.SelectedValue, _estado, BindingSource1.Item(BindingSource1.Position)(0), BindingSource2.Item(BindingSource2.Position)(0))
+            cmUpdateTableCta.Transaction = myTrans
+
+            If cmUpdateTableCta.ExecuteNonQuery() < 1 Then
+                myTrans.Rollback()
+                MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+            End If
+
+            myTrans.Commit()
+            finalMyTrans = True
+
+            dsAlmacen.Tables("TCuentaBancaria").Clear()
+            daTabla1.Fill(dsAlmacen, "TCuentaBancaria")
+
+            BindingSource2.Position = BindingSource2.Find("nroCue", txtCuenta.Text.Trim())
+            StatusBarClass.messageBarraEstado("  Registro fué actualizado con exito...")
+
+        Catch f As Exception
+            If finalMyTrans Then
+                MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            Else
+                myTrans.Rollback()
+                MessageBox.Show(f.Message & Chr(13) & "NO SE ACTUALIZO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+
+        Finally
+            wait.Close()
+
+        End Try
+
+
 
     End Sub
 
@@ -822,49 +850,68 @@ Public Class MantCuentas
             Exit Sub
         End If
 
-        Dim finalMyTrans As Boolean = False
+        
+        'Validando las Cuentas relacionadas con pagos
+        If recuperarPagos(dgCuentas.Rows(BindingSource2.Position).Cells("idCue").Value) > 0 Then
+            StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... CUENTA TIENE PAGOS ASIGNADOS...")
+            Exit Sub
+        End If
 
-        Dim myTrans As SqlTransaction = Cn.BeginTransaction
-        Dim wait As New waitForm
-        wait.Show()
+        Dim resultado As DialogResult = MessageBox.Show("Está seguro de eliminar esté registro?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resultado = Windows.Forms.DialogResult.Yes Then
 
-        Try
-            StatusBarClass.messageBarraEstado("  ELIMINANDO REGISTROS...")
-            comandoDeleteCta(BindingSource2.Item(BindingSource2.Position)(0))
+            Dim finalMyTrans As Boolean = False
 
-            cmDeleteTableCta.Transaction = myTrans
+            Dim myTrans As SqlTransaction = Cn.BeginTransaction
+            Dim wait As New waitForm
+            wait.Show()
 
+            Try
+                StatusBarClass.messageBarraEstado("  ELIMINANDO REGISTROS...")
+                comandoDeleteCta(BindingSource2.Item(BindingSource2.Position)(0))
 
-            If cmDeleteTableCta.ExecuteNonQuery() < 1 Then
-                myTrans.Rollback()
-                MessageBox.Show("No se puede eliminar Cuenta porque esta actualmente compartiendo...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                Me.Close()
-                Exit Sub
-
-            End If
-
-            Me.Refresh()
-            myTrans.Commit()
-            StatusBarClass.messageBarraEstado("  REGISTRO FUE ELIMINADO CON EXITO...")
-            finalMyTrans = True
-
-            dsAlmacen.Tables("TCuentaBancaria").Clear()
-            daTabla1.Fill(dsAlmacen, "TCuentaBancaria")
+                cmDeleteTableCta.Transaction = myTrans
 
 
-        Catch f As Exception
-            If finalMyTrans Then
-                MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Information)
-                Me.Close()
-            Else
-                'deshace la transaccion
-                myTrans.Rollback()
-                MessageBox.Show("Tipo de exception: " & f.Message & Chr(13) & "NO SE ELIMINO EL REGISTRO SELECCIONADO...", nomNegocio, Nothing, MessageBoxIcon.Information)
-            End If
-        Finally
-            wait.Close()
+                If cmDeleteTableCta.ExecuteNonQuery() < 1 Then
+                    myTrans.Rollback()
+                    MessageBox.Show("No se puede eliminar Cuenta porque esta actualmente compartiendo...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
 
-        End Try
+                End If
+
+                Me.Refresh()
+                myTrans.Commit()
+                StatusBarClass.messageBarraEstado("  REGISTRO FUE ELIMINADO CON EXITO...")
+                finalMyTrans = True
+
+                dsAlmacen.Tables("TCuentaBancaria").Clear()
+                daTabla1.Fill(dsAlmacen, "TCuentaBancaria")
+
+
+            Catch f As Exception
+                If finalMyTrans Then
+                    MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Information)
+                    Me.Close()
+                Else
+                    'deshace la transaccion
+                    myTrans.Rollback()
+                    MessageBox.Show("Tipo de exception: " & f.Message & Chr(13) & "NO SE ELIMINO EL REGISTRO SELECCIONADO...", nomNegocio, Nothing, MessageBoxIcon.Information)
+                End If
+            Finally
+                wait.Close()
+
+            End Try
+
+
+        Else
+            Exit Sub
+
+        End If
+
+
+        
 
     End Sub
 
@@ -873,5 +920,12 @@ Public Class MantCuentas
 
     End Sub
 
-    
+    Private Sub dgBancos_DataBindingComplete(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewBindingCompleteEventArgs) Handles dgBancos.DataBindingComplete
+        DirectCast(sender, DataGridView).ClearSelection()
+
+    End Sub
+
+    Private Sub dgCuentas_DataBindingComplete(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewBindingCompleteEventArgs) Handles dgCuentas.DataBindingComplete
+        DirectCast(sender, DataGridView).ClearSelection()
+    End Sub
 End Class

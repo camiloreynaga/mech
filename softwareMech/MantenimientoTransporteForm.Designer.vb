@@ -324,10 +324,9 @@ Partial Class MantenimientoTransporteForm
         'dgTransportes
         '
         Me.dgTransportes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgTransportes.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgTransportes.Location = New System.Drawing.Point(3, 16)
         Me.dgTransportes.Name = "dgTransportes"
-        Me.dgTransportes.Size = New System.Drawing.Size(643, 366)
+        Me.dgTransportes.Size = New System.Drawing.Size(643, 338)
         Me.dgTransportes.TabIndex = 0
         '
         'MantenimientoTransporteForm

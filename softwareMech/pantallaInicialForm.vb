@@ -159,9 +159,9 @@ Public Class pantallaInicialForm
     ''' <remarks></remarks>
     Private Sub PermisosTesoreria()
         'Menus
-        opcEnt.Visible = False
+        ' opcEnt.Visible = False
         opcMat.Visible = False
-        opcReq.Visible = False
+        'opcReq.Visible = False
         opcCot.Visible = False
         opcOrden.Visible = False
         opcDoc.Visible = False
@@ -171,7 +171,7 @@ Public Class pantallaInicialForm
 
         'separadores
         ToolStripSeparator8.Visible = False
-        ToolStripSeparator3.Visible = False
+        'ToolStripSeparator3.Visible = False
         ToolStripSeparator32.Visible = False
         ToolStripSeparator4.Visible = False
         ToolStripSeparator5.Visible = False
