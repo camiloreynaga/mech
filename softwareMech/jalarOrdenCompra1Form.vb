@@ -348,22 +348,16 @@ Public Class jalarOrdenCompra1Form
         cmInserTable2.Parameters.Add("@dato", SqlDbType.VarChar, 200).Value = ""
 
         cmInserTable2.Parameters.Add("@fact", SqlDbType.Int, 0).Value = 0
-        cmInserTable2.Parameters.Add("@nroF", SqlDbType.VarChar, 20).Value = ""
 
         cmInserTable2.Parameters.Add("@bol", SqlDbType.Int, 0).Value = 0
-        cmInserTable2.Parameters.Add("@nroB", SqlDbType.VarChar, 20).Value = ""
 
         cmInserTable2.Parameters.Add("@guia", SqlDbType.Int, 0).Value = 0
-        cmInserTable2.Parameters.Add("@nroG", SqlDbType.VarChar, 20).Value = ""
 
         cmInserTable2.Parameters.Add("@vou", SqlDbType.Int, 0).Value = 0
-        cmInserTable2.Parameters.Add("@nroV", SqlDbType.VarChar, 20).Value = ""
 
         cmInserTable2.Parameters.Add("@vouD", SqlDbType.Int, 0).Value = 0
-        cmInserTable2.Parameters.Add("@nroVD", SqlDbType.VarChar, 20).Value = ""
 
         cmInserTable2.Parameters.Add("@reci", SqlDbType.Int, 0).Value = 0
-        cmInserTable2.Parameters.Add("@nroR", SqlDbType.VarChar, 20).Value = ""
 
         cmInserTable2.Parameters.Add("@otro", SqlDbType.Int, 0).Value = 0
         cmInserTable2.Parameters.Add("@des", SqlDbType.VarChar, 60).Value = ""
@@ -371,6 +365,7 @@ Public Class jalarOrdenCompra1Form
         cmInserTable2.Parameters.Add("@nroCF", SqlDbType.VarChar, 30).Value = ""
         cmInserTable2.Parameters.Add("@fec", SqlDbType.VarChar, 10).Value = ""
         cmInserTable2.Parameters.Add("@hist", SqlDbType.VarChar, 200).Value = "Aperturo " & Now.Date & " " & vPass & "-" & vSUsuario
+        cmInserTable2.Parameters.Add("@codSerO", SqlDbType.Int, 0).Value = 1   'CodSerie 002
         'configurando direction output = parametro de solo salida
         cmInserTable2.Parameters.Add("@Identity", SqlDbType.Int, 0)
         cmInserTable2.Parameters("@Identity").Direction = ParameterDirection.Output

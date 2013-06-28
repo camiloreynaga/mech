@@ -20,9 +20,9 @@ Partial Class gerenciaOrdenDesembolsoForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(gerenciaOrdenDesembolsoForm))
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.dgTabla1 = New System.Windows.Forms.DataGridView
         Me.btnCerrar = New System.Windows.Forms.Button
@@ -81,6 +81,8 @@ Partial Class gerenciaOrdenDesembolsoForm
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.txtReq)
+        Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.dgTabla1)
         Me.Panel1.Controls.Add(Me.btnCerrar)
         Me.Panel1.Controls.Add(Me.Navigator1)
@@ -98,8 +100,8 @@ Partial Class gerenciaOrdenDesembolsoForm
         Me.dgTabla1.Location = New System.Drawing.Point(0, 17)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgTabla1.Size = New System.Drawing.Size(892, 279)
         Me.dgTabla1.TabIndex = 332
         '
@@ -226,7 +228,7 @@ Partial Class gerenciaOrdenDesembolsoForm
         Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Location = New System.Drawing.Point(14, 345)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(892, 281)
+        Me.Panel2.Size = New System.Drawing.Size(892, 308)
         Me.Panel2.TabIndex = 4
         '
         'Navigator2
@@ -238,7 +240,7 @@ Partial Class gerenciaOrdenDesembolsoForm
         Me.Navigator2.DeleteItem = Nothing
         Me.Navigator2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Navigator2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripTextBox1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator3, Me.ToolStripSeparator6, Me.txtTotal, Me.lblTotal})
-        Me.Navigator2.Location = New System.Drawing.Point(0, 256)
+        Me.Navigator2.Location = New System.Drawing.Point(0, 283)
         Me.Navigator2.MoveFirstItem = Me.ToolStripButton1
         Me.Navigator2.MoveLastItem = Me.ToolStripButton4
         Me.Navigator2.MoveNextItem = Me.ToolStripButton3
@@ -346,7 +348,7 @@ Partial Class gerenciaOrdenDesembolsoForm
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(566, 240)
+        Me.Label3.Location = New System.Drawing.Point(566, 266)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(62, 13)
         Me.Label3.TabIndex = 325
@@ -354,7 +356,7 @@ Partial Class gerenciaOrdenDesembolsoForm
         '
         'txtIGV
         '
-        Me.txtIGV.Location = New System.Drawing.Point(636, 237)
+        Me.txtIGV.Location = New System.Drawing.Point(636, 263)
         Me.txtIGV.Name = "txtIGV"
         Me.txtIGV.ReadOnly = True
         Me.txtIGV.Size = New System.Drawing.Size(79, 20)
@@ -364,7 +366,7 @@ Partial Class gerenciaOrdenDesembolsoForm
         '
         'txtSub
         '
-        Me.txtSub.Location = New System.Drawing.Point(636, 216)
+        Me.txtSub.Location = New System.Drawing.Point(636, 242)
         Me.txtSub.Name = "txtSub"
         Me.txtSub.ReadOnly = True
         Me.txtSub.Size = New System.Drawing.Size(79, 20)
@@ -375,7 +377,7 @@ Partial Class gerenciaOrdenDesembolsoForm
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(554, 219)
+        Me.Label5.Location = New System.Drawing.Point(554, 245)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(76, 13)
         Me.Label5.TabIndex = 321
@@ -385,7 +387,7 @@ Partial Class gerenciaOrdenDesembolsoForm
         '
         Me.txtLetraTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtLetraTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtLetraTotal.Location = New System.Drawing.Point(2, 231)
+        Me.txtLetraTotal.Location = New System.Drawing.Point(2, 257)
         Me.txtLetraTotal.Name = "txtLetraTotal"
         Me.txtLetraTotal.Size = New System.Drawing.Size(554, 20)
         Me.txtLetraTotal.TabIndex = 324
@@ -400,9 +402,9 @@ Partial Class gerenciaOrdenDesembolsoForm
         Me.dgTabla2.Location = New System.Drawing.Point(2, 18)
         Me.dgTabla2.Name = "dgTabla2"
         Me.dgTabla2.ReadOnly = True
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle6
-        Me.dgTabla2.Size = New System.Drawing.Size(890, 197)
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle2
+        Me.dgTabla2.Size = New System.Drawing.Size(890, 224)
         Me.dgTabla2.TabIndex = 320
         '
         'Label2
@@ -417,17 +419,17 @@ Partial Class gerenciaOrdenDesembolsoForm
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(20, 631)
+        Me.Label4.Location = New System.Drawing.Point(214, 302)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(181, 13)
+        Me.Label4.Size = New System.Drawing.Size(92, 13)
         Me.Label4.TabIndex = 5
-        Me.Label4.Text = "Descripción de Requerimiento:"
+        Me.Label4.Text = "Requerimiento:"
         '
         'txtReq
         '
-        Me.txtReq.Location = New System.Drawing.Point(197, 629)
+        Me.txtReq.Location = New System.Drawing.Point(302, 299)
         Me.txtReq.Name = "txtReq"
-        Me.txtReq.Size = New System.Drawing.Size(709, 20)
+        Me.txtReq.Size = New System.Drawing.Size(590, 20)
         Me.txtReq.TabIndex = 6
         '
         'gerenciaOrdenDesembolsoForm
@@ -435,8 +437,6 @@ Partial Class gerenciaOrdenDesembolsoForm
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
         Me.ClientSize = New System.Drawing.Size(915, 675)
-        Me.Controls.Add(Me.txtReq)
-        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -445,8 +445,6 @@ Partial Class gerenciaOrdenDesembolsoForm
         Me.Controls.SetChildIndex(Me.Panel2, 0)
         Me.Controls.SetChildIndex(Me.lblTitulo, 0)
         Me.Controls.SetChildIndex(Me.lblDerecha, 0)
-        Me.Controls.SetChildIndex(Me.Label4, 0)
-        Me.Controls.SetChildIndex(Me.txtReq, 0)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -460,7 +458,6 @@ Partial Class gerenciaOrdenDesembolsoForm
         Me.Navigator2.PerformLayout()
         CType(Me.dgTabla2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents Panel1 As System.Windows.Forms.Panel

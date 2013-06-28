@@ -67,16 +67,16 @@ Public Class MantenimientoTransporteForm
         Dim wait As New waitForm
         wait.Show()
 
-        Dim sele As String = "Select codET,nombre,ruc,dir,fono,contacto from TEmpTransp"
+        Dim sele As String = "Select codET,nombre,ruc,dir,fono,contacto from TEmpTransp where codET > 1"
         crearDataAdapterTable(daTabla1, sele)
 
         Try
 
             crearDSAlmacen()
-            daTabla1.Fill(dsAlmacen, "TEmpresaTransportes")
+            daTabla1.Fill(dsAlmacen, "TEmpTransp")
 
             BindingSource0.DataSource = dsAlmacen
-            BindingSource0.DataMember = "TEmpresaTransportes"
+            BindingSource0.DataMember = "TEmpTransp"
 
             dgTransportes.DataSource = BindingSource0
             BindingNavigator1.BindingSource = BindingSource0
@@ -152,8 +152,10 @@ Public Class MantenimientoTransporteForm
     ''' Enlazar los datos de la Grilla con los controles del form 
     ''' </summary>
     ''' <remarks></remarks>
+
     Private Sub enlazartext()
-        If BindingSource0.Count = 0 Then
+        If BindingSource0.Position = -1 Then
+            Exit Sub
         Else
             txtRazonSocial.Text = BindingSource0.Item(BindingSource0.Position)(1) ' Razon Social
             txtRuc.Text = BindingSource0.Item(BindingSource0.Position)(2) 'Ruc
@@ -161,7 +163,6 @@ Public Class MantenimientoTransporteForm
             txtTelefono.Text = BindingSource0.Item(BindingSource0.Position)(4) 'Telefono
             txtContacto.Text = BindingSource0.Item(BindingSource0.Position)(5) ' contacto
         End If
-
 
     End Sub
 
@@ -300,13 +301,13 @@ Public Class MantenimientoTransporteForm
         Next
         'Dando color a los botones
 
-        For index As Integer = 0 To Me.Controls.Count
+        For index As Integer = 0 To Me.Controls.Count - 1
             If TypeOf Me.Controls(index) Is Button Then
 
                 Me.Controls(index).ForeColor = ForeColorButtom
             End If
         Next
-       
+
     End Sub
 
     Private Sub ModificarColumnasDGV()
@@ -342,6 +343,19 @@ Public Class MantenimientoTransporteForm
 
 
     End Sub
+
+
+    Private Function recuperarOrdenCompra(ByVal cod As Integer) As Integer
+
+        Dim cmdComando As SqlCommand = New SqlCommand
+        cmdComando.CommandType = CommandType.Text
+        cmdComando.CommandText = "SELECT count(nroOrden) from TOrdenCompra where codET =" & cod
+        cmdComando.Connection = Cn
+        Return cmdComando.ExecuteScalar
+
+
+    End Function
+
 
     ''' <summary>
     ''' Recupera la cantidad de Vehiculos relacionados con la empresa de transporte
@@ -452,8 +466,8 @@ Public Class MantenimientoTransporteForm
                 finalMyTrans = True
 
                 'actualizando el DataSet
-                dsAlmacen.Tables("TEmpresaTransportes").Clear()
-                daTabla1.Fill(dsAlmacen, "TEmpresaTransportes")
+                dsAlmacen.Tables("TEmpTransp").Clear()
+                daTabla1.Fill(dsAlmacen, "TEmpTransp")
 
                 btnCancelar.PerformClick()
                 'ubicando al ítem agregado en la grilla
@@ -563,8 +577,8 @@ Public Class MantenimientoTransporteForm
 
                 'Actualizando el Dataset
 
-                dsAlmacen.Tables("TEmpresaTransportes").Clear()
-                daTabla1.Fill(dsAlmacen, "TEmpresaTransportes")
+                dsAlmacen.Tables("TEmpTransp").Clear()
+                daTabla1.Fill(dsAlmacen, "TEmpTransp")
 
                 btnCancelar.PerformClick()
 
@@ -610,6 +624,12 @@ Public Class MantenimientoTransporteForm
 
         ' validación de eliminacione
 
+        'validar relacion con Orden de Compra
+        If recuperarOrdenCompra(dgTransportes.Rows(BindingSource0.Position).Cells("codET").Value) > 0 Then
+            StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... EMPRESA DE TRANSPORTES TIENE COMPRAS ASIGNADOS...")
+            Exit Sub
+        End If
+
         ' Validad relación con vehiculos
         If recuperarVehiculo(dgTransportes.Rows(BindingSource0.Position).Cells("codET").Value) > 0 Then
             StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... EMPRESA DE TRANSPORTES TIENE VEHICULOS ASIGNADOS...")
@@ -651,8 +671,8 @@ Public Class MantenimientoTransporteForm
 
                 'Actualizando DataSet
 
-                dsAlmacen.Tables("TEmpresaTransportes").Clear()
-                daTabla1.Fill(dsAlmacen, "TEmpresaTransportes")
+                dsAlmacen.Tables("TEmpTransp").Clear()
+                daTabla1.Fill(dsAlmacen, "TEmpTransp")
                 StatusBarClass.messageBarraEstado("  Registro fue eliminado con éxito...")
 
             Catch f As Exception
@@ -724,5 +744,9 @@ Public Class MantenimientoTransporteForm
 
     Private Sub dgTransportes_CellEnter(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTransportes.CellEnter
         enlazartext()
+    End Sub
+
+    Private Sub MantenimientoTransporteForm_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Leave
+        Me.Close()
     End Sub
 End Class

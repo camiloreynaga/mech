@@ -24,8 +24,15 @@ Partial Class registraOrdenCompraForm
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
+        Me.lbOrden = New System.Windows.Forms.ListBox
+        Me.txtPro = New System.Windows.Forms.TextBox
+        Me.Label25 = New System.Windows.Forms.Label
         Me.btnCot = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.txtTran = New System.Windows.Forms.TextBox
+        Me.cbMoneda = New System.Windows.Forms.ComboBox
+        Me.cbPers = New System.Windows.Forms.ComboBox
+        Me.Label9 = New System.Windows.Forms.Label
+        Me.Label3 = New System.Windows.Forms.Label
         Me.Label19 = New System.Windows.Forms.Label
         Me.btnImprimir = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnElimina = New ComponentesSolucion2008.BottomSSP(Me.components)
@@ -35,8 +42,12 @@ Partial Class registraOrdenCompraForm
         Me.txtRem = New System.Windows.Forms.TextBox
         Me.txtEma1 = New System.Windows.Forms.TextBox
         Me.Label16 = New System.Windows.Forms.Label
+        Me.txtLug = New System.Windows.Forms.TextBox
         Me.txtFono1 = New System.Windows.Forms.TextBox
+        Me.Label21 = New System.Windows.Forms.Label
         Me.Label15 = New System.Windows.Forms.Label
+        Me.cbObra = New System.Windows.Forms.ComboBox
+        Me.Label20 = New System.Windows.Forms.Label
         Me.Label14 = New System.Windows.Forms.Label
         Me.txtEma = New System.Windows.Forms.TextBox
         Me.Label13 = New System.Windows.Forms.Label
@@ -45,7 +56,6 @@ Partial Class registraOrdenCompraForm
         Me.txtCel = New System.Windows.Forms.TextBox
         Me.txtRuc = New System.Windows.Forms.TextBox
         Me.Label8 = New System.Windows.Forms.Label
-        Me.lbOrden = New System.Windows.Forms.ListBox
         Me.Label6 = New System.Windows.Forms.Label
         Me.Label11 = New System.Windows.Forms.Label
         Me.Label10 = New System.Windows.Forms.Label
@@ -58,22 +68,22 @@ Partial Class registraOrdenCompraForm
         Me.date1 = New System.Windows.Forms.DateTimePicker
         Me.btnAperturar = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel
+        Me.txtCont = New System.Windows.Forms.TextBox
+        Me.Label31 = New System.Windows.Forms.Label
+        Me.txtDir = New System.Windows.Forms.TextBox
+        Me.Label30 = New System.Windows.Forms.Label
+        Me.txtFono2 = New System.Windows.Forms.TextBox
+        Me.Label29 = New System.Windows.Forms.Label
+        Me.txtRuc1 = New System.Windows.Forms.TextBox
+        Me.Label28 = New System.Windows.Forms.Label
+        Me.cbTrans = New System.Windows.Forms.ComboBox
+        Me.Label27 = New System.Windows.Forms.Label
         Me.txtPla = New System.Windows.Forms.TextBox
-        Me.txtPro = New System.Windows.Forms.TextBox
-        Me.Label25 = New System.Windows.Forms.Label
-        Me.cbMoneda = New System.Windows.Forms.ComboBox
-        Me.Label3 = New System.Windows.Forms.Label
         Me.txtObsFac = New System.Windows.Forms.TextBox
         Me.Label7 = New System.Windows.Forms.Label
         Me.cbPago = New System.Windows.Forms.ComboBox
         Me.Label18 = New System.Windows.Forms.Label
         Me.Label17 = New System.Windows.Forms.Label
-        Me.cbPers = New System.Windows.Forms.ComboBox
-        Me.Label9 = New System.Windows.Forms.Label
-        Me.txtLug = New System.Windows.Forms.TextBox
-        Me.Label21 = New System.Windows.Forms.Label
-        Me.cbObra = New System.Windows.Forms.ComboBox
-        Me.Label20 = New System.Windows.Forms.Label
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.btnAgrega = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnCrear = New ComponentesSolucion2008.BottomSSP(Me.components)
@@ -141,8 +151,15 @@ Partial Class registraOrdenCompraForm
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.lbOrden)
+        Me.Panel1.Controls.Add(Me.txtPro)
+        Me.Panel1.Controls.Add(Me.Label25)
         Me.Panel1.Controls.Add(Me.btnCot)
         Me.Panel1.Controls.Add(Me.txtTran)
+        Me.Panel1.Controls.Add(Me.cbMoneda)
+        Me.Panel1.Controls.Add(Me.cbPers)
+        Me.Panel1.Controls.Add(Me.Label9)
+        Me.Panel1.Controls.Add(Me.Label3)
         Me.Panel1.Controls.Add(Me.Label19)
         Me.Panel1.Controls.Add(Me.btnImprimir)
         Me.Panel1.Controls.Add(Me.btnElimina)
@@ -152,8 +169,12 @@ Partial Class registraOrdenCompraForm
         Me.Panel1.Controls.Add(Me.txtRem)
         Me.Panel1.Controls.Add(Me.txtEma1)
         Me.Panel1.Controls.Add(Me.Label16)
+        Me.Panel1.Controls.Add(Me.txtLug)
         Me.Panel1.Controls.Add(Me.txtFono1)
+        Me.Panel1.Controls.Add(Me.Label21)
         Me.Panel1.Controls.Add(Me.Label15)
+        Me.Panel1.Controls.Add(Me.cbObra)
+        Me.Panel1.Controls.Add(Me.Label20)
         Me.Panel1.Controls.Add(Me.Label14)
         Me.Panel1.Controls.Add(Me.txtEma)
         Me.Panel1.Controls.Add(Me.Label13)
@@ -162,7 +183,6 @@ Partial Class registraOrdenCompraForm
         Me.Panel1.Controls.Add(Me.txtCel)
         Me.Panel1.Controls.Add(Me.txtRuc)
         Me.Panel1.Controls.Add(Me.Label8)
-        Me.Panel1.Controls.Add(Me.lbOrden)
         Me.Panel1.Controls.Add(Me.Label6)
         Me.Panel1.Controls.Add(Me.Label11)
         Me.Panel1.Controls.Add(Me.Label10)
@@ -178,6 +198,30 @@ Partial Class registraOrdenCompraForm
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(514, 220)
         Me.Panel1.TabIndex = 1
+        '
+        'lbOrden
+        '
+        Me.lbOrden.FormattingEnabled = True
+        Me.lbOrden.Location = New System.Drawing.Point(3, 11)
+        Me.lbOrden.Name = "lbOrden"
+        Me.lbOrden.Size = New System.Drawing.Size(95, 147)
+        Me.lbOrden.TabIndex = 6
+        '
+        'txtPro
+        '
+        Me.txtPro.Location = New System.Drawing.Point(393, 192)
+        Me.txtPro.Name = "txtPro"
+        Me.txtPro.Size = New System.Drawing.Size(115, 20)
+        Me.txtPro.TabIndex = 316
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(390, 180)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(75, 13)
+        Me.Label25.TabIndex = 315
+        Me.Label25.Text = "Proforma Nº"
         '
         'btnCot
         '
@@ -200,6 +244,48 @@ Partial Class registraOrdenCompraForm
         Me.txtTran.Name = "txtTran"
         Me.txtTran.Size = New System.Drawing.Size(200, 20)
         Me.txtTran.TabIndex = 321
+        '
+        'cbMoneda
+        '
+        Me.cbMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbMoneda.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbMoneda.FormattingEnabled = True
+        Me.cbMoneda.IntegralHeight = False
+        Me.cbMoneda.Location = New System.Drawing.Point(258, 190)
+        Me.cbMoneda.Name = "cbMoneda"
+        Me.cbMoneda.Size = New System.Drawing.Size(132, 21)
+        Me.cbMoneda.TabIndex = 313
+        '
+        'cbPers
+        '
+        Me.cbPers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbPers.DropDownWidth = 300
+        Me.cbPers.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbPers.FormattingEnabled = True
+        Me.cbPers.IntegralHeight = False
+        Me.cbPers.Location = New System.Drawing.Point(104, 190)
+        Me.cbPers.MaxDropDownItems = 16
+        Me.cbPers.Name = "cbPers"
+        Me.cbPers.Size = New System.Drawing.Size(148, 21)
+        Me.cbPers.TabIndex = 6
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(101, 176)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(61, 13)
+        Me.Label9.TabIndex = 290
+        Me.Label9.Text = "Atencion:"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(259, 175)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(106, 13)
+        Me.Label3.TabIndex = 314
+        Me.Label3.Text = "Moneda de pago:"
         '
         'Label19
         '
@@ -268,52 +354,90 @@ Partial Class registraOrdenCompraForm
         '
         'txtRem
         '
-        Me.txtRem.Location = New System.Drawing.Point(162, 151)
+        Me.txtRem.Location = New System.Drawing.Point(12, 58)
         Me.txtRem.Name = "txtRem"
         Me.txtRem.ReadOnly = True
-        Me.txtRem.Size = New System.Drawing.Size(313, 20)
+        Me.txtRem.Size = New System.Drawing.Size(31, 20)
         Me.txtRem.TabIndex = 13
         Me.txtRem.TabStop = False
         '
         'txtEma1
         '
-        Me.txtEma1.Location = New System.Drawing.Point(161, 195)
+        Me.txtEma1.Location = New System.Drawing.Point(5, 119)
         Me.txtEma1.Name = "txtEma1"
         Me.txtEma1.ReadOnly = True
-        Me.txtEma1.Size = New System.Drawing.Size(314, 20)
+        Me.txtEma1.Size = New System.Drawing.Size(50, 20)
         Me.txtEma1.TabIndex = 15
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(104, 198)
+        Me.Label16.Location = New System.Drawing.Point(9, 105)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(41, 13)
         Me.Label16.TabIndex = 317
         Me.Label16.Text = "Email:"
         '
+        'txtLug
+        '
+        Me.txtLug.Location = New System.Drawing.Point(162, 154)
+        Me.txtLug.Name = "txtLug"
+        Me.txtLug.Size = New System.Drawing.Size(347, 20)
+        Me.txtLug.TabIndex = 5
+        '
         'txtFono1
         '
-        Me.txtFono1.Location = New System.Drawing.Point(162, 173)
+        Me.txtFono1.Location = New System.Drawing.Point(12, 84)
         Me.txtFono1.Name = "txtFono1"
         Me.txtFono1.ReadOnly = True
-        Me.txtFono1.Size = New System.Drawing.Size(313, 20)
+        Me.txtFono1.Size = New System.Drawing.Size(49, 20)
         Me.txtFono1.TabIndex = 14
         Me.txtFono1.TabStop = False
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(101, 157)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(55, 13)
+        Me.Label21.TabIndex = 287
+        Me.Label21.Text = "Entrega:"
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(92, 176)
+        Me.Label15.Location = New System.Drawing.Point(5, 77)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(75, 13)
         Me.Label15.TabIndex = 315
         Me.Label15.Text = "Fono/Movil:"
         '
+        'cbObra
+        '
+        Me.cbObra.DropDownHeight = 500
+        Me.cbObra.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbObra.DropDownWidth = 600
+        Me.cbObra.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbObra.FormattingEnabled = True
+        Me.cbObra.IntegralHeight = False
+        Me.cbObra.Location = New System.Drawing.Point(162, 130)
+        Me.cbObra.Name = "cbObra"
+        Me.cbObra.Size = New System.Drawing.Size(347, 21)
+        Me.cbObra.TabIndex = 4
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(103, 133)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(38, 13)
+        Me.Label20.TabIndex = 286
+        Me.Label20.Text = "Obra:"
+        '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(98, 154)
+        Me.Label14.Location = New System.Drawing.Point(8, 51)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(68, 13)
         Me.Label14.TabIndex = 313
@@ -321,17 +445,17 @@ Partial Class registraOrdenCompraForm
         '
         'txtEma
         '
-        Me.txtEma.Location = New System.Drawing.Point(162, 128)
+        Me.txtEma.Location = New System.Drawing.Point(315, 106)
         Me.txtEma.Name = "txtEma"
         Me.txtEma.ReadOnly = True
-        Me.txtEma.Size = New System.Drawing.Size(226, 20)
+        Me.txtEma.Size = New System.Drawing.Size(198, 20)
         Me.txtEma.TabIndex = 12
         Me.txtEma.TabStop = False
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(104, 131)
+        Me.Label13.Location = New System.Drawing.Point(342, 109)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(41, 13)
         Me.Label13.TabIndex = 311
@@ -342,7 +466,7 @@ Partial Class registraOrdenCompraForm
         Me.txtFono.Location = New System.Drawing.Point(162, 106)
         Me.txtFono.Name = "txtFono"
         Me.txtFono.ReadOnly = True
-        Me.txtFono.Size = New System.Drawing.Size(226, 20)
+        Me.txtFono.Size = New System.Drawing.Size(147, 20)
         Me.txtFono.TabIndex = 11
         Me.txtFono.TabStop = False
         '
@@ -379,14 +503,6 @@ Partial Class registraOrdenCompraForm
         Me.Label8.Size = New System.Drawing.Size(41, 13)
         Me.Label8.TabIndex = 307
         Me.Label8.Text = "RUC.:"
-        '
-        'lbOrden
-        '
-        Me.lbOrden.FormattingEnabled = True
-        Me.lbOrden.Location = New System.Drawing.Point(3, 11)
-        Me.lbOrden.Name = "lbOrden"
-        Me.lbOrden.Size = New System.Drawing.Size(95, 147)
-        Me.lbOrden.TabIndex = 6
         '
         'Label6
         '
@@ -502,101 +618,164 @@ Partial Class registraOrdenCompraForm
         'Panel2
         '
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.txtCont)
+        Me.Panel2.Controls.Add(Me.Label31)
+        Me.Panel2.Controls.Add(Me.txtDir)
+        Me.Panel2.Controls.Add(Me.Label30)
+        Me.Panel2.Controls.Add(Me.txtFono2)
+        Me.Panel2.Controls.Add(Me.Label29)
+        Me.Panel2.Controls.Add(Me.txtRuc1)
+        Me.Panel2.Controls.Add(Me.Label28)
+        Me.Panel2.Controls.Add(Me.cbTrans)
+        Me.Panel2.Controls.Add(Me.Label27)
         Me.Panel2.Controls.Add(Me.txtPla)
-        Me.Panel2.Controls.Add(Me.txtPro)
-        Me.Panel2.Controls.Add(Me.Label25)
-        Me.Panel2.Controls.Add(Me.cbMoneda)
-        Me.Panel2.Controls.Add(Me.Label3)
         Me.Panel2.Controls.Add(Me.txtObsFac)
         Me.Panel2.Controls.Add(Me.Label7)
         Me.Panel2.Controls.Add(Me.cbPago)
         Me.Panel2.Controls.Add(Me.Label18)
         Me.Panel2.Controls.Add(Me.Label17)
-        Me.Panel2.Controls.Add(Me.cbPers)
-        Me.Panel2.Controls.Add(Me.Label9)
-        Me.Panel2.Controls.Add(Me.txtLug)
-        Me.Panel2.Controls.Add(Me.Label21)
-        Me.Panel2.Controls.Add(Me.cbObra)
-        Me.Panel2.Controls.Add(Me.Label20)
         Me.Panel2.Location = New System.Drawing.Point(526, 23)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(389, 220)
         Me.Panel2.TabIndex = 2
         '
+        'txtCont
+        '
+        Me.txtCont.Location = New System.Drawing.Point(72, 96)
+        Me.txtCont.Name = "txtCont"
+        Me.txtCont.ReadOnly = True
+        Me.txtCont.Size = New System.Drawing.Size(306, 20)
+        Me.txtCont.TabIndex = 321
+        Me.txtCont.TabStop = False
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(8, 99)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(62, 13)
+        Me.Label31.TabIndex = 322
+        Me.Label31.Text = "Contacto:"
+        '
+        'txtDir
+        '
+        Me.txtDir.Location = New System.Drawing.Point(7, 74)
+        Me.txtDir.Name = "txtDir"
+        Me.txtDir.ReadOnly = True
+        Me.txtDir.Size = New System.Drawing.Size(373, 20)
+        Me.txtDir.TabIndex = 319
+        Me.txtDir.TabStop = False
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(3, 61)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(65, 13)
+        Me.Label30.TabIndex = 320
+        Me.Label30.Text = "Dirección:"
+        '
+        'txtFono2
+        '
+        Me.txtFono2.Location = New System.Drawing.Point(140, 40)
+        Me.txtFono2.Name = "txtFono2"
+        Me.txtFono2.ReadOnly = True
+        Me.txtFono2.Size = New System.Drawing.Size(236, 20)
+        Me.txtFono2.TabIndex = 317
+        Me.txtFono2.TabStop = False
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(137, 27)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(65, 13)
+        Me.Label29.TabIndex = 318
+        Me.Label29.Text = "Fono/Fax:"
+        '
+        'txtRuc1
+        '
+        Me.txtRuc1.Location = New System.Drawing.Point(44, 40)
+        Me.txtRuc1.Name = "txtRuc1"
+        Me.txtRuc1.ReadOnly = True
+        Me.txtRuc1.Size = New System.Drawing.Size(90, 20)
+        Me.txtRuc1.TabIndex = 315
+        Me.txtRuc1.TabStop = False
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(41, 27)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(41, 13)
+        Me.Label28.TabIndex = 316
+        Me.Label28.Text = "RUC.:"
+        '
+        'cbTrans
+        '
+        Me.cbTrans.DropDownHeight = 500
+        Me.cbTrans.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbTrans.DropDownWidth = 400
+        Me.cbTrans.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbTrans.FormattingEnabled = True
+        Me.cbTrans.IntegralHeight = False
+        Me.cbTrans.Location = New System.Drawing.Point(72, 3)
+        Me.cbTrans.Name = "cbTrans"
+        Me.cbTrans.Size = New System.Drawing.Size(308, 21)
+        Me.cbTrans.TabIndex = 313
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Location = New System.Drawing.Point(0, 6)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(72, 13)
+        Me.Label27.TabIndex = 314
+        Me.Label27.Text = "Transporte:"
+        '
         'txtPla
         '
-        Me.txtPla.Location = New System.Drawing.Point(5, 16)
+        Me.txtPla.Location = New System.Drawing.Point(12, 131)
         Me.txtPla.Name = "txtPla"
         Me.txtPla.Size = New System.Drawing.Size(207, 20)
         Me.txtPla.TabIndex = 1
         '
-        'txtPro
-        '
-        Me.txtPro.Location = New System.Drawing.Point(7, 48)
-        Me.txtPro.Name = "txtPro"
-        Me.txtPro.Size = New System.Drawing.Size(205, 20)
-        Me.txtPro.TabIndex = 316
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(4, 36)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(75, 13)
-        Me.Label25.TabIndex = 315
-        Me.Label25.Text = "Proforma Nº"
-        '
-        'cbMoneda
-        '
-        Me.cbMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbMoneda.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbMoneda.FormattingEnabled = True
-        Me.cbMoneda.IntegralHeight = False
-        Me.cbMoneda.Location = New System.Drawing.Point(218, 155)
-        Me.cbMoneda.Name = "cbMoneda"
-        Me.cbMoneda.Size = New System.Drawing.Size(158, 21)
-        Me.cbMoneda.TabIndex = 313
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(215, 141)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(106, 13)
-        Me.Label3.TabIndex = 314
-        Me.Label3.Text = "Moneda de pago:"
-        '
         'txtObsFac
         '
-        Me.txtObsFac.Location = New System.Drawing.Point(10, 193)
+        Me.txtObsFac.AcceptsReturn = True
+        Me.txtObsFac.AcceptsTab = True
+        Me.txtObsFac.Location = New System.Drawing.Point(11, 166)
+        Me.txtObsFac.Multiline = True
         Me.txtObsFac.Name = "txtObsFac"
-        Me.txtObsFac.Size = New System.Drawing.Size(370, 20)
+        Me.txtObsFac.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtObsFac.Size = New System.Drawing.Size(370, 53)
         Me.txtObsFac.TabIndex = 7
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(9, 179)
+        Me.Label7.Location = New System.Drawing.Point(9, 153)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(142, 13)
+        Me.Label7.Size = New System.Drawing.Size(108, 13)
         Me.Label7.TabIndex = 312
-        Me.Label7.Text = "Observaciones Factura:"
+        Me.Label7.Text = "Envio de Factura:"
         '
         'cbPago
         '
         Me.cbPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbPago.DropDownWidth = 250
         Me.cbPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbPago.FormattingEnabled = True
         Me.cbPago.IntegralHeight = False
-        Me.cbPago.Location = New System.Drawing.Point(222, 15)
+        Me.cbPago.Location = New System.Drawing.Point(225, 130)
         Me.cbPago.Name = "cbPago"
-        Me.cbPago.Size = New System.Drawing.Size(138, 21)
+        Me.cbPago.Size = New System.Drawing.Size(155, 21)
         Me.cbPago.TabIndex = 2
         '
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(219, 1)
+        Me.Label18.Location = New System.Drawing.Point(222, 116)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(130, 13)
         Me.Label18.TabIndex = 307
@@ -605,69 +784,11 @@ Partial Class registraOrdenCompraForm
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(2, 3)
+        Me.Label17.Location = New System.Drawing.Point(9, 118)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(107, 13)
         Me.Label17.TabIndex = 304
         Me.Label17.Text = "Plazo de entrega:"
-        '
-        'cbPers
-        '
-        Me.cbPers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbPers.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbPers.FormattingEnabled = True
-        Me.cbPers.IntegralHeight = False
-        Me.cbPers.Location = New System.Drawing.Point(10, 155)
-        Me.cbPers.Name = "cbPers"
-        Me.cbPers.Size = New System.Drawing.Size(189, 21)
-        Me.cbPers.TabIndex = 6
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(7, 141)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(71, 13)
-        Me.Label9.TabIndex = 290
-        Me.Label9.Text = "Solicitante:"
-        '
-        'txtLug
-        '
-        Me.txtLug.Location = New System.Drawing.Point(7, 119)
-        Me.txtLug.Name = "txtLug"
-        Me.txtLug.Size = New System.Drawing.Size(373, 20)
-        Me.txtLug.TabIndex = 5
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(4, 106)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(109, 13)
-        Me.Label21.TabIndex = 287
-        Me.Label21.Text = "Lugar de Entrega:"
-        '
-        'cbObra
-        '
-        Me.cbObra.DropDownHeight = 500
-        Me.cbObra.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbObra.DropDownWidth = 400
-        Me.cbObra.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbObra.FormattingEnabled = True
-        Me.cbObra.IntegralHeight = False
-        Me.cbObra.Location = New System.Drawing.Point(8, 83)
-        Me.cbObra.Name = "cbObra"
-        Me.cbObra.Size = New System.Drawing.Size(376, 21)
-        Me.cbObra.TabIndex = 4
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(4, 69)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(98, 13)
-        Me.Label20.TabIndex = 286
-        Me.Label20.Text = "Servicio / Obra:"
         '
         'btnAgrega
         '
@@ -1240,5 +1361,15 @@ Partial Class registraOrdenCompraForm
     Friend WithEvents txtNroSol As System.Windows.Forms.TextBox
     Friend WithEvents btnCot As ComponentesSolucion2008.BottomSSP
     Friend WithEvents Label26 As System.Windows.Forms.Label
+    Friend WithEvents txtFono2 As System.Windows.Forms.TextBox
+    Friend WithEvents Label29 As System.Windows.Forms.Label
+    Friend WithEvents txtRuc1 As System.Windows.Forms.TextBox
+    Friend WithEvents Label28 As System.Windows.Forms.Label
+    Friend WithEvents cbTrans As System.Windows.Forms.ComboBox
+    Friend WithEvents Label27 As System.Windows.Forms.Label
+    Friend WithEvents txtDir As System.Windows.Forms.TextBox
+    Friend WithEvents Label30 As System.Windows.Forms.Label
+    Friend WithEvents txtCont As System.Windows.Forms.TextBox
+    Friend WithEvents Label31 As System.Windows.Forms.Label
 
 End Class

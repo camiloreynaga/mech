@@ -38,22 +38,22 @@ Partial Class MantenimientoTransporteForm
         Me.btnEliminar = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnModificar = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
-        Me.dgTransportes = New System.Windows.Forms.DataGridView
         Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
+        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorSeparator = New System.Windows.Forms.ToolStripSeparator
         Me.BindingNavigatorPositionItem = New System.Windows.Forms.ToolStripTextBox
-        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
         Me.BindingNavigatorSeparator1 = New System.Windows.Forms.ToolStripSeparator
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
+        Me.dgTransportes = New System.Windows.Forms.DataGridView
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        CType(Me.dgTransportes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindingNavigator1.SuspendLayout()
+        CType(Me.dgTransportes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblDerecha
@@ -75,14 +75,14 @@ Partial Class MantenimientoTransporteForm
         Me.GroupBox1.ForeColor = System.Drawing.SystemColors.ControlText
         Me.GroupBox1.Location = New System.Drawing.Point(20, 26)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(649, 106)
+        Me.GroupBox1.Size = New System.Drawing.Size(649, 92)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(384, 58)
+        Me.Label6.Location = New System.Drawing.Point(25, 42)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(62, 13)
         Me.Label6.TabIndex = 16
@@ -91,7 +91,7 @@ Partial Class MantenimientoTransporteForm
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(29, 80)
+        Me.Label5.Location = New System.Drawing.Point(392, 42)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(67, 13)
         Me.Label5.TabIndex = 16
@@ -100,7 +100,7 @@ Partial Class MantenimientoTransporteForm
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(393, 28)
+        Me.Label3.Location = New System.Drawing.Point(393, 16)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(37, 13)
         Me.Label3.TabIndex = 16
@@ -109,7 +109,7 @@ Partial Class MantenimientoTransporteForm
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(30, 54)
+        Me.Label4.Location = New System.Drawing.Point(22, 68)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(65, 13)
         Me.Label4.TabIndex = 16
@@ -118,7 +118,7 @@ Partial Class MantenimientoTransporteForm
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(10, 28)
+        Me.Label2.Location = New System.Drawing.Point(4, 16)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(86, 13)
         Me.Label2.TabIndex = 16
@@ -126,46 +126,46 @@ Partial Class MantenimientoTransporteForm
         '
         'txtTelefono
         '
-        Me.txtTelefono.Location = New System.Drawing.Point(102, 77)
+        Me.txtTelefono.Location = New System.Drawing.Point(465, 39)
         Me.txtTelefono.Name = "txtTelefono"
-        Me.txtTelefono.Size = New System.Drawing.Size(268, 20)
+        Me.txtTelefono.Size = New System.Drawing.Size(178, 20)
         Me.txtTelefono.TabIndex = 4
         '
         'txtDireccion
         '
-        Me.txtDireccion.Location = New System.Drawing.Point(101, 51)
+        Me.txtDireccion.Location = New System.Drawing.Point(95, 65)
         Me.txtDireccion.Name = "txtDireccion"
-        Me.txtDireccion.Size = New System.Drawing.Size(268, 20)
+        Me.txtDireccion.Size = New System.Drawing.Size(548, 20)
         Me.txtDireccion.TabIndex = 2
         '
         'txtContacto
         '
-        Me.txtContacto.Location = New System.Drawing.Point(465, 51)
+        Me.txtContacto.Location = New System.Drawing.Point(96, 39)
         Me.txtContacto.Name = "txtContacto"
-        Me.txtContacto.Size = New System.Drawing.Size(159, 20)
-        Me.txtContacto.TabIndex = 3
+        Me.txtContacto.Size = New System.Drawing.Size(290, 20)
+        Me.txtContacto.TabIndex = 1
         '
         'txtRazonSocial
         '
-        Me.txtRazonSocial.Location = New System.Drawing.Point(102, 25)
+        Me.txtRazonSocial.Location = New System.Drawing.Point(96, 13)
         Me.txtRazonSocial.Name = "txtRazonSocial"
-        Me.txtRazonSocial.Size = New System.Drawing.Size(268, 20)
+        Me.txtRazonSocial.Size = New System.Drawing.Size(291, 20)
         Me.txtRazonSocial.TabIndex = 0
         '
         'txtRuc
         '
-        Me.txtRuc.Location = New System.Drawing.Point(465, 25)
+        Me.txtRuc.Location = New System.Drawing.Point(465, 13)
         Me.txtRuc.MaxLength = 11
         Me.txtRuc.Name = "txtRuc"
-        Me.txtRuc.Size = New System.Drawing.Size(159, 20)
-        Me.txtRuc.TabIndex = 1
+        Me.txtRuc.Size = New System.Drawing.Size(178, 20)
+        Me.txtRuc.TabIndex = 3
         '
         'btnNuevo
         '
         Me.btnNuevo.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnNuevo.Image = CType(resources.GetObject("btnNuevo.Image"), System.Drawing.Image)
         Me.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnNuevo.Location = New System.Drawing.Point(33, 138)
+        Me.btnNuevo.Location = New System.Drawing.Point(20, 124)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(84, 23)
         Me.btnNuevo.TabIndex = 10
@@ -177,7 +177,7 @@ Partial Class MantenimientoTransporteForm
         '
         Me.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCerrar.Location = New System.Drawing.Point(393, 138)
+        Me.btnCerrar.Location = New System.Drawing.Point(380, 124)
         Me.btnCerrar.Name = "btnCerrar"
         Me.btnCerrar.Size = New System.Drawing.Size(75, 23)
         Me.btnCerrar.TabIndex = 14
@@ -191,7 +191,7 @@ Partial Class MantenimientoTransporteForm
         Me.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancelar.Image = CType(resources.GetObject("btnCancelar.Image"), System.Drawing.Image)
         Me.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCancelar.Location = New System.Drawing.Point(213, 138)
+        Me.btnCancelar.Location = New System.Drawing.Point(200, 124)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(84, 23)
         Me.btnCancelar.TabIndex = 12
@@ -204,7 +204,7 @@ Partial Class MantenimientoTransporteForm
         Me.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnEliminar.Image = CType(resources.GetObject("btnEliminar.Image"), System.Drawing.Image)
         Me.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnEliminar.Location = New System.Drawing.Point(303, 138)
+        Me.btnEliminar.Location = New System.Drawing.Point(290, 124)
         Me.btnEliminar.Name = "btnEliminar"
         Me.btnEliminar.Size = New System.Drawing.Size(84, 23)
         Me.btnEliminar.TabIndex = 13
@@ -217,7 +217,7 @@ Partial Class MantenimientoTransporteForm
         Me.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnModificar.Image = CType(resources.GetObject("btnModificar.Image"), System.Drawing.Image)
         Me.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnModificar.Location = New System.Drawing.Point(123, 138)
+        Me.btnModificar.Location = New System.Drawing.Point(110, 124)
         Me.btnModificar.Name = "btnModificar"
         Me.btnModificar.Size = New System.Drawing.Size(84, 23)
         Me.btnModificar.TabIndex = 11
@@ -230,20 +230,11 @@ Partial Class MantenimientoTransporteForm
         Me.GroupBox2.Controls.Add(Me.BindingNavigator1)
         Me.GroupBox2.Controls.Add(Me.dgTransportes)
         Me.GroupBox2.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.GroupBox2.Location = New System.Drawing.Point(20, 167)
+        Me.GroupBox2.Location = New System.Drawing.Point(20, 153)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(649, 371)
+        Me.GroupBox2.Size = New System.Drawing.Size(649, 385)
         Me.GroupBox2.TabIndex = 4
         Me.GroupBox2.TabStop = False
-        '
-        'dgTransportes
-        '
-        Me.dgTransportes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgTransportes.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgTransportes.Location = New System.Drawing.Point(3, 16)
-        Me.dgTransportes.Name = "dgTransportes"
-        Me.dgTransportes.Size = New System.Drawing.Size(643, 352)
-        Me.dgTransportes.TabIndex = 0
         '
         'BindingNavigator1
         '
@@ -252,7 +243,7 @@ Partial Class MantenimientoTransporteForm
         Me.BindingNavigator1.DeleteItem = Nothing
         Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
-        Me.BindingNavigator1.Location = New System.Drawing.Point(3, 343)
+        Me.BindingNavigator1.Location = New System.Drawing.Point(3, 357)
         Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
         Me.BindingNavigator1.MoveNextItem = Me.BindingNavigatorMoveNextItem
@@ -262,6 +253,13 @@ Partial Class MantenimientoTransporteForm
         Me.BindingNavigator1.Size = New System.Drawing.Size(643, 25)
         Me.BindingNavigator1.TabIndex = 1
         Me.BindingNavigator1.Text = "BindingNavigator1"
+        '
+        'BindingNavigatorCountItem
+        '
+        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(37, 22)
+        Me.BindingNavigatorCountItem.Text = "de {0}"
+        Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
         '
         'BindingNavigatorMoveFirstItem
         '
@@ -295,16 +293,9 @@ Partial Class MantenimientoTransporteForm
         Me.BindingNavigatorPositionItem.Text = "0"
         Me.BindingNavigatorPositionItem.ToolTipText = "Posición actual"
         '
-        'BindingNavigatorCountItem
-        '
-        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(37, 22)
-        Me.BindingNavigatorCountItem.Text = "de {0}"
-        Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
-        '
         'BindingNavigatorSeparator1
         '
-        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
         Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 25)
         '
         'BindingNavigatorMoveNextItem
@@ -327,25 +318,35 @@ Partial Class MantenimientoTransporteForm
         '
         'BindingNavigatorSeparator2
         '
-        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
         Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
+        '
+        'dgTransportes
+        '
+        Me.dgTransportes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgTransportes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgTransportes.Location = New System.Drawing.Point(3, 16)
+        Me.dgTransportes.Name = "dgTransportes"
+        Me.dgTransportes.Size = New System.Drawing.Size(643, 366)
+        Me.dgTransportes.TabIndex = 0
         '
         'MantenimientoTransporteForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
+        Me.CancelButton = Me.btnCerrar
         Me.ClientSize = New System.Drawing.Size(669, 560)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.btnNuevo)
-        Me.Controls.Add(Me.btnEliminar)
-        Me.Controls.Add(Me.btnCerrar)
         Me.Controls.Add(Me.btnCancelar)
+        Me.Controls.Add(Me.btnCerrar)
         Me.Controls.Add(Me.btnModificar)
+        Me.Controls.Add(Me.btnEliminar)
         Me.Name = "MantenimientoTransporteForm"
-        Me.Controls.SetChildIndex(Me.btnModificar, 0)
-        Me.Controls.SetChildIndex(Me.btnCancelar, 0)
-        Me.Controls.SetChildIndex(Me.btnCerrar, 0)
         Me.Controls.SetChildIndex(Me.btnEliminar, 0)
+        Me.Controls.SetChildIndex(Me.btnModificar, 0)
+        Me.Controls.SetChildIndex(Me.btnCerrar, 0)
+        Me.Controls.SetChildIndex(Me.btnCancelar, 0)
         Me.Controls.SetChildIndex(Me.btnNuevo, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
@@ -355,10 +356,10 @@ Partial Class MantenimientoTransporteForm
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        CType(Me.dgTransportes, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BindingNavigator1.ResumeLayout(False)
         Me.BindingNavigator1.PerformLayout()
+        CType(Me.dgTransportes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

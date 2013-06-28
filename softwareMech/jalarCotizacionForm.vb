@@ -376,6 +376,7 @@ Public Class jalarCotizacionForm
         cmInserTable.Parameters.Add("@codigo", SqlDbType.VarChar, 10).Value = bindingSource4.Item(bindingSource4.Position)(12)
         cmInserTable.Parameters.Add("@lugar", SqlDbType.VarChar, 100).Value = txtLug.Text.Trim()
         cmInserTable.Parameters.Add("@hist", SqlDbType.VarChar, 200).Value = "Creo " & Now.Date & " " & vPass & "-" & vSUsuario
+        cmInserTable.Parameters.Add("@codET", SqlDbType.Int, 0).Value = 1 '1=transporte en blanco
         'configurando direction output = parametro de solo salida
         cmInserTable.Parameters.Add("@Identity", SqlDbType.Int, 0)
         cmInserTable.Parameters("@Identity").Direction = ParameterDirection.Output

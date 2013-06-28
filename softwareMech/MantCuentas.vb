@@ -148,10 +148,50 @@ Public Class MantCuentas
 
     End Sub
 
-
+    ''' <summary>
+    ''' configura los colores 
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub ConfigurarColorControl()
 
+        Me.BackColor = BackColorP
+        'dando color a los labels
+        'Label6.ForeColor = ForeColorLabel
 
+        For index As Integer = 0 To Panel1.Controls.Count - 1
+            If TypeOf Panel1.Controls(index) Is Label Then
+
+                Panel1.Controls(index).ForeColor = ForeColorLabel
+
+            End If
+
+            If TypeOf Panel1.Controls(index) Is Button Then
+
+                Panel1.Controls(index).ForeColor = ForeColorButtom
+            End If
+        Next
+
+
+        For index As Integer = 0 To Panel2.Controls.Count - 1
+            If TypeOf Panel2.Controls(index) Is Label Then
+
+                Panel2.Controls(index).ForeColor = ForeColorLabel
+
+            End If
+
+            If TypeOf Panel2.Controls(index) Is Button Then
+
+                Panel2.Controls(index).ForeColor = ForeColorButtom
+            End If
+        Next
+
+        'Dando color a los botones
+        For index As Integer = 0 To Me.Controls.Count - 1
+            If TypeOf Me.Controls(index) Is Button Then
+
+                Me.Controls(index).ForeColor = ForeColorButtom
+            End If
+        Next
     End Sub
     ''' <summary>
     ''' Modifica la configuración de las grillas
@@ -184,11 +224,12 @@ Public Class MantCuentas
             .Columns("codMon").Visible = False
             .Columns("codBan").Visible = False
             .Columns("codEstado").Visible = False
+            '.Columns(0).Visible = False
 
         End With
 
         With dgBancos
-            .Columns("codBan").HeaderText = "Cod"
+            .Columns("codBan").Visible = False
             .Columns("banco").HeaderText = "Banco"
 
         End With
@@ -346,13 +387,13 @@ Public Class MantCuentas
         Dim retorna As Boolean = True
 
         If validaCampoVacio(txtCuenta.Text.Trim()) Then
-            MessageBox.Show("Ingreso un numero de cuenta valido: ", nomNegocio, Nothing, MessageBoxIcon.Information)
+            MessageBox.Show("Ingreso un número de cuenta valido: ", nomNegocio, Nothing, MessageBoxIcon.Information)
             txtCuenta.Focus()
             txtCuenta.SelectAll()
             retorna = False
         End If
         If BindingSource2.Find("nroCue", txtCuenta.Text.Trim()) > 0 Then
-            MessageBox.Show("Ya existe el Número de cuenta: " & txtCuenta.Text.Trim() & Chr(13) & "Cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
+            MessageBox.Show("Ya existe el número de cuenta: " & txtCuenta.Text.Trim() & Chr(13) & "Cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
             txtCuenta.Focus()
             txtCuenta.SelectAll()
             retorna = False
@@ -379,22 +420,27 @@ Public Class MantCuentas
 
     Private Sub MantCuentas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
+
+
         cConfigGrilla.ConfigGrilla(dgBancos)
         cConfigGrilla.ConfigGrilla(dgCuentas)
         DatosIniciales()
         ModificarColumnasDGV()
 
-
+        ConfigurarColorControl()
 
         'Para Encapsular en otro metodo
 
 
         dgCuentas.RowHeadersVisible = False
         With dgCuentas
+            .Columns(0).Visible = False
             .Columns("nroCue").Visible = False
             .Columns("moneda").Visible = False
             .Columns("estado").Visible = False
         End With
+
+
         btnNuevoBco.Enabled = True
         btnModificarBco.Enabled = False
         btnEliminarBco.Enabled = False
@@ -408,7 +454,7 @@ Public Class MantCuentas
 
         dgBancos.ClearSelection()
         dgCuentas.ClearSelection()
-        dgBancos.FirstDisplayedScrollingRowIndex = -1
+        'dgBancos.FirstDisplayedScrollingRowIndex = -1
 
         'dgCuentas.FirstDisplayedScrollingRowIndex = -1
 
@@ -821,4 +867,11 @@ Public Class MantCuentas
         End Try
 
     End Sub
+
+    Private Sub MantCuentas_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Leave
+        Me.Close()
+
+    End Sub
+
+    
 End Class

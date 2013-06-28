@@ -472,10 +472,10 @@ GO
 --Nueva Vista para Seguimiento de Desembolso
 create view VOrdenDesebolsoSeguimiento
 as
-	select idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,estado,'est'=case when estado=0 then 'PENDIENTE' when estado=1 then 'TERMINADO' when estado=2 then 'CERRADO' else 'ANULADO' end, 
+	select idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,'est'=case when TOD.estado=0 then 'PENDIENTE' when TOD.estado=1 then 'TERMINADO' when TOD.estado=2 then 'CERRADO' else 'ANULADO' end, 
 	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,
-	codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,hist
-	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon 
+	TLU.nombre,codIde,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,hist
+	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon join TIdentidad TID on tod.codIde=tod.codIde join TLugarTrabajo TLU on tlu.codigo=TOD.codigo   
 	where estado in (0,1) --0=pendiente 1=terminado
 
 GO

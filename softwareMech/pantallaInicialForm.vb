@@ -376,16 +376,23 @@ Public Class pantallaInicialForm
         seg.Show()
     End Sub
 
-    Private Sub SeguimientoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SeguimientoToolStripMenuItem.Click
-        Dim seg As New SeguimientoOrdenDesembolsoForm
-        seg.MdiParent = Me
-        seg.Show()
+    Private Sub opcConf4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConf4.Click
+        Dim mant As New ConfiguracionSerieDocForm
+        mant.MdiParent = Me
+        mant.Show()
     End Sub
 
-    Private Sub TransporteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TransporteToolStripMenuItem.Click
-        Dim Trans As New MantenimientoTransporteForm
-        Trans.MdiParent = Me
-        Trans.Show()
+    Private Sub MantCuentasBancariasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MantCuentasBancariasToolStripMenuItem.Click
+        Dim Cta As New MantCuentas
+        Cta.MdiParent = Me
+        Cta.Show()
+
+    End Sub
+
+    Private Sub opcOrden3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrden3.Click
+        Dim Emp As New MantenimientoTransporteForm
+        Emp.MdiParent = Me
+        Emp.Show()
 
     End Sub
 End Class

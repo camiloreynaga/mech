@@ -52,17 +52,47 @@ Public Class SeguimientoOrdenDesembolsoForm
         Dim oGrilla As New cConfigFormControls
         oGrilla.ConfigGrilla(dgDesembolso)
 
-        'With dgDesembolso
-        '    .Columns("idOP").HeaderText = "Cod"
-        '    .Columns("nroDes").HeaderText = "Nro"
-        '    .Columns("serie").HeaderText = ""
+        With dgDesembolso
+            .Columns("idOP").HeaderText = "Cod"
+            .Columns("nroDes").HeaderText = "Nro"
+            .Columns("serie").HeaderText = ""
 
-        '    .Columns("fecDes").HeaderText = "Fecha"
-        '    .Columns("codMon"
+            .Columns("fecDes").HeaderText = "Fecha"
+            .Columns("est").HeaderText = "Estado"
+            .Columns("monto").HeaderText = "Monto"
+            .Columns("montoDet").HeaderText = "Detracción"
+            .Columns("codigo").HeaderText = "Obra/Lugar"
+            .Columns("codIde").HeaderText = "Proveedor"
+            .Columns("banco").HeaderText = "Forma de Pago"
+            .Columns("datoReq").HeaderText = "Motivo"
+            'columnas no visibles
+            .Columns("idOP").Visible = False
+            .Columns("nro").Visible = False
+            .Columns("hist").Visible = False
+            .Columns("montoDif").Visible = False
+            .Columns("nroCta").Visible = False
+            .Columns("nroDet").Visible = False
+            .Columns("factCheck").Visible = False
+            .Columns("bolCheck").Visible = False
+            .Columns("guiaCheck").Visible = False
+            .Columns("vouCheck").Visible = False
+            .Columns("vouDCheck").Visible = False
+            .Columns("reciCheck").Visible = False
+            .Columns("otroCheck").Visible = False
+            .Columns("descOtro").Visible = False
+            .Columns("nroConfor").Visible = False
+            .Columns("fecEnt").Visible = False
 
 
 
-        'End With
+
+
+
+
+
+
+
+        End With
 
 
 

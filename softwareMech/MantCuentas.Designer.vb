@@ -285,6 +285,7 @@ Partial Class MantCuentas
         'MantCuentas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
+        Me.CancelButton = Me.btnCerrar
         Me.ClientSize = New System.Drawing.Size(835, 280)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)

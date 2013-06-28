@@ -68,6 +68,25 @@ Public Class InformeOrdenCompraForm
         End Try
     End Sub
 
+    Private Sub InformeOrdenCompraForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+        colorearFila()
+        BindingSource1.MoveLast()
+    End Sub
+
+    Private Sub colorearFila()
+        For j As Short = 0 To BindingSource1.Count - 1
+            If BindingSource1.Item(j)(15) = 1 Then 'Terminado
+                dgTabla1.Rows(j).Cells(3).Style.BackColor = Color.Green
+            End If
+            If BindingSource1.Item(j)(15) = 2 Then 'Cerrado
+                dgTabla1.Rows(j).Cells(3).Style.BackColor = Color.AliceBlue
+            End If
+            If BindingSource1.Item(j)(15) = 3 Then 'Anulado
+                dgTabla1.Rows(j).Cells(3).Style.BackColor = Color.Yellow
+            End If
+        Next
+    End Sub
+
     Private Sub ModificarColumnasDGV()
         With dgTabla1
             .Columns(0).Visible = False
@@ -214,7 +233,6 @@ Public Class InformeOrdenCompraForm
                 End If
             End If
             Me.Cursor = Cursors.Default
-            colorearFila()
         End If
     End Sub
 
@@ -232,20 +250,6 @@ Public Class InformeOrdenCompraForm
             calcularSubTotal()
             Me.Cursor = Cursors.Default
         End If
-    End Sub
-
-    Private Sub colorearFila()
-        For j As Short = 0 To BindingSource1.Count - 1
-            If BindingSource1.Item(j)(15) = 1 Then 'Terminado
-                dgTabla1.Rows(j).Cells(3).Style.BackColor = Color.Green
-            End If
-            If BindingSource1.Item(j)(15) = 2 Then 'Cerrado
-                dgTabla1.Rows(j).Cells(3).Style.BackColor = Color.AliceBlue
-            End If
-            If BindingSource1.Item(j)(15) = 3 Then 'Anulado
-                dgTabla1.Rows(j).Cells(3).Style.BackColor = Color.Yellow
-            End If
-        Next
     End Sub
 
     Dim vfIGV As Double = vSIGV

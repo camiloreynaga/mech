@@ -49,6 +49,8 @@ Partial Class pantallaInicialForm
         Me.opcOrden = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcOrden1 = New System.Windows.Forms.ToolStripMenuItem
         Me.opcOrden2 = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripSeparator13 = New System.Windows.Forms.ToolStripSeparator
+        Me.opcOrden3 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator10 = New System.Windows.Forms.ToolStripSeparator
         Me.opcOrdDes = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcOrdDes1 = New System.Windows.Forms.ToolStripMenuItem
@@ -56,7 +58,7 @@ Partial Class pantallaInicialForm
         Me.opcOrdDes3 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator
         Me.opcOrdDes4 = New System.Windows.Forms.ToolStripMenuItem
-        Me.SeguimientoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.MantCuentasBancariasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator
         Me.opcDoc = New System.Windows.Forms.ToolStripDropDownButton
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator
@@ -69,6 +71,7 @@ Partial Class pantallaInicialForm
         Me.ToolStripSeparator18 = New System.Windows.Forms.ToolStripSeparator
         Me.opcConf = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcConf6 = New System.Windows.Forms.ToolStripMenuItem
+        Me.opcConf4 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator28 = New System.Windows.Forms.ToolStripSeparator
         Me.opcConf1 = New System.Windows.Forms.ToolStripMenuItem
         Me.opcConf2 = New System.Windows.Forms.ToolStripMenuItem
@@ -80,7 +83,6 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.TransporteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -276,7 +278,7 @@ Partial Class pantallaInicialForm
         '
         'opcOrden
         '
-        Me.opcOrden.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrden1, Me.opcOrden2, Me.TransporteToolStripMenuItem})
+        Me.opcOrden.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrden1, Me.opcOrden2, Me.ToolStripSeparator13, Me.opcOrden3})
         Me.opcOrden.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.opcOrden.Image = CType(resources.GetObject("opcOrden.Image"), System.Drawing.Image)
         Me.opcOrden.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -304,6 +306,19 @@ Partial Class pantallaInicialForm
         Me.opcOrden2.Size = New System.Drawing.Size(249, 22)
         Me.opcOrden2.Text = "Informe de Ordenes de Compra"
         '
+        'ToolStripSeparator13
+        '
+        Me.ToolStripSeparator13.Name = "ToolStripSeparator13"
+        Me.ToolStripSeparator13.Size = New System.Drawing.Size(246, 6)
+        '
+        'opcOrden3
+        '
+        Me.opcOrden3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcOrden3.ForeColor = System.Drawing.Color.Navy
+        Me.opcOrden3.Name = "opcOrden3"
+        Me.opcOrden3.Size = New System.Drawing.Size(249, 22)
+        Me.opcOrden3.Text = "Mant. Emp. Transporte"
+        '
         'ToolStripSeparator10
         '
         Me.ToolStripSeparator10.Name = "ToolStripSeparator10"
@@ -311,7 +326,7 @@ Partial Class pantallaInicialForm
         '
         'opcOrdDes
         '
-        Me.opcOrdDes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrdDes1, Me.opcOrdDes2, Me.opcOrdDes3, Me.ToolStripSeparator12, Me.opcOrdDes4, Me.SeguimientoToolStripMenuItem})
+        Me.opcOrdDes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrdDes1, Me.opcOrdDes2, Me.opcOrdDes3, Me.ToolStripSeparator12, Me.opcOrdDes4, Me.MantCuentasBancariasToolStripMenuItem})
         Me.opcOrdDes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.opcOrdDes.Image = CType(resources.GetObject("opcOrdDes.Image"), System.Drawing.Image)
         Me.opcOrdDes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -363,11 +378,13 @@ Partial Class pantallaInicialForm
         Me.opcOrdDes4.Size = New System.Drawing.Size(270, 22)
         Me.opcOrdDes4.Text = "Mant. Modalidad de Pago"
         '
-        'SeguimientoToolStripMenuItem
+        'MantCuentasBancariasToolStripMenuItem
         '
-        Me.SeguimientoToolStripMenuItem.Name = "SeguimientoToolStripMenuItem"
-        Me.SeguimientoToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
-        Me.SeguimientoToolStripMenuItem.Text = "Seguimiento"
+        Me.MantCuentasBancariasToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MantCuentasBancariasToolStripMenuItem.ForeColor = System.Drawing.Color.Navy
+        Me.MantCuentasBancariasToolStripMenuItem.Name = "MantCuentasBancariasToolStripMenuItem"
+        Me.MantCuentasBancariasToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.MantCuentasBancariasToolStripMenuItem.Text = "Mant. Cuentas Bancarias"
         '
         'ToolStripSeparator5
         '
@@ -445,7 +462,7 @@ Partial Class pantallaInicialForm
         '
         'opcConf
         '
-        Me.opcConf.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcConf6, Me.ToolStripSeparator28, Me.opcConf1, Me.opcConf2, Me.ToolStripSeparator14, Me.opcConf3})
+        Me.opcConf.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcConf6, Me.opcConf4, Me.ToolStripSeparator28, Me.opcConf1, Me.opcConf2, Me.ToolStripSeparator14, Me.opcConf3})
         Me.opcConf.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.opcConf.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.opcConf.Image = CType(resources.GetObject("opcConf.Image"), System.Drawing.Image)
@@ -462,14 +479,24 @@ Partial Class pantallaInicialForm
         Me.opcConf6.ForeColor = System.Drawing.Color.Navy
         Me.opcConf6.Image = CType(resources.GetObject("opcConf6.Image"), System.Drawing.Image)
         Me.opcConf6.Name = "opcConf6"
-        Me.opcConf6.Size = New System.Drawing.Size(201, 22)
+        Me.opcConf6.Size = New System.Drawing.Size(213, 22)
         Me.opcConf6.Text = "De Lugar de Trabajo"
         Me.opcConf6.ToolTipText = "Crear Almacenes de obra..."
+        '
+        'opcConf4
+        '
+        Me.opcConf4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcConf4.ForeColor = System.Drawing.Color.Navy
+        Me.opcConf4.Image = CType(resources.GetObject("opcConf4.Image"), System.Drawing.Image)
+        Me.opcConf4.Name = "opcConf4"
+        Me.opcConf4.Size = New System.Drawing.Size(213, 22)
+        Me.opcConf4.Text = "Serie Orden Desembolso"
+        Me.opcConf4.ToolTipText = "Crear series de ordenes de desembolso..."
         '
         'ToolStripSeparator28
         '
         Me.ToolStripSeparator28.Name = "ToolStripSeparator28"
-        Me.ToolStripSeparator28.Size = New System.Drawing.Size(198, 6)
+        Me.ToolStripSeparator28.Size = New System.Drawing.Size(210, 6)
         '
         'opcConf1
         '
@@ -477,7 +504,7 @@ Partial Class pantallaInicialForm
         Me.opcConf1.ForeColor = System.Drawing.Color.Navy
         Me.opcConf1.Image = CType(resources.GetObject("opcConf1.Image"), System.Drawing.Image)
         Me.opcConf1.Name = "opcConf1"
-        Me.opcConf1.Size = New System.Drawing.Size(201, 22)
+        Me.opcConf1.Size = New System.Drawing.Size(213, 22)
         Me.opcConf1.Text = "De Colores Pantallas"
         '
         'opcConf2
@@ -486,14 +513,14 @@ Partial Class pantallaInicialForm
         Me.opcConf2.ForeColor = System.Drawing.Color.Navy
         Me.opcConf2.Image = CType(resources.GetObject("opcConf2.Image"), System.Drawing.Image)
         Me.opcConf2.Name = "opcConf2"
-        Me.opcConf2.Size = New System.Drawing.Size(201, 22)
+        Me.opcConf2.Size = New System.Drawing.Size(213, 22)
         Me.opcConf2.Text = "Cambiar Contraseña"
         Me.opcConf2.ToolTipText = "Cambiar contraseña de usuario actvo..."
         '
         'ToolStripSeparator14
         '
         Me.ToolStripSeparator14.Name = "ToolStripSeparator14"
-        Me.ToolStripSeparator14.Size = New System.Drawing.Size(198, 6)
+        Me.ToolStripSeparator14.Size = New System.Drawing.Size(210, 6)
         '
         'opcConf3
         '
@@ -501,7 +528,7 @@ Partial Class pantallaInicialForm
         Me.opcConf3.ForeColor = System.Drawing.Color.Navy
         Me.opcConf3.Image = CType(resources.GetObject("opcConf3.Image"), System.Drawing.Image)
         Me.opcConf3.Name = "opcConf3"
-        Me.opcConf3.Size = New System.Drawing.Size(201, 22)
+        Me.opcConf3.Size = New System.Drawing.Size(213, 22)
         Me.opcConf3.Text = "Backup base de datos"
         Me.opcConf3.Visible = False
         '
@@ -562,12 +589,6 @@ Partial Class pantallaInicialForm
         Me.ToolStripStatusLabel1.Text = "Soluciones Software Perú S.A.C. - Copyright (c)  2005 - 2013 SSP SAC - Cusco Perú" & _
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'TransporteToolStripMenuItem
-        '
-        Me.TransporteToolStripMenuItem.Name = "TransporteToolStripMenuItem"
-        Me.TransporteToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
-        Me.TransporteToolStripMenuItem.Text = "Transporte"
         '
         'pantallaInicialForm
         '
@@ -649,6 +670,8 @@ Partial Class pantallaInicialForm
     Friend WithEvents opcOrdDes2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents opcOrdDes3 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents opcReq3 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents SeguimientoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TransporteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcConf4 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcOrden3 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MantCuentasBancariasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator13 As System.Windows.Forms.ToolStripSeparator
 End Class

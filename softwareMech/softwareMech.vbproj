@@ -134,6 +134,12 @@
     <Compile Include="configuracionColorForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ConfiguracionSerieDocForm.Designer.vb">
+      <DependentUpon>ConfiguracionSerieDocForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ConfiguracionSerieDocForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="crearMaterialForm.Designer.vb">
       <DependentUpon>crearMaterialForm.vb</DependentUpon>
     </Compile>
@@ -144,6 +150,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport2.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport2.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReport3.vb">
@@ -351,6 +363,12 @@
     <Compile Include="ReportViewerOrdenCompraForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReportViewerOrdenDesembolsoForm.Designer.vb">
+      <DependentUpon>ReportViewerOrdenDesembolsoForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewerOrdenDesembolsoForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReportViewerSolicitudForm.Designer.vb">
       <DependentUpon>ReportViewerSolicitudForm.vb</DependentUpon>
     </Compile>
@@ -415,12 +433,19 @@
     <EmbeddedResource Include="configuracionColorForm.resx">
       <DependentUpon>configuracionColorForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConfiguracionSerieDocForm.resx">
+      <DependentUpon>ConfiguracionSerieDocForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="crearMaterialForm.resx">
       <DependentUpon>crearMaterialForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport2.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport3.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -519,6 +544,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerOrdenCompraForm.resx">
       <DependentUpon>ReportViewerOrdenCompraForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewerOrdenDesembolsoForm.resx">
+      <DependentUpon>ReportViewerOrdenDesembolsoForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerSolicitudForm.resx">
       <DependentUpon>ReportViewerSolicitudForm.vb</DependentUpon>

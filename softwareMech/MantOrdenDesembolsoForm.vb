@@ -30,7 +30,7 @@ Public Class MantOrdenDesembolsoForm
 
         vSerie = "002"
         txtSer.Text = "002"
-        sele = "select idOP,nroDes,serie,nro,fecDes,est,hist,monto,montoDet,montoDif,estado,codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,nroFact,bolCheck,nroBol,guiaCheck,nroGuia,vouCheck,nroVou,vouDCheck,nroVouD,reciCheck,nroReci,otroCheck,descOtro,nroConfor,fecEnt,codMon from VOrdenDesembolso where serie=@ser" 'order by nroDes"
+        sele = "select idOP,nroDes,serie,nro,fecDes,est,hist,monto,montoDet,montoDif,estado,codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,codMon from VOrdenDesembolso where serie=@ser" 'order by nroDes"
         crearDataAdapterTable(daTabla1, sele)
         daTabla1.SelectCommand.Parameters.Add("@ser", SqlDbType.VarChar, 5).Value = vSerie
 
@@ -97,15 +97,7 @@ Public Class MantOrdenDesembolsoForm
             vfVan1 = True   'para selePersDesem() se llama dentro de enlazarText()
             vfVan2 = True
             leerProvee()
-
-            'dgTabla1.ClearSelection()
-            'dgTabla1.FirstDisplayedScrollingRowIndex = -1
-
-
-            Dim d As Integer = dgTabla1.FirstDisplayedScrollingRowIndex
-
-
-            ' = -1
+            enlazarText()
 
             wait.Close()
             Me.Cursor = Cursors.Default
@@ -116,16 +108,24 @@ Public Class MantOrdenDesembolsoForm
             Me.Close()
             Exit Sub
         End Try
+    End Sub
 
-        Dim seleccionados As Integer = dgTabla1.SelectedRows.Count
+    Private Sub MantOrdenDesembolsoForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+        colorearFila()
+    End Sub
 
-
-
-        'dgTabla1.FirstDisplayedScrollingRowIndex = -1
-        enlazarText()
-        ' Deseleccionado las filas de la grilla
-        'dgTabla1.ClearSelection()
-        
+    Private Sub colorearFila()
+        For j As Short = 0 To BindingSource3.Count - 1
+            If BindingSource3.Item(j)(10) = 1 Then 'Terminado
+                dgTabla1.Rows(j).Cells(5).Style.BackColor = Color.Green
+            End If
+            If BindingSource3.Item(j)(10) = 2 Then 'Cerrado
+                dgTabla1.Rows(j).Cells(5).Style.BackColor = Color.AliceBlue
+            End If
+            If BindingSource3.Item(j)(10) = 3 Then 'Anulado
+                dgTabla1.Rows(j).Cells(5).Style.BackColor = Color.Yellow
+            End If
+        Next
     End Sub
 
     Private Sub cbProv_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbProv.SelectedIndexChanged
@@ -144,7 +144,6 @@ Public Class MantOrdenDesembolsoForm
     End Sub
 
     Private Sub ModificarColumnasDGV()
-
         With dgTabla1
             .Columns(0).Visible = False
             .Columns(1).Visible = False
@@ -157,6 +156,7 @@ Public Class MantOrdenDesembolsoForm
             .Columns(4).Width = 70
             .Columns(5).Width = 75
             .Columns(5).HeaderText = "Estado"
+            .Columns(6).Visible = False
             .Columns(6).Width = 800
             .Columns(6).HeaderText = ""
             .Columns(7).Visible = False
@@ -180,20 +180,10 @@ Public Class MantOrdenDesembolsoForm
             .Columns(25).Visible = False
             .Columns(26).Visible = False
             .Columns(27).Visible = False
-            .Columns(28).Visible = False
-            .Columns(29).Visible = False
-            .Columns(30).Visible = False
-            .Columns(31).Visible = False
-            .Columns(32).Visible = False
-            .Columns(33).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .RowHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
-
-            'deseleccionando las filas de la grilla
-
-
         End With
     End Sub
 
@@ -222,12 +212,6 @@ Public Class MantOrdenDesembolsoForm
         Label17.ForeColor = ForeColorLabel
         Label18.ForeColor = ForeColorLabel
         Label19.ForeColor = ForeColorLabel
-        Label23.ForeColor = ForeColorLabel
-        Label24.ForeColor = ForeColorLabel
-        Label25.ForeColor = ForeColorLabel
-        Label26.ForeColor = ForeColorLabel
-        Label27.ForeColor = ForeColorLabel
-        Label28.ForeColor = ForeColorLabel
         Label29.ForeColor = ForeColorLabel
         Label30.ForeColor = ForeColorLabel
         Label31.ForeColor = ForeColorLabel
@@ -298,10 +282,7 @@ Public Class MantOrdenDesembolsoForm
     End Function
 
     Private Sub dgTabla1_CurrentCellChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgTabla1.CurrentCellChanged
-        'If dgTabla1.SelectedRows.Count > 0 Then
         enlazarText()
-        'End If
-
     End Sub
 
     Dim vfVan2 As Boolean = False
@@ -311,71 +292,59 @@ Public Class MantOrdenDesembolsoForm
             If BindingSource3.Count = 0 Then
                 'desEnlazarText()
             Else
-                If dgTabla1.FirstDisplayedScrollingRowIndex >= 0 Then
+                date1.Value = BindingSource3.Item(BindingSource3.Position)(4)
+                txtMon.Text = BindingSource3.Item(BindingSource3.Position)(7)
+                txtDet.Text = BindingSource3.Item(BindingSource3.Position)(8)
+                txtTot.Text = BindingSource3.Item(BindingSource3.Position)(9)
+                cbMon.SelectedValue = BindingSource3.Item(BindingSource3.Position)(27)
+                cambiarNroTotalLetra()
+                cbObra.SelectedValue = BindingSource3.Item(BindingSource3.Position)(11)
+                cbProv.SelectedValue = BindingSource3.Item(BindingSource3.Position)(12)
+                txtBan.Text = BindingSource3.Item(BindingSource3.Position)(13)
+                txtNroCta.Text = BindingSource3.Item(BindingSource3.Position)(14)
+                txtNroDet.Text = BindingSource3.Item(BindingSource3.Position)(15)
+                txtOrden.Text = recuperarNroOrdenCompra(BindingSource3.Item(BindingSource3.Position)(0)).Trim()
+                txtDato.Text = BindingSource3.Item(BindingSource3.Position)(16)
 
+                txtOtro.Text = BindingSource3.Item(BindingSource3.Position)(24)
+                txtNroCon.Text = BindingSource3.Item(BindingSource3.Position)(25)
+                txtFec.Text = BindingSource3.Item(BindingSource3.Position)(26)
 
-                    date1.Value = BindingSource3.Item(BindingSource3.Position)(4)
-                    txtMon.Text = BindingSource3.Item(BindingSource3.Position)(7)
-                    txtDet.Text = BindingSource3.Item(BindingSource3.Position)(8)
-                    txtTot.Text = BindingSource3.Item(BindingSource3.Position)(9)
-                    cbMon.SelectedValue = BindingSource3.Item(BindingSource3.Position)(33)
-                    cambiarNroTotalLetra()
-                    cbObra.SelectedValue = BindingSource3.Item(BindingSource3.Position)(11)
-                    cbProv.SelectedValue = BindingSource3.Item(BindingSource3.Position)(12)
-                    txtBan.Text = BindingSource3.Item(BindingSource3.Position)(13)
-                    txtNroCta.Text = BindingSource3.Item(BindingSource3.Position)(14)
-                    txtNroDet.Text = BindingSource3.Item(BindingSource3.Position)(15)
-                    txtOrden.Text = recuperarNroOrdenCompra(BindingSource3.Item(BindingSource3.Position)(0)).Trim()
-                    txtDato.Text = BindingSource3.Item(BindingSource3.Position)(16)
-
-                    txtNroFac.Text = BindingSource3.Item(BindingSource3.Position)(18)
-                    txtNroBol.Text = BindingSource3.Item(BindingSource3.Position)(20)
-                    txtNroGuia.Text = BindingSource3.Item(BindingSource3.Position)(22)
-                    txtNroReci.Text = BindingSource3.Item(BindingSource3.Position)(28)
-                    txtNroVou.Text = BindingSource3.Item(BindingSource3.Position)(24)
-                    txtNroVouD.Text = BindingSource3.Item(BindingSource3.Position)(26)
-                    txtOtro.Text = BindingSource3.Item(BindingSource3.Position)(30)
-                    txtNroCon.Text = BindingSource3.Item(BindingSource3.Position)(31)
-                    txtFec.Text = BindingSource3.Item(BindingSource3.Position)(32)
-
-                    If BindingSource3.Item(BindingSource3.Position)(17) = 1 Then 'Fact check
-                        checkB1.Checked = True
-                    Else 'NO chekeado
-                        checkB1.Checked = False
-                    End If
-                    If BindingSource3.Item(BindingSource3.Position)(19) = 1 Then 'Boleta check
-                        checkB2.Checked = True
-                    Else 'NO chekeado
-                        checkB2.Checked = False
-                    End If
-                    If BindingSource3.Item(BindingSource3.Position)(21) = 1 Then 'guia remision check
-                        checkB3.Checked = True
-                    Else 'NO chekeado
-                        checkB3.Checked = False
-                    End If
-                    If BindingSource3.Item(BindingSource3.Position)(27) = 1 Then 'Recibo check
-                        checkB4.Checked = True
-                    Else 'NO chekeado
-                        checkB4.Checked = False
-                    End If
-                    If BindingSource3.Item(BindingSource3.Position)(23) = 1 Then 'Voucher check
-                        checkB5.Checked = True
-                    Else 'NO chekeado
-                        checkB5.Checked = False
-                    End If
-                    If BindingSource3.Item(BindingSource3.Position)(25) = 1 Then 'Voucher detraccion check
-                        checkB6.Checked = True
-                    Else 'NO chekeado
-                        checkB6.Checked = False
-                    End If
-                    If BindingSource3.Item(BindingSource3.Position)(29) = 1 Then 'Otro check
-                        checkB7.Checked = True
-                    Else 'NO chekeado
-                        checkB7.Checked = False
-                    End If
-
+                If BindingSource3.Item(BindingSource3.Position)(17) = 1 Then 'Fact check
+                    checkB1.Checked = True
+                Else 'NO chekeado
+                    checkB1.Checked = False
                 End If
-
+                If BindingSource3.Item(BindingSource3.Position)(18) = 1 Then 'Boleta check
+                    checkB2.Checked = True
+                Else 'NO chekeado
+                    checkB2.Checked = False
+                End If
+                If BindingSource3.Item(BindingSource3.Position)(19) = 1 Then 'guia remision check
+                    checkB3.Checked = True
+                Else 'NO chekeado
+                    checkB3.Checked = False
+                End If
+                If BindingSource3.Item(BindingSource3.Position)(22) = 1 Then 'Recibo check
+                    checkB4.Checked = True
+                Else 'NO chekeado
+                    checkB4.Checked = False
+                End If
+                If BindingSource3.Item(BindingSource3.Position)(20) = 1 Then 'Voucher check
+                    checkB5.Checked = True
+                Else 'NO chekeado
+                    checkB5.Checked = False
+                End If
+                If BindingSource3.Item(BindingSource3.Position)(21) = 1 Then 'Voucher detraccion check
+                    checkB6.Checked = True
+                Else 'NO chekeado
+                    checkB6.Checked = False
+                End If
+                If BindingSource3.Item(BindingSource3.Position)(23) = 1 Then 'Otro check
+                    checkB7.Checked = True
+                Else 'NO chekeado
+                    checkB7.Checked = False
+                End If
 
                 selePersDesem() 'select a todo el personal que esta autorizando
 
@@ -599,36 +568,6 @@ Public Class MantOrdenDesembolsoForm
             cbF4.BackColor = Color.FromName(Color.Red.Name)
         End If
         'btnF4.Focus()
-    End Sub
-
-    Private Sub checkB1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles checkB1.CheckedChanged
-        txtNroFac.Focus()
-        txtNroFac.SelectAll()
-    End Sub
-
-    Private Sub checkB2_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles checkB2.CheckedChanged
-        txtNroBol.Focus()
-        txtNroBol.SelectAll()
-    End Sub
-
-    Private Sub checkB3_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles checkB3.CheckedChanged
-        txtNroGuia.Focus()
-        txtNroGuia.SelectAll()
-    End Sub
-
-    Private Sub checkB4_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles checkB4.CheckedChanged
-        txtNroReci.Focus()
-        txtNroReci.SelectAll()
-    End Sub
-
-    Private Sub checkB5_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles checkB5.CheckedChanged
-        txtNroVou.Focus()
-        txtNroVou.SelectAll()
-    End Sub
-
-    Private Sub checkB6_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles checkB6.CheckedChanged
-        txtNroVouD.Focus()
-        txtNroVouD.SelectAll()
     End Sub
 
     Private Sub checkB7_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles checkB7.CheckedChanged
@@ -895,6 +834,8 @@ Public Class MantOrdenDesembolsoForm
             vfVan2 = True
             enlazarText()
 
+            colorearFila()
+
             wait.Close()
             Me.Cursor = Cursors.Default
         Catch f As Exception
@@ -939,42 +880,36 @@ Public Class MantOrdenDesembolsoForm
         Else 'No Chekeado
             cmInserTable1.Parameters.Add("@fact", SqlDbType.Int, 0).Value = 0
         End If
-        cmInserTable1.Parameters.Add("@nroF", SqlDbType.VarChar, 20).Value = txtNroFac.Text.Trim()
 
         If checkB2.Checked Then 'Chekeado = 1
             cmInserTable1.Parameters.Add("@bol", SqlDbType.Int, 0).Value = 1
         Else 'No Chekeado
             cmInserTable1.Parameters.Add("@bol", SqlDbType.Int, 0).Value = 0
         End If
-        cmInserTable1.Parameters.Add("@nroB", SqlDbType.VarChar, 20).Value = txtNroBol.Text.Trim()
 
         If checkB3.Checked Then 'Chekeado = 1
             cmInserTable1.Parameters.Add("@guia", SqlDbType.Int, 0).Value = 1
         Else 'No Chekeado
             cmInserTable1.Parameters.Add("@guia", SqlDbType.Int, 0).Value = 0
         End If
-        cmInserTable1.Parameters.Add("@nroG", SqlDbType.VarChar, 20).Value = txtNroGuia.Text.Trim()
-       
+
         If checkB5.Checked Then 'Chekeado = 1
             cmInserTable1.Parameters.Add("@vou", SqlDbType.Int, 0).Value = 1
         Else 'No Chekeado
             cmInserTable1.Parameters.Add("@vou", SqlDbType.Int, 0).Value = 0
         End If
-        cmInserTable1.Parameters.Add("@nroV", SqlDbType.VarChar, 20).Value = txtNroVou.Text.Trim()
 
         If checkB6.Checked Then 'Chekeado = 1
             cmInserTable1.Parameters.Add("@vouD", SqlDbType.Int, 0).Value = 1
         Else 'No Chekeado
             cmInserTable1.Parameters.Add("@vouD", SqlDbType.Int, 0).Value = 0
         End If
-        cmInserTable1.Parameters.Add("@nroVD", SqlDbType.VarChar, 20).Value = txtNroVouD.Text.Trim()
 
         If checkB4.Checked Then 'Chekeado = 1
             cmInserTable1.Parameters.Add("@reci", SqlDbType.Int, 0).Value = 1
         Else 'No Chekeado
             cmInserTable1.Parameters.Add("@reci", SqlDbType.Int, 0).Value = 0
         End If
-        cmInserTable1.Parameters.Add("@nroR", SqlDbType.VarChar, 20).Value = txtNroReci.Text.Trim()
 
         If checkB7.Checked Then 'Chekeado = 1
             cmInserTable1.Parameters.Add("@otro", SqlDbType.Int, 0).Value = 1
@@ -986,6 +921,7 @@ Public Class MantOrdenDesembolsoForm
         cmInserTable1.Parameters.Add("@nroCF", SqlDbType.VarChar, 30).Value = "" 'txtNroCon.Text.Trim()
         cmInserTable1.Parameters.Add("@fec", SqlDbType.VarChar, 10).Value = "" 'txtFec.Text.Trim()
         cmInserTable1.Parameters.Add("@hist", SqlDbType.VarChar, 200).Value = "Aperturo " & Now.Date & " " & vPass & "-" & vSUsuario
+        cmInserTable1.Parameters.Add("@codSerO", SqlDbType.Int, 0).Value = 1   'CodSerie 002
         'configurando direction output = parametro de solo salida
         cmInserTable1.Parameters.Add("@Identity", SqlDbType.Int, 0)
         cmInserTable1.Parameters("@Identity").Direction = ParameterDirection.Output
@@ -1070,6 +1006,8 @@ Public Class MantOrdenDesembolsoForm
             vfVan2 = True
             enlazarText()
 
+            colorearFila()
+
             'Clase definida y con miembros shared en la biblioteca ComponentesRAS
             StatusBarClass.messageBarraEstado("  Registro fué actualizado con exito...")
             wait.Close()
@@ -1094,7 +1032,7 @@ Public Class MantOrdenDesembolsoForm
     Private Sub comandoUpdate1()
         cmUpdateTable1 = New SqlCommand
         cmUpdateTable1.CommandType = CommandType.Text
-        cmUpdateTable1.CommandText = "update TOrdenDesembolso set fecDes=@fecD,codMon=@codMon,monto=@mon,montoDet=@mon1,montoDif=@mon2,codigo=@cod,codIde=@codIde,banco=@ban,nroCta=@nroC,nroDet=@nroDE,datoReq=@dato,factCheck=@fact,nroFact=@nroF,bolCheck=@bol,nroBol=@nroB,guiaCheck=@guia,nroGuia=@nroG,vouCheck=@vou,nroVou=@nroV,vouDCheck=@vouD,nroVouD=@nroVD,reciCheck=@reci,nroReci=@nroR,otroCheck=@otro,descOtro=@des,hist=@hist where idOP=@idOP"
+        cmUpdateTable1.CommandText = "update TOrdenDesembolso set fecDes=@fecD,codMon=@codMon,monto=@mon,montoDet=@mon1,montoDif=@mon2,codigo=@cod,codIde=@codIde,banco=@ban,nroCta=@nroC,nroDet=@nroDE,datoReq=@dato,factCheck=@fact,bolCheck=@bol,guiaCheck=@guia,vouCheck=@vou,vouDCheck=@vouD,reciCheck=@reci,otroCheck=@otro,descOtro=@des,hist=@hist where idOP=@idOP"
         cmUpdateTable1.Connection = Cn
         cmUpdateTable1.Parameters.Add("@fecD", SqlDbType.Date).Value = date1.Value.Date
         cmUpdateTable1.Parameters.Add("@codMon", SqlDbType.Int, 0).Value = cbMon.SelectedValue
@@ -1113,42 +1051,36 @@ Public Class MantOrdenDesembolsoForm
         Else 'No Chekeado
             cmUpdateTable1.Parameters.Add("@fact", SqlDbType.Int, 0).Value = 0
         End If
-        cmUpdateTable1.Parameters.Add("@nroF", SqlDbType.VarChar, 20).Value = txtNroFac.Text.Trim()
 
         If checkB2.Checked Then 'Chekeado = 1
             cmUpdateTable1.Parameters.Add("@bol", SqlDbType.Int, 0).Value = 1
         Else 'No Chekeado
             cmUpdateTable1.Parameters.Add("@bol", SqlDbType.Int, 0).Value = 0
         End If
-        cmUpdateTable1.Parameters.Add("@nroB", SqlDbType.VarChar, 20).Value = txtNroBol.Text.Trim()
 
         If checkB3.Checked Then 'Chekeado = 1
             cmUpdateTable1.Parameters.Add("@guia", SqlDbType.Int, 0).Value = 1
         Else 'No Chekeado
             cmUpdateTable1.Parameters.Add("@guia", SqlDbType.Int, 0).Value = 0
         End If
-        cmUpdateTable1.Parameters.Add("@nroG", SqlDbType.VarChar, 20).Value = txtNroGuia.Text.Trim()
 
         If checkB5.Checked Then 'Chekeado = 1
             cmUpdateTable1.Parameters.Add("@vou", SqlDbType.Int, 0).Value = 1
         Else 'No Chekeado
             cmUpdateTable1.Parameters.Add("@vou", SqlDbType.Int, 0).Value = 0
         End If
-        cmUpdateTable1.Parameters.Add("@nroV", SqlDbType.VarChar, 20).Value = txtNroVou.Text.Trim()
 
         If checkB6.Checked Then 'Chekeado = 1
             cmUpdateTable1.Parameters.Add("@vouD", SqlDbType.Int, 0).Value = 1
         Else 'No Chekeado
             cmUpdateTable1.Parameters.Add("@vouD", SqlDbType.Int, 0).Value = 0
         End If
-        cmUpdateTable1.Parameters.Add("@nroVD", SqlDbType.VarChar, 20).Value = txtNroVouD.Text.Trim()
 
         If checkB4.Checked Then 'Chekeado = 1
             cmUpdateTable1.Parameters.Add("@reci", SqlDbType.Int, 0).Value = 1
         Else 'No Chekeado
             cmUpdateTable1.Parameters.Add("@reci", SqlDbType.Int, 0).Value = 0
         End If
-        cmUpdateTable1.Parameters.Add("@nroR", SqlDbType.VarChar, 20).Value = txtNroReci.Text.Trim()
 
         If checkB7.Checked Then 'Chekeado = 1
             cmUpdateTable1.Parameters.Add("@otro", SqlDbType.Int, 0).Value = 1
@@ -1276,6 +1208,8 @@ Public Class MantOrdenDesembolsoForm
             vfVan2 = True
             enlazarText()
 
+            colorearFila()
+
             'Clase definida y con miembros shared en la biblioteca ComponentesRAS
             StatusBarClass.messageBarraEstado("  Registro fué eliminado con exito...")
 
@@ -1363,6 +1297,8 @@ Public Class MantOrdenDesembolsoForm
                 txtOrden.Text = recuperarNroOrden(BindingSource3.Item(BindingSource3.Position)(0))
             Else
             End If
+
+            colorearFila()
 
             wait.Close()
             Me.Cursor = Cursors.Default
@@ -1503,6 +1439,8 @@ Public Class MantOrdenDesembolsoForm
             vfVan2 = True
             enlazarText()
 
+            colorearFila()
+
             'Clase definida y con miembros shared en la biblioteca ComponentesRAS
             StatusBarClass.messageBarraEstado("  Registro fué actualizado con exito...")
             wait.Close()
@@ -1535,6 +1473,195 @@ Public Class MantOrdenDesembolsoForm
     End Sub
 
     Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
+        If BindingSource3.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Orden de Compra...")
+            Exit Sub
+        End If
 
+        vCodDoc = BindingSource3.Item(BindingSource3.Position)(0)
+        vParam1 = txtLetraTotal.Text.Trim()
+        vParam2 = txtOrden.Text.Trim()
+       
+        Dim informe As New ReportViewerOrdenDesembolsoForm
+        informe.ShowDialog()
+    End Sub
+
+    Private Function ValidarCampos1() As Boolean
+        If ValidaFecha(txtFec.Text.Trim()) Then
+            StatusBarClass.messageBarraEstado(" Registre FECHA VALIDA...")
+            txtFec.Focus()
+            Return True
+        End If
+        'Todo OK RAS
+        Return False
+    End Function
+
+    Private Sub btnF4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnF4.Click
+        If BindingSource3.Position = -1 Then
+            StatusBarClass.messageBarraEstado(" No existe Orden de Desembolso a procesar...")
+            Exit Sub
+        End If
+
+        If cbF4.SelectedIndex = -1 Then
+            MessageBox.Show("Seleccione Opción valida...", nomNegocio, Nothing, MessageBoxIcon.Exclamation)
+            cbF4.Focus()
+            Exit Sub
+        End If
+
+        Dim codPersDes As Integer = recuperarCodPersDesem(BindingSource3.Item(BindingSource3.Position)(0), 4) '4=Contabilidad
+        If codPersDes > 0 Then 'Existe firma
+            If recuperarCodPers(codPersDes) <> vPass Then 'Usurio no es de dirma inicial
+                MessageBox.Show("Proceso Denegado, Usuario no es de la Firma Inicial...", nomNegocio, Nothing, MessageBoxIcon.Exclamation)
+                Exit Sub
+            End If
+        End If
+
+        If txtFec.Text.Trim() <> "" Then
+            If ValidarCampos1() Then
+                Exit Sub
+            End If
+
+            If Not ValidaFecha(txtFec.Text.Trim()) Then
+                txtFec.Text = CDate(txtFec.Text.Trim())
+            End If
+        End If
+
+        If cbF4.SelectedIndex = 0 Then 'Aprobado
+            If validaCampoVacioMinCaracNoNumer(txtNroCon.Text.Trim(), 3) Then
+                MessageBox.Show("Registre Nro de Comprobante...", nomNegocio, Nothing, MessageBoxIcon.Information)
+                txtNroCon.Focus()
+                Exit Sub
+            End If
+            If ValidarCampos1() Then
+                Exit Sub
+            End If
+        End If
+
+        Dim resp As String = MessageBox.Show("Esta segúro de seleccionar opción: " & cbF4.Text.Trim() & " para Orden de Desembolso", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resp <> 6 Then
+            Exit Sub
+        End If
+
+        Dim comentario As New CometarioForm
+        comentario.ShowDialog()
+
+        recuperarUltimoNro(vSerie)
+        Dim campo As Integer = CInt(txtNro.Text)
+
+        Dim finalMytrans As Boolean = False
+        Dim wait As New waitForm
+        Me.Cursor = Cursors.WaitCursor
+        wait.Show()
+        'estableciendo una transaccion
+        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
+        Try
+            StatusBarClass.messageBarraEstado("  PROCESANDO DATOS...")
+            Me.Refresh()
+            Dim opcion As Short
+            If cbF4.SelectedIndex = 0 Then
+                opcion = 1 'Aprobado
+            End If
+            If cbF4.SelectedIndex = 1 Then
+                opcion = 2 'Observado
+            End If
+            If cbF4.SelectedIndex = 2 Then
+                opcion = 3 'denegado
+            End If
+
+            If codPersDes = 0 Then 'no existe firma insertar
+                'TPersDesem
+                comandoInsert2(BindingSource3.Item(BindingSource3.Position)(0), vPass, opcion, 4, vObs, date1.Value.Date)  '4=Contabilidad
+                cmInserTable2.Transaction = myTrans
+                If cmInserTable2.ExecuteNonQuery() < 1 Then
+                    wait.Close()
+                    Me.Cursor = Cursors.Default
+                    myTrans.Rollback()
+                    MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                End If
+            Else 'existe firma actualizar
+                'TPersDesem
+                comandoUpdate3(opcion, vObs, codPersDes)
+                cmUpdateTable3.Transaction = myTrans
+                If cmUpdateTable3.ExecuteNonQuery() < 1 Then
+                    'deshace la transaccion
+                    wait.Close()
+                    Me.Cursor = Cursors.Default
+                    myTrans.Rollback()
+                    MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                End If
+            End If
+
+            If opcion = 1 Then 'Aprobado x lo tanto cerrar orden
+                'TOrdenDesembolso
+                comandoUpdate23(2, txtNroCon.Text.Trim(), txtFec.Text.Trim()) '1=Terminado 2=cerrado
+                cmUpdateTable23.Transaction = myTrans
+                If cmUpdateTable23.ExecuteNonQuery() < 1 Then
+                    'deshace la transaccion
+                    wait.Close()
+                    Me.Cursor = Cursors.Default
+                    myTrans.Rollback()
+                    MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                End If
+            End If
+
+            Dim idOP As Integer = BindingSource3.Item(BindingSource3.Position)(0)
+            'confirma la transaccion
+            myTrans.Commit()    'con exito RAS
+
+            StatusBarClass.messageBarraEstado("  LOS DATOS FUERON GUARDADOS CON EXITO...")
+            finalMytrans = True
+            vfVan1 = False   'para selePersDesem() se llama dentro de enlazarText()
+            vfVan2 = False  'Enlazar Text  TRUE en boton cancelar
+
+            'Actualizando el dataTable
+            dsAlmacen.Tables("VOrdenDesembolso").Clear()
+            daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
+
+            recuperarUltimoNro(vSerie)
+
+            'Buscando por nombre de campo y luego pocisionarlo con el indice
+            BindingSource3.Position = BindingSource3.Find("idOP", idOP)
+
+            'Clase definida y con miembros shared en la biblioteca ComponentesRAS
+            StatusBarClass.messageBarraEstado("  Registro fué procesado con exito...")
+
+            vfVan1 = True
+            vfVan2 = True
+            enlazarText()
+
+            wait.Close()
+            Me.Cursor = Cursors.Default
+        Catch f As Exception
+            wait.Close()
+            Me.Cursor = Cursors.Default
+            If finalMytrans Then
+                MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            Else
+                myTrans.Rollback()
+                MessageBox.Show(f.Message & Chr(13) & "NO SE GUARDO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+        End Try
+    End Sub
+
+    Dim cmUpdateTable23 As SqlCommand
+    Private Sub comandoUpdate23(ByVal estado As Short, ByVal nroDoc As String, ByVal fecha As String)
+        cmUpdateTable23 = New SqlCommand
+        cmUpdateTable23.CommandType = CommandType.Text
+        cmUpdateTable23.CommandText = "update TOrdenDesembolso set estado=@est,nroConfor=@nroC,fecEnt=@fec where idOP=@nro"
+        cmUpdateTable23.Connection = Cn
+        cmUpdateTable23.Parameters.Add("@est", SqlDbType.Int, 0).Value = estado
+        cmUpdateTable23.Parameters.Add("@nroC", SqlDbType.VarChar, 30).Value = nroDoc
+        cmUpdateTable23.Parameters.Add("@fec", SqlDbType.VarChar, 10).Value = fecha
+        cmUpdateTable23.Parameters.Add("@nro", SqlDbType.Int, 0).Value = BindingSource3.Item(BindingSource3.Position)(0)
     End Sub
 End Class
