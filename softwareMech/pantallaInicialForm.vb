@@ -395,4 +395,11 @@ Public Class pantallaInicialForm
         Emp.Show()
 
     End Sub
+
+    Private Sub SeguimientoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SeguimientoToolStripMenuItem.Click
+        Dim Seg As New SeguimientoOrdenDesembolsoForm
+        Seg.MdiParent = Me
+        Seg.Show()
+
+    End Sub
 End Class

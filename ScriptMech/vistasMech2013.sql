@@ -470,15 +470,30 @@ GO
 
 
 --Nueva Vista para Seguimiento de Desembolso
-create view VOrdenDesebolsoSeguimiento
+create view VOrdenDesembolsoSeguimiento
 as
-	select idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,'est'=case when TOD.estado=0 then 'PENDIENTE' when TOD.estado=1 then 'TERMINADO' when TOD.estado=2 then 'CERRADO' else 'ANULADO' end, 
+	select TOD.idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,'estado_desembolso'=case when TOD.estado=0 then 'PENDIENTE' when TOD.estado=1 then 'TERMINADO' when TOD.estado=2 then 'CERRADO' else 'ANULADO' end, 
 	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,
-	TLU.nombre,codIde,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,hist
-	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon join TIdentidad TID on tod.codIde=tod.codIde join TLugarTrabajo TLU on tlu.codigo=TOD.codigo   
-	where estado in (0,1) --0=pendiente 1=terminado
+	TLU.nombre as 'obra',Tid.razon as 'proveedor',banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,hist,
+	TPE.nombre,TPE.apellido,TID.ruc, TID.fono,TID.email   
+	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon join  TIdentidad TID on TID.codIde=tod.codIde 
+	join TLugarTrabajo TLU on tlu.codigo=TOD.codigo  join TPersDesem TPDE on TPDE.idOP= TOD.idOP join TPersonal TPE on TPE.codPers = TPDE.codPers  
+	
 
 GO
+
+-- Nueva Vista para Seguimeinto de Desembolso
+--Pago de desembolsos
+create view VPagoDesembolsoSeguimiento
+as
+	select TT.codTipP,TT.tipoP,TP.codPagD,TP.fecPago,TP.pagoDet,TP.montoPago,TP.idOP,TM.codMon,TM.simbolo
+
+	from TPagoDesembolso TP join
+	TTipoPago TT  on TT.codTipP=TP.codTipP
+	join TMoneda TM on TP.codMon=TM.codMon join TCuentaBan TCBA on TCBA.codMon=TP.codMon  join TBanco TBA on TCBA.codBan = TBA.codBan 
+GO
+
+select * from TOrdenDesembolso
 
 select codPagD,fecPago,tipoP,pagoDet,simbolo,montoPago,codTipP,codMon,idOP,idCue from VPagoDesemTesoreria where idOP=@idOP
 
