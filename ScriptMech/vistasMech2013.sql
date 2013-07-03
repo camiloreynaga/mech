@@ -486,11 +486,12 @@ GO
 --Pago de desembolsos
 create view VPagoDesembolsoSeguimiento
 as
-	select TT.codTipP,TT.tipoP,TP.codPagD,TP.fecPago,TP.pagoDet,TP.montoPago,TP.idOP,TM.codMon,TM.simbolo
-
-	from TPagoDesembolso TP join
-	TTipoPago TT  on TT.codTipP=TP.codTipP
-	join TMoneda TM on TP.codMon=TM.codMon join TCuentaBan TCBA on TCBA.codMon=TP.codMon  join TBanco TBA on TCBA.codBan = TBA.codBan 
+	select  TP.idOP as codDesembolso,TP.fecpago,TP.pagoDet,Tp.montoPago,TT.tipoP,Tm.moneda,TM.simbolo,TCBA.nroCue,TBA.banco
+from TPagoDesembolso TP 
+join TTipoPago TT  on TT.codTipP=TP.codTipP
+join TMoneda TM on TP.codMon=TM.codMon 
+join TCuentaBan TCBA on TCBA.idCue=TP.idCue  
+join TBanco TBA on TCBA.codBan = TBA.codBan 
 GO
 
 select * from TOrdenDesembolso

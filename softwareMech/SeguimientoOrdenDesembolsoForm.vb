@@ -6,7 +6,18 @@ Imports ComponentesSolucion2008
 Public Class SeguimientoOrdenDesembolsoForm
 
 #Region "Variables"
+    ''' <summary>
+    ''' Solicitante
+    ''' </summary>
+    ''' <remarks></remarks>
     Dim BindingSource0 As New BindingSource
+
+    ''' <summary>
+    ''' Pagos
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim BindingSource1 As New BindingSource
+
 #End Region
 
 #Region "Métodos"
@@ -23,17 +34,26 @@ Public Class SeguimientoOrdenDesembolsoForm
         Me.Cursor = Cursors.WaitCursor
         wait.Show()
         Dim sele As String = "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,moneda,simbolo,nombre,apellido,ruc,fono,email from VOrdenDesembolsoSeguimiento"
-
         crearDataAdapterTable(daVDetOrden, sele)
+
+        sele = "Select fecPago,pagoDet,montoPago,tipoP,moneda,simbolo,nroCue,banco from VPagoDesembolsoSeguimiento where codDesembolso=@idDesembolso"
+        crearDataAdapterTable(daTabla1, sele)
+        daTabla1.SelectCommand.Parameters.Add("@idDesembolso", SqlDbType.Int).Value = 0
+
+
+
 
 
         Try
             crearDSAlmacen()
             daVDetOrden.Fill(dsAlmacen, "VDesembolsoSeguimiento")
-
             BindingSource0.DataSource = dsAlmacen
             BindingSource0.DataMember = "VDesembolsoSeguimiento"
             dgDesembolso.DataSource = BindingSource0
+
+            daTabla1.Fill(dsAlmacen, "VDesembolsoPagos")
+            BindingSource1.DataSource = dsAlmacen
+            BindingSource1.DataMember = "VDesembolsoPagos"
 
 
 
