@@ -39,6 +39,8 @@ Partial Class MantFormaPagoForm
         Me.btnNuevo = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Label1 = New System.Windows.Forms.Label
         Me.txtCam = New ComponentesSolucion2008.TextBoxSSP(Me.components)
+        Me.Label2 = New System.Windows.Forms.Label
+        Me.txtCodigo = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Panel1.SuspendLayout()
         CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Navigator1.SuspendLayout()
@@ -192,7 +194,7 @@ Partial Class MantFormaPagoForm
         Me.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnModificar.Image = CType(resources.GetObject("btnModificar.Image"), System.Drawing.Image)
         Me.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnModificar.Location = New System.Drawing.Point(321, 178)
+        Me.btnModificar.Location = New System.Drawing.Point(321, 201)
         Me.btnModificar.Name = "btnModificar"
         Me.btnModificar.Size = New System.Drawing.Size(84, 23)
         Me.btnModificar.TabIndex = 21
@@ -206,7 +208,7 @@ Partial Class MantFormaPagoForm
         Me.btnNuevo.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnNuevo.Image = CType(resources.GetObject("btnNuevo.Image"), System.Drawing.Image)
         Me.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnNuevo.Location = New System.Drawing.Point(321, 109)
+        Me.btnNuevo.Location = New System.Drawing.Point(321, 146)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(84, 23)
         Me.btnNuevo.TabIndex = 20
@@ -230,12 +232,30 @@ Partial Class MantFormaPagoForm
         Me.txtCam.Size = New System.Drawing.Size(221, 20)
         Me.txtCam.TabIndex = 26
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(261, 77)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(50, 13)
+        Me.Label2.TabIndex = 25
+        Me.Label2.Text = "Código:"
+        '
+        'txtCodigo
+        '
+        Me.txtCodigo.Location = New System.Drawing.Point(264, 93)
+        Me.txtCodigo.Name = "txtCodigo"
+        Me.txtCodigo.Size = New System.Drawing.Size(221, 20)
+        Me.txtCodigo.TabIndex = 26
+        '
         'MantFormaPagoForm
         '
         Me.AcceptButton = Me.btnNuevo
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
         Me.ClientSize = New System.Drawing.Size(497, 476)
+        Me.Controls.Add(Me.txtCodigo)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtCam)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnCerrar)
@@ -253,6 +273,8 @@ Partial Class MantFormaPagoForm
         Me.Controls.SetChildIndex(Me.btnCerrar, 0)
         Me.Controls.SetChildIndex(Me.Label1, 0)
         Me.Controls.SetChildIndex(Me.txtCam, 0)
+        Me.Controls.SetChildIndex(Me.Label2, 0)
+        Me.Controls.SetChildIndex(Me.txtCodigo, 0)
         Me.Panel1.ResumeLayout(False)
         CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Navigator1.ResumeLayout(False)
@@ -279,5 +301,7 @@ Partial Class MantFormaPagoForm
     Friend WithEvents btnNuevo As ComponentesSolucion2008.BottomSSP
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents txtCam As ComponentesSolucion2008.TextBoxSSP
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents txtCodigo As ComponentesSolucion2008.TextBoxSSP
 
 End Class
