@@ -23,6 +23,8 @@ Partial Class MantIdentidadForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MantIdentidadForm))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
+        Me.txtDetraccion = New ComponentesSolucion2008.TextBoxSSP(Me.components)
+        Me.Label14 = New System.Windows.Forms.Label
         Me.txtCue = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Label13 = New System.Windows.Forms.Label
         Me.txtRep = New ComponentesSolucion2008.TextBoxSSP(Me.components)
@@ -49,7 +51,7 @@ Partial Class MantIdentidadForm
         Me.Label1 = New System.Windows.Forms.Label
         Me.Panel2 = New System.Windows.Forms.Panel
         Me.cbBuscar = New System.Windows.Forms.ComboBox
-        Me.btnBuscar = New System.Windows.Forms.Button
+        Me.Label15 = New System.Windows.Forms.Label
         Me.txtBuscar = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Label8 = New System.Windows.Forms.Label
         Me.Navigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
@@ -87,6 +89,8 @@ Partial Class MantIdentidadForm
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel1.Controls.Add(Me.txtDetraccion)
+        Me.Panel1.Controls.Add(Me.Label14)
         Me.Panel1.Controls.Add(Me.txtCue)
         Me.Panel1.Controls.Add(Me.Label13)
         Me.Panel1.Controls.Add(Me.txtRep)
@@ -113,21 +117,38 @@ Partial Class MantIdentidadForm
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Location = New System.Drawing.Point(14, 23)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(889, 129)
+        Me.Panel1.Size = New System.Drawing.Size(889, 158)
         Me.Panel1.TabIndex = 1
+        '
+        'txtDetraccion
+        '
+        Me.txtDetraccion.Location = New System.Drawing.Point(563, 131)
+        Me.txtDetraccion.Name = "txtDetraccion"
+        Me.txtDetraccion.ReadOnly = True
+        Me.txtDetraccion.Size = New System.Drawing.Size(319, 20)
+        Me.txtDetraccion.TabIndex = 10
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(399, 134)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(159, 13)
+        Me.Label14.TabIndex = 22
+        Me.Label14.Text = "Cuenta para Detracciones:"
         '
         'txtCue
         '
-        Me.txtCue.Location = New System.Drawing.Point(611, 103)
+        Me.txtCue.Location = New System.Drawing.Point(118, 131)
         Me.txtCue.Name = "txtCue"
         Me.txtCue.ReadOnly = True
         Me.txtCue.Size = New System.Drawing.Size(271, 20)
-        Me.txtCue.TabIndex = 21
+        Me.txtCue.TabIndex = 9
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(505, 106)
+        Me.Label13.Location = New System.Drawing.Point(7, 134)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(105, 13)
         Me.Label13.TabIndex = 22
@@ -135,16 +156,16 @@ Partial Class MantIdentidadForm
         '
         'txtRep
         '
-        Me.txtRep.Location = New System.Drawing.Point(76, 103)
+        Me.txtRep.Location = New System.Drawing.Point(118, 104)
         Me.txtRep.Name = "txtRep"
         Me.txtRep.ReadOnly = True
-        Me.txtRep.Size = New System.Drawing.Size(303, 20)
-        Me.txtRep.TabIndex = 9
+        Me.txtRep.Size = New System.Drawing.Size(271, 20)
+        Me.txtRep.TabIndex = 6
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(8, 106)
+        Me.Label12.Location = New System.Drawing.Point(46, 108)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(66, 13)
         Me.Label12.TabIndex = 20
@@ -152,33 +173,33 @@ Partial Class MantIdentidadForm
         '
         'txtCel
         '
-        Me.txtCel.Location = New System.Drawing.Point(228, 78)
+        Me.txtCel.Location = New System.Drawing.Point(534, 78)
         Me.txtCel.Name = "txtCel"
         Me.txtCel.ReadOnly = True
-        Me.txtCel.Size = New System.Drawing.Size(116, 20)
-        Me.txtCel.TabIndex = 7
+        Me.txtCel.Size = New System.Drawing.Size(256, 20)
+        Me.txtCel.TabIndex = 5
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(161, 81)
+        Me.Label11.Location = New System.Drawing.Point(409, 81)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(66, 13)
+        Me.Label11.Size = New System.Drawing.Size(105, 13)
         Me.Label11.TabIndex = 18
-        Me.Label11.Text = "Cel  Rpm :"
+        Me.Label11.Text = "Cel / RPM /RPC:"
         '
         'txtFax
         '
-        Me.txtFax.Location = New System.Drawing.Point(35, 74)
+        Me.txtFax.Location = New System.Drawing.Point(199, 78)
         Me.txtFax.Name = "txtFax"
         Me.txtFax.ReadOnly = True
-        Me.txtFax.Size = New System.Drawing.Size(120, 20)
-        Me.txtFax.TabIndex = 6
+        Me.txtFax.Size = New System.Drawing.Size(190, 20)
+        Me.txtFax.TabIndex = 4
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(3, 80)
+        Me.Label10.Location = New System.Drawing.Point(164, 82)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(35, 13)
         Me.Label10.TabIndex = 16
@@ -191,7 +212,7 @@ Partial Class MantIdentidadForm
         Me.txtRuc.Name = "txtRuc"
         Me.txtRuc.ReadOnly = True
         Me.txtRuc.Size = New System.Drawing.Size(160, 20)
-        Me.txtRuc.TabIndex = 2
+        Me.txtRuc.TabIndex = 1
         '
         'Label9
         '
@@ -217,7 +238,7 @@ Partial Class MantIdentidadForm
         Me.lbTabla1.FormattingEnabled = True
         Me.lbTabla1.Location = New System.Drawing.Point(7, 17)
         Me.lbTabla1.Name = "lbTabla1"
-        Me.lbTabla1.Size = New System.Drawing.Size(183, 43)
+        Me.lbTabla1.Size = New System.Drawing.Size(183, 56)
         Me.lbTabla1.TabIndex = 0
         '
         'Label7
@@ -240,20 +261,20 @@ Partial Class MantIdentidadForm
         '
         'txtEma
         '
-        Me.txtEma.Location = New System.Drawing.Point(404, 77)
+        Me.txtEma.Location = New System.Drawing.Point(630, 105)
         Me.txtEma.Name = "txtEma"
         Me.txtEma.ReadOnly = True
-        Me.txtEma.Size = New System.Drawing.Size(277, 20)
+        Me.txtEma.Size = New System.Drawing.Size(252, 20)
         Me.txtEma.TabIndex = 8
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(365, 81)
+        Me.Label5.Location = New System.Drawing.Point(587, 107)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(37, 13)
+        Me.Label5.Size = New System.Drawing.Size(45, 13)
         Me.Label5.TabIndex = 8
-        Me.Label5.Text = "Email"
+        Me.Label5.Text = "Email :"
         '
         'txtFono
         '
@@ -261,7 +282,7 @@ Partial Class MantIdentidadForm
         Me.txtFono.Name = "txtFono"
         Me.txtFono.ReadOnly = True
         Me.txtFono.Size = New System.Drawing.Size(160, 20)
-        Me.txtFono.TabIndex = 5
+        Me.txtFono.TabIndex = 3
         '
         'Label4
         '
@@ -278,7 +299,7 @@ Partial Class MantIdentidadForm
         Me.txtDir.Name = "txtDir"
         Me.txtDir.ReadOnly = True
         Me.txtDir.Size = New System.Drawing.Size(413, 20)
-        Me.txtDir.TabIndex = 3
+        Me.txtDir.TabIndex = 2
         '
         'Label3
         '
@@ -291,17 +312,17 @@ Partial Class MantIdentidadForm
         '
         'txtDNI
         '
-        Me.txtDNI.Location = New System.Drawing.Point(428, 103)
+        Me.txtDNI.Location = New System.Drawing.Point(444, 104)
         Me.txtDNI.MaxLength = 8
         Me.txtDNI.Name = "txtDNI"
         Me.txtDNI.ReadOnly = True
-        Me.txtDNI.Size = New System.Drawing.Size(70, 20)
-        Me.txtDNI.TabIndex = 10
+        Me.txtDNI.Size = New System.Drawing.Size(116, 20)
+        Me.txtDNI.TabIndex = 7
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(393, 106)
+        Me.Label2.Location = New System.Drawing.Point(401, 107)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(37, 13)
         Me.Label2.TabIndex = 2
@@ -313,7 +334,7 @@ Partial Class MantIdentidadForm
         Me.txtNom.Name = "txtNom"
         Me.txtNom.ReadOnly = True
         Me.txtNom.Size = New System.Drawing.Size(413, 20)
-        Me.txtNom.TabIndex = 1
+        Me.txtNom.TabIndex = 0
         '
         'Label1
         '
@@ -328,14 +349,14 @@ Partial Class MantIdentidadForm
         '
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Panel2.Controls.Add(Me.cbBuscar)
-        Me.Panel2.Controls.Add(Me.btnBuscar)
+        Me.Panel2.Controls.Add(Me.Label15)
         Me.Panel2.Controls.Add(Me.txtBuscar)
         Me.Panel2.Controls.Add(Me.Label8)
         Me.Panel2.Controls.Add(Me.Navigator1)
         Me.Panel2.Controls.Add(Me.dgTabla1)
-        Me.Panel2.Location = New System.Drawing.Point(14, 158)
+        Me.Panel2.Location = New System.Drawing.Point(14, 187)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(889, 456)
+        Me.Panel2.Size = New System.Drawing.Size(889, 427)
         Me.Panel2.TabIndex = 2
         '
         'cbBuscar
@@ -343,29 +364,24 @@ Partial Class MantIdentidadForm
         Me.cbBuscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbBuscar.FormattingEnabled = True
         Me.cbBuscar.Items.AddRange(New Object() {"R.U.C.", "RAZON SOCIAL"})
-        Me.cbBuscar.Location = New System.Drawing.Point(232, 1)
+        Me.cbBuscar.Location = New System.Drawing.Point(225, 3)
         Me.cbBuscar.Name = "cbBuscar"
         Me.cbBuscar.Size = New System.Drawing.Size(115, 21)
         Me.cbBuscar.TabIndex = 1
         Me.cbBuscar.TabStop = False
         '
-        'btnBuscar
+        'Label15
         '
-        Me.btnBuscar.BackColor = System.Drawing.SystemColors.Control
-        Me.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnBuscar.Image = CType(resources.GetObject("btnBuscar.Image"), System.Drawing.Image)
-        Me.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnBuscar.Location = New System.Drawing.Point(611, 0)
-        Me.btnBuscar.Name = "btnBuscar"
-        Me.btnBuscar.Size = New System.Drawing.Size(73, 23)
-        Me.btnBuscar.TabIndex = 3
-        Me.btnBuscar.Text = "Buscar"
-        Me.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnBuscar.UseVisualStyleBackColor = False
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(615, 7)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(169, 13)
+        Me.Label15.TabIndex = 22
+        Me.Label15.Text = "Ingrese criterio de busquedá"
         '
         'txtBuscar
         '
-        Me.txtBuscar.Location = New System.Drawing.Point(346, 1)
+        Me.txtBuscar.Location = New System.Drawing.Point(346, 4)
         Me.txtBuscar.Name = "txtBuscar"
         Me.txtBuscar.Size = New System.Drawing.Size(263, 20)
         Me.txtBuscar.TabIndex = 2
@@ -387,7 +403,7 @@ Partial Class MantIdentidadForm
         Me.Navigator1.DeleteItem = Nothing
         Me.Navigator1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Navigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
-        Me.Navigator1.Location = New System.Drawing.Point(0, 427)
+        Me.Navigator1.Location = New System.Drawing.Point(0, 398)
         Me.Navigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.Navigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
         Me.Navigator1.MoveNextItem = Me.BindingNavigatorMoveNextItem
@@ -480,7 +496,7 @@ Partial Class MantIdentidadForm
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgTabla1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgTabla1.Size = New System.Drawing.Size(884, 400)
+        Me.dgTabla1.Size = New System.Drawing.Size(884, 369)
         Me.dgTabla1.TabIndex = 4
         '
         'btnNuevo
@@ -629,10 +645,12 @@ Partial Class MantIdentidadForm
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents txtRep As ComponentesSolucion2008.TextBoxSSP
     Friend WithEvents Label12 As System.Windows.Forms.Label
-    Friend WithEvents btnBuscar As System.Windows.Forms.Button
     Friend WithEvents txtBuscar As ComponentesSolucion2008.TextBoxSSP
     Friend WithEvents cbBuscar As System.Windows.Forms.ComboBox
     Friend WithEvents txtCue As ComponentesSolucion2008.TextBoxSSP
     Friend WithEvents Label13 As System.Windows.Forms.Label
+    Friend WithEvents txtDetraccion As ComponentesSolucion2008.TextBoxSSP
+    Friend WithEvents Label14 As System.Windows.Forms.Label
+    Friend WithEvents Label15 As System.Windows.Forms.Label
 
 End Class

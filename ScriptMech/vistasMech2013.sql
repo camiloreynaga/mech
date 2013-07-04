@@ -30,7 +30,7 @@ GO
 create view VTipoIdentidad
 as
 	SELECT TI.codIde,TT.tipoId,TI.razon,TI.ruc,TI.dir,TI.fono,TI.fax,TI.celRpm,TI.email,TI.estado,TI.cuentaBan, 
-			CASE WHEN TI.estado = 1 THEN 'Activo' ELSE 'Inactivo' END as estado1,TI.repres,TI.dni,TT.idTipId
+			CASE WHEN TI.estado = 1 THEN 'Activo' ELSE 'Inactivo' END as estado1,TI.repres,TI.dni,TT.idTipId,TI.cuentaDet
 			FROM TTipoIdent TT join TIdentidad TI ON TT.idTipId = TI.idTipId
 GO 
 --vista VPersonal
@@ -488,12 +488,14 @@ GO
 --Pago de desembolsos
 create view VPagoDesembolsoSeguimiento
 as
-	select  TP.idOP as codDesembolso,TP.fecpago,TP.pagoDet,Tp.montoPago,TT.tipoP,Tm.moneda,TM.simbolo,TCBA.nroCue,TBA.banco
+	select  TP.idOP as codDesembolso,TP.fecpago,TP.pagoDet,Tp.montoPago,TT.tipoP,Tm.moneda,TM.simbolo,TCBA.nroCue,TBA.banco,
+	TP.nroP,TP.montoD,TCLA.clasif                              
 from TPagoDesembolso TP 
 join TTipoPago TT  on TT.codTipP=TP.codTipP
 join TMoneda TM on TP.codMon=TM.codMon 
 join TCuentaBan TCBA on TCBA.idCue=TP.idCue  
 join TBanco TBA on TCBA.codBan = TBA.codBan 
+join TClasifPago TCLA on tCLA.codCla=TP.codCla  
 GO
 
 select * from TOrdenDesembolso

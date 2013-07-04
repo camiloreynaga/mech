@@ -102,14 +102,14 @@ Public Class MantCuentas
         VerificaConexion()
         Dim wait As New waitForm
         wait.Show()
-
+        'obteniendo los datos de cuetna banco
         Dim sele As String = "Select idCue,nroCue,TM.moneda,TC.codMon,codBan,case when estado=0 then 'Inactivo' else 'Activo'end estado, estado as codEstado from TcuentaBan as TC INNER JOIN TMoneda as TM on TC.codMon=TM.codMon where codBan>1"
         crearDataAdapterTable(daTabla1, sele)
-
+        'Obteniendo los datos de Banco
         sele = "select codBan,banco from tBanco where codBan>1"
 
         crearDataAdapterTable(daTabla2, sele)
-
+        'Obteniendo los datos de moneda
         sele = "select codMon,moneda from TMoneda"
         crearDataAdapterTable(daTMon, sele)
 
@@ -122,11 +122,13 @@ Public Class MantCuentas
             daTabla2.Fill(dsAlmacen, "TBanco")
             daTMon.Fill(dsAlmacen, "TMoneda")
 
-            AgregarRelacion()
+
 
             BindingSource1.DataSource = dsAlmacen
             BindingSource1.DataMember = "TBanco"
             dgBancos.DataSource = BindingSource1
+
+            AgregarRelacion()
 
             BindingSource2.DataSource = BindingSource1
             BindingSource2.DataMember = "Relacion1"
@@ -471,8 +473,7 @@ Public Class MantCuentas
 
 
         Try
-            dgBancos.ClearSelection()
-            dgCuentas.ClearSelection()
+            'dgCuentas.Rows.Clear()
 
             ' dgBancos.FirstDisplayedScrollingRowIndex = -1
         Catch ex As Exception
@@ -491,6 +492,8 @@ Public Class MantCuentas
 
 
     Private Sub dgBancos_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgBancos.CellClick
+
+
         enlazarTextBanco()
 
 
@@ -499,12 +502,18 @@ Public Class MantCuentas
         Panel2.Enabled = True
 
         btnNuevoCta.Enabled = True
-        dgCuentas.ClearSelection()
         txtCuenta.Clear()
         cboMoneda.SelectedIndex = 0
         lsEstado.Enabled = False
-
         txtCuenta.Focus()
+
+        If dgBancos.CurrentRow.Selected = False Then
+
+
+
+
+        End If
+
 
     End Sub
 
@@ -927,5 +936,6 @@ Public Class MantCuentas
 
     Private Sub dgCuentas_DataBindingComplete(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewBindingCompleteEventArgs) Handles dgCuentas.DataBindingComplete
         DirectCast(sender, DataGridView).ClearSelection()
+
     End Sub
 End Class

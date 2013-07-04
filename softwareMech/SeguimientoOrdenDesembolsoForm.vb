@@ -44,10 +44,10 @@ Public Class SeguimientoOrdenDesembolsoForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         wait.Show()
-        Dim sele As String = "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,moneda,simbolo,nombre,apellido,ruc,fono,email from VOrdenDesembolsoSeguimiento"
+        Dim sele As String = "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,moneda,simbolo,nombre,apellido,ruc,fono,email from VOrdenDesembolsoSeguimiento Order By idOp Asc"
         crearDataAdapterTable(daVDetOrden, sele)
 
-        sele = "Select codDesembolso,fecPago,montoPago,tipoP,moneda,simbolo,nroCue,banco,pagoDet from VPagoDesembolsoSeguimiento"
+        sele = "Select codDesembolso,fecPago,montoPago,tipoP,moneda,simbolo,nroCue,banco,pagoDet,montoD,nroP,clasif from VPagoDesembolsoSeguimiento"
         crearDataAdapterTable(daTabla1, sele)
 
         sele = "select idOP,fecEnt,nroConfor  from TOrdenDesembolso"
@@ -83,6 +83,10 @@ Public Class SeguimientoOrdenDesembolsoForm
 
     End Sub
 
+    ''' <summary>
+    ''' Cutomiza la grila de Contabilidad
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub ModificandoColumnaDGVConta()
         oGrilla.ConfigGrilla(dgContabilidad)
         dgContabilidad.ReadOnly = True
@@ -90,7 +94,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         dgContabilidad.AllowUserToDeleteRows = False
         dgContabilidad.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         With dgContabilidad
-            .Columns("idOP").Visible = False
+            .Columns(0).Visible = False
             .Columns("fecEnt").HeaderText = "Fecha Registro"
             .Columns("nroConfor").HeaderText = "Nro Documento"
 
@@ -150,6 +154,16 @@ Public Class SeguimientoOrdenDesembolsoForm
                 .Columns("pagoDet").HeaderText = "Descripción"
                 '.Columns("pagoDet").DisplayIndex = 6
                 .Columns("pagoDet").Width = 250
+
+                'Monto de detracción
+                .Columns("montoD").HeaderText = "Detracción"
+                .Columns("montoD").Width = 200
+                'numero Operacion /cheque
+                .Columns("nroP").HeaderText = "Nro"
+                .Columns("nroP").Width = 40
+                'Clasificación de pagos 
+                .Columns("clasif").HeaderText = "Clasificación"
+                .Columns("clasif").Width = 100
 
             End With
         Catch ex As Exception
@@ -357,13 +371,50 @@ Public Class SeguimientoOrdenDesembolsoForm
             txtCuentaPago.Text = BindingSource1.Item(BindingSource1.Position)(6)
             txtMedioPago.Text = BindingSource1.Item(BindingSource1.Position)(3)
             txtDescripcionPago.Text = BindingSource1.Item(BindingSource1.Position)(8)
+            txtDetraccionPago.Text = BindingSource1.Item(BindingSource1.Position)(9)
+            txtNroPago.Text = BindingSource1.Item(BindingSource1.Position)(10)
+            txtClasifiPago.Text = BindingSource1.Item(BindingSource1.Position)(11)
+
         End If
 
     End Sub
 
+
+    ''' <summary>
+    ''' configura los colores de los controles
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub configurarColorControl()
+        Me.BackColor = BackColorP
+        'recorriendo tabs de tabcontrol
+        For j As Integer = 0 To TabControl1.TabPages.Count - 1
+
+            For index As Integer = 0 To TabControl1.TabPages(j).Controls.Count - 1
+                'TabControl1.TabPages(0).Controls
+                If TypeOf TabControl1.TabPages(j).Controls(index) Is GroupBox Then
+                    TabControl1.TabPages(j).BackColor = BackColorP
+                    oGrilla.configurarColorControl("Label", TabControl1.TabPages(j).Controls(index), ForeColorLabel)
+                    oGrilla.configurarColorControl("CheckBox", TabControl1.TabPages(j).Controls(index), ForeColorLabel)
+                End If
+            Next
+
+        Next
+
+
+        oGrilla.configurarColorControl("Label", GroupBox2, ForeColorLabel)
+
+
+
+    End Sub
 #End Region
 
     Private Sub SeguimientoOrdenDesembolsoForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        Dim wait As New waitForm
+        wait.Show()
+        Me.Cursor = Cursors.WaitCursor
+
+        configurarColorControl()
 
         DatosIniciales()
         'Modifica las columnas de Grilla Desembolso
@@ -373,7 +424,8 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         enlazarText()
 
-
+        wait.Close()
+        Me.Cursor = Cursors.Default
     End Sub
 
 
@@ -386,8 +438,8 @@ Public Class SeguimientoOrdenDesembolsoForm
         enlazarText()
         'filtrando para que muestre los registros de pagos por orden de desembolso seleccionado
         BindingSource1.Filter = "codDesembolso=" & BindingSource0.Item(BindingSource0.Position)(0)
-
-        BindingSource2.Filter = "idOP=" & BindingSource2.Item(BindingSource2.Position)(0)
+        'filtrando para que muestre los registros de contabilidad por orden de desembolso seleccionado
+        BindingSource2.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
 
     End Sub
 
@@ -396,6 +448,7 @@ Public Class SeguimientoOrdenDesembolsoForm
     End Sub
 
     Private Sub dgPagos_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgPagos.CellClick
+
         enlazarTextPagos()
 
     End Sub
@@ -404,4 +457,18 @@ Public Class SeguimientoOrdenDesembolsoForm
         enlazarTextConta()
 
     End Sub
+
+    Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
+        dgContabilidad.Dispose()
+        dgDesembolso.Dispose()
+        dgPagos.Dispose()
+        Me.Close()
+
+    End Sub
+
+    Private Sub SeguimientoOrdenDesembolsoForm_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Leave
+        Close()
+    End Sub
+
+    
 End Class

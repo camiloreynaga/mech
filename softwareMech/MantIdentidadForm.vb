@@ -3,7 +3,15 @@ Imports System.Data.SqlClient
 Imports ComponentesSolucion2008
 
 Public Class MantIdentidadForm
+    ''' <summary>
+    ''' Identidad
+    ''' </summary>
+    ''' <remarks></remarks>
     Dim BindingSource1 As New BindingSource
+    ''' <summary>
+    ''' Tipo Identidad
+    ''' </summary>
+    ''' <remarks></remarks>
     Dim BindingSource2 As New BindingSource
 
     Private Sub MantIdentidadForm_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
@@ -18,7 +26,7 @@ Public Class MantIdentidadForm
         Dim wait As New waitForm
         wait.Show()
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select codIde,tipoId,razon,ruc,dir,fono,fax,celRpm,email,estado1,repres,dni,estado,idTipId,cuentaBan from VTipoIdentidad where codIde>1 order by razon" '1 MECH defecto
+        Dim sele As String = "select codIde,tipoId,razon,ruc,dir,fono,fax,celRpm,email,estado1,repres,dni,estado,idTipId,cuentaBan,cuentaDet from VTipoIdentidad where codIde>1 order by razon" '1 MECH defecto
         crearDataAdapterTable(daTPers, sele)
 
         sele = "select idTipId,tipoId from TTipoIdent Order by tipoId"
@@ -48,8 +56,8 @@ Public Class MantIdentidadForm
             configurarColorControl()
             'txtCodPers.DataBindings.Add("Text", BindingSource1, "codUsu")
             vfVan1 = True
-            cbBuscar.SelectedIndex = 0
-            txtBuscar.Focus()
+            cbBuscar.SelectedIndex = 1
+
 
             wait.Close()
         Catch f As Exception
@@ -57,12 +65,14 @@ Public Class MantIdentidadForm
             MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End Try
+
     End Sub
 
     Dim vfVan1 As Boolean = False
     Dim vfObs As Short = 1
     Private Sub lbTabla1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbTabla1.SelectedIndexChanged
         relacion()
+        txtBuscar.Focus()
     End Sub
 
     Private Sub relacion()
@@ -101,7 +111,9 @@ Public Class MantIdentidadForm
             .Columns(12).Visible = False
             .Columns(13).Visible = False
             .Columns(14).Width = 200
-            .Columns(14).HeaderText = "Cuenta_Bancaria"
+            .Columns(14).HeaderText = "Cuenta Bancaria"
+            .Columns("cuentaDet").HeaderText = "Cuenta Detracción"
+            .Columns("cuentaDet").Width = 200
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -129,7 +141,8 @@ Public Class MantIdentidadForm
         Label11.ForeColor = ForeColorLabel
         Label12.ForeColor = ForeColorLabel
         Label13.ForeColor = ForeColorLabel
-        btnBuscar.ForeColor = ForeColorButtom
+        Label14.ForeColor = ForeColorLabel
+        Label15.ForeColor = ForeColorLabel
         btnNuevo.ForeColor = ForeColorButtom
         btnModificar.ForeColor = ForeColorButtom
         btnCancelar.ForeColor = ForeColorButtom
@@ -156,7 +169,7 @@ Public Class MantIdentidadForm
             txtRep.Text = BindingSource1.Item(BindingSource1.Position)(10)
             txtDNI.Text = BindingSource1.Item(BindingSource1.Position)(11)
             txtCue.Text = BindingSource1.Item(BindingSource1.Position)(14)
-
+            txtDetraccion.Text = BindingSource1.Item(BindingSource1.Position)(15)
             If BindingSource1.Item(BindingSource1.Position)(12) = 1 Then
                 lbTabla2.SelectedIndex = 0 'Activo
             Else
@@ -209,6 +222,7 @@ Public Class MantIdentidadForm
         txtRep.ReadOnly = True
         txtDNI.ReadOnly = True
         txtCue.ReadOnly = True
+        txtDetraccion.ReadOnly = True
     End Sub
 
     Private Sub limpiarText2()
@@ -222,6 +236,7 @@ Public Class MantIdentidadForm
         txtRep.Clear()
         txtDNI.Clear()
         txtCue.Clear()
+        txtDetraccion.Clear()
     End Sub
 
     Private Sub limpiarText1()
@@ -235,6 +250,7 @@ Public Class MantIdentidadForm
         txtRep.ReadOnly = False
         txtDNI.ReadOnly = False
         txtCue.ReadOnly = False
+        txtDetraccion.ReadOnly = False
         If vfNuevo1 = "guardar" Then
             txtNom.Clear()
             txtRuc.Clear()
@@ -246,9 +262,15 @@ Public Class MantIdentidadForm
             txtRep.Clear()
             txtDNI.Clear()
             txtCue.Clear()
+            txtDetraccion.Clear()
         End If
     End Sub
 
+    ''' <summary>
+    ''' valida datos para indentidad 
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Private Function ValidarCampos() As Boolean
         'Creado en el Module ValidarCamposModule.vb, 3=minimo de caractres
         If validaCampoVacioMinCaracNoNumer(txtNom.Text.Trim, 3) Then
@@ -286,7 +308,7 @@ Public Class MantIdentidadForm
     Private Function recuperarExiste(ByVal ruc As String) As Integer
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = "select count(*) from TIdentidad where ruc='" & ruc & "'"
+        cmdCampo.CommandText = "select count(codIde) from TIdentidad where ruc='" & ruc & "'"
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function
@@ -302,7 +324,7 @@ Public Class MantIdentidadForm
     Private Function recuperarExiste1(ByVal dni As String) As Integer
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = "select count(*) from TIdentidad where dni='" & dni & "'"
+        cmdCampo.CommandText = "select count(codIde) from TIdentidad where dni='" & dni & "'"
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function
@@ -482,7 +504,7 @@ Public Class MantIdentidadForm
             btnModificar.Text = "Actualizar"
             desactivarControles1()
             limpiarText1()
-            enlazarText()
+            'enlazarText()
             txtNom.Focus()
             StatusBarClass.messageBarraEstado("")
             Me.AcceptButton = Me.btnModificar
@@ -596,7 +618,7 @@ Public Class MantIdentidadForm
                     Exit Sub
                 End If
             End Try
-            End If
+        End If
     End Sub
 
     Private Sub btnCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelar.Click
@@ -673,7 +695,7 @@ Public Class MantIdentidadForm
             StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... ENTIDAD TIENE ORDENES DE DESEMBOLSO RELACIONADAS...")
             Exit Sub
         End If
-       
+
 
 
         Dim resp As String = MessageBox.Show("Esta segúro de eliminar registro?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -734,7 +756,7 @@ Public Class MantIdentidadForm
     Private Sub comandoInsert1()
         cmInserTable1 = New SqlCommand
         cmInserTable1.CommandType = CommandType.Text
-        cmInserTable1.CommandText = "insert TIdentidad(razon,ruc,dir,fono,fax,celRpm,email,repres,dni,estado,idTipId,cuentaBan) values(@raz,@ruc,@dir,@fono,@fax,@cel,@ema,@rep,@dni,@est,@idT,@cue)"
+        cmInserTable1.CommandText = "insert TIdentidad(razon,ruc,dir,fono,fax,celRpm,email,repres,dni,estado,idTipId,cuentaBan) values(@raz,@ruc,@dir,@fono,@fax,@cel,@ema,@rep,@dni,@est,@idT,@cue,@detraccion)"
         cmInserTable1.Connection = Cn
         cmInserTable1.Parameters.Add("@raz", SqlDbType.VarChar, 60).Value = txtNom.Text.Trim()
         cmInserTable1.Parameters.Add("@ruc", SqlDbType.VarChar, 11).Value = txtRuc.Text.Trim()
@@ -748,13 +770,15 @@ Public Class MantIdentidadForm
         cmInserTable1.Parameters.Add("@est", SqlDbType.Int, 0).Value = 1 'Activo
         cmInserTable1.Parameters.Add("@idT", SqlDbType.Int, 0).Value = lbTabla1.SelectedValue
         cmInserTable1.Parameters.Add("@cue", SqlDbType.VarChar, 60).Value = txtCue.Text.Trim()
+        cmInserTable1.Parameters.Add("@detraccion", SqlDbType.VarChar, 60).Value = txtDetraccion.Text.Trim()
+
     End Sub
 
     Dim cmUpdateTable As SqlCommand
     Private Sub comandoUpdate()
         cmUpdateTable = New SqlCommand
         cmUpdateTable.CommandType = CommandType.Text
-        cmUpdateTable.CommandText = "update TIdentidad set razon=@raz,ruc=@ruc,dir=@dir,fono=@fono,fax=@fax,celRpm=@cel,email=@ema,repres=@rep,dni=@dni,estado=@est,idTipId=@idT,cuentaBan=@cue where codIde=@codIde"
+        cmUpdateTable.CommandText = "update TIdentidad set razon=@raz,ruc=@ruc,dir=@dir,fono=@fono,fax=@fax,celRpm=@cel,email=@ema,repres=@rep,dni=@dni,estado=@est,idTipId=@idT,cuentaBan=@cue,cuentaDet=@detraccion where codIde=@codIde"
         cmUpdateTable.Connection = Cn
         cmUpdateTable.Parameters.Add("@raz", SqlDbType.VarChar, 60).Value = txtNom.Text.Trim()
         cmUpdateTable.Parameters.Add("@ruc", SqlDbType.VarChar, 11).Value = txtRuc.Text.Trim()
@@ -773,6 +797,7 @@ Public Class MantIdentidadForm
         cmUpdateTable.Parameters.Add("@idT", SqlDbType.Int, 0).Value = lbTabla1.SelectedValue
         cmUpdateTable.Parameters.Add("@cue", SqlDbType.VarChar, 60).Value = txtCue.Text.Trim()
         cmUpdateTable.Parameters.Add("@codIde", SqlDbType.Int, 0).Value = BindingSource1.Item(BindingSource1.Position)(0)
+        cmUpdateTable.Parameters.Add("@detraccion", SqlDbType.VarChar, 60).Value = txtDetraccion.Text.Trim()
     End Sub
 
     Dim cmDeleteTable As SqlCommand
@@ -793,10 +818,8 @@ Public Class MantIdentidadForm
     End Sub
 
     Private Sub txtBuscar_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtBuscar.TextChanged
-        Me.AcceptButton = Me.btnBuscar
-    End Sub
 
-    Private Sub btnBuscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBuscar.Click
+
         Dim campo As String
         If cbBuscar.SelectedIndex = 0 Then
             campo = "ruc"
@@ -811,16 +834,9 @@ Public Class MantIdentidadForm
         Else 'razon
             BindingSource1.Filter = campo & " like '" & txtBuscar.Text.Trim() & "%' and idTipId=" & lbTabla1.SelectedValue
         End If
-        If BindingSource1.Count > 0 Then
-            dgTabla1.Focus()
-            Me.AcceptButton = Me.btnNuevo
-            StatusBarClass.messageBarraEstado("")
-        Else
-            txtBuscar.Focus()
-            txtBuscar.SelectAll()
-            StatusBarClass.messageBarraEstado(" NO EXISTE ENTIDAD CON ESA CARACTERISTICA DE BUSQUEDA...")
-        End If
+        
     End Sub
+
 
 
     Private Sub txtRuc_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtRuc.KeyPress, txtDNI.KeyPress
@@ -834,7 +850,7 @@ Public Class MantIdentidadForm
 
     End Sub
 
-    
+
     Private Sub lbTabla2_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbTabla2.SelectedIndexChanged
 
 
@@ -851,7 +867,7 @@ Public Class MantIdentidadForm
 
         End If
 
-        
+
         If RecuperarIdentidadOrdenCompra() > 0 Then
             StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... PROVEEDOR TIENE ORDENES DE COMPRA PENDIENTES DE CIERRE.")
             lbTabla2.SelectedIndex = 0
@@ -865,7 +881,7 @@ Public Class MantIdentidadForm
 
     End Sub
 
-#Region "validaci{on para inactividad"
+#Region "validacion para inactividad"
     ''' <summary>
     ''' recupera la cantidad de grupo de cotizaciones abiertas para un identidad proveedor
     ''' </summary>
@@ -877,7 +893,7 @@ Public Class MantIdentidadForm
         cmdCampo.CommandType = CommandType.Text
         cmdCampo.CommandText = "select count(estGru) from TGrupoCot TG inner join TCotizacion TC on TG.codGruC =TC.codGruC Where codIde = @codIde and estGru=0"
 
-        Dim valor As Integer = dgTabla1.SelectedRows(0).Cells("codIde").Value
+        Dim valor As Integer = BindingSource1.Item(BindingSource1.Position)(0) ' dgTabla1.SelectedRows(0).Cells("codIde").Value
         cmdCampo.Parameters.Add(New SqlParameter("@codIde", SqlDbType.Int)).Value = valor  'dgTabla1.SelectedRows(0).Cells("codIde").Value
         cmdCampo.Connection = Cn
         Dim resul As Object = cmdCampo.ExecuteScalar()
@@ -894,7 +910,7 @@ Public Class MantIdentidadForm
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
         cmdCampo.CommandText = "select count(tlu.codIde) from TLugarTrabajo TLU inner join TUbicacion TUB on tlu.codigo  = tub.codigo where tlu.codIde=@codIde and (TLU.estado = 0 or TLU.estado = 1)"
-        Dim valor As Integer = dgTabla1.SelectedRows(0).Cells("codIde").Value
+        Dim valor As Integer = BindingSource1.Item(BindingSource1.Position)(0) ' dgTabla1.SelectedRows(0).Cells("codIde").Value
         cmdCampo.Parameters.Add(New SqlParameter("@codIde", SqlDbType.Int)).Value = valor  'dgTabla1.SelectedRows(0).Cells("codIde").Value
         cmdCampo.Connection = Cn
         Dim resul As Object = cmdCampo.ExecuteScalar()
@@ -912,7 +928,7 @@ Public Class MantIdentidadForm
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
         cmdCampo.CommandText = "select COUNT(codIde) from TOrdenCompra where codIde =@codIde and (estado =0 or estado=1)"
-        Dim valor As Integer = dgTabla1.SelectedRows(0).Cells("codIde").Value
+        Dim valor As Integer = BindingSource1.Item(BindingSource1.Position)(0) 'dgTabla1.SelectedRows(0).Cells("codIde").Value
         cmdCampo.Parameters.Add(New SqlParameter("@codIde", SqlDbType.Int)).Value = valor  'dgTabla1.SelectedRows(0).Cells("codIde").Value
         cmdCampo.Connection = Cn
         Dim resul As Object = cmdCampo.ExecuteScalar()
@@ -930,7 +946,7 @@ Public Class MantIdentidadForm
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
         cmdCampo.CommandText = "select count(codIde) from TOrdenDesembolso where codIde =@codIde and (estado=0 or estado=1)"
-        Dim valor As Integer = dgTabla1.SelectedRows(0).Cells("codIde").Value
+        Dim valor As Integer = BindingSource1.Item(BindingSource1.Position)(0) 'dgTabla1.SelectedRows(0).Cells("codIde").Value
         cmdCampo.Parameters.Add(New SqlParameter("@codIde", SqlDbType.Int)).Value = valor  'dgTabla1.SelectedRows(0).Cells("codIde").Value
         cmdCampo.Connection = Cn
         Dim resul As Object = cmdCampo.ExecuteScalar()
@@ -940,4 +956,20 @@ Public Class MantIdentidadForm
 #End Region
 
 
+    Private Sub dgTabla1_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla1.CellClick
+        enlazarText()
+
+    End Sub
+
+    Private Sub dgTabla1_CellEnter(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla1.CellEnter
+        enlazarText()
+
+    End Sub
+
+    Private Sub dgTabla1_DataBindingComplete(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewBindingCompleteEventArgs) Handles dgTabla1.DataBindingComplete
+
+        'DirectCast(sender, DataGridView).ClearSelection()
+
+
+    End Sub
 End Class

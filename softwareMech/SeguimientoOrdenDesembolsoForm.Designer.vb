@@ -41,28 +41,41 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Label10 = New System.Windows.Forms.Label
         Me.Label9 = New System.Windows.Forms.Label
         Me.Label8 = New System.Windows.Forms.Label
-        Me.Label7 = New System.Windows.Forms.Label
         Me.txtProveedor = New System.Windows.Forms.TextBox
         Me.txtObra = New System.Windows.Forms.TextBox
-        Me.txtMotivoDesem = New System.Windows.Forms.TextBox
         Me.txtEmailProv = New System.Windows.Forms.TextBox
         Me.txtCuentaDetraccion = New System.Windows.Forms.TextBox
         Me.txtCuentaBco = New System.Windows.Forms.TextBox
         Me.txtTelefonoProv = New System.Windows.Forms.TextBox
         Me.txtRuc = New System.Windows.Forms.TextBox
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
+        Me.txtMotivoDesem = New System.Windows.Forms.TextBox
+        Me.Label7 = New System.Windows.Forms.Label
         Me.TabPage2 = New System.Windows.Forms.TabPage
         Me.GroupBox7 = New System.Windows.Forms.GroupBox
         Me.dgPagos = New System.Windows.Forms.DataGridView
         Me.GroupBox6 = New System.Windows.Forms.GroupBox
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.txtFormaPago = New System.Windows.Forms.TextBox
+        Me.Label28 = New System.Windows.Forms.Label
+        Me.Label27 = New System.Windows.Forms.Label
         Me.Label23 = New System.Windows.Forms.Label
+        Me.txtDescripcionPago = New System.Windows.Forms.TextBox
+        Me.txtNroPago = New System.Windows.Forms.TextBox
         Me.txtMedioPago = New System.Windows.Forms.TextBox
         Me.Label19 = New System.Windows.Forms.Label
+        Me.txtCuentaPago = New System.Windows.Forms.TextBox
         Me.txtBancoPago = New System.Windows.Forms.TextBox
+        Me.txtFechaPago = New System.Windows.Forms.TextBox
+        Me.Label13 = New System.Windows.Forms.Label
         Me.txtMonedaPago = New System.Windows.Forms.TextBox
         Me.Label22 = New System.Windows.Forms.Label
         Me.Label20 = New System.Windows.Forms.Label
+        Me.Label29 = New System.Windows.Forms.Label
+        Me.Label30 = New System.Windows.Forms.Label
         Me.Label21 = New System.Windows.Forms.Label
+        Me.txtClasifiPago = New System.Windows.Forms.TextBox
+        Me.txtDetraccionPago = New System.Windows.Forms.TextBox
         Me.txtMontoPago = New System.Windows.Forms.TextBox
         Me.Label18 = New System.Windows.Forms.Label
         Me.txtEstadoPago = New System.Windows.Forms.TextBox
@@ -70,7 +83,10 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.GroupBox9 = New System.Windows.Forms.GroupBox
         Me.dgContabilidad = New System.Windows.Forms.DataGridView
         Me.GroupBox8 = New System.Windows.Forms.GroupBox
+        Me.Label16 = New System.Windows.Forms.Label
+        Me.txtPeriodoTrib = New System.Windows.Forms.TextBox
         Me.Label24 = New System.Windows.Forms.Label
+        Me.txtFechaRegConta = New System.Windows.Forms.TextBox
         Me.txtNroComprobConta = New System.Windows.Forms.TextBox
         Me.Label25 = New System.Windows.Forms.Label
         Me.Label26 = New System.Windows.Forms.Label
@@ -86,18 +102,9 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Label2 = New System.Windows.Forms.Label
         Me.Label1 = New System.Windows.Forms.Label
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
+        Me.btnCerrar = New System.Windows.Forms.Button
         Me.txtSolicitante = New System.Windows.Forms.TextBox
         Me.txtFechaDesem = New System.Windows.Forms.TextBox
-        Me.txtFechaPago = New System.Windows.Forms.TextBox
-        Me.Label13 = New System.Windows.Forms.Label
-        Me.txtCuentaPago = New System.Windows.Forms.TextBox
-        Me.txtDescripcionPago = New System.Windows.Forms.TextBox
-        Me.Label27 = New System.Windows.Forms.Label
-        Me.txtFechaRegConta = New System.Windows.Forms.TextBox
-        Me.Label16 = New System.Windows.Forms.Label
-        Me.txtPeriodoTrib = New System.Windows.Forms.TextBox
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.txtFormaPago = New System.Windows.Forms.TextBox
         Me.gbDesembolso.SuspendLayout()
         CType(Me.dgDesembolso, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
@@ -132,7 +139,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.gbDesembolso.Size = New System.Drawing.Size(883, 213)
         Me.gbDesembolso.TabIndex = 3
         Me.gbDesembolso.TabStop = False
-        Me.gbDesembolso.Text = "Ordenes de Desembolso"
         '
         'dgDesembolso
         '
@@ -148,10 +154,10 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Location = New System.Drawing.Point(6, 70)
+        Me.TabControl1.Location = New System.Drawing.Point(0, 70)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(874, 341)
+        Me.TabControl1.Size = New System.Drawing.Size(883, 347)
         Me.TabControl1.TabIndex = 4
         '
         'TabPage1
@@ -162,7 +168,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(866, 315)
+        Me.TabPage1.Size = New System.Drawing.Size(875, 321)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Solicitud"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -355,15 +361,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Label8.TabIndex = 6
         Me.Label8.Text = "Obra / Ubicación"
         '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(4, 22)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(117, 13)
-        Me.Label7.TabIndex = 6
-        Me.Label7.Text = "Motivo Desembolso"
-        '
         'txtProveedor
         '
         Me.txtProveedor.Location = New System.Drawing.Point(118, 52)
@@ -377,13 +374,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.txtObra.Name = "txtObra"
         Me.txtObra.Size = New System.Drawing.Size(731, 20)
         Me.txtObra.TabIndex = 3
-        '
-        'txtMotivoDesem
-        '
-        Me.txtMotivoDesem.Location = New System.Drawing.Point(121, 19)
-        Me.txtMotivoDesem.Name = "txtMotivoDesem"
-        Me.txtMotivoDesem.Size = New System.Drawing.Size(472, 20)
-        Me.txtMotivoDesem.TabIndex = 3
         '
         'txtEmailProv
         '
@@ -430,6 +420,22 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.GroupBox3.TabIndex = 0
         Me.GroupBox3.TabStop = False
         '
+        'txtMotivoDesem
+        '
+        Me.txtMotivoDesem.Location = New System.Drawing.Point(121, 19)
+        Me.txtMotivoDesem.Name = "txtMotivoDesem"
+        Me.txtMotivoDesem.Size = New System.Drawing.Size(472, 20)
+        Me.txtMotivoDesem.TabIndex = 3
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(4, 22)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(117, 13)
+        Me.Label7.TabIndex = 6
+        Me.Label7.Text = "Motivo Desembolso"
+        '
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.GroupBox7)
@@ -437,7 +443,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(866, 315)
+        Me.TabPage2.Size = New System.Drawing.Size(875, 321)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Pagos"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -463,9 +469,11 @@ Partial Class SeguimientoOrdenDesembolsoForm
         '
         Me.GroupBox6.Controls.Add(Me.Label6)
         Me.GroupBox6.Controls.Add(Me.txtFormaPago)
+        Me.GroupBox6.Controls.Add(Me.Label28)
         Me.GroupBox6.Controls.Add(Me.Label27)
         Me.GroupBox6.Controls.Add(Me.Label23)
         Me.GroupBox6.Controls.Add(Me.txtDescripcionPago)
+        Me.GroupBox6.Controls.Add(Me.txtNroPago)
         Me.GroupBox6.Controls.Add(Me.txtMedioPago)
         Me.GroupBox6.Controls.Add(Me.Label19)
         Me.GroupBox6.Controls.Add(Me.txtCuentaPago)
@@ -475,7 +483,11 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.GroupBox6.Controls.Add(Me.txtMonedaPago)
         Me.GroupBox6.Controls.Add(Me.Label22)
         Me.GroupBox6.Controls.Add(Me.Label20)
+        Me.GroupBox6.Controls.Add(Me.Label29)
+        Me.GroupBox6.Controls.Add(Me.Label30)
         Me.GroupBox6.Controls.Add(Me.Label21)
+        Me.GroupBox6.Controls.Add(Me.txtClasifiPago)
+        Me.GroupBox6.Controls.Add(Me.txtDetraccionPago)
         Me.GroupBox6.Controls.Add(Me.txtMontoPago)
         Me.GroupBox6.Controls.Add(Me.Label18)
         Me.GroupBox6.Controls.Add(Me.txtEstadoPago)
@@ -485,20 +497,68 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.GroupBox6.TabIndex = 2
         Me.GroupBox6.TabStop = False
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(15, 16)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(92, 13)
+        Me.Label6.TabIndex = 13
+        Me.Label6.Text = "Forma de Pago"
+        '
+        'txtFormaPago
+        '
+        Me.txtFormaPago.Location = New System.Drawing.Point(110, 13)
+        Me.txtFormaPago.Name = "txtFormaPago"
+        Me.txtFormaPago.Size = New System.Drawing.Size(321, 20)
+        Me.txtFormaPago.TabIndex = 12
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(54, 94)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(50, 13)
+        Me.Label28.TabIndex = 11
+        Me.Label28.Text = "Número"
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Location = New System.Drawing.Point(444, 65)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(92, 13)
+        Me.Label27.TabIndex = 11
+        Me.Label27.Text = "Medio de Pago"
+        '
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(4, 101)
+        Me.Label23.Location = New System.Drawing.Point(228, 94)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(107, 13)
         Me.Label23.TabIndex = 11
         Me.Label23.Text = "Descripción Pago"
         '
+        'txtDescripcionPago
+        '
+        Me.txtDescripcionPago.Location = New System.Drawing.Point(341, 91)
+        Me.txtDescripcionPago.Name = "txtDescripcionPago"
+        Me.txtDescripcionPago.Size = New System.Drawing.Size(507, 20)
+        Me.txtDescripcionPago.TabIndex = 10
+        '
+        'txtNroPago
+        '
+        Me.txtNroPago.Location = New System.Drawing.Point(110, 91)
+        Me.txtNroPago.Name = "txtNroPago"
+        Me.txtNroPago.Size = New System.Drawing.Size(103, 20)
+        Me.txtNroPago.TabIndex = 10
+        '
         'txtMedioPago
         '
-        Me.txtMedioPago.Location = New System.Drawing.Point(527, 62)
+        Me.txtMedioPago.Location = New System.Drawing.Point(542, 65)
         Me.txtMedioPago.Name = "txtMedioPago"
-        Me.txtMedioPago.Size = New System.Drawing.Size(321, 20)
+        Me.txtMedioPago.Size = New System.Drawing.Size(306, 20)
         Me.txtMedioPago.TabIndex = 10
         '
         'Label19
@@ -510,12 +570,35 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Label19.TabIndex = 9
         Me.Label19.Text = "Fecha Pago"
         '
+        'txtCuentaPago
+        '
+        Me.txtCuentaPago.Location = New System.Drawing.Point(310, 65)
+        Me.txtCuentaPago.Name = "txtCuentaPago"
+        Me.txtCuentaPago.Size = New System.Drawing.Size(121, 20)
+        Me.txtCuentaPago.TabIndex = 7
+        '
         'txtBancoPago
         '
-        Me.txtBancoPago.Location = New System.Drawing.Point(113, 65)
+        Me.txtBancoPago.Location = New System.Drawing.Point(110, 65)
         Me.txtBancoPago.Name = "txtBancoPago"
-        Me.txtBancoPago.Size = New System.Drawing.Size(100, 20)
+        Me.txtBancoPago.Size = New System.Drawing.Size(103, 20)
         Me.txtBancoPago.TabIndex = 7
+        '
+        'txtFechaPago
+        '
+        Me.txtFechaPago.Location = New System.Drawing.Point(110, 39)
+        Me.txtFechaPago.Name = "txtFechaPago"
+        Me.txtFechaPago.Size = New System.Drawing.Size(103, 20)
+        Me.txtFechaPago.TabIndex = 7
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(239, 65)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(65, 13)
+        Me.Label13.TabIndex = 6
+        Me.Label13.Text = "N° Cuenta"
         '
         'txtMonedaPago
         '
@@ -527,7 +610,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(13, 65)
+        Me.Label22.Location = New System.Drawing.Point(64, 68)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(43, 13)
         Me.Label22.TabIndex = 6
@@ -542,18 +625,50 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Label20.TabIndex = 6
         Me.Label20.Text = "Moneda"
         '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(444, 42)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(89, 13)
+        Me.Label29.TabIndex = 0
+        Me.Label29.Text = "Monto Pagado"
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(650, 16)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(79, 13)
+        Me.Label30.TabIndex = 0
+        Me.Label30.Text = "Clasificación"
+        '
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(447, 39)
+        Me.Label21.Location = New System.Drawing.Point(660, 42)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(89, 13)
+        Me.Label21.Size = New System.Drawing.Size(69, 13)
         Me.Label21.TabIndex = 0
-        Me.Label21.Text = "Monto Pagado"
+        Me.Label21.Text = "Detracción"
+        '
+        'txtClasifiPago
+        '
+        Me.txtClasifiPago.Location = New System.Drawing.Point(735, 13)
+        Me.txtClasifiPago.Name = "txtClasifiPago"
+        Me.txtClasifiPago.Size = New System.Drawing.Size(113, 20)
+        Me.txtClasifiPago.TabIndex = 1
+        '
+        'txtDetraccionPago
+        '
+        Me.txtDetraccionPago.Location = New System.Drawing.Point(735, 39)
+        Me.txtDetraccionPago.Name = "txtDetraccionPago"
+        Me.txtDetraccionPago.Size = New System.Drawing.Size(113, 20)
+        Me.txtDetraccionPago.TabIndex = 1
         '
         'txtMontoPago
         '
-        Me.txtMontoPago.Location = New System.Drawing.Point(542, 36)
+        Me.txtMontoPago.Location = New System.Drawing.Point(542, 39)
         Me.txtMontoPago.Name = "txtMontoPago"
         Me.txtMontoPago.Size = New System.Drawing.Size(113, 20)
         Me.txtMontoPago.TabIndex = 1
@@ -569,7 +684,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         '
         'txtEstadoPago
         '
-        Me.txtEstadoPago.Location = New System.Drawing.Point(542, 10)
+        Me.txtEstadoPago.Location = New System.Drawing.Point(542, 13)
         Me.txtEstadoPago.Name = "txtEstadoPago"
         Me.txtEstadoPago.Size = New System.Drawing.Size(100, 20)
         Me.txtEstadoPago.TabIndex = 1
@@ -581,7 +696,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(866, 315)
+        Me.TabPage3.Size = New System.Drawing.Size(875, 321)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Contabilidad"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -619,6 +734,22 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.GroupBox8.TabIndex = 0
         Me.GroupBox8.TabStop = False
         '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(246, 22)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(108, 13)
+        Me.Label16.TabIndex = 16
+        Me.Label16.Text = "Periodo Tributario"
+        '
+        'txtPeriodoTrib
+        '
+        Me.txtPeriodoTrib.Location = New System.Drawing.Point(360, 19)
+        Me.txtPeriodoTrib.Name = "txtPeriodoTrib"
+        Me.txtPeriodoTrib.Size = New System.Drawing.Size(163, 20)
+        Me.txtPeriodoTrib.TabIndex = 17
+        '
         'Label24
         '
         Me.Label24.AutoSize = True
@@ -627,6 +758,13 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Label24.Size = New System.Drawing.Size(93, 13)
         Me.Label24.TabIndex = 15
         Me.Label24.Text = "Fecha Registro"
+        '
+        'txtFechaRegConta
+        '
+        Me.txtFechaRegConta.Location = New System.Drawing.Point(119, 55)
+        Me.txtFechaRegConta.Name = "txtFechaRegConta"
+        Me.txtFechaRegConta.Size = New System.Drawing.Size(121, 20)
+        Me.txtFechaRegConta.TabIndex = 13
         '
         'txtNroComprobConta
         '
@@ -672,20 +810,20 @@ Partial Class SeguimientoOrdenDesembolsoForm
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(540, 17)
+        Me.Label5.Location = New System.Drawing.Point(573, 18)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(69, 13)
+        Me.Label5.Size = New System.Drawing.Size(102, 13)
         Me.Label5.TabIndex = 6
-        Me.Label5.Text = "Detracción"
+        Me.Label5.Text = "Total Detracción"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(365, 18)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(42, 13)
+        Me.Label4.Size = New System.Drawing.Size(75, 13)
         Me.Label4.TabIndex = 6
-        Me.Label4.Text = "Monto"
+        Me.Label4.Text = "Total Monto"
         '
         'Label3
         '
@@ -698,7 +836,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         '
         'txtDetraccion
         '
-        Me.txtDetraccion.Location = New System.Drawing.Point(615, 15)
+        Me.txtDetraccion.Location = New System.Drawing.Point(681, 17)
         Me.txtDetraccion.Name = "txtDetraccion"
         Me.txtDetraccion.Size = New System.Drawing.Size(121, 20)
         Me.txtDetraccion.TabIndex = 3
@@ -712,7 +850,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         '
         'txtMonto
         '
-        Me.txtMonto.Location = New System.Drawing.Point(413, 15)
+        Me.txtMonto.Location = New System.Drawing.Point(446, 15)
         Me.txtMonto.Name = "txtMonto"
         Me.txtMonto.Size = New System.Drawing.Size(121, 20)
         Me.txtMonto.TabIndex = 3
@@ -744,6 +882,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.btnCerrar)
         Me.GroupBox2.Controls.Add(Me.txtEstadoDesem)
         Me.GroupBox2.Controls.Add(Me.Label1)
         Me.GroupBox2.Controls.Add(Me.Label17)
@@ -763,6 +902,16 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.GroupBox2.TabIndex = 5
         Me.GroupBox2.TabStop = False
         '
+        'btnCerrar
+        '
+        Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnCerrar.Location = New System.Drawing.Point(801, 48)
+        Me.btnCerrar.Name = "btnCerrar"
+        Me.btnCerrar.Size = New System.Drawing.Size(75, 23)
+        Me.btnCerrar.TabIndex = 7
+        Me.btnCerrar.Text = "Cerrar"
+        Me.btnCerrar.UseVisualStyleBackColor = True
+        '
         'txtSolicitante
         '
         Me.txtSolicitante.Location = New System.Drawing.Point(78, 41)
@@ -777,87 +926,10 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.txtFechaDesem.Size = New System.Drawing.Size(121, 20)
         Me.txtFechaDesem.TabIndex = 3
         '
-        'txtFechaPago
-        '
-        Me.txtFechaPago.Location = New System.Drawing.Point(113, 39)
-        Me.txtFechaPago.Name = "txtFechaPago"
-        Me.txtFechaPago.Size = New System.Drawing.Size(121, 20)
-        Me.txtFechaPago.TabIndex = 7
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(228, 65)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(65, 13)
-        Me.Label13.TabIndex = 6
-        Me.Label13.Text = "N° Cuenta"
-        '
-        'txtCuentaPago
-        '
-        Me.txtCuentaPago.Location = New System.Drawing.Point(299, 65)
-        Me.txtCuentaPago.Name = "txtCuentaPago"
-        Me.txtCuentaPago.Size = New System.Drawing.Size(121, 20)
-        Me.txtCuentaPago.TabIndex = 7
-        '
-        'txtDescripcionPago
-        '
-        Me.txtDescripcionPago.Location = New System.Drawing.Point(113, 98)
-        Me.txtDescripcionPago.Name = "txtDescripcionPago"
-        Me.txtDescripcionPago.Size = New System.Drawing.Size(735, 20)
-        Me.txtDescripcionPago.TabIndex = 10
-        '
-        'Label27
-        '
-        Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(426, 65)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(92, 13)
-        Me.Label27.TabIndex = 11
-        Me.Label27.Text = "Medio de Pago"
-        '
-        'txtFechaRegConta
-        '
-        Me.txtFechaRegConta.Location = New System.Drawing.Point(119, 55)
-        Me.txtFechaRegConta.Name = "txtFechaRegConta"
-        Me.txtFechaRegConta.Size = New System.Drawing.Size(121, 20)
-        Me.txtFechaRegConta.TabIndex = 13
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(246, 22)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(108, 13)
-        Me.Label16.TabIndex = 16
-        Me.Label16.Text = "Periodo Tributario"
-        '
-        'txtPeriodoTrib
-        '
-        Me.txtPeriodoTrib.Location = New System.Drawing.Point(360, 19)
-        Me.txtPeriodoTrib.Name = "txtPeriodoTrib"
-        Me.txtPeriodoTrib.Size = New System.Drawing.Size(163, 20)
-        Me.txtPeriodoTrib.TabIndex = 17
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(15, 16)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(92, 13)
-        Me.Label6.TabIndex = 13
-        Me.Label6.Text = "Forma de Pago"
-        '
-        'txtFormaPago
-        '
-        Me.txtFormaPago.Location = New System.Drawing.Point(113, 13)
-        Me.txtFormaPago.Name = "txtFormaPago"
-        Me.txtFormaPago.Size = New System.Drawing.Size(318, 20)
-        Me.txtFormaPago.TabIndex = 12
-        '
         'SeguimientoOrdenDesembolsoForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
+        Me.CancelButton = Me.btnCerrar
         Me.ClientSize = New System.Drawing.Size(915, 675)
         Me.Controls.Add(Me.gbDesembolso)
         Me.Controls.Add(Me.GroupBox2)
@@ -971,5 +1043,12 @@ Partial Class SeguimientoOrdenDesembolsoForm
     Friend WithEvents txtPeriodoTrib As System.Windows.Forms.TextBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents txtFormaPago As System.Windows.Forms.TextBox
+    Friend WithEvents btnCerrar As System.Windows.Forms.Button
+    Friend WithEvents Label28 As System.Windows.Forms.Label
+    Friend WithEvents txtNroPago As System.Windows.Forms.TextBox
+    Friend WithEvents Label29 As System.Windows.Forms.Label
+    Friend WithEvents txtDetraccionPago As System.Windows.Forms.TextBox
+    Friend WithEvents Label30 As System.Windows.Forms.Label
+    Friend WithEvents txtClasifiPago As System.Windows.Forms.TextBox
 
 End Class

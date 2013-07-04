@@ -126,13 +126,13 @@ tabla muchos a muchos]]></comment>
 			<column name="codGuia" type="int" length="10" jt="4" />
 			<column name="codMat" type="int" length="10" jt="4" />
 			<column name="linea1" type="varchar" length="100" jt="12" />
-			<index name="PK__TDetalle__9214DA5470DDC3D8" unique="PRIMARY_KEY" >
+			<index name="PK__TDetalle__9214DA5436470DEF" unique="PRIMARY_KEY" >
 				<column name="codDG" />
 			</index>
-			<fk name="FK__TDetalleG__codGu__72C60C4A" to_schema="mech" to_table="TGuiaRemision" >
+			<fk name="FK__TDetalleG__codGu__382F5661" to_schema="mech" to_table="TGuiaRemision" >
 				<fk_column name="codGuia" pk="codGuia" />
 			</fk>
-			<fk name="FK__TDetalleG__codMa__73BA3083" to_schema="mech" to_table="TMaterial" >
+			<fk name="FK__TDetalleG__codMa__39237A9A" to_schema="mech" to_table="TMaterial" >
 				<fk_column name="codMat" pk="codMat" />
 			</fk>
 		</table>
@@ -157,33 +157,65 @@ tabla muchos a muchos]]></comment>
 		</table>
 		<table name="TDetalleSol" >
 			<column name="codDetS" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
-			<column name="prioridad" type="varchar" length="20" jt="12" />
-			<column name="cant" type="decimal" length="8" decimal="2" jt="3" />
-			<column name="descrip" type="varchar" length="100" jt="12" />
-			<column name="unidad" type="varchar" length="20" jt="12" />
-			<column name="codPers" type="int" length="10" jt="4" />
-			<column name="obs1" type="varchar" length="200" jt="12" />
-			<column name="codPersA" type="int" length="10" jt="4" />
+			<column name="prioridad" type="varchar" length="20" jt="12" >
+				<comment><![CDATA[Prioridad de la Solicitud
+Urgente
+Normal]]></comment>
+			</column>
+			<column name="cant" type="decimal" length="8" decimal="2" jt="3" >
+				<comment><![CDATA[Cantidad ]]></comment>
+			</column>
+			<column name="descrip" type="varchar" length="100" jt="12" >
+				<comment><![CDATA[descripcion del insumo]]></comment>
+			</column>
+			<column name="unidad" type="varchar" length="20" jt="12" >
+				<comment><![CDATA[unidad de medida]]></comment>
+			</column>
+			<column name="codPers" type="int" length="10" jt="4" >
+				<comment><![CDATA[codigo de la Persona que registra el item en el detalle]]></comment>
+			</column>
+			<column name="obs1" type="varchar" length="200" jt="12" >
+				<comment><![CDATA[observacion del solicitante]]></comment>
+			</column>
+			<column name="codPersA" type="int" length="10" jt="4" >
+				<comment><![CDATA[Codigo del personal que aprueba el item 
+0 si nadie aprobo ]]></comment>
+			</column>
 			<column name="codEstS" type="int" length="10" jt="4" >
 				<comment><![CDATA[estado: 
-aprobado
-observado
-rechazado]]></comment>
+1 pendiente
+2 aprobado
+3 observado
+4 rechazado]]></comment>
 			</column>
 			<column name="obs2" type="varchar" length="200" jt="12" >
 				<defo>&#039;&#039;</defo>
+				<comment><![CDATA[observacion del Aprobador]]></comment>
 			</column>
-			<column name="codMat" type="int" length="10" jt="4" />
-			<column name="codAreaM" type="int" length="10" jt="4" />
-			<column name="idSol" type="int" length="10" jt="4" />
+			<column name="codMat" type="int" length="10" jt="4" >
+				<comment><![CDATA[codigo del insumo.
+FK]]></comment>
+			</column>
+			<column name="codAreaM" type="int" length="10" jt="4" >
+				<comment><![CDATA[codigo del Area Al que pertenece el item solicitado]]></comment>
+			</column>
+			<column name="idSol" type="int" length="10" jt="4" >
+				<comment><![CDATA[codigo de la solicitud relacionada
+FK]]></comment>
+			</column>
 			<column name="estRecep" type="int" length="10" jt="4" >
 				<defo>0</defo>
+				<comment><![CDATA[estado de recepcion de item en almacen]]></comment>
 			</column>
 			<column name="codPersR" type="int" length="10" jt="4" >
 				<defo>0</defo>
+				<comment><![CDATA[codigo del personal que recepciono.
+FK]]></comment>
 			</column>
 			<column name="obs3" type="varchar" length="200" jt="12" >
 				<defo>&#039;&#039;</defo>
+				<comment><![CDATA[observacion del personal que recepciona.
+Almacen]]></comment>
 			</column>
 			<index name="PK__TDetalle__B5A9ED7101142BA1" unique="PRIMARY_KEY" >
 				<column name="codDetS" />
@@ -240,21 +272,24 @@ rechazado]]></comment>
 			<column name="nroDG" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
 			<column name="codDocC" type="int" length="10" jt="4" />
 			<column name="codGuia" type="int" length="10" jt="4" />
-			<index name="PK__TDocGuia__B0951CEA6B24EA82" unique="PRIMARY_KEY" >
+			<index name="PK__TDocGuia__B0951CEA2F9A1060" unique="PRIMARY_KEY" >
 				<column name="nroDG" />
 			</index>
-			<fk name="FK__TDocGuia__codGui__6D0D32F4" to_schema="mech" to_table="TDocCompra" >
+			<fk name="FK__TDocGuia__codGui__318258D2" to_schema="mech" to_table="TDocCompra" >
 				<fk_column name="codDocC" pk="codDocC" />
 			</fk>
-			<fk name="FK__TDocGuia__codGui__6E01572D" to_schema="mech" to_table="TGuiaRemision" >
+			<fk name="FK__TDocGuia__codGui__32767D0B" to_schema="mech" to_table="TGuiaRemision" >
 				<fk_column name="codGuia" pk="codGuia" />
 			</fk>
 		</table>
 		<table name="TEmpTransp" >
 			<column name="codET" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
-			<column name="nombre" type="varchar" length="50" jt="12" />
+			<column name="nombre" type="varchar" length="60" jt="12" />
 			<column name="ruc" type="varchar" length="11" jt="12" />
-			<index name="PK__TEmpTran__9214D2625165187F" unique="PRIMARY_KEY" >
+			<column name="dir" type="varchar" length="120" jt="12" />
+			<column name="fono" type="varchar" length="60" jt="12" />
+			<column name="contacto" type="varchar" length="60" jt="12" />
+			<index name="PK__TEmpTran__9214D26215DA3E5D" unique="PRIMARY_KEY" >
 				<column name="codET" />
 			</index>
 		</table>
@@ -298,19 +333,19 @@ rechazado]]></comment>
 			<column name="codMotG" type="int" length="10" jt="4" />
 			<column name="obs" type="varchar" length="100" jt="12" />
 			<column name="hist" type="varchar" length="500" jt="12" />
-			<index name="PK__TGuiaRem__BFF2D68C628FA481" unique="PRIMARY_KEY" >
+			<index name="PK__TGuiaRem__BFF2D68C2610A626" unique="PRIMARY_KEY" >
 				<column name="codGuia" />
 			</index>
-			<fk name="FK__TGuiaRemi__codId__656C112C" to_schema="mech" to_table="TIdentidad" >
+			<fk name="FK__TGuiaRemi__codId__28ED12D1" to_schema="mech" to_table="TIdentidad" >
 				<fk_column name="codIde" pk="codIde" />
 			</fk>
-			<fk name="FK__TGuiaRemi__codMo__68487DD7" to_schema="mech" to_table="TMotivoGuia" >
+			<fk name="FK__TGuiaRemi__codMo__2BC97F7C" to_schema="mech" to_table="TMotivoGuia" >
 				<fk_column name="codMotG" pk="codMotG" />
 			</fk>
-			<fk name="FK__TGuiaRemis__codT__6754599E" to_schema="mech" to_table="TTransportista" >
+			<fk name="FK__TGuiaRemis__codT__2AD55B43" to_schema="mech" to_table="TTransportista" >
 				<fk_column name="codT" pk="codT" />
 			</fk>
-			<fk name="FK__TGuiaRemi__codVe__66603565" to_schema="mech" to_table="TVehiculo" >
+			<fk name="FK__TGuiaRemi__codVe__29E1370A" to_schema="mech" to_table="TVehiculo" >
 				<fk_column name="codVeh" pk="codVeh" />
 			</fk>
 		</table>
@@ -328,6 +363,9 @@ rechazado]]></comment>
 			<column name="estado" type="int" length="10" jt="4" />
 			<column name="idTipId" type="int" length="10" jt="4" />
 			<column name="cuentaBan" type="varchar" length="60" jt="12" >
+				<defo>&#039;&#039;</defo>
+			</column>
+			<column name="cuentaDet" type="varchar" length="60" jt="12" >
 				<defo>&#039;&#039;</defo>
 			</column>
 			<index name="PK__TIdentid__9CA8BCFD0F975522" unique="PRIMARY_KEY" >
@@ -435,6 +473,9 @@ Estado
 			<column name="idSol" type="int" length="10" jt="4" >
 				<defo>0</defo>
 			</column>
+			<column name="codET" type="int" length="10" jt="4" >
+				<defo>1</defo>
+			</column>
 			<index name="PK__TOrdenCo__14FFDC022180FB33" unique="PRIMARY_KEY" >
 				<column name="nroOrden" />
 			</index>
@@ -490,7 +531,10 @@ Estado
 			<column name="fecDes" type="date" length="10" jt="91" >
 				<comment><![CDATA[fecha en la que se registro la orden de desembolso]]></comment>
 			</column>
-			<column name="fecEnt" type="varchar" length="10" jt="12" />
+			<column name="fecEnt" type="varchar" length="10" jt="12" >
+				<comment><![CDATA[fecha de entrega de comprobante de pago a contabilidad
+]]></comment>
+			</column>
 			<column name="guiaCheck" type="int" length="10" jt="4" >
 				<comment><![CDATA[registro para checkbox de Guia de Remision]]></comment>
 			</column>
@@ -506,30 +550,14 @@ Estado
 			<column name="montoDif" type="decimal" length="10" decimal="2" jt="3" >
 				<comment><![CDATA[monto diferencia entre Monto y Detraccion]]></comment>
 			</column>
-			<column name="nroBol" type="varchar" length="20" jt="12" >
-				<comment><![CDATA[número de Boleta]]></comment>
+			<column name="nroConfor" type="varchar" length="30" jt="12" >
+				<comment><![CDATA[Número de Comprobante de Pago entregado a contabilidad]]></comment>
 			</column>
-			<column name="nroConfor" type="varchar" length="30" jt="12" />
 			<column name="nroDes" type="int" length="10" jt="4" >
 				<comment><![CDATA[número de desembolso (correlativo)]]></comment>
 			</column>
 			<column name="nroDet" type="varchar" length="30" jt="12" >
 				<comment><![CDATA[número de cuenta de Detracción]]></comment>
-			</column>
-			<column name="nroFact" type="varchar" length="20" jt="12" >
-				<comment><![CDATA[número de Factura]]></comment>
-			</column>
-			<column name="nroGuia" type="varchar" length="20" jt="12" >
-				<comment><![CDATA[número de Guia de Remision]]></comment>
-			</column>
-			<column name="nroReci" type="varchar" length="20" jt="12" >
-				<comment><![CDATA[número de Recibo]]></comment>
-			</column>
-			<column name="nroVou" type="varchar" length="20" jt="12" >
-				<comment><![CDATA[número de Voucher]]></comment>
-			</column>
-			<column name="nroVouD" type="varchar" length="20" jt="12" >
-				<comment><![CDATA[número de Voucher para Detracción]]></comment>
 			</column>
 			<column name="otroCheck" type="int" length="10" jt="4" >
 				<comment><![CDATA[registro para checkbox de Otro tipo de documento]]></comment>
@@ -552,6 +580,9 @@ Estado
 			<column name="nroCta" type="varchar" length="50" jt="12" >
 				<comment><![CDATA[número de Cuenta Bancaria del Proveedor]]></comment>
 			</column>
+			<column name="codSerO" type="int" length="10" jt="4" >
+				<defo>1</defo>
+			</column>
 			<index name="PK__TOrdenDe__9DB850F937703C52" unique="PRIMARY_KEY" >
 				<column name="idOP" />
 			</index>
@@ -569,13 +600,13 @@ Estado
 			<column name="nroOG" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
 			<column name="nroOrden" type="int" length="10" jt="4" />
 			<column name="codGuia" type="int" length="10" jt="4" />
-			<index name="PK__TOrdenGu__B096E80E31B762FC" unique="PRIMARY_KEY" >
+			<index name="PK__TOrdenGu__B096E80E3DE82FB7" unique="PRIMARY_KEY" >
 				<column name="nroOG" />
 			</index>
-			<fk name="FK__TOrdenGui__codGu__3493CFA7" to_schema="mech" to_table="TGuiaRemision" >
+			<fk name="FK__TOrdenGui__codGu__40C49C62" to_schema="mech" to_table="TGuiaRemision" >
 				<fk_column name="codGuia" pk="codGuia" />
 			</fk>
-			<fk name="FK__TOrdenGui__nroOr__339FAB6E" to_schema="mech" to_table="TOrdenCompra" >
+			<fk name="FK__TOrdenGui__nroOr__3FD07829" to_schema="mech" to_table="TOrdenCompra" >
 				<fk_column name="nroOrden" pk="nroOrden" />
 			</fk>
 		</table>
@@ -599,7 +630,9 @@ Estado
 3 Rechazado (denegado)]]></comment>
 			</column>
 			<column name="tipoA" type="int" length="10" jt="4" >
-				<comment><![CDATA[Estado Trazabilidad:
+				<comment><![CDATA[Codigo de la persona que intervino con la OD
+ (Estado Trazabilidad):
+
 0 Solicitante
 1 Gerencia
 2 Tesoreria 
@@ -663,13 +696,26 @@ Estado
 			<column name="nroS" type="int" length="10" jt="4" >
 				<comment><![CDATA[número correlativo de la solicitud]]></comment>
 			</column>
-			<column name="fecSol" type="date" length="10" jt="91" />
-			<column name="codPers" type="int" length="10" jt="4" />
-			<column name="codigo" type="varchar" length="10" jt="12" />
-			<column name="estado" type="int" length="10" jt="4" />
-			<column name="obs" type="varchar" length="200" jt="12" />
+			<column name="fecSol" type="date" length="10" jt="91" >
+				<comment><![CDATA[fecha en la que se realiza la solicitud]]></comment>
+			</column>
+			<column name="codPers" type="int" length="10" jt="4" >
+				<comment><![CDATA[Codigo del personal que hace la solicitud]]></comment>
+			</column>
+			<column name="codigo" type="varchar" length="10" jt="12" >
+				<comment><![CDATA[Codigo del lugar de trabajo (obra) ]]></comment>
+			</column>
+			<column name="estado" type="int" length="10" jt="4" >
+				<comment><![CDATA[Estado. 
+0 Abierto 
+1 Cerrado]]></comment>
+			</column>
+			<column name="obs" type="varchar" length="200" jt="12" >
+				<comment><![CDATA[Observaciones consignadas en la solicitud]]></comment>
+			</column>
 			<column name="estDet" type="int" length="10" jt="4" >
 				<defo>0</defo>
+				<comment><![CDATA[estado de]]></comment>
 			</column>
 			<index name="PK__TSolicit__024F59AD76969D2E" unique="PRIMARY_KEY" >
 				<column name="idSol" />
@@ -716,10 +762,10 @@ Estado
 			<column name="DNI" type="varchar" length="8" jt="12" />
 			<column name="nroLic" type="varchar" length="30" jt="12" />
 			<column name="codET" type="int" length="10" jt="4" />
-			<index name="PK__TTranspo__357D4C0959FA5E80" unique="PRIMARY_KEY" >
+			<index name="PK__TTranspo__357D4C092057CCD0" unique="PRIMARY_KEY" >
 				<column name="codT" />
 			</index>
-			<fk name="FK__TTranspor__codET__5BE2A6F2" to_schema="mech" to_table="TEmpTransp" >
+			<fk name="FK__TTranspor__codET__22401542" to_schema="mech" to_table="TEmpTransp" >
 				<fk_column name="codET" pk="codET" />
 			</fk>
 		</table>
@@ -752,10 +798,10 @@ columna Estado
 			<column name="marcaNro" type="varchar" length="40" jt="12" />
 			<column name="nroConst" type="varchar" length="40" jt="12" />
 			<column name="codET" type="int" length="10" jt="4" />
-			<index name="PK__TVehicul__955B5E565535A963" unique="PRIMARY_KEY" >
+			<index name="PK__TVehicul__955B5E561A9EF37A" unique="PRIMARY_KEY" >
 				<column name="codVeh" />
 			</index>
-			<fk name="FK__TVehiculo__codET__571DF1D5" to_schema="mech" to_table="TEmpTransp" >
+			<fk name="FK__TVehiculo__codET__1C873BEC" to_schema="mech" to_table="TEmpTransp" >
 				<fk_column name="codET" pk="codET" />
 			</fk>
 		</table>
@@ -784,31 +830,39 @@ columna Estado
 			</column>
 			<column name="idCue" type="int" length="10" jt="4" >
 				<defo>0</defo>
+				<comment><![CDATA[Baco y Cuenta que se utilizo]]></comment>
 			</column>
-			<index name="PK__TPagoDes__6518FF484D5F7D71" unique="PRIMARY_KEY" >
+			<column name="nroP" type="varchar" length="20" jt="12" />
+			<column name="codCla" type="int" length="10" jt="4" />
+			<column name="montoD" type="decimal" length="10" decimal="2" jt="3" />
+			<index name="PK__TPagoDes__6518FF481D4655FB" unique="PRIMARY_KEY" >
 				<column name="codPagD" />
 			</index>
-			<fk name="FK__TPagoDese__codMo__51300E55" to_schema="mech" to_table="TMoneda" >
+			<fk name="FK__TPagoDese__codMo__220B0B18" to_schema="mech" to_table="TMoneda" >
 				<fk_column name="codMon" pk="codMon" />
 			</fk>
-			<fk name="FK__TPagoDesem__idOP__5224328E" to_schema="mech" to_table="TOrdenDesembolso" >
+			<fk name="FK__TPagoDesem__idOP__22FF2F51" to_schema="mech" to_table="TOrdenDesembolso" >
 				<fk_column name="idOP" pk="idOP" />
 			</fk>
-			<fk name="FK__TPagoDese__codTi__503BEA1C" to_schema="mech" to_table="TTipoPago" >
+			<fk name="FK__TPagoDese__codTi__2022C2A6" to_schema="mech" to_table="TTipoPago" >
 				<fk_column name="codTipP" pk="codTipP" />
+			</fk>
+			<fk name="FK__TPagoDese__codCl__2116E6DF" to_schema="mech" to_table="TClasifPago" >
+				<fk_column name="codCla" pk="codCla" />
 			</fk>
 		</table>
 		<table name="TTipoPago" >
 			<column name="codTipP" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
-			<column name="tipoP" type="varchar" length="30" jt="12" />
-			<index name="PK__TTipoPag__4135E0D8498EEC8D" unique="PRIMARY_KEY" >
+			<column name="tipoP" type="varchar" length="100" jt="12" />
+			<column name="nro" type="varchar" length="10" jt="12" />
+			<index name="PK__TTipoPag__4135E0D813BCEBC1" unique="PRIMARY_KEY" >
 				<column name="codTipP" />
 			</index>
 		</table>
 		<table name="TBanco" >
 			<column name="codBan" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
 			<column name="banco" type="varchar" length="40" jt="12" />
-			<index name="PK__TBanco__9C6C900155009F39" unique="PRIMARY_KEY" >
+			<index name="PK__TBanco__9C6C9001084B3915" unique="PRIMARY_KEY" >
 				<column name="codBan" />
 			</index>
 		</table>
@@ -818,14 +872,47 @@ columna Estado
 			<column name="codMon" type="int" length="10" jt="4" />
 			<column name="codBan" type="int" length="10" jt="4" />
 			<column name="estado" type="int" length="10" jt="4" />
-			<index name="PK__TCuentaB__3982D53D58D1301D" unique="PRIMARY_KEY" >
+			<index name="PK__TCuentaB__3982D53D0D0FEE32" unique="PRIMARY_KEY" >
 				<column name="idCue" />
 			</index>
-			<fk name="FK__TCuentaBa__codBa__5BAD9CC8" to_schema="mech" to_table="TBanco" >
+			<fk name="FK__TCuentaBa__codBa__0FEC5ADD" to_schema="mech" to_table="TBanco" >
 				<fk_column name="codBan" pk="codBan" />
 			</fk>
-			<fk name="FK__TCuentaBa__codMo__5AB9788F" to_schema="mech" to_table="TMoneda" >
+			<fk name="FK__TCuentaBa__codMo__0EF836A4" to_schema="mech" to_table="TMoneda" >
 				<fk_column name="codMon" pk="codMon" />
+			</fk>
+		</table>
+		<table name="TClasifPago" >
+			<column name="codCla" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
+			<column name="clasif" type="varchar" length="20" jt="12" />
+			<index name="PK__TClasifP__9C2338FB1881A0DE" unique="PRIMARY_KEY" >
+				<column name="codCla" />
+			</index>
+		</table>
+		<table name="TSerieOrden" >
+			<column name="codSerO" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
+			<column name="serie" type="varchar" length="10" jt="12" >
+				<defo>&#039;001&#039;</defo>
+			</column>
+			<column name="iniNroDoc" type="int" length="10" jt="4" />
+			<column name="descrip" type="varchar" length="40" jt="12" />
+			<column name="estado" type="int" length="10" jt="4" />
+			<index name="PK__TSerieOr__DE1550C13429BB53" unique="PRIMARY_KEY" >
+				<column name="codSerO" />
+			</index>
+		</table>
+		<table name="TSeriePers" >
+			<column name="codSP" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
+			<column name="codPers" type="int" length="10" jt="4" />
+			<column name="codSerO" type="int" length="10" jt="4" />
+			<index name="PK__TSeriePe__921460B838EE7070" unique="PRIMARY_KEY" >
+				<column name="codSP" />
+			</index>
+			<fk name="FK__TSeriePer__codPe__3AD6B8E2" to_schema="mech" to_table="TPersonal" >
+				<fk_column name="codPers" pk="codPers" />
+			</fk>
+			<fk name="FK__TSeriePer__codSe__3BCADD1B" to_schema="mech" to_table="TSerieOrden" >
+				<fk_column name="codSerO" pk="codSerO" />
 			</fk>
 		</table>
 		<view name="VBusquedaMat" >
@@ -979,7 +1066,7 @@ columna Estado
 		</view>
 		<view name="VDetCot" >
 			<view_script><![CDATA[select TD.codDetC,TD.cant,TD.descrip,TD.unidad,TD.precio,TD.subTotal,TD.codCot,TM.codMat,TM.material,TT.codTipM,TT.tipoM,
-	'est'=case when TD.estado=0 then 'PENDIENTE' when TD.estado=1 then 'APROBADO' else 'RECHAZADO' end,TD.estado
+	'est'=case when TD.estado=0 then 'NO APROBADO' when TD.estado=1 then 'APROBADO' else 'RECHAZADO' end,TD.estado
 	from TDetalleCot TD join TMaterial TM on TD.codMat=TM.codMat
 	join TTipoMat TT on TM.codTipM=TT.codTipM	
 ]]></view_script>
@@ -1168,7 +1255,7 @@ as
 			<column name="lugar" type="varchar" />
 		</view>
 		<view name="VOrdenComAper" >
-			<view_script><![CDATA[select nroOrden,nroO,codIde,fecOrden,codPers,codPag,igv,calIGV,codMon,atiendeCom,plazoEnt,celAti,lugarEnt,transfe,obsFac,codPersO,nroProf,idSol,
+			<view_script><![CDATA[select nroOrden,nroO,codIde,fecOrden,codPers,codPag,igv,calIGV,codMon,atiendeCom,plazoEnt,celAti,lugarEnt,transfe,obsFac,codPersO,nroProf,idSol,codET,
 	codigo,estado,codCot,hist,'nro'=case when nroO<100 then '000'+ltrim(str(nroO)) when nroO>=100 and nroO<1000 then '00'+ltrim(str(nroO)) when nroO>=1000 and nroO<10000 then '0'+ltrim(str(nroO)) else ltrim(str(nroO)) end
 	from TOrdenCompra where estado=0 --0=abierto
 ]]></view_script>
@@ -1206,7 +1293,7 @@ as
 		<view name="VOrdenDesembolso" >
 			<view_script><![CDATA[select idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,estado,'est'=case when estado=0 then 'PENDIENTE' when estado=1 then 'TERMINADO' when estado=2 then 'CERRADO' else 'ANULADO' end, 
 	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,
-	codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,nroFact,bolCheck,nroBol,guiaCheck,nroGuia,vouCheck,nroVou,vouDCheck,nroVouD,reciCheck,nroReci,otroCheck,descOtro,nroConfor,fecEnt,hist
+	codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,hist
 	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon 
 	where estado in (0,1) --0=pendiente 1=terminado
 ]]></view_script>
@@ -1255,7 +1342,7 @@ as
 	'nro'=case when TC.nroO<100 then '000'+ltrim(str(TC.nroO)) when TC.nroO>=100 and TC.nroO<1000 then '00'+ltrim(str(TC.nroO)) when TC.nroO>=1000 and TC.nroO<10000 then '0'+ltrim(str(TC.nroO)) else ltrim(str(TC.nroO)) end,
 	TC.transfe,TC.atiendeCom,TC.celAti,TC.plazoEnt,TF.codPag,TF.forma,TC.lugarEnt,TC.igv,TC.calIGV,TC.codPersO,TP2.nombre+' '+TP2.apellido as nomAte,
 	TL.codigo,TL.lugar,TL.nombre,TP1.codPers,TP1.nombre+' '+TP1.apellido as nomRem,TP1.fono,TP1.email as emaRem,TC.obsFac,TC.codCot,
-	TD.codDetO,TD.cant,TD.descrip as material,TD.unidad,TD.precio,TD.subTotal,TM.codMat,TM.material as mate,TMO.codMon,TMO.moneda,TMO.simbolo
+	TD.codDetO,TD.cant,TD.descrip as material,TD.unidad,TD.precio,TD.subTotal,TMO.codMon,TMO.moneda,TMO.simbolo,TE.codET,TE.nombre as trans,TE.ruc as rucT,TE.dir as dirT,TE.fono as fonoT,TE.contacto
 	from TOrdenCompra TC join TPersonal TP1 on TC.codPers=TP1.codPers
 	join TPersonal TP2 on TC.codPersO=TP2.codPers
 	join TIdentidad TI on TC.codIde=TI.codIde
@@ -1263,7 +1350,7 @@ as
 	join TLugarTrabajo TL on TC.codigo=TL.codigo
 	join TFormaPago TF on TC.codPag=TF.codPag
 	join TMoneda TMO on TC.codMon=TMO.codMon
-	join TMaterial TM on TD.codMat=TM.codMat
+	join TEmpTransp TE on TC.codET=TE.codET
 ]]></view_script>
 			<column name="nroOrden" type="int" />
 			<column name="nroO" type="int" />
@@ -1536,12 +1623,8 @@ FROM         TPersonal TPe INNER JOIN
 			<column name="lugar" type="varchar" />
 		</view>
 		<view name="VTipoIdentidad" >
-			<view_script><![CDATA[
---vista VTipoIdentidad
-create  view VTipoIdentidad
-as
-	SELECT TI.codIde,TT.tipoId,TI.razon,TI.ruc,TI.dir,TI.fono,TI.fax,TI.celRpm,TI.email,TI.estado,TI.cuentaBan, 
-			CASE WHEN TI.estado = 1 THEN 'Activo' ELSE 'Inactivo' END as estado1,TI.repres,TI.dni,TT.idTipId
+			<view_script><![CDATA[SELECT TI.codIde,TT.tipoId,TI.razon,TI.ruc,TI.dir,TI.fono,TI.fax,TI.celRpm,TI.email,TI.estado,TI.cuentaBan, 
+			CASE WHEN TI.estado = 1 THEN 'Activo' ELSE 'Inactivo' END as estado1,TI.repres,TI.dni,TT.idTipId,TI.cuentaDet
 			FROM TTipoIdent TT join TIdentidad TI ON TT.idTipId = TI.idTipId
 ]]></view_script>
 			<column name="codIde" type="int" />
@@ -1931,6 +2014,185 @@ as
 			<column name="codEstS" type="int" />
 			<column name="estSol" type="varchar" />
 		</view>
+		<view name="VOrdenDesembolsoImprimir" >
+			<view_script><![CDATA[select TD.idOP,TD.serie+' - '+ltrim(str(TD.nroDes)) as nro,TD.fecDes,TM.codMon,TM.moneda,TM.simbolo,TD.monto,TD.montoDet,TD.montoDif,TD.estado,TL.codigo,TL.nombre as obra,
+	TI.codIde,TI.razon,TI.ruc,TI.fono,TI.email,TD.banco,TD.nroCta,TD.nroDet,TD.datoReq,TD.factCheck,'faCheck'=case when TD.factCheck=1 then 'X' else '' end, 
+	TD.bolCheck,'boCheck'=case when TD.bolCheck=1 then 'X' else '' end,TD.guiaCheck,'guCheck'=case when TD.guiaCheck=1 then 'X' else '' end,
+	TD.vouCheck,'voCheck'=case when TD.vouCheck=1 then 'X' else '' end,TD.vouDCheck,'voDCheck'=case when TD.vouDCheck=1 then 'X' else '' end,
+	TD.reciCheck,'reCheck'=case when TD.reciCheck=1 then 'X' else '' end,TD.otroCheck,TD.descOtro,'otCheck'=case when TD.otroCheck=1 then 'X' else '' end,
+	TD.nroConfor,TD.fecEnt,TD.hist,mech.FN_ConcaTPersDesem(TD.idOP,1) as soli,mech.FN_ConcaTPersDesem(TD.idOP,2) as gere,mech.FN_ConcaTPersDesem(TD.idOP,3) as teso,mech.FN_ConcaTPersDesem(TD.idOP,4) as conta,
+	mech.FN_ConcaEstadoDesem(TD.idOP,1) as soliEst,mech.FN_ConcaEstadoDesem(TD.idOP,2) as gereEst,mech.FN_ConcaEstadoDesem(TD.idOP,3) as tesoEst,mech.FN_ConcaEstadoDesem(TD.idOP,4) as contaEst,
+	TT.codTipP,TT.tipoP,TP.codPagD,TP.fecPago,TP.pagoDet,TMO.codMon as codMon1,TMO.moneda as moneda1,TMO.simbolo as simbolo1,TP.montoPago
+	from TOrdenDesembolso TD join TMoneda TM on TD.codMon=TM.codMon
+	join TLugarTrabajo TL on TD.codigo=TL.codigo
+	join TIdentidad TI on TD.codIde=TI.codIde
+	left join TPagoDesembolso TP on TD.idOP=TP.idOP
+	left join TTipoPago TT on TP.codTipP=TT.codTipP
+	left join TMoneda TMO on  TP.codMon=TMO.codMon
+]]></view_script>
+			<column name="idOP" type="int" />
+			<column name="nro" type="varchar" />
+			<column name="fecDes" type="date" />
+			<column name="codMon" type="int" />
+			<column name="moneda" type="varchar" />
+			<column name="simbolo" type="varchar" />
+			<column name="monto" type="decimal" />
+			<column name="montoDet" type="decimal" />
+			<column name="montoDif" type="decimal" />
+			<column name="estado" type="int" />
+			<column name="codigo" type="varchar" />
+			<column name="obra" type="varchar" />
+			<column name="codIde" type="int" />
+			<column name="razon" type="varchar" />
+			<column name="ruc" type="varchar" />
+			<column name="fono" type="varchar" />
+			<column name="email" type="varchar" />
+			<column name="banco" type="varchar" />
+			<column name="nroCta" type="varchar" />
+			<column name="nroDet" type="varchar" />
+			<column name="datoReq" type="varchar" />
+			<column name="factCheck" type="int" />
+			<column name="nroFact" type="varchar" />
+			<column name="faCheck" type="varchar" />
+			<column name="bolCheck" type="int" />
+			<column name="nroBol" type="varchar" />
+			<column name="boCheck" type="varchar" />
+			<column name="guiaCheck" type="int" />
+			<column name="nroGuia" type="varchar" />
+			<column name="guCheck" type="varchar" />
+			<column name="vouCheck" type="int" />
+			<column name="nroVou" type="varchar" />
+			<column name="voCheck" type="varchar" />
+			<column name="vouDCheck" type="int" />
+			<column name="nroVouD" type="varchar" />
+			<column name="voDCheck" type="varchar" />
+			<column name="reciCheck" type="int" />
+			<column name="nroReci" type="varchar" />
+			<column name="reCheck" type="varchar" />
+			<column name="otroCheck" type="int" />
+			<column name="descOtro" type="varchar" />
+			<column name="otCheck" type="varchar" />
+			<column name="nroConfor" type="varchar" />
+			<column name="fecEnt" type="varchar" />
+			<column name="hist" type="varchar" />
+			<column name="soli" type="varchar" />
+			<column name="gere" type="varchar" />
+			<column name="teso" type="varchar" />
+			<column name="conta" type="varchar" />
+			<column name="codTipP" type="int" />
+			<column name="tipoP" type="varchar" />
+			<column name="codPagD" type="int" />
+			<column name="fecPago" type="date" />
+			<column name="pagoDet" type="varchar" />
+			<column name="codMon1" type="int" />
+			<column name="moneda1" type="varchar" />
+			<column name="simbolo1" type="varchar" />
+			<column name="montoPago" type="decimal" />
+		</view>
+		<view name="VPersDesemFirma" >
+			<view_script><![CDATA[select TPD.codPersDes,TPD.idOP,TPD.estDesem,TPD.tipoA,TPD.obserDesem,TPD.fecFir,TP.codPers,TP.codTipU,TP.nombre+' '+TP.apellido as nom,
+	TP.nombre+'  '+TP.apellido+' ' as nom1,'est'=+case when TPD.estDesem=1 then '[APROBADO]' when TPD.estDesem=2 then '[OBSERVADO]' else '[DENEGADO]' end 
+	from TPersDesem TPD join TPersonal TP on TPD.codPers=TP.codPers
+]]></view_script>
+			<column name="codPersDes" type="int" />
+			<column name="idOP" type="int" />
+			<column name="estDesem" type="int" />
+			<column name="tipoA" type="int" />
+			<column name="obserDesem" type="varchar" />
+			<column name="fecFir" type="date" />
+			<column name="codPers" type="int" />
+			<column name="codTipU" type="int" />
+			<column name="nom" type="varchar" />
+			<column name="nom1" type="varchar" />
+		</view>
+		<view name="VOrdenDesembolsoSeguimiento" >
+			<view_script><![CDATA[select TOD.idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,'estado_desembolso'=case when TOD.estado=0 then 'PENDIENTE' when TOD.estado=1 then 'TERMINADO' when TOD.estado=2 then 'CERRADO' else 'ANULADO' end, 
+	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,
+	TLU.nombre as 'obra',Tid.razon as 'proveedor',banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,hist
+	,TPE.nombre,TPE.apellido,TID.ruc, TID.fono,TID.email   
+	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon join  TIdentidad TID on TID.codIde=tod.codIde 
+	join TLugarTrabajo TLU on tlu.codigo=TOD.codigo  inner join TPersDesem TPDE on TPDE.idOP= TOD.idOP join TPersonal TPE on TPE.codPers = TPDE.codPers  
+	where TPDE.tipoA=1
+	
+	
+
+]]></view_script>
+			<column name="idOP" type="int" />
+			<column name="serie" type="varchar" />
+			<column name="nroDes" type="int" />
+			<column name="fecDes" type="date" />
+			<column name="monto" type="decimal" />
+			<column name="montoDet" type="decimal" />
+			<column name="montoDif" type="decimal" />
+			<column name="estado_desembolso" type="varchar" />
+			<column name="nro" type="varchar" />
+			<column name="codMon" type="int" />
+			<column name="moneda" type="varchar" />
+			<column name="simbolo" type="varchar" />
+			<column name="obra" type="varchar" />
+			<column name="proveedor" type="varchar" />
+			<column name="banco" type="varchar" />
+			<column name="nroCta" type="varchar" />
+			<column name="nroDet" type="varchar" />
+			<column name="datoReq" type="varchar" />
+			<column name="factCheck" type="int" />
+			<column name="bolCheck" type="int" />
+			<column name="guiaCheck" type="int" />
+			<column name="vouCheck" type="int" />
+			<column name="vouDCheck" type="int" />
+			<column name="reciCheck" type="int" />
+			<column name="otroCheck" type="int" />
+			<column name="descOtro" type="varchar" />
+			<column name="nroConfor" type="varchar" />
+			<column name="fecEnt" type="varchar" />
+			<column name="hist" type="varchar" />
+			<column name="nombre" type="varchar" />
+			<column name="apellido" type="varchar" />
+			<column name="ruc" type="varchar" />
+			<column name="fono" type="varchar" />
+			<column name="email" type="varchar" />
+		</view>
+		<view name="VPagoDesembolsoSeguimiento" >
+			<view_script><![CDATA[select  TP.idOP as codDesembolso,TP.fecpago,TP.pagoDet,Tp.montoPago,TT.tipoP,Tm.moneda,TM.simbolo,TCBA.nroCue,TBA.banco,
+	TP.nroP,TP.montoD,TCLA.clasif                              
+from TPagoDesembolso TP 
+join TTipoPago TT  on TT.codTipP=TP.codTipP
+join TMoneda TM on TP.codMon=TM.codMon 
+join TCuentaBan TCBA on TCBA.idCue=TP.idCue  
+join TBanco TBA on TCBA.codBan = TBA.codBan 
+join TClasifPago TCLA on tCLA.codCla=TP.codCla  
+]]></view_script>
+			<column name="codDesembolso" type="int" />
+			<column name="fecpago" type="date" />
+			<column name="pagoDet" type="varchar" />
+			<column name="montoPago" type="decimal" />
+			<column name="tipoP" type="varchar" />
+			<column name="moneda" type="varchar" />
+			<column name="simbolo" type="varchar" />
+			<column name="nroCue" type="varchar" />
+			<column name="banco" type="varchar" />
+			<column name="nroP" type="varchar" />
+			<column name="montoD" type="decimal" />
+			<column name="clasif" type="varchar" />
+		</view>
+		<view name="VPersDesemSol" >
+			<view_script><![CDATA[select TP.codPers,TP.codCar,TP.codTipU,TP.nombre,TP.dni,TP.apellido,TP.nombre+' '+TP.apellido as nom,TD.codPersDes,TD.idOP,TD.estDesem,TD.tipoA,TD.obserDesem
+	from TPersonal TP join TPersDesem TD on TP.codPers=TD.codPers
+	where TD.tipoA=1  --1=Solicitante
+]]></view_script>
+			<column name="codPers" type="int" />
+			<column name="codCar" type="int" />
+			<column name="codTipU" type="int" />
+			<column name="nombre" type="varchar" />
+			<column name="dni" type="varchar" />
+			<column name="apellido" type="varchar" />
+			<column name="nom" type="varchar" />
+			<column name="codPersDes" type="int" />
+			<column name="idOP" type="int" />
+			<column name="estDesem" type="int" />
+			<column name="tipoA" type="int" />
+			<column name="obserDesem" type="varchar" />
+		</view>
 		<procedure name="PA_InsertTMaterial" id="Procedure1236865" isSystem="false" >
 			<string><![CDATA[create procedure PA_InsertTMaterial
 	@prod varchar(100),@codU1 int,@pre1 decimal(8,2),@est int,@codA int,@codT int,@hist varchar(500),
@@ -1997,16 +2259,14 @@ as
 ]]></string>
 		</procedure>
 		<procedure name="PA_InsertOrdenCompra" id="Procedure1236865" isSystem="false" >
-			<string><![CDATA[
---inserta un registros de orden de compra
-create procedure PA_InsertOrdenCompra
+			<string><![CDATA[create procedure PA_InsertOrdenCompra
 	@nroO int,@fecO date, @codIde int, @codPers int,@codPag int, @igv decimal(6,2),@calIGV int,@codMon int,
 	@atiendeCom varchar(50),@cel varchar(50),@plazoEnt varchar(40),@transfe varchar(100),@nroProf varchar(40),@obsFac varchar(200), @estado int,
-	@codCot int,@idSol int,@codPersO int, @codigo varchar(10),@lugar varchar(100), @hist varchar(200),
+	@codCot int,@idSol int,@codPersO int, @codigo varchar(10),@lugar varchar(100), @hist varchar(200),@codET int,
 	@Identity int output
 as
-	insert into TOrdenCompra(nroO,fecOrden,codIde,codPers,codPag,igv,calIGV,codMon,atiendeCom,celAti,plazoEnt,transfe,nroProf,obsFac,estado,codCot,idSol,codPersO,codigo,lugarEnt,hist)
-	 values (@nroO,@fecO,@codIde,@codPers,@codPag,@igv,@calIGV,@codMon,@atiendeCom,@cel,@plazoEnt,@transfe,@nroProf,@obsFac,@estado,@codCot,@idSol,@codPersO,@codigo,@lugar,@hist)
+	insert into TOrdenCompra(nroO,fecOrden,codIde,codPers,codPag,igv,calIGV,codMon,atiendeCom,celAti,plazoEnt,transfe,nroProf,obsFac,estado,codCot,idSol,codPersO,codigo,lugarEnt,hist,codET)
+	 values (@nroO,@fecO,@codIde,@codPers,@codPag,@igv,@calIGV,@codMon,@atiendeCom,@cel,@plazoEnt,@transfe,@nroProf,@obsFac,@estado,@codCot,@idSol,@codPersO,@codigo,@lugar,@hist,@codET)
 	 SET @Identity=@@IDENTITY 
 	 Return @Identity
 ]]></string>
@@ -2028,14 +2288,15 @@ as
 		<procedure name="PA_InsertOrdenDesembolso" id="Procedure1236865" isSystem="false" >
 			<string><![CDATA[
 --inserta un registro en la tabala OrdenDesembolso. 
+--DROP procedure PA_InsertOrdenDesembolso
 create procedure PA_InsertOrdenDesembolso
 	@ser varchar(5),@nroD int,@fecD date,@codMon int,@mon decimal(10,2),@mon1 decimal(8,2),@mon2 decimal(10,2),@est int,@cod varchar(10),@codIde int,
-	@ban varchar(30),@nroC varchar(50),@nroDE varchar(30),@dato varchar(100),@fact int,@nroF varchar(20),@bol int,@nroB varchar(20),@guia int,@nroG varchar(20),@vou int,@nroV varchar(20),
-	@vouD int,@nroVD varchar(20),@reci int,@nroR varchar(20),@otro int,@des varchar(60),@nroCF varchar(30),@fec varchar(10),@hist varchar(200),
+	@ban varchar(30),@nroC varchar(50),@nroDE varchar(30),@dato varchar(100),@fact int,@bol int,@guia int,@vou int,
+	@vouD int,@reci int,@otro int,@des varchar(60),@nroCF varchar(30),@fec varchar(10),@hist varchar(200),@codSerO int,
 	@Identity int output
 as
-	insert into TOrdenDesembolso(serie,nroDes,fecDes,codMon,monto,montoDet,montoDif,estado,codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,nroFact,bolCheck,nroBol,guiaCheck,nroGuia,vouCheck,nroVou,vouDCheck,nroVouD,reciCheck,nroReci,otroCheck,descOtro,nroConfor,fecEnt,hist)
-		values (@ser,@nroD,@fecD,@codMon,@mon,@mon1,@mon2,@est,@cod,@codIde,@ban,@nroC,@nroDE,@dato,@fact,@nroF,@bol,@nroB,@guia,@nroG,@vou,@nroV,@vouD,@nroVD,@reci,@nroR,@otro,@des,@nroCF,@fec,@hist)
+	insert into TOrdenDesembolso(serie,nroDes,fecDes,codMon,monto,montoDet,montoDif,estado,codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,hist,codSerO)
+		values (@ser,@nroD,@fecD,@codMon,@mon,@mon1,@mon2,@est,@cod,@codIde,@ban,@nroC,@nroDE,@dato,@fact,@bol,@guia,@vou,@vouD,@reci,@otro,@des,@nroCF,@fec,@hist,@codSerO)
 	 SET @Identity=@@IDENTITY 
 	 Return @Identity
 ]]></string>
@@ -2111,211 +2372,22 @@ BEGIN
 END
 ]]></string>
 		</function>
+		<function name="FN_ConcaTPersDesem" id="Function8504539" isSystem="false" >
+			<string><![CDATA[CREATE FUNCTION FN_ConcaTPersDesem(@id int,@tipo int) RETURNS varchar(100)
+BEGIN
+	RETURN isnull((select nom1 from VPersDesemFirma where idOP=@id and tipoA=@tipo),'')
+END
+]]></string>
+		</function>
+		<function name="FN_ConcaEstadoDesem" id="Function4959677" isSystem="false" >
+			<string><![CDATA[CREATE FUNCTION FN_ConcaEstadoDesem(@id int,@tipo int) RETURNS varchar(100)
+BEGIN
+	RETURN isnull((select est from VPersDesemFirma where idOP=@id and tipoA=@tipo),'')
+END
+]]></string>
+		</function>
 	</schema>
 	<connector name="SqlServer2000_2005" database="SqlServer2000_2005" driver_class="net.sourceforge.jtds.jdbc.Driver" driver_jar="jtds-1.2.7.jar" host="programadoruno" port="1433" instance="BD_ConstrucMech" user="mech" passwd="bWVjaGN1c2NvMjAxMw==" schema_mapping="" />
-	<layout id="Layout1244428" name="mech" show_relation_columns="y" >
-		<entity schema="mech" name="TAreaMat" color="dbbef7" x="525" y="1875" />
-		<entity schema="mech" name="TCargo" color="fae6b3" x="825" y="2250" />
-		<entity schema="mech" name="TCotizacion" color="c0d4f3" x="1965" y="2325" />
-		<entity schema="mech" name="TDesOrden" color="a6ebf5" x="1140" y="630" />
-		<entity schema="mech" name="TDetalleCompra" color="dfd0f2" x="1140" y="2115" />
-		<entity schema="mech" name="TDetalleCot" color="dfd0f2" x="1290" y="2325" />
-		<entity schema="mech" name="TDetalleGuia" color="dfd0f2" x="1005" y="2325" />
-		<entity schema="mech" name="TDetalleOrden" color="dfd0f2" x="1140" y="2325" />
-		<entity schema="mech" name="TDetalleSol" color="dbbef7" x="675" y="1575" />
-		<entity schema="mech" name="TDocCompra" color="c0d4f3" x="2535" y="1350" />
-		<entity schema="mech" name="TDocGuia" color="a6ebf5" x="1140" y="1290" />
-		<entity schema="mech" name="TEmpTransp" color="fae6b3" x="690" y="2385" />
-		<entity schema="mech" name="TEstSol" color="dbbef7" x="825" y="1875" />
-		<entity schema="mech" name="TFormaPago" color="c0d4f3" x="1830" y="2325" />
-		<entity schema="mech" name="TGrupoCot" color="c0d4f3" x="1695" y="2325" />
-		<entity schema="mech" name="TGuiaRemision" color="a6ebf5" x="1290" y="1740" />
-		<entity schema="mech" name="TIdentidad" color="a6ebf5" x="1140" y="1440" />
-		<entity schema="mech" name="TLugarTrabajo" color="fae6b3" x="690" y="3090" />
-		<entity schema="mech" name="TMaterial" color="dfd0f2" x="990" y="2100" />
-		<entity schema="mech" name="TMoneda" color="dbbef7" x="540" y="390" />
-		<entity schema="mech" name="TMotivoGuia" color="a6ebf5" x="1290" y="1305" />
-		<entity schema="mech" name="TOrdenCompra" color="dbbef7" x="780" y="135" />
-		<entity schema="mech" name="TOrdenDesembolso" color="dbbef7" x="780" y="540" />
-		<entity schema="mech" name="TOrdenGuia" color="a6ebf5" x="1290" y="1440" />
-		<entity schema="mech" name="TPersDesem" color="c8f6a4" x="2565" y="390" />
-		<entity schema="mech" name="TPersLugar" color="fae6b3" x="690" y="2235" />
-		<entity schema="mech" name="TPersonal" color="fae6b3" x="555" y="2100" />
-		<entity schema="mech" name="TSolicitud" color="fae6b3" x="825" y="2385" />
-		<entity schema="mech" name="TTipoDocCompra" color="c8f6a4" x="2625" y="2940" />
-		<entity schema="mech" name="TTipoIdent" color="c8f6a4" x="2370" y="2940" />
-		<entity schema="mech" name="TTipoMat" color="c8f6a4" x="2355" y="2805" />
-		<entity schema="mech" name="TTipoUsu" color="c8f6a4" x="2625" y="3120" />
-		<entity schema="mech" name="TTransportista" color="fae6b3" x="540" y="2385" />
-		<entity schema="mech" name="TUbicacion" color="c8f6a4" x="2490" y="2940" />
-		<entity schema="mech" name="TUnidad" color="dfd0f2" x="1290" y="2190" />
-		<entity schema="mech" name="TVehiculo" color="a6ebf5" x="990" y="1440" />
-		<entity schema="mech" name="VBusquedaMat" color="dbbef7" x="675" y="1875" />
-		<entity schema="mech" name="VCotAper" color="dfd0f2" x="360" y="3150" />
-		<entity schema="mech" name="VCotDetCot" color="dfd0f2" x="225" y="2100" />
-		<entity schema="mech" name="VCotiNro" color="dfd0f2" x="360" y="2850" />
-		<entity schema="mech" name="VCotOrden" color="dfd0f2" x="45" y="2850" />
-		<entity schema="mech" name="VDetCot" color="dfd0f2" x="225" y="2850" />
-		<entity schema="mech" name="VDetDocCompra" color="c0d4f3" x="2835" y="1455" />
-		<entity schema="mech" name="VDetOrden" color="a6ebf5" x="1005" y="210" />
-		<entity schema="mech" name="VDetSol" color="a6ebf5" x="1140" y="60" />
-		<entity schema="mech" name="VDocCompraAper" color="c0d4f3" x="2670" y="1350" />
-		<entity schema="mech" name="VLugarTrabajo" color="fae6b3" x="540" y="2715" />
-		<entity schema="mech" name="VLugarTrabajoLogin" color="fae6b3" x="690" y="2640" />
-		<entity schema="mech" name="VLugarUbicacion" color="fae6b3" x="840" y="2850" />
-		<entity schema="mech" name="VMaterial" color="fae6b3" x="540" y="2850" />
-		<entity schema="mech" name="VMaterialSele" color="fae6b3" x="690" y="2850" />
-		<entity schema="mech" name="VObra" color="c0d4f3" x="2835" y="1680" />
-		<entity schema="mech" name="VOrdenComAper" color="c0d4f3" x="2505" y="1680" />
-		<entity schema="mech" name="VOrdenCompraCad" color="c0d4f3" x="2670" y="1680" />
-		<entity schema="mech" name="VOrdenDesembolso" color="dbbef7" x="360" y="540" />
-		<entity schema="mech" name="VOrdenDetOrden" color="a6ebf5" x="1275" y="465" />
-		<entity schema="mech" name="VOrdenInforme" color="a6ebf5" x="990" y="465" />
-		<entity schema="mech" name="VOrdenNro" color="a6ebf5" x="1140" y="465" />
-		<entity schema="mech" name="VPersDesem" color="c8f6a4" x="2880" y="300" />
-		<entity schema="mech" name="VPersonal" color="c8f6a4" x="2715" y="225" />
-		<entity schema="mech" name="VSolAper" color="dfd0f2" x="90" y="2580" />
-		<entity schema="mech" name="VSolDetSol" color="c8f6a4" x="2880" y="585" />
-		<entity schema="mech" name="VSolTodo" color="c8f6a4" x="2580" y="585" />
-		<entity schema="mech" name="VSolTodoCad" color="c8f6a4" x="2715" y="585" />
-		<entity schema="mech" name="VTipoIdentidad" color="c8f6a4" x="2490" y="2610" />
-		<group name="TDetalleOrden" color="eadafe" >
-			<comment>Used by : 
-   VBusquedaMat</comment>
-			<entity schema="mech" name="TDetalleOrden" />
-			<entity schema="mech" name="TDetalleGuia" />
-			<entity schema="mech" name="TDetalleCot" />
-			<entity schema="mech" name="TDetalleCompra" />
-			<entity schema="mech" name="TUnidad" />
-			<entity schema="mech" name="TMaterial" />
-			<callout x="1004" y="1997" pointer="SV" />
-		</group>
-		<group name="TEmpTransp" color="fff2bc" >
-			<comment>Used by : 
-   TFormaPago
-   TIdentidad
-   VBusquedaMat
-   VSolTodoCad
-   XXXXXXXXXVOrdenDesembolso</comment>
-			<entity schema="mech" name="TEmpTransp" />
-			<entity schema="mech" name="TTransportista" />
-			<entity schema="mech" name="TSolicitud" />
-			<entity schema="mech" name="TPersLugar" />
-			<entity schema="mech" name="TCargo" />
-			<entity schema="mech" name="TPersonal" />
-			<callout x="554" y="2025" pointer="SV" />
-		</group>
-		<group name="TFormaPago" color="cadfff" >
-			<comment>Used by : 
-   TDetalleOrden
-   VOrdenCompraCad
-   XXXXXXXXXVOrdenDesembolso</comment>
-			<entity schema="mech" name="TFormaPago" />
-			<entity schema="mech" name="TGrupoCot" />
-			<entity schema="mech" name="TCotizacion" />
-			<callout x="1703" y="2278" pointer="SV" />
-		</group>
-		<group name="TIdentidad" color="aef7ff" >
-			<comment>Used by : 
-   TDetalleOrden
-   TFormaPago
-   VMaterialSele
-   VOrdenCompraCad
-   XXXXXXXXXVOrdenDesembolso</comment>
-			<entity schema="mech" name="TIdentidad" />
-			<entity schema="mech" name="TVehiculo" />
-			<entity schema="mech" name="TOrdenGuia" />
-			<entity schema="mech" name="TDocGuia" />
-			<entity schema="mech" name="TMotivoGuia" />
-			<entity schema="mech" name="TGuiaRemision" />
-			<callout x="1004" y="1215" pointer="SV" />
-		</group>
-		<group name="TUbicacion" color="d2ffac" >
-			<comment>Used by : 
-   TDetalleOrden
-   TIdentidad
-   VOrdenCompraCad</comment>
-			<entity schema="mech" name="TUbicacion" />
-			<entity schema="mech" name="TTipoIdent" />
-			<entity schema="mech" name="TTipoDocCompra" />
-			<entity schema="mech" name="VTipoIdentidad" />
-			<entity schema="mech" name="TTipoUsu" />
-			<entity schema="mech" name="TTipoMat" />
-			<callout x="2375" y="2560" pointer="SV" />
-		</group>
-		<group name="VBusquedaMat" color="e6c8ff" >
-			<comment>Used by : 
-   TDetalleOrden</comment>
-			<entity schema="mech" name="VBusquedaMat" />
-			<entity schema="mech" name="TAreaMat" />
-			<entity schema="mech" name="TEstSol" />
-			<entity schema="mech" name="TDetalleSol" />
-			<callout x="539" y="1562" pointer="SV" />
-		</group>
-		<group name="VDetCot" color="eadafe" >
-			<entity schema="mech" name="VDetCot" />
-			<entity schema="mech" name="VCotOrden" />
-			<entity schema="mech" name="VCotiNro" />
-			<entity schema="mech" name="VCotDetCot" />
-			<entity schema="mech" name="VCotAper" />
-			<entity schema="mech" name="VSolAper" />
-		</group>
-		<group name="VMaterialSele" color="fff2bc" >
-			<comment>Used by : 
-   TEmpTransp
-   TFormaPago
-   TUbicacion
-   XXXXXXXXXVOrdenDesembolso</comment>
-			<entity schema="mech" name="VMaterialSele" />
-			<entity schema="mech" name="VMaterial" />
-			<entity schema="mech" name="VLugarUbicacion" />
-			<entity schema="mech" name="VLugarTrabajoLogin" />
-			<entity schema="mech" name="VLugarTrabajo" />
-			<entity schema="mech" name="TLugarTrabajo" />
-			<callout x="554" y="2581" pointer="SV" />
-		</group>
-		<group name="VOrdenCompraCad" color="cadfff" >
-			<comment>Used by : 
-   TDetalleOrden
-   TIdentidad</comment>
-			<entity schema="mech" name="VOrdenCompraCad" />
-			<entity schema="mech" name="VOrdenComAper" />
-			<entity schema="mech" name="VObra" />
-			<entity schema="mech" name="VDocCompraAper" />
-			<entity schema="mech" name="VDetDocCompra" />
-			<entity schema="mech" name="TDocCompra" />
-			<callout x="2519" y="1324" pointer="SV" />
-		</group>
-		<group name="VOrdenNro" color="aef7ff" >
-			<entity schema="mech" name="VOrdenNro" />
-			<entity schema="mech" name="VOrdenInforme" />
-			<entity schema="mech" name="VOrdenDetOrden" />
-			<entity schema="mech" name="VDetSol" />
-			<entity schema="mech" name="VDetOrden" />
-			<entity schema="mech" name="TDesOrden" />
-		</group>
-		<group name="VSolTodoCad" color="d2ffac" >
-			<entity schema="mech" name="VSolTodoCad" />
-			<entity schema="mech" name="VSolTodo" />
-			<entity schema="mech" name="VSolDetSol" />
-			<entity schema="mech" name="VPersonal" />
-			<entity schema="mech" name="VPersDesem" />
-			<entity schema="mech" name="TPersDesem" />
-		</group>
-		<group name="XXXXXXXXXVOrdenDesembolso" color="e6c8ff" >
-			<comment>Used by : 
-   TDetalleOrden
-   TIdentidad
-   VOrdenCompraCad
-   VOrdenNro
-   VSolTodoCad</comment>
-			<entity schema="mech" name="VOrdenDesembolso" />
-			<entity schema="mech" name="TOrdenDesembolso" />
-			<entity schema="mech" name="TMoneda" />
-			<entity schema="mech" name="TOrdenCompra" />
-			<callout x="374" y="60" pointer="SV" />
-		</group>
-	</layout>
 	<layout id="Layout2466785" name="lugar trabajo" joined_routing="y" show_column_type="y" >
 		<entity schema="mech" name="TOrdenCompra" color="c0d4f3" x="45" y="135" >
 			<callout x="179" y="60" pointer="SV" />
@@ -2350,12 +2422,6 @@ END
 		<entity schema="mech" name="TDetalleCompra" color="c0d4f3" x="45" y="525" />
 		<entity schema="mech" name="TDocCompra" color="c0d4f3" x="225" y="510" />
 		<entity schema="mech" name="TDetalleOrden" color="c0d4f3" x="225" y="795" />
-		<entity schema="mech" name="TDetalleSol" color="c0d4f3" x="195" y="60" >
-			<callout x="278" y="132" pointer="SV" on="codEstS" />
-		</entity>
-		<entity schema="mech" name="TSolicitud" color="c0d4f3" x="480" y="135" >
-			<callout x="577" y="120" pointer="SV" />
-		</entity>
 		<entity schema="mech" name="TDetalleCot" color="c0d4f3" x="825" y="375" />
 		<entity schema="mech" name="TOrdenCompra" color="c0d4f3" x="465" y="690" />
 		<entity schema="mech" name="TCotizacion" color="c0d4f3" x="660" y="375" />
@@ -2365,29 +2431,55 @@ END
 		<entity schema="mech" name="TPagoDesembolso" color="c0d4f3" x="1020" y="885" />
 		<entity schema="mech" name="TPersonal" color="c0d4f3" x="480" y="375" />
 		<entity schema="mech" name="TBanco" color="c0d4f3" x="45" y="60" />
-		<entity schema="mech" name="TCuentaBan" color="c0d4f3" x="195" y="60" />
-		<entity schema="mech" name="VBancoCuenta" color="c0d4f3" x="330" y="60" />
-		<entity schema="mech" name="VSolDetSolAproba" color="c0d4f3" x="240" y="300" />
+		<entity schema="mech" name="TCuentaBan" color="c0d4f3" x="45" y="180" />
+		<entity schema="mech" name="TEstSol" color="c0d4f3" x="345" y="210" />
+		<entity schema="mech" name="TSolicitud" color="c0d4f3" x="480" y="135" >
+			<callout x="577" y="113" pointer="SV" />
+		</entity>
+		<entity schema="mech" name="TDetalleSol" color="c0d4f3" x="195" y="75" >
+			<callout x="304" y="60" pointer="SV" on="codEstS" />
+		</entity>
+		<script name="Sql" id="SQL6526878" >
+			<string><![CDATA[select * from TSolicitud]]></string>
+		</script>
 	</layout>
 	<layout id="Layout7416357" name="Layout_desembolso" show_column_type="y" >
-		<entity schema="mech" name="TMoneda" color="c0d4f3" x="285" y="765" />
-		<entity schema="mech" name="TCuentaBan" color="c0d4f3" x="60" y="735" />
-		<entity schema="mech" name="TBanco" color="c0d4f3" x="45" y="600" />
-		<entity schema="mech" name="TLugarTrabajo" color="c0d4f3" x="735" y="660" />
-		<entity schema="mech" name="TIdentidad" color="c0d4f3" x="975" y="540" />
-		<entity schema="mech" name="TTipoPago" color="c0d4f3" x="90" y="495" />
-		<entity schema="mech" name="TPersonal" color="c0d4f3" x="90" y="225" />
-		<entity schema="mech" name="TOrdenCompra" color="c0d4f3" x="915" y="60" />
-		<entity schema="mech" name="TPersDesem" color="c0d4f3" x="285" y="345" />
-		<entity schema="mech" name="TDesOrden" color="c0d4f3" x="750" y="345" />
-		<entity schema="mech" name="TOrdenDesembolso" color="c0d4f3" x="495" y="345" />
-		<entity schema="mech" name="TPagoDesembolso" color="c0d4f3" x="285" y="525" />
+		<entity schema="mech" name="TMoneda" color="c0d4f3" x="330" y="825" />
+		<entity schema="mech" name="TCuentaBan" color="c0d4f3" x="105" y="795" />
+		<entity schema="mech" name="TBanco" color="c0d4f3" x="90" y="660" />
+		<entity schema="mech" name="TPersonal" color="c0d4f3" x="135" y="285" />
+		<entity schema="mech" name="TDesOrden" color="c0d4f3" x="795" y="405" />
+		<entity schema="mech" name="TIdentidad" color="c0d4f3" x="735" y="555" />
+		<entity schema="mech" name="TTipoPago" color="c0d4f3" x="105" y="555" />
+		<entity schema="mech" name="TPagoDesembolso" color="c0d4f3" x="330" y="585" />
+		<entity schema="mech" name="TDocCompra" color="c0d4f3" x="765" y="840" />
+		<entity schema="mech" name="TOrdenCompra" color="c0d4f3" x="1095" y="120" />
+		<entity schema="mech" name="TLugarTrabajo" color="c0d4f3" x="1140" y="615" />
+		<entity schema="mech" name="TPersDesem" color="c0d4f3" x="330" y="405" />
+		<entity schema="mech" name="TOrdenDesembolso" color="c0d4f3" x="540" y="405" />
+		<entity schema="mech" name="TClasifPago" color="c0d4f3" x="45" y="60" />
+		<entity schema="mech" name="TSerieOrden" color="c0d4f3" x="240" y="60" />
+		<entity schema="mech" name="TSeriePers" color="c0d4f3" x="435" y="60" />
 		<script name="Sql" id="SQL4738081" >
-			<string><![CDATA[select * from mech.TPagoDesembolso
-go
-select * from mech.TOrdenDesembolso
-go
-select * from mech.TPersDesem]]></string>
+			<string><![CDATA[select  TP.codPagD,TP.fecpago,TP.pagoDet,Tp.montoPago,TT.tipoP,Tm.moneda,TM.simbolo,TCBA.nroCue,TBA.banco
+from TPagoDesembolso TP 
+join TTipoPago TT  on TT.codTipP=TP.codTipP
+join TMoneda TM on TP.codMon=TM.codMon 
+join TCuentaBan TCBA on TCBA.idCue=TP.idCue  
+join TBanco TBA on TCBA.codBan = TBA.codBan 
+]]></string>
 		</script>
+		<script name="Sql_001" id="SQL7234886" >
+			<string><![CDATA[Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,moneda,simbolo from VOrdenDesembolsoSeguimiento
+]]></string>
+		</script>
+	</layout>
+	<layout id="Layout1686881" name="Layout_Transportistas" >
+		<entity schema="mech" name="TTransportista" color="c0d4f3" x="300" y="270" />
+		<entity schema="mech" name="TVehiculo" color="c0d4f3" x="300" y="60" />
+		<entity schema="mech" name="TIdentidad" color="c0d4f3" x="765" y="75" />
+		<entity schema="mech" name="TGuiaRemision" color="c0d4f3" x="585" y="75" />
+		<entity schema="mech" name="TEmpTransp" color="c0d4f3" x="45" y="150" />
+		<entity schema="mech" name="TOrdenCompra" color="c0d4f3" x="45" y="315" />
 	</layout>
 </project>

@@ -207,5 +207,14 @@ Public Class LoginForm
     End Function
 #End Region
 
+    ''' <summary>
+    ''' Dando Acceso al doble Click
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub dgTabla2_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla2.CellDoubleClick
 
+        btnAcceder.PerformClick() '(sender, e)
+    End Sub
 End Class

@@ -22,6 +22,7 @@ Partial Class MantTipoPagoForm
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MantTipoPagoForm))
         Me.Panel1 = New System.Windows.Forms.Panel
+        Me.dgModPagos = New System.Windows.Forms.DataGridView
         Me.Navigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton
@@ -32,14 +33,16 @@ Partial Class MantTipoPagoForm
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
-        Me.lbTabla1 = New System.Windows.Forms.ListBox
         Me.btnCerrar = New System.Windows.Forms.Button
         Me.btnEliminar = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnModificar = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnNuevo = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Label1 = New System.Windows.Forms.Label
         Me.txtCam = New ComponentesSolucion2008.TextBoxSSP(Me.components)
+        Me.Label2 = New System.Windows.Forms.Label
+        Me.txtCodigo = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Panel1.SuspendLayout()
+        CType(Me.dgModPagos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Navigator1.SuspendLayout()
         Me.SuspendLayout()
@@ -55,12 +58,20 @@ Partial Class MantTipoPagoForm
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.dgModPagos)
         Me.Panel1.Controls.Add(Me.Navigator1)
-        Me.Panel1.Controls.Add(Me.lbTabla1)
-        Me.Panel1.Location = New System.Drawing.Point(14, 23)
+        Me.Panel1.Location = New System.Drawing.Point(14, 26)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(244, 429)
+        Me.Panel1.Size = New System.Drawing.Size(483, 333)
         Me.Panel1.TabIndex = 7
+        '
+        'dgModPagos
+        '
+        Me.dgModPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgModPagos.Location = New System.Drawing.Point(3, 3)
+        Me.dgModPagos.Name = "dgModPagos"
+        Me.dgModPagos.Size = New System.Drawing.Size(468, 301)
+        Me.dgModPagos.TabIndex = 27
         '
         'Navigator1
         '
@@ -71,7 +82,7 @@ Partial Class MantTipoPagoForm
         Me.Navigator1.DeleteItem = Nothing
         Me.Navigator1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Navigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripTextBox1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator3})
-        Me.Navigator1.Location = New System.Drawing.Point(0, 404)
+        Me.Navigator1.Location = New System.Drawing.Point(0, 308)
         Me.Navigator1.MoveFirstItem = Me.ToolStripButton1
         Me.Navigator1.MoveLastItem = Me.ToolStripButton4
         Me.Navigator1.MoveNextItem = Me.ToolStripButton3
@@ -79,7 +90,7 @@ Partial Class MantTipoPagoForm
         Me.Navigator1.Name = "Navigator1"
         Me.Navigator1.PositionItem = Me.ToolStripTextBox1
         Me.Navigator1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.Navigator1.Size = New System.Drawing.Size(244, 25)
+        Me.Navigator1.Size = New System.Drawing.Size(483, 25)
         Me.Navigator1.TabIndex = 1
         Me.Navigator1.Text = "BindingNavigator1"
         '
@@ -152,20 +163,12 @@ Partial Class MantTipoPagoForm
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
         '
-        'lbTabla1
-        '
-        Me.lbTabla1.FormattingEnabled = True
-        Me.lbTabla1.Location = New System.Drawing.Point(0, 0)
-        Me.lbTabla1.Name = "lbTabla1"
-        Me.lbTabla1.Size = New System.Drawing.Size(244, 407)
-        Me.lbTabla1.TabIndex = 9
-        '
         'btnCerrar
         '
         Me.btnCerrar.BackColor = System.Drawing.SystemColors.Control
         Me.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCerrar.Location = New System.Drawing.Point(321, 419)
+        Me.btnCerrar.Location = New System.Drawing.Point(340, 421)
         Me.btnCerrar.Name = "btnCerrar"
         Me.btnCerrar.Size = New System.Drawing.Size(84, 23)
         Me.btnCerrar.TabIndex = 24
@@ -178,7 +181,7 @@ Partial Class MantTipoPagoForm
         Me.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnEliminar.Image = CType(resources.GetObject("btnEliminar.Image"), System.Drawing.Image)
         Me.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnEliminar.Location = New System.Drawing.Point(321, 251)
+        Me.btnEliminar.Location = New System.Drawing.Point(232, 421)
         Me.btnEliminar.Name = "btnEliminar"
         Me.btnEliminar.Size = New System.Drawing.Size(84, 23)
         Me.btnEliminar.TabIndex = 23
@@ -192,7 +195,7 @@ Partial Class MantTipoPagoForm
         Me.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnModificar.Image = CType(resources.GetObject("btnModificar.Image"), System.Drawing.Image)
         Me.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnModificar.Location = New System.Drawing.Point(321, 178)
+        Me.btnModificar.Location = New System.Drawing.Point(126, 421)
         Me.btnModificar.Name = "btnModificar"
         Me.btnModificar.Size = New System.Drawing.Size(84, 23)
         Me.btnModificar.TabIndex = 21
@@ -206,7 +209,7 @@ Partial Class MantTipoPagoForm
         Me.btnNuevo.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnNuevo.Image = CType(resources.GetObject("btnNuevo.Image"), System.Drawing.Image)
         Me.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnNuevo.Location = New System.Drawing.Point(321, 109)
+        Me.btnNuevo.Location = New System.Drawing.Point(20, 421)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(84, 23)
         Me.btnNuevo.TabIndex = 20
@@ -217,7 +220,7 @@ Partial Class MantTipoPagoForm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(262, 40)
+        Me.Label1.Location = New System.Drawing.Point(107, 372)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(120, 13)
         Me.Label1.TabIndex = 25
@@ -225,10 +228,26 @@ Partial Class MantTipoPagoForm
         '
         'txtCam
         '
-        Me.txtCam.Location = New System.Drawing.Point(264, 54)
+        Me.txtCam.Location = New System.Drawing.Point(110, 388)
         Me.txtCam.Name = "txtCam"
-        Me.txtCam.Size = New System.Drawing.Size(221, 20)
-        Me.txtCam.TabIndex = 26
+        Me.txtCam.Size = New System.Drawing.Size(375, 20)
+        Me.txtCam.TabIndex = 1
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(17, 372)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(50, 13)
+        Me.Label2.TabIndex = 25
+        Me.Label2.Text = "Código:"
+        '
+        'txtCodigo
+        '
+        Me.txtCodigo.Location = New System.Drawing.Point(17, 388)
+        Me.txtCodigo.Name = "txtCodigo"
+        Me.txtCodigo.Size = New System.Drawing.Size(84, 20)
+        Me.txtCodigo.TabIndex = 0
         '
         'MantTipoPagoForm
         '
@@ -236,7 +255,9 @@ Partial Class MantTipoPagoForm
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
         Me.ClientSize = New System.Drawing.Size(497, 476)
+        Me.Controls.Add(Me.txtCodigo)
         Me.Controls.Add(Me.txtCam)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnCerrar)
         Me.Controls.Add(Me.btnEliminar)
@@ -252,8 +273,11 @@ Partial Class MantTipoPagoForm
         Me.Controls.SetChildIndex(Me.btnEliminar, 0)
         Me.Controls.SetChildIndex(Me.btnCerrar, 0)
         Me.Controls.SetChildIndex(Me.Label1, 0)
+        Me.Controls.SetChildIndex(Me.Label2, 0)
         Me.Controls.SetChildIndex(Me.txtCam, 0)
+        Me.Controls.SetChildIndex(Me.txtCodigo, 0)
         Me.Panel1.ResumeLayout(False)
+        CType(Me.dgModPagos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Navigator1.ResumeLayout(False)
         Me.Navigator1.PerformLayout()
@@ -262,7 +286,6 @@ Partial Class MantTipoPagoForm
 
     End Sub
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents lbTabla1 As System.Windows.Forms.ListBox
     Friend WithEvents Navigator1 As System.Windows.Forms.BindingNavigator
     Friend WithEvents ToolStripLabel1 As System.Windows.Forms.ToolStripLabel
     Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
@@ -279,5 +302,8 @@ Partial Class MantTipoPagoForm
     Friend WithEvents btnNuevo As ComponentesSolucion2008.BottomSSP
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents txtCam As ComponentesSolucion2008.TextBoxSSP
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents txtCodigo As ComponentesSolucion2008.TextBoxSSP
+    Friend WithEvents dgModPagos As System.Windows.Forms.DataGridView
 
 End Class
