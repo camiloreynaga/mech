@@ -307,7 +307,7 @@ Public Class SeguimientoOrdenDesembolsoForm
             txtEstadoDesem.Text = BindingSource0.Item(BindingSource0.Position)(5)
             txtNro.Text = BindingSource0.Item(BindingSource0.Position)(2)
             txtFechaDesem.Text = BindingSource0.Item(BindingSource0.Position)(4)
-            txtSolicitante.Text = BindingSource0.Item(BindingSource0.Position)(28) + " " + BindingSource0.Item(BindingSource0.Position)(29)
+            txtSolicitante.Text = BindingSource0.Item(BindingSource0.Position)(28) + " " + BindingSource0.Item(BindingSource0.Position)(29).ToString()
             txtMonto.Text = BindingSource0.Item(BindingSource0.Position)(27).ToString + " " + BindingSource0.Item(BindingSource0.Position)(7).ToString
             txtDetraccion.Text = BindingSource0.Item(BindingSource0.Position)(27).ToString + " " + BindingSource0.Item(BindingSource0.Position)(8).ToString
 

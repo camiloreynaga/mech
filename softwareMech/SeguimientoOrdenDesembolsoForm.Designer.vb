@@ -668,6 +668,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.txtDetraccionPago.Name = "txtDetraccionPago"
         Me.txtDetraccionPago.Size = New System.Drawing.Size(113, 20)
         Me.txtDetraccionPago.TabIndex = 1
+        Me.txtDetraccionPago.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtMontoPago
         '
@@ -675,6 +676,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.txtMontoPago.Name = "txtMontoPago"
         Me.txtMontoPago.Size = New System.Drawing.Size(113, 20)
         Me.txtMontoPago.TabIndex = 1
+        Me.txtMontoPago.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label18
         '
@@ -843,6 +845,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.txtDetraccion.Name = "txtDetraccion"
         Me.txtDetraccion.Size = New System.Drawing.Size(121, 20)
         Me.txtDetraccion.TabIndex = 3
+        Me.txtDetraccion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtEstadoDesem
         '
@@ -857,6 +860,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.txtMonto.Name = "txtMonto"
         Me.txtMonto.Size = New System.Drawing.Size(121, 20)
         Me.txtMonto.TabIndex = 3
+        Me.txtMonto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtNro
         '

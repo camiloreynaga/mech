@@ -55,19 +55,6 @@ as
 	RETURN  @Identity
 GO
 
---inserta un registros de orden de compra
-create procedure PA_InsertOrdenCompra
-	@nroO int,@fecO date, @codIde int, @codPers int,@codPag int, @igv decimal(6,2),@calIGV int,@codMon int,
-	@atiendeCom varchar(50),@cel varchar(50),@plazoEnt varchar(40),@transfe varchar(100),@nroProf varchar(40),@obsFac varchar(200), @estado int,
-	@codCot int,@idSol int,@codPersO int, @codigo varchar(10),@lugar varchar(100), @hist varchar(200),
-	@Identity int output
-as
-	insert into TOrdenCompra(nroO,fecOrden,codIde,codPers,codPag,igv,calIGV,codMon,atiendeCom,celAti,plazoEnt,transfe,nroProf,obsFac,estado,codCot,idSol,codPersO,codigo,lugarEnt,hist)
-	 values (@nroO,@fecO,@codIde,@codPers,@codPag,@igv,@calIGV,@codMon,@atiendeCom,@cel,@plazoEnt,@transfe,@nroProf,@obsFac,@estado,@codCot,@idSol,@codPersO,@codigo,@lugar,@hist)
-	 SET @Identity=@@IDENTITY 
-	 Return @Identity
-go
-
 -- inserta un ítem en la tabla detalleOrden. Orden de compra
 
 create procedure PA_InsertDetalleOrden
@@ -79,20 +66,6 @@ as
 	SET @Identity = @@Identity
 	
 	RETURN  @Identity
-GO
-
---inserta un registro en la tabala OrdenDesembolso. 
-create procedure PA_InsertOrdenDesembolso
-	@ser varchar(5),@nroD int,@fecD date,@codMon int,@mon decimal(10,2),@mon1 decimal(8,2),@mon2 decimal(10,2),@est int,@cod varchar(10),@codIde int,
-	@ban varchar(30),@nroC varchar(50),@nroDE varchar(30),@dato varchar(100),@fact int,@nroF varchar(20),@bol int,@nroB varchar(20),@guia int,@nroG varchar(20),@vou int,@nroV varchar(20),
-	@vouD int,@nroVD varchar(20),@reci int,@nroR varchar(20),@otro int,@des varchar(60),@nroCF varchar(30),@fec varchar(10),@hist varchar(200),
-	@Identity int output
-as
-	insert into TOrdenDesembolso(serie,nroDes,fecDes,codMon,monto,montoDet,montoDif,estado,codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,nroFact,bolCheck,nroBol,guiaCheck,nroGuia,vouCheck,nroVou,vouDCheck,nroVouD,reciCheck,nroReci,otroCheck,descOtro,nroConfor,fecEnt,hist)
-		values (@ser,@nroD,@fecD,@codMon,@mon,@mon1,@mon2,@est,@cod,@codIde,@ban,@nroC,@nroDE,@dato,@fact,@nroF,@bol,@nroB,@guia,@nroG,@vou,@nroV,@vouD,@nroVD,@reci,@nroR,@otro,@des,@nroCF,@fec,@hist)
-
-	 SET @Identity=@@IDENTITY 
-	 Return @Identity
 GO
 
 --EJECUTAR AHORITA
@@ -108,8 +81,37 @@ as
 GO
 
 --*****************************************************
---------------------FIN DE SCRIPT----------------------
+--------------------EJECUTAR 27/06/2013----------------------
 --*****************************************************
+--inserta un registros de orden de compra
+--DROP procedure PA_InsertOrdenCompra
+create procedure PA_InsertOrdenCompra
+	@nroO int,@fecO date, @codIde int, @codPers int,@codPag int, @igv decimal(6,2),@calIGV int,@codMon int,
+	@atiendeCom varchar(50),@cel varchar(50),@plazoEnt varchar(40),@transfe varchar(100),@nroProf varchar(40),@obsFac varchar(200), @estado int,
+	@codCot int,@idSol int,@codPersO int, @codigo varchar(10),@lugar varchar(100), @hist varchar(200),@codET int,
+	@Identity int output
+as
+	insert into TOrdenCompra(nroO,fecOrden,codIde,codPers,codPag,igv,calIGV,codMon,atiendeCom,celAti,plazoEnt,transfe,nroProf,obsFac,estado,codCot,idSol,codPersO,codigo,lugarEnt,hist,codET)
+	 values (@nroO,@fecO,@codIde,@codPers,@codPag,@igv,@calIGV,@codMon,@atiendeCom,@cel,@plazoEnt,@transfe,@nroProf,@obsFac,@estado,@codCot,@idSol,@codPersO,@codigo,@lugar,@hist,@codET)
+	 SET @Identity=@@IDENTITY 
+	 Return @Identity
+go
+
+--inserta un registro en la tabala OrdenDesembolso. 
+--DROP procedure PA_InsertOrdenDesembolso
+create procedure PA_InsertOrdenDesembolso
+	@ser varchar(5),@nroD int,@fecD date,@codMon int,@mon decimal(10,2),@mon1 decimal(8,2),@mon2 decimal(10,2),@est int,@cod varchar(10),@codIde int,
+	@ban varchar(60),@nroC varchar(50),@nroDE varchar(30),@dato varchar(100),@fact int,@bol int,@guia int,@vou int,
+	@vouD int,@reci int,@otro int,@des varchar(60),@nroCF varchar(30),@fec varchar(10),@hist varchar(200),@codSerO int,
+	@Identity int output
+as
+	insert into TOrdenDesembolso(serie,nroDes,fecDes,codMon,monto,montoDet,montoDif,estado,codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,hist,codSerO)
+		values (@ser,@nroD,@fecD,@codMon,@mon,@mon1,@mon2,@est,@cod,@codIde,@ban,@nroC,@nroDE,@dato,@fact,@bol,@guia,@vou,@vouD,@reci,@otro,@des,@nroCF,@fec,@hist,@codSerO)
+
+	 SET @Identity=@@IDENTITY 
+	 Return @Identity
+GO
+
 
 
 

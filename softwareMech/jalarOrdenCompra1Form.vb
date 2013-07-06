@@ -59,6 +59,18 @@ Public Class jalarOrdenCompra1Form
         End Try
     End Sub
 
+    Private Sub jalarOrdenCompra1Form_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+        colorearFila()
+    End Sub
+
+    Private Sub colorearFila()
+        For j As Short = 0 To bindingSource4.Count - 1
+            If recuperarNroOrdenDes(bindingSource4.Item(j)(0)).Trim() <> "" Then 'Sin Enlace de Desembolso
+                dgTabla1.Rows(j).DefaultCellStyle.BackColor = Color.YellowGreen
+            End If
+        Next
+    End Sub
+
     Private Sub ModificarColumnasDGV()
         With dgTabla1
             .Columns(0).Visible = False
@@ -238,6 +250,12 @@ Public Class jalarOrdenCompra1Form
             Exit Sub
         End If
 
+        If txtOrden.Text.Trim() = "" Then
+        Else
+            MessageBox.Show("Proceso denegado, Orden de Compra ya tiene asigando la Orden de Desembolso: " & txtOrden.Text.Trim(), nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
         If ValidaFechaMayorXXXX(Now.Date, 2013) Then
             MessageBox.Show("Ingrese fecha mayor al año 2012", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
             Exit Sub
@@ -342,7 +360,7 @@ Public Class jalarOrdenCompra1Form
         cmInserTable2.Parameters.Add("@est", SqlDbType.Int, 0).Value = 0   'pendiente
         cmInserTable2.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = bindingSource4.Item(bindingSource4.Position)(12) 'vSCodigo
         cmInserTable2.Parameters.Add("@codIde", SqlDbType.Int, 0).Value = bindingSource4.Item(bindingSource4.Position)(18)
-        cmInserTable2.Parameters.Add("@ban", SqlDbType.VarChar, 30).Value = ""
+        cmInserTable2.Parameters.Add("@ban", SqlDbType.VarChar, 60).Value = ""
         cmInserTable2.Parameters.Add("@nroC", SqlDbType.VarChar, 50).Value = bindingSource4.Item(bindingSource4.Position)(6)
         cmInserTable2.Parameters.Add("@nroDE", SqlDbType.VarChar, 30).Value = ""
         cmInserTable2.Parameters.Add("@dato", SqlDbType.VarChar, 200).Value = ""
@@ -394,4 +412,6 @@ Public Class jalarOrdenCompra1Form
         cmInserTable1.Parameters.Add("@id", SqlDbType.Int, 0).Value = idOP
         cmInserTable1.Parameters.Add("@nro", SqlDbType.Int, 0).Value = nroOrden
     End Sub
+
+  
 End Class

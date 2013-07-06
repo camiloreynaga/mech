@@ -287,6 +287,12 @@
     <Compile Include="MantOrdenDesembolsoForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MantOrdenDesembolsoForm1.designer.vb">
+      <DependentUpon>MantOrdenDesembolsoForm1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantOrdenDesembolsoForm1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MantPersonalForm.designer.vb">
       <DependentUpon>MantPersonalForm.vb</DependentUpon>
     </Compile>
@@ -337,6 +343,12 @@
       <DependentUpon>pantallaInicialForm.vb</DependentUpon>
     </Compile>
     <Compile Include="pantallaInicialForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="registraCotizacion1Form.Designer.vb">
+      <DependentUpon>registraCotizacion1Form.vb</DependentUpon>
+    </Compile>
+    <Compile Include="registraCotizacion1Form.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="registraCotizacionForm.Designer.vb">
@@ -509,6 +521,9 @@
     <EmbeddedResource Include="MantOrdenDesembolsoForm.resx">
       <DependentUpon>MantOrdenDesembolsoForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MantOrdenDesembolsoForm1.resx">
+      <DependentUpon>MantOrdenDesembolsoForm1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MantPersonalForm.resx">
       <DependentUpon>MantPersonalForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -532,6 +547,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pantallaInicialForm.resx">
       <DependentUpon>pantallaInicialForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="registraCotizacion1Form.resx">
+      <DependentUpon>registraCotizacion1Form.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="registraCotizacionForm.resx">
       <DependentUpon>registraCotizacionForm.vb</DependentUpon>
@@ -594,9 +612,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

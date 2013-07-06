@@ -171,7 +171,7 @@ Public Class jalarSolicitudForm
             colorearFila()
 
             For j As Short = 0 To bindingSource5.Count - 1 'Refrescando check a True
-                bindingSource5.Item(j)(17) = True
+                bindingSource5.Item(j)(17) = False
             Next
         End If
     End Sub
@@ -292,8 +292,9 @@ Public Class jalarSolicitudForm
     Private Sub comandoUpdate1()
         cmUpdateTable1 = New SqlCommand
         cmUpdateTable1.CommandType = CommandType.Text
-        cmUpdateTable1.CommandText = "update TCotizacion set idSol=@codC where codCot=@nro"
+        cmUpdateTable1.CommandText = "update TCotizacion set codigo=@cod,idSol=@codC where codCot=@nro"
         cmUpdateTable1.Connection = Cn
+        cmUpdateTable1.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vCod3
         cmUpdateTable1.Parameters.Add("@codC", SqlDbType.Int, 0).Value = bindingSource4.Item(bindingSource4.Position)(0)
         cmUpdateTable1.Parameters.Add("@nro", SqlDbType.Int, 0).Value = vNroOrden
     End Sub

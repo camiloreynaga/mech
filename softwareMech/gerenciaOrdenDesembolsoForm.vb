@@ -256,6 +256,8 @@ Public Class gerenciaOrdenDesembolsoForm
         Label3.ForeColor = ForeColorLabel
         Label4.ForeColor = ForeColorLabel
         Label5.ForeColor = ForeColorLabel
+        Label6.ForeColor = ForeColorLabel
+        Label7.ForeColor = ForeColorLabel
         btnCerrar.ForeColor = ForeColorButtom
     End Sub
 

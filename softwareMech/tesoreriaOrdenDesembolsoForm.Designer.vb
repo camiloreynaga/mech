@@ -70,6 +70,26 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.lblTotal = New System.Windows.Forms.ToolStripLabel
         Me.dgTabla2 = New System.Windows.Forms.DataGridView
         Me.Label2 = New System.Windows.Forms.Label
+        Me.Label8 = New System.Windows.Forms.Label
+        Me.txtProv = New System.Windows.Forms.TextBox
+        Me.txtRuc = New System.Windows.Forms.TextBox
+        Me.Label9 = New System.Windows.Forms.Label
+        Me.txtForma = New System.Windows.Forms.TextBox
+        Me.Label10 = New System.Windows.Forms.Label
+        Me.txtNC = New System.Windows.Forms.TextBox
+        Me.Label11 = New System.Windows.Forms.Label
+        Me.txtND = New System.Windows.Forms.TextBox
+        Me.Label12 = New System.Windows.Forms.Label
+        Me.txtMot = New System.Windows.Forms.TextBox
+        Me.Label13 = New System.Windows.Forms.Label
+        Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel
+        Me.txtTotal0 = New System.Windows.Forms.ToolStripTextBox
+        Me.ToolStripLabel3 = New System.Windows.Forms.ToolStripLabel
+        Me.txtTotal1 = New System.Windows.Forms.ToolStripTextBox
+        Me.ToolStripLabel4 = New System.Windows.Forms.ToolStripLabel
+        Me.txtTotal2 = New System.Windows.Forms.ToolStripTextBox
+        Me.ToolStripLabel5 = New System.Windows.Forms.ToolStripLabel
+        Me.txtTotal3 = New System.Windows.Forms.ToolStripTextBox
         Me.Panel1.SuspendLayout()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,7 +117,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Location = New System.Drawing.Point(14, 23)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(892, 338)
+        Me.Panel1.Size = New System.Drawing.Size(892, 262)
         Me.Panel1.TabIndex = 3
         '
         'dgTabla1
@@ -110,7 +130,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.dgTabla1.ReadOnly = True
         DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle5
-        Me.dgTabla1.Size = New System.Drawing.Size(892, 295)
+        Me.dgTabla1.Size = New System.Drawing.Size(892, 219)
         Me.dgTabla1.TabIndex = 332
         '
         'btnCerrar
@@ -133,8 +153,8 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Navigator1.CountItem = Me.BindingNavigatorCountItem
         Me.Navigator1.DeleteItem = Nothing
         Me.Navigator1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Navigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.ToolStripButton5, Me.ToolStripSeparator4})
-        Me.Navigator1.Location = New System.Drawing.Point(0, 313)
+        Me.Navigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.ToolStripButton5, Me.ToolStripSeparator4, Me.ToolStripLabel2, Me.txtTotal0, Me.ToolStripLabel3, Me.txtTotal1, Me.ToolStripLabel4, Me.txtTotal2, Me.ToolStripLabel5, Me.txtTotal3})
+        Me.Navigator1.Location = New System.Drawing.Point(0, 237)
         Me.Navigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.Navigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
         Me.Navigator1.MoveNextItem = Me.BindingNavigatorMoveNextItem
@@ -223,8 +243,8 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
         Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton5.Name = "ToolStripButton5"
-        Me.ToolStripButton5.Size = New System.Drawing.Size(188, 22)
-        Me.ToolStripButton5.Text = "Cerrar Orden de Desembolso"
+        Me.ToolStripButton5.Size = New System.Drawing.Size(109, 22)
+        Me.ToolStripButton5.Text = "Cerrar Orden..."
         '
         'ToolStripSeparator4
         '
@@ -235,7 +255,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(1, 2)
+        Me.Label1.Location = New System.Drawing.Point(1, 4)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(148, 13)
         Me.Label1.TabIndex = 0
@@ -243,6 +263,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         '
         'Panel2
         '
+        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel2.Controls.Add(Me.cbCue)
         Me.Panel2.Controls.Add(Me.Label7)
         Me.Panel2.Controls.Add(Me.btnEliminar)
@@ -263,7 +284,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Location = New System.Drawing.Point(14, 362)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(892, 289)
+        Me.Panel2.Size = New System.Drawing.Size(892, 291)
         Me.Panel2.TabIndex = 4
         '
         'cbCue
@@ -411,7 +432,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(10, 7)
+        Me.Label4.Location = New System.Drawing.Point(10, 6)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(46, 13)
         Me.Label4.TabIndex = 331
@@ -442,7 +463,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Navigator2.Name = "Navigator2"
         Me.Navigator2.PositionItem = Me.ToolStripTextBox1
         Me.Navigator2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.Navigator2.Size = New System.Drawing.Size(892, 25)
+        Me.Navigator2.Size = New System.Drawing.Size(890, 25)
         Me.Navigator2.TabIndex = 326
         Me.Navigator2.Text = "BindingNavigator1"
         '
@@ -561,11 +582,199 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Registro de Pagos:"
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(126, 287)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(69, 13)
+        Me.Label8.TabIndex = 5
+        Me.Label8.Text = "Proveedor:"
+        '
+        'txtProv
+        '
+        Me.txtProv.Location = New System.Drawing.Point(129, 300)
+        Me.txtProv.Name = "txtProv"
+        Me.txtProv.ReadOnly = True
+        Me.txtProv.Size = New System.Drawing.Size(329, 20)
+        Me.txtProv.TabIndex = 6
+        Me.txtProv.TabStop = False
+        '
+        'txtRuc
+        '
+        Me.txtRuc.Location = New System.Drawing.Point(25, 300)
+        Me.txtRuc.Name = "txtRuc"
+        Me.txtRuc.ReadOnly = True
+        Me.txtRuc.Size = New System.Drawing.Size(94, 20)
+        Me.txtRuc.TabIndex = 8
+        Me.txtRuc.TabStop = False
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(22, 287)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(49, 13)
+        Me.Label9.TabIndex = 7
+        Me.Label9.Text = "R.U.C.:"
+        '
+        'txtForma
+        '
+        Me.txtForma.Location = New System.Drawing.Point(28, 338)
+        Me.txtForma.Name = "txtForma"
+        Me.txtForma.ReadOnly = True
+        Me.txtForma.Size = New System.Drawing.Size(320, 20)
+        Me.txtForma.TabIndex = 10
+        Me.txtForma.TabStop = False
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(25, 324)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(78, 13)
+        Me.Label10.TabIndex = 9
+        Me.Label10.Text = "Forma Pago:"
+        '
+        'txtNC
+        '
+        Me.txtNC.Location = New System.Drawing.Point(360, 338)
+        Me.txtNC.Name = "txtNC"
+        Me.txtNC.ReadOnly = True
+        Me.txtNC.Size = New System.Drawing.Size(267, 20)
+        Me.txtNC.TabIndex = 12
+        Me.txtNC.TabStop = False
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(357, 324)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(69, 13)
+        Me.Label11.TabIndex = 11
+        Me.Label11.Text = "Nº Cuenta:"
+        '
+        'txtND
+        '
+        Me.txtND.Location = New System.Drawing.Point(633, 338)
+        Me.txtND.Name = "txtND"
+        Me.txtND.ReadOnly = True
+        Me.txtND.Size = New System.Drawing.Size(273, 20)
+        Me.txtND.TabIndex = 14
+        Me.txtND.TabStop = False
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(630, 324)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(114, 13)
+        Me.Label12.TabIndex = 13
+        Me.Label12.Text = "Nº Cta Detracción:"
+        '
+        'txtMot
+        '
+        Me.txtMot.Location = New System.Drawing.Point(473, 300)
+        Me.txtMot.Name = "txtMot"
+        Me.txtMot.ReadOnly = True
+        Me.txtMot.Size = New System.Drawing.Size(433, 20)
+        Me.txtMot.TabIndex = 16
+        Me.txtMot.TabStop = False
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(470, 287)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(49, 13)
+        Me.Label13.TabIndex = 15
+        Me.Label13.Text = "Motivo:"
+        '
+        'ToolStripLabel2
+        '
+        Me.ToolStripLabel2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripLabel2.Name = "ToolStripLabel2"
+        Me.ToolStripLabel2.Size = New System.Drawing.Size(53, 22)
+        Me.ToolStripLabel2.Text = "Total S/."
+        '
+        'txtTotal0
+        '
+        Me.txtTotal0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtTotal0.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTotal0.Name = "txtTotal0"
+        Me.txtTotal0.ReadOnly = True
+        Me.txtTotal0.Size = New System.Drawing.Size(80, 25)
+        Me.txtTotal0.Text = "0.00"
+        Me.txtTotal0.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'ToolStripLabel3
+        '
+        Me.ToolStripLabel3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripLabel3.Name = "ToolStripLabel3"
+        Me.ToolStripLabel3.Size = New System.Drawing.Size(45, 22)
+        Me.ToolStripLabel3.Text = "Total $"
+        '
+        'txtTotal1
+        '
+        Me.txtTotal1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtTotal1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTotal1.Name = "txtTotal1"
+        Me.txtTotal1.ReadOnly = True
+        Me.txtTotal1.Size = New System.Drawing.Size(80, 25)
+        Me.txtTotal1.Text = "0.00"
+        Me.txtTotal1.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'ToolStripLabel4
+        '
+        Me.ToolStripLabel4.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripLabel4.Name = "ToolStripLabel4"
+        Me.ToolStripLabel4.Size = New System.Drawing.Size(63, 22)
+        Me.ToolStripLabel4.Text = "Detrac.S/."
+        '
+        'txtTotal2
+        '
+        Me.txtTotal2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtTotal2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTotal2.Name = "txtTotal2"
+        Me.txtTotal2.ReadOnly = True
+        Me.txtTotal2.Size = New System.Drawing.Size(70, 25)
+        Me.txtTotal2.Text = "0.00"
+        Me.txtTotal2.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'ToolStripLabel5
+        '
+        Me.ToolStripLabel5.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripLabel5.Name = "ToolStripLabel5"
+        Me.ToolStripLabel5.Size = New System.Drawing.Size(55, 22)
+        Me.ToolStripLabel5.Text = "Detrac.$"
+        '
+        'txtTotal3
+        '
+        Me.txtTotal3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtTotal3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTotal3.Name = "txtTotal3"
+        Me.txtTotal3.ReadOnly = True
+        Me.txtTotal3.Size = New System.Drawing.Size(70, 25)
+        Me.txtTotal3.Text = "0.00"
+        Me.txtTotal3.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'tesoreriaOrdenDesembolsoForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
         Me.ClientSize = New System.Drawing.Size(915, 675)
+        Me.Controls.Add(Me.txtMot)
+        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.txtND)
+        Me.Controls.Add(Me.Label12)
+        Me.Controls.Add(Me.txtNC)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.txtForma)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.txtRuc)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.txtProv)
+        Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -574,6 +783,18 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Controls.SetChildIndex(Me.Panel2, 0)
         Me.Controls.SetChildIndex(Me.lblTitulo, 0)
         Me.Controls.SetChildIndex(Me.lblDerecha, 0)
+        Me.Controls.SetChildIndex(Me.Label8, 0)
+        Me.Controls.SetChildIndex(Me.txtProv, 0)
+        Me.Controls.SetChildIndex(Me.Label9, 0)
+        Me.Controls.SetChildIndex(Me.txtRuc, 0)
+        Me.Controls.SetChildIndex(Me.Label10, 0)
+        Me.Controls.SetChildIndex(Me.txtForma, 0)
+        Me.Controls.SetChildIndex(Me.Label11, 0)
+        Me.Controls.SetChildIndex(Me.txtNC, 0)
+        Me.Controls.SetChildIndex(Me.Label12, 0)
+        Me.Controls.SetChildIndex(Me.txtND, 0)
+        Me.Controls.SetChildIndex(Me.Label13, 0)
+        Me.Controls.SetChildIndex(Me.txtMot, 0)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -587,6 +808,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Navigator2.PerformLayout()
         CType(Me.dgTabla2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
@@ -636,5 +858,25 @@ Partial Class tesoreriaOrdenDesembolsoForm
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents ToolStripButton5 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents txtProv As System.Windows.Forms.TextBox
+    Friend WithEvents txtRuc As System.Windows.Forms.TextBox
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents txtForma As System.Windows.Forms.TextBox
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents txtNC As System.Windows.Forms.TextBox
+    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents txtND As System.Windows.Forms.TextBox
+    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents txtMot As System.Windows.Forms.TextBox
+    Friend WithEvents Label13 As System.Windows.Forms.Label
+    Friend WithEvents ToolStripLabel2 As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents txtTotal0 As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents ToolStripLabel3 As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents txtTotal1 As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents ToolStripLabel4 As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents txtTotal2 As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents ToolStripLabel5 As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents txtTotal3 As System.Windows.Forms.ToolStripTextBox
 
 End Class

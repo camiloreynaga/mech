@@ -59,6 +59,18 @@ Public Class jalarOrdenCompraForm
         End Try
     End Sub
 
+    Private Sub jalarOrdenCompraForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+        colorearFila()
+    End Sub
+
+    Private Sub colorearFila()
+        For j As Short = 0 To bindingSource4.Count - 1
+            If recuperarNroOrdenDes(bindingSource4.Item(j)(0)).Trim() <> "" Then 'Sin Enlace de Desembolso
+                dgTabla1.Rows(j).DefaultCellStyle.BackColor = Color.YellowGreen
+            End If
+        Next
+    End Sub
+
     Private Sub ModificarColumnasDGV()
         With dgTabla1
             .Columns(0).Visible = False

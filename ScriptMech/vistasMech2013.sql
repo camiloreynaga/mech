@@ -130,21 +130,6 @@ as
 	where TG.estGru=0 --0=abierto
 GO
 
-create view VDetCot  --Instanciado en varias interfaces
-as
-	select TD.codDetC,TD.cant,TD.descrip,TD.unidad,TD.precio,TD.subTotal,TD.codCot,TM.codMat,TM.material,TT.codTipM,TT.tipoM,
-	'est'=case when TD.estado=0 then 'PENDIENTE' when TD.estado=1 then 'APROBADO' else 'RECHAZADO' end,TD.estado
-	from TDetalleCot TD join TMaterial TM on TD.codMat=TM.codMat
-	join TTipoMat TT on TM.codTipM=TT.codTipM	
-GO
-
-create view VOrdenComAper  
-as	
-	select nroOrden,nroO,codIde,fecOrden,codPers,codPag,igv,calIGV,codMon,atiendeCom,plazoEnt,celAti,lugarEnt,transfe,obsFac,codPersO,nroProf,idSol,
-	codigo,estado,codCot,hist,'nro'=case when nroO<100 then '000'+ltrim(str(nroO)) when nroO>=100 and nroO<1000 then '00'+ltrim(str(nroO)) when nroO>=1000 and nroO<10000 then '0'+ltrim(str(nroO)) else ltrim(str(nroO)) end
-	from TOrdenCompra where estado=0 --0=abierto
-GO
-
 create view VOrdenNro  
 as
 	select nroOrden,nroO,codCot,case when nroO<100 then '000'+ltrim(str(nroO)) when nroO>=100 and nroO<1000 then '00'+ltrim(str(nroO)) else ltrim(str(nroO)) end + '-' + ltrim(str(year(fecOrden))) as 'nro'
@@ -189,23 +174,6 @@ as
 	join TPersonal TP2 on TC.codPers=TP2.codPers
 	join TMoneda TM on TC.codMon=TM.codMon
 	left join TSolicitud TS on TC.idSol=TS.idSol
-GO
-
-create view VOrdenDetOrden  --impresion
-as
-	select TC.nroOrden,TC.nroO,TC.fecOrden,TI.codIde,TI.razon,TI.ruc,TI.repres,TI.celRpm,TI.fono+' '+TI.fax as fonos,TI.email,TI.dir,TC.estado,TC.nroProf,TC.idSol,
-	'nro'=case when TC.nroO<100 then '000'+ltrim(str(TC.nroO)) when TC.nroO>=100 and TC.nroO<1000 then '00'+ltrim(str(TC.nroO)) when TC.nroO>=1000 and TC.nroO<10000 then '0'+ltrim(str(TC.nroO)) else ltrim(str(TC.nroO)) end,
-	TC.transfe,TC.atiendeCom,TC.celAti,TC.plazoEnt,TF.codPag,TF.forma,TC.lugarEnt,TC.igv,TC.calIGV,TC.codPersO,TP2.nombre+' '+TP2.apellido as nomAte,
-	TL.codigo,TL.lugar,TL.nombre,TP1.codPers,TP1.nombre+' '+TP1.apellido as nomRem,TP1.fono,TP1.email as emaRem,TC.obsFac,TC.codCot,
-	TD.codDetO,TD.cant,TD.descrip as material,TD.unidad,TD.precio,TD.subTotal,TM.codMat,TM.material as mate,TMO.codMon,TMO.moneda,TMO.simbolo
-	from TOrdenCompra TC join TPersonal TP1 on TC.codPers=TP1.codPers
-	join TPersonal TP2 on TC.codPersO=TP2.codPers
-	join TIdentidad TI on TC.codIde=TI.codIde
-	join TDetalleOrden TD on TC.nroOrden=TD.nroOrden 
-	join TLugarTrabajo TL on TC.codigo=TL.codigo
-	join TFormaPago TF on TC.codPag=TF.codPag
-	join TMoneda TMO on TC.codMon=TMO.codMon
-	join TMaterial TM on TD.codMat=TM.codMat
 GO
 
 create View VOrdenInforme  
@@ -337,18 +305,6 @@ as
 	join TPersonal TP on TS.codPers=TP.codPers
 GO
 
-create view VOrdenDesembolso  
-as	
-	select idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,estado,'est'=case when estado=0 then 'PENDIENTE' when estado=1 then 'TERMINADO' when estado=2 then 'CERRADO' else 'ANULADO' end, 
-	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,
-	codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,nroFact,bolCheck,nroBol,guiaCheck,nroGuia,vouCheck,nroVou,vouDCheck,nroVouD,reciCheck,nroReci,otroCheck,descOtro,nroConfor,fecEnt,hist
-	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon 
-	where estado in (0,1) --0=pendiente 1=terminado
-GO
-
-
-
-
 create view VPagoDesembolso
 as
 	select TT.codTipP,TT.tipoP,TP.codPagD,TP.fecPago,TP.pagoDet,TP.montoPago,TP.idOP,TM.codMon,TM.moneda,TM.simbolo from 
@@ -391,17 +347,6 @@ as
 	select TP.codPers,TP.nombre+' '+TP.apellido as nom,TP.dni,TPD.codPersDes,TPD.estDesem,TPD.tipoA,TPD.obserDesem,TPD.idOP,
 	'estApro'=case when TPD.estDesem=1 then 'APROBADO' when TPD.estDesem=2 then 'OBSERVADO' else 'DENEGADO' end 
 	from TPersDesem TPD join TPersonal TP on TPD.codPers=TP.codPers where TPD.tipoA=2 --2=firma gerencia
-GO
-
-create view VOrdenDesemGerencia  
-as	
-	select TOD.idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,TOD.estado,'est'=case when TOD.estado=0 then 'PENDIENTE' when TOD.estado=1 then 'TERMINADO' when TOD.estado=2 then 'CERRADO' else 'ANULADO' end, 
-	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,
-	banco,nroCta,nroDet,datoReq,hist,TL.codigo,TL.nombre,TI.codIde,TI.razon,TI.ruc,TP.codPers,TP.nom,TP.dni,isnull(TP.codPersDes,0) as codPersDes,isnull(TP.estDesem,0) as estDesem,TP.obserDesem,isnull(TP.estApro,'') as estApro
-	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon 
-	join TLugarTrabajo TL on TOD.codigo=TL.codigo
-	join TIdentidad TI on TOD.codIde=TI.codIde
-	left join VPersDesemGerencia TP on TOD.idOP=TP.idOP --2=gerencia
 GO
 
 create view VOrdenCompraDetalle  
@@ -449,8 +394,7 @@ as
 	join TMoneda TM on TC.codMon=TM.codMon
 	where TC.estado=1  --1=activo
 GO 
---------------------------------
------------------------------------
+
 create view VSolDetSolAproba 
 as
 	select TS.idSol,TS.nroS,TS.fecSol,'nro'=case when TS.nroS<100 then '000'+ltrim(str(TS.nroS)) when TS.nroS>=100 and TS.nroS<1000 then '00'+ltrim(str(TS.nroS)) else '0'+ltrim(str(TS.nroS)) end,
@@ -468,6 +412,104 @@ as
 	where TE.codEstS in(1,3) --1Pendiente 3Observado 2Aprobado 4Rechazado
 GO
 
+create view VPersDesemFirma
+as
+	select TPD.codPersDes,TPD.idOP,TPD.estDesem,TPD.tipoA,TPD.obserDesem,TPD.fecFir,TP.codPers,TP.codTipU,TP.nombre+' '+TP.apellido as nom,
+	TP.nombre+'  '+TP.apellido+' ' as nom1,'est'=+case when TPD.estDesem=1 then '[APROBADO]' when TPD.estDesem=2 then '[OBSERVADO]' else '[DENEGADO]' end 
+	from TPersDesem TPD join TPersonal TP on TPD.codPers=TP.codPers
+GO
+
+CREATE FUNCTION FN_ConcaTPersDesem(@id int,@tipo int) RETURNS varchar(100)
+BEGIN
+	RETURN isnull((select nom1 from VPersDesemFirma where idOP=@id and tipoA=@tipo),'')
+END
+GO
+
+CREATE FUNCTION FN_ConcaEstadoDesem(@id int,@tipo int) RETURNS varchar(100)
+BEGIN
+	RETURN isnull((select est from VPersDesemFirma where idOP=@id and tipoA=@tipo),'')
+END
+GO
+
+create view VOrdenDesembolsoImprimir
+as
+	select TD.idOP,TD.serie+' - '+ltrim(str(TD.nroDes)) as nro,TD.fecDes,TM.codMon,TM.moneda,TM.simbolo,TD.monto,TD.montoDet,TD.montoDif,TD.estado,TL.codigo,TL.nombre as obra,
+	TI.codIde,TI.razon,TI.ruc,TI.fono,TI.email,TD.banco,TD.nroCta,TD.nroDet,TD.datoReq,TD.factCheck,'faCheck'=case when TD.factCheck=1 then 'X' else '' end, 
+	TD.bolCheck,'boCheck'=case when TD.bolCheck=1 then 'X' else '' end,TD.guiaCheck,'guCheck'=case when TD.guiaCheck=1 then 'X' else '' end,
+	TD.vouCheck,'voCheck'=case when TD.vouCheck=1 then 'X' else '' end,TD.vouDCheck,'voDCheck'=case when TD.vouDCheck=1 then 'X' else '' end,
+	TD.reciCheck,'reCheck'=case when TD.reciCheck=1 then 'X' else '' end,TD.otroCheck,TD.descOtro,'otCheck'=case when TD.otroCheck=1 then 'X' else '' end,
+	TD.nroConfor,TD.fecEnt,TD.hist,mech.FN_ConcaTPersDesem(TD.idOP,1) as soli,mech.FN_ConcaTPersDesem(TD.idOP,2) as gere,mech.FN_ConcaTPersDesem(TD.idOP,3) as teso,mech.FN_ConcaTPersDesem(TD.idOP,4) as conta,
+	mech.FN_ConcaEstadoDesem(TD.idOP,1) as soliEst,mech.FN_ConcaEstadoDesem(TD.idOP,2) as gereEst,mech.FN_ConcaEstadoDesem(TD.idOP,3) as tesoEst,mech.FN_ConcaEstadoDesem(TD.idOP,4) as contaEst,
+	TT.codTipP,TT.tipoP,TP.codPagD,TP.fecPago,TP.pagoDet,TMO.codMon as codMon1,TMO.moneda as moneda1,TMO.simbolo as simbolo1,TP.montoPago
+	from TOrdenDesembolso TD join TMoneda TM on TD.codMon=TM.codMon
+	join TLugarTrabajo TL on TD.codigo=TL.codigo
+	join TIdentidad TI on TD.codIde=TI.codIde
+	left join TPagoDesembolso TP on TD.idOP=TP.idOP
+	left join TTipoPago TT on TP.codTipP=TT.codTipP
+	left join TMoneda TMO on  TP.codMon=TMO.codMon
+GO
+
+create view VOrdenComAper  
+as	
+	select nroOrden,nroO,codIde,fecOrden,codPers,codPag,igv,calIGV,codMon,atiendeCom,plazoEnt,celAti,lugarEnt,transfe,obsFac,codPersO,nroProf,idSol,codET,
+	codigo,estado,codCot,hist,'nro'=case when nroO<100 then '000'+ltrim(str(nroO)) when nroO>=100 and nroO<1000 then '00'+ltrim(str(nroO)) when nroO>=1000 and nroO<10000 then '0'+ltrim(str(nroO)) else ltrim(str(nroO)) end
+	from TOrdenCompra where estado=0 --0=abierto
+GO
+
+create view VOrdenDetOrden  --impresion
+as
+	select TC.nroOrden,TC.nroO,TC.fecOrden,TI.codIde,TI.razon,TI.ruc,TI.repres,TI.celRpm,TI.fono+' '+TI.fax as fonos,TI.email,TI.dir,TC.estado,TC.nroProf,TC.idSol,
+	'nro'=case when TC.nroO<100 then '000'+ltrim(str(TC.nroO)) when TC.nroO>=100 and TC.nroO<1000 then '00'+ltrim(str(TC.nroO)) when TC.nroO>=1000 and TC.nroO<10000 then '0'+ltrim(str(TC.nroO)) else ltrim(str(TC.nroO)) end,
+	TC.transfe,TC.atiendeCom,TC.celAti,TC.plazoEnt,TF.codPag,TF.forma,TC.lugarEnt,TC.igv,TC.calIGV,TC.codPersO,TP2.nombre+' '+TP2.apellido as nomAte,
+	TL.codigo,TL.lugar,TL.nombre,TP1.codPers,TP1.nombre+' '+TP1.apellido as nomRem,TP1.fono,TP1.email as emaRem,TC.obsFac,TC.codCot,
+	TD.codDetO,TD.cant,TD.descrip as material,TD.unidad,TD.precio,TD.subTotal,TMO.codMon,TMO.moneda,TMO.simbolo,TE.codET,TE.nombre as trans,TE.ruc as rucT,TE.dir as dirT,TE.fono as fonoT,TE.contacto
+	from TOrdenCompra TC join TPersonal TP1 on TC.codPers=TP1.codPers
+	join TPersonal TP2 on TC.codPersO=TP2.codPers
+	join TIdentidad TI on TC.codIde=TI.codIde
+	join TDetalleOrden TD on TC.nroOrden=TD.nroOrden 
+	join TLugarTrabajo TL on TC.codigo=TL.codigo
+	join TFormaPago TF on TC.codPag=TF.codPag
+	join TMoneda TMO on TC.codMon=TMO.codMon
+	join TEmpTransp TE on TC.codET=TE.codET
+GO
+
+create view VOrdenDesembolso  
+as	
+	select idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,estado,'est'=case when estado=0 then 'PENDIENTE' when estado=1 then 'TERMINADO' when estado=2 then 'CERRADO' else 'ANULADO' end, 
+	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,
+	codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,hist
+	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon 
+	where estado in (0,1) --0=pendiente 1=terminado
+GO
+
+create view VOrdenDesemGerencia  
+as	
+	select TOD.idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,TOD.estado,'est'=case when TOD.estado=0 then 'PENDIENTE' when TOD.estado=1 then 'TERMINADO' when TOD.estado=2 then 'CERRADO' else 'ANULADO' end, 
+	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,
+	banco,nroCta,nroDet,datoReq,hist,TL.codigo,TL.nombre,TI.codIde,TI.razon,TI.ruc,TP.codPers,TP.nom,TP.dni,isnull(TP.codPersDes,0) as codPersDes,isnull(TP.estDesem,0) as estDesem,TP.obserDesem,isnull(TP.estApro,'') as estApro
+	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon 
+	join TLugarTrabajo TL on TOD.codigo=TL.codigo
+	join TIdentidad TI on TOD.codIde=TI.codIde
+	left join VPersDesemGerencia TP on TOD.idOP=TP.idOP --2=gerencia
+GO
+----------NUEVO EJECUTAR----------------------
+------------06/07/2013-------------------------
+-----------------------------------------------
+--drop  view VDetCot
+create view VDetCot  --Instanciado en varias interfaces
+as
+	select TD.codDetC,TD.cant,TD.descrip,TD.unidad,TD.precio,TD.subTotal,TD.codCot,TM.codMat,TM.material,TT.codTipM,TT.tipoM,
+	'est'=case when TD.estado=0 then 'NO APROBADO' when TD.estado=1 then 'APROBADO' else 'RECHAZADO' end,TD.estado
+	from TDetalleCot TD join TMaterial TM on TD.codMat=TM.codMat
+	join TTipoMat TT on TM.codTipM=TT.codTipM	
+GO
+
+create view VPersDesemSol
+as
+	select TP.codPers,TP.codCar,TP.codTipU,TP.nombre,TP.dni,TP.apellido,TP.nombre+' '+TP.apellido as nom,TD.codPersDes,TD.idOP,TD.estDesem,TD.tipoA,TD.obserDesem
+	from TPersonal TP join TPersDesem TD on TP.codPers=TD.codPers
+	where TD.tipoA=1  --1=Solicitante
+GO
 
 --Nueva Vista para Seguimiento de Desembolso
 create view VOrdenDesembolsoSeguimiento
@@ -481,9 +523,6 @@ as
 	where TPDE.tipoA=1
 	
 GO
---Obtiene los datos del solicitante de Desembolos
-
-
 -- Nueva Vista para Seguimeinto de Desembolso
 --Pago de desembolsos
 create view VPagoDesembolsoSeguimiento
@@ -498,20 +537,15 @@ join TBanco TBA on TCBA.codBan = TBA.codBan
 join TClasifPago TCLA on tCLA.codCla=TP.codCla  
 GO
 
-select * from TOrdenDesembolso
-
-select codPagD,fecPago,tipoP,pagoDet,simbolo,montoPago,codTipP,codMon,idOP,idCue from VPagoDesemTesoreria where idOP=@idOP
-
-select idSol,nro+' '+est as nro,fecSol,est,nombres,lugar,obs,estado,codigo,codPers,nro as nroS from VSolAper where codigo=@cod
-select codDetS,prioridad,descrip,cant,unidad,estSol,areaM,nro,fecSol,dias,lugar,nombres,obs1,nombres1,obs2,nomResid,obs,idSol,codEstS,codAreaM,codPers,codMat,codPersRe,estado,codigo from VSolDetSolAproba where (codigo=@co1 or codigo>=@co2) and (codAreaM=@codA1 or codAreaM>@codA2)
-
-select * from TPersonal
 
 
+select idOP,nroDes,serie,nro,fecDes,est,hist,monto,montoDet,montoDif,estado,codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,codMon from VOrdenDesembolso where serie=@ser
+select idOP,nroDes,serie,nro,fecDes,est,hist,monto,montoDet,montoDif,estado,codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,codMon from VOrdenDesembolso where serie=@ser
+		0		1	2	  3		4	 5	  6		7		8		9		10		11		12	13		14	  15	  16		17		18		19			20		21			22		23		24			25		26		27
 
 
-
-
+select idOP,estApro,nom,fecDes,serie,nro,simbolo,monto,montoDet,razon,nombre,hist,estDesem,codPersDes,estado,codMon,datoReq from VOrdenDesemTesoreria
+select idOP,fecDes,serie,nro,simbolo,monto,montoDet,montoDif,nombre,estApro,nom,datoReq,ruc,razon,banco,nroCta,nroDet,hist,estDesem,codPersDes,estado,codMon from VOrdenDesemTesoreria
 
 
 

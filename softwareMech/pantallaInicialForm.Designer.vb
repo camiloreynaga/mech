@@ -83,7 +83,7 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.SeguimientoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.SeguimientoDesembolsosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -327,7 +327,7 @@ Partial Class pantallaInicialForm
         '
         'opcOrdDes
         '
-        Me.opcOrdDes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrdDes1, Me.opcOrdDes2, Me.opcOrdDes3, Me.ToolStripSeparator12, Me.opcOrdDes4, Me.MantCuentasBancariasToolStripMenuItem, Me.SeguimientoToolStripMenuItem})
+        Me.opcOrdDes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrdDes1, Me.opcOrdDes2, Me.opcOrdDes3, Me.ToolStripSeparator12, Me.opcOrdDes4, Me.MantCuentasBancariasToolStripMenuItem, Me.SeguimientoDesembolsosToolStripMenuItem})
         Me.opcOrdDes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.opcOrdDes.Image = CType(resources.GetObject("opcOrdDes.Image"), System.Drawing.Image)
         Me.opcOrdDes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -591,11 +591,13 @@ Partial Class pantallaInicialForm
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'SeguimientoToolStripMenuItem
+        'SeguimientoDesembolsosToolStripMenuItem
         '
-        Me.SeguimientoToolStripMenuItem.Name = "SeguimientoToolStripMenuItem"
-        Me.SeguimientoToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
-        Me.SeguimientoToolStripMenuItem.Text = "Seguimiento"
+        Me.SeguimientoDesembolsosToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SeguimientoDesembolsosToolStripMenuItem.ForeColor = System.Drawing.Color.Navy
+        Me.SeguimientoDesembolsosToolStripMenuItem.Name = "SeguimientoDesembolsosToolStripMenuItem"
+        Me.SeguimientoDesembolsosToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.SeguimientoDesembolsosToolStripMenuItem.Text = "Seguimiento Desembolsos"
         '
         'pantallaInicialForm
         '
@@ -681,5 +683,5 @@ Partial Class pantallaInicialForm
     Friend WithEvents opcOrden3 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MantCuentasBancariasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator13 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents SeguimientoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SeguimientoDesembolsosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

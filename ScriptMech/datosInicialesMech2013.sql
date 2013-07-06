@@ -89,6 +89,16 @@ insert TCuentaBan (nroCue,codMon,codBan,estado) values ('0011-0204-0100003771-59
 GO
 --select * from TCuentaBan
 
+insert TEmpTransp (nombre,ruc,dir,fono,contacto) values ('','','','') --1 para sin transporte
+GO
+--select * from TEmpTransp
+
+insert TClasifPago (clasif) values ('') --1 sin clasificacion
+insert TClasifPago (clasif) values ('PROVEEDORES') --2
+insert TClasifPago (clasif) values ('HABERES') --3
+insert TClasifPago (clasif) values ('CTS') --4
+GO
+-- select * from TClasifPago
 --*****************************************************
 --------------------FIN DE SCRIPT----------------------
 --*****************************************************

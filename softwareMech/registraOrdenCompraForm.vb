@@ -607,6 +607,14 @@ Public Class registraOrdenCompraForm
         Return cmdCampo.ExecuteScalar
     End Function
 
+    Private Function recuperarCount1(ByVal cod As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select count(*) from TDesOrden where nroOrden=" & cod
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
     Private Sub btnElimina_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnElimina.Click
         If BindingSource6.Position = -1 Then
             StatusBarClass.messageBarraEstado("  No existe registro a eliminar...")
@@ -620,6 +628,11 @@ Public Class registraOrdenCompraForm
 
         If (recuperarCount(BindingSource6.Item(BindingSource6.Position)(0)) > 0) Then
             StatusBarClass.messageBarraEstado("  PROCESO DENEGADO, Orden de Compra tiene registros en detalle orden...")
+            Exit Sub
+        End If
+
+        If (recuperarCount1(BindingSource6.Item(BindingSource6.Position)(0)) > 0) Then
+            StatusBarClass.messageBarraEstado("  PROCESO DENEGADO, Orden de Compra tiene enlazado Orden de Desembolso...")
             Exit Sub
         End If
 

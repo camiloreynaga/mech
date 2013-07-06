@@ -56,12 +56,14 @@ create table TIdentidad
 	estado int, 	--1=Activo 0=Inactivo
 	idTipId int,
 	cuentaBan varchar(60) default '',
+	cuentaDet varchar(60) default '',
 	foreign key(idTipId) references TTipoIdent
 )
---select * from TLugarTrabajo
+--select * from TIdentidad
 --aumentar campos a la estructura de nuestra base de datos
---ALTER TABLE TIdentidad ADD cuentaBan varchar(60) default ''
---update TIdentidad set cuentaBan=''
+--ALTER TABLE TIdentidad ADD cuentaDet varchar(60) default ''
+--update TIdentidad set cuentaDet=''
+
 --LUGARES DE TRABAJO. OBRAS O SEDES
 create table TLugarTrabajo
 (	codigo varchar(10) primary key,  
@@ -181,8 +183,11 @@ create table TDetalleCompra
 -- EMPRESA DE TRANSPORTES
 create table TEmpTransp
 (	codET int identity primary key, 
-	nombre varchar(50),
-	ruc varchar(11)
+	nombre varchar(60),
+	ruc varchar(11),
+	dir varchar(120),
+	fono varchar(60),
+	contacto varchar(60)
 )
 -- VEHICULO QUE REALIZA TRANSPORTE
 create table TVehiculo
@@ -381,6 +386,7 @@ create table TOrdenCompra
 	codigo varchar(10), -- codLugar obra
 	lugarEnt varchar(100),
 	hist varchar(200),
+	codET int default 1,  -- TRANSPORTE
 	foreign key(codIde) references TIdentidad,
 	foreign key(codPers) references TPersonal,
 	foreign key(codPag) references TFormaPago,
@@ -388,6 +394,10 @@ create table TOrdenCompra
 	foreign key(codigo) references TLugarTrabajo
 )
 --select * from TOrdenCompra
+--aumentar campos a la estructura de nuestra base de datos
+--ALTER TABLE TOrdenCompra ADD codET int default 1
+--update TOrdenCompra set codET=1
+
 create table TDetalleOrden
 (	codDetO int identity(1,1) primary key,
 	cant decimal(8,2),
@@ -409,7 +419,6 @@ create table TOrdenGuia
 	foreign key(codGuia) references TGuiaRemision
 )
 
-----------NUEVO 18/05/2013--------------------
 -- TABLA INTERMEDIA DE ORNDE DE COMPRA DESEMBOLSO
 
 create table TOrdenDesembolso
@@ -424,31 +433,36 @@ create table TOrdenDesembolso
 	estado int,	--0=pendiente,1=terminado,2=cerrado 3=anulado
 	codigo varchar(10), -- codLugar obra
 	codIde int,
-	banco varchar(30),
+	banco varchar(60),
 	nroCta varchar(50), --proveedor
 	nroDet varchar(30), --nro detraccion
 	datoReq varchar(200), -- descripcion de requerimiento si no tiene orden de compra
 	factCheck int, -- 0 1
-	nroFact varchar(20),
 	bolCheck int, -- 0 1
-	nroBol varchar(20),
 	guiaCheck int, -- 0 1
-	nroGuia varchar(20),
 	vouCheck int, -- 0 1
-	nroVou varchar(20),
 	vouDCheck int, -- 0 1
-	nroVouD varchar(20),
 	reciCheck int, -- 0 1
-	nroReci varchar(20),
 	otroCheck int, -- 0 1
 	descOtro varchar(60), --descripcion de otro tipo de doc
 	nroConfor varchar(30), --Nro de comprobante conformidad
 	fecEnt varchar(10), --fecha de entrega
 	hist varchar(200),
+	codSerO int default 1,  --Codigo de serie de orden de desembolso
 	foreign key(codMon) references TMoneda,
 	foreign key(codigo) references TLugarTrabajo,
 	foreign key(codIde) references TIdentidad
-)
+) 
+
+--- select * from TOrdenDesembolso
+--MODIFICAR TIPO de DATOS campos a la estructura de nuestra base de datos
+--ALTER TABLE TOrdenDesembolso ALTER COLUMN banco varchar(60)
+
+--select * from TOrdenDesembolso
+--aumentar campos a la estructura de nuestra base de datos
+--ALTER TABLE TOrdenDesembolso ADD codSerO int default 1
+--update TOrdenDesembolso set codSerO=1
+
 -- TABLA INTERMEDIA ORDEN DE COMPRA POR DESEMBOLSO
 create table TDesOrden
 (	nroDO int identity(1,1) primary key,
@@ -472,19 +486,29 @@ create table TPersDesem
 
 create table TTipoPago
 (	codTipP int identity(1,1) primary key,	
-	tipoP varchar(30)  --Tranferencia, cheque, efectivo	
+	tipoP varchar(100),  --Tranferencia, cheque, efectivo	
+	nro varchar(10)
+)	
+
+create table TClasifPago
+(	codCla int identity(1,1) primary key,	
+	clasif varchar(20)  --Proveedores, Haberes CTS	
 )	
 
 create table TPagoDesembolso
 (	codPagD int identity(1,1) primary key,
 	fecPago date,
 	codTipP int,
+	nroP varchar(20),  --nro cheque operacion bancaria
 	pagoDet varchar(100), --descripcion de la transferecia, cheque  
+	codCla int,
 	codMon int,
 	montoPago decimal(10,2), --monto total desembolso
+	montoD decimal(10,2), --monto detraccion
 	idOP int,
 	idCue int default 0,  --cuenta banco  0=sin cuenta
 	foreign key(codTipP) references TTipoPago,
+	foreign key(codCla) references TClasifPago,
 	foreign key(codMon) references TMoneda,
 	foreign key(idOP) references TOrdenDesembolso
 )
@@ -504,6 +528,24 @@ create table TCuentaBan
 	foreign key(codBan) references TBanco
 )
 
+----------------------------------------------
+----------EJECUTAR 25/06/2013--------------------
+---------------------------------------------
+create table TSerieOrden
+(	codSerO int identity primary key, 
+	serie varchar(10) default '001',
+	iniNroDoc int,
+	descrip varchar(40),
+	estado int 	--1=Activo 0=Inactivo
+)
+
+create table TSeriePers
+(	codSP int identity primary key,
+	codPers int,	
+	codSerO int,
+	foreign key(codPers) references TPersonal,
+	foreign key(codSerO) references TSerieOrden
+)
 
 --*****************************************************
 --------------------FIN DE SCRIPT----------------------
@@ -543,5 +585,7 @@ create table TCuentaBan
 --Estado: 0=Abierto 1=Cerrado, controla si la solicitud se le pueden registrar insumos.
 --EstDet: 0=Abierto 1=Cerrado, controla si la solicitud para a ser historica o si aún tiene ítems pendientes de compra.
 
-
+-- TSerieOrden 
+--*************************
+--ESTADO: 0=INACTIVO 1=ACTIVO
 

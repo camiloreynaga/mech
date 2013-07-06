@@ -305,7 +305,7 @@ Public Class pantallaInicialForm
     End Sub
 
     Private Sub opcCot1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCot1.Click
-        Dim cot As New registraCotizacionForm
+        Dim cot As New registraCotizacion1Form
         cot.MdiParent = Me
         cot.Show()
     End Sub
@@ -329,7 +329,7 @@ Public Class pantallaInicialForm
     End Sub
 
     Private Sub opcOrdDes1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDes1.Click
-        Dim mant As New MantOrdenDesembolsoForm
+        Dim mant As New MantOrdenDesembolsoForm1
         mant.MdiParent = Me
         mant.Show()
     End Sub
@@ -396,10 +396,9 @@ Public Class pantallaInicialForm
 
     End Sub
 
-    Private Sub SeguimientoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SeguimientoToolStripMenuItem.Click
-        Dim Seg As New SeguimientoOrdenDesembolsoForm
-        Seg.MdiParent = Me
-        Seg.Show()
-
+    Private Sub SeguimientoDesembolsosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SeguimientoDesembolsosToolStripMenuItem.Click
+        Dim ODesem As New SeguimientoOrdenDesembolsoForm
+        ODesem.MdiParent = Me
+        ODesem.Show()
     End Sub
 End Class

@@ -21,7 +21,7 @@ Public Class tesoreriaOrdenDesembolsoForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select idOP,estApro,nom,fecDes,serie,nro,simbolo,monto,montoDet,razon,nombre,hist,estDesem,codPersDes,estado,codMon,datoReq from VOrdenDesemTesoreria" 'order by idOP
+        Dim sele As String = "select idOP,fecDes,serie,nro,simbolo,monto,montoDet,montoDif,nombre,estApro,nom,datoReq,ruc,razon,banco,nroCta,nroDet,hist,estDesem,codPersDes,estado,codMon from VOrdenDesemTesoreria" 'order by idOP
         crearDataAdapterTable(daTabla1, sele)
         'daTabla1.SelectCommand.Parameters.Add("@ser", SqlDbType.VarChar, 5).Value = vSerie
 
@@ -81,6 +81,13 @@ Public Class tesoreriaOrdenDesembolsoForm
 
             configurarColorControl()
 
+            txtProv.DataBindings.Add("Text", BindingSource1, "razon")
+            txtRuc.DataBindings.Add("Text", BindingSource1, "ruc")
+            txtForma.DataBindings.Add("Text", BindingSource1, "banco")
+            txtNC.DataBindings.Add("Text", BindingSource1, "nroCta")
+            txtND.DataBindings.Add("Text", BindingSource1, "nroDet")
+            txtMot.DataBindings.Add("Text", BindingSource1, "datoReq")
+
             vfVan1 = True
             visualizarDet()
 
@@ -97,6 +104,27 @@ Public Class tesoreriaOrdenDesembolsoForm
 
     Private Sub tesoreriaOrdenDesembolsoForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         colorearFila()
+        calcularTotales()
+        BindingSource1.MoveLast()
+    End Sub
+
+    Private Sub calcularTotales()
+        MsgBox(BindingSource1.Position)
+        If BindingSource1.Position = -1 Then
+            txtTotal0.Text = "0.00"
+            txtTotal1.Text = "0.00"
+            txtTotal2.Text = "0.00"
+            txtTotal3.Text = "0.00"
+            Exit Sub
+        End If
+        Try
+            txtTotal0.Text = dsAlmacen.Tables("VOrdenDesemTesoreria").Compute("Sum(monto)", "codMon=30").ToString()  '30=soles
+            txtTotal1.Text = dsAlmacen.Tables("VOrdenDesemTesoreria").Compute("Sum(monto)", "codMon=35").ToString()  '35=dolares
+            txtTotal2.Text = dsAlmacen.Tables("VOrdenDesemTesoreria").Compute("Sum(montoDet)", "codMon=30").ToString()  '30=soles
+            txtTotal3.Text = dsAlmacen.Tables("VOrdenDesemTesoreria").Compute("Sum(montoDet)", "codMon=35").ToString()  '35=dolares
+        Catch f As Exception
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub cbCue_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCue.SelectedIndexChanged
@@ -106,55 +134,61 @@ Public Class tesoreriaOrdenDesembolsoForm
 
     Private Sub colorearFila()
         For j As Short = 0 To BindingSource1.Count - 1
-            If BindingSource1.Item(j)(12) = 1 Then 'Aprobado
-                dgTabla1.Rows(j).Cells(1).Style.BackColor = Color.Green 'Color.YellowGreen
-                dgTabla1.Rows(j).Cells(1).Style.ForeColor = Color.White
+            If BindingSource1.Item(j)(18) = 1 Then 'Aprobado
+                dgTabla1.Rows(j).Cells(9).Style.BackColor = Color.Green 'Color.YellowGreen
+                dgTabla1.Rows(j).Cells(9).Style.ForeColor = Color.White
             End If
-            If BindingSource1.Item(j)(12) = 2 Then 'Observado
-                dgTabla1.Rows(j).Cells(1).Style.BackColor = Color.Yellow
-                dgTabla1.Rows(j).Cells(1).Style.ForeColor = Color.Red
+            If BindingSource1.Item(j)(18) = 2 Then 'Observado
+                dgTabla1.Rows(j).Cells(9).Style.BackColor = Color.Yellow
+                dgTabla1.Rows(j).Cells(9).Style.ForeColor = Color.Red
             End If
-            If BindingSource1.Item(j)(12) = 3 Then 'Rechazado
-                dgTabla1.Rows(j).Cells(1).Style.BackColor = Color.Red
-                dgTabla1.Rows(j).Cells(1).Style.ForeColor = Color.White
+            If BindingSource1.Item(j)(18) = 3 Then 'Rechazado
+                dgTabla1.Rows(j).Cells(9).Style.BackColor = Color.Red
+                dgTabla1.Rows(j).Cells(9).Style.ForeColor = Color.White
             End If
+            dgTabla1.Rows(j).Cells(5).Style.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Next
     End Sub
 
     Private Sub ModificarColumnasDGV()
         With dgTabla1
             .Columns(0).Visible = False
-            .Columns(1).Width = 80
-            .Columns(1).HeaderText = "Estado"
-            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns(2).Width = 100
-            .Columns(2).HeaderText = "Aprobo"
-            .Columns(3).Width = 70
-            .Columns(3).HeaderText = "Fecha"
-            .Columns(4).HeaderText = "Serie"
-            .Columns(4).Width = 40
-            .Columns(5).HeaderText = "NºOrden"
-            .Columns(5).Width = 50
-            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns(6).HeaderText = ""
-            .Columns(6).Width = 30
+            .Columns(1).Width = 70
+            .Columns(1).HeaderText = "Fecha"
+            .Columns(2).HeaderText = "Serie"
+            .Columns(2).Width = 40
+            .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(3).HeaderText = "NºOrden"
+            .Columns(3).Width = 50
+            .Columns(4).HeaderText = ""
+            .Columns(4).Width = 30
+            .Columns(5).Width = 80
+            .Columns(5).HeaderText = "Monto"
+            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(6).Width = 70
+            .Columns(6).HeaderText = "Detracción"
+            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(7).Width = 75
-            .Columns(7).HeaderText = "Monto"
-            .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns(8).Width = 75
-            .Columns(8).HeaderText = "Detracción"
-            .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns(9).Width = 140
-            .Columns(9).HeaderText = "Proveedor"
-            .Columns(10).Width = 160
-            .Columns(10).HeaderText = "Lugar / Obra"
-            .Columns(11).Width = 400
-            .Columns(11).HeaderText = ""
+            .Columns(7).HeaderText = "Monto_Dif."
+            .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(8).Width = 235
+            .Columns(8).HeaderText = "Lugar / Obra"
+            .Columns(9).Width = 70
+            .Columns(9).HeaderText = "Estado"
+            .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(10).Width = 110
+            .Columns(10).HeaderText = "Aprobo"
+            .Columns(11).Visible = False
             .Columns(12).Visible = False
             .Columns(13).Visible = False
             .Columns(14).Visible = False
             .Columns(15).Visible = False
             .Columns(16).Visible = False
+            .Columns(17).Visible = False
+            .Columns(18).Visible = False
+            .Columns(19).Visible = False
+            .Columns(20).Visible = False
+            .Columns(21).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -198,6 +232,12 @@ Public Class tesoreriaOrdenDesembolsoForm
         Label5.ForeColor = ForeColorLabel
         Label6.ForeColor = ForeColorLabel
         Label7.ForeColor = ForeColorLabel
+        Label8.ForeColor = ForeColorLabel
+        Label9.ForeColor = ForeColorLabel
+        Label10.ForeColor = ForeColorLabel
+        Label11.ForeColor = ForeColorLabel
+        Label12.ForeColor = ForeColorLabel
+        Label13.ForeColor = ForeColorLabel
         btnNuevo.ForeColor = ForeColorButtom
         btnModificar.ForeColor = ForeColorButtom
         btnCancelar.ForeColor = ForeColorButtom
