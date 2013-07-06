@@ -24,6 +24,8 @@ Partial Class gerenciaOrdenDesembolsoForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(gerenciaOrdenDesembolsoForm))
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
+        Me.txtReq = New System.Windows.Forms.TextBox
+        Me.Label4 = New System.Windows.Forms.Label
         Me.dgTabla1 = New System.Windows.Forms.DataGridView
         Me.btnCerrar = New System.Windows.Forms.Button
         Me.Navigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
@@ -58,8 +60,10 @@ Partial Class gerenciaOrdenDesembolsoForm
         Me.txtLetraTotal = New System.Windows.Forms.TextBox
         Me.dgTabla2 = New System.Windows.Forms.DataGridView
         Me.Label2 = New System.Windows.Forms.Label
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.txtReq = New System.Windows.Forms.TextBox
+        Me.txtTotalSoles = New System.Windows.Forms.TextBox
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.Label7 = New System.Windows.Forms.Label
+        Me.txtTotalDolares = New System.Windows.Forms.TextBox
         Me.Panel1.SuspendLayout()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,8 +85,10 @@ Partial Class gerenciaOrdenDesembolsoForm
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.txtReq)
-        Me.Panel1.Controls.Add(Me.Label4)
+        Me.Panel1.Controls.Add(Me.txtTotalDolares)
+        Me.Panel1.Controls.Add(Me.Label7)
+        Me.Panel1.Controls.Add(Me.txtTotalSoles)
+        Me.Panel1.Controls.Add(Me.Label6)
         Me.Panel1.Controls.Add(Me.dgTabla1)
         Me.Panel1.Controls.Add(Me.btnCerrar)
         Me.Panel1.Controls.Add(Me.Navigator1)
@@ -91,6 +97,22 @@ Partial Class gerenciaOrdenDesembolsoForm
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(892, 321)
         Me.Panel1.TabIndex = 3
+        '
+        'txtReq
+        '
+        Me.txtReq.Location = New System.Drawing.Point(451, 3)
+        Me.txtReq.Name = "txtReq"
+        Me.txtReq.Size = New System.Drawing.Size(429, 20)
+        Me.txtReq.TabIndex = 6
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(339, 6)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(92, 13)
+        Me.Label4.TabIndex = 5
+        Me.Label4.Text = "Requerimiento:"
         '
         'dgTabla1
         '
@@ -219,6 +241,8 @@ Partial Class gerenciaOrdenDesembolsoForm
         'Panel2
         '
         Me.Panel2.Controls.Add(Me.Navigator2)
+        Me.Panel2.Controls.Add(Me.Label4)
+        Me.Panel2.Controls.Add(Me.txtReq)
         Me.Panel2.Controls.Add(Me.Label3)
         Me.Panel2.Controls.Add(Me.txtIGV)
         Me.Panel2.Controls.Add(Me.txtSub)
@@ -335,7 +359,7 @@ Partial Class gerenciaOrdenDesembolsoForm
         Me.txtTotal.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotal.Name = "txtTotal"
         Me.txtTotal.Size = New System.Drawing.Size(80, 25)
-        Me.txtTotal.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtTotal.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lblTotal
         '
@@ -348,11 +372,11 @@ Partial Class gerenciaOrdenDesembolsoForm
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(566, 266)
+        Me.Label3.Location = New System.Drawing.Point(590, 268)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(62, 13)
+        Me.Label3.Size = New System.Drawing.Size(40, 13)
         Me.Label3.TabIndex = 325
-        Me.Label3.Text = "Sin I.G.V."
+        Me.Label3.Text = "I.G.V."
         '
         'txtIGV
         '
@@ -362,7 +386,7 @@ Partial Class gerenciaOrdenDesembolsoForm
         Me.txtIGV.Size = New System.Drawing.Size(79, 20)
         Me.txtIGV.TabIndex = 323
         Me.txtIGV.TabStop = False
-        Me.txtIGV.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtIGV.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtSub
         '
@@ -372,12 +396,12 @@ Partial Class gerenciaOrdenDesembolsoForm
         Me.txtSub.Size = New System.Drawing.Size(79, 20)
         Me.txtSub.TabIndex = 322
         Me.txtSub.TabStop = False
-        Me.txtSub.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtSub.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(554, 245)
+        Me.Label5.Location = New System.Drawing.Point(555, 247)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(76, 13)
         Me.Label5.TabIndex = 321
@@ -399,38 +423,56 @@ Partial Class gerenciaOrdenDesembolsoForm
         Me.dgTabla2.AllowUserToAddRows = False
         Me.dgTabla2.AllowUserToDeleteRows = False
         Me.dgTabla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgTabla2.Location = New System.Drawing.Point(2, 18)
+        Me.dgTabla2.Location = New System.Drawing.Point(2, 25)
         Me.dgTabla2.Name = "dgTabla2"
         Me.dgTabla2.ReadOnly = True
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle2
-        Me.dgTabla2.Size = New System.Drawing.Size(890, 224)
+        Me.dgTabla2.Size = New System.Drawing.Size(890, 217)
         Me.dgTabla2.TabIndex = 320
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(3, 2)
+        Me.Label2.Location = New System.Drawing.Point(6, 9)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(171, 13)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Detalle de Orden de Compra:"
         '
-        'Label4
+        'txtTotalSoles
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(214, 302)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(92, 13)
-        Me.Label4.TabIndex = 5
-        Me.Label4.Text = "Requerimiento:"
+        Me.txtTotalSoles.Location = New System.Drawing.Point(312, 298)
+        Me.txtTotalSoles.Name = "txtTotalSoles"
+        Me.txtTotalSoles.Size = New System.Drawing.Size(120, 20)
+        Me.txtTotalSoles.TabIndex = 333
+        Me.txtTotalSoles.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'txtReq
+        'Label6
         '
-        Me.txtReq.Location = New System.Drawing.Point(302, 299)
-        Me.txtReq.Name = "txtReq"
-        Me.txtReq.Size = New System.Drawing.Size(590, 20)
-        Me.txtReq.TabIndex = 6
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(244, 301)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(62, 13)
+        Me.Label6.TabIndex = 5
+        Me.Label6.Text = "Total S/.:"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(448, 301)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(77, 13)
+        Me.Label7.TabIndex = 5
+        Me.Label7.Text = "Total $USD:"
+        '
+        'txtTotalDolares
+        '
+        Me.txtTotalDolares.Location = New System.Drawing.Point(531, 299)
+        Me.txtTotalDolares.Name = "txtTotalDolares"
+        Me.txtTotalDolares.Size = New System.Drawing.Size(120, 20)
+        Me.txtTotalDolares.TabIndex = 333
+        Me.txtTotalDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'gerenciaOrdenDesembolsoForm
         '
@@ -497,5 +539,9 @@ Partial Class gerenciaOrdenDesembolsoForm
     Friend WithEvents txtReq As System.Windows.Forms.TextBox
     Friend WithEvents btnCerrar As System.Windows.Forms.Button
     Friend WithEvents dgTabla1 As System.Windows.Forms.DataGridView
+    Friend WithEvents txtTotalSoles As System.Windows.Forms.TextBox
+    Friend WithEvents txtTotalDolares As System.Windows.Forms.TextBox
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents Label6 As System.Windows.Forms.Label
 
 End Class

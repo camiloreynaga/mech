@@ -26,6 +26,7 @@ Partial Class ReportViewerOrdenCompraForm
         Me.CReportViewer = New CrystalDecisions.Windows.Forms.CrystalReportViewer
         Me.VOrdenDetOrdenTableAdapter1 = New softwareMech.DataSetAlmacenTableAdapters.VOrdenDetOrdenTableAdapter
         Me.DataSetAlmacen1 = New softwareMech.DataSetAlmacen
+        Me.Button1 = New System.Windows.Forms.Button
         CType(Me.DataSetAlmacen1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -37,7 +38,7 @@ Partial Class ReportViewerOrdenCompraForm
         Me.CReportViewer.Location = New System.Drawing.Point(0, 0)
         Me.CReportViewer.Name = "CReportViewer"
         Me.CReportViewer.SelectionFormula = ""
-        Me.CReportViewer.Size = New System.Drawing.Size(284, 262)
+        Me.CReportViewer.Size = New System.Drawing.Size(458, 311)
         Me.CReportViewer.TabIndex = 2
         Me.CReportViewer.ViewTimeSelectionFormula = ""
         '
@@ -50,11 +51,24 @@ Partial Class ReportViewerOrdenCompraForm
         Me.DataSetAlmacen1.DataSetName = "DataSetAlmacen"
         Me.DataSetAlmacen1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
+        Me.Button1.Location = New System.Drawing.Point(350, 3)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(53, 25)
+        Me.Button1.TabIndex = 3
+        Me.Button1.Text = "PDF"
+        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'ReportViewerOrdenCompraForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 262)
+        Me.ClientSize = New System.Drawing.Size(458, 311)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.CReportViewer)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -72,4 +86,5 @@ Partial Class ReportViewerOrdenCompraForm
     Friend WithEvents CReportViewer As CrystalDecisions.Windows.Forms.CrystalReportViewer
     Friend WithEvents VOrdenDetOrdenTableAdapter1 As softwareMech.DataSetAlmacenTableAdapters.VOrdenDetOrdenTableAdapter
     Friend WithEvents DataSetAlmacen1 As softwareMech.DataSetAlmacen
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

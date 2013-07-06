@@ -18,7 +18,7 @@ Public Class gerenciaOrdenDesembolsoForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select idOP,estApro,fecDes,serie,nro,simbolo,monto,razon,nom,obserDesem,est,nombre,hist,estDesem,codPersDes,estado,codMon,datoReq from VOrdenDesemGerencia where estDesem in(0,2)" '0=Pendiente 2=Observado
+        Dim sele As String = "select idOP,estApro,fecDes,serie,nro,simbolo,monto,razon,nom,obserDesem,est,nombre,hist,estDesem,codPersDes,estado,codMon,datoReq from VOrdenDesemGerencia where estDesem in(0,2) and estado=0" '0=Pendiente 2=Observado
         crearDataAdapterTable(daTabla1, sele)
         'daTabla1.SelectCommand.Parameters.Add("@ser", SqlDbType.VarChar, 5).Value = vSerie
 
@@ -72,6 +72,7 @@ Public Class gerenciaOrdenDesembolsoForm
 
     Private Sub gerenciaOrdenDesembolsoForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         colorearFila()
+        calcularTotales()
     End Sub
 
     Private Sub colorearFila()
@@ -91,75 +92,146 @@ Public Class gerenciaOrdenDesembolsoForm
         Next
     End Sub
 
+    ''' <summary>
+    ''' customiza la Grilla
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub ModificarColumnasDGV()
         With dgTabla1
-            .Columns(0).Visible = False
-            .Columns(1).Width = 80
-            .Columns(1).HeaderText = "Estado"
-            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns(2).Width = 70
-            .Columns(2).HeaderText = "Fecha"
-            .Columns(3).HeaderText = "Serie"
-            .Columns(3).Width = 40
-            .Columns(4).HeaderText = "NºOrden"
-            .Columns(4).Width = 50
-            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns(5).HeaderText = ""
-            .Columns(5).Width = 30
-            .Columns(6).Width = 75
-            .Columns(6).HeaderText = "Monto"
-            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns(7).Width = 140
-            .Columns(7).HeaderText = "Proveedor"
-            .Columns(8).Width = 100
-            .Columns(8).HeaderText = "Gerente"
-            .Columns(9).Width = 160
-            .Columns(9).HeaderText = "Observación"
-            .Columns(10).Width = 70
-            .Columns(10).HeaderText = "Est.Orden"
-            .Columns(11).Width = 160
-            .Columns(11).HeaderText = "Lugar / Obra"
-            .Columns(12).Width = 300
-            .Columns(12).HeaderText = ""
-            .Columns(13).Visible = False
-            .Columns(14).Visible = False
-            .Columns(15).Visible = False
-            .Columns(16).Visible = False
-            .Columns(17).Visible = False
+            'idOP(0)
+            .Columns("idOP").Visible = False
+            'estApro 1 
+            .Columns("estApro").Width = 80
+            .Columns("estApro").HeaderText = "Estado"
+            .Columns("estApro").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            'fecDes 2
+            .Columns("fecDes").Width = 70
+            .Columns("fecDes").HeaderText = "Fecha"
+            'serie 3
+            .Columns("serie").HeaderText = "Serie"
+            .Columns("serie").Width = 40
+            .Columns("serie").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            'nro 4
+            .Columns("nro").HeaderText = "NºOrden"
+            .Columns("nro").Width = 50
+            .Columns("nro").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            'simbolo 5
+            .Columns("simbolo").HeaderText = ""
+            .Columns("simbolo").Width = 30
+            'monto 6
+            .Columns("monto").Width = 75
+            .Columns("monto").HeaderText = "Monto"
+
+            .Columns("monto").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns("monto").DefaultCellStyle.Format = "N2"
+
+            'razon 7
+            .Columns("razon").Width = 140
+            .Columns("razon").HeaderText = "Proveedor"
+            'nom 8
+            .Columns("nom").Width = 100
+            .Columns("nom").HeaderText = "Gerente"
+            'obserDesem 9
+            .Columns("obserDesem").Width = 160
+            .Columns("obserDesem").HeaderText = "Observación"
+            'est 10
+            .Columns("est").Width = 70
+            .Columns("est").HeaderText = "Est.Orden"
+            'nombre 11
+            .Columns("nombre").Width = 160
+            .Columns("nombre").HeaderText = "Lugar / Obra"
+            'hist 12
+            .Columns("hist").Width = 300
+            .Columns("hist").HeaderText = ""
+            'estDesem 13
+            .Columns("estDesem").Visible = False
+            'codPersDes 14
+            .Columns("codPersDes").Visible = False
+            'estado 15
+            .Columns("estado").Visible = False
+
+            .Columns("est").Visible = False
+            'codMon 16
+            .Columns("codMon").Visible = False
+            'datoReq 17
+            .Columns("datoReq").Visible = False
+
+            'Orden en que se muestra las Columnas de la Grilla
+
+            'estApro 1 
+            .Columns("estApro").DisplayIndex = 0
+            'fecDes 2
+            .Columns("fecDes").DisplayIndex = 1
+
+            .Columns("simbolo").DisplayIndex = 2
+            .Columns("simbolo").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            'monto 6
+            .Columns("monto").DisplayIndex = 3
+            'razon 7
+            .Columns("nombre").DisplayIndex = 4
+            .Columns("razon").DisplayIndex = 5
+            .Columns("serie").DisplayIndex = 6
+            .Columns("nro").DisplayIndex = 7
+            .Columns("nom").DisplayIndex = 8
+            .Columns("obserDesem").DisplayIndex = 9
+            .Columns("hist").DisplayIndex = 11
+           
+
+
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .RowHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
         End With
         With dgTabla2
+            'codDetO
             .Columns(0).Visible = False
+
+            'cant
             .Columns(1).Width = 50
             .Columns(1).HeaderText = "Cant."
-            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns("cant").DefaultCellStyle.Format = "N2"
+            'unidad
             .Columns(2).Width = 50
-            .Columns(2).HeaderText = "Unid."
+            .Columns(2).HeaderText = "Und."
+            'descrip
             .Columns(3).HeaderText = "Descripción Insumo"
             .Columns(3).Width = 417
+            'precio
             .Columns(4).Width = 75
-            .Columns(4).HeaderText = "Prec_Unit"
-            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(4).HeaderText = "P.U."
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns("precio").DefaultCellStyle.Format = "N2"
+            'subTotal
             .Columns(5).Width = 75
             .Columns(5).HeaderText = "Total"
-            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns("subTotal").DefaultCellStyle.Format = "N2"
+            'dias
             .Columns(6).Width = 40
             .Columns(6).HeaderText = "Dias"
-            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomRight
+            'fecOrden
             .Columns(7).Width = 70
-            .Columns(7).HeaderText = "Fec_Orden"
+            .Columns(7).HeaderText = "Fecha Orden"
+            'nro
             .Columns(8).Width = 50
-            .Columns(8).HeaderText = "NºOrden"
-            .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(8).HeaderText = "Nº Orden"
+            .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            'nroOrden
             .Columns(9).Visible = False
+            'igv
             .Columns(10).Visible = False
+            'calIGV
             .Columns(11).Visible = False
+            'codMon
             .Columns(12).Visible = False
+            'simbolo
             .Columns(13).Visible = False
+            'idOP
             .Columns(14).Visible = False
+            'idSol
             .Columns(15).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
@@ -168,6 +240,10 @@ Public Class gerenciaOrdenDesembolsoForm
         End With
     End Sub
 
+    ''' <summary>
+    ''' Configura los colores para el form
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub configurarColorControl()
         Me.BackColor = BackColorP
         Me.lblTitulo.BackColor = TituloBackColorP
@@ -188,6 +264,10 @@ Public Class gerenciaOrdenDesembolsoForm
     End Sub
 
     Dim vfVan1 As Boolean = False
+    ''' <summary>
+    ''' Muestra el detalle
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub visualizarDet()
         If vfVan1 Then
             If BindingSource1.Position = -1 Then
@@ -209,7 +289,18 @@ Public Class gerenciaOrdenDesembolsoForm
         Me.Close()
     End Sub
 
+    Private Sub calcularTotales()
+
+        txtTotalSoles.Text = Format((dsAlmacen.Tables("VOrdenDesemGerencia").Compute("Sum(monto)", "codMon=30")), "0,0.00").ToString()
+        txtTotalDolares.Text = Format((dsAlmacen.Tables("VOrdenDesemGerencia").Compute("Sum(monto)", "codMon=35")), "0,0.00").ToString()
+
+    End Sub
+
     Dim vfIGV As Double = vSIGV
+    ''' <summary>
+    ''' Calcular el Subtotal
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub calcularSubTotal()
         If BindingSource2.Position = -1 Then
             txtTotal.Text = ""
@@ -222,13 +313,13 @@ Public Class gerenciaOrdenDesembolsoForm
         vfIGV = BindingSource2.Item(BindingSource2.Position)(10)
 
         If BindingSource2.Item(BindingSource2.Position)(11) = 1 Then  'tipo 1
-            txtTotal.Text = Format((dsAlmacen.Tables("VOrdenCompraDetalle").Compute("Sum(subTotal)", Nothing)), "0.00")
-            txtIGV.Text = Format(((txtTotal.Text * vfIGV) / (100 + vfIGV)), "0.00")
-            txtSub.Text = Format((txtTotal.Text - txtIGV.Text), "0.00")
+            txtTotal.Text = Format((dsAlmacen.Tables("VOrdenCompraDetalle").Compute("Sum(subTotal)", Nothing)), "0,0.00")
+            txtIGV.Text = Format(((txtTotal.Text * vfIGV) / (100 + vfIGV)), "0,0.00")
+            txtSub.Text = Format((txtTotal.Text - txtIGV.Text), "0,0.00")
         Else  'Tipo 2
-            txtSub.Text = Format((dsAlmacen.Tables("VOrdenCompraDetalle").Compute("Sum(subTotal)", Nothing)), "0.00")
-            txtIGV.Text = Format((txtSub.Text * vfIGV) / 100, "0.00")
-            txtTotal.Text = Format((CDbl(txtSub.Text) + CDbl(txtIGV.Text)), "0.00")
+            txtSub.Text = Format((dsAlmacen.Tables("VOrdenCompraDetalle").Compute("Sum(subTotal)", Nothing)), "0,0.00")
+            txtIGV.Text = Format((txtSub.Text * vfIGV) / 100, "0,0.00")
+            txtTotal.Text = Format((CDbl(txtSub.Text) + CDbl(txtIGV.Text)), "0,0.00")
         End If
         lblTotal.Text = "TOTAL  " & BindingSource2.Item(BindingSource2.Position)(13) 'cbMoneda.Text.Trim()
         cambiarNroTotalLetra()
@@ -584,4 +675,10 @@ Public Class gerenciaOrdenDesembolsoForm
             End If
         End Try
     End Sub
+
+    Private Sub dgTabla1_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla1.CellClick
+        'dgTabla1.CurrentCell.ColumnIndex
+    End Sub
+
+   
 End Class

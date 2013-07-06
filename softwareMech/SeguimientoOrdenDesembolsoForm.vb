@@ -133,6 +133,8 @@ Public Class SeguimientoOrdenDesembolsoForm
                 .Columns("montoPago").HeaderText = "Monto"
                 .Columns("montoPago").DisplayIndex = 3
                 .Columns("montoPago").Width = 100
+                .Columns("montoPago").DefaultCellStyle.Format = "N2"
+                .Columns("montoPago").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 'Medio de PAgo
                 .Columns("tipoP").HeaderText = "Medio Pago"
                 .Columns("tipoP").DisplayIndex = 4
@@ -158,6 +160,10 @@ Public Class SeguimientoOrdenDesembolsoForm
                 'Monto de detracción
                 .Columns("montoD").HeaderText = "Detracción"
                 .Columns("montoD").Width = 200
+                .Columns("montoD").DefaultCellStyle.Format = "N2"
+                .Columns("montoD").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+
                 'numero Operacion /cheque
                 .Columns("nroP").HeaderText = "Nro"
                 .Columns("nroP").Width = 40
@@ -205,8 +211,15 @@ Public Class SeguimientoOrdenDesembolsoForm
             'Monto de Desembolso
             .Columns("monto").HeaderText = "Monto"
             .Columns("monto").DisplayIndex = 5
+            .Columns("monto").DefaultCellStyle.Format = "N2"
+            .Columns("monto").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            '.Columns("montoDet").DefaultCellStyle.Font
+
             'Monto de Detracción
             .Columns("montoDet").HeaderText = "Detracción"
+            .Columns("montoDet").DefaultCellStyle.Format = "N2"
+            .Columns("montoDet").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
             'Monto Diferencia 
             .Columns("montoDif").Visible = False
             'Obra 
@@ -215,7 +228,7 @@ Public Class SeguimientoOrdenDesembolsoForm
             'Proveedor
             .Columns("proveedor").HeaderText = "Proveedor"
             'Forma de pago negociada
-            .Columns("banco").HeaderText = "Forma de Pago"
+            .Columns("banco").HeaderText = "Forma_Pago"
             'Nro de cuenta del proveedor
             .Columns("nroCta").Visible = False
             'Nro de cuentra para Detracción del proveedor
@@ -247,6 +260,8 @@ Public Class SeguimientoOrdenDesembolsoForm
             .Columns("simbolo").HeaderText = ""
             .Columns("simbolo").DisplayIndex = 4
             .Columns("simbolo").Width = 40
+            .Columns("simbolo").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
             'Nombre de Solicitante
             .Columns("nombre").Visible = False
             .Columns("apellido").Visible = False
@@ -295,6 +310,11 @@ Public Class SeguimientoOrdenDesembolsoForm
             txtSolicitante.Text = BindingSource0.Item(BindingSource0.Position)(28) + " " + BindingSource0.Item(BindingSource0.Position)(29)
             txtMonto.Text = BindingSource0.Item(BindingSource0.Position)(27).ToString + " " + BindingSource0.Item(BindingSource0.Position)(7).ToString
             txtDetraccion.Text = BindingSource0.Item(BindingSource0.Position)(27).ToString + " " + BindingSource0.Item(BindingSource0.Position)(8).ToString
+
+            'txtMonto.Text = BindingSource0.Item(BindingSource0.Position)(7).ToString
+            'txtDetraccion.Text = BindingSource0.Item(BindingSource0.Position)(8).ToString
+
+
             txtFormaPago.Text = BindingSource0.Item(BindingSource0.Position)(12)
 
             'Datos específicos de desembolso
@@ -353,6 +373,9 @@ Public Class SeguimientoOrdenDesembolsoForm
                 chkOtros.Checked = False
             End If
 
+            '   oGrilla.FormatoContabilidad(txtMonto)
+            '  oGrilla.FormatoContabilidad(txtDetraccion)
+
         End If
     End Sub
 
@@ -376,6 +399,12 @@ Public Class SeguimientoOrdenDesembolsoForm
             txtClasifiPago.Text = BindingSource1.Item(BindingSource1.Position)(11)
 
         End If
+
+        'Dando formato a los números
+       
+        ' oGrilla.FormatoContabilidad(txtMontoPago)
+
+        'oGrilla.FormatoContabilidad(txtDetraccionPago)
 
     End Sub
 
@@ -402,6 +431,7 @@ Public Class SeguimientoOrdenDesembolsoForm
 
 
         oGrilla.configurarColorControl("Label", GroupBox2, ForeColorLabel)
+        
 
 
 

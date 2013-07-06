@@ -1,4 +1,6 @@
-﻿
+﻿Imports System.Globalization.CultureInfo
+Imports System
+Imports System.Collections
 
 Public Class cConfigFormControls
 
@@ -40,4 +42,20 @@ Public Class cConfigFormControls
 
 
     End Sub
+
+    ''' <summary>
+    ''' Da formato numerico Ej 1,200.00
+    ''' </summary>
+    ''' <param name="numero"></param>
+    ''' <remarks></remarks>
+    Public Sub FormatoContabilidad(ByVal numero As TextBox)
+
+        If String.IsNullOrEmpty(numero.Text) = False Then
+            Dim valor As Double = CDbl(numero.Text)
+            numero.Text = valor.ToString("0,0.00", System.Globalization.CultureInfo.InvariantCulture)
+            'Return numero
+        End If
+
+    End Sub
+
 End Class
