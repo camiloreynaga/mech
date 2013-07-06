@@ -7,6 +7,7 @@ Public Class tesoreriaOrdenDesembolsoForm
     Dim BindingSource2 As New BindingSource
     Dim BindingSource3 As New BindingSource
     Dim BindingSource4 As New BindingSource
+    Dim BindingSource5 As New BindingSource
 
     Private Sub tesoreriaOrdenDesembolsoForm_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
         Me.Close()
@@ -25,7 +26,7 @@ Public Class tesoreriaOrdenDesembolsoForm
         crearDataAdapterTable(daTabla1, sele)
         'daTabla1.SelectCommand.Parameters.Add("@ser", SqlDbType.VarChar, 5).Value = vSerie
 
-        sele = "select codPagD,fecPago,tipoP,pagoDet,simbolo,montoPago,codTipP,codMon,idOP,idCue from VPagoDesemTesoreria where idOP=@idOP"
+        sele = "select codPagD,fecPago,tipoP,nroP,pagoDet,simbolo,montoPago,montoD,clasif,codTipP,codMon,idOP,idCue,codCla from VPagoDesemTesoreria where idOP=@idOP"
         crearDataAdapterTable(daDetDoc, sele)
         daDetDoc.SelectCommand.Parameters.Add("@idOP", SqlDbType.Int, 0).Value = 0
 
@@ -38,6 +39,9 @@ Public Class tesoreriaOrdenDesembolsoForm
         sele = "select idCue,banmon,banco,nroCue,simbolo,moneda,codBan,codMon from VBancoCuenta order by banco,simbolo"
         crearDataAdapterTable(daTabla3, sele)
 
+        sele = "select codCla,clasif from TClasifPago"
+        crearDataAdapterTable(daTabla4, sele)
+
         Try
             'procedimiento para instanciar el dataSet - DatasetAlmacenModule.vb
             crearDSAlmacen()
@@ -47,6 +51,7 @@ Public Class tesoreriaOrdenDesembolsoForm
             daTMon.Fill(dsAlmacen, "TMoneda")
             daTabla2.Fill(dsAlmacen, "TTipoPago")
             daTabla3.Fill(dsAlmacen, "VBancoCuenta")
+            daTabla4.Fill(dsAlmacen, "TClasifPago")
 
             BindingSource1.DataSource = dsAlmacen
             BindingSource1.DataMember = "VOrdenDesemTesoreria"
@@ -79,6 +84,12 @@ Public Class tesoreriaOrdenDesembolsoForm
             cbCue.DisplayMember = "banmon"
             cbCue.ValueMember = "idCue"
 
+            BindingSource5.DataSource = dsAlmacen
+            BindingSource5.DataMember = "TClasifPago"
+            cbCla.DataSource = BindingSource5
+            cbCla.DisplayMember = "clasif"
+            cbCla.ValueMember = "codCla"
+
             configurarColorControl()
 
             txtProv.DataBindings.Add("Text", BindingSource1, "razon")
@@ -109,7 +120,6 @@ Public Class tesoreriaOrdenDesembolsoForm
     End Sub
 
     Private Sub calcularTotales()
-        MsgBox(BindingSource1.Position)
         If BindingSource1.Position = -1 Then
             txtTotal0.Text = "0.00"
             txtTotal1.Text = "0.00"
@@ -122,6 +132,12 @@ Public Class tesoreriaOrdenDesembolsoForm
             txtTotal1.Text = dsAlmacen.Tables("VOrdenDesemTesoreria").Compute("Sum(monto)", "codMon=35").ToString()  '35=dolares
             txtTotal2.Text = dsAlmacen.Tables("VOrdenDesemTesoreria").Compute("Sum(montoDet)", "codMon=30").ToString()  '30=soles
             txtTotal3.Text = dsAlmacen.Tables("VOrdenDesemTesoreria").Compute("Sum(montoDet)", "codMon=35").ToString()  '35=dolares
+
+            If txtTotal0.Text.Trim() = "" Then txtTotal0.Text = "0.00"
+            If txtTotal1.Text.Trim() = "" Then txtTotal1.Text = "0.00"
+            If txtTotal2.Text.Trim() = "" Then txtTotal2.Text = "0.00"
+            If txtTotal3.Text.Trim() = "" Then txtTotal3.Text = "0.00"
+
         Catch f As Exception
             Exit Sub
         End Try
@@ -199,18 +215,26 @@ Public Class tesoreriaOrdenDesembolsoForm
             .Columns(1).Width = 75
             .Columns(1).HeaderText = "Fecha"
             .Columns(2).Width = 120
-            .Columns(2).HeaderText = "Modalidad"
-            .Columns(3).HeaderText = "Descripción Pago"
-            .Columns(3).Width = 300
-            .Columns(4).HeaderText = ""
-            .Columns(4).Width = 30
-            .Columns(5).Width = 75
-            .Columns(5).HeaderText = "Monto"
-            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns(6).Visible = False
-            .Columns(7).Visible = False
-            .Columns(8).Visible = False
+            .Columns(2).HeaderText = "Medio Pago"
+            .Columns(3).Width = 80
+            .Columns(3).HeaderText = "Nº"
+            .Columns(4).HeaderText = "Descripción"
+            .Columns(4).Width = 260
+            .Columns(5).HeaderText = ""
+            .Columns(5).Width = 30
+            .Columns(6).Width = 75
+            .Columns(6).HeaderText = "Monto"
+            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(7).Width = 75
+            .Columns(7).HeaderText = "Detracción"
+            .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(8).HeaderText = "Clasificación"
+            .Columns(8).Width = 100
             .Columns(9).Visible = False
+            .Columns(10).Visible = False
+            .Columns(11).Visible = False
+            .Columns(12).Visible = False
+            .Columns(13).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -238,6 +262,9 @@ Public Class tesoreriaOrdenDesembolsoForm
         Label11.ForeColor = ForeColorLabel
         Label12.ForeColor = ForeColorLabel
         Label13.ForeColor = ForeColorLabel
+        Label14.ForeColor = ForeColorLabel
+        Label15.ForeColor = ForeColorLabel
+        CheckBox1.ForeColor = ForeColorLabel
         btnNuevo.ForeColor = ForeColorButtom
         btnModificar.ForeColor = ForeColorButtom
         btnCancelar.ForeColor = ForeColorButtom
@@ -268,10 +295,21 @@ Public Class tesoreriaOrdenDesembolsoForm
 
     Private Sub sumTotal()
         If BindingSource2.Position = -1 Then
-            txtTotal.Text = "0.00"
+            txtTotal4.Text = "0.00"
+            txtTotal5.Text = "0.00"
+            txtTotal6.Text = "0.00"
+            txtTotal7.Text = "0.00"
             Exit Sub
         End If
-        txtTotal.Text = dsAlmacen.Tables("VPagoDesemTesoreria").Compute("Sum(montoPago)", Nothing)
+        txtTotal4.Text = dsAlmacen.Tables("VPagoDesemTesoreria").Compute("Sum(montoPago)", "codMon=30").ToString()  '30=soles
+        txtTotal5.Text = dsAlmacen.Tables("VPagoDesemTesoreria").Compute("Sum(montoPago)", "codMon=35").ToString()  '30=soles
+        txtTotal6.Text = dsAlmacen.Tables("VPagoDesemTesoreria").Compute("Sum(montoD)", "codMon=30").ToString()  '30=soles
+        txtTotal7.Text = dsAlmacen.Tables("VPagoDesemTesoreria").Compute("Sum(montoD)", "codMon=35").ToString()  '30=soles
+
+        If txtTotal4.Text.Trim() = "" Then txtTotal4.Text = "0.00"
+        If txtTotal5.Text.Trim() = "" Then txtTotal5.Text = "0.00"
+        If txtTotal6.Text.Trim() = "" Then txtTotal6.Text = "0.00"
+        If txtTotal7.Text.Trim() = "" Then txtTotal7.Text = "0.00"
     End Sub
 
     Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
@@ -315,12 +353,16 @@ Public Class tesoreriaOrdenDesembolsoForm
         txtDes.ReadOnly = False
         cbMod.Enabled = True
         cbCue.Enabled = True
+        txtNro.ReadOnly = False
+        cbCla.Enabled = True
         txtMon.ReadOnly = False
     End Sub
 
     Private Sub desActivarText()
         cbMod.Enabled = False
         cbCue.Enabled = False
+        txtNro.ReadOnly = True
+        cbCla.Enabled = False
         txtDes.ReadOnly = True
         txtMon.ReadOnly = True
     End Sub
@@ -331,7 +373,7 @@ Public Class tesoreriaOrdenDesembolsoForm
             txtDes.errorProv()
             Return True
         End If
-        If ValidaNroMayorOigualCero(txtMon.Text) Then
+        If ValidarCantMayorCero(txtMon.Text) Then
             txtMon.errorProv()
             Return True
         End If
@@ -352,9 +394,13 @@ Public Class tesoreriaOrdenDesembolsoForm
             desactivarControles1()
             activarText()
             txtDes.Clear()
+            txtNro.Clear()
             cbMod.Focus()
             StatusBarClass.messageBarraEstado("")
             Me.AcceptButton = Me.btnNuevo
+
+            cbMon.SelectedValue = BindingSource1.Item(BindingSource1.Position)(21)
+            txtMon.Text = BindingSource1.Item(BindingSource1.Position)(5)
         Else   ' guardar
             'validaCampoVacio... creado en el Module ValidarCamposModule.vb, 3=minimo de caractres
             If ValidarCampos() Then
@@ -412,7 +458,7 @@ Public Class tesoreriaOrdenDesembolsoForm
                     Exit Sub
                 Else
                     myTrans.Rollback()
-                    MessageBox.Show("tipoM de exception: " & f.Message & Chr(13) & "NO SE GUARDO LA INFORMACION PROCESADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    MessageBox.Show("tipo de exception: " & f.Message & Chr(13) & "NO SE GUARDO LA INFORMACION PROCESADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
                     Me.Close()
                     Exit Sub
                 End If
@@ -440,9 +486,17 @@ Public Class tesoreriaOrdenDesembolsoForm
         cmInserTable.Connection = Cn
         cmInserTable.Parameters.Add("@fec", SqlDbType.Date).Value = date1.Value.Date
         cmInserTable.Parameters.Add("@codT", SqlDbType.Int, 0).Value = cbMod.SelectedValue
+        cmInserTable.Parameters.Add("@nro", SqlDbType.VarChar, 20).Value = txtNro.Text
         cmInserTable.Parameters.Add("@pago", SqlDbType.VarChar, 100).Value = txtDes.Text
+        cmInserTable.Parameters.Add("@codC", SqlDbType.Int, 0).Value = cbCla.SelectedValue
         cmInserTable.Parameters.Add("@codM", SqlDbType.Int, 0).Value = cbMon.SelectedValue
-        cmInserTable.Parameters.Add("@monto", SqlDbType.Decimal, 0).Value = txtMon.Text
+        If CheckBox1.Checked = False Then
+            cmInserTable.Parameters.Add("@monto", SqlDbType.Decimal, 0).Value = txtMon.Text
+            cmInserTable.Parameters.Add("@montoD", SqlDbType.Decimal, 0).Value = 0
+        Else 'Detraccion
+            cmInserTable.Parameters.Add("@monto", SqlDbType.Decimal, 0).Value = 0
+            cmInserTable.Parameters.Add("@montoD", SqlDbType.Decimal, 0).Value = txtMon.Text
+        End If
         cmInserTable.Parameters.Add("@idOP", SqlDbType.Int, 0).Value = BindingSource1.Item(BindingSource1.Position)(0)
         cmInserTable.Parameters.Add("@idC", SqlDbType.Int, 0).Value = cbCue.SelectedValue
         'configurando direction output = parametro de solo salida
@@ -467,6 +521,17 @@ Public Class tesoreriaOrdenDesembolsoForm
     Private Sub ToolStripButton5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton5.Click
         If BindingSource2.Position = -1 Then
             StatusBarClass.messageBarraEstado("Proceso denegado, No existe registro de pagos...")
+            Exit Sub
+        End If
+
+        Dim total As Double = (CDbl(txtTotal4.Text) + CDbl(txtTotal5.Text) + CDbl(txtTotal6.Text) + CDbl(txtTotal7.Text))
+        If total <> CDbl(BindingSource1.Item(BindingSource1.Position)(5)) Then
+            MessageBox.Show("Proceso denegado, Montos Diferentes en Transacción [" & Format(total, "0,0.00") & "<>" & BindingSource1.Item(BindingSource1.Position)(5) & "]", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        Dim resp As String = MessageBox.Show("Está seguro de CERRAR ORDEN de DESEMBOLSO Nº " & BindingSource1.Item(BindingSource1.Position)(3) & Chr(13) & " Si cierra no podra deshacer proceso...", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resp <> 6 Then
             Exit Sub
         End If
 
@@ -522,7 +587,10 @@ Public Class tesoreriaOrdenDesembolsoForm
             StatusBarClass.messageBarraEstado("  Registro fué cerrado con exito...")
             wait.Close()
             Me.Cursor = Cursors.Default
+
             colorearFila()
+            calcularTotales()
+            BindingSource1.MoveLast()
         Catch f As Exception
             wait.Close()
             Me.Cursor = Cursors.Default
@@ -650,6 +718,7 @@ Public Class tesoreriaOrdenDesembolsoForm
                     myTrans.Rollback()
                     MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
                     Me.Close()
+                    Exit Sub
                 End If
 
                 Dim codPagD As Integer = BindingSource2.Item(BindingSource2.Position)(0)
@@ -693,11 +762,19 @@ Public Class tesoreriaOrdenDesembolsoForm
             'desEnlazarText()
         Else
             date1.Value = BindingSource2.Item(BindingSource2.Position)(1)
-            cbMod.SelectedValue = BindingSource2.Item(BindingSource2.Position)(6)
-            cbCue.SelectedValue = BindingSource2.Item(BindingSource2.Position)(9)
-            txtDes.Text = BindingSource2.Item(BindingSource2.Position)(3)
-            cbMon.SelectedValue = BindingSource2.Item(BindingSource2.Position)(7)
-            txtMon.Text = BindingSource2.Item(BindingSource2.Position)(5)
+            cbMod.SelectedValue = BindingSource2.Item(BindingSource2.Position)(9)
+            cbCue.SelectedValue = BindingSource2.Item(BindingSource2.Position)(12)
+            txtNro.Text = BindingSource2.Item(BindingSource2.Position)(3)
+            cbCla.SelectedValue = BindingSource2.Item(BindingSource2.Position)(13)
+            txtDes.Text = BindingSource2.Item(BindingSource2.Position)(4)
+            cbMon.SelectedValue = BindingSource2.Item(BindingSource2.Position)(10)
+            If BindingSource2.Item(BindingSource2.Position)(6) > 0 Then
+                txtMon.Text = BindingSource2.Item(BindingSource2.Position)(6)
+                CheckBox1.Checked = False
+            Else 'detraccion monto
+                txtMon.Text = BindingSource2.Item(BindingSource2.Position)(7)
+                CheckBox1.Checked = True
+            End If
         End If
     End Sub
 
@@ -705,14 +782,26 @@ Public Class tesoreriaOrdenDesembolsoForm
     Private Sub comandoUpdate()
         cmUpdateTable = New SqlCommand
         cmUpdateTable.CommandType = CommandType.Text
-        cmUpdateTable.CommandText = "update TPagoDesembolso set fecPago=@fec,codTipP=@codT,pagoDet=@det,codMon=@codM,montoPago=@monto,idCue=@idC where codPagD=@cod"
+        cmUpdateTable.CommandText = "update TPagoDesembolso set fecPago=@fec,codTipP=@codT,nroP=@nro,pagoDet=@det,codCla=@codC,codMon=@codM,montoPago=@monto,montoD=@montoD,idCue=@idC where codPagD=@cod"
         cmUpdateTable.Connection = Cn
         cmUpdateTable.Parameters.Add("@fec", SqlDbType.Date).Value = date1.Value.Date
         cmUpdateTable.Parameters.Add("@codT", SqlDbType.Int, 0).Value = cbMod.SelectedValue
+        cmUpdateTable.Parameters.Add("@nro", SqlDbType.VarChar, 20).Value = txtNro.Text.Trim()
         cmUpdateTable.Parameters.Add("@det", SqlDbType.VarChar, 100).Value = txtDes.Text.Trim()
+        cmUpdateTable.Parameters.Add("@codC", SqlDbType.Int, 0).Value = cbCla.SelectedValue
         cmUpdateTable.Parameters.Add("@codM", SqlDbType.Int, 0).Value = cbMon.SelectedValue
-        cmUpdateTable.Parameters.Add("@monto", SqlDbType.Decimal, 0).Value = txtMon.Text.Trim()
+        If CheckBox1.Checked = False Then
+            cmUpdateTable.Parameters.Add("@monto", SqlDbType.Decimal, 0).Value = txtMon.Text.Trim()
+            cmUpdateTable.Parameters.Add("@montoD", SqlDbType.Decimal, 0).Value = 0
+        Else 'Detraccion
+            cmUpdateTable.Parameters.Add("@monto", SqlDbType.Decimal, 0).Value = 0
+            cmUpdateTable.Parameters.Add("@montoD", SqlDbType.Decimal, 0).Value = txtMon.Text.Trim()
+        End If
         cmUpdateTable.Parameters.Add("@idC", SqlDbType.Int, 0).Value = cbCue.SelectedValue
         cmUpdateTable.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource2.Item(BindingSource2.Position)(0)
+    End Sub
+
+    Private Sub txtMon_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtMon.GotFocus, txtMon.MouseClick
+        txtMon.SelectAll()
     End Sub
 End Class

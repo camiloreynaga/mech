@@ -59,6 +59,7 @@ Partial Class pantallaInicialForm
         Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator
         Me.opcOrdDes4 = New System.Windows.Forms.ToolStripMenuItem
         Me.MantCuentasBancariasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.SeguimientoDesembolsosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator
         Me.opcDoc = New System.Windows.Forms.ToolStripDropDownButton
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator
@@ -83,7 +84,6 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.SeguimientoDesembolsosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -387,6 +387,14 @@ Partial Class pantallaInicialForm
         Me.MantCuentasBancariasToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
         Me.MantCuentasBancariasToolStripMenuItem.Text = "Mant. Cuentas Bancarias"
         '
+        'SeguimientoDesembolsosToolStripMenuItem
+        '
+        Me.SeguimientoDesembolsosToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SeguimientoDesembolsosToolStripMenuItem.ForeColor = System.Drawing.Color.Navy
+        Me.SeguimientoDesembolsosToolStripMenuItem.Name = "SeguimientoDesembolsosToolStripMenuItem"
+        Me.SeguimientoDesembolsosToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
+        Me.SeguimientoDesembolsosToolStripMenuItem.Text = "Seguimiento Desembolsos"
+        '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
@@ -590,14 +598,6 @@ Partial Class pantallaInicialForm
         Me.ToolStripStatusLabel1.Text = "Soluciones Software Perú S.A.C. - Copyright (c)  2005 - 2013 SSP SAC - Cusco Perú" & _
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'SeguimientoDesembolsosToolStripMenuItem
-        '
-        Me.SeguimientoDesembolsosToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SeguimientoDesembolsosToolStripMenuItem.ForeColor = System.Drawing.Color.Navy
-        Me.SeguimientoDesembolsosToolStripMenuItem.Name = "SeguimientoDesembolsosToolStripMenuItem"
-        Me.SeguimientoDesembolsosToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
-        Me.SeguimientoDesembolsosToolStripMenuItem.Text = "Seguimiento Desembolsos"
         '
         'pantallaInicialForm
         '

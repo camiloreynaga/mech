@@ -56,6 +56,10 @@ Partial Class MantenimientoTransporteForm
         CType(Me.dgTransportes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
+        'lblTitulo
+        '
+        Me.lblTitulo.Text = "Mantenimiento de Transportistas"
+        '
         'lblDerecha
         '
         Me.lblDerecha.Size = New System.Drawing.Size(14, 515)

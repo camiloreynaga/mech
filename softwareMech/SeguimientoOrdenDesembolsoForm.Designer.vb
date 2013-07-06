@@ -19,7 +19,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.gbDesembolso = New System.Windows.Forms.GroupBox
         Me.dgDesembolso = New System.Windows.Forms.DataGridView
         Me.TabControl1 = New System.Windows.Forms.TabControl
@@ -127,6 +127,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         'lblTitulo
         '
         Me.lblTitulo.Size = New System.Drawing.Size(915, 23)
+        Me.lblTitulo.Text = "Seguimiento de ordenes de Desembolsos"
         '
         'lblDerecha
         '
@@ -147,8 +148,8 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dgDesembolso.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgDesembolso.Location = New System.Drawing.Point(3, 16)
         Me.dgDesembolso.Name = "dgDesembolso"
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgDesembolso.RowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgDesembolso.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgDesembolso.Size = New System.Drawing.Size(877, 194)
         Me.dgDesembolso.TabIndex = 0
         '

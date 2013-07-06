@@ -51,6 +51,7 @@ Partial Class MantCuentas
         'lblTitulo
         '
         Me.lblTitulo.Size = New System.Drawing.Size(835, 23)
+        Me.lblTitulo.Text = "Mantenimientos de Cuentas"
         '
         'lblDerecha
         '

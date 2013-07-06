@@ -89,6 +89,7 @@ Public Class gerenciaOrdenDesembolsoForm
                 dgTabla1.Rows(j).Cells(1).Style.BackColor = Color.Red
                 dgTabla1.Rows(j).Cells(1).Style.ForeColor = Color.White
             End If
+            dgTabla1.Rows(j).Cells(6).Style.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Next
     End Sub
 
@@ -119,14 +120,14 @@ Public Class gerenciaOrdenDesembolsoForm
             .Columns("simbolo").HeaderText = ""
             .Columns("simbolo").Width = 30
             'monto 6
-            .Columns("monto").Width = 75
+            .Columns("monto").Width = 85
             .Columns("monto").HeaderText = "Monto"
 
             .Columns("monto").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns("monto").DefaultCellStyle.Format = "N2"
 
             'razon 7
-            .Columns("razon").Width = 140
+            .Columns("razon").Width = 200
             .Columns("razon").HeaderText = "Proveedor"
             'nom 8
             .Columns("nom").Width = 100
@@ -138,7 +139,7 @@ Public Class gerenciaOrdenDesembolsoForm
             .Columns("est").Width = 70
             .Columns("est").HeaderText = "Est.Orden"
             'nombre 11
-            .Columns("nombre").Width = 160
+            .Columns("nombre").Width = 200
             .Columns("nombre").HeaderText = "Lugar / Obra"
             'hist 12
             .Columns("hist").Width = 300
@@ -214,10 +215,10 @@ Public Class gerenciaOrdenDesembolsoForm
             .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomRight
             'fecOrden
             .Columns(7).Width = 70
-            .Columns(7).HeaderText = "Fecha Orden"
+            .Columns(7).HeaderText = "Fecha_Orden"
             'nro
             .Columns(8).Width = 50
-            .Columns(8).HeaderText = "Nº Orden"
+            .Columns(8).HeaderText = "NºOrden"
             .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             'nroOrden
             .Columns(9).Visible = False
