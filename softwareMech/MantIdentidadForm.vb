@@ -504,7 +504,7 @@ Public Class MantIdentidadForm
             btnModificar.Text = "Actualizar"
             desactivarControles1()
             limpiarText1()
-            'enlazarText()
+            enlazarText()
             txtNom.Focus()
             StatusBarClass.messageBarraEstado("")
             Me.AcceptButton = Me.btnModificar

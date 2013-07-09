@@ -293,9 +293,13 @@ Public Class gerenciaOrdenDesembolsoForm
     End Sub
 
     Private Sub calcularTotales()
+        Try
+            txtTotalSoles.Text = Format(dsAlmacen.Tables("VOrdenDesemGerencia").Compute("Sum(monto)", "codMon=30"), "0,0.00")
+            txtTotalDolares.Text = Format(dsAlmacen.Tables("VOrdenDesemGerencia").Compute("Sum(monto)", "codMon=35"), "0,0.00")
 
-        txtTotalSoles.Text = Format((dsAlmacen.Tables("VOrdenDesemGerencia").Compute("Sum(monto)", "codMon=30")), "0,0.00").ToString()
-        txtTotalDolares.Text = Format((dsAlmacen.Tables("VOrdenDesemGerencia").Compute("Sum(monto)", "codMon=35")), "0,0.00").ToString()
+        Catch ex As Exception
+            'MessageBox.Show(ex.Message.ToString())
+        End Try
 
     End Sub
 

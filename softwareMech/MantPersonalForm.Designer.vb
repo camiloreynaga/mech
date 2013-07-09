@@ -70,8 +70,8 @@ Partial Class MantPersonalForm
         Me.Label2 = New System.Windows.Forms.Label
         Me.txtUsu = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Label4 = New System.Windows.Forms.Label
-        Me.Label14 = New System.Windows.Forms.Label
         Me.cbTipoUser = New System.Windows.Forms.ComboBox
+        Me.Label14 = New System.Windows.Forms.Label
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,7 +115,7 @@ Partial Class MantPersonalForm
         Me.lbTabla2.Enabled = False
         Me.lbTabla2.FormattingEnabled = True
         Me.lbTabla2.Items.AddRange(New Object() {"Activo", "Inactivo"})
-        Me.lbTabla2.Location = New System.Drawing.Point(329, 116)
+        Me.lbTabla2.Location = New System.Drawing.Point(329, 99)
         Me.lbTabla2.Name = "lbTabla2"
         Me.lbTabla2.Size = New System.Drawing.Size(62, 30)
         Me.lbTabla2.TabIndex = 8
@@ -123,7 +123,7 @@ Partial Class MantPersonalForm
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(326, 93)
+        Me.Label7.Location = New System.Drawing.Point(326, 83)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(46, 13)
         Me.Label7.TabIndex = 11
@@ -151,7 +151,7 @@ Partial Class MantPersonalForm
         Me.txtEmail.Location = New System.Drawing.Point(6, 138)
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.ReadOnly = True
-        Me.txtEmail.Size = New System.Drawing.Size(311, 20)
+        Me.txtEmail.Size = New System.Drawing.Size(437, 20)
         Me.txtEmail.TabIndex = 4
         '
         'txtDirec
@@ -572,6 +572,14 @@ Partial Class MantPersonalForm
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "Usuario"
         '
+        'cbTipoUser
+        '
+        Me.cbTipoUser.FormattingEnabled = True
+        Me.cbTipoUser.Location = New System.Drawing.Point(135, 19)
+        Me.cbTipoUser.Name = "cbTipoUser"
+        Me.cbTipoUser.Size = New System.Drawing.Size(151, 21)
+        Me.cbTipoUser.TabIndex = 11
+        '
         'Label14
         '
         Me.Label14.AutoSize = True
@@ -580,14 +588,6 @@ Partial Class MantPersonalForm
         Me.Label14.Size = New System.Drawing.Size(112, 13)
         Me.Label14.TabIndex = 7
         Me.Label14.Text = "Datos de Acceso :"
-        '
-        'cbTipoUser
-        '
-        Me.cbTipoUser.FormattingEnabled = True
-        Me.cbTipoUser.Location = New System.Drawing.Point(135, 19)
-        Me.cbTipoUser.Name = "cbTipoUser"
-        Me.cbTipoUser.Size = New System.Drawing.Size(151, 21)
-        Me.cbTipoUser.TabIndex = 11
         '
         'MantPersonalForm
         '

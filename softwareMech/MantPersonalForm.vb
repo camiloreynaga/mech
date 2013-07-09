@@ -374,7 +374,7 @@ Public Class MantPersonalForm
         cmInserTable1.Parameters.Add("@dni", SqlDbType.VarChar, 8).Value = txtDni.Text.Trim()
         cmInserTable1.Parameters.Add("@dir", SqlDbType.VarChar, 60).Value = txtDirec.Text.Trim()
         cmInserTable1.Parameters.Add("@fono", SqlDbType.VarChar, 60).Value = txtFono.Text.Trim()
-        cmInserTable1.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = txtEmail.Text.Trim()
+        cmInserTable1.Parameters.Add("@email", SqlDbType.VarChar, 100).Value = txtEmail.Text.Trim()
     End Sub
 
     ''' <summary>
@@ -400,7 +400,7 @@ Public Class MantPersonalForm
         cmUpdateTable.Parameters.Add("@dir", SqlDbType.VarChar, 60).Value = txtDirec.Text.Trim()
 
         cmUpdateTable.Parameters.Add("@fono", SqlDbType.VarChar, 60).Value = txtFono.Text.Trim()
-        cmUpdateTable.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = txtEmail.Text.Trim()
+        cmUpdateTable.Parameters.Add("@email", SqlDbType.VarChar, 100).Value = txtEmail.Text.Trim()
 
     End Sub
 
