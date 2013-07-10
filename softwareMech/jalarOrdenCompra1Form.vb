@@ -111,7 +111,7 @@ Public Class jalarOrdenCompra1Form
             .Columns(0).Visible = False
             .Columns(1).Width = 60
             .Columns(1).HeaderText = "Cant."
-            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(2).Width = 60
             .Columns(2).HeaderText = "Unid."
             .Columns(2).ReadOnly = True 'NO editable
@@ -120,10 +120,10 @@ Public Class jalarOrdenCompra1Form
             .Columns(3).ReadOnly = True 'NO editable
             .Columns(4).Width = 75
             .Columns(4).HeaderText = "Prec_Unit"
-            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(5).Width = 75
             .Columns(5).HeaderText = "Total"
-            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(6).Visible = False
             .Columns(7).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -197,13 +197,13 @@ Public Class jalarOrdenCompra1Form
         vfIGV = bindingSource4.Item(bindingSource4.Position)(16)
 
         If bindingSource4.Item(bindingSource4.Position)(17) = 1 Then  'tipo 1
-            txtTotal.Text = Format((dataTable5.Compute("Sum(subTotal)", Nothing)), "0.00")
-            txtIGV.Text = Format(((txtTotal.Text * vfIGV) / (100 + vfIGV)), "0.00")
-            txtSub.Text = Format((txtTotal.Text - txtIGV.Text), "0.00")
+            txtTotal.Text = Format((dataTable5.Compute("Sum(subTotal)", Nothing)), "0,0.00")
+            txtIGV.Text = Format(((txtTotal.Text * vfIGV) / (100 + vfIGV)), "0,0.00")
+            txtSub.Text = Format((txtTotal.Text - txtIGV.Text), "0,0.00")
         Else  'Tipo 2
-            txtSub.Text = Format((dataTable5.Compute("Sum(subTotal)", Nothing)), "0.00")
-            txtIGV.Text = Format((txtSub.Text * vfIGV) / 100, "0.00")
-            txtTotal.Text = Format((CDbl(txtSub.Text) + CDbl(txtIGV.Text)), "0.00")
+            txtSub.Text = Format((dataTable5.Compute("Sum(subTotal)", Nothing)), "0,0.00")
+            txtIGV.Text = Format((txtSub.Text * vfIGV) / 100, "0,0.00")
+            txtTotal.Text = Format((CDbl(txtSub.Text) + CDbl(txtIGV.Text)), "0,0.00")
         End If
         lblTotal.Text = "TOTAL  " & bindingSource4.Item(bindingSource4.Position)(15) 'cbMoneda.Text.Trim()
         cambiarNroTotalLetra()
@@ -223,16 +223,19 @@ Public Class jalarOrdenCompra1Form
         End If
     End Sub
 
-    Private Sub recuperarUltimoNro(ByVal serie As String)
+    Private Sub recuperarUltimoNro(ByVal codSerO As Integer)
         Dim cmdMaxCodigo As SqlCommand = New SqlCommand
         cmdMaxCodigo.CommandType = CommandType.Text
-        cmdMaxCodigo.CommandText = "select isnull(max(nroDes),0)+1 from TOrdenDesembolso where serie='" & serie & "'"
+        cmdMaxCodigo.CommandText = "select isnull(max(nroDes),0)+1 from TOrdenDesembolso where codSerO=" & codSerO
         cmdMaxCodigo.Connection = Cn
         asignarNro(cmdMaxCodigo.ExecuteScalar)
     End Sub
 
     Dim nroOrd As String
     Private Sub asignarNro(ByVal max As Integer)
+        If CInt(max) = 1 Then  'Inicio de serie primer nro
+            max = vSIniNroDoc
+        End If
         Select Case CInt(max)
             Case Is < 99
                 nroOrd = "000" & max
@@ -262,14 +265,14 @@ Public Class jalarOrdenCompra1Form
             Exit Sub
         End If
 
-        recuperarUltimoNro(vSerie)
+        recuperarUltimoNro(vSCodSerO)
 
         Dim resp As String = MessageBox.Show("Esta segúro de aperturar ORDEN de DESEMBOLSO" & Chr(13) & "Serie: " & vSerie & "  Nº " & nroOrd.Trim() & Chr(13) & "para Orden de Compra Nº " & bindingSource4.Item(bindingSource4.Position)(2), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
             Exit Sub
         End If
 
-        recuperarUltimoNro(vSerie)
+        recuperarUltimoNro(vSCodSerO)
 
         Dim finalMytrans As Boolean = False
         Dim wait As New waitForm
@@ -351,7 +354,7 @@ Public Class jalarOrdenCompra1Form
         cmInserTable2.CommandType = CommandType.StoredProcedure
         cmInserTable2.CommandText = "PA_InsertOrdenDesembolso"
         cmInserTable2.Connection = Cn
-        cmInserTable2.Parameters.Add("@ser", SqlDbType.VarChar, 5).Value = vSerie
+        cmInserTable2.Parameters.Add("@ser", SqlDbType.VarChar, 5).Value = vSSerie
         cmInserTable2.Parameters.Add("@nroD", SqlDbType.Int, 0).Value = nroOrd
         cmInserTable2.Parameters.Add("@fecD", SqlDbType.Date).Value = Now.Date
         cmInserTable2.Parameters.Add("@codMon", SqlDbType.Int, 0).Value = bindingSource4.Item(bindingSource4.Position)(14)
@@ -384,7 +387,7 @@ Public Class jalarOrdenCompra1Form
         cmInserTable2.Parameters.Add("@nroCF", SqlDbType.VarChar, 30).Value = ""
         cmInserTable2.Parameters.Add("@fec", SqlDbType.VarChar, 10).Value = ""
         cmInserTable2.Parameters.Add("@hist", SqlDbType.VarChar, 200).Value = "Aperturo " & Now.Date & " " & vPass & "-" & vSUsuario
-        cmInserTable2.Parameters.Add("@codSerO", SqlDbType.Int, 0).Value = 1   'CodSerie 002
+        cmInserTable2.Parameters.Add("@codSerO", SqlDbType.Int, 0).Value = vSCodSerO
         'configurando direction output = parametro de solo salida
         cmInserTable2.Parameters.Add("@Identity", SqlDbType.Int, 0)
         cmInserTable2.Parameters("@Identity").Direction = ParameterDirection.Output

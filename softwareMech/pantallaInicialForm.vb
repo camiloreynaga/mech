@@ -328,7 +328,40 @@ Public Class pantallaInicialForm
         inf.Show()
     End Sub
 
+    Private Function recuperarCodSerO(ByVal codPers As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select isnull(max(codSerO),0) from VSerieOrdenPers where codPers=" & codPers
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
+    Private Function recuperarSerie(ByVal codPers As Integer) As String
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select serie from VSerieOrdenPers where codPers=" & codPers
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
+    Private Function recuperarIniNro(ByVal codPers As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select max(iniNroDoc) from VSerieOrdenPers where codPers=" & codPers
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
     Private Sub opcOrdDes1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDes1.Click
+        vSCodSerO = recuperarCodSerO(vPass)
+        If vSCodSerO = 0 Then
+            MessageBox.Show("Proceso denegado, Usuario NO tiene asignado Serie de Orden de Desembolso...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        vSSerie = recuperarSerie(vPass)
+        vSIniNroDoc = recuperarIniNro(vPass)
+
         Dim mant As New MantOrdenDesembolsoForm1
         mant.MdiParent = Me
         mant.Show()
@@ -400,5 +433,11 @@ Public Class pantallaInicialForm
         Dim ODesem As New SeguimientoOrdenDesembolsoForm
         ODesem.MdiParent = Me
         ODesem.Show()
+    End Sub
+
+    Private Sub opcConf5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConf5.Click
+        Dim mant As New AsignarSerieOrdenPersForm
+        mant.MdiParent = Me
+        mant.Show()
     End Sub
 End Class

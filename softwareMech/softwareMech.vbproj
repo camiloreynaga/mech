@@ -104,6 +104,12 @@
     <Compile Include="AprobaSolicitudReqForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AsignarSerieOrdenPersForm.designer.vb">
+      <DependentUpon>AsignarSerieOrdenPersForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AsignarSerieOrdenPersForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="CambiarContraseñaUsuForm.designer.vb">
       <DependentUpon>CambiarContraseñaUsuForm.vb</DependentUpon>
     </Compile>
@@ -345,12 +351,6 @@
     <Compile Include="pantallaInicialForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="registraComprobantePago.Designer.vb">
-      <DependentUpon>registraComprobantePago.vb</DependentUpon>
-    </Compile>
-    <Compile Include="registraComprobantePago.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="registraCotizacion1Form.Designer.vb">
       <DependentUpon>registraCotizacion1Form.vb</DependentUpon>
     </Compile>
@@ -438,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AprobaSolicitudReqForm.resx">
       <DependentUpon>AprobaSolicitudReqForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AsignarSerieOrdenPersForm.resx">
+      <DependentUpon>AsignarSerieOrdenPersForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CambiarContraseñaUsuForm.resx">
       <DependentUpon>CambiarContraseñaUsuForm.vb</DependentUpon>
@@ -553,9 +556,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pantallaInicialForm.resx">
       <DependentUpon>pantallaInicialForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="registraComprobantePago.resx">
-      <DependentUpon>registraComprobantePago.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="registraCotizacion1Form.resx">
       <DependentUpon>registraCotizacion1Form.vb</DependentUpon>

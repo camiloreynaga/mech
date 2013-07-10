@@ -27,11 +27,10 @@ Public Class MantOrdenDesembolsoForm1
         sele = "select distinct codigo,nombre,lugar,color from VLugarTrabajoLogin"
         crearDataAdapterTable(daTUbi, sele)
 
-        vSerie = "002"
-        txtSer.Text = "002"
-        sele = "select idOP,nroDes,serie,nro,fecDes,simbolo,monto,montoDet,montoDif,banco,nroCta,nroDet,est,datoReq,hist,estado,codigo,codIde,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,codMon from VOrdenDesembolso where serie=@ser" 'order by nroDes"
+        txtSer.Text = vSSerie
+        sele = "select idOP,nroDes,serie,nro,fecDes,simbolo,monto,montoDet,montoDif,banco,nroCta,nroDet,est,datoReq,hist,estado,codigo,codIde,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,codMon,codSerO from VOrdenDesembolso where codSerO=@ser" 'order by nroDes"
         crearDataAdapterTable(daTabla1, sele)
-        daTabla1.SelectCommand.Parameters.Add("@ser", SqlDbType.VarChar, 5).Value = vSerie
+        daTabla1.SelectCommand.Parameters.Add("@ser", SqlDbType.Int, 0).Value = vSCodSerO
 
         sele = "select codMon,moneda,simbolo from TMoneda"
         crearDataAdapterTable(daTMon, sele)
@@ -82,7 +81,7 @@ Public Class MantOrdenDesembolsoForm1
 
             configurarColorControl()
 
-            recuperarUltimoNro(vSerie)
+            recuperarUltimoNro(vSCodSerO)
 
             vfVan1 = True   'para selePersDesem() se llama dentro de enlazarText()
             vfVan2 = True
@@ -260,15 +259,18 @@ Public Class MantOrdenDesembolsoForm1
         Me.Close()
     End Sub
 
-    Private Sub recuperarUltimoNro(ByVal serie As String)
+    Private Sub recuperarUltimoNro(ByVal codSerO As Integer)
         Dim cmdMaxCodigo As SqlCommand = New SqlCommand
         cmdMaxCodigo.CommandType = CommandType.Text
-        cmdMaxCodigo.CommandText = "select isnull(max(nroDes),0)+1 from TOrdenDesembolso where serie='" & serie & "'"
+        cmdMaxCodigo.CommandText = "select isnull(max(nroDes),0)+1 from TOrdenDesembolso where codSerO=" & codSerO
         cmdMaxCodigo.Connection = Cn
         asignarNro(cmdMaxCodigo.ExecuteScalar)
     End Sub
 
     Private Sub asignarNro(ByVal max As Integer)
+        If CInt(max) = 1 Then  'Incio de serie primer nro
+            max = vSIniNroDoc
+        End If
         Select Case CInt(max)
             Case Is < 99
                 txtNro.Text = "000" & max
@@ -479,7 +481,7 @@ Public Class MantOrdenDesembolsoForm1
         Dim comentario As New CometarioForm
         comentario.ShowDialog()
 
-        recuperarUltimoNro(vSerie)
+        recuperarUltimoNro(vSCodSerO)
         Dim campo As Integer = CInt(txtNro.Text)
 
         Dim finalMytrans As Boolean = False
@@ -542,7 +544,7 @@ Public Class MantOrdenDesembolsoForm1
             dsAlmacen.Tables("VOrdenDesembolso").Clear()
             daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
 
-            recuperarUltimoNro(vSerie)
+            recuperarUltimoNro(vSCodSerO)
 
             'Buscando por nombre de campo y luego pocisionarlo con el indice
             BindingSource3.Position = BindingSource3.Find("idOP", idOP)
@@ -621,7 +623,7 @@ Public Class MantOrdenDesembolsoForm1
             Exit Sub
         End If
 
-        recuperarUltimoNro(vSerie)
+        recuperarUltimoNro(vSCodSerO)
         Dim campo As Integer = CInt(txtNro.Text)
 
         Dim finalMytrans As Boolean = False
@@ -671,7 +673,7 @@ Public Class MantOrdenDesembolsoForm1
             dsAlmacen.Tables("VOrdenDesembolso").Clear()
             daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
 
-            recuperarUltimoNro(vSerie)
+            recuperarUltimoNro(vSCodSerO)
 
             'Buscando por nombre de campo y luego pocisionarlo con el indice
             BindingSource3.Position = BindingSource3.Find("idOP", idOP)
@@ -771,7 +773,7 @@ Public Class MantOrdenDesembolsoForm1
         cmInserTable1.Parameters.Add("@nroCF", SqlDbType.VarChar, 30).Value = "" 'txtNroCon.Text.Trim()
         cmInserTable1.Parameters.Add("@fec", SqlDbType.VarChar, 10).Value = "" 'txtFec.Text.Trim()
         cmInserTable1.Parameters.Add("@hist", SqlDbType.VarChar, 200).Value = "Aperturo " & Now.Date & " " & vPass & "-" & vSUsuario
-        cmInserTable1.Parameters.Add("@codSerO", SqlDbType.Int, 0).Value = 1   'CodSerie 002
+        cmInserTable1.Parameters.Add("@codSerO", SqlDbType.Int, 0).Value = vSCodSerO
         'configurando direction output = parametro de solo salida
         cmInserTable1.Parameters.Add("@Identity", SqlDbType.Int, 0)
         cmInserTable1.Parameters("@Identity").Direction = ParameterDirection.Output
@@ -844,7 +846,7 @@ Public Class MantOrdenDesembolsoForm1
             dsAlmacen.Tables("VOrdenDesembolso").Clear()
             daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
 
-            recuperarUltimoNro(vSerie)
+            recuperarUltimoNro(vSCodSerO)
 
             'Buscando por nombre de campo y luego pocisionarlo con el indice
             BindingSource3.Position = BindingSource3.Find("idOP", idOP)
@@ -1052,7 +1054,7 @@ Public Class MantOrdenDesembolsoForm1
             dsAlmacen.Tables("VOrdenDesembolso").Clear()
             daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
 
-            recuperarUltimoNro(vSerie)
+            recuperarUltimoNro(vSCodSerO)
 
             vfVan1 = True
             vfVan2 = True
@@ -1131,7 +1133,7 @@ Public Class MantOrdenDesembolsoForm1
             dsAlmacen.Tables("VOrdenDesembolso").Clear()
             daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
 
-            recuperarUltimoNro(vSerie)
+            recuperarUltimoNro(vSCodSerO)
 
             'Buscando por nombre de campo y luego pocisionarlo con el indice
             BindingSource3.MoveLast()
@@ -1205,7 +1207,7 @@ Public Class MantOrdenDesembolsoForm1
             dsAlmacen.Tables("VOrdenDesembolso").Clear()
             daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
 
-            recuperarUltimoNro(vSerie)
+            recuperarUltimoNro(vSCodSerO)
 
             'Buscando por nombre de campo y luego pocisionarlo con el indice
             BindingSource3.Position = BindingSource3.Find("idOP", idOP)
@@ -1277,7 +1279,7 @@ Public Class MantOrdenDesembolsoForm1
             dsAlmacen.Tables("VOrdenDesembolso").Clear()
             daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
 
-            recuperarUltimoNro(vSerie)
+            recuperarUltimoNro(vSCodSerO)
 
             'Buscando por nombre de campo y luego pocisionarlo con el indice
             BindingSource3.Position = BindingSource3.Find("idOP", idOP)

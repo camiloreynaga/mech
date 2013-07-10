@@ -21,14 +21,17 @@ Partial Class registraOrdenCompraForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(registraOrdenCompraForm))
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
+        Me.txtDet = New System.Windows.Forms.TextBox
+        Me.Label32 = New System.Windows.Forms.Label
+        Me.txtTran = New System.Windows.Forms.TextBox
+        Me.cbProv = New System.Windows.Forms.ComboBox
         Me.lbOrden = New System.Windows.Forms.ListBox
         Me.txtPro = New System.Windows.Forms.TextBox
         Me.Label25 = New System.Windows.Forms.Label
         Me.btnCot = New ComponentesSolucion2008.BottomSSP(Me.components)
-        Me.txtTran = New System.Windows.Forms.TextBox
         Me.cbMoneda = New System.Windows.Forms.ComboBox
         Me.cbPers = New System.Windows.Forms.ComboBox
         Me.Label9 = New System.Windows.Forms.Label
@@ -60,7 +63,6 @@ Partial Class registraOrdenCompraForm
         Me.Label11 = New System.Windows.Forms.Label
         Me.Label10 = New System.Windows.Forms.Label
         Me.txtNro = New System.Windows.Forms.TextBox
-        Me.cbProv = New System.Windows.Forms.ComboBox
         Me.Label4 = New System.Windows.Forms.Label
         Me.btnCerrar = New System.Windows.Forms.Button
         Me.Label2 = New System.Windows.Forms.Label
@@ -68,6 +70,8 @@ Partial Class registraOrdenCompraForm
         Me.date1 = New System.Windows.Forms.DateTimePicker
         Me.btnAperturar = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel
+        Me.txtNot = New System.Windows.Forms.TextBox
+        Me.Label33 = New System.Windows.Forms.Label
         Me.txtCont = New System.Windows.Forms.TextBox
         Me.Label31 = New System.Windows.Forms.Label
         Me.txtDir = New System.Windows.Forms.TextBox
@@ -151,11 +155,14 @@ Partial Class registraOrdenCompraForm
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.txtDet)
+        Me.Panel1.Controls.Add(Me.Label32)
+        Me.Panel1.Controls.Add(Me.txtTran)
+        Me.Panel1.Controls.Add(Me.cbProv)
         Me.Panel1.Controls.Add(Me.lbOrden)
         Me.Panel1.Controls.Add(Me.txtPro)
         Me.Panel1.Controls.Add(Me.Label25)
         Me.Panel1.Controls.Add(Me.btnCot)
-        Me.Panel1.Controls.Add(Me.txtTran)
         Me.Panel1.Controls.Add(Me.cbMoneda)
         Me.Panel1.Controls.Add(Me.cbPers)
         Me.Panel1.Controls.Add(Me.Label9)
@@ -187,7 +194,6 @@ Partial Class registraOrdenCompraForm
         Me.Panel1.Controls.Add(Me.Label11)
         Me.Panel1.Controls.Add(Me.Label10)
         Me.Panel1.Controls.Add(Me.txtNro)
-        Me.Panel1.Controls.Add(Me.cbProv)
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.btnCerrar)
         Me.Panel1.Controls.Add(Me.Label2)
@@ -196,20 +202,58 @@ Partial Class registraOrdenCompraForm
         Me.Panel1.Controls.Add(Me.btnAperturar)
         Me.Panel1.Location = New System.Drawing.Point(14, 23)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(514, 220)
+        Me.Panel1.Size = New System.Drawing.Size(514, 240)
         Me.Panel1.TabIndex = 1
+        '
+        'txtDet
+        '
+        Me.txtDet.Location = New System.Drawing.Point(329, 63)
+        Me.txtDet.Name = "txtDet"
+        Me.txtDet.ReadOnly = True
+        Me.txtDet.Size = New System.Drawing.Size(184, 20)
+        Me.txtDet.TabIndex = 325
+        Me.txtDet.TabStop = False
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(253, 66)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(76, 13)
+        Me.Label32.TabIndex = 324
+        Me.Label32.Text = "Cta Detrac.:"
+        '
+        'txtTran
+        '
+        Me.txtTran.Location = New System.Drawing.Point(162, 86)
+        Me.txtTran.Name = "txtTran"
+        Me.txtTran.Size = New System.Drawing.Size(351, 20)
+        Me.txtTran.TabIndex = 321
+        '
+        'cbProv
+        '
+        Me.cbProv.DropDownHeight = 500
+        Me.cbProv.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbProv.DropDownWidth = 400
+        Me.cbProv.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbProv.FormattingEnabled = True
+        Me.cbProv.IntegralHeight = False
+        Me.cbProv.Location = New System.Drawing.Point(162, 37)
+        Me.cbProv.Name = "cbProv"
+        Me.cbProv.Size = New System.Drawing.Size(343, 21)
+        Me.cbProv.TabIndex = 7
         '
         'lbOrden
         '
         Me.lbOrden.FormattingEnabled = True
         Me.lbOrden.Location = New System.Drawing.Point(3, 11)
         Me.lbOrden.Name = "lbOrden"
-        Me.lbOrden.Size = New System.Drawing.Size(95, 147)
+        Me.lbOrden.Size = New System.Drawing.Size(95, 173)
         Me.lbOrden.TabIndex = 6
         '
         'txtPro
         '
-        Me.txtPro.Location = New System.Drawing.Point(393, 192)
+        Me.txtPro.Location = New System.Drawing.Point(393, 216)
         Me.txtPro.Name = "txtPro"
         Me.txtPro.Size = New System.Drawing.Size(115, 20)
         Me.txtPro.TabIndex = 316
@@ -217,11 +261,11 @@ Partial Class registraOrdenCompraForm
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(390, 180)
+        Me.Label25.Location = New System.Drawing.Point(390, 204)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(75, 13)
+        Me.Label25.Size = New System.Drawing.Size(84, 13)
         Me.Label25.TabIndex = 315
-        Me.Label25.Text = "Proforma Nº"
+        Me.Label25.Text = "Cotización Nº"
         '
         'btnCot
         '
@@ -238,20 +282,13 @@ Partial Class registraOrdenCompraForm
         Me.ToolTip1.SetToolTip(Me.btnCot, "Abrir orden de compra en base a cotizacion...")
         Me.btnCot.UseVisualStyleBackColor = True
         '
-        'txtTran
-        '
-        Me.txtTran.Location = New System.Drawing.Point(309, 63)
-        Me.txtTran.Name = "txtTran"
-        Me.txtTran.Size = New System.Drawing.Size(200, 20)
-        Me.txtTran.TabIndex = 321
-        '
         'cbMoneda
         '
         Me.cbMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbMoneda.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbMoneda.FormattingEnabled = True
         Me.cbMoneda.IntegralHeight = False
-        Me.cbMoneda.Location = New System.Drawing.Point(258, 190)
+        Me.cbMoneda.Location = New System.Drawing.Point(258, 214)
         Me.cbMoneda.Name = "cbMoneda"
         Me.cbMoneda.Size = New System.Drawing.Size(132, 21)
         Me.cbMoneda.TabIndex = 313
@@ -263,7 +300,7 @@ Partial Class registraOrdenCompraForm
         Me.cbPers.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbPers.FormattingEnabled = True
         Me.cbPers.IntegralHeight = False
-        Me.cbPers.Location = New System.Drawing.Point(104, 190)
+        Me.cbPers.Location = New System.Drawing.Point(104, 214)
         Me.cbPers.MaxDropDownItems = 16
         Me.cbPers.Name = "cbPers"
         Me.cbPers.Size = New System.Drawing.Size(148, 21)
@@ -272,7 +309,7 @@ Partial Class registraOrdenCompraForm
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(101, 176)
+        Me.Label9.Location = New System.Drawing.Point(101, 200)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(61, 13)
         Me.Label9.TabIndex = 290
@@ -281,7 +318,7 @@ Partial Class registraOrdenCompraForm
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(259, 175)
+        Me.Label3.Location = New System.Drawing.Point(259, 199)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(106, 13)
         Me.Label3.TabIndex = 314
@@ -290,17 +327,17 @@ Partial Class registraOrdenCompraForm
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(258, 66)
+        Me.Label19.Location = New System.Drawing.Point(101, 91)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(51, 13)
+        Me.Label19.Size = New System.Drawing.Size(66, 13)
         Me.Label19.TabIndex = 322
-        Me.Label19.Text = "Transf.:"
+        Me.Label19.Text = "Cta Clien.:"
         '
         'btnImprimir
         '
         Me.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
-        Me.btnImprimir.Location = New System.Drawing.Point(66, 190)
+        Me.btnImprimir.Location = New System.Drawing.Point(66, 211)
         Me.btnImprimir.Name = "btnImprimir"
         Me.btnImprimir.Size = New System.Drawing.Size(25, 23)
         Me.btnImprimir.TabIndex = 320
@@ -312,7 +349,7 @@ Partial Class registraOrdenCompraForm
         '
         Me.btnElimina.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnElimina.Image = CType(resources.GetObject("btnElimina.Image"), System.Drawing.Image)
-        Me.btnElimina.Location = New System.Drawing.Point(35, 166)
+        Me.btnElimina.Location = New System.Drawing.Point(35, 187)
         Me.btnElimina.Name = "btnElimina"
         Me.btnElimina.Size = New System.Drawing.Size(25, 23)
         Me.btnElimina.TabIndex = 319
@@ -324,7 +361,7 @@ Partial Class registraOrdenCompraForm
         '
         Me.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnModificar.Image = CType(resources.GetObject("btnModificar.Image"), System.Drawing.Image)
-        Me.btnModificar.Location = New System.Drawing.Point(4, 166)
+        Me.btnModificar.Location = New System.Drawing.Point(4, 187)
         Me.btnModificar.Name = "btnModificar"
         Me.btnModificar.Size = New System.Drawing.Size(25, 23)
         Me.btnModificar.TabIndex = 318
@@ -334,7 +371,7 @@ Partial Class registraOrdenCompraForm
         '
         'txtAte
         '
-        Me.txtAte.Location = New System.Drawing.Point(162, 85)
+        Me.txtAte.Location = New System.Drawing.Point(162, 109)
         Me.txtAte.Name = "txtAte"
         Me.txtAte.Size = New System.Drawing.Size(191, 20)
         Me.txtAte.TabIndex = 9
@@ -343,7 +380,7 @@ Partial Class registraOrdenCompraForm
         '
         Me.btnCierra.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCierra.Image = CType(resources.GetObject("btnCierra.Image"), System.Drawing.Image)
-        Me.btnCierra.Location = New System.Drawing.Point(67, 165)
+        Me.btnCierra.Location = New System.Drawing.Point(67, 186)
         Me.btnCierra.Name = "btnCierra"
         Me.btnCierra.Size = New System.Drawing.Size(25, 24)
         Me.btnCierra.TabIndex = 3
@@ -380,7 +417,7 @@ Partial Class registraOrdenCompraForm
         '
         'txtLug
         '
-        Me.txtLug.Location = New System.Drawing.Point(162, 154)
+        Me.txtLug.Location = New System.Drawing.Point(162, 178)
         Me.txtLug.Name = "txtLug"
         Me.txtLug.Size = New System.Drawing.Size(347, 20)
         Me.txtLug.TabIndex = 5
@@ -397,7 +434,7 @@ Partial Class registraOrdenCompraForm
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(101, 157)
+        Me.Label21.Location = New System.Drawing.Point(101, 181)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(55, 13)
         Me.Label21.TabIndex = 287
@@ -420,7 +457,7 @@ Partial Class registraOrdenCompraForm
         Me.cbObra.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbObra.FormattingEnabled = True
         Me.cbObra.IntegralHeight = False
-        Me.cbObra.Location = New System.Drawing.Point(162, 130)
+        Me.cbObra.Location = New System.Drawing.Point(162, 154)
         Me.cbObra.Name = "cbObra"
         Me.cbObra.Size = New System.Drawing.Size(347, 21)
         Me.cbObra.TabIndex = 4
@@ -428,7 +465,7 @@ Partial Class registraOrdenCompraForm
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(103, 133)
+        Me.Label20.Location = New System.Drawing.Point(103, 157)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(38, 13)
         Me.Label20.TabIndex = 286
@@ -445,7 +482,7 @@ Partial Class registraOrdenCompraForm
         '
         'txtEma
         '
-        Me.txtEma.Location = New System.Drawing.Point(315, 106)
+        Me.txtEma.Location = New System.Drawing.Point(315, 130)
         Me.txtEma.Name = "txtEma"
         Me.txtEma.ReadOnly = True
         Me.txtEma.Size = New System.Drawing.Size(198, 20)
@@ -455,7 +492,7 @@ Partial Class registraOrdenCompraForm
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(342, 109)
+        Me.Label13.Location = New System.Drawing.Point(342, 133)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(41, 13)
         Me.Label13.TabIndex = 311
@@ -463,7 +500,7 @@ Partial Class registraOrdenCompraForm
         '
         'txtFono
         '
-        Me.txtFono.Location = New System.Drawing.Point(162, 106)
+        Me.txtFono.Location = New System.Drawing.Point(162, 130)
         Me.txtFono.Name = "txtFono"
         Me.txtFono.ReadOnly = True
         Me.txtFono.Size = New System.Drawing.Size(147, 20)
@@ -473,7 +510,7 @@ Partial Class registraOrdenCompraForm
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(101, 109)
+        Me.Label12.Location = New System.Drawing.Point(101, 133)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(65, 13)
         Me.Label12.TabIndex = 309
@@ -481,7 +518,7 @@ Partial Class registraOrdenCompraForm
         '
         'txtCel
         '
-        Me.txtCel.Location = New System.Drawing.Point(381, 85)
+        Me.txtCel.Location = New System.Drawing.Point(381, 109)
         Me.txtCel.Name = "txtCel"
         Me.txtCel.Size = New System.Drawing.Size(132, 20)
         Me.txtCel.TabIndex = 10
@@ -516,7 +553,7 @@ Partial Class registraOrdenCompraForm
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(352, 88)
+        Me.Label11.Location = New System.Drawing.Point(352, 112)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(33, 13)
         Me.Label11.TabIndex = 294
@@ -525,7 +562,7 @@ Partial Class registraOrdenCompraForm
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(101, 88)
+        Me.Label10.Location = New System.Drawing.Point(101, 112)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(61, 13)
         Me.Label10.TabIndex = 287
@@ -541,27 +578,14 @@ Partial Class registraOrdenCompraForm
         Me.txtNro.TabStop = False
         Me.txtNro.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'cbProv
-        '
-        Me.cbProv.DropDownHeight = 500
-        Me.cbProv.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbProv.DropDownWidth = 400
-        Me.cbProv.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbProv.FormattingEnabled = True
-        Me.cbProv.IntegralHeight = False
-        Me.cbProv.Location = New System.Drawing.Point(162, 37)
-        Me.cbProv.Name = "cbProv"
-        Me.cbProv.Size = New System.Drawing.Size(343, 21)
-        Me.cbProv.TabIndex = 7
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(101, 40)
+        Me.Label4.Location = New System.Drawing.Point(96, 40)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(59, 13)
+        Me.Label4.Size = New System.Drawing.Size(69, 13)
         Me.Label4.TabIndex = 277
-        Me.Label4.Text = "Empresa:"
+        Me.Label4.Text = "Proveedor:"
         '
         'btnCerrar
         '
@@ -618,6 +642,8 @@ Partial Class registraOrdenCompraForm
         'Panel2
         '
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.txtNot)
+        Me.Panel2.Controls.Add(Me.Label33)
         Me.Panel2.Controls.Add(Me.txtCont)
         Me.Panel2.Controls.Add(Me.Label31)
         Me.Panel2.Controls.Add(Me.txtDir)
@@ -636,8 +662,24 @@ Partial Class registraOrdenCompraForm
         Me.Panel2.Controls.Add(Me.Label17)
         Me.Panel2.Location = New System.Drawing.Point(526, 23)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(389, 220)
+        Me.Panel2.Size = New System.Drawing.Size(389, 240)
         Me.Panel2.TabIndex = 2
+        '
+        'txtNot
+        '
+        Me.txtNot.Location = New System.Drawing.Point(39, 219)
+        Me.txtNot.Name = "txtNot"
+        Me.txtNot.Size = New System.Drawing.Size(339, 20)
+        Me.txtNot.TabIndex = 324
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Location = New System.Drawing.Point(4, 222)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(38, 13)
+        Me.Label33.TabIndex = 323
+        Me.Label33.Text = "Nota:"
         '
         'txtCont
         '
@@ -842,7 +884,7 @@ Partial Class registraOrdenCompraForm
         Me.btnSol.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSol.Image = CType(resources.GetObject("btnSol.Image"), System.Drawing.Image)
         Me.btnSol.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSol.Location = New System.Drawing.Point(201, 179)
+        Me.btnSol.Location = New System.Drawing.Point(201, 173)
         Me.btnSol.Name = "btnSol"
         Me.btnSol.Size = New System.Drawing.Size(82, 23)
         Me.btnSol.TabIndex = 323
@@ -866,15 +908,15 @@ Partial Class registraOrdenCompraForm
         Me.Panel3.Controls.Add(Me.GroupBox1)
         Me.Panel3.Controls.Add(Me.Navigator2)
         Me.Panel3.Controls.Add(Me.txtLetraTotal)
-        Me.Panel3.Location = New System.Drawing.Point(14, 243)
+        Me.Panel3.Location = New System.Drawing.Point(14, 262)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(901, 246)
+        Me.Panel3.Size = New System.Drawing.Size(901, 241)
         Me.Panel3.TabIndex = 10
         '
         'Label26
         '
         Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(6, 184)
+        Me.Label26.Location = New System.Drawing.Point(6, 178)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(70, 13)
         Me.Label26.TabIndex = 325
@@ -882,7 +924,7 @@ Partial Class registraOrdenCompraForm
         '
         'txtNroSol
         '
-        Me.txtNroSol.Location = New System.Drawing.Point(285, 181)
+        Me.txtNroSol.Location = New System.Drawing.Point(285, 175)
         Me.txtNroSol.Name = "txtNroSol"
         Me.txtNroSol.ReadOnly = True
         Me.txtNroSol.Size = New System.Drawing.Size(99, 20)
@@ -891,7 +933,7 @@ Partial Class registraOrdenCompraForm
         '
         'txtNroCot
         '
-        Me.txtNroCot.Location = New System.Drawing.Point(76, 181)
+        Me.txtNroCot.Location = New System.Drawing.Point(76, 175)
         Me.txtNroCot.Name = "txtNroCot"
         Me.txtNroCot.ReadOnly = True
         Me.txtNroCot.Size = New System.Drawing.Size(99, 20)
@@ -905,25 +947,25 @@ Partial Class registraOrdenCompraForm
         Me.dgTabla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgTabla2.Location = New System.Drawing.Point(1, 0)
         Me.dgTabla2.Name = "dgTabla2"
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle3
-        Me.dgTabla2.Size = New System.Drawing.Size(900, 180)
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgTabla2.Size = New System.Drawing.Size(900, 173)
         Me.dgTabla2.TabIndex = 15
         '
         'txtIGV
         '
-        Me.txtIGV.Location = New System.Drawing.Point(653, 201)
+        Me.txtIGV.Location = New System.Drawing.Point(653, 195)
         Me.txtIGV.Name = "txtIGV"
         Me.txtIGV.ReadOnly = True
         Me.txtIGV.Size = New System.Drawing.Size(79, 20)
         Me.txtIGV.TabIndex = 305
         Me.txtIGV.TabStop = False
-        Me.txtIGV.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtIGV.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CheckBoxIGV
         '
         Me.CheckBoxIGV.AutoSize = True
-        Me.CheckBoxIGV.Location = New System.Drawing.Point(566, 204)
+        Me.CheckBoxIGV.Location = New System.Drawing.Point(566, 198)
         Me.CheckBoxIGV.Name = "CheckBoxIGV"
         Me.CheckBoxIGV.Size = New System.Drawing.Size(81, 17)
         Me.CheckBoxIGV.TabIndex = 306
@@ -933,18 +975,18 @@ Partial Class registraOrdenCompraForm
         '
         'txtSub
         '
-        Me.txtSub.Location = New System.Drawing.Point(653, 180)
+        Me.txtSub.Location = New System.Drawing.Point(653, 174)
         Me.txtSub.Name = "txtSub"
         Me.txtSub.ReadOnly = True
         Me.txtSub.Size = New System.Drawing.Size(79, 20)
         Me.txtSub.TabIndex = 304
         Me.txtSub.TabStop = False
-        Me.txtSub.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtSub.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(571, 183)
+        Me.Label5.Location = New System.Drawing.Point(571, 177)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(76, 13)
         Me.Label5.TabIndex = 303
@@ -954,7 +996,7 @@ Partial Class registraOrdenCompraForm
         '
         Me.GroupBox1.Controls.Add(Me.rb2)
         Me.GroupBox1.Controls.Add(Me.rb1)
-        Me.GroupBox1.Location = New System.Drawing.Point(387, 180)
+        Me.GroupBox1.Location = New System.Drawing.Point(387, 174)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(175, 40)
         Me.GroupBox1.TabIndex = 302
@@ -990,7 +1032,7 @@ Partial Class registraOrdenCompraForm
         Me.Navigator2.DeleteItem = Nothing
         Me.Navigator2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Navigator2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripTextBox1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator3, Me.TSModificar, Me.ToolStripSeparator4, Me.ToolStripSeparator6, Me.txtTotal, Me.lblTotal, Me.ToolStripButton6, Me.ToolStripSeparator5})
-        Me.Navigator2.Location = New System.Drawing.Point(0, 221)
+        Me.Navigator2.Location = New System.Drawing.Point(0, 216)
         Me.Navigator2.MoveFirstItem = Me.ToolStripButton1
         Me.Navigator2.MoveLastItem = Me.ToolStripButton4
         Me.Navigator2.MoveNextItem = Me.ToolStripButton3
@@ -1100,7 +1142,7 @@ Partial Class registraOrdenCompraForm
         Me.txtTotal.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotal.Name = "txtTotal"
         Me.txtTotal.Size = New System.Drawing.Size(80, 25)
-        Me.txtTotal.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtTotal.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lblTotal
         '
@@ -1129,7 +1171,7 @@ Partial Class registraOrdenCompraForm
         '
         Me.txtLetraTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtLetraTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtLetraTotal.Location = New System.Drawing.Point(0, 202)
+        Me.txtLetraTotal.Location = New System.Drawing.Point(0, 196)
         Me.txtLetraTotal.Name = "txtLetraTotal"
         Me.txtLetraTotal.Size = New System.Drawing.Size(386, 20)
         Me.txtLetraTotal.TabIndex = 307
@@ -1150,9 +1192,9 @@ Partial Class registraOrdenCompraForm
         Me.Panel4.Controls.Add(Me.btnAgrega)
         Me.Panel4.Controls.Add(Me.btnCrear)
         Me.Panel4.Controls.Add(Me.btnProcesa)
-        Me.Panel4.Location = New System.Drawing.Point(14, 489)
+        Me.Panel4.Location = New System.Drawing.Point(14, 504)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(901, 164)
+        Me.Panel4.Size = New System.Drawing.Size(901, 149)
         Me.Panel4.TabIndex = 3
         '
         'txtBuscar
@@ -1170,9 +1212,9 @@ Partial Class registraOrdenCompraForm
         Me.dgTabla1.Location = New System.Drawing.Point(0, 25)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle4
-        Me.dgTabla1.Size = New System.Drawing.Size(900, 137)
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle2
+        Me.dgTabla1.Size = New System.Drawing.Size(900, 123)
         Me.dgTabla1.TabIndex = 7
         '
         'cbBuscar
@@ -1193,8 +1235,8 @@ Partial Class registraOrdenCompraForm
         Me.txtPre.Name = "txtPre"
         Me.txtPre.Size = New System.Drawing.Size(65, 20)
         Me.txtPre.TabIndex = 3
-        Me.txtPre.Text = "0"
-        Me.txtPre.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtPre.Text = "0.00"
+        Me.txtPre.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label22
         '
@@ -1220,7 +1262,7 @@ Partial Class registraOrdenCompraForm
         Me.txtCan.Name = "txtCan"
         Me.txtCan.Size = New System.Drawing.Size(52, 20)
         Me.txtCan.TabIndex = 1
-        Me.txtCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label24
         '
@@ -1243,11 +1285,11 @@ Partial Class registraOrdenCompraForm
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "registraOrdenCompraForm"
         Me.Controls.SetChildIndex(Me.Panel2, 0)
-        Me.Controls.SetChildIndex(Me.lblTitulo, 0)
         Me.Controls.SetChildIndex(Me.Panel3, 0)
         Me.Controls.SetChildIndex(Me.Panel1, 0)
-        Me.Controls.SetChildIndex(Me.lblDerecha, 0)
         Me.Controls.SetChildIndex(Me.Panel4, 0)
+        Me.Controls.SetChildIndex(Me.lblTitulo, 0)
+        Me.Controls.SetChildIndex(Me.lblDerecha, 0)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
@@ -1295,12 +1337,6 @@ Partial Class registraOrdenCompraForm
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents cbPers As System.Windows.Forms.ComboBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
-    Friend WithEvents txtRem As System.Windows.Forms.TextBox
-    Friend WithEvents txtEma1 As System.Windows.Forms.TextBox
-    Friend WithEvents Label16 As System.Windows.Forms.Label
-    Friend WithEvents txtFono1 As System.Windows.Forms.TextBox
-    Friend WithEvents Label15 As System.Windows.Forms.Label
-    Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents txtObsFac As System.Windows.Forms.TextBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents cbPago As System.Windows.Forms.ComboBox
@@ -1352,7 +1388,6 @@ Partial Class registraOrdenCompraForm
     Friend WithEvents ToolStripSeparator5 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents txtNroCot As System.Windows.Forms.TextBox
     Friend WithEvents btnImprimir As ComponentesSolucion2008.BottomSSP
-    Friend WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripTextBox
     Friend WithEvents txtTran As System.Windows.Forms.TextBox
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents txtPro As System.Windows.Forms.TextBox
@@ -1371,5 +1406,16 @@ Partial Class registraOrdenCompraForm
     Friend WithEvents Label30 As System.Windows.Forms.Label
     Friend WithEvents txtCont As System.Windows.Forms.TextBox
     Friend WithEvents Label31 As System.Windows.Forms.Label
+    Friend WithEvents txtRem As System.Windows.Forms.TextBox
+    Friend WithEvents txtEma1 As System.Windows.Forms.TextBox
+    Friend WithEvents Label16 As System.Windows.Forms.Label
+    Friend WithEvents txtFono1 As System.Windows.Forms.TextBox
+    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents Label14 As System.Windows.Forms.Label
+    Friend WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents txtDet As System.Windows.Forms.TextBox
+    Friend WithEvents Label32 As System.Windows.Forms.Label
+    Friend WithEvents txtNot As System.Windows.Forms.TextBox
+    Friend WithEvents Label33 As System.Windows.Forms.Label
 
 End Class

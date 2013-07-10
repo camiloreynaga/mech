@@ -34,7 +34,7 @@ Public Class registraOrdenCompraForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select codIde,razon,ruc,dir,fono,fax,celRpm,email,repres,fono+'  '+fax as fono1,cuentaBan from TIdentidad where estado=1 and idTipId=2" ' '2=proveedor
+        Dim sele As String = "select codIde,razon,ruc,dir,fono,fax,celRpm,email,repres,fono+'  '+fax as fono1,cuentaBan,cuentaDet from TIdentidad where estado=1 and idTipId=2" ' '2=proveedor
         crearDataAdapterTable(daTProvee, sele)
 
         sele = "select distinct codigo,nombre,lugar,color from VLugarTrabajoLogin"
@@ -49,7 +49,7 @@ Public Class registraOrdenCompraForm
         sele = "select codMon,moneda,simbolo from TMoneda"
         crearDataAdapterTable(daTMon, sele)
 
-        sele = "select nroOrden,nroO,nro,codIde,fecOrden,igv,atiendeCom,celAti,plazoEnt,codMon,codPag,lugarEnt,transfe,codigo,codPers,obsFac,codCot,estado,hist,codPersO,calIGV,nroProf,idSol,codET from VOrdenComAper" 'order by nroO"
+        sele = "select nroOrden,nroO,nro,codIde,fecOrden,igv,atiendeCom,celAti,plazoEnt,codMon,codPag,lugarEnt,transfe,codigo,codPers,obsFac,codCot,estado,hist,codPersO,calIGV,nroProf,idSol,codET,nota from VOrdenComAper" 'order by nroO"
         crearDataAdapterTable(daTabla1, sele)
 
         sele = "select codDetO,cant,unidad,descrip,precio,subTotal,nroOrden,codMat from VDetOrden where nroOrden=@nro"
@@ -158,7 +158,7 @@ Public Class registraOrdenCompraForm
             .Columns(0).Visible = False
             .Columns(1).Width = 60
             .Columns(1).HeaderText = "Cant."
-            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(2).Width = 60
             .Columns(2).HeaderText = "Unid."
             .Columns(2).ReadOnly = True 'NO editable
@@ -167,10 +167,10 @@ Public Class registraOrdenCompraForm
             .Columns(3).ReadOnly = True 'NO editable
             .Columns(4).Width = 75
             .Columns(4).HeaderText = "Prec_Unit"
-            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(5).Width = 75
             .Columns(5).HeaderText = "Total"
-            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(6).Visible = False
             .Columns(7).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -218,6 +218,8 @@ Public Class registraOrdenCompraForm
         Label29.ForeColor = ForeColorLabel
         Label30.ForeColor = ForeColorLabel
         Label31.ForeColor = ForeColorLabel
+        Label32.ForeColor = ForeColorLabel
+        Label33.ForeColor = ForeColorLabel
         CheckBoxIGV.ForeColor = ForeColorLabel
         GroupBox1.ForeColor = ForeColorLabel
         btnAperturar.ForeColor = ForeColorButtom
@@ -269,6 +271,7 @@ Public Class registraOrdenCompraForm
                 txtAte.Text = BindingSource1.Item(BindingSource1.Position)(8)
                 txtCel.Text = BindingSource1.Item(BindingSource1.Position)(6)
                 txtTran.Text = BindingSource1.Item(BindingSource1.Position)(10)
+                txtDet.Text = BindingSource1.Item(BindingSource1.Position)(11)
             End If
         End If
     End Sub
@@ -314,6 +317,7 @@ Public Class registraOrdenCompraForm
             Else
                 cbProv.SelectedValue = BindingSource6.Item(lbOrden.SelectedIndex)(3)
                 txtObsFac.Text = BindingSource6.Item(lbOrden.SelectedIndex)(15)
+                txtNot.Text = BindingSource6.Item(lbOrden.SelectedIndex)(24)
                 date1.Value = BindingSource6.Item(lbOrden.SelectedIndex)(4)
                 txtAte.Text = BindingSource6.Item(lbOrden.SelectedIndex)(6)
                 txtCel.Text = BindingSource6.Item(lbOrden.SelectedIndex)(7)
@@ -398,13 +402,13 @@ Public Class registraOrdenCompraForm
         End If
 
         If rb1.Checked Then  'tipo 1
-            txtTotal.Text = Format((dsAlmacen.Tables("VDetOrden").Compute("Sum(subTotal)", Nothing)), "0.00")
-            txtIGV.Text = Format(((txtTotal.Text * vfIGV) / (100 + vfIGV)), "0.00")
-            txtSub.Text = Format((txtTotal.Text - txtIGV.Text), "0.00")
+            txtTotal.Text = Format((dsAlmacen.Tables("VDetOrden").Compute("Sum(subTotal)", Nothing)), "0,0.00")
+            txtIGV.Text = Format(((txtTotal.Text * vfIGV) / (100 + vfIGV)), "0,0.00")
+            txtSub.Text = Format((txtTotal.Text - txtIGV.Text), "0,0.00")
         Else  'Tipo 2
-            txtSub.Text = Format((dsAlmacen.Tables("VDetOrden").Compute("Sum(subTotal)", Nothing)), "0.00")
-            txtIGV.Text = Format((txtSub.Text * vfIGV) / 100, "0.00")
-            txtTotal.Text = Format((CDbl(txtSub.Text) + CDbl(txtIGV.Text)), "0.00")
+            txtSub.Text = Format((dsAlmacen.Tables("VDetOrden").Compute("Sum(subTotal)", Nothing)), "0,0.00")
+            txtIGV.Text = Format((txtSub.Text * vfIGV) / 100, "0,0.00")
+            txtTotal.Text = Format((CDbl(txtSub.Text) + CDbl(txtIGV.Text)), "0,0.00")
         End If
         lblTotal.Text = "TOTAL  " & BindingSource0.Item(cbMoneda.SelectedIndex)(2) 'cbMoneda.Text.Trim()
         cambiarNroTotalLetra()
@@ -574,6 +578,7 @@ Public Class registraOrdenCompraForm
         cmInserTable.Parameters.Add("@lugar", SqlDbType.VarChar, 100).Value = txtLug.Text.Trim()
         cmInserTable.Parameters.Add("@codET", SqlDbType.Int, 0).Value = cbTrans.SelectedValue
         cmInserTable.Parameters.Add("@hist", SqlDbType.VarChar, 200).Value = "Creo " & Now.Date & " " & vPass & "-" & vSUsuario
+        cmInserTable.Parameters.Add("@nota", SqlDbType.VarChar, 200).Value = txtNot.Text.Trim()
         'configurando direction output = parametro de solo salida
         cmInserTable.Parameters.Add("@Identity", SqlDbType.Int, 0)
         cmInserTable.Parameters("@Identity").Direction = ParameterDirection.Output
@@ -804,10 +809,11 @@ Public Class registraOrdenCompraForm
     Private Sub comandoUpdate2()
         cmUpdateTable2 = New SqlCommand
         cmUpdateTable2.CommandType = CommandType.Text
-        cmUpdateTable2.CommandText = "update TOrdenCompra set fecOrden=@fec,codIde=@codI,codPag=@codPa,igv=@igv,calIGV=@cal,codMon=@codM,atiendeCom=@ate,celAti=@cel,plazoEnt=@pla,transfe=@tra,nroProf=@nroProf,obsFac=@obs,codPersO=@codPersO,codigo=@cod,lugarEnt=@lug,hist=@hist,codET=@codET where nroOrden=@nro"
+        cmUpdateTable2.CommandText = "update TOrdenCompra set fecOrden=@fec,codIde=@codI,codPers=@codPers,codPag=@codPa,igv=@igv,calIGV=@cal,codMon=@codM,atiendeCom=@ate,celAti=@cel,plazoEnt=@pla,transfe=@tra,nroProf=@nroProf,obsFac=@obs,codPersO=@codPersO,codigo=@cod,lugarEnt=@lug,hist=@hist,codET=@codET,nota=@nota where nroOrden=@nro"
         cmUpdateTable2.Connection = Cn
         cmUpdateTable2.Parameters.Add("@fec", SqlDbType.Date).Value = date1.Value.Date
         cmUpdateTable2.Parameters.Add("@codI", SqlDbType.Int, 0).Value = cbProv.SelectedValue
+        cmUpdateTable2.Parameters.Add("@codPers", SqlDbType.Int, 0).Value = vPass
         cmUpdateTable2.Parameters.Add("@codPa", SqlDbType.Int, 0).Value = cbPago.SelectedValue
         If Not CheckBoxIGV.Checked Then  'Con IGV
             If rb1.Checked Then
@@ -833,6 +839,7 @@ Public Class registraOrdenCompraForm
         cmUpdateTable2.Parameters.Add("@lug", SqlDbType.VarChar, 100).Value = txtLug.Text.Trim()
         cmUpdateTable2.Parameters.Add("@hist", SqlDbType.VarChar, 200).Value = BindingSource6.Item(BindingSource6.Position)(18) & "  Modifico " & Now.Date & " " & vPass & "-" & vSUsuario
         cmUpdateTable2.Parameters.Add("@codET", SqlDbType.Int, 0).Value = cbTrans.SelectedValue
+        cmUpdateTable2.Parameters.Add("@nota", SqlDbType.VarChar, 200).Value = txtNot.Text.Trim()
         cmUpdateTable2.Parameters.Add("@nro", SqlDbType.Int, 0).Value = BindingSource6.Item(BindingSource6.Position)(0)
     End Sub
 
@@ -873,7 +880,7 @@ Public Class registraOrdenCompraForm
             .Columns(0).HeaderText = "Cod"
             .Columns(0).Width = 35
             .Columns(1).HeaderText = "Descripción Insumo"
-            .Columns(1).Width = 440
+            .Columns(1).Width = 438
             .Columns(2).Width = 45
             .Columns(2).HeaderText = "Unid."
             .Columns(3).Width = 50
@@ -882,7 +889,7 @@ Public Class registraOrdenCompraForm
             .Columns(4).HeaderText = "Tipo Insumo"
             .Columns(4).Width = 120
             .Columns(5).HeaderText = ""
-            .Columns(5).Width = 270
+            .Columns(5).Width = 150
             '.Columns(5).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
@@ -1503,7 +1510,7 @@ Public Class registraOrdenCompraForm
         End If
 
         vCodDoc = BindingSource6.Item(BindingSource6.Position)(0)
-        vParam1 = BindingSource6.Item(BindingSource6.Position)(2) & "-MECH-" & CDate(BindingSource6.Item(BindingSource6.Position)(4)).Year
+        vParam1 = "Nº " & BindingSource6.Item(BindingSource6.Position)(2) & "-MECH-" & CDate(BindingSource6.Item(BindingSource6.Position)(4)).Year
         vParam2 = txtLetraTotal.Text.Trim()
         vParam3 = txtSub.Text.Trim()
         vParam4 = txtIGV.Text.Trim()

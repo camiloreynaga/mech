@@ -121,7 +121,7 @@
   <data name="btnCot.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr4AAA6+AepCscAAAACCSURBVDhPnY+BDcAgCAQdndHczPoWEFFr8VIign9J04pS
+        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAACCSURBVDhPnY+BDcAgCAQdndHczPoWEFFr8VIign9J04pS
         PxRf48QEVB+iOuhtHRgFJec8FGbv6owPFSJqxXegu/qPMlM07ILag4VUGQQ4bW/ZSSaBYHshJLDI/EqA
         mdRKAHRpHnD8nwBMApTnSwD8kmOdk8DTApaoAHD0LixIkMMpPa0IRU0L8FGgAAAAAElFTkSuQmCC
 </value>
@@ -256,9 +256,6 @@
         brpsU7Pbg2EtHwY9sC+PJb/Z/uaxqnZQmch9rjqdMSAAOw==
 </value>
   </data>
-  <metadata name="Navigator2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>340, 17</value>
-  </metadata>
   <metadata name="Navigator2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>340, 17</value>
   </metadata>

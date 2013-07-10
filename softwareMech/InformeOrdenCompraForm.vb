@@ -134,7 +134,7 @@ Public Class InformeOrdenCompraForm
             .Columns(36).Visible = False
             .Columns(37).Visible = False
             .Columns(38).Visible = False
-            .Columns(39).Width = 800
+            .Columns(39).Width = 1000
             .Columns(39).HeaderText = ""
             .Columns(40).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -147,17 +147,17 @@ Public Class InformeOrdenCompraForm
             .Columns(0).Visible = False
             .Columns(1).Width = 60
             .Columns(1).HeaderText = "Cant."
-            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(2).Width = 60
             .Columns(2).HeaderText = "Unid."
             .Columns(3).HeaderText = "Descripción Insumo"
             .Columns(3).Width = 417
             .Columns(4).Width = 75
             .Columns(4).HeaderText = "Prec_Unit"
-            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(5).Width = 75
             .Columns(5).HeaderText = "Total"
-            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(6).Visible = False
             .Columns(7).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -263,13 +263,13 @@ Public Class InformeOrdenCompraForm
         End If
 
         If rb1.Checked Then  'tipo 1
-            txtTotal.Text = Format((dsAlmacen.Tables("VDetOrden").Compute("Sum(subTotal)", Nothing)), "0.00")
-            txtIGV.Text = Format(((txtTotal.Text * vfIGV) / (100 + vfIGV)), "0.00")
-            txtSub.Text = Format((txtTotal.Text - txtIGV.Text), "0.00")
+            txtTotal.Text = Format((dsAlmacen.Tables("VDetOrden").Compute("Sum(subTotal)", Nothing)), "0,0.00")
+            txtIGV.Text = Format(((txtTotal.Text * vfIGV) / (100 + vfIGV)), "0,0.00")
+            txtSub.Text = Format((txtTotal.Text - txtIGV.Text), "0,0.00")
         Else  'Tipo 2
-            txtSub.Text = Format((dsAlmacen.Tables("VDetOrden").Compute("Sum(subTotal)", Nothing)), "0.00")
-            txtIGV.Text = Format((txtSub.Text * vfIGV) / 100, "0.00")
-            txtTotal.Text = Format((CDbl(txtSub.Text) + CDbl(txtIGV.Text)), "0.00")
+            txtSub.Text = Format((dsAlmacen.Tables("VDetOrden").Compute("Sum(subTotal)", Nothing)), "0,0.00")
+            txtIGV.Text = Format((txtSub.Text * vfIGV) / 100, "0,0.00")
+            txtTotal.Text = Format((CDbl(txtSub.Text) + CDbl(txtIGV.Text)), "0,0.00")
         End If
         lblTotal.Text = "TOTAL  " & BindingSource1.Item(BindingSource1.Position)(34) 'cbMoneda.Text.Trim()
         cambiarNroTotalLetra()
@@ -315,7 +315,7 @@ Public Class InformeOrdenCompraForm
         End If
 
         vCodDoc = BindingSource1.Item(BindingSource1.Position)(0)
-        vParam1 = BindingSource1.Item(BindingSource1.Position)(1) & "-MECH-" & CDate(BindingSource1.Item(BindingSource1.Position)(2)).Year
+        vParam1 = "Nº " & BindingSource1.Item(BindingSource1.Position)(1) & "-MECH-" & CDate(BindingSource1.Item(BindingSource1.Position)(2)).Year
         vParam2 = txtLetraTotal.Text.Trim()
         vParam3 = txtSub.Text.Trim()
         vParam4 = txtIGV.Text.Trim()

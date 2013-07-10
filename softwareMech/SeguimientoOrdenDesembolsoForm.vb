@@ -281,10 +281,6 @@ Public Class SeguimientoOrdenDesembolsoForm
 
     End Sub
 
-    ''' <summary>
-    ''' enlazada los datos de la Grilla con el form Contabilidad
-    ''' </summary>
-    ''' <remarks></remarks>
     Private Sub enlazarTextConta()
         If dgContabilidad.Rows.Count = 0 Then
             Exit Sub

@@ -39,6 +39,9 @@ Module varFuncPublicasModule
     Public vSNomSuc As String    'Variable de sistema no cambiar su valor codigo sucursal
     Public vSDirSuc As String 'Variable de sistema no cambiar su valor
     Public vSIGV As Double = 18 'IGV Variable de sistema no cambiar su valor
+    Public vSCodSerO As Integer    'Variable de sistema no cambiar su valor
+    Public vSSerie As String
+    Public vSIniNroDoc As Integer
 
     Public vNroOrden As Integer
     Public vSerie As String
