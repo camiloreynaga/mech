@@ -756,7 +756,7 @@ Public Class MantIdentidadForm
     Private Sub comandoInsert1()
         cmInserTable1 = New SqlCommand
         cmInserTable1.CommandType = CommandType.Text
-        cmInserTable1.CommandText = "insert TIdentidad(razon,ruc,dir,fono,fax,celRpm,email,repres,dni,estado,idTipId,cuentaBan) values(@raz,@ruc,@dir,@fono,@fax,@cel,@ema,@rep,@dni,@est,@idT,@cue,@detraccion)"
+        cmInserTable1.CommandText = "insert TIdentidad(razon,ruc,dir,fono,fax,celRpm,email,repres,dni,estado,idTipId,cuentaBan,cuentaDet) values(@raz,@ruc,@dir,@fono,@fax,@cel,@ema,@rep,@dni,@est,@idT,@cue,@detraccion)"
         cmInserTable1.Connection = Cn
         cmInserTable1.Parameters.Add("@raz", SqlDbType.VarChar, 60).Value = txtNom.Text.Trim()
         cmInserTable1.Parameters.Add("@ruc", SqlDbType.VarChar, 11).Value = txtRuc.Text.Trim()

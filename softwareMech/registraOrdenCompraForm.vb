@@ -443,7 +443,7 @@ Public Class registraOrdenCompraForm
         End If
         'Inicia el Proceso para identificar la cantidad a convertir
         If Val(txtTotal.Text) > 0 Then
-            cALetra.Numero = Val(txtTotal.Text)
+            cALetra.Numero = Val(CDbl(txtTotal.Text))
             txtLetraTotal.Text = "SON: " & cALetra.ALetra.ToUpper()
         End If
     End Sub

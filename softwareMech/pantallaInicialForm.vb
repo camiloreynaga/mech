@@ -90,6 +90,16 @@ Public Class pantallaInicialForm
             PermisosAlmacenero()
             'DesactivarMenuAlmacen()
         End If
+        If vSCodTipoUsu = 11 Then    '5=tipo Almacenero
+            TSMenu.Visible = True
+            PermisosContabilidad()
+            'DesactivarMenuAlmacen()
+        End If
+        If vSCodTipoUsu = 12 Then    '5=tipo Almacenero
+            TSMenu.Visible = True
+            permisosCajaChica()
+            'DesactivarMenuAlmacen()
+        End If
         'End If
 
         'Cambiando el formato de fecha
@@ -100,57 +110,81 @@ Public Class pantallaInicialForm
 
     Private Sub pantallaInicialForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         If vSCodTipoUsu = 3 Then  ' 3=gerencia de construcciones
-            opcReq3.PerformClick()  'Aprueba por defecto su pantalla AprobarSolicitudReqForm.vb  Hubeer
+            opcReqAprobacion.PerformClick()  'Aprueba por defecto su pantalla AprobarSolicitudReqForm.vb  Hubeer
         End If
         If vSCodTipoUsu = 2 Then  '2=gerencia general 
-            opcOrdDes2.PerformClick()  'Aprueba por defecto su pantalla gerenciaOrdenDesembolsoForm.vb  Freddy
+            opcOrdDesAprobacion.PerformClick()  'Aprueba por defecto su pantalla gerenciaOrdenDesembolsoForm.vb  Freddy
         End If
         If vSCodTipoUsu = 5 Then  '5=Tesoreria 
-            opcOrdDes3.PerformClick()  'Aprueba por defecto su pantalla tesoreriaOrdenDesembolsoForm.vb  Yoel
+            opcOrdDesRegPagos.PerformClick()  'Aprueba por defecto su pantalla tesoreriaOrdenDesembolsoForm.vb  Yoel
         End If
     End Sub
 
     Private Sub PermisosAlmacenero()
+        PermisosResidente()
+        opcInsumoTipo.Visible = False
+        opcInsumoArea.Visible = False
 
+        ToolStripSeparator2_1.Visible = False
     End Sub
-
+    ''' <summary>
+    ''' Permisos para Administrador de Obra
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub PermisosAdmObra()
         PermisosResidente()
-        opcMat3.Visible = False
-        ToolStripSeparator9.Visible = False
+        opcInsumoTipo.Visible = False
+        opcInsumoArea.Visible = False
+        ToolStripSeparator2_1.Visible = False
     End Sub
 
+    ''' <summary>
+    ''' Permisos para Jefe de Equipo Mecánico
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub PermisosJefeEquipoMecanico()
         PermisosResidente()
-        opcMat3.Visible = False
-        ToolStripSeparator9.Visible = False
+        opcInsumoTipo.Visible = False
+        opcInsumoArea.Visible = False
+        ToolStripSeparator2_1.Visible = False
     End Sub
-
+    ''' <summary>
+    ''' Permisos para Jefe de Seguridad
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub PermisosJefeSeguridad()
         PermisosResidente()
-        opcMat3.Visible = False
-        ToolStripSeparator9.Visible = False
+        opcInsumoTipo.Visible = False
+        opcInsumoArea.Visible = False
+        ToolStripSeparator2_1.Visible = False
 
     End Sub
-
+    ''' <summary>
+    ''' Permisos de acceso para Residente
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub PermisosResidente()
-        opcEnt.Visible = False
-        opcMat1.Visible = False
-        opcCot.Visible = False
-        opcOrden.Visible = False
-        opcOrdDes.Visible = False
-        opcDoc.Visible = False
-        opcGuia.Visible = False
-        opcPers.Visible = False
-        opcConf6.Visible = False
+        opcClien_Prov.Visible = False
+        opcInsumoArea.Visible = False 'Mantenimiento Área Insumo
+        opcReqAprobacion.Visible = False
 
-        ToolStripSeparator10.Visible = False
-        ToolStripSeparator8.Visible = False
-        ToolStripSeparator32.Visible = False
-        ToolStripSeparator4.Visible = False
+        opcCotizacion.Visible = False 'Cotizacion
+        opcOrdenCompra.Visible = False ' Orde de compra
+        opcOrdDesembolso.Visible = False ' Orden de Desembolso
+        opcDocCompra.Visible = False ' Documento de Compra
+        opcGuiaRemision.Visible = False ' Guia de Remision
+        opcPersonal.Visible = False ' Personal
+        opcConfObra.Visible = False 'Lugar de Trabajo
+        opcConfSeriePersonal.Visible = False 'Asignar Serie de Orden de desembolso
+        opcConfSerieDesem.Visible = False 'Mantenimiento de series de orden de desembolso
+
         ToolStripSeparator5.Visible = False
+        ToolStripSeparator1.Visible = False
+        ToolStripSeparator3.Visible = False
+        ToolStripSeparator4.Visible = False
         ToolStripSeparator6.Visible = False
-        ToolStripSeparator2.Visible = False
+        ToolStripSeparator7.Visible = False
+        ToolStripSeparator8.Visible = False
 
     End Sub
     ''' <summary>
@@ -159,25 +193,33 @@ Public Class pantallaInicialForm
     ''' <remarks></remarks>
     Private Sub PermisosTesoreria()
         'Menus
-        ' opcEnt.Visible = False
-        opcMat.Visible = False
-        'opcReq.Visible = False
-        opcCot.Visible = False
-        opcOrden.Visible = False
-        opcDoc.Visible = False
-        opcGuia.Visible = False
-        opcPers.Visible = False
-        opcConf6.Visible = False
+        'opcRequerimientoObra.Visible = False
+        opcInsumoArea.Visible = False
+        opcInsumoTipo.Visible = False
+
+        opcReqAprobacion.Visible = False
+
+        opcCotizacion.Visible = False
+        opcOrdenCompra.Visible = False
+        opcDocCompra.Visible = False
+        opcOrdDesAprobacion.Visible = False
+        opcOrdDesConta.Visible = False
+
+        opcGuiaRemision.Visible = False
+        opcPersonal.Visible = False
+        opcConfObra.Visible = False
+        opcConfSeriePersonal.Visible = False 'Asignar Serie de Orden de desembolso
+        opcConfSerieDesem.Visible = False 'Mantenimiento de series de orden de desembolso
+
 
         'separadores
-        ToolStripSeparator8.Visible = False
-        'ToolStripSeparator3.Visible = False
-        ToolStripSeparator32.Visible = False
+        'ToolStripSeparator1.Visible = False
+        ToolStripSeparator3.Visible = False
         ToolStripSeparator4.Visible = False
-        ToolStripSeparator5.Visible = False
         ToolStripSeparator6.Visible = False
-        ToolStripSeparator2.Visible = False
-        ToolStripSeparator34.Visible = False
+        ToolStripSeparator7.Visible = False
+        ToolStripSeparator8.Visible = False
+        ToolStripSeparator10.Visible = False
     End Sub
 
     ''' <summary>
@@ -185,8 +227,19 @@ Public Class pantallaInicialForm
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub PermisosLogistica()
-        TSMenu.Items("opcPers").Visible = False
-        opcConf6.Visible = False
+        opcReqAprobacion.Visible = False
+        opcOrdDesAprobacion.Visible = False
+        opcOrdDesRegPagos.Visible = False
+        opcOrdDesConta.Visible = False
+        opcOrdDesModPago.Visible = False
+        opcOrdDesCtasBco.Visible = False
+
+        opcPersonal.Visible = False
+
+        opcConfObra.Visible = False
+        opcConfSerieDesem.Visible = False
+        opcConfSeriePersonal.Visible = False
+
 
     End Sub
     ''' <summary>
@@ -195,6 +248,29 @@ Public Class pantallaInicialForm
     ''' <remarks></remarks>
     Private Sub PermisosGerenciaConstrucciones()
 
+        opcCotizacion.Visible = False
+        opcOrdenCompra.Visible = False
+
+
+        opcOrdDesAprobacion.Visible = False
+        opcOrdDesRegPagos.Visible = False
+        opcOrdDesConta.Visible = False
+        opcOrdDesModPago.Visible = False
+        opcOrdDesCtasBco.Visible = False
+
+        opcDocCompra.Visible = False
+        opcGuiaRemision.Visible = False
+
+        opcPersonal.Visible = False
+
+        opcConfSerieDesem.Visible = False
+        opcConfSeriePersonal.Visible = False
+
+        ToolStripSeparator3.Visible = False
+        ToolStripSeparator4.Visible = False
+        ToolStripSeparator7.Visible = False
+        ToolStripSeparator8.Visible = False
+        ToolStripSeparator9.Visible = False
     End Sub
     ''' <summary>
     ''' permisos de acceso para Gerencia General
@@ -202,7 +278,55 @@ Public Class pantallaInicialForm
     ''' <remarks></remarks>
     Private Sub PermisosGerenciaGeneral()
 
+        opcOrdDesRegPagos.Visible = False
+        opcOrdDesConta.Visible = False
+
+
     End Sub
+
+    Private Sub PermisosContabilidad()
+        'Menus
+        'opcRequerimientoObra.Visible = False
+        opcInsumoArea.Visible = False
+        opcInsumoTipo.Visible = False
+
+        opcReqAprobacion.Visible = False
+
+        opcCotizacion.Visible = False
+        opcOrdenCompra.Visible = False
+
+        opcOrdDesAprobacion.Visible = False
+        opcOrdDesRegPagos.Visible = False
+
+        opcDocCompra.Visible = False
+        opcGuiaRemision.Visible = False
+        opcPersonal.Visible = False
+        opcConfObra.Visible = False
+        opcConfSeriePersonal.Visible = False 'Asignar Serie de Orden de desembolso
+        opcConfSerieDesem.Visible = False 'Mantenimiento de series de orden de desembolso
+
+
+        'separadores
+        'ToolStripSeparator1.Visible = False
+        ToolStripSeparator3.Visible = False
+        ToolStripSeparator4.Visible = False
+        ToolStripSeparator6.Visible = False
+        ToolStripSeparator7.Visible = False
+        ToolStripSeparator8.Visible = False
+        ToolStripSeparator10.Visible = False
+    End Sub
+
+    Private Sub permisosCajaChica()
+        PermisosTesoreria()
+
+        opcOrdDesCtasBco.Visible = False
+        opcOrdDesModPago.Visible = False
+
+
+        opcOrdDesRegPagos.Visible = False
+
+    End Sub
+
     ''' <summary>
     ''' permisos de acceso apra Administrador del sistema
     ''' </summary>
@@ -250,43 +374,43 @@ Public Class pantallaInicialForm
         'mant.Show()
     End Sub
 
-    Private Sub opcConf1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConf1.Click
+    Private Sub opcConf1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConfColorPantalla.Click
         Dim mant As New configuracionColorForm
         mant.MdiParent = Me
         mant.Show()
     End Sub
 
-    Private Sub opcConf2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConf2.Click
+    Private Sub opcConf2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConfCambiarContra.Click
         Dim mant As New CambiarContraseñaUsuForm
         mant.MdiParent = Me
         mant.Show()
     End Sub
 
-    Private Sub opcConf6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConf6.Click
+    Private Sub opcConf6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConfObra.Click
         Dim mant As New mantLugarForm
         mant.MdiParent = Me
         mant.Show()
     End Sub
 
-    Private Sub opcEnt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcEnt.Click
+    Private Sub opcEnt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcClien_Prov.Click
         Dim mant As New MantIdentidadForm
         mant.MdiParent = Me
         mant.Show()
     End Sub
 
-    Private Sub opcMat2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcMat2.Click
+    Private Sub opcMat2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcInsumoUnd.Click
         Dim mant As New MantUniMedForm
         mant.MdiParent = Me
         mant.Show()
     End Sub
 
-    Private Sub opcMat1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcMat1.Click
+    Private Sub opcMat1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcInsumoArea.Click
         Dim mant As New MantAreaMatForm
         mant.MdiParent = Me
         mant.Show()
     End Sub
 
-    Private Sub opcMat_ButtonClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcMat.ButtonClick
+    Private Sub opcMat_ButtonClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcInsumo.ButtonClick
         Dim mant As New MantMaterialForm
         mant.MdiParent = Me
         mant.Show()
@@ -298,7 +422,7 @@ Public Class pantallaInicialForm
         mant.Show()
     End Sub
 
-    Private Sub opcMat3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcMat3.Click
+    Private Sub opcMat3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcInsumoTipo.Click
         Dim mant As New MantTipoMatForm
         mant.MdiParent = Me
         mant.Show()
@@ -352,7 +476,7 @@ Public Class pantallaInicialForm
         Return cmdCampo.ExecuteScalar
     End Function
 
-    Private Sub opcOrdDes1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDes1.Click
+    Private Sub opcOrdDes1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDesApertura.Click
         vSCodSerO = recuperarCodSerO(vPass)
         If vSCodSerO = 0 Then
             MessageBox.Show("Proceso denegado, Usuario NO tiene asignado Serie de Orden de Desembolso...", nomNegocio, Nothing, MessageBoxIcon.Error)
@@ -367,13 +491,13 @@ Public Class pantallaInicialForm
         mant.Show()
     End Sub
 
-    Private Sub opcReq1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcReq1.Click
+    Private Sub opcReq1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcReqSolicitud.Click
         Dim mant As New MantSolicitudReqForm
         mant.MdiParent = Me
         mant.Show()
     End Sub
 
-    Private Sub opcReq2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcReq2.Click
+    Private Sub opcReq2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcReqSeguimiento.Click
         Dim seg As New chekeoSolicitudReqForm
         seg.MdiParent = Me
         seg.Show()
@@ -385,41 +509,34 @@ Public Class pantallaInicialForm
         mant.Show()
     End Sub
 
-    Private Sub opcOrdDes4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDes4.Click
+    Private Sub opcOrdDes4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDesModPago.Click
         Dim mant As New MantTipoPagoForm
         mant.MdiParent = Me
         mant.Show()
     End Sub
 
-    Private Sub opcOrdDes2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDes2.Click
+    Private Sub opcOrdDes2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDesAprobacion.Click
         Dim mant As New gerenciaOrdenDesembolsoForm
         mant.MdiParent = Me
         mant.Show()
     End Sub
 
-    Private Sub opcOrdDes3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDes3.Click
+    Private Sub opcOrdDes3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDesRegPagos.Click
         Dim mant As New tesoreriaOrdenDesembolsoForm
         mant.MdiParent = Me
         mant.Show()
     End Sub
 
-    Private Sub opcReq3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcReq3.Click
+    Private Sub opcReq3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcReqAprobacion.Click
         Dim seg As New AprobaSolicitudReqForm
         seg.MdiParent = Me
         seg.Show()
     End Sub
 
-    Private Sub opcConf4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConf4.Click
+    Private Sub opcConf4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConfSerieDesem.Click
         Dim mant As New ConfiguracionSerieDocForm
         mant.MdiParent = Me
         mant.Show()
-    End Sub
-
-    Private Sub MantCuentasBancariasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MantCuentasBancariasToolStripMenuItem.Click
-        Dim Cta As New MantCuentas
-        Cta.MdiParent = Me
-        Cta.Show()
-
     End Sub
 
     Private Sub opcOrden3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrden3.Click
@@ -429,14 +546,27 @@ Public Class pantallaInicialForm
 
     End Sub
 
-    Private Sub SeguimientoDesembolsosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SeguimientoDesembolsosToolStripMenuItem.Click
+    Private Sub opcConf5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConfSeriePersonal.Click
+        Dim mant As New AsignarSerieOrdenPersForm
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
+
+    Private Sub opcOrdDes6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDesSeguimiento.Click
         Dim ODesem As New SeguimientoOrdenDesembolsoForm
         ODesem.MdiParent = Me
         ODesem.Show()
     End Sub
 
-    Private Sub opcConf5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConf5.Click
-        Dim mant As New AsignarSerieOrdenPersForm
+    Private Sub opcOrdDes7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDesCtasBco.Click
+        Dim Cta As New MantCuentas
+        Cta.MdiParent = Me
+        Cta.Show()
+
+    End Sub
+
+    Private Sub opcOrdDes5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDesConta.Click
+        Dim mant As New contaOrdenDesembolsoForm
         mant.MdiParent = Me
         mant.Show()
     End Sub

@@ -26,62 +26,64 @@ Partial Class pantallaInicialForm
         Me.TSMenu = New System.Windows.Forms.ToolStrip
         Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar
         Me.ToolStripProgressBar2 = New System.Windows.Forms.ToolStripProgressBar
-        Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcEnt = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcMat = New System.Windows.Forms.ToolStripSplitButton
-        Me.opcMat1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.opcMat3 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcMat2 = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripSeparator0 = New System.Windows.Forms.ToolStripSeparator
+        Me.opcClien_Prov = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
+        Me.opcInsumo = New System.Windows.Forms.ToolStripSplitButton
+        Me.opcInsumoArea = New System.Windows.Forms.ToolStripMenuItem
+        Me.opcInsumoTipo = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripSeparator2_1 = New System.Windows.Forms.ToolStripSeparator
+        Me.opcInsumoUnd = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator
+        Me.opcRequerimientoObra = New System.Windows.Forms.ToolStripDropDownButton
+        Me.opcReqSolicitud = New System.Windows.Forms.ToolStripMenuItem
+        Me.opcReqAprobacion = New System.Windows.Forms.ToolStripMenuItem
+        Me.opcReqSeguimiento = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcReq = New System.Windows.Forms.ToolStripDropDownButton
-        Me.opcReq1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.opcReq3 = New System.Windows.Forms.ToolStripMenuItem
-        Me.opcReq2 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator32 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcCot = New System.Windows.Forms.ToolStripDropDownButton
+        Me.opcCotizacion = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcCot1 = New System.Windows.Forms.ToolStripMenuItem
         Me.opcCot2 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator11 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator4_1 = New System.Windows.Forms.ToolStripSeparator
         Me.opcCot3 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcOrden = New System.Windows.Forms.ToolStripDropDownButton
+        Me.opcOrdenCompra = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcOrden1 = New System.Windows.Forms.ToolStripMenuItem
         Me.opcOrden2 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator13 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator5_1 = New System.Windows.Forms.ToolStripSeparator
         Me.opcOrden3 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator10 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcOrdDes = New System.Windows.Forms.ToolStripDropDownButton
-        Me.opcOrdDes1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.opcOrdDes2 = New System.Windows.Forms.ToolStripMenuItem
-        Me.opcOrdDes3 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcOrdDes4 = New System.Windows.Forms.ToolStripMenuItem
-        Me.MantCuentasBancariasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.SeguimientoDesembolsosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcDoc = New System.Windows.Forms.ToolStripDropDownButton
+        Me.opcOrdDesembolso = New System.Windows.Forms.ToolStripDropDownButton
+        Me.opcOrdDesApertura = New System.Windows.Forms.ToolStripMenuItem
+        Me.opcOrdDesAprobacion = New System.Windows.Forms.ToolStripMenuItem
+        Me.opcOrdDesRegPagos = New System.Windows.Forms.ToolStripMenuItem
+        Me.opcOrdDesConta = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripSeparator6_1 = New System.Windows.Forms.ToolStripSeparator
+        Me.opcOrdDesSeguimiento = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripSeparator6_2 = New System.Windows.Forms.ToolStripSeparator
+        Me.opcOrdDesModPago = New System.Windows.Forms.ToolStripMenuItem
+        Me.opcOrdDesCtasBco = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcGuia = New System.Windows.Forms.ToolStripDropDownButton
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcPers = New System.Windows.Forms.ToolStripDropDownButton
+        Me.opcDocCompra = New System.Windows.Forms.ToolStripDropDownButton
+        Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator
+        Me.opcGuiaRemision = New System.Windows.Forms.ToolStripDropDownButton
+        Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator
+        Me.opcPersonal = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcPers1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator25 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator9_1 = New System.Windows.Forms.ToolStripSeparator
         Me.opcPers3 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator18 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcConf = New System.Windows.Forms.ToolStripDropDownButton
-        Me.opcConf6 = New System.Windows.Forms.ToolStripMenuItem
-        Me.opcConf4 = New System.Windows.Forms.ToolStripMenuItem
-        Me.opcConf5 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator28 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcConf1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.opcConf2 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator14 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcConf3 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator34 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator
+        Me.opcConfigurar = New System.Windows.Forms.ToolStripDropDownButton
+        Me.opcConfObra = New System.Windows.Forms.ToolStripMenuItem
+        Me.opcConfSerieDesem = New System.Windows.Forms.ToolStripMenuItem
+        Me.opcConfSeriePersonal = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripSeparator10_1 = New System.Windows.Forms.ToolStripSeparator
+        Me.opcConfColorPantalla = New System.Windows.Forms.ToolStripMenuItem
+        Me.opcConfCambiarContra = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripSeparator10_2 = New System.Windows.Forms.ToolStripSeparator
+        Me.opcConfBkBD = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripSeparator10 = New System.Windows.Forms.ToolStripSeparator
         Me.opcAce = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator11 = New System.Windows.Forms.ToolStripSeparator
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
@@ -94,7 +96,7 @@ Partial Class pantallaInicialForm
         '
         Me.TSMenu.Dock = System.Windows.Forms.DockStyle.Left
         Me.TSMenu.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TSMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripProgressBar1, Me.ToolStripProgressBar2, Me.ToolStripSeparator7, Me.opcEnt, Me.ToolStripSeparator8, Me.opcMat, Me.ToolStripSeparator3, Me.opcReq, Me.ToolStripSeparator32, Me.opcCot, Me.ToolStripSeparator4, Me.opcOrden, Me.ToolStripSeparator10, Me.opcOrdDes, Me.ToolStripSeparator5, Me.opcDoc, Me.ToolStripSeparator6, Me.opcGuia, Me.ToolStripSeparator2, Me.opcPers, Me.ToolStripSeparator18, Me.opcConf, Me.ToolStripSeparator34, Me.opcAce, Me.ToolStripSeparator1})
+        Me.TSMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripProgressBar1, Me.ToolStripProgressBar2, Me.ToolStripSeparator0, Me.opcClien_Prov, Me.ToolStripSeparator1, Me.opcInsumo, Me.ToolStripSeparator2, Me.opcRequerimientoObra, Me.ToolStripSeparator3, Me.opcCotizacion, Me.ToolStripSeparator4, Me.opcOrdenCompra, Me.ToolStripSeparator5, Me.opcOrdDesembolso, Me.ToolStripSeparator6, Me.opcDocCompra, Me.ToolStripSeparator7, Me.opcGuiaRemision, Me.ToolStripSeparator8, Me.opcPersonal, Me.ToolStripSeparator9, Me.opcConfigurar, Me.ToolStripSeparator10, Me.opcAce, Me.ToolStripSeparator11})
         Me.TSMenu.Location = New System.Drawing.Point(0, 0)
         Me.TSMenu.Name = "TSMenu"
         Me.TSMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
@@ -113,132 +115,132 @@ Partial Class pantallaInicialForm
         Me.ToolStripProgressBar2.Name = "ToolStripProgressBar2"
         Me.ToolStripProgressBar2.Size = New System.Drawing.Size(91, 15)
         '
-        'ToolStripSeparator7
+        'ToolStripSeparator0
         '
-        Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
-        Me.ToolStripSeparator7.Size = New System.Drawing.Size(93, 6)
+        Me.ToolStripSeparator0.Name = "ToolStripSeparator0"
+        Me.ToolStripSeparator0.Size = New System.Drawing.Size(93, 6)
         '
-        'opcEnt
+        'opcClien_Prov
         '
-        Me.opcEnt.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcEnt.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.opcEnt.Image = CType(resources.GetObject("opcEnt.Image"), System.Drawing.Image)
-        Me.opcEnt.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.opcEnt.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.opcEnt.Name = "opcEnt"
-        Me.opcEnt.Size = New System.Drawing.Size(93, 20)
-        Me.opcEnt.Text = "Cliente/Prov."
-        Me.opcEnt.ToolTipText = "Mantenimiento de Proveedores - Clientes"
+        Me.opcClien_Prov.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcClien_Prov.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.opcClien_Prov.Image = CType(resources.GetObject("opcClien_Prov.Image"), System.Drawing.Image)
+        Me.opcClien_Prov.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.opcClien_Prov.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.opcClien_Prov.Name = "opcClien_Prov"
+        Me.opcClien_Prov.Size = New System.Drawing.Size(93, 20)
+        Me.opcClien_Prov.Text = "Cliente/Prov."
+        Me.opcClien_Prov.ToolTipText = "Mantenimiento de Proveedores - Clientes"
         '
-        'ToolStripSeparator8
+        'ToolStripSeparator1
         '
-        Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
-        Me.ToolStripSeparator8.Size = New System.Drawing.Size(93, 6)
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(93, 6)
         '
-        'opcMat
+        'opcInsumo
         '
-        Me.opcMat.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcMat1, Me.opcMat3, Me.ToolStripSeparator9, Me.opcMat2})
-        Me.opcMat.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.opcMat.Image = CType(resources.GetObject("opcMat.Image"), System.Drawing.Image)
-        Me.opcMat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.opcMat.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.opcMat.Name = "opcMat"
-        Me.opcMat.Size = New System.Drawing.Size(93, 20)
-        Me.opcMat.Text = "Insumo..."
-        Me.opcMat.ToolTipText = "Estructuracion de Insumos"
+        Me.opcInsumo.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcInsumoArea, Me.opcInsumoTipo, Me.ToolStripSeparator2_1, Me.opcInsumoUnd})
+        Me.opcInsumo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.opcInsumo.Image = CType(resources.GetObject("opcInsumo.Image"), System.Drawing.Image)
+        Me.opcInsumo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.opcInsumo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.opcInsumo.Name = "opcInsumo"
+        Me.opcInsumo.Size = New System.Drawing.Size(93, 20)
+        Me.opcInsumo.Text = "Insumo..."
+        Me.opcInsumo.ToolTipText = "Estructuracion de Insumos"
         '
-        'opcMat1
+        'opcInsumoArea
         '
-        Me.opcMat1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcMat1.ForeColor = System.Drawing.Color.Navy
-        Me.opcMat1.Image = CType(resources.GetObject("opcMat1.Image"), System.Drawing.Image)
-        Me.opcMat1.Name = "opcMat1"
-        Me.opcMat1.Size = New System.Drawing.Size(245, 22)
-        Me.opcMat1.Text = "Mantenimiento Area Insumo"
+        Me.opcInsumoArea.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcInsumoArea.ForeColor = System.Drawing.Color.Navy
+        Me.opcInsumoArea.Image = CType(resources.GetObject("opcInsumoArea.Image"), System.Drawing.Image)
+        Me.opcInsumoArea.Name = "opcInsumoArea"
+        Me.opcInsumoArea.Size = New System.Drawing.Size(245, 22)
+        Me.opcInsumoArea.Text = "Mantenimiento Area Insumo"
         '
-        'opcMat3
+        'opcInsumoTipo
         '
-        Me.opcMat3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcMat3.ForeColor = System.Drawing.Color.Navy
-        Me.opcMat3.Image = CType(resources.GetObject("opcMat3.Image"), System.Drawing.Image)
-        Me.opcMat3.Name = "opcMat3"
-        Me.opcMat3.Size = New System.Drawing.Size(245, 22)
-        Me.opcMat3.Text = "Mantenimiento Tipo Insumo"
+        Me.opcInsumoTipo.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcInsumoTipo.ForeColor = System.Drawing.Color.Navy
+        Me.opcInsumoTipo.Image = CType(resources.GetObject("opcInsumoTipo.Image"), System.Drawing.Image)
+        Me.opcInsumoTipo.Name = "opcInsumoTipo"
+        Me.opcInsumoTipo.Size = New System.Drawing.Size(245, 22)
+        Me.opcInsumoTipo.Text = "Mantenimiento Tipo Insumo"
         '
-        'ToolStripSeparator9
+        'ToolStripSeparator2_1
         '
-        Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
-        Me.ToolStripSeparator9.Size = New System.Drawing.Size(242, 6)
+        Me.ToolStripSeparator2_1.Name = "ToolStripSeparator2_1"
+        Me.ToolStripSeparator2_1.Size = New System.Drawing.Size(242, 6)
         '
-        'opcMat2
+        'opcInsumoUnd
         '
-        Me.opcMat2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcMat2.ForeColor = System.Drawing.Color.Navy
-        Me.opcMat2.Name = "opcMat2"
-        Me.opcMat2.Size = New System.Drawing.Size(245, 22)
-        Me.opcMat2.Text = "Mantenimiento Unidad Medida"
+        Me.opcInsumoUnd.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcInsumoUnd.ForeColor = System.Drawing.Color.Navy
+        Me.opcInsumoUnd.Name = "opcInsumoUnd"
+        Me.opcInsumoUnd.Size = New System.Drawing.Size(245, 22)
+        Me.opcInsumoUnd.Text = "Mantenimiento Unidad Medida"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(93, 6)
+        '
+        'opcRequerimientoObra
+        '
+        Me.opcRequerimientoObra.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcReqSolicitud, Me.opcReqAprobacion, Me.opcReqSeguimiento})
+        Me.opcRequerimientoObra.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.opcRequerimientoObra.Image = CType(resources.GetObject("opcRequerimientoObra.Image"), System.Drawing.Image)
+        Me.opcRequerimientoObra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.opcRequerimientoObra.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.opcRequerimientoObra.Name = "opcRequerimientoObra"
+        Me.opcRequerimientoObra.Size = New System.Drawing.Size(93, 20)
+        Me.opcRequerimientoObra.Text = "Reque Obra"
+        Me.opcRequerimientoObra.ToolTipText = "Mantenimiento de Requerimientos de Obra..."
+        '
+        'opcReqSolicitud
+        '
+        Me.opcReqSolicitud.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcReqSolicitud.ForeColor = System.Drawing.Color.Navy
+        Me.opcReqSolicitud.Image = CType(resources.GetObject("opcReqSolicitud.Image"), System.Drawing.Image)
+        Me.opcReqSolicitud.Name = "opcReqSolicitud"
+        Me.opcReqSolicitud.Size = New System.Drawing.Size(295, 22)
+        Me.opcReqSolicitud.Text = "Registro de Solicitud de Requerimiento"
+        '
+        'opcReqAprobacion
+        '
+        Me.opcReqAprobacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcReqAprobacion.ForeColor = System.Drawing.Color.Navy
+        Me.opcReqAprobacion.Image = CType(resources.GetObject("opcReqAprobacion.Image"), System.Drawing.Image)
+        Me.opcReqAprobacion.Name = "opcReqAprobacion"
+        Me.opcReqAprobacion.Size = New System.Drawing.Size(295, 22)
+        Me.opcReqAprobacion.Text = "Aprobar Requerimientos de Obra"
+        Me.opcReqAprobacion.ToolTipText = "Aprobar, Observar o Denegar Requerimientos de Obras..."
+        '
+        'opcReqSeguimiento
+        '
+        Me.opcReqSeguimiento.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcReqSeguimiento.ForeColor = System.Drawing.Color.Navy
+        Me.opcReqSeguimiento.Image = CType(resources.GetObject("opcReqSeguimiento.Image"), System.Drawing.Image)
+        Me.opcReqSeguimiento.Name = "opcReqSeguimiento"
+        Me.opcReqSeguimiento.Size = New System.Drawing.Size(295, 22)
+        Me.opcReqSeguimiento.Text = "Seguimiento Requerimientos de Obra"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(93, 6)
         '
-        'opcReq
+        'opcCotizacion
         '
-        Me.opcReq.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcReq1, Me.opcReq3, Me.opcReq2})
-        Me.opcReq.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.opcReq.Image = CType(resources.GetObject("opcReq.Image"), System.Drawing.Image)
-        Me.opcReq.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.opcReq.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.opcReq.Name = "opcReq"
-        Me.opcReq.Size = New System.Drawing.Size(93, 20)
-        Me.opcReq.Text = "Reque Obra"
-        Me.opcReq.ToolTipText = "Mantenimiento de Requerimientos de Obra..."
-        '
-        'opcReq1
-        '
-        Me.opcReq1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcReq1.ForeColor = System.Drawing.Color.Navy
-        Me.opcReq1.Image = CType(resources.GetObject("opcReq1.Image"), System.Drawing.Image)
-        Me.opcReq1.Name = "opcReq1"
-        Me.opcReq1.Size = New System.Drawing.Size(295, 22)
-        Me.opcReq1.Text = "Registro de Solicitud de Requerimiento"
-        '
-        'opcReq3
-        '
-        Me.opcReq3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcReq3.ForeColor = System.Drawing.Color.Navy
-        Me.opcReq3.Image = CType(resources.GetObject("opcReq3.Image"), System.Drawing.Image)
-        Me.opcReq3.Name = "opcReq3"
-        Me.opcReq3.Size = New System.Drawing.Size(295, 22)
-        Me.opcReq3.Text = "Aprobar Requerimientos de Obra"
-        Me.opcReq3.ToolTipText = "Aprobar, Observar o Denegar Requerimientos de Obras..."
-        '
-        'opcReq2
-        '
-        Me.opcReq2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcReq2.ForeColor = System.Drawing.Color.Navy
-        Me.opcReq2.Image = CType(resources.GetObject("opcReq2.Image"), System.Drawing.Image)
-        Me.opcReq2.Name = "opcReq2"
-        Me.opcReq2.Size = New System.Drawing.Size(295, 22)
-        Me.opcReq2.Text = "Seguimiento Requerimientos de Obra"
-        '
-        'ToolStripSeparator32
-        '
-        Me.ToolStripSeparator32.Name = "ToolStripSeparator32"
-        Me.ToolStripSeparator32.Size = New System.Drawing.Size(93, 6)
-        '
-        'opcCot
-        '
-        Me.opcCot.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcCot1, Me.opcCot2, Me.ToolStripSeparator11, Me.opcCot3})
-        Me.opcCot.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.opcCot.Image = CType(resources.GetObject("opcCot.Image"), System.Drawing.Image)
-        Me.opcCot.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.opcCot.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.opcCot.Name = "opcCot"
-        Me.opcCot.Size = New System.Drawing.Size(93, 20)
-        Me.opcCot.Text = "Cotización..."
-        Me.opcCot.ToolTipText = "Cotizacion de insumos..."
+        Me.opcCotizacion.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcCot1, Me.opcCot2, Me.ToolStripSeparator4_1, Me.opcCot3})
+        Me.opcCotizacion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.opcCotizacion.Image = CType(resources.GetObject("opcCotizacion.Image"), System.Drawing.Image)
+        Me.opcCotizacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.opcCotizacion.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.opcCotizacion.Name = "opcCotizacion"
+        Me.opcCotizacion.Size = New System.Drawing.Size(93, 20)
+        Me.opcCotizacion.Text = "Cotización..."
+        Me.opcCotizacion.ToolTipText = "Cotizacion de insumos..."
         '
         'opcCot1
         '
@@ -259,10 +261,10 @@ Partial Class pantallaInicialForm
         Me.opcCot2.Size = New System.Drawing.Size(227, 22)
         Me.opcCot2.Text = "Informe de Cotizaciones"
         '
-        'ToolStripSeparator11
+        'ToolStripSeparator4_1
         '
-        Me.ToolStripSeparator11.Name = "ToolStripSeparator11"
-        Me.ToolStripSeparator11.Size = New System.Drawing.Size(224, 6)
+        Me.ToolStripSeparator4_1.Name = "ToolStripSeparator4_1"
+        Me.ToolStripSeparator4_1.Size = New System.Drawing.Size(224, 6)
         '
         'opcCot3
         '
@@ -278,17 +280,17 @@ Partial Class pantallaInicialForm
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
         Me.ToolStripSeparator4.Size = New System.Drawing.Size(93, 6)
         '
-        'opcOrden
+        'opcOrdenCompra
         '
-        Me.opcOrden.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrden1, Me.opcOrden2, Me.ToolStripSeparator13, Me.opcOrden3})
-        Me.opcOrden.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.opcOrden.Image = CType(resources.GetObject("opcOrden.Image"), System.Drawing.Image)
-        Me.opcOrden.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.opcOrden.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.opcOrden.Name = "opcOrden"
-        Me.opcOrden.Size = New System.Drawing.Size(93, 20)
-        Me.opcOrden.Text = "Orden Comp"
-        Me.opcOrden.ToolTipText = "Mantenimiento de Ordenes de Compra..."
+        Me.opcOrdenCompra.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrden1, Me.opcOrden2, Me.ToolStripSeparator5_1, Me.opcOrden3})
+        Me.opcOrdenCompra.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.opcOrdenCompra.Image = CType(resources.GetObject("opcOrdenCompra.Image"), System.Drawing.Image)
+        Me.opcOrdenCompra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.opcOrdenCompra.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.opcOrdenCompra.Name = "opcOrdenCompra"
+        Me.opcOrdenCompra.Size = New System.Drawing.Size(93, 20)
+        Me.opcOrdenCompra.Text = "Orden Comp"
+        Me.opcOrdenCompra.ToolTipText = "Mantenimiento de Ordenes de Compra..."
         '
         'opcOrden1
         '
@@ -308,10 +310,10 @@ Partial Class pantallaInicialForm
         Me.opcOrden2.Size = New System.Drawing.Size(249, 22)
         Me.opcOrden2.Text = "Informe de Ordenes de Compra"
         '
-        'ToolStripSeparator13
+        'ToolStripSeparator5_1
         '
-        Me.ToolStripSeparator13.Name = "ToolStripSeparator13"
-        Me.ToolStripSeparator13.Size = New System.Drawing.Size(246, 6)
+        Me.ToolStripSeparator5_1.Name = "ToolStripSeparator5_1"
+        Me.ToolStripSeparator5_1.Size = New System.Drawing.Size(246, 6)
         '
         'opcOrden3
         '
@@ -321,127 +323,145 @@ Partial Class pantallaInicialForm
         Me.opcOrden3.Size = New System.Drawing.Size(249, 22)
         Me.opcOrden3.Text = "Mant. Emp. Transporte"
         '
-        'ToolStripSeparator10
-        '
-        Me.ToolStripSeparator10.Name = "ToolStripSeparator10"
-        Me.ToolStripSeparator10.Size = New System.Drawing.Size(93, 6)
-        '
-        'opcOrdDes
-        '
-        Me.opcOrdDes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrdDes1, Me.opcOrdDes2, Me.opcOrdDes3, Me.ToolStripSeparator12, Me.opcOrdDes4, Me.MantCuentasBancariasToolStripMenuItem, Me.SeguimientoDesembolsosToolStripMenuItem})
-        Me.opcOrdDes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.opcOrdDes.Image = CType(resources.GetObject("opcOrdDes.Image"), System.Drawing.Image)
-        Me.opcOrdDes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.opcOrdDes.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.opcOrdDes.Name = "opcOrdDes"
-        Me.opcOrdDes.Size = New System.Drawing.Size(93, 20)
-        Me.opcOrdDes.Text = "Orden Dese"
-        Me.opcOrdDes.ToolTipText = "Orden de Desembolso..."
-        '
-        'opcOrdDes1
-        '
-        Me.opcOrdDes1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcOrdDes1.ForeColor = System.Drawing.Color.Navy
-        Me.opcOrdDes1.Image = CType(resources.GetObject("opcOrdDes1.Image"), System.Drawing.Image)
-        Me.opcOrdDes1.Name = "opcOrdDes1"
-        Me.opcOrdDes1.Size = New System.Drawing.Size(270, 22)
-        Me.opcOrdDes1.Text = "Aperturar Orden Desembolso"
-        Me.opcOrdDes1.ToolTipText = "Aperturas y firmas en orden de desembolso..."
-        '
-        'opcOrdDes2
-        '
-        Me.opcOrdDes2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcOrdDes2.ForeColor = System.Drawing.Color.Navy
-        Me.opcOrdDes2.Image = CType(resources.GetObject("opcOrdDes2.Image"), System.Drawing.Image)
-        Me.opcOrdDes2.Name = "opcOrdDes2"
-        Me.opcOrdDes2.Size = New System.Drawing.Size(270, 22)
-        Me.opcOrdDes2.Text = "Aprobar Orden de Desembolso"
-        Me.opcOrdDes2.ToolTipText = "Aprobar, observar o rechazar orden de desembolso por gerencia..."
-        '
-        'opcOrdDes3
-        '
-        Me.opcOrdDes3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcOrdDes3.ForeColor = System.Drawing.Color.Navy
-        Me.opcOrdDes3.Image = CType(resources.GetObject("opcOrdDes3.Image"), System.Drawing.Image)
-        Me.opcOrdDes3.Name = "opcOrdDes3"
-        Me.opcOrdDes3.Size = New System.Drawing.Size(270, 22)
-        Me.opcOrdDes3.Text = "Registro Pagos Orden Desembolso"
-        '
-        'ToolStripSeparator12
-        '
-        Me.ToolStripSeparator12.Name = "ToolStripSeparator12"
-        Me.ToolStripSeparator12.Size = New System.Drawing.Size(267, 6)
-        '
-        'opcOrdDes4
-        '
-        Me.opcOrdDes4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcOrdDes4.ForeColor = System.Drawing.Color.Navy
-        Me.opcOrdDes4.Name = "opcOrdDes4"
-        Me.opcOrdDes4.Size = New System.Drawing.Size(270, 22)
-        Me.opcOrdDes4.Text = "Mant. Modalidad de Pago"
-        '
-        'MantCuentasBancariasToolStripMenuItem
-        '
-        Me.MantCuentasBancariasToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MantCuentasBancariasToolStripMenuItem.ForeColor = System.Drawing.Color.Navy
-        Me.MantCuentasBancariasToolStripMenuItem.Name = "MantCuentasBancariasToolStripMenuItem"
-        Me.MantCuentasBancariasToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
-        Me.MantCuentasBancariasToolStripMenuItem.Text = "Mant. Cuentas Bancarias"
-        '
-        'SeguimientoDesembolsosToolStripMenuItem
-        '
-        Me.SeguimientoDesembolsosToolStripMenuItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SeguimientoDesembolsosToolStripMenuItem.ForeColor = System.Drawing.Color.Navy
-        Me.SeguimientoDesembolsosToolStripMenuItem.Name = "SeguimientoDesembolsosToolStripMenuItem"
-        Me.SeguimientoDesembolsosToolStripMenuItem.Size = New System.Drawing.Size(270, 22)
-        Me.SeguimientoDesembolsosToolStripMenuItem.Text = "Seguimiento Desembolsos"
-        '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
         Me.ToolStripSeparator5.Size = New System.Drawing.Size(93, 6)
         '
-        'opcDoc
+        'opcOrdDesembolso
         '
-        Me.opcDoc.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.opcDoc.Image = CType(resources.GetObject("opcDoc.Image"), System.Drawing.Image)
-        Me.opcDoc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.opcDoc.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.opcDoc.Name = "opcDoc"
-        Me.opcDoc.Size = New System.Drawing.Size(93, 20)
-        Me.opcDoc.Text = "Doc. Compr"
+        Me.opcOrdDesembolso.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrdDesApertura, Me.opcOrdDesAprobacion, Me.opcOrdDesRegPagos, Me.opcOrdDesConta, Me.ToolStripSeparator6_1, Me.opcOrdDesSeguimiento, Me.ToolStripSeparator6_2, Me.opcOrdDesModPago, Me.opcOrdDesCtasBco})
+        Me.opcOrdDesembolso.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.opcOrdDesembolso.Image = CType(resources.GetObject("opcOrdDesembolso.Image"), System.Drawing.Image)
+        Me.opcOrdDesembolso.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.opcOrdDesembolso.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.opcOrdDesembolso.Name = "opcOrdDesembolso"
+        Me.opcOrdDesembolso.Size = New System.Drawing.Size(93, 20)
+        Me.opcOrdDesembolso.Text = "Orden Dese"
+        Me.opcOrdDesembolso.ToolTipText = "Orden de Desembolso..."
+        '
+        'opcOrdDesApertura
+        '
+        Me.opcOrdDesApertura.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcOrdDesApertura.ForeColor = System.Drawing.Color.Navy
+        Me.opcOrdDesApertura.Image = CType(resources.GetObject("opcOrdDesApertura.Image"), System.Drawing.Image)
+        Me.opcOrdDesApertura.Name = "opcOrdDesApertura"
+        Me.opcOrdDesApertura.Size = New System.Drawing.Size(271, 22)
+        Me.opcOrdDesApertura.Text = "Aperturar Orden Desembolso"
+        Me.opcOrdDesApertura.ToolTipText = "Aperturas y firmas en orden de desembolso..."
+        '
+        'opcOrdDesAprobacion
+        '
+        Me.opcOrdDesAprobacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcOrdDesAprobacion.ForeColor = System.Drawing.Color.Navy
+        Me.opcOrdDesAprobacion.Image = CType(resources.GetObject("opcOrdDesAprobacion.Image"), System.Drawing.Image)
+        Me.opcOrdDesAprobacion.Name = "opcOrdDesAprobacion"
+        Me.opcOrdDesAprobacion.Size = New System.Drawing.Size(271, 22)
+        Me.opcOrdDesAprobacion.Text = "Aprobar Orden de Desembolso"
+        Me.opcOrdDesAprobacion.ToolTipText = "Aprobar, observar o rechazar orden de desembolso por gerencia..."
+        '
+        'opcOrdDesRegPagos
+        '
+        Me.opcOrdDesRegPagos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcOrdDesRegPagos.ForeColor = System.Drawing.Color.Navy
+        Me.opcOrdDesRegPagos.Image = CType(resources.GetObject("opcOrdDesRegPagos.Image"), System.Drawing.Image)
+        Me.opcOrdDesRegPagos.Name = "opcOrdDesRegPagos"
+        Me.opcOrdDesRegPagos.Size = New System.Drawing.Size(271, 22)
+        Me.opcOrdDesRegPagos.Text = "Registro Pagos Orden Desembolso"
+        Me.opcOrdDesRegPagos.ToolTipText = "Registro de pagos de orden de desembolso por parte de tesoreria..."
+        '
+        'opcOrdDesConta
+        '
+        Me.opcOrdDesConta.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcOrdDesConta.ForeColor = System.Drawing.Color.Navy
+        Me.opcOrdDesConta.Image = CType(resources.GetObject("opcOrdDesConta.Image"), System.Drawing.Image)
+        Me.opcOrdDesConta.Name = "opcOrdDesConta"
+        Me.opcOrdDesConta.Size = New System.Drawing.Size(271, 22)
+        Me.opcOrdDesConta.Text = "V.B. Contabilidad - Orden Desemb."
+        Me.opcOrdDesConta.ToolTipText = "Cerrar Orden de desembolso por parte de contabilidad..."
+        '
+        'ToolStripSeparator6_1
+        '
+        Me.ToolStripSeparator6_1.Name = "ToolStripSeparator6_1"
+        Me.ToolStripSeparator6_1.Size = New System.Drawing.Size(268, 6)
+        '
+        'opcOrdDesSeguimiento
+        '
+        Me.opcOrdDesSeguimiento.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcOrdDesSeguimiento.ForeColor = System.Drawing.Color.Navy
+        Me.opcOrdDesSeguimiento.Image = CType(resources.GetObject("opcOrdDesSeguimiento.Image"), System.Drawing.Image)
+        Me.opcOrdDesSeguimiento.Name = "opcOrdDesSeguimiento"
+        Me.opcOrdDesSeguimiento.Size = New System.Drawing.Size(271, 22)
+        Me.opcOrdDesSeguimiento.Text = "Seguimiento Ordenes de Desemb."
+        Me.opcOrdDesSeguimiento.ToolTipText = "Historico de Ordenes de desembolso..."
+        '
+        'ToolStripSeparator6_2
+        '
+        Me.ToolStripSeparator6_2.Name = "ToolStripSeparator6_2"
+        Me.ToolStripSeparator6_2.Size = New System.Drawing.Size(268, 6)
+        '
+        'opcOrdDesModPago
+        '
+        Me.opcOrdDesModPago.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcOrdDesModPago.ForeColor = System.Drawing.Color.Navy
+        Me.opcOrdDesModPago.Name = "opcOrdDesModPago"
+        Me.opcOrdDesModPago.Size = New System.Drawing.Size(271, 22)
+        Me.opcOrdDesModPago.Text = "Mant. Modalidad de Pago"
+        '
+        'opcOrdDesCtasBco
+        '
+        Me.opcOrdDesCtasBco.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcOrdDesCtasBco.ForeColor = System.Drawing.Color.Navy
+        Me.opcOrdDesCtasBco.Name = "opcOrdDesCtasBco"
+        Me.opcOrdDesCtasBco.Size = New System.Drawing.Size(271, 22)
+        Me.opcOrdDesCtasBco.Text = "Mant. Cuentas Bancarias"
         '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
         Me.ToolStripSeparator6.Size = New System.Drawing.Size(93, 6)
         '
-        'opcGuia
+        'opcDocCompra
         '
-        Me.opcGuia.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.opcGuia.Image = CType(resources.GetObject("opcGuia.Image"), System.Drawing.Image)
-        Me.opcGuia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.opcGuia.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.opcGuia.Name = "opcGuia"
-        Me.opcGuia.Size = New System.Drawing.Size(93, 20)
-        Me.opcGuia.Text = "Guia Remis."
+        Me.opcDocCompra.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.opcDocCompra.Image = CType(resources.GetObject("opcDocCompra.Image"), System.Drawing.Image)
+        Me.opcDocCompra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.opcDocCompra.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.opcDocCompra.Name = "opcDocCompra"
+        Me.opcDocCompra.Size = New System.Drawing.Size(93, 20)
+        Me.opcDocCompra.Text = "Doc. Compr"
         '
-        'ToolStripSeparator2
+        'ToolStripSeparator7
         '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(93, 6)
+        Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(93, 6)
         '
-        'opcPers
+        'opcGuiaRemision
         '
-        Me.opcPers.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcPers1, Me.ToolStripSeparator25, Me.opcPers3})
-        Me.opcPers.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcPers.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.opcPers.Image = CType(resources.GetObject("opcPers.Image"), System.Drawing.Image)
-        Me.opcPers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.opcPers.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.opcPers.Name = "opcPers"
-        Me.opcPers.Size = New System.Drawing.Size(93, 20)
-        Me.opcPers.Text = "Personal..."
+        Me.opcGuiaRemision.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.opcGuiaRemision.Image = CType(resources.GetObject("opcGuiaRemision.Image"), System.Drawing.Image)
+        Me.opcGuiaRemision.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.opcGuiaRemision.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.opcGuiaRemision.Name = "opcGuiaRemision"
+        Me.opcGuiaRemision.Size = New System.Drawing.Size(93, 20)
+        Me.opcGuiaRemision.Text = "Guia Remis."
+        '
+        'ToolStripSeparator8
+        '
+        Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(93, 6)
+        '
+        'opcPersonal
+        '
+        Me.opcPersonal.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcPers1, Me.ToolStripSeparator9_1, Me.opcPers3})
+        Me.opcPersonal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcPersonal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.opcPersonal.Image = CType(resources.GetObject("opcPersonal.Image"), System.Drawing.Image)
+        Me.opcPersonal.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.opcPersonal.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.opcPersonal.Name = "opcPersonal"
+        Me.opcPersonal.Size = New System.Drawing.Size(93, 20)
+        Me.opcPersonal.Text = "Personal..."
         '
         'opcPers1
         '
@@ -452,10 +472,10 @@ Partial Class pantallaInicialForm
         Me.opcPers1.Size = New System.Drawing.Size(246, 22)
         Me.opcPers1.Text = "Mantenimiento Personal"
         '
-        'ToolStripSeparator25
+        'ToolStripSeparator9_1
         '
-        Me.ToolStripSeparator25.Name = "ToolStripSeparator25"
-        Me.ToolStripSeparator25.Size = New System.Drawing.Size(243, 6)
+        Me.ToolStripSeparator9_1.Name = "ToolStripSeparator9_1"
+        Me.ToolStripSeparator9_1.Size = New System.Drawing.Size(243, 6)
         '
         'opcPers3
         '
@@ -464,98 +484,99 @@ Partial Class pantallaInicialForm
         Me.opcPers3.Name = "opcPers3"
         Me.opcPers3.Size = New System.Drawing.Size(246, 22)
         Me.opcPers3.Text = "Mantenimiento Cargo Personal"
+        Me.opcPers3.Visible = False
         '
-        'ToolStripSeparator18
+        'ToolStripSeparator9
         '
-        Me.ToolStripSeparator18.Name = "ToolStripSeparator18"
-        Me.ToolStripSeparator18.Size = New System.Drawing.Size(93, 6)
+        Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(93, 6)
         '
-        'opcConf
+        'opcConfigurar
         '
-        Me.opcConf.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcConf6, Me.opcConf4, Me.opcConf5, Me.ToolStripSeparator28, Me.opcConf1, Me.opcConf2, Me.ToolStripSeparator14, Me.opcConf3})
-        Me.opcConf.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcConf.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.opcConf.Image = CType(resources.GetObject("opcConf.Image"), System.Drawing.Image)
-        Me.opcConf.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.opcConf.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.opcConf.Name = "opcConf"
-        Me.opcConf.Size = New System.Drawing.Size(93, 20)
-        Me.opcConf.Text = "Configurar..."
-        Me.opcConf.ToolTipText = "opciones de configuración del sistema"
+        Me.opcConfigurar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcConfObra, Me.opcConfSerieDesem, Me.opcConfSeriePersonal, Me.ToolStripSeparator10_1, Me.opcConfColorPantalla, Me.opcConfCambiarContra, Me.ToolStripSeparator10_2, Me.opcConfBkBD})
+        Me.opcConfigurar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcConfigurar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.opcConfigurar.Image = CType(resources.GetObject("opcConfigurar.Image"), System.Drawing.Image)
+        Me.opcConfigurar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.opcConfigurar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.opcConfigurar.Name = "opcConfigurar"
+        Me.opcConfigurar.Size = New System.Drawing.Size(93, 20)
+        Me.opcConfigurar.Text = "Configurar..."
+        Me.opcConfigurar.ToolTipText = "opciones de configuración del sistema"
         '
-        'opcConf6
+        'opcConfObra
         '
-        Me.opcConf6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcConf6.ForeColor = System.Drawing.Color.Navy
-        Me.opcConf6.Image = CType(resources.GetObject("opcConf6.Image"), System.Drawing.Image)
-        Me.opcConf6.Name = "opcConf6"
-        Me.opcConf6.Size = New System.Drawing.Size(251, 22)
-        Me.opcConf6.Text = "De Lugar de Trabajo"
-        Me.opcConf6.ToolTipText = "Crear Almacenes de obra..."
+        Me.opcConfObra.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcConfObra.ForeColor = System.Drawing.Color.Navy
+        Me.opcConfObra.Image = CType(resources.GetObject("opcConfObra.Image"), System.Drawing.Image)
+        Me.opcConfObra.Name = "opcConfObra"
+        Me.opcConfObra.Size = New System.Drawing.Size(251, 22)
+        Me.opcConfObra.Text = "De Lugar de Trabajo"
+        Me.opcConfObra.ToolTipText = "Crear Almacenes de obra..."
         '
-        'opcConf4
+        'opcConfSerieDesem
         '
-        Me.opcConf4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcConf4.ForeColor = System.Drawing.Color.Navy
-        Me.opcConf4.Image = CType(resources.GetObject("opcConf4.Image"), System.Drawing.Image)
-        Me.opcConf4.Name = "opcConf4"
-        Me.opcConf4.Size = New System.Drawing.Size(251, 22)
-        Me.opcConf4.Text = "Serie Orden Desembolso"
-        Me.opcConf4.ToolTipText = "Crear series de ordenes de desembolso..."
+        Me.opcConfSerieDesem.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcConfSerieDesem.ForeColor = System.Drawing.Color.Navy
+        Me.opcConfSerieDesem.Image = CType(resources.GetObject("opcConfSerieDesem.Image"), System.Drawing.Image)
+        Me.opcConfSerieDesem.Name = "opcConfSerieDesem"
+        Me.opcConfSerieDesem.Size = New System.Drawing.Size(251, 22)
+        Me.opcConfSerieDesem.Text = "Serie Orden Desembolso"
+        Me.opcConfSerieDesem.ToolTipText = "Crear series de ordenes de desembolso..."
         '
-        'opcConf5
+        'opcConfSeriePersonal
         '
-        Me.opcConf5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcConf5.ForeColor = System.Drawing.Color.Navy
-        Me.opcConf5.Image = CType(resources.GetObject("opcConf5.Image"), System.Drawing.Image)
-        Me.opcConf5.Name = "opcConf5"
-        Me.opcConf5.Size = New System.Drawing.Size(251, 22)
-        Me.opcConf5.Text = "Asignar Serie Orden a Personal"
-        Me.opcConf5.ToolTipText = "Asignar Serie Orden de Desembolso a Personal"
+        Me.opcConfSeriePersonal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcConfSeriePersonal.ForeColor = System.Drawing.Color.Navy
+        Me.opcConfSeriePersonal.Image = CType(resources.GetObject("opcConfSeriePersonal.Image"), System.Drawing.Image)
+        Me.opcConfSeriePersonal.Name = "opcConfSeriePersonal"
+        Me.opcConfSeriePersonal.Size = New System.Drawing.Size(251, 22)
+        Me.opcConfSeriePersonal.Text = "Asignar Serie Orden a Personal"
+        Me.opcConfSeriePersonal.ToolTipText = "Asignar Serie Orden de Desembolso a Personal"
         '
-        'ToolStripSeparator28
+        'ToolStripSeparator10_1
         '
-        Me.ToolStripSeparator28.Name = "ToolStripSeparator28"
-        Me.ToolStripSeparator28.Size = New System.Drawing.Size(248, 6)
+        Me.ToolStripSeparator10_1.Name = "ToolStripSeparator10_1"
+        Me.ToolStripSeparator10_1.Size = New System.Drawing.Size(248, 6)
         '
-        'opcConf1
+        'opcConfColorPantalla
         '
-        Me.opcConf1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcConf1.ForeColor = System.Drawing.Color.Navy
-        Me.opcConf1.Image = CType(resources.GetObject("opcConf1.Image"), System.Drawing.Image)
-        Me.opcConf1.Name = "opcConf1"
-        Me.opcConf1.Size = New System.Drawing.Size(251, 22)
-        Me.opcConf1.Text = "De Colores Pantallas"
+        Me.opcConfColorPantalla.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcConfColorPantalla.ForeColor = System.Drawing.Color.Navy
+        Me.opcConfColorPantalla.Image = CType(resources.GetObject("opcConfColorPantalla.Image"), System.Drawing.Image)
+        Me.opcConfColorPantalla.Name = "opcConfColorPantalla"
+        Me.opcConfColorPantalla.Size = New System.Drawing.Size(251, 22)
+        Me.opcConfColorPantalla.Text = "De Colores Pantallas"
         '
-        'opcConf2
+        'opcConfCambiarContra
         '
-        Me.opcConf2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcConf2.ForeColor = System.Drawing.Color.Navy
-        Me.opcConf2.Image = CType(resources.GetObject("opcConf2.Image"), System.Drawing.Image)
-        Me.opcConf2.Name = "opcConf2"
-        Me.opcConf2.Size = New System.Drawing.Size(251, 22)
-        Me.opcConf2.Text = "Cambiar Contraseña"
-        Me.opcConf2.ToolTipText = "Cambiar contraseña de usuario actvo..."
+        Me.opcConfCambiarContra.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcConfCambiarContra.ForeColor = System.Drawing.Color.Navy
+        Me.opcConfCambiarContra.Image = CType(resources.GetObject("opcConfCambiarContra.Image"), System.Drawing.Image)
+        Me.opcConfCambiarContra.Name = "opcConfCambiarContra"
+        Me.opcConfCambiarContra.Size = New System.Drawing.Size(251, 22)
+        Me.opcConfCambiarContra.Text = "Cambiar Contraseña"
+        Me.opcConfCambiarContra.ToolTipText = "Cambiar contraseña de usuario actvo..."
         '
-        'ToolStripSeparator14
+        'ToolStripSeparator10_2
         '
-        Me.ToolStripSeparator14.Name = "ToolStripSeparator14"
-        Me.ToolStripSeparator14.Size = New System.Drawing.Size(248, 6)
+        Me.ToolStripSeparator10_2.Name = "ToolStripSeparator10_2"
+        Me.ToolStripSeparator10_2.Size = New System.Drawing.Size(248, 6)
         '
-        'opcConf3
+        'opcConfBkBD
         '
-        Me.opcConf3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcConf3.ForeColor = System.Drawing.Color.Navy
-        Me.opcConf3.Image = CType(resources.GetObject("opcConf3.Image"), System.Drawing.Image)
-        Me.opcConf3.Name = "opcConf3"
-        Me.opcConf3.Size = New System.Drawing.Size(251, 22)
-        Me.opcConf3.Text = "Backup base de datos"
-        Me.opcConf3.Visible = False
+        Me.opcConfBkBD.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcConfBkBD.ForeColor = System.Drawing.Color.Navy
+        Me.opcConfBkBD.Image = CType(resources.GetObject("opcConfBkBD.Image"), System.Drawing.Image)
+        Me.opcConfBkBD.Name = "opcConfBkBD"
+        Me.opcConfBkBD.Size = New System.Drawing.Size(251, 22)
+        Me.opcConfBkBD.Text = "Backup base de datos"
+        Me.opcConfBkBD.Visible = False
         '
-        'ToolStripSeparator34
+        'ToolStripSeparator10
         '
-        Me.ToolStripSeparator34.Name = "ToolStripSeparator34"
-        Me.ToolStripSeparator34.Size = New System.Drawing.Size(93, 6)
+        Me.ToolStripSeparator10.Name = "ToolStripSeparator10"
+        Me.ToolStripSeparator10.Size = New System.Drawing.Size(93, 6)
         '
         'opcAce
         '
@@ -569,10 +590,10 @@ Partial Class pantallaInicialForm
         Me.opcAce.Text = "Acerca de..."
         Me.opcAce.ToolTipText = "Acerca de..."
         '
-        'ToolStripSeparator1
+        'ToolStripSeparator11
         '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(93, 6)
+        Me.ToolStripSeparator11.Name = "ToolStripSeparator11"
+        Me.ToolStripSeparator11.Size = New System.Drawing.Size(93, 6)
         '
         'PictureBox1
         '
@@ -637,63 +658,65 @@ Partial Class pantallaInicialForm
     Friend WithEvents TSMenu As System.Windows.Forms.ToolStrip
     Friend WithEvents ToolStripProgressBar1 As System.Windows.Forms.ToolStripProgressBar
     Friend WithEvents ToolStripProgressBar2 As System.Windows.Forms.ToolStripProgressBar
-    Friend WithEvents opcPers As System.Windows.Forms.ToolStripDropDownButton
+    Friend WithEvents opcPersonal As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents opcPers1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents opcConf As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents opcConf1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcConfigurar As System.Windows.Forms.ToolStripDropDownButton
+    Friend WithEvents opcConfColorPantalla As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents opcAce As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripSeparator11 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents opcConf2 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator14 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents opcConf3 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator8 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents ToolStripSeparator25 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents opcConfCambiarContra As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator10_2 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents opcConfBkBD As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripSeparator9_1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents opcPers3 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents opcOrden As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents ToolStripSeparator18 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents opcEnt As System.Windows.Forms.ToolStripButton
-    Friend WithEvents opcConf6 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator28 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents ToolStripSeparator32 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents opcCot As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents ToolStripSeparator34 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents opcCot1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents opcMat As System.Windows.Forms.ToolStripSplitButton
-    Friend WithEvents opcMat1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents opcMat2 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents ToolStripSeparator7 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents opcMat3 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcOrdenCompra As System.Windows.Forms.ToolStripDropDownButton
+    Friend WithEvents ToolStripSeparator8 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripSeparator9 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents opcClien_Prov As System.Windows.Forms.ToolStripButton
+    Friend WithEvents opcConfObra As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator10_1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents opcCotizacion As System.Windows.Forms.ToolStripDropDownButton
+    Friend WithEvents ToolStripSeparator10 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents opcCot1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcInsumo As System.Windows.Forms.ToolStripSplitButton
+    Friend WithEvents opcInsumoArea As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcInsumoUnd As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripSeparator0 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents opcInsumoTipo As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2_1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents opcOrden1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator5 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents opcDoc As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents opcGuia As System.Windows.Forms.ToolStripDropDownButton
+    Friend WithEvents opcDocCompra As System.Windows.Forms.ToolStripDropDownButton
+    Friend WithEvents ToolStripSeparator7 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents opcGuiaRemision As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents opcOrden2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents opcCot2 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator10 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents opcOrdDes As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents opcOrdDes1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents opcReq As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents opcReq1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents opcReq2 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator11 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripSeparator5 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents opcOrdDesembolso As System.Windows.Forms.ToolStripDropDownButton
+    Friend WithEvents opcOrdDesApertura As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcRequerimientoObra As System.Windows.Forms.ToolStripDropDownButton
+    Friend WithEvents opcReqSolicitud As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcReqSeguimiento As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator4_1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents opcCot3 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator12 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents opcOrdDes4 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents opcOrdDes2 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents opcOrdDes3 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents opcReq3 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents opcConf4 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator6_1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents opcOrdDesModPago As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcOrdDesAprobacion As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcOrdDesRegPagos As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcReqAprobacion As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcConfSerieDesem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents opcOrden3 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents MantCuentasBancariasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator13 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents SeguimientoDesembolsosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents opcConf5 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcOrdDesCtasBco As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator5_1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents opcConfSeriePersonal As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcOrdDesConta As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcOrdDesSeguimiento As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator6_2 As System.Windows.Forms.ToolStripSeparator
 End Class

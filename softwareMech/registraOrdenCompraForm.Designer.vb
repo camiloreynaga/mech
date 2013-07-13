@@ -21,8 +21,8 @@ Partial Class registraOrdenCompraForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(registraOrdenCompraForm))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.txtDet = New System.Windows.Forms.TextBox
         Me.Label32 = New System.Windows.Forms.Label
@@ -253,7 +253,7 @@ Partial Class registraOrdenCompraForm
         '
         'txtPro
         '
-        Me.txtPro.Location = New System.Drawing.Point(393, 216)
+        Me.txtPro.Location = New System.Drawing.Point(394, 213)
         Me.txtPro.Name = "txtPro"
         Me.txtPro.Size = New System.Drawing.Size(115, 20)
         Me.txtPro.TabIndex = 316
@@ -261,7 +261,7 @@ Partial Class registraOrdenCompraForm
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(390, 204)
+        Me.Label25.Location = New System.Drawing.Point(390, 199)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(84, 13)
         Me.Label25.TabIndex = 315
@@ -436,9 +436,9 @@ Partial Class registraOrdenCompraForm
         Me.Label21.AutoSize = True
         Me.Label21.Location = New System.Drawing.Point(101, 181)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(55, 13)
+        Me.Label21.Size = New System.Drawing.Size(54, 13)
         Me.Label21.TabIndex = 287
-        Me.Label21.Text = "Entrega:"
+        Me.Label21.Text = "Destino:"
         '
         'Label15
         '
@@ -947,8 +947,8 @@ Partial Class registraOrdenCompraForm
         Me.dgTabla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgTabla2.Location = New System.Drawing.Point(1, 0)
         Me.dgTabla2.Name = "dgTabla2"
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgTabla2.Size = New System.Drawing.Size(900, 173)
         Me.dgTabla2.TabIndex = 15
         '
@@ -1212,8 +1212,8 @@ Partial Class registraOrdenCompraForm
         Me.dgTabla1.Location = New System.Drawing.Point(0, 25)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.dgTabla1.Size = New System.Drawing.Size(900, 123)
         Me.dgTabla1.TabIndex = 7
         '

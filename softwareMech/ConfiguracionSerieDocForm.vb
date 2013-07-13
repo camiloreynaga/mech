@@ -263,11 +263,23 @@ Public Class ConfiguracionSerieDocForm
         Return cmdCampo.ExecuteScalar
     End Function
 
+    Private Function recuperarCountSerie(ByVal codSer As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select COUNT(*) from TOrdenDesembolso where codSerO=" & codSer
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
     Dim vfModificar1 As String = "modificar"
     Dim vfCampo1 As Integer
     Private Sub btnModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnModificar.Click
         If dgTabla1.Rows.Count = 0 Then
             StatusBarClass.messageBarraEstado("  No existe registro a modificar...")
+            Exit Sub
+        End If
+        If recuperarCountSerie(BindingSource2.Item(BindingSource2.Position)(0)) > 10 Then  'si hay mas de 10 ordenes ya procesadas con esta serie el sistema ya no dejara modificar la serie
+            MessageBox.Show("Proceso denegado, ya hay mas de 10 ordenes de desembolso procesadas...", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
         If vfModificar1 = "modificar" Then
@@ -356,15 +368,30 @@ Public Class ConfiguracionSerieDocForm
         Return cmdCampo.ExecuteScalar
     End Function
 
+    Public Function recuperarCount2(ByVal codSer As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select count(*) from TSeriePers where codSerO=" & codSer
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
     Private Sub btnEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEliminar.Click
         If dgTabla1.Rows.Count = 0 Then
             StatusBarClass.messageBarraEstado("  No existe registro a eliminar...")
             Exit Sub
         End If
+
         If recuperarCount1(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
             MessageBox.Show("PROCESO DENEGADO. SERIE TIENE ORDENES YA PROCESADAS...", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
+
+        If recuperarCount2(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
+            MessageBox.Show("PROCESO DENEGADO. SERIE TIENE PERSONAL ASIGNADO...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
         Dim resp As String = MessageBox.Show("Está segúro de eliminar registro?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
             txtSerie.Focus()

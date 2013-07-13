@@ -146,6 +146,12 @@
     <Compile Include="ConfiguracionSerieDocForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="contaOrdenDesembolsoForm.designer.vb">
+      <DependentUpon>contaOrdenDesembolsoForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="contaOrdenDesembolsoForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="crearMaterialForm.Designer.vb">
       <DependentUpon>crearMaterialForm.vb</DependentUpon>
     </Compile>
@@ -351,6 +357,12 @@
     <Compile Include="pantallaInicialForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="registraComprobantePago.Designer.vb">
+      <DependentUpon>registraComprobantePago.vb</DependentUpon>
+    </Compile>
+    <Compile Include="registraComprobantePago.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="registraCotizacion1Form.Designer.vb">
       <DependentUpon>registraCotizacion1Form.vb</DependentUpon>
     </Compile>
@@ -457,6 +469,9 @@
     <EmbeddedResource Include="ConfiguracionSerieDocForm.resx">
       <DependentUpon>ConfiguracionSerieDocForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="contaOrdenDesembolsoForm.resx">
+      <DependentUpon>contaOrdenDesembolsoForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="crearMaterialForm.resx">
       <DependentUpon>crearMaterialForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -556,6 +571,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pantallaInicialForm.resx">
       <DependentUpon>pantallaInicialForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="registraComprobantePago.resx">
+      <DependentUpon>registraComprobantePago.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="registraCotizacion1Form.resx">
       <DependentUpon>registraCotizacion1Form.vb</DependentUpon>

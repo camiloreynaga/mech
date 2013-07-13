@@ -214,18 +214,18 @@ Public Class tesoreriaOrdenDesembolsoForm
             .Columns(0).Visible = False
             .Columns(1).Width = 75
             .Columns(1).HeaderText = "Fecha"
-            .Columns(2).Width = 120
+            .Columns(2).Width = 180
             .Columns(2).HeaderText = "Medio Pago"
             .Columns(3).Width = 80
             .Columns(3).HeaderText = "Nº"
             .Columns(4).HeaderText = "Descripción"
-            .Columns(4).Width = 260
+            .Columns(4).Width = 240
             .Columns(5).HeaderText = ""
             .Columns(5).Width = 30
-            .Columns(6).Width = 75
+            .Columns(6).Width = 70
             .Columns(6).HeaderText = "Monto"
             .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            .Columns(7).Width = 75
+            .Columns(7).Width = 70
             .Columns(7).HeaderText = "Detracción"
             .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(8).HeaderText = "Clasificación"
@@ -468,7 +468,7 @@ Public Class tesoreriaOrdenDesembolsoForm
 
     Private Sub btnCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelar.Click
         vfNuevo2 = "nuevo"
-        Me.btnNuevo.Text = "Nuevo"
+        Me.btnNuevo.Text = "Pagar"
         vfModificar2 = "modificar"
         Me.btnModificar.Text = "Modificar"
         activarControles1()
@@ -803,5 +803,9 @@ Public Class tesoreriaOrdenDesembolsoForm
 
     Private Sub txtMon_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtMon.GotFocus, txtMon.MouseClick
         txtMon.SelectAll()
+    End Sub
+
+    Private Sub Label12_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label12.Click
+
     End Sub
 End Class

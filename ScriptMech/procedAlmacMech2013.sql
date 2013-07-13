@@ -68,35 +68,6 @@ as
 	RETURN  @Identity
 GO
 
---EJECUTAR AHORITA
-create procedure PA_InsertTPagoDesembolso
-	@fec date,@codT int,@pago varchar(100),@codM int,@monto decimal(10,2),@idOP int,@idC int,
-	@Identity int output --parametro de salida
-as
-	insert into TPagoDesembolso(fecPago,codTipP,pagoDet,codMon,montoPago,idOP,idCue) 
-		values(@fec,@codT,@pago,@codM,@monto,@idOP,@idC)	
-	SET @Identity = @@Identity
-	
-	RETURN  @Identity
-GO
-
---*****************************************************
---------------------EJECUTAR 27/06/2013----------------------
---*****************************************************
---inserta un registros de orden de compra
---DROP procedure PA_InsertOrdenCompra
-create procedure PA_InsertOrdenCompra
-	@nroO int,@fecO date, @codIde int, @codPers int,@codPag int, @igv decimal(6,2),@calIGV int,@codMon int,
-	@atiendeCom varchar(50),@cel varchar(50),@plazoEnt varchar(40),@transfe varchar(100),@nroProf varchar(40),@obsFac varchar(200), @estado int,
-	@codCot int,@idSol int,@codPersO int, @codigo varchar(10),@lugar varchar(100), @hist varchar(200),@codET int,
-	@Identity int output
-as
-	insert into TOrdenCompra(nroO,fecOrden,codIde,codPers,codPag,igv,calIGV,codMon,atiendeCom,celAti,plazoEnt,transfe,nroProf,obsFac,estado,codCot,idSol,codPersO,codigo,lugarEnt,hist,codET)
-	 values (@nroO,@fecO,@codIde,@codPers,@codPag,@igv,@calIGV,@codMon,@atiendeCom,@cel,@plazoEnt,@transfe,@nroProf,@obsFac,@estado,@codCot,@idSol,@codPersO,@codigo,@lugar,@hist,@codET)
-	 SET @Identity=@@IDENTITY 
-	 Return @Identity
-go
-
 --inserta un registro en la tabala OrdenDesembolso. 
 --DROP procedure PA_InsertOrdenDesembolso
 create procedure PA_InsertOrdenDesembolso
@@ -112,7 +83,31 @@ as
 	 Return @Identity
 GO
 
+--EJECUTAR AHORITA
+--DROP procedure PA_InsertTPagoDesembolso
+create procedure PA_InsertTPagoDesembolso
+	@fec date,@codT int,@nro varchar(20),@pago varchar(100),@codC int,@codM int,@monto decimal(10,2),@montoD decimal(10,2),@idOP int,@idC int,
+	@Identity int output --parametro de salida
+as
+	insert into TPagoDesembolso(fecPago,codTipP,nroP,pagoDet,codCla,codMon,montoPago,montoD,idOP,idCue) 
+		values(@fec,@codT,@nro,@pago,@codC,@codM,@monto,@montoD,@idOP,@idC)	
+	SET @Identity = @@Identity
+	
+	RETURN  @Identity
+GO
 
+--DROP procedure PA_InsertOrdenCompra
+create procedure PA_InsertOrdenCompra
+	@nroO int,@fecO date, @codIde int, @codPers int,@codPag int, @igv decimal(6,2),@calIGV int,@codMon int,
+	@atiendeCom varchar(50),@cel varchar(50),@plazoEnt varchar(40),@transfe varchar(100),@nroProf varchar(40),@obsFac varchar(200), @estado int,
+	@codCot int,@idSol int,@codPersO int, @codigo varchar(10),@lugar varchar(100), @hist varchar(200),@codET int,@nota varchar(200),
+	@Identity int output
+as
+	insert into TOrdenCompra(nroO,fecOrden,codIde,codPers,codPag,igv,calIGV,codMon,atiendeCom,celAti,plazoEnt,transfe,nroProf,obsFac,estado,codCot,idSol,codPersO,codigo,lugarEnt,hist,codET,nota)
+	 values (@nroO,@fecO,@codIde,@codPers,@codPag,@igv,@calIGV,@codMon,@atiendeCom,@cel,@plazoEnt,@transfe,@nroProf,@obsFac,@estado,@codCot,@idSol,@codPersO,@codigo,@lugar,@hist,@codET,@nota)
+	 SET @Identity=@@IDENTITY 
+	 Return @Identity
+go
 
 
 

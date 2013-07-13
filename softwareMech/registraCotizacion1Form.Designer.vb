@@ -21,8 +21,8 @@ Partial Class registraCotizacion1Form
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(registraCotizacion1Form))
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.cbMoneda = New System.Windows.Forms.ComboBox
         Me.txtObs = New System.Windows.Forms.TextBox
@@ -684,11 +684,11 @@ Partial Class registraCotizacion1Form
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(101, 44)
+        Me.Label4.Location = New System.Drawing.Point(95, 44)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(59, 13)
+        Me.Label4.Size = New System.Drawing.Size(69, 13)
         Me.Label4.TabIndex = 277
-        Me.Label4.Text = "Empresa:"
+        Me.Label4.Text = "Proveedor:"
         '
         'btnCerrar
         '
@@ -981,8 +981,8 @@ Partial Class registraCotizacion1Form
         Me.dgTabla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgTabla2.Location = New System.Drawing.Point(1, 0)
         Me.dgTabla2.Name = "dgTabla2"
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgTabla2.Size = New System.Drawing.Size(900, 173)
         Me.dgTabla2.TabIndex = 15
         '
@@ -1077,8 +1077,8 @@ Partial Class registraCotizacion1Form
         Me.dgTabla1.Location = New System.Drawing.Point(0, 25)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgTabla1.Size = New System.Drawing.Size(900, 153)
         Me.dgTabla1.TabIndex = 7
         '

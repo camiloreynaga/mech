@@ -96,12 +96,12 @@ Public Class MantMaterialForm
             .Columns(0).HeaderText = "Cod"
             .Columns(0).Width = 40
             .Columns(1).HeaderText = "Descripción Insumo"
-            .Columns(1).Width = 400
+            .Columns(1).Width = 460
             .Columns(2).Width = 50
             .Columns(2).HeaderText = "Unidad"
             .Columns(3).Width = 50
             .Columns(3).HeaderText = "PrecS/."
-            .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(4).HeaderText = "Tipo Insumo"
             .Columns(4).Width = 120
             .Columns(5).Width = 60
@@ -519,24 +519,24 @@ Public Class MantMaterialForm
         End If
 
         If recuperarCount1(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
-            StatusBarClass1.messageBarraEstado("  PROCESO DENEGADO, INSUMO TIENE INSTANCIAS EN SOLICITUD...")
+            StatusBarClass.messageBarraEstado("  PROCESO DENEGADO, INSUMO TIENE INSTANCIAS EN SOLICITUD...")
             Exit Sub
         End If
 
         If recuperarCount2(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
-            StatusBarClass1.messageBarraEstado("  PROCESO DENEGADO, INSUMO TIENE INSTANCIAS EN COTIZACION...")
+            StatusBarClass.messageBarraEstado("  PROCESO DENEGADO, INSUMO TIENE INSTANCIAS EN COTIZACION...")
             Exit Sub
         End If
 
         If recuperarCount3(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
-            StatusBarClass1.messageBarraEstado("  PROCESO DENEGADO, INSUMO TIENE INSTANCIAS EN DOC. COMPRAS...")
+            StatusBarClass.messageBarraEstado("  PROCESO DENEGADO, INSUMO TIENE INSTANCIAS EN DOC. COMPRAS...")
             Exit Sub
         End If
 
         If recuperarCount4(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
-            StatusBarClass1.messageBarraEstado("  PROCESO DENEGADO, INSUMO TIENE INSTANCIAS EN GUIAS...")
+            StatusBarClass.messageBarraEstado("  PROCESO DENEGADO, INSUMO TIENE INSTANCIAS EN GUIAS...")
             Exit Sub
-        End If
+        End If '
 
         Dim resp As String = MessageBox.Show("Está segúro de eliminar registro?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then

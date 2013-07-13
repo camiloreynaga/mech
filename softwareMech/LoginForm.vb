@@ -71,6 +71,7 @@ Public Class LoginForm
         End With
     End Sub
 
+
     Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
         If txtUsu.Text.Trim() = "" Then
             MessageBox.Show("DATO INVALIDO, DIGITE USUARIO VALIDO...", "SSP SAC", Nothing, MessageBoxIcon.Error)
@@ -95,34 +96,42 @@ Public Class LoginForm
 
             'If vSCodTipoUsu = 1 Or vSCodTipoUsu = 2 Then
             If _tipoCargo = 0 Then
-               
-
-                ' Configurando el tamaño y localización de botones
-                Me.Size = New Size(480, 400)
-                'OK.Location = New Point(224, 339)
-                OK.Visible = False
-
-                btnAcceder.Visible = True
-                btnAcceder.Location = New Point(307, 339)
-                Cancel.Location = New Point(393, 339)
-
-                'seleccionar sucursal
-                dgTabla2.Visible = True
-                Label1.Visible = True
-                Navigator1.Visible = True
-                colorear()
 
 
-                dgTabla2.Enabled = True
-                btnAcceder.Enabled = True
-                btnAcceder.FlatStyle = FlatStyle.Standard
-                OK.Enabled = False
-                OK.FlatStyle = FlatStyle.Flat
-                txtUsu.ReadOnly = True
-                txtCon.ReadOnly = True
-                Me.AcceptButton = Me.btnAcceder
-                btnAcceder.Focus()
-                Exit Sub
+                If vSCodTipoUsu = 5 Or vSCodTipoUsu = 11 Or vSCodTipoUsu = 12 Then
+                    vSCodigo = bindingSource1.Item(0)(0)
+                    vSNomSuc = bindingSource1.Item(0)(1)
+                    vSDirSuc = bindingSource1.Item(0)(2)
+
+                Else
+
+                    ' Configurando el tamaño y localización de botones
+                    Me.Size = New Size(480, 400)
+                    'OK.Location = New Point(224, 339)
+                    OK.Visible = False
+
+                    btnAcceder.Visible = True
+                    btnAcceder.Location = New Point(307, 339)
+                    Cancel.Location = New Point(393, 339)
+
+                    'seleccionar sucursal
+                    dgTabla2.Visible = True
+                    Label1.Visible = True
+                    Navigator1.Visible = True
+                    colorear()
+
+
+                    dgTabla2.Enabled = True
+                    btnAcceder.Enabled = True
+                    btnAcceder.FlatStyle = FlatStyle.Standard
+                    OK.Enabled = False
+                    OK.FlatStyle = FlatStyle.Flat
+                    txtUsu.ReadOnly = True
+                    txtCon.ReadOnly = True
+                    Me.AcceptButton = Me.btnAcceder
+                    btnAcceder.Focus()
+                    Exit Sub
+                End If
             Else    'usuario
                 vSCodigo = recuperarCodigo(vPass)
                 bindingSource1.Position = bindingSource1.Find("codigo", vSCodigo)

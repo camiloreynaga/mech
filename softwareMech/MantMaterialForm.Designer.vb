@@ -21,7 +21,7 @@ Partial Class MantMaterialForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MantMaterialForm))
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel3 = New System.Windows.Forms.Panel
         Me.Label7 = New System.Windows.Forms.Label
         Me.txtBuscar = New System.Windows.Forms.TextBox
@@ -216,8 +216,8 @@ Partial Class MantMaterialForm
         Me.dgTabla1.Location = New System.Drawing.Point(0, 35)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgTabla1.Size = New System.Drawing.Size(900, 485)
         Me.dgTabla1.TabIndex = 1
         '
@@ -265,10 +265,10 @@ Partial Class MantMaterialForm
         '
         'txtProd
         '
-        Me.txtProd.Location = New System.Drawing.Point(217, 17)
+        Me.txtProd.Location = New System.Drawing.Point(208, 17)
         Me.txtProd.Name = "txtProd"
         Me.txtProd.ReadOnly = True
-        Me.txtProd.Size = New System.Drawing.Size(372, 20)
+        Me.txtProd.Size = New System.Drawing.Size(509, 20)
         Me.txtProd.TabIndex = 2
         '
         'cbUni1
@@ -277,25 +277,25 @@ Partial Class MantMaterialForm
         Me.cbUni1.Enabled = False
         Me.cbUni1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbUni1.FormattingEnabled = True
-        Me.cbUni1.Location = New System.Drawing.Point(601, 17)
+        Me.cbUni1.Location = New System.Drawing.Point(732, 17)
         Me.cbUni1.Name = "cbUni1"
         Me.cbUni1.Size = New System.Drawing.Size(91, 21)
         Me.cbUni1.TabIndex = 3
         '
         'txtPre1
         '
-        Me.txtPre1.Location = New System.Drawing.Point(695, 17)
+        Me.txtPre1.Location = New System.Drawing.Point(826, 17)
         Me.txtPre1.Name = "txtPre1"
         Me.txtPre1.ReadOnly = True
         Me.txtPre1.Size = New System.Drawing.Size(52, 20)
         Me.txtPre1.TabIndex = 4
-        Me.txtPre1.Text = "0"
-        Me.txtPre1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtPre1.Text = "0.00"
+        Me.txtPre1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(692, 4)
+        Me.Label5.Location = New System.Drawing.Point(823, 4)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(65, 13)
         Me.Label5.TabIndex = 24
@@ -371,7 +371,7 @@ Partial Class MantMaterialForm
         Me.lbEstado.Enabled = False
         Me.lbEstado.FormattingEnabled = True
         Me.lbEstado.Items.AddRange(New Object() {"Activo", "Inactivo"})
-        Me.lbEstado.Location = New System.Drawing.Point(811, 8)
+        Me.lbEstado.Location = New System.Drawing.Point(208, 43)
         Me.lbEstado.Name = "lbEstado"
         Me.lbEstado.Size = New System.Drawing.Size(73, 30)
         Me.lbEstado.TabIndex = 5
@@ -380,7 +380,7 @@ Partial Class MantMaterialForm
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(757, 17)
+        Me.Label8.Location = New System.Drawing.Point(154, 52)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(54, 13)
         Me.Label8.TabIndex = 14
@@ -389,7 +389,7 @@ Partial Class MantMaterialForm
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(598, 3)
+        Me.Label6.Location = New System.Drawing.Point(729, 3)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(83, 13)
         Me.Label6.TabIndex = 12
@@ -398,7 +398,7 @@ Partial Class MantMaterialForm
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(214, 3)
+        Me.Label4.Location = New System.Drawing.Point(205, 3)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(140, 13)
         Me.Label4.TabIndex = 8

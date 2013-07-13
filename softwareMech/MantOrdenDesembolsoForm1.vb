@@ -403,7 +403,7 @@ Public Class MantOrdenDesembolsoForm1
         End If
         'Inicia el Proceso para identificar la cantidad a convertir
         If Val(txtMon.Text) > 0 Then
-            cALetra.Numero = Val(txtMon.Text)
+            cALetra.Numero = Val(CDbl(txtMon.Text))
             txtLetraTotal.Text = "SON: " & cALetra.ALetra.ToUpper()
         End If
     End Sub

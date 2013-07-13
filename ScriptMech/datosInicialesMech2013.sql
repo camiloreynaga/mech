@@ -30,6 +30,10 @@ insert into TTipoUsu(tipo,tipoCargo) values('Jefe Seguridad',1)--7
 insert into TTipoUsu(tipo,tipoCargo) values('Jefe Equipo Mecánico',1)--8
 insert into TTipoUsu(tipo,tipoCargo) values('Administrador Obra',1)--9
 insert into TTipoUsu(tipo,tipoCargo) values('Almacenero',1)--10
+insert into TTipoUsu(tipo,tipoCargo) values('Contabilidad',0)--11
+insert into TTipoUsu(tipo,tipoCargo) values('Caja Chica',0)--12
+
+
 --update TTipoUsu set tipo='Residente' where codTipU=3
 --select * from TTipoUsu
 GO

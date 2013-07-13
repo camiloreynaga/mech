@@ -3,7 +3,7 @@
 ----------------------------------------
 --drop database BD_ConstrucMech
 --create database BD_ConstrucMech
---TIPOS DE USUARIO
+
 create table TTipoUsu
 (	codTipU int identity primary key,
 	tipo varchar(30),  --Administrador,Almacenero,obra,logistica 
@@ -27,14 +27,14 @@ create table TPersonal
 	dni varchar(8),
 	dir varchar(60),
 	fono varchar(60),
-	email varchar(50),
+	email varchar(100),
 	estado int, 	--1=Activo 0=Inactivo
 	--foreign key(codTipU) references TTipoUsu,
 	foreign key(codCar) references TCargo
 )
 --- select * from TPersonal
---aumentar campos a la estructura de nuestra base de datos
---ALTER TABLE TPersonal ALTER COLUMN email varchar(50)
+--Modificar campos a la estructura de nuestra base de datos
+--ALTER TABLE TPersonal ALTER COLUMN email varchar(100)
 
 --TIPOS DE IDENTIDAD (CLIENTE/PROVEEDOR)
 create table TTipoIdent
@@ -65,6 +65,8 @@ create table TIdentidad
 --update TIdentidad set cuentaDet=''
 
 --LUGARES DE TRABAJO. OBRAS O SEDES
+--DROP table TLugarTrabajo
+--select * from TLugarTrabajo
 create table TLugarTrabajo
 (	codigo varchar(10) primary key,  
 	fecAper date,
@@ -80,6 +82,7 @@ create table TLugarTrabajo
 	foreign key(codIde) references TIdentidad
 )
 --TABLA INTERMEDIA RELACIONA PERSONAL CON OBRAS/SEDES (LUGARES DE TRABAJO)
+--DROP table TPersLugar
 create table TPersLugar
 (	codPL int identity primary key,
 	codPers int,
@@ -88,6 +91,7 @@ create table TPersLugar
 	foreign key(codigo) references TLugarTrabajo
 )
 -- UBICACIONES. (ALMACENES DE OBRA)
+--DROP table TUbicacion
 create table TUbicacion
 (	codUbi int identity primary key,
 	ubicacion varchar(50),
@@ -112,6 +116,8 @@ create table TUnidad
 	unidad varchar(20)
 )
 -- REGISTROS DE MATERIALES (INSUMOS)
+--select * from TMaterial
+--DROP table TMaterial
 create table TMaterial
 (	codMat int identity(10,1) primary key,
 	material varchar(100),
@@ -146,7 +152,7 @@ create table TMoneda
 	moneda varchar(20), --Nuevos Soles - Dolares Americanos
 	simbolo varchar(10),
 )	
--- REGISTRO DE DOCUMENTOS DE COMPRA.
+-- DROP table TDocCompra
 create table TDocCompra
 (	codDocC int identity(1,1) primary key,
 	serie varchar(5),
@@ -169,6 +175,7 @@ create table TDocCompra
 	foreign key(codMon) references TMoneda
 )
 -- REGISTRO DE DETALLE DEL DOCUMENTO DE COMPRA
+--DROP table TDetalleCompra
 create table TDetalleCompra
 (	codDC int identity(1,1) primary key,
 	cant decimal(8,2),
@@ -211,7 +218,7 @@ create table TMotivoGuia
 (	codMotG int identity primary key, 
 	motivo varchar(40)  --venta compra traspaso
 )	
---
+--DROP table TGuiaRemision
 create table TGuiaRemision
 (	codGuia int identity primary key,
 	talon varchar(5) default '001',
@@ -232,7 +239,7 @@ create table TGuiaRemision
 	foreign key(codT) references TTransportista,
 	foreign key(codMotG) references TMotivoGuia
 )
--- TABLA INTERMEDIA PARA DOCUMENTO COMPRA (FACTURA) Y GUIA DE REMISION
+-- DROP table TDocGuia
 create table TDocGuia
 (	nroDG int identity(1,1) primary key,
 	codDocC int,
@@ -240,7 +247,7 @@ create table TDocGuia
 	foreign key(codDocC) references TDocCompra,
 	foreign key(codGuia) references TGuiaRemision
 )
-
+--DROP table TDetalleGuia
 create table TDetalleGuia
 (	codDG int identity(1,1) primary key,
 	codigo varchar(20),
@@ -256,6 +263,8 @@ create table TDetalleGuia
 	foreign key(codMat) references TMaterial
 )
 -- SOLICITUD DE REQUERIMIENTO DE OBRA
+--select * from TSolicitud
+--DROP table TSolicitud
 create table TSolicitud
 (	idSol int identity primary key,
 	nroS int,  --incrementado de acuerdo a lugar de trabajo
@@ -278,7 +287,8 @@ create table TEstSol
 (	codEstS int identity primary key, 
 	estSol varchar(20)  -- pendiente aprobado observado rechazado
 )	
-
+--select * from TDetalleSol
+--DROP table TDetalleSol
 create table TDetalleSol
 (	codDetS int identity(1,1) primary key,
 	prioridad varchar(20), --urgente
@@ -311,13 +321,16 @@ create table TDetalleSol
 
 ----------NUEVO 23/04/2013--------------------
 --GRUPO PARA COTIZACIONES
+--select * from TGrupoCot
+--DROP table TGrupoCot
 create table TGrupoCot
 (	codGruC int identity primary key, 
 	nroGru int, 
 	descrip varchar(40),  -- descripcion del grupo de cotizaciones
 	estGru int	--0=abierto,1=cerrado
 )
-
+--SELECT * FROM TCotizacion
+--DROP table TCotizacion
 create table TCotizacion
 (	codCot int identity(1,1) primary key,
 	nroCot int,  --007-MECH-2013
@@ -347,7 +360,8 @@ create table TCotizacion
 --ALTER TABLE TCotizacion ADD codMon int default 30
 --update TCotizacion set codMon=30
 
---select * from TCotizacion
+--select * from TDetalleCot
+--DROP table TDetalleCot
 create table TDetalleCot
 (	codDetC int identity(1,1) primary key,
 	cant decimal(8,2),
@@ -362,7 +376,8 @@ create table TDetalleCot
 	foreign key(codCot) references TCotizacion
 )
 
-----------NUEVO 01/05/2013--------------------
+--select * from TOrdenCompra
+--DROP table TOrdenCompra
 create table TOrdenCompra
 (	nroOrden int identity(1,1) primary key,
 	nroO int,	
@@ -387,6 +402,7 @@ create table TOrdenCompra
 	lugarEnt varchar(100),
 	hist varchar(200),
 	codET int default 1,  -- TRANSPORTE
+	nota varchar(200) default '',
 	foreign key(codIde) references TIdentidad,
 	foreign key(codPers) references TPersonal,
 	foreign key(codPag) references TFormaPago,
@@ -395,9 +411,11 @@ create table TOrdenCompra
 )
 --select * from TOrdenCompra
 --aumentar campos a la estructura de nuestra base de datos
---ALTER TABLE TOrdenCompra ADD codET int default 1
---update TOrdenCompra set codET=1
+--ALTER TABLE TOrdenCompra ADD nota varchar(200) default ''
+--update TOrdenCompra set nota=''
 
+--SELECT * FROM TDetalleOrden
+--DROP table TDetalleOrden
 create table TDetalleOrden
 (	codDetO int identity(1,1) primary key,
 	cant decimal(8,2),
@@ -410,7 +428,7 @@ create table TDetalleOrden
 	foreign key(codMat) references TMaterial,
 	foreign key(nroOrden) references TOrdenCompra
 )
---select * from TDetalleOrden
+--DROP table TOrdenGuia
 create table TOrdenGuia
 (	nroOG int identity(1,1) primary key,
 	nroOrden int,
@@ -419,8 +437,8 @@ create table TOrdenGuia
 	foreign key(codGuia) references TGuiaRemision
 )
 
--- TABLA INTERMEDIA DE ORNDE DE COMPRA DESEMBOLSO
-
+--SELECT * FROM TOrdenDesembolso
+--DROP table TOrdenDesembolso
 create table TOrdenDesembolso
 (	idOP int identity(1,1) primary key,
 	serie varchar(5),
@@ -463,7 +481,8 @@ create table TOrdenDesembolso
 --ALTER TABLE TOrdenDesembolso ADD codSerO int default 1
 --update TOrdenDesembolso set codSerO=1
 
--- TABLA INTERMEDIA ORDEN DE COMPRA POR DESEMBOLSO
+--SELECT * FROM TDesOrden
+--DROP table TDesOrden
 create table TDesOrden
 (	nroDO int identity(1,1) primary key,
 	idOP int,
@@ -471,7 +490,8 @@ create table TDesOrden
 	foreign key(idOP) references TOrdenDesembolso,
 	foreign key(nroOrden) references TOrdenCompra
 )
--- TABLA INTERMEDIA PERSONA POR DESEMBOLSO
+-- select * from TPersDesem
+--DROP table TPersDesem
 create table TPersDesem
 (	codPersDes int identity(1,1) primary key,
 	idOP int,
@@ -494,7 +514,8 @@ create table TClasifPago
 (	codCla int identity(1,1) primary key,	
 	clasif varchar(20)  --Proveedores, Haberes CTS	
 )	
-
+--select * from TPagoDesembolso
+--DROP table TPagoDesembolso
 create table TPagoDesembolso
 (	codPagD int identity(1,1) primary key,
 	fecPago date,
@@ -512,12 +533,12 @@ create table TPagoDesembolso
 	foreign key(codMon) references TMoneda,
 	foreign key(idOP) references TOrdenDesembolso
 )
-
+--SELECT * FROM TBanco
 create table TBanco
 (	codBan int identity(1,1) primary key,	
 	banco varchar(40)  --continental BCP
 )
-
+--SELECT * FROM TCuentaBan
 create table TCuentaBan
 (	idCue int identity(1,1) primary key,
 	nroCue varchar(60),
@@ -528,9 +549,7 @@ create table TCuentaBan
 	foreign key(codBan) references TBanco
 )
 
-----------------------------------------------
-----------EJECUTAR 25/06/2013--------------------
----------------------------------------------
+--SELECT * FROM TSerieOrden
 create table TSerieOrden
 (	codSerO int identity primary key, 
 	serie varchar(10) default '001',
@@ -538,7 +557,7 @@ create table TSerieOrden
 	descrip varchar(40),
 	estado int 	--1=Activo 0=Inactivo
 )
-
+--SELECT * FROM TSeriePers
 create table TSeriePers
 (	codSP int identity primary key,
 	codPers int,	
@@ -546,6 +565,58 @@ create table TSeriePers
 	foreign key(codPers) references TPersonal,
 	foreign key(codSerO) references TSerieOrden
 )
+
+-----------------MODULO ALMACEN-----------------------
+-----------------EJECUTAR 15/07/2013------------------
+------------------------------------------------------
+
+create table TMatUbi
+(	idMU int identity primary key,
+	codMat int,
+	codUbi int,	
+	stock decimal(10,2),
+	foreign key(codMat) references TMaterial,
+	foreign key(codUbi) references TUbicacion
+)
+
+create table TTipoTransac
+(	codTrans int identity(1,1) primary key,
+	tipo varchar(30),
+)
+
+create table TSaldo
+(	codSal int identity primary key,
+	saldo int,
+	codLug varchar(10)  --codigo obra
+)
+
+create table TEntradaSalida
+(	nroNota int identity primary key,
+	fecha date,
+	codMat int,
+	idMU int,
+	codUbi int,
+	cantEnt decimal(8,2) default 0,
+	preUniEnt decimal(8,2) default 0,
+	cantSal decimal(8,2) default 0,
+	preUniSal decimal(8,2) default 0,
+	codGuia	int,	
+	nroGuia varchar(30),
+	codDoc int,
+	nroDoc varchar(30),
+	otroDoc varchar(30),
+	codTrans int,
+	codUsu int  default 0,
+	codPers int,	
+	obs varchar(200) default '',
+	codSal int,
+	foreign key(codMat) references TMaterial,
+	foreign key(idMU) references TMatUbi,
+	foreign key(codUbi) references TUbicacion,
+	foreign key(codTrans) references TTipoTransac,
+	foreign key(codSal) references  TSaldo
+)
+
 
 --*****************************************************
 --------------------FIN DE SCRIPT----------------------

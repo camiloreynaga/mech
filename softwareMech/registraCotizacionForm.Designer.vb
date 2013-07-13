@@ -21,8 +21,8 @@ Partial Class registraCotizacionForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(registraCotizacionForm))
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.cbGrupo = New System.Windows.Forms.ComboBox
         Me.txtAte = New System.Windows.Forms.TextBox
@@ -61,6 +61,9 @@ Partial Class registraCotizacionForm
         Me.date1 = New System.Windows.Forms.DateTimePicker
         Me.btnAperturar = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel
+        Me.cbPago = New System.Windows.Forms.ComboBox
+        Me.cbMoneda = New System.Windows.Forms.ComboBox
+        Me.Label25 = New System.Windows.Forms.Label
         Me.txtPla = New System.Windows.Forms.TextBox
         Me.txtObs = New System.Windows.Forms.TextBox
         Me.txtInc = New System.Windows.Forms.TextBox
@@ -68,7 +71,6 @@ Partial Class registraCotizacionForm
         Me.Label3 = New System.Windows.Forms.Label
         Me.txtTie = New System.Windows.Forms.TextBox
         Me.Label19 = New System.Windows.Forms.Label
-        Me.cbPago = New System.Windows.Forms.ComboBox
         Me.Label18 = New System.Windows.Forms.Label
         Me.Label17 = New System.Windows.Forms.Label
         Me.cbPers = New System.Windows.Forms.ComboBox
@@ -114,8 +116,6 @@ Partial Class registraCotizacionForm
         Me.txtCan = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Label24 = New System.Windows.Forms.Label
         Me.dgTabla1 = New System.Windows.Forms.DataGridView
-        Me.cbMoneda = New System.Windows.Forms.ComboBox
-        Me.Label25 = New System.Windows.Forms.Label
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -487,7 +487,7 @@ Partial Class registraCotizacionForm
         Me.cbProv.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbProv.FormattingEnabled = True
         Me.cbProv.IntegralHeight = False
-        Me.cbProv.Location = New System.Drawing.Point(162, 41)
+        Me.cbProv.Location = New System.Drawing.Point(161, 41)
         Me.cbProv.Name = "cbProv"
         Me.cbProv.Size = New System.Drawing.Size(289, 21)
         Me.cbProv.TabIndex = 7
@@ -495,11 +495,11 @@ Partial Class registraCotizacionForm
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(101, 44)
+        Me.Label4.Location = New System.Drawing.Point(92, 44)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(59, 13)
+        Me.Label4.Size = New System.Drawing.Size(69, 13)
         Me.Label4.TabIndex = 277
-        Me.Label4.Text = "Empresa:"
+        Me.Label4.Text = "Proveedor:"
         '
         'btnCerrar
         '
@@ -582,6 +582,39 @@ Partial Class registraCotizacionForm
         Me.Panel2.Size = New System.Drawing.Size(389, 251)
         Me.Panel2.TabIndex = 2
         '
+        'cbPago
+        '
+        Me.cbPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbPago.Enabled = False
+        Me.cbPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbPago.FormattingEnabled = True
+        Me.cbPago.IntegralHeight = False
+        Me.cbPago.Location = New System.Drawing.Point(222, 15)
+        Me.cbPago.Name = "cbPago"
+        Me.cbPago.Size = New System.Drawing.Size(158, 21)
+        Me.cbPago.TabIndex = 2
+        '
+        'cbMoneda
+        '
+        Me.cbMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbMoneda.Enabled = False
+        Me.cbMoneda.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbMoneda.FormattingEnabled = True
+        Me.cbMoneda.IntegralHeight = False
+        Me.cbMoneda.Location = New System.Drawing.Point(222, 49)
+        Me.cbMoneda.Name = "cbMoneda"
+        Me.cbMoneda.Size = New System.Drawing.Size(158, 21)
+        Me.cbMoneda.TabIndex = 313
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(219, 35)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(118, 13)
+        Me.Label25.TabIndex = 314
+        Me.Label25.Text = "Los precios son en:"
+        '
         'txtPla
         '
         Me.txtPla.Location = New System.Drawing.Point(5, 16)
@@ -641,18 +674,6 @@ Partial Class registraCotizacionForm
         Me.Label19.Size = New System.Drawing.Size(122, 13)
         Me.Label19.TabIndex = 308
         Me.Label19.Text = "Tiempo de vigencia:"
-        '
-        'cbPago
-        '
-        Me.cbPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbPago.Enabled = False
-        Me.cbPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbPago.FormattingEnabled = True
-        Me.cbPago.IntegralHeight = False
-        Me.cbPago.Location = New System.Drawing.Point(222, 15)
-        Me.cbPago.Name = "cbPago"
-        Me.cbPago.Size = New System.Drawing.Size(158, 21)
-        Me.cbPago.TabIndex = 2
         '
         'Label18
         '
@@ -986,8 +1007,8 @@ Partial Class registraCotizacionForm
         Me.dgTabla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgTabla2.Location = New System.Drawing.Point(1, 0)
         Me.dgTabla2.Name = "dgTabla2"
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgTabla2.Size = New System.Drawing.Size(900, 173)
         Me.dgTabla2.TabIndex = 15
         '
@@ -1082,31 +1103,10 @@ Partial Class registraCotizacionForm
         Me.dgTabla1.Location = New System.Drawing.Point(0, 25)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgTabla1.Size = New System.Drawing.Size(900, 153)
         Me.dgTabla1.TabIndex = 7
-        '
-        'cbMoneda
-        '
-        Me.cbMoneda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbMoneda.Enabled = False
-        Me.cbMoneda.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbMoneda.FormattingEnabled = True
-        Me.cbMoneda.IntegralHeight = False
-        Me.cbMoneda.Location = New System.Drawing.Point(222, 49)
-        Me.cbMoneda.Name = "cbMoneda"
-        Me.cbMoneda.Size = New System.Drawing.Size(158, 21)
-        Me.cbMoneda.TabIndex = 313
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(219, 35)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(118, 13)
-        Me.Label25.TabIndex = 314
-        Me.Label25.Text = "Los precios son en:"
         '
         'registraCotizacionForm
         '

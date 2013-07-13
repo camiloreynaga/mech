@@ -54,7 +54,7 @@ Public Class MantTipoPagoForm
         cmInserTable.CommandType = CommandType.Text
         cmInserTable.CommandText = "insert into TTipoPago(tipoP,nro) values(@cam,@nro)"
         cmInserTable.Connection = Cn
-        cmInserTable.Parameters.Add("@cam", SqlDbType.VarChar, 30).Value = txtCam.Text.Trim()
+        cmInserTable.Parameters.Add("@cam", SqlDbType.VarChar, 100).Value = txtCam.Text.Trim()
         cmInserTable.Parameters.Add("@nro", SqlDbType.VarChar, 10).Value = txtCodigo.Text.Trim()
     End Sub
 
@@ -63,7 +63,7 @@ Public Class MantTipoPagoForm
         cmUpdateTable.CommandType = CommandType.Text
         cmUpdateTable.CommandText = "update TTipoPago set tipoP=@cam,nro=@nro where codTipP=@cod"
         cmUpdateTable.Connection = Cn
-        cmUpdateTable.Parameters.Add("@cam", SqlDbType.VarChar, 30).Value = txtCam.Text.Trim()
+        cmUpdateTable.Parameters.Add("@cam", SqlDbType.VarChar, 100).Value = txtCam.Text.Trim()
         cmUpdateTable.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource1.Item(BindingSource1.Position)(0)
         cmUpdateTable.Parameters.Add("@nro", SqlDbType.VarChar, 10).Value = txtCodigo.Text.Trim()
     End Sub
@@ -119,7 +119,8 @@ Public Class MantTipoPagoForm
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .RowHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
         End With
-        dgModPagos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgModPagos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+
         dgModPagos.AllowDrop = False
         dgModPagos.AllowUserToAddRows = False
         dgModPagos.AllowUserToDeleteRows = False
