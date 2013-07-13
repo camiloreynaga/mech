@@ -1,7 +1,7 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
 Imports ComponentesSolucion2008
-Public Class jalarOrdenCompraForm
+Public Class jalarOrdenCompra2Form
     'Instanciar una tabla de datos en memoria en ves de dataSet
     Dim dataTable4 As New DataTable()
     Dim dataTable5 As New DataTable()
@@ -9,15 +9,15 @@ Public Class jalarOrdenCompraForm
     Dim bindingSource4 As New BindingSource()
     Dim bindingSource5 As New BindingSource()
 
-    Private Sub jalarOrdenCompraForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub jalarOrdenCompra2Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.Cursor = Cursors.WaitCursor
         VerificaConexion()
         Dim wait As New waitForm
         wait.Show()
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select nroOrden,nroO,nro,fecOrden,razon,ruc,cuentaBan,'' as nroSol,moneda,obra,obsFac,estado,codigo,idSol,codMon,simbolo,igv,calIGV from VOrdenNoEnlazada"
+        Dim sele As String = "select nroOrden,nroO,nro,fecOrden,razon,ruc,cuentaBan,nroSol,moneda,obra,obsFac,estado,codigo,idSol,codMon,simbolo,igv,calIGV,codIde,cuentaDet,forma from VOrdenTodoCad where nroOrden=@cod"
         crearDataAdapterTable(dTable4, sele)
-        'dTable4.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vCod3  'codigo obra
+        dTable4.SelectCommand.Parameters.Add("@cod", SqlDbType.Int, 0).Value = vNroOrden  'codigo obra
 
         sele = "select codDetO,cant,unidad,descrip,precio,subTotal,nroOrden,codMat from VDetOrden where nroOrden=@idS"
         crearDataAdapterTable(dTable5, sele)
@@ -29,9 +29,6 @@ Public Class jalarOrdenCompraForm
             dTable5.Fill(dataTable5)
 
             bindingSource4.DataSource = dataTable4
-            Navigator1.BindingSource = bindingSource4
-            dgTabla1.DataSource = bindingSource4
-            'dgTabla1.SelectionMode = DataGridViewSelectionMode.FullRowSelect 'Seleccionar fila completa
             bindingSource4.Sort = "nroOrden"
 
             bindingSource5.DataSource = dataTable5
@@ -43,7 +40,15 @@ Public Class jalarOrdenCompraForm
 
             configurarColorControl()
 
-            bindingSource4.MoveLast()
+            txtNro.DataBindings.Add("Text", bindingSource4, "nro")
+            txtFec.DataBindings.Add("Text", bindingSource4, "fecOrden")
+            txtRuc.DataBindings.Add("Text", bindingSource4, "ruc")
+            txtRaz.DataBindings.Add("Text", bindingSource4, "razon")
+            txtCue.DataBindings.Add("Text", bindingSource4, "cuentaBan")
+            txtDet.DataBindings.Add("Text", bindingSource4, "cuentaDet")
+            txtFor.DataBindings.Add("Text", bindingSource4, "forma")
+            txtObs.DataBindings.Add("Text", bindingSource4, "obsFac")
+            txtObra.DataBindings.Add("Text", bindingSource4, "obra")
 
             vfVan3 = True
             visualizarDet()
@@ -59,55 +64,7 @@ Public Class jalarOrdenCompraForm
         End Try
     End Sub
 
-    Private Sub jalarOrdenCompraForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
-        colorearFila()
-    End Sub
-
-    Private Sub colorearFila()
-        For j As Short = 0 To bindingSource4.Count - 1
-            If recuperarNroOrdenDes(bindingSource4.Item(j)(0)).Trim() <> "" Then 'Sin Enlace de Desembolso
-                dgTabla1.Rows(j).DefaultCellStyle.BackColor = Color.YellowGreen
-            End If
-        Next
-    End Sub
-
     Private Sub ModificarColumnasDGV()
-        With dgTabla1
-            .Columns(0).Visible = False
-            .Columns(1).Visible = False
-            .Columns(2).Width = 50
-            .Columns(2).HeaderText = "NºOrd."
-            .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns(3).HeaderText = "Fecha"
-            .Columns(3).Width = 70
-            .Columns(4).Width = 200
-            .Columns(4).HeaderText = "Proveedor"
-            .Columns(5).Width = 80
-            .Columns(5).HeaderText = "RUC"
-            .Columns(6).Width = 120
-            .Columns(6).HeaderText = "Cuenta"
-            .Columns(7).Visible = False
-            .Columns(7).Width = 80
-            .Columns(7).HeaderText = "NºSol."
-            .Columns(8).Visible = False
-            .Columns(8).Width = 100
-            .Columns(8).HeaderText = "Moneda"
-            .Columns(9).HeaderText = "Obra / Lugar"
-            .Columns(9).Width = 300
-            .Columns(10).HeaderText = "Observac."
-            .Columns(10).Width = 300
-            .Columns(11).Visible = False
-            .Columns(12).Visible = False
-            .Columns(13).Visible = False
-            .Columns(14).Visible = False
-            .Columns(15).Visible = False
-            .Columns(16).Visible = False
-            .Columns(17).Visible = False
-            .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
-            .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
-            .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
-            .RowHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
-        End With
         With dgTabla2
             .Columns(0).Visible = False
             .Columns(1).Width = 60
@@ -143,18 +100,27 @@ Public Class jalarOrdenCompraForm
         Me.Text = nomNegocio
         Label1.ForeColor = ForeColorLabel
         Label2.ForeColor = ForeColorLabel
+        Label3.ForeColor = ForeColorLabel
+        Label4.ForeColor = ForeColorLabel
+        Label5.ForeColor = ForeColorLabel
         Label6.ForeColor = ForeColorLabel
+        Label7.ForeColor = ForeColorLabel
+        Label8.ForeColor = ForeColorLabel
+        Label9.ForeColor = ForeColorLabel
+        Label10.ForeColor = ForeColorLabel
+        Label11.ForeColor = ForeColorLabel
+        Label12.ForeColor = ForeColorLabel
         Label15.ForeColor = ForeColorLabel
         btnCerrar.ForeColor = ForeColorButtom
+        btnImprimir.ForeColor = ForeColorButtom
     End Sub
 
     Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
-        dgTabla1.Dispose()
         dgTabla2.Dispose()
         Me.Close()
     End Sub
 
-    Private Sub dgTabla1_CurrentCellChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgTabla1.CurrentCellChanged
+    Private Sub dgTabla1_CurrentCellChanged(ByVal sender As Object, ByVal e As System.EventArgs)
         Me.Cursor = Cursors.WaitCursor
         visualizarDet()
         Me.Cursor = Cursors.Default
@@ -174,6 +140,7 @@ Public Class jalarOrdenCompraForm
             calcularSubTotal()
 
             txtOrden.Text = recuperarNroOrdenDes(bindingSource4.Item(bindingSource4.Position)(0))
+            txtRel.Text = txtOrden.Text
         End If
     End Sub
 
@@ -224,78 +191,19 @@ Public Class jalarOrdenCompraForm
         End If
     End Sub
 
-    Private Sub ToolStripButton6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton6.Click
-        If bindingSource5.Position = -1 Then
-            MessageBox.Show("No Existe Detalle de Orden...", nomNegocio, Nothing, MessageBoxIcon.Error)
+    Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
+        If bindingSource4.Position = -1 Then
+            StatusBarClass1.messageBarraEstado("  Proceso Denegado, No existe Orden de Compra...")
             Exit Sub
         End If
 
-        If vCod3.Trim() <> "" Then
-            MessageBox.Show("Proceso denegado, Orden Desembolso Nº " & vCod1 & " ya esta enlazado con Orden de Compra Nº " & vCod3.Trim(), nomNegocio, Nothing, MessageBoxIcon.Error)
-            Exit Sub
-        End If
-
-        Dim resp As String = MessageBox.Show("Esta segúro de relacionar con" & Chr(13) & "Orden Desembolso Nº " & vCod1, nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If resp <> 6 Then
-            Exit Sub
-        End If
-
-        Dim finalMytrans As Boolean = False
-        Dim wait As New waitForm
-        wait.Show()
-        Me.Cursor = Cursors.WaitCursor
-        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
-        Try
-            StatusBarClass1.messageBarraEstado("  GUARDANDO DATOS...")
-            Me.Refresh()
-
-            'TDesOrden
-            comandoInsert1(vNroOrden, bindingSource4.Item(bindingSource4.Position)(0))
-            cmInserTable1.Transaction = myTrans
-            If cmInserTable1.ExecuteNonQuery() < 1 Then
-                wait.Close()
-                Me.Cursor = Cursors.Default
-                myTrans.Rollback()
-                MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                Me.Close()
-                Exit Sub
-            End If
-
-            'confirma la transaccion
-            myTrans.Commit()    'con exito RAS
-
-            StatusBarClass1.messageBarraEstado("  LOS DATOS FUERON GUARDADOS CON EXITO...")
-            finalMytrans = True
-
-            vCod2 = bindingSource4.Item(bindingSource4.Position)(0)
-
-            wait.Close()
-            Me.Cursor = Cursors.Default
-
-            Me.Close() 'retornar
-        Catch f As Exception
-            wait.Close()
-            Me.Cursor = Cursors.Default
-            If finalMytrans Then
-                MessageBox.Show("NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Information)
-                Me.Close()
-                Exit Sub
-            Else
-                myTrans.Rollback()
-                MessageBox.Show("tipoM de exception: " & f.Message & Chr(13) & "NO SE GUARDO LA INFORMACION PROCESADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                Me.Close()
-                Exit Sub
-            End If
-        End Try
-    End Sub
-
-    Dim cmInserTable1 As SqlCommand
-    Private Sub comandoInsert1(ByVal idOP As Integer, ByVal nroOrden As Integer)
-        cmInserTable1 = New SqlCommand
-        cmInserTable1.CommandType = CommandType.Text
-        cmInserTable1.CommandText = "insert into TDesOrden(idOP,nroOrden) values(@id,@nro)"
-        cmInserTable1.Connection = Cn
-        cmInserTable1.Parameters.Add("@id", SqlDbType.Int, 0).Value = idOP
-        cmInserTable1.Parameters.Add("@nro", SqlDbType.Int, 0).Value = nroOrden
+        vCodDoc = bindingSource4.Item(bindingSource4.Position)(0)
+        vParam1 = "Nº " & bindingSource4.Item(bindingSource4.Position)(2) & "-MECH-" & CDate(bindingSource4.Item(bindingSource4.Position)(3)).Year
+        vParam2 = txtLetraTotal.Text.Trim()
+        vParam3 = txtSub.Text.Trim()
+        vParam4 = txtIGV.Text.Trim()
+        vParam5 = txtTotal.Text.Trim()
+        Dim informe As New ReportViewerOrdenCompraForm
+        informe.ShowDialog()
     End Sub
 End Class

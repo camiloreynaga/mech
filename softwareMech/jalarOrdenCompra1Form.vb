@@ -15,7 +15,7 @@ Public Class jalarOrdenCompra1Form
         Dim wait As New waitForm
         wait.Show()
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select nroOrden,nroO,nro,fecOrden,razon,ruc,cuentaBan,nroSol,moneda,obra,obsFac,estado,codigo,idSol,codMon,simbolo,igv,calIGV,codIde,cuentaDet from VOrdenTodoCad"
+        Dim sele As String = "select nroOrden,nroO,nro,fecOrden,razon,ruc,cuentaBan,nroSol,moneda,obra,obsFac,estado,codigo,idSol,codMon,simbolo,igv,calIGV,codIde,cuentaDet,forma from VOrdenTodoCad"
         crearDataAdapterTable(dTable4, sele)
         'dTable4.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vCod3  'codigo obra
 
@@ -364,7 +364,7 @@ Public Class jalarOrdenCompra1Form
         cmInserTable2.Parameters.Add("@est", SqlDbType.Int, 0).Value = 0   'pendiente
         cmInserTable2.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = bindingSource4.Item(bindingSource4.Position)(12) 'vSCodigo
         cmInserTable2.Parameters.Add("@codIde", SqlDbType.Int, 0).Value = bindingSource4.Item(bindingSource4.Position)(18)
-        cmInserTable2.Parameters.Add("@ban", SqlDbType.VarChar, 60).Value = ""
+        cmInserTable2.Parameters.Add("@ban", SqlDbType.VarChar, 60).Value = bindingSource4.Item(bindingSource4.Position)(20)
         cmInserTable2.Parameters.Add("@nroC", SqlDbType.VarChar, 50).Value = bindingSource4.Item(bindingSource4.Position)(6)
         cmInserTable2.Parameters.Add("@nroDE", SqlDbType.VarChar, 30).Value = bindingSource4.Item(bindingSource4.Position)(19)
         cmInserTable2.Parameters.Add("@dato", SqlDbType.VarChar, 200).Value = ""

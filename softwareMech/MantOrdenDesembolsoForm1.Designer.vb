@@ -23,6 +23,8 @@ Partial Class MantOrdenDesembolsoForm1
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MantOrdenDesembolsoForm1))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
+        Me.txtLetraTotal = New System.Windows.Forms.TextBox
+        Me.date1 = New System.Windows.Forms.DateTimePicker
         Me.Label1 = New System.Windows.Forms.Label
         Me.btnAnula = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.cbMon = New System.Windows.Forms.ComboBox
@@ -32,7 +34,6 @@ Partial Class MantOrdenDesembolsoForm1
         Me.btnImprimir = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnElimina = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnModificar = New ComponentesSolucion2008.BottomSSP(Me.components)
-        Me.txtLetraTotal = New System.Windows.Forms.TextBox
         Me.Label6 = New System.Windows.Forms.Label
         Me.Label5 = New System.Windows.Forms.Label
         Me.Label4 = New System.Windows.Forms.Label
@@ -42,7 +43,6 @@ Partial Class MantOrdenDesembolsoForm1
         Me.btnCerrar = New System.Windows.Forms.Button
         Me.Label2 = New System.Windows.Forms.Label
         Me.Label3 = New System.Windows.Forms.Label
-        Me.date1 = New System.Windows.Forms.DateTimePicker
         Me.btnAperturar = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel
         Me.cbObra = New System.Windows.Forms.ComboBox
@@ -63,6 +63,7 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Label9 = New System.Windows.Forms.Label
         Me.Label7 = New System.Windows.Forms.Label
         Me.Panel3 = New System.Windows.Forms.Panel
+        Me.btnVis = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnElimina1 = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.txtDato = New System.Windows.Forms.TextBox
         Me.Label18 = New System.Windows.Forms.Label
@@ -71,10 +72,14 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Label17 = New System.Windows.Forms.Label
         Me.Label16 = New System.Windows.Forms.Label
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.btnF1 = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Panel6 = New System.Windows.Forms.Panel
-        Me.Label33 = New System.Windows.Forms.Label
+        Me.txtObs = New System.Windows.Forms.TextBox
+        Me.txtEst = New System.Windows.Forms.TextBox
+        Me.txtGer = New System.Windows.Forms.TextBox
+        Me.Label19 = New System.Windows.Forms.Label
         Me.txtOtro = New System.Windows.Forms.TextBox
+        Me.txtEst1 = New System.Windows.Forms.TextBox
+        Me.Label33 = New System.Windows.Forms.Label
         Me.checkB7 = New System.Windows.Forms.CheckBox
         Me.checkB4 = New System.Windows.Forms.CheckBox
         Me.checkB6 = New System.Windows.Forms.CheckBox
@@ -86,8 +91,6 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Label35 = New System.Windows.Forms.Label
         Me.txtNom1 = New System.Windows.Forms.TextBox
         Me.Label32 = New System.Windows.Forms.Label
-        Me.cbF1 = New System.Windows.Forms.ComboBox
-        Me.Label29 = New System.Windows.Forms.Label
         Me.Panel0 = New System.Windows.Forms.Panel
         Me.Navigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel
@@ -133,6 +136,7 @@ Partial Class MantOrdenDesembolsoForm1
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.txtLetraTotal)
         Me.Panel1.Controls.Add(Me.date1)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.btnAnula)
@@ -143,7 +147,6 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Panel1.Controls.Add(Me.btnImprimir)
         Me.Panel1.Controls.Add(Me.btnElimina)
         Me.Panel1.Controls.Add(Me.btnModificar)
-        Me.Panel1.Controls.Add(Me.txtLetraTotal)
         Me.Panel1.Controls.Add(Me.Label6)
         Me.Panel1.Controls.Add(Me.Label5)
         Me.Panel1.Controls.Add(Me.Label4)
@@ -159,6 +162,26 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Panel1.Size = New System.Drawing.Size(892, 89)
         Me.Panel1.TabIndex = 3
         '
+        'txtLetraTotal
+        '
+        Me.txtLetraTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtLetraTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtLetraTotal.Location = New System.Drawing.Point(25, 32)
+        Me.txtLetraTotal.Name = "txtLetraTotal"
+        Me.txtLetraTotal.Size = New System.Drawing.Size(578, 20)
+        Me.txtLetraTotal.TabIndex = 323
+        Me.txtLetraTotal.TabStop = False
+        Me.txtLetraTotal.Text = "SON:"
+        '
+        'date1
+        '
+        Me.date1.Enabled = False
+        Me.date1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.date1.Location = New System.Drawing.Point(101, 33)
+        Me.date1.Name = "date1"
+        Me.date1.Size = New System.Drawing.Size(107, 20)
+        Me.date1.TabIndex = 312
+        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -171,12 +194,16 @@ Partial Class MantOrdenDesembolsoForm1
         'btnAnula
         '
         Me.btnAnula.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnAnula.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAnula.Image = CType(resources.GetObject("btnAnula.Image"), System.Drawing.Image)
-        Me.btnAnula.Location = New System.Drawing.Point(475, 5)
+        Me.btnAnula.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnAnula.Location = New System.Drawing.Point(816, 31)
         Me.btnAnula.Name = "btnAnula"
-        Me.btnAnula.Size = New System.Drawing.Size(25, 23)
+        Me.btnAnula.Size = New System.Drawing.Size(71, 27)
         Me.btnAnula.TabIndex = 331
         Me.btnAnula.TabStop = False
+        Me.btnAnula.Text = "Anular"
+        Me.btnAnula.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ToolTip1.SetToolTip(Me.btnAnula, "Anular orden de desembolso...")
         Me.btnAnula.UseVisualStyleBackColor = True
         '
@@ -186,7 +213,7 @@ Partial Class MantOrdenDesembolsoForm1
         Me.cbMon.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbMon.FormattingEnabled = True
         Me.cbMon.IntegralHeight = False
-        Me.cbMon.Location = New System.Drawing.Point(225, 36)
+        Me.cbMon.Location = New System.Drawing.Point(214, 7)
         Me.cbMon.Name = "cbMon"
         Me.cbMon.Size = New System.Drawing.Size(50, 21)
         Me.cbMon.TabIndex = 330
@@ -194,21 +221,22 @@ Partial Class MantOrdenDesembolsoForm1
         'btnAperturar1
         '
         Me.btnAperturar1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnAperturar1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAperturar1.Image = CType(resources.GetObject("btnAperturar1.Image"), System.Drawing.Image)
         Me.btnAperturar1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAperturar1.Location = New System.Drawing.Point(285, 5)
+        Me.btnAperturar1.Location = New System.Drawing.Point(394, 56)
         Me.btnAperturar1.Name = "btnAperturar1"
-        Me.btnAperturar1.Size = New System.Drawing.Size(110, 24)
+        Me.btnAperturar1.Size = New System.Drawing.Size(209, 27)
         Me.btnAperturar1.TabIndex = 329
         Me.btnAperturar1.TabStop = False
-        Me.btnAperturar1.Text = "Orden Compra"
+        Me.btnAperturar1.Text = "Nuevo con Orden Compra"
         Me.btnAperturar1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ToolTip1.SetToolTip(Me.btnAperturar1, "Aperturar nueva orden de desembolso Con orden de compra...")
         Me.btnAperturar1.UseVisualStyleBackColor = True
         '
         'txtTot
         '
-        Me.txtTot.Location = New System.Drawing.Point(536, 36)
+        Me.txtTot.Location = New System.Drawing.Point(525, 7)
         Me.txtTot.Name = "txtTot"
         Me.txtTot.Size = New System.Drawing.Size(78, 20)
         Me.txtTot.TabIndex = 321
@@ -217,7 +245,7 @@ Partial Class MantOrdenDesembolsoForm1
         '
         'txtDet
         '
-        Me.txtDet.Location = New System.Drawing.Point(413, 36)
+        Me.txtDet.Location = New System.Drawing.Point(402, 7)
         Me.txtDet.Name = "txtDet"
         Me.txtDet.Size = New System.Drawing.Size(78, 20)
         Me.txtDet.TabIndex = 319
@@ -227,54 +255,55 @@ Partial Class MantOrdenDesembolsoForm1
         'btnImprimir
         '
         Me.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnImprimir.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
-        Me.btnImprimir.Location = New System.Drawing.Point(506, 5)
+        Me.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnImprimir.Location = New System.Drawing.Point(719, 59)
         Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(25, 23)
+        Me.btnImprimir.Size = New System.Drawing.Size(91, 27)
         Me.btnImprimir.TabIndex = 327
         Me.btnImprimir.TabStop = False
+        Me.btnImprimir.Text = "Imprimir"
+        Me.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ToolTip1.SetToolTip(Me.btnImprimir, "Imprimir orden de desembolso...")
         Me.btnImprimir.UseVisualStyleBackColor = True
         '
         'btnElimina
         '
         Me.btnElimina.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnElimina.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnElimina.Image = CType(resources.GetObject("btnElimina.Image"), System.Drawing.Image)
-        Me.btnElimina.Location = New System.Drawing.Point(444, 5)
+        Me.btnElimina.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnElimina.Location = New System.Drawing.Point(719, 31)
         Me.btnElimina.Name = "btnElimina"
-        Me.btnElimina.Size = New System.Drawing.Size(25, 23)
+        Me.btnElimina.Size = New System.Drawing.Size(91, 27)
         Me.btnElimina.TabIndex = 326
         Me.btnElimina.TabStop = False
+        Me.btnElimina.Text = "Eliminar"
+        Me.btnElimina.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ToolTip1.SetToolTip(Me.btnElimina, "Elimina orden de desembolso...")
         Me.btnElimina.UseVisualStyleBackColor = True
         '
         'btnModificar
         '
         Me.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnModificar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnModificar.Image = CType(resources.GetObject("btnModificar.Image"), System.Drawing.Image)
-        Me.btnModificar.Location = New System.Drawing.Point(413, 5)
+        Me.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnModificar.Location = New System.Drawing.Point(719, 3)
         Me.btnModificar.Name = "btnModificar"
-        Me.btnModificar.Size = New System.Drawing.Size(25, 23)
+        Me.btnModificar.Size = New System.Drawing.Size(91, 27)
         Me.btnModificar.TabIndex = 325
         Me.btnModificar.TabStop = False
+        Me.btnModificar.Text = "Guardar"
+        Me.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ToolTip1.SetToolTip(Me.btnModificar, "Guardar modificaciones de orden de desembolso...")
         Me.btnModificar.UseVisualStyleBackColor = True
-        '
-        'txtLetraTotal
-        '
-        Me.txtLetraTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtLetraTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtLetraTotal.Location = New System.Drawing.Point(276, 62)
-        Me.txtLetraTotal.Name = "txtLetraTotal"
-        Me.txtLetraTotal.Size = New System.Drawing.Size(599, 20)
-        Me.txtLetraTotal.TabIndex = 323
-        Me.txtLetraTotal.TabStop = False
-        Me.txtLetraTotal.Text = "SON:"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(499, 39)
+        Me.Label6.Location = New System.Drawing.Point(488, 10)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(40, 13)
         Me.Label6.TabIndex = 322
@@ -283,7 +312,7 @@ Partial Class MantOrdenDesembolsoForm1
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(361, 39)
+        Me.Label5.Location = New System.Drawing.Point(350, 10)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(53, 13)
         Me.Label5.TabIndex = 320
@@ -292,7 +321,7 @@ Partial Class MantOrdenDesembolsoForm1
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(182, 39)
+        Me.Label4.Location = New System.Drawing.Point(171, 10)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(46, 13)
         Me.Label4.TabIndex = 318
@@ -300,7 +329,7 @@ Partial Class MantOrdenDesembolsoForm1
         '
         'txtMon
         '
-        Me.txtMon.Location = New System.Drawing.Point(276, 36)
+        Me.txtMon.Location = New System.Drawing.Point(265, 7)
         Me.txtMon.Name = "txtMon"
         Me.txtMon.Size = New System.Drawing.Size(78, 20)
         Me.txtMon.TabIndex = 317
@@ -331,7 +360,7 @@ Partial Class MantOrdenDesembolsoForm1
         Me.btnCerrar.BackColor = System.Drawing.SystemColors.Control
         Me.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCerrar.Location = New System.Drawing.Point(797, 62)
+        Me.btnCerrar.Location = New System.Drawing.Point(425, 32)
         Me.btnCerrar.Name = "btnCerrar"
         Me.btnCerrar.Size = New System.Drawing.Size(44, 21)
         Me.btnCerrar.TabIndex = 313
@@ -342,7 +371,7 @@ Partial Class MantOrdenDesembolsoForm1
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(22, 38)
+        Me.Label2.Location = New System.Drawing.Point(57, 35)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(46, 13)
         Me.Label2.TabIndex = 310
@@ -357,25 +386,18 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Label3.TabIndex = 308
         Me.Label3.Text = "Nº"
         '
-        'date1
-        '
-        Me.date1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.date1.Location = New System.Drawing.Point(66, 36)
-        Me.date1.Name = "date1"
-        Me.date1.Size = New System.Drawing.Size(107, 20)
-        Me.date1.TabIndex = 312
-        '
         'btnAperturar
         '
         Me.btnAperturar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnAperturar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAperturar.Image = CType(resources.GetObject("btnAperturar.Image"), System.Drawing.Image)
         Me.btnAperturar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAperturar.Location = New System.Drawing.Point(182, 5)
+        Me.btnAperturar.Location = New System.Drawing.Point(154, 56)
         Me.btnAperturar.Name = "btnAperturar"
-        Me.btnAperturar.Size = New System.Drawing.Size(98, 24)
+        Me.btnAperturar.Size = New System.Drawing.Size(205, 27)
         Me.btnAperturar.TabIndex = 309
         Me.btnAperturar.TabStop = False
-        Me.btnAperturar.Text = "Sin Orden..."
+        Me.btnAperturar.Text = "Nuevo Sin Orden Compra"
         Me.btnAperturar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ToolTip1.SetToolTip(Me.btnAperturar, "Aperturar nueva orden de desembolso sin orden de compra...")
         Me.btnAperturar.UseVisualStyleBackColor = True
@@ -423,14 +445,14 @@ Partial Class MantOrdenDesembolsoForm1
         Me.txtBan.Location = New System.Drawing.Point(304, 153)
         Me.txtBan.Name = "txtBan"
         Me.txtBan.Size = New System.Drawing.Size(274, 20)
-        Me.txtBan.TabIndex = 318
+        Me.txtBan.TabIndex = 323
         '
         'txtNroDet
         '
         Me.txtNroDet.Location = New System.Drawing.Point(304, 127)
         Me.txtNroDet.Name = "txtNroDet"
         Me.txtNroDet.Size = New System.Drawing.Size(274, 20)
-        Me.txtNroDet.TabIndex = 322
+        Me.txtNroDet.TabIndex = 321
         '
         'Label15
         '
@@ -563,6 +585,7 @@ Partial Class MantOrdenDesembolsoForm1
         'Panel3
         '
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel3.Controls.Add(Me.btnVis)
         Me.Panel3.Controls.Add(Me.btnElimina1)
         Me.Panel3.Controls.Add(Me.txtDato)
         Me.Panel3.Controls.Add(Me.Label18)
@@ -574,6 +597,18 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(892, 71)
         Me.Panel3.TabIndex = 5
+        '
+        'btnVis
+        '
+        Me.btnVis.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnVis.Image = CType(resources.GetObject("btnVis.Image"), System.Drawing.Image)
+        Me.btnVis.Location = New System.Drawing.Point(358, 14)
+        Me.btnVis.Name = "btnVis"
+        Me.btnVis.Size = New System.Drawing.Size(25, 23)
+        Me.btnVis.TabIndex = 332
+        Me.btnVis.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.btnVis, "Visualizar orden de compra de orden de desembolso...")
+        Me.btnVis.UseVisualStyleBackColor = True
         '
         'btnElimina1
         '
@@ -591,7 +626,7 @@ Partial Class MantOrdenDesembolsoForm1
         '
         Me.txtDato.Location = New System.Drawing.Point(162, 43)
         Me.txtDato.Name = "txtDato"
-        Me.txtDato.Size = New System.Drawing.Size(569, 20)
+        Me.txtDato.Size = New System.Drawing.Size(679, 20)
         Me.txtDato.TabIndex = 330
         '
         'Label18
@@ -599,9 +634,9 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Label18.AutoSize = True
         Me.Label18.Location = New System.Drawing.Point(45, 47)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(121, 13)
+        Me.Label18.Size = New System.Drawing.Size(123, 13)
         Me.Label18.TabIndex = 329
-        Me.Label18.Text = "Motivo Desembolso:"
+        Me.Label18.Text = "Detalle Desembolso:"
         '
         'btnOrden
         '
@@ -644,25 +679,16 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Label16.TabIndex = 317
         Me.Label16.Text = "Nº DE REQUERIMIENTO ADJUNTO:"
         '
-        'btnF1
-        '
-        Me.btnF1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnF1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnF1.Image = CType(resources.GetObject("btnF1.Image"), System.Drawing.Image)
-        Me.btnF1.Location = New System.Drawing.Point(766, 13)
-        Me.btnF1.Name = "btnF1"
-        Me.btnF1.Size = New System.Drawing.Size(27, 24)
-        Me.btnF1.TabIndex = 369
-        Me.btnF1.TabStop = False
-        Me.btnF1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolTip1.SetToolTip(Me.btnF1, "Ejecutar firma...")
-        Me.btnF1.UseVisualStyleBackColor = True
-        '
         'Panel6
         '
         Me.Panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel6.Controls.Add(Me.Label33)
+        Me.Panel6.Controls.Add(Me.txtObs)
+        Me.Panel6.Controls.Add(Me.txtEst)
+        Me.Panel6.Controls.Add(Me.txtGer)
+        Me.Panel6.Controls.Add(Me.Label19)
         Me.Panel6.Controls.Add(Me.txtOtro)
+        Me.Panel6.Controls.Add(Me.txtEst1)
+        Me.Panel6.Controls.Add(Me.Label33)
         Me.Panel6.Controls.Add(Me.checkB7)
         Me.Panel6.Controls.Add(Me.checkB4)
         Me.Panel6.Controls.Add(Me.checkB6)
@@ -670,17 +696,70 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Panel6.Controls.Add(Me.checkB3)
         Me.Panel6.Controls.Add(Me.checkB2)
         Me.Panel6.Controls.Add(Me.checkB1)
-        Me.Panel6.Controls.Add(Me.btnF1)
         Me.Panel6.Controls.Add(Me.txtObs1)
         Me.Panel6.Controls.Add(Me.Label35)
         Me.Panel6.Controls.Add(Me.txtNom1)
         Me.Panel6.Controls.Add(Me.Label32)
-        Me.Panel6.Controls.Add(Me.cbF1)
-        Me.Panel6.Controls.Add(Me.Label29)
         Me.Panel6.Location = New System.Drawing.Point(14, 532)
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(892, 119)
         Me.Panel6.TabIndex = 8
+        '
+        'txtObs
+        '
+        Me.txtObs.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtObs.Location = New System.Drawing.Point(679, 100)
+        Me.txtObs.Name = "txtObs"
+        Me.txtObs.ReadOnly = True
+        Me.txtObs.Size = New System.Drawing.Size(210, 13)
+        Me.txtObs.TabIndex = 383
+        Me.txtObs.TabStop = False
+        '
+        'txtEst
+        '
+        Me.txtEst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtEst.Location = New System.Drawing.Point(677, 77)
+        Me.txtEst.Name = "txtEst"
+        Me.txtEst.Size = New System.Drawing.Size(210, 20)
+        Me.txtEst.TabIndex = 382
+        Me.txtEst.TabStop = False
+        Me.txtEst.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'txtGer
+        '
+        Me.txtGer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtGer.Location = New System.Drawing.Point(677, 56)
+        Me.txtGer.Name = "txtGer"
+        Me.txtGer.ReadOnly = True
+        Me.txtGer.Size = New System.Drawing.Size(210, 20)
+        Me.txtGer.TabIndex = 381
+        Me.txtGer.TabStop = False
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(612, 59)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(62, 13)
+        Me.Label19.TabIndex = 380
+        Me.Label19.Text = "Gerencia:"
+        '
+        'txtOtro
+        '
+        Me.txtOtro.Location = New System.Drawing.Point(104, 94)
+        Me.txtOtro.Name = "txtOtro"
+        Me.txtOtro.Size = New System.Drawing.Size(240, 20)
+        Me.txtOtro.TabIndex = 377
+        '
+        'txtEst1
+        '
+        Me.txtEst1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtEst1.Location = New System.Drawing.Point(677, 25)
+        Me.txtEst1.Name = "txtEst1"
+        Me.txtEst1.Size = New System.Drawing.Size(210, 20)
+        Me.txtEst1.TabIndex = 379
+        Me.txtEst1.TabStop = False
+        Me.txtEst1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label33
         '
@@ -690,13 +769,6 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Label33.Size = New System.Drawing.Size(211, 13)
         Me.Label33.TabIndex = 378
         Me.Label33.Text = "RESPONSABILIDAD DE ENTREGA:"
-        '
-        'txtOtro
-        '
-        Me.txtOtro.Location = New System.Drawing.Point(104, 94)
-        Me.txtOtro.Name = "txtOtro"
-        Me.txtOtro.Size = New System.Drawing.Size(240, 20)
-        Me.txtOtro.TabIndex = 377
         '
         'checkB7
         '
@@ -777,15 +849,15 @@ Partial Class MantOrdenDesembolsoForm1
         '
         'txtObs1
         '
-        Me.txtObs1.Location = New System.Drawing.Point(425, 94)
+        Me.txtObs1.Location = New System.Drawing.Point(214, 94)
         Me.txtObs1.Name = "txtObs1"
-        Me.txtObs1.Size = New System.Drawing.Size(462, 20)
+        Me.txtObs1.Size = New System.Drawing.Size(110, 20)
         Me.txtObs1.TabIndex = 348
         '
         'Label35
         '
         Me.Label35.AutoSize = True
-        Me.Label35.Location = New System.Drawing.Point(555, 80)
+        Me.Label35.Location = New System.Drawing.Point(125, 97)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(86, 13)
         Me.Label35.TabIndex = 347
@@ -793,41 +865,21 @@ Partial Class MantOrdenDesembolsoForm1
         '
         'txtNom1
         '
-        Me.txtNom1.Location = New System.Drawing.Point(622, 55)
+        Me.txtNom1.Location = New System.Drawing.Point(677, 4)
         Me.txtNom1.Name = "txtNom1"
         Me.txtNom1.ReadOnly = True
-        Me.txtNom1.Size = New System.Drawing.Size(234, 20)
+        Me.txtNom1.Size = New System.Drawing.Size(210, 20)
         Me.txtNom1.TabIndex = 342
         Me.txtNom1.TabStop = False
         '
         'Label32
         '
         Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(554, 58)
+        Me.Label32.Location = New System.Drawing.Point(608, 7)
         Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(60, 13)
+        Me.Label32.Size = New System.Drawing.Size(71, 13)
         Me.Label32.TabIndex = 341
-        Me.Label32.Text = "Nombres:"
-        '
-        'cbF1
-        '
-        Me.cbF1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbF1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbF1.FormattingEnabled = True
-        Me.cbF1.Items.AddRange(New Object() {"APROBADO", "OBSERVADO", "DENEGADO"})
-        Me.cbF1.Location = New System.Drawing.Point(622, 13)
-        Me.cbF1.Name = "cbF1"
-        Me.cbF1.Size = New System.Drawing.Size(138, 21)
-        Me.cbF1.TabIndex = 336
-        '
-        'Label29
-        '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(643, 39)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(88, 13)
-        Me.Label29.TabIndex = 319
-        Me.Label29.Text = "SOLICITANTE"
+        Me.Label32.Text = "Solicitante:"
         '
         'Panel0
         '
@@ -1104,13 +1156,10 @@ Partial Class MantOrdenDesembolsoForm1
     Friend WithEvents txtDato As System.Windows.Forms.TextBox
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents Panel6 As System.Windows.Forms.Panel
-    Friend WithEvents cbF1 As System.Windows.Forms.ComboBox
-    Friend WithEvents Label29 As System.Windows.Forms.Label
     Friend WithEvents txtNom1 As System.Windows.Forms.TextBox
     Friend WithEvents Label32 As System.Windows.Forms.Label
     Friend WithEvents txtObs1 As System.Windows.Forms.TextBox
     Friend WithEvents Label35 As System.Windows.Forms.Label
-    Friend WithEvents btnF1 As ComponentesSolucion2008.BottomSSP
     Friend WithEvents btnAperturar1 As ComponentesSolucion2008.BottomSSP
     Friend WithEvents cbMon As System.Windows.Forms.ComboBox
     Friend WithEvents btnElimina1 As ComponentesSolucion2008.BottomSSP
@@ -1148,5 +1197,11 @@ Partial Class MantOrdenDesembolsoForm1
     Friend WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripLabel5 As System.Windows.Forms.ToolStripLabel
     Friend WithEvents txtTotal3 As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents txtEst1 As System.Windows.Forms.TextBox
+    Friend WithEvents txtObs As System.Windows.Forms.TextBox
+    Friend WithEvents txtEst As System.Windows.Forms.TextBox
+    Friend WithEvents txtGer As System.Windows.Forms.TextBox
+    Friend WithEvents Label19 As System.Windows.Forms.Label
+    Friend WithEvents btnVis As ComponentesSolucion2008.BottomSSP
 
 End Class

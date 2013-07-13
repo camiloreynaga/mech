@@ -1509,6 +1509,11 @@ Public Class registraOrdenCompraForm
             Exit Sub
         End If
 
+        If BindingSource5.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  SELECIONE ORDEN DE COMPRA VALIDA A IMPRIMIR...")
+            Exit Sub
+        End If
+
         vCodDoc = BindingSource6.Item(BindingSource6.Position)(0)
         vParam1 = "Nº " & BindingSource6.Item(BindingSource6.Position)(2) & "-MECH-" & CDate(BindingSource6.Item(BindingSource6.Position)(4)).Year
         vParam2 = txtLetraTotal.Text.Trim()

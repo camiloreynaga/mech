@@ -388,6 +388,11 @@ Public Class gerenciaOrdenDesembolsoForm
             Exit Sub
         End If
 
+        Dim resp As String = MessageBox.Show("Esta segúro de [APROBAR] Orden de Desembolso Nº " & BindingSource1.Item(BindingSource1.Position)(3) & " - " & BindingSource1.Item(BindingSource1.Position)(4) & Chr(13) & "  de Monto de dinero de " & BindingSource1.Item(BindingSource1.Position)(5) & " " & BindingSource1.Item(BindingSource1.Position)(6) & Chr(13) & "SI APRUEBA NO PODRA DESHACER PROCESO...", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resp <> 6 Then
+            Exit Sub
+        End If
+
         Dim finalMytrans As Boolean = False
         Dim wait As New waitForm
         wait.Show()

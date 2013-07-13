@@ -231,7 +231,7 @@ Public Class MantFormaPagoForm
         cmInserTable.CommandType = CommandType.Text
         cmInserTable.CommandText = "insert into TFormaPago(forma) values(@cam)"
         cmInserTable.Connection = Cn
-        cmInserTable.Parameters.Add("@cam", SqlDbType.VarChar, 20).Value = txtCam.Text.Trim()
+        cmInserTable.Parameters.Add("@cam", SqlDbType.VarChar, 60).Value = txtCam.Text.Trim()
     End Sub
 
     Dim cmUpdateTable As SqlCommand
@@ -240,7 +240,7 @@ Public Class MantFormaPagoForm
         cmUpdateTable.CommandType = CommandType.Text
         cmUpdateTable.CommandText = "update TFormaPago set forma=@cam where codPag=@cod"
         cmUpdateTable.Connection = Cn
-        cmUpdateTable.Parameters.Add("@cam", SqlDbType.VarChar, 20).Value = txtCam.Text.Trim()
+        cmUpdateTable.Parameters.Add("@cam", SqlDbType.VarChar, 60).Value = txtCam.Text.Trim()
         cmUpdateTable.Parameters.Add("@cod", SqlDbType.Int, 0).Value = lbTabla1.SelectedValue
     End Sub
 

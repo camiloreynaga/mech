@@ -20,9 +20,9 @@ Partial Class tesoreriaOrdenDesembolsoForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(tesoreriaOrdenDesembolsoForm))
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.dgTabla1 = New System.Windows.Forms.DataGridView
         Me.btnCerrar = New System.Windows.Forms.Button
@@ -138,8 +138,8 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.dgTabla1.Location = New System.Drawing.Point(0, 18)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgTabla1.Size = New System.Drawing.Size(892, 219)
         Me.dgTabla1.TabIndex = 332
         '
@@ -378,8 +378,8 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.dgTabla2.Location = New System.Drawing.Point(0, 98)
         Me.dgTabla2.Name = "dgTabla2"
         Me.dgTabla2.ReadOnly = True
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgTabla2.Size = New System.Drawing.Size(890, 155)
         Me.dgTabla2.TabIndex = 320
         '
@@ -859,9 +859,9 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Label13.AutoSize = True
         Me.Label13.Location = New System.Drawing.Point(470, 289)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(49, 13)
+        Me.Label13.Size = New System.Drawing.Size(51, 13)
         Me.Label13.TabIndex = 15
-        Me.Label13.Text = "Motivo:"
+        Me.Label13.Text = "Detalle:"
         '
         'tesoreriaOrdenDesembolsoForm
         '

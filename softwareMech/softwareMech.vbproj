@@ -221,6 +221,12 @@
     <Compile Include="jalarOrdenCompra1Form.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="jalarOrdenCompra2Form.designer.vb">
+      <DependentUpon>jalarOrdenCompra2Form.vb</DependentUpon>
+    </Compile>
+    <Compile Include="jalarOrdenCompra2Form.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="jalarOrdenCompraForm.designer.vb">
       <DependentUpon>jalarOrdenCompraForm.vb</DependentUpon>
     </Compile>
@@ -505,6 +511,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="jalarOrdenCompra1Form.resx">
       <DependentUpon>jalarOrdenCompra1Form.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="jalarOrdenCompra2Form.resx">
+      <DependentUpon>jalarOrdenCompra2Form.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="jalarOrdenCompraForm.resx">
       <DependentUpon>jalarOrdenCompraForm.vb</DependentUpon>
