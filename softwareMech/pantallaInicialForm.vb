@@ -240,6 +240,8 @@ Public Class pantallaInicialForm
         opcConfSerieDesem.Visible = False
         opcConfSeriePersonal.Visible = False
 
+        ToolStripSeparator9.Visible = False
+
 
     End Sub
     ''' <summary>

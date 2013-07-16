@@ -297,13 +297,6 @@ Public Class MantPersonalForm
         Return False
     End Function
 
-    Private Function recuperarSerieDesembolso(ByVal cod As Integer) As Integer
-        Dim cmdCampo As SqlCommand = New SqlCommand
-        cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = "select count(codPers) from tseriepers where codPers=" & cod
-        cmdCampo.Connection = Cn
-        Return cmdCampo.ExecuteScalar
-    End Function
 
     ''' <summary>
     ''' verifica si el usuario tiene asignado (lugar Trabajo) ubicación
@@ -559,7 +552,7 @@ Public Class MantPersonalForm
         wait.Show()
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
         ' Dim sele As String = "select codPers,usuario,pass,nombre,apellido,dni,dir,fono,email,cargo,codCar,tipo,codTipU,estado1,estado from VPersonal where codTipU>0 order by nombre"  'codUsu=1 Ruddy RAS
-        Dim sele As String = "select codPers,nombre,apellido,usuario,tipo,codTipU,cargo,codCar,estado1,estado,dni,dir,fono,email,password,ubicacion,codLugar from VPersonal where usuario<>'sistema' order by nombre"
+        Dim sele As String = "select codPers,nombre,apellido,usuario,tipo,codTipU,cargo,codCar,estado1,estado,dni,dir,fono,email,password,ubicacion,codLugar from VPersonal order by nombre"
         crearDataAdapterTable(daTPers, sele)
 
         sele = "select codTipU,tipo,tipoCargo from TTipoUsu " ' order by tipo"
@@ -861,15 +854,8 @@ Public Class MantPersonalForm
             Exit Sub
         End If
 
-
-        'Si personal tiene asignado una serie de desembolso
-        If recuperarSerieDesembolso(dgTabla1.Rows(BindingSource1.Position).Cells(0).Value) > 0 Then
-            StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... PERSONAL TIENE ASIGANDO SERIE DE DESEMBOLSOS...")
-            Exit Sub
-        End If
-
         ' si personal tiene asigando una ubicacion
-        If cbTipoUser.SelectedValue <= 5 Then
+        If cbTipoUser.SelectedValue = 1 OrElse cbTipoUser.SelectedValue = 2 Then
             StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... PERSONAL TIENE ACCESO A UBICACIONES...")
             Exit Sub
         Else
@@ -1127,14 +1113,9 @@ Public Class MantPersonalForm
     End Sub
 
     Private Sub lbTabla2_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbTabla2.SelectedIndexChanged
-        If cbTipoUser.SelectedValue <= 5 Then
+        If cbTipoUser.SelectedValue = 1 OrElse cbTipoUser.SelectedValue = 2 Then
             If lbTabla2.SelectedIndex = 1 Then
                 StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... PERSONAL TIENE ACCESO A TODAS LAS UBICACIONES, DEBE QUITAR EL ACCESO PARA CAMBIAR ESTADO...")
-                lbTabla2.SelectedIndex = 0
-                Exit Sub
-            End If
-            If recuperarSerieDesembolso(dgTabla1.Rows(BindingSource1.Position).Cells(0).Value) > 0 Then
-                StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... PERSONAL TIENE ASIGNADO SERIE DE DESEMBOLSO DEBE QUITAR LA SERIE PARA CAMBIAR ESTADO...")
                 lbTabla2.SelectedIndex = 0
                 Exit Sub
             End If
@@ -1146,15 +1127,8 @@ Public Class MantPersonalForm
                     lbTabla2.SelectedIndex = 0
                     Exit Sub
                 End If
-
-                If recuperarSerieDesembolso(dgTabla1.Rows(BindingSource1.Position).Cells(0).Value) > 0 Then
-                    StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... PERSONAL TIENE ASIGNADO SERIE DE DESEMBOLSO DEBE QUITAR LA SERIE PARA CAMBIAR ESTADO...")
-                    lbTabla2.SelectedIndex = 0
-                    Exit Sub
-                End If
-
             End If
-
+            
         End If
 
     End Sub

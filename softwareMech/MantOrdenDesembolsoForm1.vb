@@ -323,7 +323,7 @@ Public Class MantOrdenDesembolsoForm1
                 cbProv.SelectedValue = BindingSource3.Item(BindingSource3.Position)(17)
                 txtBan.Text = BindingSource3.Item(BindingSource3.Position)(9)
                 txtNroCta.Text = BindingSource3.Item(BindingSource3.Position)(10)
-                txtNroDet.Text = BindingSource3.Item(BindingSource3.Position)(11)
+                txtNroDet.Text = BindingSource3.Item(BindingSource3.Position)(12)
                 txtOrden.Text = recuperarNroOrdenCompra(BindingSource3.Item(BindingSource3.Position)(0)).Trim()
                 txtDato.Text = BindingSource3.Item(BindingSource3.Position)(13)
 
