@@ -475,8 +475,12 @@ as
 	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,
 	TLU.nombre as 'obra',Tid.razon as 'proveedor',banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,hist
 	,TPE.nombre,TPE.apellido,TID.ruc, TID.fono,TID.email   
-	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon join  TIdentidad TID on TID.codIde=tod.codIde 
-	join TLugarTrabajo TLU on tlu.codigo=TOD.codigo  inner join TPersDesem TPDE on TPDE.idOP= TOD.idOP join TPersonal TPE on TPE.codPers = TPDE.codPers  
+	from TOrdenDesembolso TOD 
+	join TMoneda TM on TOD.codMon=TM.codMon 
+	join  TIdentidad TID on TID.codIde=tod.codIde 
+	join TLugarTrabajo TLU on tlu.codigo=TOD.codigo  
+	inner join TPersDesem TPDE on TPDE.idOP= TOD.idOP 
+	join TPersonal TPE on TPE.codPers = TPDE.codPers  
 	where TPDE.tipoA=1
 	
 GO
@@ -492,6 +496,21 @@ join TMoneda TM on TP.codMon=TM.codMon
 join TCuentaBan TCBA on TCBA.idCue=TP.idCue  
 join TBanco TBA on TCBA.codBan = TBA.codBan 
 join TClasifPago TCLA on tCLA.codCla=TP.codCla  
+GO
+
+
+ --vista para mostrar las aprobaciones de la orden de desembolso
+create view VAprobacionesSeguimiento
+as
+Select tpd.idOP, tpe.nombre,tpe.apellido ,'Area'=case when tpd.tipoA=1 then 'SOLICITANTE' when tpd.tipoA=2 then 'GERENCIA' when tpd.tipoA=3 then 'TESORERIA' when tpd.tipoA=4 then 'CONTABILIDAD' end, 
+'Estado'=case  when tpd.estDesem =1 then 'APROBADO' when tpd.estDesem=2 then 'OBSERVADO' when tpd.estDesem =3 then  'RECHAZADO' else 'PENDIENTE' end,
+obserDesem,fecFir  
+   from TPersDesem TPD 
+   join TPersonal TPE on tpd.codPers=tpe.codPers 
+   join TOrdenDesembolso TOD on tpd.idOP=tod.idOP 
+   
+  -- where tod.idOP= 2
+
 GO
 
 create view VPagoDesemTesoreria

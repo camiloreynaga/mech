@@ -44,7 +44,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         wait.Show()
-        Dim sele As String = "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,moneda,simbolo,nombre,apellido,ruc,fono,email from VOrdenDesembolsoSeguimiento Order By idOp Asc"
+        Dim sele As String = "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,moneda,simbolo,nombre,apellido,ruc,fono,email from VOrdenDesembolsoSeguimiento Order By idOp Desc"
         crearDataAdapterTable(daVDetOrden, sele)
 
         sele = "Select codDesembolso,fecPago,montoPago,tipoP,moneda,simbolo,nroCue,banco,pagoDet,montoD,nroP,clasif from VPagoDesembolsoSeguimiento"
@@ -64,7 +64,7 @@ Public Class SeguimientoOrdenDesembolsoForm
             daTabla1.Fill(dsAlmacen, "VDesembolsoPagos")
             BindingSource1.DataSource = dsAlmacen
             BindingSource1.DataMember = "VDesembolsoPagos"
-            dgPagos.DataSource = BindingSource1
+            dgPagos.DataSource = BindingSource1 ' 
 
             daTabla2.Fill(dsAlmacen, "VDesembolsoComprobante")
             BindingSource2.DataSource = dsAlmacen
@@ -287,8 +287,6 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         Else
 
-            txtFechaRegConta.Text = BindingSource2.Item(BindingSource2.Position)(1)
-            txtNroComprobConta.Text = BindingSource2.Item(BindingSource2.Position)(2)
 
         End If
     End Sub
@@ -387,15 +385,8 @@ Public Class SeguimientoOrdenDesembolsoForm
         If dgPagos.Rows.Count = 0 Then
             Exit Sub
         Else
-            txtFechaPago.Text = BindingSource1.Item(BindingSource1.Position)(1)
-            txtMonedaPago.Text = BindingSource1.Item(BindingSource1.Position)(4)
-            txtMontoPago.Text = BindingSource1.Item(BindingSource1.Position)(2)
-            txtBancoPago.Text = BindingSource1.Item(BindingSource1.Position)(7)
-            txtCuentaPago.Text = BindingSource1.Item(BindingSource1.Position)(6)
-            txtMedioPago.Text = BindingSource1.Item(BindingSource1.Position)(3)
+           
             txtDescripcionPago.Text = BindingSource1.Item(BindingSource1.Position)(8)
-            txtDetraccionPago.Text = BindingSource1.Item(BindingSource1.Position)(9)
-            txtNroPago.Text = BindingSource1.Item(BindingSource1.Position)(10)
             txtClasifiPago.Text = BindingSource1.Item(BindingSource1.Position)(11)
 
         End If
@@ -415,6 +406,15 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' <remarks></remarks>
     Private Sub configurarColorControl()
         Me.BackColor = BackColorP
+
+        'Color para los labels del contenedor principal
+        For i As Integer = 0 To Me.Controls.Count - 1
+            If TypeOf Me.Controls(i) Is Label Then
+                Me.Controls(i).ForeColor = ForeColorLabel
+
+            End If
+        Next
+
         'recorriendo tabs de tabcontrol
         For j As Integer = 0 To TabControl1.TabPages.Count - 1
 
@@ -425,6 +425,10 @@ Public Class SeguimientoOrdenDesembolsoForm
                     oGrilla.configurarColorControl("Label", TabControl1.TabPages(j).Controls(index), ForeColorLabel)
                     oGrilla.configurarColorControl("CheckBox", TabControl1.TabPages(j).Controls(index), ForeColorLabel)
                 End If
+                If TypeOf TabControl1.TabPages(j).Controls(index) Is Label Then
+                    TabControl1.TabPages(j).Controls(index).ForeColor = ForeColorLabel
+                End If
+
             Next
 
         Next
@@ -473,7 +477,7 @@ Public Class SeguimientoOrdenDesembolsoForm
 
     End Sub
 
-    Private Sub txt_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtMonedaPago.TextChanged, txtFechaPago.TextChanged
+    Private Sub txt_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
     End Sub
 
@@ -488,7 +492,7 @@ Public Class SeguimientoOrdenDesembolsoForm
 
     End Sub
 
-    Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
+    Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         dgContabilidad.Dispose()
         dgDesembolso.Dispose()
         dgPagos.Dispose()
@@ -501,4 +505,7 @@ Public Class SeguimientoOrdenDesembolsoForm
     End Sub
 
     
+    Private Sub Label18_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label18.Click
+
+    End Sub
 End Class
