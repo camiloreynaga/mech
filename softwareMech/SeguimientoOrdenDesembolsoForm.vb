@@ -25,6 +25,14 @@ Public Class SeguimientoOrdenDesembolsoForm
     Dim BindingSource2 As New BindingSource
 
     ''' <summary>
+    ''' Aprobaciones
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim BindingSource3 As New BindingSource
+
+
+
+    ''' <summary>
     ''' Instancia de objeto para Customizar grilla
     ''' </summary>
     ''' <remarks></remarks>
@@ -52,6 +60,10 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         sele = "select idOP,fecEnt,nroConfor  from TOrdenDesembolso"
         crearDataAdapterTable(daTabla2, sele)
+
+        sele = "select idOp,nombre,apellido,Area,Estado,ObserDesem,fecFir from VAprobacionesSeguimiento "
+        crearDataAdapterTable(daTabla3, sele)
+
         'daTabla1.SelectCommand.Parameters.Add("@idDesembolso", SqlDbType.Int).Value = 0
 
         Try
@@ -71,6 +83,10 @@ Public Class SeguimientoOrdenDesembolsoForm
             BindingSource2.DataMember = "VDesembolsoComprobante"
             dgContabilidad.DataSource = BindingSource2
 
+            daTabla3.Fill(dsAlmacen, "VAprobaciones")
+            BindingSource3.DataSource = dsAlmacen
+            BindingSource3.DataMember = "VAprobaciones"
+            'DataGridView1.DataSource = BindingSource3
 
 
         Catch f As Exception
@@ -93,6 +109,8 @@ Public Class SeguimientoOrdenDesembolsoForm
         dgContabilidad.AllowUserToAddRows = False
         dgContabilidad.AllowUserToDeleteRows = False
         dgContabilidad.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+
+
         With dgContabilidad
             .Columns(0).Visible = False
             .Columns("fecEnt").HeaderText = "Fecha Registro"
@@ -116,14 +134,17 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         'dgPagos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         Try
+
+            
+
+
             With dgPagos
                 'codigo Desembolo
                 .Columns("codDesembolso").Visible = False
-                '.Columns("codDesembolso").DisplayIndex = 8
                 'fecha de pago
-                .Columns("fecPago").HeaderText = "Fecha Pago"
+                .Columns("fecPago").HeaderText = "Fecha"
                 '.Columns("fecPago").DisplayIndex = 0
-                .Columns("fecPago").Width = 80
+                .Columns("fecPago").Width = 70
                 'Simbolo Moneda
                 .Columns("simbolo").HeaderText = ""
                 .Columns("simbolo").DisplayIndex = 2
@@ -132,44 +153,48 @@ Public Class SeguimientoOrdenDesembolsoForm
                 'monto Pagado 
                 .Columns("montoPago").HeaderText = "Monto"
                 .Columns("montoPago").DisplayIndex = 3
-                .Columns("montoPago").Width = 100
+                .Columns("montoPago").Width = 80
                 .Columns("montoPago").DefaultCellStyle.Format = "N2"
                 .Columns("montoPago").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 'Medio de PAgo
                 .Columns("tipoP").HeaderText = "Medio Pago"
-                .Columns("tipoP").DisplayIndex = 4
-                .Columns("tipoP").Width = 200
+                .Columns("tipoP").DisplayIndex = 5
+                .Columns("tipoP").Width = 220
                 'Moneda
 
                 ' .Columns("monea").DisplayIndex = 7
                 .Columns("moneda").Visible = False
                 'Banco 
                 .Columns("banco").HeaderText = "Banco"
-                .Columns("banco").DisplayIndex = 5
-                .Columns("banco").Width = 60
+                .Columns("banco").DisplayIndex = 7
+                .Columns("banco").Width = 100
                 'Numero de Cuenta usada
                 .Columns("nroCue").HeaderText = "N° Cuenta"
-                .Columns("nroCue").DisplayIndex = 6
-                .Columns("nroCue").Width = 150
+                .Columns("nroCue").DisplayIndex = 8
+                .Columns("nroCue").Width = 160
 
                 'Descripcion del pago
-                .Columns("pagoDet").HeaderText = "Descripción"
+                .Columns("pagoDet").Visible = False
+                '                .Columns("pagoDet").HeaderText = "Descripción"
                 '.Columns("pagoDet").DisplayIndex = 6
-                .Columns("pagoDet").Width = 250
+                '.Columns("pagoDet").Width = 250
 
                 'Monto de detracción
                 .Columns("montoD").HeaderText = "Detracción"
-                .Columns("montoD").Width = 200
+                .Columns("montoD").DisplayIndex = 4
+                .Columns("montoD").Width = 80
                 .Columns("montoD").DefaultCellStyle.Format = "N2"
                 .Columns("montoD").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
 
                 'numero Operacion /cheque
-                .Columns("nroP").HeaderText = "Nro"
-                .Columns("nroP").Width = 40
+                .Columns("nroP").HeaderText = "N°_Op./Cheq."
+                .Columns("nroP").Width = 85
+                .Columns("nroP").DisplayIndex = 6
                 'Clasificación de pagos 
-                .Columns("clasif").HeaderText = "Clasificación"
-                .Columns("clasif").Width = 100
+                .Columns("clasif").Visible = False
+                '  .Columns("clasif").HeaderText = "Clasificación"
+                '.Columns("clasif").Width = 100
 
             End With
         Catch ex As Exception
@@ -188,6 +213,9 @@ Public Class SeguimientoOrdenDesembolsoForm
         dgDesembolso.ReadOnly = True
         dgDesembolso.AllowUserToAddRows = False
         dgDesembolso.AllowUserToDeleteRows = False
+
+
+
         With dgDesembolso
 
             .Columns("idOP").Visible = False
@@ -197,44 +225,50 @@ Public Class SeguimientoOrdenDesembolsoForm
             'NroDesembolso
             .Columns("nroDes").HeaderText = "Nro"
             .Columns("nroDes").DisplayIndex = 1
-            .Columns("nroDes").Width = 50
+            .Columns("nroDes").Width = 40
             'Numero
             .Columns("nro").Visible = False
             'Fecha (Solicitud) Desembolso
             .Columns("fecDes").HeaderText = "Fecha"
             .Columns("fecDes").DisplayIndex = 2
+            .Columns("fecDes").Width = 70
             'estado
             .Columns("estado_desembolso").HeaderText = "Estado"
             .Columns("estado_desembolso").DisplayIndex = 3
+            .Columns("estado_desembolso").Width = 75
             'Datos Historicos
             .Columns("hist").Visible = False
             'Monto de Desembolso
             .Columns("monto").HeaderText = "Monto"
             .Columns("monto").DisplayIndex = 5
+            .Columns("monto").Width = 78
             .Columns("monto").DefaultCellStyle.Format = "N2"
             .Columns("monto").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             '.Columns("montoDet").DefaultCellStyle.Font
-
             'Monto de Detracción
             .Columns("montoDet").HeaderText = "Detracción"
             .Columns("montoDet").DefaultCellStyle.Format = "N2"
+            .Columns("montoDet").Width = 78
             .Columns("montoDet").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
             'Monto Diferencia 
             .Columns("montoDif").Visible = False
             'Obra 
             .Columns("obra").HeaderText = "Obra/Lugar"
-            .Columns("obra").Width = 200
+            .Columns("obra").Width = 270
             'Proveedor
             .Columns("proveedor").HeaderText = "Proveedor"
+            .Columns("proveedor").Width = 200
             'Forma de pago negociada
-            .Columns("banco").HeaderText = "Forma_Pago"
+            .Columns("banco").Visible = False
+            '.Columns("banco").HeaderText = "Forma_Pago"
             'Nro de cuenta del proveedor
             .Columns("nroCta").Visible = False
             'Nro de cuentra para Detracción del proveedor
             .Columns("nroDet").Visible = False
             'Motivo de Desembolso diferente a Orden de compra
-            .Columns("datoReq").HeaderText = "Motivo"
+            .Columns("datoReq").Visible = False
+            '.Columns("datoReq").HeaderText = "Motivo"
             'check de Factura
             .Columns("factCheck").Visible = False
             'check de Boleta
@@ -259,7 +293,7 @@ Public Class SeguimientoOrdenDesembolsoForm
             .Columns("moneda").Visible = False
             .Columns("simbolo").HeaderText = ""
             .Columns("simbolo").DisplayIndex = 4
-            .Columns("simbolo").Width = 40
+            .Columns("simbolo").Width = 30
             .Columns("simbolo").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
             'Nombre de Solicitante
@@ -271,14 +305,7 @@ Public Class SeguimientoOrdenDesembolsoForm
             .Columns("fono").Visible = False
             'Dirección de email
             .Columns("email").Visible = False
-
-
         End With
-
-
-
-
-
     End Sub
 
     Private Sub enlazarTextConta()
@@ -383,12 +410,14 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' <remarks></remarks>
     Private Sub enlazarTextPagos()
         If dgPagos.Rows.Count = 0 Then
+            txtDescripcionPago.Clear()
+            txtClasifiPago.Clear()
+
             Exit Sub
         Else
-           
+
             txtDescripcionPago.Text = BindingSource1.Item(BindingSource1.Position)(8)
             txtClasifiPago.Text = BindingSource1.Item(BindingSource1.Position)(11)
-
         End If
 
         'Dando formato a los números
@@ -396,6 +425,38 @@ Public Class SeguimientoOrdenDesembolsoForm
         ' oGrilla.FormatoContabilidad(txtMontoPago)
 
         'oGrilla.FormatoContabilidad(txtDetraccionPago)
+
+    End Sub
+
+    Private Sub enlazarTextAprobaciones()
+        'Dim nro As Integer = BindingSource0.Item(BindingSource0.Position)(0)
+
+        If BindingSource3.Count > 1 Then
+            'BindingSource3.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
+            'BindingSource3.
+            ' Dim nro As Object = BindingSource3.Item(0)(3)
+            txtEstadoGerencia.Text = BindingSource3.Item(1)(4)
+            txtNombreGerente.Text = BindingSource3.Item(1)(1) & " " & BindingSource3.Item(1)(2)
+        Else
+            txtEstadoGerencia.Text = "PENDIENTE"
+            txtNombreGerente.Text = ""
+            'txtEstadoPago.Text = BindingSource3.Item(2)(3).ToString()
+            'txtEstadoContab.Text = BindingSource3.Item(3)(3).ToString()
+        End If
+        If BindingSource3.Count > 2 Then
+            txtEstadoTesoreria.Text = BindingSource3.Item(2)(4)
+            txtNombreTesoreria.Text = BindingSource3.Item(2)(1) & " " & BindingSource3.Item(2)(2)
+        Else
+            txtEstadoTesoreria.Text = "PENDIENTE"
+            txtNombreTesoreria.Text = ""
+        End If
+        If BindingSource3.Count > 3 Then
+            txtEstadoContab.Text = BindingSource3.Item(3)(4)
+            txtNombreConta.Text = BindingSource3.Item(3)(1) & " " & BindingSource3.Item(3)(2)
+        Else
+            txtEstadoContab.Text = "PENDIENTE"
+            txtNombreConta.Text = ""
+        End If
 
     End Sub
 
@@ -451,12 +512,24 @@ Public Class SeguimientoOrdenDesembolsoForm
         configurarColorControl()
 
         DatosIniciales()
+
+        ' dgDesembolso.FirstDisplayedScrollingRowIndex = 0
+
+
         'Modifica las columnas de Grilla Desembolso
         ModificandoColumnasDGV()
         ModificandoColumnasDGVPagos()
         ModificandoColumnaDGVConta()
 
+        BindingSource1.Filter = "codDesembolso=" & BindingSource0.Item(BindingSource0.Position)(0)
+        BindingSource2.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
+        BindingSource3.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
+
+
+
+
         enlazarText()
+        enlazarTextAprobaciones()
 
         wait.Close()
         Me.Cursor = Cursors.Default
@@ -468,18 +541,26 @@ Public Class SeguimientoOrdenDesembolsoForm
     End Sub
 
 
-    Private Sub dgDesembolso_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgDesembolso.CellClick
+    Private Sub dgDesembolso_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgDesembolso.CellClick, dgDesembolso.CellEnter
         enlazarText()
+
+
         'filtrando para que muestre los registros de pagos por orden de desembolso seleccionado
+        ' 
         BindingSource1.Filter = "codDesembolso=" & BindingSource0.Item(BindingSource0.Position)(0)
         'filtrando para que muestre los registros de contabilidad por orden de desembolso seleccionado
         BindingSource2.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
+        BindingSource3.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
+
+        enlazarTextPagos()
+
+        enlazarTextAprobaciones()
+        'ModificandoColumnasDGVPagos()
+        'ModificandoColumnaDGVConta()
 
     End Sub
 
-    Private Sub txt_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
+   
 
     Private Sub dgPagos_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgPagos.CellClick
 
@@ -492,20 +573,39 @@ Public Class SeguimientoOrdenDesembolsoForm
 
     End Sub
 
-    Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        dgContabilidad.Dispose()
-        dgDesembolso.Dispose()
-        dgPagos.Dispose()
-        Me.Close()
-
-    End Sub
+   
 
     Private Sub SeguimientoOrdenDesembolsoForm_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Leave
         Close()
     End Sub
 
-    
-    Private Sub Label18_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label18.Click
+    Private Sub TabControl1_Selecting(ByVal sender As System.Object, ByVal e As System.Windows.Forms.TabControlCancelEventArgs) Handles TabControl1.Selecting
+
+        'Comprabando si la grilla tiene la primera columna no visible
+        If dgPagos.Columns("codDesembolso").Visible Then
+            dgPagos.Columns("codDesembolso").Visible = False
+        End If
+
+        If dgContabilidad.Columns(0).Visible Then
+            dgContabilidad.Columns(0).Visible = False
+        End If
+    End Sub
+
+   
+    Private Sub btnCerrar_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
+        dgContabilidad.Dispose()
+        dgDesembolso.Dispose()
+        dgPagos.Dispose()
+        Me.Close()
+    End Sub
+
+    Private Sub txtEstadoContab_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtEstadoContab.TextChanged, txtNombreConta.TextChanged
+
+    End Sub
+
+    Private Sub DataGridView1_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
+
+        MessageBox.Show(BindingSource3.Item(1)(3).ToString())
 
     End Sub
 End Class
