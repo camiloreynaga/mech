@@ -471,7 +471,7 @@ GO
 --Nueva Vista para Seguimiento de Desembolso
 create view VOrdenDesembolsoSeguimiento
 as
-	select TOD.idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,'estado_desembolso'=case when TOD.estado=0 then 'PENDIENTE' when TOD.estado=1 then 'TERMINADO' when TOD.estado=2 then 'CERRADO' else 'ANULADO' end, 
+	select TOD.idOP,tod.codigo as codObra,tid.codIde ,serie,nroDes,fecDes,monto,montoDet,montoDif,'estado_desembolso'=case when TOD.estado=0 then 'PENDIENTE' when TOD.estado=1 then 'TERMINADO' when TOD.estado=2 then 'CERRADO' else 'ANULADO' end, 
 	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,
 	TLU.nombre as 'obra',Tid.razon as 'proveedor',banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,hist
 	,TPE.nombre,TPE.apellido,TID.ruc, TID.fono,TID.email   

@@ -1573,4 +1573,6 @@ Public Class MantOrdenDesembolsoForm1
         Dim jala As New jalarOrdenCompra2Form
         jala.ShowDialog()
     End Sub
+
+ 
 End Class

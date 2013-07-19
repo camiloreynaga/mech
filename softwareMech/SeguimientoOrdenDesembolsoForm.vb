@@ -7,7 +7,7 @@ Public Class SeguimientoOrdenDesembolsoForm
 
 #Region "Variables"
     ''' <summary>
-    ''' Solicitante
+    ''' Desembolsos / Solicitante
     ''' </summary>
     ''' <remarks></remarks>
     Dim BindingSource0 As New BindingSource
@@ -30,6 +30,17 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' <remarks></remarks>
     Dim BindingSource3 As New BindingSource
 
+    ''' <summary>
+    ''' Obra/Lugar
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim BindingSource4 As New BindingSource
+
+    ''' <summary>
+    ''' Proveedor
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim BindingSource5 As New BindingSource
 
 
     ''' <summary>
@@ -52,7 +63,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         wait.Show()
-        Dim sele As String = "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,moneda,simbolo,nombre,apellido,ruc,fono,email from VOrdenDesembolsoSeguimiento Order By idOp Desc"
+        Dim sele As String = "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,moneda,simbolo,nombre,apellido,ruc,fono,email,codObra,codIde from VOrdenDesembolsoSeguimiento Order By idOp Desc"
         crearDataAdapterTable(daVDetOrden, sele)
 
         sele = "Select codDesembolso,fecPago,montoPago,tipoP,moneda,simbolo,nroCue,banco,pagoDet,montoD,nroP,clasif from VPagoDesembolsoSeguimiento"
@@ -64,6 +75,11 @@ Public Class SeguimientoOrdenDesembolsoForm
         sele = "select idOp,nombre,apellido,Area,Estado,ObserDesem,fecFir from VAprobacionesSeguimiento "
         crearDataAdapterTable(daTabla3, sele)
 
+        sele = "Select codigo,nombre from tLugarTrabajo"
+        crearDataAdapterTable(daTabla4, sele)
+
+        sele = "Select codIde,razon from TIdentidad where idTipId=2 order by razon asc"
+        crearDataAdapterTable(daTabla5, sele)
         'daTabla1.SelectCommand.Parameters.Add("@idDesembolso", SqlDbType.Int).Value = 0
 
         Try
@@ -72,6 +88,7 @@ Public Class SeguimientoOrdenDesembolsoForm
             BindingSource0.DataSource = dsAlmacen
             BindingSource0.DataMember = "VDesembolsoSeguimiento"
             dgDesembolso.DataSource = BindingSource0
+            BindingNavigator1.BindingSource = BindingSource0
 
             daTabla1.Fill(dsAlmacen, "VDesembolsoPagos")
             BindingSource1.DataSource = dsAlmacen
@@ -86,8 +103,21 @@ Public Class SeguimientoOrdenDesembolsoForm
             daTabla3.Fill(dsAlmacen, "VAprobaciones")
             BindingSource3.DataSource = dsAlmacen
             BindingSource3.DataMember = "VAprobaciones"
-            'DataGridView1.DataSource = BindingSource3
 
+            daTabla4.Fill(dsAlmacen, "TLugarTrabajo")
+            BindingSource4.DataSource = dsAlmacen
+            BindingSource4.DataMember = "TLugarTrabajo"
+            cbObra.DataSource = BindingSource4
+            cbObra.DisplayMember = "nombre"
+            cbObra.ValueMember = "codigo"
+
+
+            daTabla5.Fill(dsAlmacen, "TIdentidad")
+            BindingSource5.DataSource = dsAlmacen
+            BindingSource5.DataMember = "TIdentidad"
+            cbProveedor.DataSource = BindingSource5
+            cbProveedor.DisplayMember = "razon"
+            cbProveedor.ValueMember = "codIde"
 
         Catch f As Exception
             MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
@@ -330,6 +360,14 @@ Public Class SeguimientoOrdenDesembolsoForm
         Else
             'Datos de Generales de Orden desembolso
             txtEstadoDesem.Text = BindingSource0.Item(BindingSource0.Position)(5)
+
+            'pinta TextBox txtEstadoDesem
+            Dim aCriterios As String() = {"TERMINADO", "ANULADO"}
+            Dim aBackColors As Color() = {Color.Green, Color.Red}
+            Dim aForeColors As Color() = {Color.White, Color.White}
+            colorTextBox(txtEstadoDesem, aCriterios, aBackColors, aForeColors)
+
+
             txtNro.Text = BindingSource0.Item(BindingSource0.Position)(2)
             txtFechaDesem.Text = BindingSource0.Item(BindingSource0.Position)(4)
             txtSolicitante.Text = BindingSource0.Item(BindingSource0.Position)(28) + " " + BindingSource0.Item(BindingSource0.Position)(29).ToString()
@@ -415,41 +453,72 @@ Public Class SeguimientoOrdenDesembolsoForm
 
             Exit Sub
         Else
+            If BindingSource1.Position >= 0 Then
+                txtDescripcionPago.Text = BindingSource1.Item(BindingSource1.Position)(8)
+                txtClasifiPago.Text = BindingSource1.Item(BindingSource1.Position)(11)
+            End If
 
-            txtDescripcionPago.Text = BindingSource1.Item(BindingSource1.Position)(8)
-            txtClasifiPago.Text = BindingSource1.Item(BindingSource1.Position)(11)
         End If
 
         'Dando formato a los números
-       
+
         ' oGrilla.FormatoContabilidad(txtMontoPago)
 
         'oGrilla.FormatoContabilidad(txtDetraccionPago)
 
     End Sub
 
+    ''' <summary>
+    ''' Pinta el TextBox Seleccionado con los parametros enviados
+    ''' </summary>
+    ''' <param name="pTextBox">texbox</param>
+    ''' <param name="criterios">criterio a evaluar</param>
+    ''' <param name="pBackColor">arreglo de colores la fondo</param>
+    ''' <param name="pForeColor">arrelgo de colores para letra</param>
+    ''' <remarks></remarks>
+    Private Sub colorTextBox(ByVal pTextBox As TextBox, ByVal criterios As String(), ByVal pBackColor As Color(), ByVal pForeColor As Color())
+
+        For i As Integer = 0 To criterios.Length - 1
+            If pTextBox.Text = criterios.GetValue(i).ToString Then
+                pTextBox.BackColor = pBackColor.GetValue(i)
+                pTextBox.ForeColor = pForeColor.GetValue(i)
+                Exit For
+            Else
+                pTextBox.BackColor = Color.White
+                pTextBox.ForeColor = Color.Black
+            End If
+        Next
+
+
+    End Sub
+
     Private Sub enlazarTextAprobaciones()
         'Dim nro As Integer = BindingSource0.Item(BindingSource0.Position)(0)
 
+
+        Dim aCriterios As String() = {"APROBADO", "OBSERVADO", "RECHAZADO"}
+        Dim aBackColors As Color() = {Color.Green, Color.Yellow, Color.Red}
+        Dim aForeColors As Color() = {Color.White, Color.Red, Color.White}
+
+        'Aprobación Gerencia
         If BindingSource3.Count > 1 Then
-            'BindingSource3.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
-            'BindingSource3.
-            ' Dim nro As Object = BindingSource3.Item(0)(3)
             txtEstadoGerencia.Text = BindingSource3.Item(1)(4)
             txtNombreGerente.Text = BindingSource3.Item(1)(1) & " " & BindingSource3.Item(1)(2)
         Else
             txtEstadoGerencia.Text = "PENDIENTE"
             txtNombreGerente.Text = ""
-            'txtEstadoPago.Text = BindingSource3.Item(2)(3).ToString()
-            'txtEstadoContab.Text = BindingSource3.Item(3)(3).ToString()
+            
         End If
+        'Aprobación Tesoreria
         If BindingSource3.Count > 2 Then
             txtEstadoTesoreria.Text = BindingSource3.Item(2)(4)
             txtNombreTesoreria.Text = BindingSource3.Item(2)(1) & " " & BindingSource3.Item(2)(2)
+
         Else
             txtEstadoTesoreria.Text = "PENDIENTE"
             txtNombreTesoreria.Text = ""
         End If
+        'Aprobación de Contabilidad
         If BindingSource3.Count > 3 Then
             txtEstadoContab.Text = BindingSource3.Item(3)(4)
             txtNombreConta.Text = BindingSource3.Item(3)(1) & " " & BindingSource3.Item(3)(2)
@@ -458,6 +527,10 @@ Public Class SeguimientoOrdenDesembolsoForm
             txtNombreConta.Text = ""
         End If
 
+        'Pintando el Texbox
+        colorTextBox(txtEstadoGerencia, aCriterios, aBackColors, aForeColors)
+        colorTextBox(txtEstadoTesoreria, aCriterios, aBackColors, aForeColors)
+        colorTextBox(txtEstadoContab, aCriterios, aBackColors, aForeColors)
     End Sub
 
 
@@ -470,9 +543,26 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         'Color para los labels del contenedor principal
         For i As Integer = 0 To Me.Controls.Count - 1
-            If TypeOf Me.Controls(i) Is Label Then
+            If TypeOf Me.Controls(i) Is Label Then 'LABELS
                 Me.Controls(i).ForeColor = ForeColorLabel
 
+            End If
+
+            If TypeOf Me.Controls(i) Is CheckBox Then 'CHECKBOX
+                Me.Controls(i).ForeColor = ForeColorLabel
+
+            End If
+
+            If TypeOf Me.Controls(i) Is TextBox Then 'TEXTBOX
+                CType(Me.Controls(i), TextBox).ReadOnly = True
+            End If
+
+            If TypeOf Me.Controls(i) Is GroupBox Then 'TEXTBOX
+                For c As Integer = 0 To Me.Controls(i).Controls.Count - 1
+                    If TypeOf Me.Controls(i).Controls(c) Is TextBox Then 'TEXTBOX
+                        CType(Me.Controls(i).Controls(c), TextBox).ReadOnly = True
+                    End If
+                Next
             End If
         Next
 
@@ -485,23 +575,143 @@ Public Class SeguimientoOrdenDesembolsoForm
                     TabControl1.TabPages(j).BackColor = BackColorP
                     oGrilla.configurarColorControl("Label", TabControl1.TabPages(j).Controls(index), ForeColorLabel)
                     oGrilla.configurarColorControl("CheckBox", TabControl1.TabPages(j).Controls(index), ForeColorLabel)
+
+                    For k As Integer = 0 To TabControl1.TabPages(j).Controls(index).Controls.Count - 1
+                        If TypeOf TabControl1.TabPages(j).Controls(index).Controls(k) Is TextBox Then
+                            CType(TabControl1.TabPages(j).Controls(index).Controls(k), TextBox).ReadOnly = True  ' ForeColorLabel
+                        End If
+                    Next
+
                 End If
                 If TypeOf TabControl1.TabPages(j).Controls(index) Is Label Then
                     TabControl1.TabPages(j).Controls(index).ForeColor = ForeColorLabel
+                End If
+                If TypeOf TabControl1.TabPages(j).Controls(index) Is TextBox Then
+                    CType(TabControl1.TabPages(j).Controls(index), TextBox).ReadOnly = True  ' ForeColorLabel
                 End If
 
             Next
 
         Next
 
-
+        'Para el Group Box del form
         oGrilla.configurarColorControl("Label", GroupBox2, ForeColorLabel)
-        
-
-
 
     End Sub
+
+
+    ''' <summary>
+    ''' Pinta la grila de Desembolsos
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub ColorearGrilla()
+
+        oGrilla.colorearFilasDGV(dgDesembolso, "estado_desembolso", "TERMINADO", Color.Green, Color.White)
+        ' oGrilla.colorearFilasDGV(dgDesembolso, "estado_desembolso", "PENDIENTE", Color.Yellow, Color.Red)
+
+        oGrilla.colorearFilasDGV(dgDesembolso, "estado_desembolso", "ANULADO", Color.Red, Color.White)
+
+    End Sub
+
+    ''' <summary>
+    ''' filtra la grilla de ordenes de desembolso
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub FiltrarGrillaDesembolso()
+
+        If BindingSource4.Position >= 0 And BindingSource5.Position >= 0 Then
+
+
+
+            If chkObras.Checked = False And chkProveedor.Checked = False Then
+                '                BindingSource0.Filter = "codObra='" & BindingSource4.Item(BindingSource4.Position)(0) & "' and codIde =" & BindingSource5.Item(BindingSource5.Position)(0)
+                BindingSource0.Filter = "codObra='" & cbObra.SelectedValue & "' and codIde =" & cbProveedor.SelectedValue
+
+                Exit Sub
+            End If
+            If (chkObras.Checked) And (chkProveedor.Checked) = False Then
+                'BindingSource0.Filter = "codIde =" & BindingSource5.Item(BindingSource5.Position)(0)
+                BindingSource0.Filter = "codIde =" & cbProveedor.SelectedValue
+                Exit Sub
+            End If
+
+            If (chkObras.Checked = False) And (chkProveedor.Checked) Then
+
+                'BindingSource0.Filter = "codObra='" & BindingSource4.Item(BindingSource4.Position)(0) & "'"
+                BindingSource0.Filter = "codObra='" & cbObra.SelectedValue & "'"
+                Exit Sub
+            End If
+
+            If chkObras.Checked And chkProveedor.Checked Then
+                BindingSource0.Filter = ""
+                Exit Sub
+            End If
+
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' filtra tomando como criterio el estado de desembolso
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub FiltrandoPorEstado()
+
+        'Obtiendo el criterio de filtro
+        Dim filtro As String = BindingSource0.Filter
+        'Ebaluando el creterio de filtrado
+        If cbEstadoDesembolso.Text = "TODOS" Or cbEstadoDesembolso.Text = "" Then
+            FiltrarGrillaDesembolso()
+            Exit Sub
+        End If
+
+        'Filtrando de acuerdo a lo necesitado
+
+
+        If filtro.Contains("estado_desembolso") = False Then
+            If filtro.Length > 0 Then
+                BindingSource0.Filter = filtro & " and estado_desembolso='" & cbEstadoDesembolso.Text.Trim() & "'"
+            Else
+                BindingSource0.Filter = filtro & "estado_desembolso='" & cbEstadoDesembolso.Text.Trim() & "'"
+            End If
+        Else
+            FiltrarGrillaDesembolso()
+            filtro = BindingSource0.Filter
+            If filtro.Length > 0 Then
+                BindingSource0.Filter = filtro & " and estado_desembolso='" & cbEstadoDesembolso.Text.Trim() & "'"
+            Else
+                BindingSource0.Filter = filtro & " estado_desembolso='" & cbEstadoDesembolso.Text.Trim() & "'"
+            End If
+        End If
+
+    End Sub
+
+    ''' <summary>
+    ''' cambia a texto los numeros
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function cambiarNroTotalLetra() As String
+        Dim cALetra As New Num2LetEsp  'clase definida por el usuario
+        Dim retorna As String = ""
+        If BindingSource0.Item(BindingSource0.Position)(27) = "S/." Then    '30=Nuevos solesl
+            'If BindingSource10.Item(BindingSource10.Position)(7) = 30 Then
+            cALetra.Moneda = "Nuevos Soles"
+        Else    'dolares
+            cALetra.Moneda = "Dólares Americanos"
+        End If
+        'Inicia el Proceso para identificar la cantidad a convertir
+        If Val(BindingSource0.Item(BindingSource0.Position)(7)) > 0 Then
+            cALetra.Numero = Val(CDbl(BindingSource0.Item(BindingSource0.Position)(7)))
+            retorna = "SON: " & cALetra.ALetra.ToUpper()
+        End If
+        Return retorna
+    End Function
 #End Region
+
+#Region "Eventos"
+
+#End Region
+
 
     Private Sub SeguimientoOrdenDesembolsoForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
@@ -524,7 +734,6 @@ Public Class SeguimientoOrdenDesembolsoForm
         BindingSource1.Filter = "codDesembolso=" & BindingSource0.Item(BindingSource0.Position)(0)
         BindingSource2.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
         BindingSource3.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
-
 
 
 
@@ -560,7 +769,7 @@ Public Class SeguimientoOrdenDesembolsoForm
 
     End Sub
 
-   
+
 
     Private Sub dgPagos_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgPagos.CellClick
 
@@ -573,7 +782,7 @@ Public Class SeguimientoOrdenDesembolsoForm
 
     End Sub
 
-   
+
 
     Private Sub SeguimientoOrdenDesembolsoForm_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Leave
         Close()
@@ -591,7 +800,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         End If
     End Sub
 
-   
+
     Private Sub btnCerrar_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
         dgContabilidad.Dispose()
         dgDesembolso.Dispose()
@@ -607,5 +816,73 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         MessageBox.Show(BindingSource3.Item(1)(3).ToString())
 
+    End Sub
+
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub SeguimientoOrdenDesembolsoForm_Shown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Shown
+        ColorearGrilla()
+    End Sub
+
+    Private Sub dgDesembolso_RowPostPaint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewRowPostPaintEventArgs) Handles dgDesembolso.RowPostPaint
+        ColorearGrilla()
+    End Sub
+
+    Private Sub chkObras_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkObras.CheckedChanged
+
+        If chkObras.Checked Then
+            cbObra.Visible = False
+        Else
+            cbObra.Visible = True
+        End If
+
+        FiltrarGrillaDesembolso()
+        FiltrandoPorEstado()
+    End Sub
+
+    Private Sub chkProveedor_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkProveedor.CheckedChanged
+        If chkProveedor.Checked Then
+            cbProveedor.Visible = False
+        Else
+            cbProveedor.Visible = True
+        End If
+
+        FiltrarGrillaDesembolso()
+        FiltrandoPorEstado()
+    End Sub
+
+    Private Sub cbObra_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbObra.SelectedIndexChanged
+
+        FiltrarGrillaDesembolso()
+        FiltrandoPorEstado()
+    End Sub
+
+    Private Sub cbProveedor_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbProveedor.SelectedIndexChanged
+        FiltrarGrillaDesembolso()
+        FiltrandoPorEstado()
+
+    End Sub
+
+    Private Sub cbEstadoDesembolso_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbEstadoDesembolso.SelectedIndexChanged
+        FiltrandoPorEstado()
+    End Sub
+
+    Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
+        If BindingSource0.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Orden de Compra...")
+            Exit Sub
+        End If
+
+        vCodDoc = BindingSource0.Item(BindingSource0.Position)(0)
+        vParam1 = cambiarNroTotalLetra()
+        vParam2 = txtOrdCompra.Text.Trim()
+
+        Dim informe As New ReportViewerOrdenDesembolsoForm
+        informe.ShowDialog()
     End Sub
 End Class
