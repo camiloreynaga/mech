@@ -54,6 +54,7 @@ Partial Class ReportViewerCotizacionForm
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
         Me.Button1.Location = New System.Drawing.Point(350, 3)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(53, 25)

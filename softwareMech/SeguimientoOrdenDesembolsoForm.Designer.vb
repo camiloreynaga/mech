@@ -21,9 +21,9 @@ Partial Class SeguimientoOrdenDesembolsoForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SeguimientoOrdenDesembolsoForm))
-        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.gbDesembolso = New System.Windows.Forms.GroupBox
         Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
@@ -46,89 +46,87 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dgDesembolso = New System.Windows.Forms.DataGridView
         Me.TabControl1 = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
-        Me.chkReciboEgreso = New System.Windows.Forms.CheckBox
         Me.chkOtros = New System.Windows.Forms.CheckBox
-        Me.chkGuiaRemision = New System.Windows.Forms.CheckBox
+        Me.chkReciboEgreso = New System.Windows.Forms.CheckBox
         Me.chkVoucherDetraccion = New System.Windows.Forms.CheckBox
-        Me.chkBoleta = New System.Windows.Forms.CheckBox
         Me.chkVoucher = New System.Windows.Forms.CheckBox
-        Me.chkFactura = New System.Windows.Forms.CheckBox
-        Me.Label31 = New System.Windows.Forms.Label
+        Me.Label12 = New System.Windows.Forms.Label
         Me.txtOtros = New System.Windows.Forms.TextBox
         Me.Label19 = New System.Windows.Forms.Label
-        Me.btnOrdCompra = New System.Windows.Forms.Button
-        Me.txtMotivoDesem = New System.Windows.Forms.TextBox
-        Me.Label7 = New System.Windows.Forms.Label
-        Me.txtOrdCompra = New System.Windows.Forms.TextBox
-        Me.Label12 = New System.Windows.Forms.Label
+        Me.chkGuiaRemision = New System.Windows.Forms.CheckBox
         Me.Label15 = New System.Windows.Forms.Label
         Me.Label14 = New System.Windows.Forms.Label
+        Me.chkBoleta = New System.Windows.Forms.CheckBox
+        Me.chkFactura = New System.Windows.Forms.CheckBox
         Me.Label11 = New System.Windows.Forms.Label
-        Me.Label10 = New System.Windows.Forms.Label
-        Me.Label9 = New System.Windows.Forms.Label
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.txtProveedor = New System.Windows.Forms.TextBox
-        Me.txtObra = New System.Windows.Forms.TextBox
+        Me.btnOrdCompra = New System.Windows.Forms.Button
+        Me.Label31 = New System.Windows.Forms.Label
         Me.txtEmailProv = New System.Windows.Forms.TextBox
         Me.txtCuentaDetraccion = New System.Windows.Forms.TextBox
+        Me.Label10 = New System.Windows.Forms.Label
         Me.txtCuentaBco = New System.Windows.Forms.TextBox
+        Me.txtMotivoDesem = New System.Windows.Forms.TextBox
         Me.txtTelefonoProv = New System.Windows.Forms.TextBox
+        Me.Label9 = New System.Windows.Forms.Label
+        Me.Label7 = New System.Windows.Forms.Label
+        Me.Label8 = New System.Windows.Forms.Label
+        Me.txtOrdCompra = New System.Windows.Forms.TextBox
+        Me.txtProveedor = New System.Windows.Forms.TextBox
+        Me.txtObra = New System.Windows.Forms.TextBox
         Me.txtRuc = New System.Windows.Forms.TextBox
         Me.TabPage2 = New System.Windows.Forms.TabPage
+        Me.dgPagos = New System.Windows.Forms.DataGridView
         Me.Label6 = New System.Windows.Forms.Label
-        Me.txtFormaPago = New System.Windows.Forms.TextBox
         Me.Label23 = New System.Windows.Forms.Label
+        Me.txtFormaPago = New System.Windows.Forms.TextBox
         Me.txtClasifiPago = New System.Windows.Forms.TextBox
         Me.txtDescripcionPago = New System.Windows.Forms.TextBox
         Me.Label30 = New System.Windows.Forms.Label
         Me.TabPage3 = New System.Windows.Forms.TabPage
+        Me.Label16 = New System.Windows.Forms.Label
         Me.GroupBox9 = New System.Windows.Forms.GroupBox
         Me.dgContabilidad = New System.Windows.Forms.DataGridView
-        Me.Label16 = New System.Windows.Forms.Label
         Me.txtPeriodoTrib = New System.Windows.Forms.TextBox
-        Me.Label26 = New System.Windows.Forms.Label
-        Me.txtEstadoConta = New System.Windows.Forms.TextBox
         Me.Label17 = New System.Windows.Forms.Label
         Me.txtEstadoDesem = New System.Windows.Forms.TextBox
         Me.txtNro = New System.Windows.Forms.TextBox
         Me.Label2 = New System.Windows.Forms.Label
         Me.Label1 = New System.Windows.Forms.Label
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
+        Me.txtEstadoGerencia = New System.Windows.Forms.TextBox
+        Me.txtEstadoContab = New System.Windows.Forms.TextBox
+        Me.txtEstadoTesoreria = New System.Windows.Forms.TextBox
+        Me.txtFechaContabilidad = New System.Windows.Forms.TextBox
+        Me.txtFechaTesoreria = New System.Windows.Forms.TextBox
+        Me.txtFechaGerencia = New System.Windows.Forms.TextBox
+        Me.Label24 = New System.Windows.Forms.Label
+        Me.Label22 = New System.Windows.Forms.Label
+        Me.Label18 = New System.Windows.Forms.Label
+        Me.Label3 = New System.Windows.Forms.Label
+        Me.txtFechaDesem = New System.Windows.Forms.TextBox
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.Label4 = New System.Windows.Forms.Label
+        Me.txtDetraccion = New System.Windows.Forms.TextBox
+        Me.txtMonto = New System.Windows.Forms.TextBox
+        Me.txtNombreGerente = New System.Windows.Forms.TextBox
+        Me.Label33 = New System.Windows.Forms.Label
+        Me.txtNombreConta = New System.Windows.Forms.TextBox
+        Me.Label13 = New System.Windows.Forms.Label
+        Me.Label34 = New System.Windows.Forms.Label
+        Me.txtNombreTesoreria = New System.Windows.Forms.TextBox
+        Me.Label32 = New System.Windows.Forms.Label
+        Me.Label28 = New System.Windows.Forms.Label
+        Me.Label27 = New System.Windows.Forms.Label
+        Me.Label25 = New System.Windows.Forms.Label
         Me.txtSolicitante = New System.Windows.Forms.TextBox
+        Me.txtObsGerencia = New System.Windows.Forms.TextBox
+        Me.btnCerrar = New System.Windows.Forms.Button
         Me.cbObra = New System.Windows.Forms.ComboBox
         Me.cbProveedor = New System.Windows.Forms.ComboBox
         Me.Label20 = New System.Windows.Forms.Label
         Me.Label21 = New System.Windows.Forms.Label
         Me.chkObras = New System.Windows.Forms.CheckBox
         Me.chkProveedor = New System.Windows.Forms.CheckBox
-        Me.dgPagos = New System.Windows.Forms.DataGridView
-        Me.txtNombreGerente = New System.Windows.Forms.TextBox
-        Me.Label33 = New System.Windows.Forms.Label
-        Me.txtNombreConta = New System.Windows.Forms.TextBox
-        Me.Label34 = New System.Windows.Forms.Label
-        Me.txtNombreTesoreria = New System.Windows.Forms.TextBox
-        Me.Label32 = New System.Windows.Forms.Label
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.txtDetraccion = New System.Windows.Forms.TextBox
-        Me.txtMonto = New System.Windows.Forms.TextBox
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.txtFechaDesem = New System.Windows.Forms.TextBox
-        Me.txtFechaContabilidad = New System.Windows.Forms.TextBox
-        Me.txtFechaTesoreria = New System.Windows.Forms.TextBox
-        Me.txtFechaGerencia = New System.Windows.Forms.TextBox
-        Me.Label18 = New System.Windows.Forms.Label
-        Me.Label22 = New System.Windows.Forms.Label
-        Me.Label24 = New System.Windows.Forms.Label
-        Me.txtEstadoGerencia = New System.Windows.Forms.TextBox
-        Me.txtEstadoContab = New System.Windows.Forms.TextBox
-        Me.txtEstadoTesoreria = New System.Windows.Forms.TextBox
-        Me.Label25 = New System.Windows.Forms.Label
-        Me.Label27 = New System.Windows.Forms.Label
-        Me.Label28 = New System.Windows.Forms.Label
-        Me.btnCerrar = New System.Windows.Forms.Button
-        Me.txtObsGerencia = New System.Windows.Forms.TextBox
-        Me.Label13 = New System.Windows.Forms.Label
         Me.gbDesembolso.SuspendLayout()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindingNavigator1.SuspendLayout()
@@ -136,11 +134,11 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        CType(Me.dgPagos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         CType(Me.dgContabilidad, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
-        CType(Me.dgPagos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblTitulo
@@ -303,8 +301,8 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dgDesembolso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgDesembolso.Location = New System.Drawing.Point(0, 6)
         Me.dgDesembolso.Name = "dgDesembolso"
-        DataGridViewCellStyle34.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgDesembolso.RowsDefaultCellStyle = DataGridViewCellStyle34
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgDesembolso.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgDesembolso.Size = New System.Drawing.Size(887, 203)
         Me.dgDesembolso.TabIndex = 0
         '
@@ -357,16 +355,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.TabPage1.Text = "Solicitud"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'chkReciboEgreso
-        '
-        Me.chkReciboEgreso.AutoSize = True
-        Me.chkReciboEgreso.Location = New System.Drawing.Point(613, 165)
-        Me.chkReciboEgreso.Name = "chkReciboEgreso"
-        Me.chkReciboEgreso.Size = New System.Drawing.Size(133, 17)
-        Me.chkReciboEgreso.TabIndex = 28
-        Me.chkReciboEgreso.Text = "Recibo de Egresos"
-        Me.chkReciboEgreso.UseVisualStyleBackColor = True
-        '
         'chkOtros
         '
         Me.chkOtros.AutoSize = True
@@ -377,15 +365,15 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.chkOtros.Text = "Otros"
         Me.chkOtros.UseVisualStyleBackColor = True
         '
-        'chkGuiaRemision
+        'chkReciboEgreso
         '
-        Me.chkGuiaRemision.AutoSize = True
-        Me.chkGuiaRemision.Location = New System.Drawing.Point(446, 165)
-        Me.chkGuiaRemision.Name = "chkGuiaRemision"
-        Me.chkGuiaRemision.Size = New System.Drawing.Size(125, 17)
-        Me.chkGuiaRemision.TabIndex = 29
-        Me.chkGuiaRemision.Text = "Guia de Remisión"
-        Me.chkGuiaRemision.UseVisualStyleBackColor = True
+        Me.chkReciboEgreso.AutoSize = True
+        Me.chkReciboEgreso.Location = New System.Drawing.Point(613, 165)
+        Me.chkReciboEgreso.Name = "chkReciboEgreso"
+        Me.chkReciboEgreso.Size = New System.Drawing.Size(133, 17)
+        Me.chkReciboEgreso.TabIndex = 28
+        Me.chkReciboEgreso.Text = "Recibo de Egresos"
+        Me.chkReciboEgreso.UseVisualStyleBackColor = True
         '
         'chkVoucherDetraccion
         '
@@ -397,16 +385,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.chkVoucherDetraccion.Text = "Voucher de Detracción"
         Me.chkVoucherDetraccion.UseVisualStyleBackColor = True
         '
-        'chkBoleta
-        '
-        Me.chkBoleta.AutoSize = True
-        Me.chkBoleta.Location = New System.Drawing.Point(262, 168)
-        Me.chkBoleta.Name = "chkBoleta"
-        Me.chkBoleta.Size = New System.Drawing.Size(62, 17)
-        Me.chkBoleta.TabIndex = 31
-        Me.chkBoleta.Text = "Boleta"
-        Me.chkBoleta.UseVisualStyleBackColor = True
-        '
         'chkVoucher
         '
         Me.chkVoucher.AutoSize = True
@@ -417,24 +395,14 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.chkVoucher.Text = "Voucher"
         Me.chkVoucher.UseVisualStyleBackColor = True
         '
-        'chkFactura
+        'Label12
         '
-        Me.chkFactura.AutoSize = True
-        Me.chkFactura.Location = New System.Drawing.Point(125, 168)
-        Me.chkFactura.Name = "chkFactura"
-        Me.chkFactura.Size = New System.Drawing.Size(69, 17)
-        Me.chkFactura.TabIndex = 27
-        Me.chkFactura.Text = "Factura"
-        Me.chkFactura.UseVisualStyleBackColor = True
-        '
-        'Label31
-        '
-        Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(12, 143)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(166, 13)
-        Me.Label31.TabIndex = 25
-        Me.Label31.Text = "Responsabilidad de Entrega"
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(286, 90)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(37, 13)
+        Me.Label12.TabIndex = 6
+        Me.Label12.Text = "Email"
         '
         'txtOtros
         '
@@ -452,48 +420,15 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Label19.TabIndex = 9
         Me.Label19.Text = "Ord. Compra"
         '
-        'btnOrdCompra
+        'chkGuiaRemision
         '
-        Me.btnOrdCompra.Image = Global.softwareMech.My.Resources.Resources.Magnify
-        Me.btnOrdCompra.Location = New System.Drawing.Point(778, 5)
-        Me.btnOrdCompra.Name = "btnOrdCompra"
-        Me.btnOrdCompra.Size = New System.Drawing.Size(68, 25)
-        Me.btnOrdCompra.TabIndex = 8
-        Me.btnOrdCompra.Text = "Ver"
-        Me.btnOrdCompra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnOrdCompra.UseVisualStyleBackColor = True
-        '
-        'txtMotivoDesem
-        '
-        Me.txtMotivoDesem.Location = New System.Drawing.Point(125, 6)
-        Me.txtMotivoDesem.Name = "txtMotivoDesem"
-        Me.txtMotivoDesem.Size = New System.Drawing.Size(492, 20)
-        Me.txtMotivoDesem.TabIndex = 8
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(2, 8)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(117, 13)
-        Me.Label7.TabIndex = 10
-        Me.Label7.Text = "Motivo Desembolso"
-        '
-        'txtOrdCompra
-        '
-        Me.txtOrdCompra.Location = New System.Drawing.Point(706, 6)
-        Me.txtOrdCompra.Name = "txtOrdCompra"
-        Me.txtOrdCompra.Size = New System.Drawing.Size(66, 20)
-        Me.txtOrdCompra.TabIndex = 7
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(286, 90)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(37, 13)
-        Me.Label12.TabIndex = 6
-        Me.Label12.Text = "Email"
+        Me.chkGuiaRemision.AutoSize = True
+        Me.chkGuiaRemision.Location = New System.Drawing.Point(446, 165)
+        Me.chkGuiaRemision.Name = "chkGuiaRemision"
+        Me.chkGuiaRemision.Size = New System.Drawing.Size(125, 17)
+        Me.chkGuiaRemision.TabIndex = 29
+        Me.chkGuiaRemision.Text = "Guia de Remisión"
+        Me.chkGuiaRemision.UseVisualStyleBackColor = True
         '
         'Label15
         '
@@ -513,6 +448,26 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Label14.TabIndex = 6
         Me.Label14.Text = "Cuenta "
         '
+        'chkBoleta
+        '
+        Me.chkBoleta.AutoSize = True
+        Me.chkBoleta.Location = New System.Drawing.Point(262, 168)
+        Me.chkBoleta.Name = "chkBoleta"
+        Me.chkBoleta.Size = New System.Drawing.Size(62, 17)
+        Me.chkBoleta.TabIndex = 31
+        Me.chkBoleta.Text = "Boleta"
+        Me.chkBoleta.UseVisualStyleBackColor = True
+        '
+        'chkFactura
+        '
+        Me.chkFactura.AutoSize = True
+        Me.chkFactura.Location = New System.Drawing.Point(125, 168)
+        Me.chkFactura.Name = "chkFactura"
+        Me.chkFactura.Size = New System.Drawing.Size(69, 17)
+        Me.chkFactura.TabIndex = 27
+        Me.chkFactura.Text = "Factura"
+        Me.chkFactura.UseVisualStyleBackColor = True
+        '
         'Label11
         '
         Me.Label11.AutoSize = True
@@ -522,46 +477,25 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Label11.TabIndex = 6
         Me.Label11.Text = "Telefono"
         '
-        'Label10
+        'btnOrdCompra
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(627, 62)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(33, 13)
-        Me.Label10.TabIndex = 6
-        Me.Label10.Text = "RUC"
+        Me.btnOrdCompra.Image = Global.softwareMech.My.Resources.Resources.Magnify
+        Me.btnOrdCompra.Location = New System.Drawing.Point(778, 5)
+        Me.btnOrdCompra.Name = "btnOrdCompra"
+        Me.btnOrdCompra.Size = New System.Drawing.Size(68, 25)
+        Me.btnOrdCompra.TabIndex = 8
+        Me.btnOrdCompra.Text = "Ver"
+        Me.btnOrdCompra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnOrdCompra.UseVisualStyleBackColor = True
         '
-        'Label9
+        'Label31
         '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(52, 62)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(65, 13)
-        Me.Label9.TabIndex = 6
-        Me.Label9.Text = "Proveedor"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(14, 35)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(105, 13)
-        Me.Label8.TabIndex = 6
-        Me.Label8.Text = "Obra / Ubicación"
-        '
-        'txtProveedor
-        '
-        Me.txtProveedor.Location = New System.Drawing.Point(125, 58)
-        Me.txtProveedor.Name = "txtProveedor"
-        Me.txtProveedor.Size = New System.Drawing.Size(492, 20)
-        Me.txtProveedor.TabIndex = 3
-        '
-        'txtObra
-        '
-        Me.txtObra.Location = New System.Drawing.Point(125, 32)
-        Me.txtObra.Name = "txtObra"
-        Me.txtObra.Size = New System.Drawing.Size(729, 20)
-        Me.txtObra.TabIndex = 3
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(12, 143)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(166, 13)
+        Me.Label31.TabIndex = 25
+        Me.Label31.Text = "Responsabilidad de Entrega"
         '
         'txtEmailProv
         '
@@ -577,6 +511,15 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.txtCuentaDetraccion.Size = New System.Drawing.Size(174, 20)
         Me.txtCuentaDetraccion.TabIndex = 3
         '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(627, 62)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(33, 13)
+        Me.Label10.TabIndex = 6
+        Me.Label10.Text = "RUC"
+        '
         'txtCuentaBco
         '
         Me.txtCuentaBco.Location = New System.Drawing.Point(125, 110)
@@ -584,12 +527,67 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.txtCuentaBco.Size = New System.Drawing.Size(198, 20)
         Me.txtCuentaBco.TabIndex = 3
         '
+        'txtMotivoDesem
+        '
+        Me.txtMotivoDesem.Location = New System.Drawing.Point(125, 6)
+        Me.txtMotivoDesem.Name = "txtMotivoDesem"
+        Me.txtMotivoDesem.Size = New System.Drawing.Size(492, 20)
+        Me.txtMotivoDesem.TabIndex = 8
+        '
         'txtTelefonoProv
         '
         Me.txtTelefonoProv.Location = New System.Drawing.Point(125, 84)
         Me.txtTelefonoProv.Name = "txtTelefonoProv"
         Me.txtTelefonoProv.Size = New System.Drawing.Size(155, 20)
         Me.txtTelefonoProv.TabIndex = 3
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(52, 62)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(65, 13)
+        Me.Label9.TabIndex = 6
+        Me.Label9.Text = "Proveedor"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(2, 8)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(117, 13)
+        Me.Label7.TabIndex = 10
+        Me.Label7.Text = "Motivo Desembolso"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(14, 35)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(105, 13)
+        Me.Label8.TabIndex = 6
+        Me.Label8.Text = "Obra / Ubicación"
+        '
+        'txtOrdCompra
+        '
+        Me.txtOrdCompra.Location = New System.Drawing.Point(706, 6)
+        Me.txtOrdCompra.Name = "txtOrdCompra"
+        Me.txtOrdCompra.Size = New System.Drawing.Size(66, 20)
+        Me.txtOrdCompra.TabIndex = 7
+        '
+        'txtProveedor
+        '
+        Me.txtProveedor.Location = New System.Drawing.Point(125, 58)
+        Me.txtProveedor.Name = "txtProveedor"
+        Me.txtProveedor.Size = New System.Drawing.Size(492, 20)
+        Me.txtProveedor.TabIndex = 3
+        '
+        'txtObra
+        '
+        Me.txtObra.Location = New System.Drawing.Point(125, 32)
+        Me.txtObra.Name = "txtObra"
+        Me.txtObra.Size = New System.Drawing.Size(729, 20)
+        Me.txtObra.TabIndex = 3
         '
         'txtRuc
         '
@@ -610,10 +608,20 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(867, 213)
+        Me.TabPage2.Size = New System.Drawing.Size(879, 213)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Pagos"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'dgPagos
+        '
+        Me.dgPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgPagos.Location = New System.Drawing.Point(13, 37)
+        Me.dgPagos.Name = "dgPagos"
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgPagos.RowsDefaultCellStyle = DataGridViewCellStyle2
+        Me.dgPagos.Size = New System.Drawing.Size(845, 132)
+        Me.dgPagos.TabIndex = 0
         '
         'Label6
         '
@@ -624,13 +632,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Label6.TabIndex = 13
         Me.Label6.Text = "Forma de Pago Negociada"
         '
-        'txtFormaPago
-        '
-        Me.txtFormaPago.Location = New System.Drawing.Point(173, 11)
-        Me.txtFormaPago.Name = "txtFormaPago"
-        Me.txtFormaPago.Size = New System.Drawing.Size(474, 20)
-        Me.txtFormaPago.TabIndex = 12
-        '
         'Label23
         '
         Me.Label23.AutoSize = True
@@ -639,6 +640,13 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Label23.Size = New System.Drawing.Size(107, 13)
         Me.Label23.TabIndex = 11
         Me.Label23.Text = "Descripción Pago"
+        '
+        'txtFormaPago
+        '
+        Me.txtFormaPago.Location = New System.Drawing.Point(173, 11)
+        Me.txtFormaPago.Name = "txtFormaPago"
+        Me.txtFormaPago.Size = New System.Drawing.Size(474, 20)
+        Me.txtFormaPago.TabIndex = 12
         '
         'txtClasifiPago
         '
@@ -668,15 +676,22 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.TabPage3.Controls.Add(Me.Label16)
         Me.TabPage3.Controls.Add(Me.GroupBox9)
         Me.TabPage3.Controls.Add(Me.txtPeriodoTrib)
-        Me.TabPage3.Controls.Add(Me.Label26)
-        Me.TabPage3.Controls.Add(Me.txtEstadoConta)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(867, 213)
+        Me.TabPage3.Size = New System.Drawing.Size(879, 213)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Contabilidad"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(9, 28)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(108, 13)
+        Me.Label16.TabIndex = 16
+        Me.Label16.Text = "Periodo Tributario"
         '
         'GroupBox9
         '
@@ -692,42 +707,17 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dgContabilidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgContabilidad.Location = New System.Drawing.Point(9, 19)
         Me.dgContabilidad.Name = "dgContabilidad"
-        DataGridViewCellStyle36.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgContabilidad.RowsDefaultCellStyle = DataGridViewCellStyle36
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgContabilidad.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgContabilidad.Size = New System.Drawing.Size(828, 135)
         Me.dgContabilidad.TabIndex = 0
         '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(12, 9)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(108, 13)
-        Me.Label16.TabIndex = 16
-        Me.Label16.Text = "Periodo Tributario"
-        '
         'txtPeriodoTrib
         '
-        Me.txtPeriodoTrib.Location = New System.Drawing.Point(15, 25)
+        Me.txtPeriodoTrib.Location = New System.Drawing.Point(123, 25)
         Me.txtPeriodoTrib.Name = "txtPeriodoTrib"
         Me.txtPeriodoTrib.Size = New System.Drawing.Size(163, 20)
         Me.txtPeriodoTrib.TabIndex = 17
-        '
-        'Label26
-        '
-        Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(440, 9)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(50, 13)
-        Me.Label26.TabIndex = 10
-        Me.Label26.Text = "Estado:"
-        '
-        'txtEstadoConta
-        '
-        Me.txtEstadoConta.Location = New System.Drawing.Point(498, 6)
-        Me.txtEstadoConta.Name = "txtEstadoConta"
-        Me.txtEstadoConta.Size = New System.Drawing.Size(100, 20)
-        Me.txtEstadoConta.TabIndex = 11
         '
         'Label17
         '
@@ -812,12 +802,233 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.GroupBox2.TabIndex = 5
         Me.GroupBox2.TabStop = False
         '
+        'txtEstadoGerencia
+        '
+        Me.txtEstadoGerencia.Location = New System.Drawing.Point(561, 37)
+        Me.txtEstadoGerencia.Name = "txtEstadoGerencia"
+        Me.txtEstadoGerencia.Size = New System.Drawing.Size(85, 20)
+        Me.txtEstadoGerencia.TabIndex = 49
+        '
+        'txtEstadoContab
+        '
+        Me.txtEstadoContab.Location = New System.Drawing.Point(561, 89)
+        Me.txtEstadoContab.Name = "txtEstadoContab"
+        Me.txtEstadoContab.Size = New System.Drawing.Size(85, 20)
+        Me.txtEstadoContab.TabIndex = 47
+        '
+        'txtEstadoTesoreria
+        '
+        Me.txtEstadoTesoreria.Location = New System.Drawing.Point(561, 63)
+        Me.txtEstadoTesoreria.Name = "txtEstadoTesoreria"
+        Me.txtEstadoTesoreria.Size = New System.Drawing.Size(85, 20)
+        Me.txtEstadoTesoreria.TabIndex = 48
+        '
+        'txtFechaContabilidad
+        '
+        Me.txtFechaContabilidad.Location = New System.Drawing.Point(355, 88)
+        Me.txtFechaContabilidad.Name = "txtFechaContabilidad"
+        Me.txtFechaContabilidad.Size = New System.Drawing.Size(76, 20)
+        Me.txtFechaContabilidad.TabIndex = 44
+        '
+        'txtFechaTesoreria
+        '
+        Me.txtFechaTesoreria.Location = New System.Drawing.Point(355, 62)
+        Me.txtFechaTesoreria.Name = "txtFechaTesoreria"
+        Me.txtFechaTesoreria.Size = New System.Drawing.Size(76, 20)
+        Me.txtFechaTesoreria.TabIndex = 46
+        '
+        'txtFechaGerencia
+        '
+        Me.txtFechaGerencia.Location = New System.Drawing.Point(355, 38)
+        Me.txtFechaGerencia.Name = "txtFechaGerencia"
+        Me.txtFechaGerencia.Size = New System.Drawing.Size(76, 20)
+        Me.txtFechaGerencia.TabIndex = 45
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(307, 93)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(42, 13)
+        Me.Label24.TabIndex = 40
+        Me.Label24.Text = "Fecha"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(307, 68)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(42, 13)
+        Me.Label22.TabIndex = 40
+        Me.Label22.Text = "Fecha"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(307, 44)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(42, 13)
+        Me.Label18.TabIndex = 40
+        Me.Label18.Text = "Fecha"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(307, 15)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(42, 13)
+        Me.Label3.TabIndex = 40
+        Me.Label3.Text = "Fecha"
+        '
+        'txtFechaDesem
+        '
+        Me.txtFechaDesem.Location = New System.Drawing.Point(355, 12)
+        Me.txtFechaDesem.Name = "txtFechaDesem"
+        Me.txtFechaDesem.Size = New System.Drawing.Size(76, 20)
+        Me.txtFechaDesem.TabIndex = 39
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(690, 96)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(102, 13)
+        Me.Label5.TabIndex = 34
+        Me.Label5.Text = "Total Detracción"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(717, 71)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(75, 13)
+        Me.Label4.TabIndex = 35
+        Me.Label4.Text = "Total Monto"
+        '
+        'txtDetraccion
+        '
+        Me.txtDetraccion.Location = New System.Drawing.Point(798, 91)
+        Me.txtDetraccion.Name = "txtDetraccion"
+        Me.txtDetraccion.Size = New System.Drawing.Size(85, 20)
+        Me.txtDetraccion.TabIndex = 32
+        Me.txtDetraccion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtMonto
+        '
+        Me.txtMonto.Location = New System.Drawing.Point(798, 65)
+        Me.txtMonto.Name = "txtMonto"
+        Me.txtMonto.Size = New System.Drawing.Size(85, 20)
+        Me.txtMonto.TabIndex = 33
+        Me.txtMonto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtNombreGerente
+        '
+        Me.txtNombreGerente.Location = New System.Drawing.Point(91, 38)
+        Me.txtNombreGerente.Name = "txtNombreGerente"
+        Me.txtNombreGerente.Size = New System.Drawing.Size(210, 20)
+        Me.txtNombreGerente.TabIndex = 27
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Location = New System.Drawing.Point(27, 41)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(58, 13)
+        Me.Label33.TabIndex = 22
+        Me.Label33.Text = "Gerencia"
+        '
+        'txtNombreConta
+        '
+        Me.txtNombreConta.Location = New System.Drawing.Point(91, 90)
+        Me.txtNombreConta.Name = "txtNombreConta"
+        Me.txtNombreConta.Size = New System.Drawing.Size(210, 20)
+        Me.txtNombreConta.TabIndex = 30
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(655, 16)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(106, 13)
+        Me.Label13.TabIndex = 21
+        Me.Label13.Text = "Obs. de Gerencia"
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Location = New System.Drawing.Point(8, 91)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(77, 13)
+        Me.Label34.TabIndex = 21
+        Me.Label34.Text = "Contabilidad"
+        '
+        'txtNombreTesoreria
+        '
+        Me.txtNombreTesoreria.Location = New System.Drawing.Point(91, 64)
+        Me.txtNombreTesoreria.Name = "txtNombreTesoreria"
+        Me.txtNombreTesoreria.Size = New System.Drawing.Size(210, 20)
+        Me.txtNombreTesoreria.TabIndex = 24
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(25, 64)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(60, 13)
+        Me.Label32.TabIndex = 20
+        Me.Label32.Text = "Tesoreria"
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(437, 93)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(120, 13)
+        Me.Label28.TabIndex = 0
+        Me.Label28.Text = "Estado Contabilidad"
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Location = New System.Drawing.Point(452, 68)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(103, 13)
+        Me.Label27.TabIndex = 0
+        Me.Label27.Text = "Estado Tesoreria"
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(454, 44)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(101, 13)
+        Me.Label25.TabIndex = 0
+        Me.Label25.Text = "Estado Gerencia"
+        '
         'txtSolicitante
         '
         Me.txtSolicitante.Location = New System.Drawing.Point(91, 12)
         Me.txtSolicitante.Name = "txtSolicitante"
         Me.txtSolicitante.Size = New System.Drawing.Size(210, 20)
         Me.txtSolicitante.TabIndex = 3
+        '
+        'txtObsGerencia
+        '
+        Me.txtObsGerencia.Location = New System.Drawing.Point(652, 37)
+        Me.txtObsGerencia.Multiline = True
+        Me.txtObsGerencia.Name = "txtObsGerencia"
+        Me.txtObsGerencia.Size = New System.Drawing.Size(231, 24)
+        Me.txtObsGerencia.TabIndex = 27
+        '
+        'btnCerrar
+        '
+        Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnCerrar.Location = New System.Drawing.Point(658, 37)
+        Me.btnCerrar.Name = "btnCerrar"
+        Me.btnCerrar.Size = New System.Drawing.Size(80, 25)
+        Me.btnCerrar.TabIndex = 7
+        Me.btnCerrar.Text = "Cerrar"
+        Me.btnCerrar.UseVisualStyleBackColor = True
         '
         'cbObra
         '
@@ -879,237 +1090,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.chkProveedor.Text = "Todos"
         Me.chkProveedor.UseVisualStyleBackColor = True
         '
-        'dgPagos
-        '
-        Me.dgPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgPagos.Location = New System.Drawing.Point(13, 37)
-        Me.dgPagos.Name = "dgPagos"
-        DataGridViewCellStyle35.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgPagos.RowsDefaultCellStyle = DataGridViewCellStyle35
-        Me.dgPagos.Size = New System.Drawing.Size(845, 132)
-        Me.dgPagos.TabIndex = 0
-        '
-        'txtNombreGerente
-        '
-        Me.txtNombreGerente.Location = New System.Drawing.Point(91, 38)
-        Me.txtNombreGerente.Name = "txtNombreGerente"
-        Me.txtNombreGerente.Size = New System.Drawing.Size(210, 20)
-        Me.txtNombreGerente.TabIndex = 27
-        '
-        'Label33
-        '
-        Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(27, 41)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(58, 13)
-        Me.Label33.TabIndex = 22
-        Me.Label33.Text = "Gerencia"
-        '
-        'txtNombreConta
-        '
-        Me.txtNombreConta.Location = New System.Drawing.Point(91, 90)
-        Me.txtNombreConta.Name = "txtNombreConta"
-        Me.txtNombreConta.Size = New System.Drawing.Size(210, 20)
-        Me.txtNombreConta.TabIndex = 30
-        '
-        'Label34
-        '
-        Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(8, 91)
-        Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(77, 13)
-        Me.Label34.TabIndex = 21
-        Me.Label34.Text = "Contabilidad"
-        '
-        'txtNombreTesoreria
-        '
-        Me.txtNombreTesoreria.Location = New System.Drawing.Point(91, 64)
-        Me.txtNombreTesoreria.Name = "txtNombreTesoreria"
-        Me.txtNombreTesoreria.Size = New System.Drawing.Size(210, 20)
-        Me.txtNombreTesoreria.TabIndex = 24
-        '
-        'Label32
-        '
-        Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(25, 64)
-        Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(60, 13)
-        Me.Label32.TabIndex = 20
-        Me.Label32.Text = "Tesoreria"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(690, 96)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(102, 13)
-        Me.Label5.TabIndex = 34
-        Me.Label5.Text = "Total Detracción"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(717, 71)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(75, 13)
-        Me.Label4.TabIndex = 35
-        Me.Label4.Text = "Total Monto"
-        '
-        'txtDetraccion
-        '
-        Me.txtDetraccion.Location = New System.Drawing.Point(798, 91)
-        Me.txtDetraccion.Name = "txtDetraccion"
-        Me.txtDetraccion.Size = New System.Drawing.Size(85, 20)
-        Me.txtDetraccion.TabIndex = 32
-        Me.txtDetraccion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txtMonto
-        '
-        Me.txtMonto.Location = New System.Drawing.Point(798, 65)
-        Me.txtMonto.Name = "txtMonto"
-        Me.txtMonto.Size = New System.Drawing.Size(85, 20)
-        Me.txtMonto.TabIndex = 33
-        Me.txtMonto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(307, 15)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(42, 13)
-        Me.Label3.TabIndex = 40
-        Me.Label3.Text = "Fecha"
-        '
-        'txtFechaDesem
-        '
-        Me.txtFechaDesem.Location = New System.Drawing.Point(355, 12)
-        Me.txtFechaDesem.Name = "txtFechaDesem"
-        Me.txtFechaDesem.Size = New System.Drawing.Size(76, 20)
-        Me.txtFechaDesem.TabIndex = 39
-        '
-        'txtFechaContabilidad
-        '
-        Me.txtFechaContabilidad.Location = New System.Drawing.Point(355, 88)
-        Me.txtFechaContabilidad.Name = "txtFechaContabilidad"
-        Me.txtFechaContabilidad.Size = New System.Drawing.Size(76, 20)
-        Me.txtFechaContabilidad.TabIndex = 44
-        '
-        'txtFechaTesoreria
-        '
-        Me.txtFechaTesoreria.Location = New System.Drawing.Point(355, 62)
-        Me.txtFechaTesoreria.Name = "txtFechaTesoreria"
-        Me.txtFechaTesoreria.Size = New System.Drawing.Size(76, 20)
-        Me.txtFechaTesoreria.TabIndex = 46
-        '
-        'txtFechaGerencia
-        '
-        Me.txtFechaGerencia.Location = New System.Drawing.Point(355, 38)
-        Me.txtFechaGerencia.Name = "txtFechaGerencia"
-        Me.txtFechaGerencia.Size = New System.Drawing.Size(76, 20)
-        Me.txtFechaGerencia.TabIndex = 45
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(307, 44)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(42, 13)
-        Me.Label18.TabIndex = 40
-        Me.Label18.Text = "Fecha"
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(307, 68)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(42, 13)
-        Me.Label22.TabIndex = 40
-        Me.Label22.Text = "Fecha"
-        '
-        'Label24
-        '
-        Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(307, 93)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(42, 13)
-        Me.Label24.TabIndex = 40
-        Me.Label24.Text = "Fecha"
-        '
-        'txtEstadoGerencia
-        '
-        Me.txtEstadoGerencia.Location = New System.Drawing.Point(561, 37)
-        Me.txtEstadoGerencia.Name = "txtEstadoGerencia"
-        Me.txtEstadoGerencia.Size = New System.Drawing.Size(85, 20)
-        Me.txtEstadoGerencia.TabIndex = 49
-        '
-        'txtEstadoContab
-        '
-        Me.txtEstadoContab.Location = New System.Drawing.Point(561, 89)
-        Me.txtEstadoContab.Name = "txtEstadoContab"
-        Me.txtEstadoContab.Size = New System.Drawing.Size(85, 20)
-        Me.txtEstadoContab.TabIndex = 47
-        '
-        'txtEstadoTesoreria
-        '
-        Me.txtEstadoTesoreria.Location = New System.Drawing.Point(561, 63)
-        Me.txtEstadoTesoreria.Name = "txtEstadoTesoreria"
-        Me.txtEstadoTesoreria.Size = New System.Drawing.Size(85, 20)
-        Me.txtEstadoTesoreria.TabIndex = 48
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(454, 44)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(101, 13)
-        Me.Label25.TabIndex = 0
-        Me.Label25.Text = "Estado Gerencia"
-        '
-        'Label27
-        '
-        Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(452, 68)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(103, 13)
-        Me.Label27.TabIndex = 0
-        Me.Label27.Text = "Estado Tesoreria"
-        '
-        'Label28
-        '
-        Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(437, 93)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(120, 13)
-        Me.Label28.TabIndex = 0
-        Me.Label28.Text = "Estado Contabilidad"
-        '
-        'btnCerrar
-        '
-        Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCerrar.Location = New System.Drawing.Point(658, 37)
-        Me.btnCerrar.Name = "btnCerrar"
-        Me.btnCerrar.Size = New System.Drawing.Size(80, 25)
-        Me.btnCerrar.TabIndex = 7
-        Me.btnCerrar.Text = "Cerrar"
-        Me.btnCerrar.UseVisualStyleBackColor = True
-        '
-        'txtObsGerencia
-        '
-        Me.txtObsGerencia.Location = New System.Drawing.Point(652, 37)
-        Me.txtObsGerencia.Multiline = True
-        Me.txtObsGerencia.Name = "txtObsGerencia"
-        Me.txtObsGerencia.Size = New System.Drawing.Size(231, 24)
-        Me.txtObsGerencia.TabIndex = 27
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(655, 16)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(106, 13)
-        Me.Label13.TabIndex = 21
-        Me.Label13.Text = "Obs. de Gerencia"
-        '
         'SeguimientoOrdenDesembolsoForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
@@ -1146,13 +1126,13 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.TabPage1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
+        CType(Me.dgPagos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         Me.GroupBox9.ResumeLayout(False)
         CType(Me.dgContabilidad, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        CType(Me.dgPagos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1169,8 +1149,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents Label23 As System.Windows.Forms.Label
-    Friend WithEvents Label26 As System.Windows.Forms.Label
-    Friend WithEvents txtEstadoConta As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox9 As System.Windows.Forms.GroupBox
     Friend WithEvents dgContabilidad As System.Windows.Forms.DataGridView
     Friend WithEvents txtEstadoDesem As System.Windows.Forms.TextBox

@@ -729,6 +729,20 @@ Public Class SeguimientoOrdenDesembolsoForm
         Return comando.ExecuteScalar
     End Function
 
+    ''' <summary>
+    ''' recupera la orden de compra con un formato concatenado para impresion
+    ''' </summary>
+    ''' <param name="idOP"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function recuperarNroOrdenCompra(ByVal idOP As Integer) As String
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select mech.FN_ConcaNroOrden1(" & idOP & ")"
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
 #End Region
 
 #Region "Eventos"
@@ -904,7 +918,11 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         vCodDoc = BindingSource0.Item(BindingSource0.Position)(0)
         vParam1 = cambiarNroTotalLetra()
-        vParam2 = txtOrdCompra.Text.Trim()
+        If String.IsNullOrEmpty(txtOrdCompra.Text) = False Then
+            vParam2 = recuperarNroOrdenCompra(txtOrdCompra.Text.Trim())
+        Else
+            vParam2 = ""
+        End If
 
         Dim informe As New ReportViewerOrdenDesembolsoForm
         informe.ShowDialog()
