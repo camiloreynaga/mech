@@ -471,18 +471,23 @@ GO
 --Nueva Vista para Seguimiento de Desembolso
 create view VOrdenDesembolsoSeguimiento
 as
-	select TOD.idOP,tod.codigo as codObra,tid.codIde ,serie,nroDes,fecDes,monto,montoDet,montoDif,'estado_desembolso'=case when TOD.estado=0 then 'PENDIENTE' when TOD.estado=1 then 'TERMINADO' when TOD.estado=2 then 'CERRADO' else 'ANULADO' end, 
-	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,
-	TLU.nombre as 'obra',Tid.razon as 'proveedor',banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,hist
-	,TPE.nombre,TPE.apellido,TID.ruc, TID.fono,TID.email   
+select TOD.idOP,tod.codigo as codObra,tod.serie,tod.nroDes,tod.fecDes,tod.monto,tod.montoDet,tod.montoDif,
+'estado_desembolso'=case when TOD.estado=0 then 'PENDIENTE' when TOD.estado=1 then 'TERMINADO' when TOD.estado=2 then 'CERRADO' else 'ANULADO' end, 
+	'nro'=case when tod.nroDes<100 then '000'+ltrim(str(tod.nroDes)) when tod.nroDes>=100 and tod.nroDes<1000 then '00'+ltrim(str(tod.nroDes)) else '0'+ltrim(str(tod.nroDes)) end,
+	TM.codMon,TM.moneda,TM.simbolo,
+	TLU.nombre as 'obra',Tid.razon as 'proveedor',tod.banco,tod.nroCta,tod.nroDet,tod.datoReq,tod.factCheck,tod.bolCheck,tod.guiaCheck,
+	tod.vouCheck,tod.vouDCheck,tod.reciCheck,tod.otroCheck,tod.descOtro,tod.nroConfor,tod.fecEnt,tod.hist
+	,(TPE.nombre +' '+ TPE.apellido) as solicitante,tid.codIde  ,TID.ruc, TID.fono,TID.email
+	--,toc.nroOrden as idCompra,toc.nroO as nroCompra     
 	from TOrdenDesembolso TOD 
 	join TMoneda TM on TOD.codMon=TM.codMon 
 	join  TIdentidad TID on TID.codIde=tod.codIde 
 	join TLugarTrabajo TLU on tlu.codigo=TOD.codigo  
 	inner join TPersDesem TPDE on TPDE.idOP= TOD.idOP 
 	join TPersonal TPE on TPE.codPers = TPDE.codPers  
-	where TPDE.tipoA=1
-	
+	--join TDesOrden TDECO on tdeco.idOP = tod.idOP  
+	--join TOrdenCompra TOC on toc.nroOrden =tdeco.nroOrden   
+	where TPDE.tipoA=1	
 GO
 -- Nueva Vista para Seguimeinto de Desembolso
 --Pago de desembolsos

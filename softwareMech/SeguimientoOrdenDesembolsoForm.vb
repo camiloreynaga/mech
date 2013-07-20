@@ -63,7 +63,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         wait.Show()
-        Dim sele As String = "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,moneda,simbolo,nombre,apellido,ruc,fono,email,codObra,codIde from VOrdenDesembolsoSeguimiento Order By idOp Desc"
+        Dim sele As String = "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,moneda,simbolo,solicitante,ruc,fono,email,codObra,codIde from VOrdenDesembolsoSeguimiento Order By idOp Desc"
         crearDataAdapterTable(daVDetOrden, sele)
 
         sele = "Select codDesembolso,fecPago,montoPago,tipoP,moneda,simbolo,nroCue,banco,pagoDet,montoD,nroP,clasif from VPagoDesembolsoSeguimiento"
@@ -327,8 +327,9 @@ Public Class SeguimientoOrdenDesembolsoForm
             .Columns("simbolo").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
             'Nombre de Solicitante
-            .Columns("nombre").Visible = False
-            .Columns("apellido").Visible = False
+            .Columns("solicitante").Visible = False
+            .Columns("codObra").Visible = False
+            .Columns("codIde").Visible = False
             'Ruc del proveedor
             .Columns("ruc").Visible = False
             'Telefono Proveedor
@@ -370,7 +371,7 @@ Public Class SeguimientoOrdenDesembolsoForm
 
             txtNro.Text = BindingSource0.Item(BindingSource0.Position)(2)
             txtFechaDesem.Text = BindingSource0.Item(BindingSource0.Position)(4)
-            txtSolicitante.Text = BindingSource0.Item(BindingSource0.Position)(28) + " " + BindingSource0.Item(BindingSource0.Position)(29).ToString()
+            txtSolicitante.Text = BindingSource0.Item(BindingSource0.Position)(28)
             txtMonto.Text = BindingSource0.Item(BindingSource0.Position)(27).ToString + " " + BindingSource0.Item(BindingSource0.Position)(7).ToString
             txtDetraccion.Text = BindingSource0.Item(BindingSource0.Position)(27).ToString + " " + BindingSource0.Item(BindingSource0.Position)(8).ToString
 
@@ -384,10 +385,10 @@ Public Class SeguimientoOrdenDesembolsoForm
             txtMotivoDesem.Text = BindingSource0.Item(BindingSource0.Position)(15)
             txtObra.Text = BindingSource0.Item(BindingSource0.Position)(10)
             txtProveedor.Text = BindingSource0.Item(BindingSource0.Position)(11)
-            txtRuc.Text = BindingSource0.Item(BindingSource0.Position)(30)
+            txtRuc.Text = BindingSource0.Item(BindingSource0.Position)(29)
 
-            txtTelefonoProv.Text = BindingSource0.Item(BindingSource0.Position)(31)
-            txtEmailProv.Text = BindingSource0.Item(BindingSource0.Position)(32)
+            txtTelefonoProv.Text = BindingSource0.Item(BindingSource0.Position)(30)
+            txtEmailProv.Text = BindingSource0.Item(BindingSource0.Position)(31)
             txtCuentaBco.Text = BindingSource0.Item(BindingSource0.Position)(13)
             txtCuentaDetraccion.Text = BindingSource0.Item(BindingSource0.Position)(14)
 
@@ -502,29 +503,45 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         'Aprobación Gerencia
         If BindingSource3.Count > 1 Then
-            txtEstadoGerencia.Text = BindingSource3.Item(1)(4)
-            txtNombreGerente.Text = BindingSource3.Item(1)(1) & " " & BindingSource3.Item(1)(2)
+            If BindingSource3.Item(1)(3) = "GERENCIA" Then
+                txtEstadoGerencia.Text = BindingSource3.Item(1)(4)
+                txtNombreGerente.Text = BindingSource3.Item(1)(1) & " " & BindingSource3.Item(1)(2)
+                txtObsGerencia.Text = BindingSource3.Item(1)(5)
+                txtFechaGerencia.Text = BindingSource3.Item(1)(6)
+            End If
+
         Else
             txtEstadoGerencia.Text = "PENDIENTE"
             txtNombreGerente.Text = ""
-            
+            txtFechaGerencia.Text = ""
+            txtObsGerencia.Text = ""
+
         End If
         'Aprobación Tesoreria
         If BindingSource3.Count > 2 Then
-            txtEstadoTesoreria.Text = BindingSource3.Item(2)(4)
-            txtNombreTesoreria.Text = BindingSource3.Item(2)(1) & " " & BindingSource3.Item(2)(2)
-
+            If BindingSource3.Item(2)(3) = "TESORERIA" Then
+                txtEstadoTesoreria.Text = BindingSource3.Item(2)(4)
+                txtNombreTesoreria.Text = BindingSource3.Item(2)(1) & " " & BindingSource3.Item(2)(2)
+                txtFechaTesoreria.Text = BindingSource3.Item(2)(6)
+            End If
+            
         Else
             txtEstadoTesoreria.Text = "PENDIENTE"
             txtNombreTesoreria.Text = ""
+            txtFechaTesoreria.Text = ""
         End If
         'Aprobación de Contabilidad
         If BindingSource3.Count > 3 Then
-            txtEstadoContab.Text = BindingSource3.Item(3)(4)
-            txtNombreConta.Text = BindingSource3.Item(3)(1) & " " & BindingSource3.Item(3)(2)
+            If BindingSource3.Item(3)(3) = "CONTABILIDAD" Then
+                txtEstadoContab.Text = BindingSource3.Item(3)(4)
+                txtNombreConta.Text = BindingSource3.Item(3)(1) & " " & BindingSource3.Item(3)(2)
+                txtFechaContabilidad.Text = BindingSource3.Item(3)(6)
+            End If
+
         Else
             txtEstadoContab.Text = "PENDIENTE"
             txtNombreConta.Text = ""
+            txtFechaContabilidad.Text = ""
         End If
 
         'Pintando el Texbox
@@ -570,6 +587,8 @@ Public Class SeguimientoOrdenDesembolsoForm
         For j As Integer = 0 To TabControl1.TabPages.Count - 1
 
             For index As Integer = 0 To TabControl1.TabPages(j).Controls.Count - 1
+                TabControl1.TabPages(j).BackColor = BackColorP
+
                 'TabControl1.TabPages(0).Controls
                 If TypeOf TabControl1.TabPages(j).Controls(index) Is GroupBox Then
                     TabControl1.TabPages(j).BackColor = BackColorP
@@ -580,6 +599,7 @@ Public Class SeguimientoOrdenDesembolsoForm
                         If TypeOf TabControl1.TabPages(j).Controls(index).Controls(k) Is TextBox Then
                             CType(TabControl1.TabPages(j).Controls(index).Controls(k), TextBox).ReadOnly = True  ' ForeColorLabel
                         End If
+                        
                     Next
 
                 End If
@@ -588,6 +608,9 @@ Public Class SeguimientoOrdenDesembolsoForm
                 End If
                 If TypeOf TabControl1.TabPages(j).Controls(index) Is TextBox Then
                     CType(TabControl1.TabPages(j).Controls(index), TextBox).ReadOnly = True  ' ForeColorLabel
+                End If
+                If TypeOf TabControl1.TabPages(j).Controls(index) Is CheckBox Then
+                    TabControl1.TabPages(j).Controls(index).ForeColor = ForeColorLabel
                 End If
 
             Next
@@ -614,76 +637,59 @@ Public Class SeguimientoOrdenDesembolsoForm
     End Sub
 
     ''' <summary>
-    ''' filtra la grilla de ordenes de desembolso
+    ''' Añade criterios a los filtros
+    ''' </summary>
+    ''' <param name="criterio"></param>
+    ''' <param name="filtro"></param>
+    ''' <remarks></remarks>
+    Private Function AddCriterioFiltro(ByVal criterio As String, ByVal filtro As String) As String
+        If filtro.Length > 0 Then
+            filtro &= " and " & criterio
+        Else
+            filtro &= " " & criterio
+        End If
+        Return filtro
+    End Function
+    ''' <summary>
+    ''' Filtra Desembolso 
     ''' </summary>
     ''' <remarks></remarks>
-    Private Sub FiltrarGrillaDesembolso()
-
+    Private Sub filtrando()
         If BindingSource4.Position >= 0 And BindingSource5.Position >= 0 Then
 
 
+            BindingSource0.Filter = ""
+            Dim pFiltro As String = BindingSource0.Filter
+            Dim pCriterio As String
 
-            If chkObras.Checked = False And chkProveedor.Checked = False Then
-                '                BindingSource0.Filter = "codObra='" & BindingSource4.Item(BindingSource4.Position)(0) & "' and codIde =" & BindingSource5.Item(BindingSource5.Position)(0)
-                BindingSource0.Filter = "codObra='" & cbObra.SelectedValue & "' and codIde =" & cbProveedor.SelectedValue
-
-                Exit Sub
-            End If
-            If (chkObras.Checked) And (chkProveedor.Checked) = False Then
-                'BindingSource0.Filter = "codIde =" & BindingSource5.Item(BindingSource5.Position)(0)
-                BindingSource0.Filter = "codIde =" & cbProveedor.SelectedValue
-                Exit Sub
+            If chkObras.Checked = False Then
+                pCriterio = "codObra='" & cbObra.SelectedValue & "'"
+                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
             End If
 
-            If (chkObras.Checked = False) And (chkProveedor.Checked) Then
-
-                'BindingSource0.Filter = "codObra='" & BindingSource4.Item(BindingSource4.Position)(0) & "'"
-                BindingSource0.Filter = "codObra='" & cbObra.SelectedValue & "'"
-                Exit Sub
+            If chkProveedor.Checked = False Then
+                pCriterio = "codIde =" & cbProveedor.SelectedValue
+                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
             End If
 
-            If chkObras.Checked And chkProveedor.Checked Then
-                BindingSource0.Filter = ""
-                Exit Sub
-            End If
+            If cbEstadoDesembolso.Text = "TODOS" Or cbEstadoDesembolso.Text = "" Then
+                ' AddCriterioFiltro(pCriterio, pFiltro)
 
-        End If
-    End Sub
-
-    ''' <summary>
-    ''' filtra tomando como criterio el estado de desembolso
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private Sub FiltrandoPorEstado()
-
-        'Obtiendo el criterio de filtro
-        Dim filtro As String = BindingSource0.Filter
-        'Ebaluando el creterio de filtrado
-        If cbEstadoDesembolso.Text = "TODOS" Or cbEstadoDesembolso.Text = "" Then
-            FiltrarGrillaDesembolso()
-            Exit Sub
-        End If
-
-        'Filtrando de acuerdo a lo necesitado
-
-
-        If filtro.Contains("estado_desembolso") = False Then
-            If filtro.Length > 0 Then
-                BindingSource0.Filter = filtro & " and estado_desembolso='" & cbEstadoDesembolso.Text.Trim() & "'"
             Else
-                BindingSource0.Filter = filtro & "estado_desembolso='" & cbEstadoDesembolso.Text.Trim() & "'"
+                pCriterio = "estado_desembolso='" & cbEstadoDesembolso.Text.Trim() & "'"
+                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
             End If
-        Else
-            FiltrarGrillaDesembolso()
-            filtro = BindingSource0.Filter
-            If filtro.Length > 0 Then
-                BindingSource0.Filter = filtro & " and estado_desembolso='" & cbEstadoDesembolso.Text.Trim() & "'"
-            Else
-                BindingSource0.Filter = filtro & " estado_desembolso='" & cbEstadoDesembolso.Text.Trim() & "'"
+
+            If txtBuscarSolicitante.Text.Trim().Length > 0 Then
+                pCriterio = "solicitante like '%" & txtBuscarSolicitante.Text.Trim() & "%'"
+                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
             End If
+
+            BindingSource0.Filter = pFiltro
         End If
 
     End Sub
+
 
     ''' <summary>
     ''' cambia a texto los numeros
@@ -706,6 +712,23 @@ Public Class SeguimientoOrdenDesembolsoForm
         End If
         Return retorna
     End Function
+
+
+    ''' <summary>
+    ''' recupera el nro de Orden de compra
+    ''' </summary>
+    ''' <param name="criterio"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function RecuperarOrdenCompra(ByVal criterio As String) As Object
+        Dim consulta As String = "select nroOrden from TDesOrden where idOp=" & criterio
+        Dim comando As New SqlCommand
+        comando.Connection = Cn
+        comando.CommandType = CommandType.Text
+        comando.CommandText = consulta
+        Return comando.ExecuteScalar
+    End Function
+
 #End Region
 
 #Region "Eventos"
@@ -745,11 +768,6 @@ Public Class SeguimientoOrdenDesembolsoForm
     End Sub
 
 
-    Private Sub txtObra_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtObra.TextChanged
-
-    End Sub
-
-
     Private Sub dgDesembolso_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgDesembolso.CellClick, dgDesembolso.CellEnter
         enlazarText()
 
@@ -764,6 +782,9 @@ Public Class SeguimientoOrdenDesembolsoForm
         enlazarTextPagos()
 
         enlazarTextAprobaciones()
+
+        txtOrdCompra.Text = RecuperarOrdenCompra(BindingSource0.Item(BindingSource0.Position)(0))
+
         'ModificandoColumnasDGVPagos()
         'ModificandoColumnaDGVConta()
 
@@ -789,12 +810,10 @@ Public Class SeguimientoOrdenDesembolsoForm
     End Sub
 
     Private Sub TabControl1_Selecting(ByVal sender As System.Object, ByVal e As System.Windows.Forms.TabControlCancelEventArgs) Handles TabControl1.Selecting
-
         'Comprabando si la grilla tiene la primera columna no visible
         If dgPagos.Columns("codDesembolso").Visible Then
             dgPagos.Columns("codDesembolso").Visible = False
         End If
-
         If dgContabilidad.Columns(0).Visible Then
             dgContabilidad.Columns(0).Visible = False
         End If
@@ -808,9 +827,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         Me.Close()
     End Sub
 
-    Private Sub txtEstadoContab_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtEstadoContab.TextChanged, txtNombreConta.TextChanged
-
-    End Sub
+   
 
     Private Sub DataGridView1_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
 
@@ -841,8 +858,10 @@ Public Class SeguimientoOrdenDesembolsoForm
             cbObra.Visible = True
         End If
 
-        FiltrarGrillaDesembolso()
-        FiltrandoPorEstado()
+        'FiltrarGrillaDesembolso()
+        'FiltrandoPorEstado()}
+        filtrando()
+
     End Sub
 
     Private Sub chkProveedor_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkProveedor.CheckedChanged
@@ -852,24 +871,29 @@ Public Class SeguimientoOrdenDesembolsoForm
             cbProveedor.Visible = True
         End If
 
-        FiltrarGrillaDesembolso()
-        FiltrandoPorEstado()
+        'FiltrarGrillaDesembolso()
+        'FiltrandoPorEstado()
+        filtrando()
+
     End Sub
 
     Private Sub cbObra_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbObra.SelectedIndexChanged
 
-        FiltrarGrillaDesembolso()
-        FiltrandoPorEstado()
+        'FiltrarGrillaDesembolso()
+        'FiltrandoPorEstado()
+        filtrando()
+
     End Sub
 
     Private Sub cbProveedor_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbProveedor.SelectedIndexChanged
-        FiltrarGrillaDesembolso()
-        FiltrandoPorEstado()
-
+        'FiltrarGrillaDesembolso()
+        'FiltrandoPorEstado()
+        filtrando()
     End Sub
 
     Private Sub cbEstadoDesembolso_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbEstadoDesembolso.SelectedIndexChanged
-        FiltrandoPorEstado()
+        'FiltrandoPorEstado()
+        filtrando()
     End Sub
 
     Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
@@ -884,5 +908,31 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         Dim informe As New ReportViewerOrdenDesembolsoForm
         informe.ShowDialog()
+    End Sub
+
+
+    Private Sub txtBuscarSolicitante_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtBuscarSolicitante.TextChanged
+        filtrando()
+    End Sub
+
+    Private Sub btnOrdCompra_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOrdCompra.Click
+        If txtOrdCompra.Text.Trim() = "" Then
+            MessageBox.Show("Proceso denegado, Orden de Desembolso No tiene relación con Orden de Compra", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        'vCod1 = BindingSource3.Item(BindingSource3.Position)(2) & " - " & BindingSource3.Item(BindingSource3.Position)(3)
+        vNroOrden = txtOrdCompra.Text  '(BindingSource3.Item(BindingSource3.Position)(0)) 'idOP 
+
+        Dim jala As New jalarOrdenCompra2Form
+        jala.ShowDialog()
+    End Sub
+
+    Private Sub GroupBox2_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupBox2.Enter
+
+    End Sub
+
+    Private Sub txtObsGerencia_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtObsGerencia.TextChanged
+
     End Sub
 End Class

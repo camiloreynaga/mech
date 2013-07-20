@@ -644,6 +644,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\images\Magnify.gif" />
     <Content Include="SSP1.ico" />
   </ItemGroup>
   <ItemGroup>
