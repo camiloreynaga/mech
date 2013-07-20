@@ -105,6 +105,7 @@ Partial Class LoginForm
         Me.txtCon.PasswordChar = Global.Microsoft.VisualBasic.ChrW(120)
         Me.txtCon.Size = New System.Drawing.Size(220, 20)
         Me.txtCon.TabIndex = 2
+        Me.txtCon.Text = "mimech"
         '
         'OK
         '

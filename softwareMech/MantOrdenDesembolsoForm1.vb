@@ -1119,10 +1119,10 @@ Public Class MantOrdenDesembolsoForm1
         Return cmdCampo.ExecuteScalar
     End Function
 
-    Private Function recuperarUltimoDoc() As Integer
+    Private Function recuperarUltimoDoc(ByVal codSer As Integer) As Integer
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = "select MAX(nroDes) from TOrdenDesembolso"
+        cmdCampo.CommandText = "select MAX(nroDes) from TOrdenDesembolso where codSerO=" & codSer
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function
@@ -1141,7 +1141,7 @@ Public Class MantOrdenDesembolsoForm1
             Exit Sub
         End If
 
-        If recuperarUltimoDoc() <> CInt(BindingSource3.Item(BindingSource3.Position)(1)) Then
+        If recuperarUltimoDoc(BindingSource3.Item(BindingSource3.Position)(29)) <> CInt(BindingSource3.Item(BindingSource3.Position)(1)) Then
             MessageBox.Show("No se puede ELIMINAR por no ser la ultima ORDEN DE DESEMBOLSO registrada...", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
@@ -1397,6 +1397,11 @@ Public Class MantOrdenDesembolsoForm1
             Exit Sub
         End If
 
+        If recuperarModi(BindingSource3.Item(BindingSource3.Position)(0)) > 0 Then 'Ya se aprobo por gerencia
+            MessageBox.Show("Anulación denegada, por que ya se [APROBO] por Gerencia", nomNegocio, Nothing, MessageBoxIcon.Stop)
+            Exit Sub
+        End If
+
         If (recuperarCount1(BindingSource3.Item(BindingSource3.Position)(0)) > 0) Then
             MessageBox.Show("Anulación denegada, Orden de Desembolso tiene registros en Pago Desembolso. Si Desea anular de todas formas, quitese Pagos Fisicos de Desembolso [TEsoreria]", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
@@ -1573,6 +1578,4 @@ Public Class MantOrdenDesembolsoForm1
         Dim jala As New jalarOrdenCompra2Form
         jala.ShowDialog()
     End Sub
-
- 
 End Class

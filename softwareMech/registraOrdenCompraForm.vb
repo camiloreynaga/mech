@@ -49,7 +49,7 @@ Public Class registraOrdenCompraForm
         sele = "select codMon,moneda,simbolo from TMoneda"
         crearDataAdapterTable(daTMon, sele)
 
-        sele = "select nroOrden,nroO,nro,codIde,fecOrden,igv,atiendeCom,celAti,plazoEnt,codMon,codPag,lugarEnt,transfe,codigo,codPers,obsFac,codCot,estado,hist,codPersO,calIGV,nroProf,idSol,codET,nota from VOrdenComAper" 'order by nroO"
+        sele = "select nroOrden,nroO,nro,codIde,fecOrden,igv,atiendeCom,celAti,plazoEnt,codMon,codPag,lugarEnt,transfe,codigo,codPers,obsFac,codCot,estado,hist,codPersO,calIGV,nroProf,idSol,codET,nota,idOP from VOrdenComAper1" 'order by nroO"
         crearDataAdapterTable(daTabla1, sele)
 
         sele = "select codDetO,cant,unidad,descrip,precio,subTotal,nroOrden,codMat from VDetOrden where nroOrden=@nro"
@@ -68,7 +68,7 @@ Public Class registraOrdenCompraForm
             daTPers.Fill(dsAlmacen, "TPersonal")
             daTPago.Fill(dsAlmacen, "TFormaPago")
             daTMon.Fill(dsAlmacen, "TMoneda")
-            daTabla1.Fill(dsAlmacen, "VOrdenComAper")
+            daTabla1.Fill(dsAlmacen, "VOrdenComAper1")
             daDetDoc.Fill(dsAlmacen, "VDetOrden")
             daTabla2.Fill(dsAlmacen, "TEmpTransp")
 
@@ -102,7 +102,7 @@ Public Class registraOrdenCompraForm
             cbMoneda.ValueMember = "codMon"
 
             BindingSource6.DataSource = dsAlmacen
-            BindingSource6.DataMember = "VOrdenComAper"
+            BindingSource6.DataMember = "VOrdenComAper1"
             lbOrden.DataSource = BindingSource6
             lbOrden.DisplayMember = "nro"
             lbOrden.ValueMember = "nroOrden"
@@ -220,6 +220,7 @@ Public Class registraOrdenCompraForm
         Label31.ForeColor = ForeColorLabel
         Label32.ForeColor = ForeColorLabel
         Label33.ForeColor = ForeColorLabel
+        Label34.ForeColor = ForeColorLabel
         CheckBoxIGV.ForeColor = ForeColorLabel
         GroupBox1.ForeColor = ForeColorLabel
         btnAperturar.ForeColor = ForeColorButtom
@@ -340,6 +341,13 @@ Public Class registraOrdenCompraForm
                 Else
                     txtNroCot.Clear()
                 End If
+
+                If BindingSource6.Item(lbOrden.SelectedIndex)(25) > 0 Then 'con Orden de deselbolso
+                    txtNroDes.Text = recuperarOrdenDes(BindingSource6.Item(lbOrden.SelectedIndex)(25))
+                Else
+                    txtNroDes.Clear()
+                End If
+
 
                 If BindingSource6.Item(lbOrden.SelectedIndex)(22) > 0 Then 'con solicitud
                     txtNroSol.Text = recuperarIdSol(BindingSource6.Item(lbOrden.SelectedIndex)(22))
@@ -515,8 +523,8 @@ Public Class registraOrdenCompraForm
             vfVan3 = False
 
             'Actualizando el dataTable
-            dsAlmacen.Tables("VOrdenComAper").Clear()
-            daTabla1.Fill(dsAlmacen, "VOrdenComAper")
+            dsAlmacen.Tables("VOrdenComAper1").Clear()
+            daTabla1.Fill(dsAlmacen, "VOrdenComAper1")
 
             'visualizarDet()
             recuperarUltimoNro(vSCodigo)
@@ -677,8 +685,8 @@ Public Class registraOrdenCompraForm
             vfVan3 = False  'Enlazar DetalleCot TRUE en boton cancelar
 
             'Actualizando el dataTable
-            dsAlmacen.Tables("VOrdenComAper").Clear()
-            daTabla1.Fill(dsAlmacen, "VOrdenComAper")
+            dsAlmacen.Tables("VOrdenComAper1").Clear()
+            daTabla1.Fill(dsAlmacen, "VOrdenComAper1")
 
             recuperarUltimoNro(vSCodigo)
             'BindingSource0.Position = BindingSource0.Find("codGruC", codGruC)  'NO ubicar por grupo borrado
@@ -723,6 +731,11 @@ Public Class registraOrdenCompraForm
         If ValidaFechaMayorXXXX(date1.Value.Date, 2013) Then
             MessageBox.Show("Ingrese fecha mayor al año 2012", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
             date1.Focus()
+            Exit Sub
+        End If
+
+        If recuperarAprobado(BindingSource6.Item(lbOrden.SelectedIndex)(25)) > 0 Then 'Ya se aprobo por gerencia
+            MessageBox.Show("Proceso denegado, ya fue aprobado por [GERENCIA]", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
             Exit Sub
         End If
 
@@ -774,8 +787,8 @@ Public Class registraOrdenCompraForm
             vfVan3 = False  'Enlazar DetalleCot TRUE en boton cancelar
 
             'Actualizando el dataSet 
-            dsAlmacen.Tables("VOrdenComAper").Clear()
-            daTabla1.Fill(dsAlmacen, "VOrdenComAper")
+            dsAlmacen.Tables("VOrdenComAper1").Clear()
+            daTabla1.Fill(dsAlmacen, "VOrdenComAper1")
 
             'Buscando por nombre de campo y luego pocisionarlo con el indice
             BindingSource6.Position = BindingSource6.Find("nroO", campo)
@@ -992,6 +1005,11 @@ Public Class registraOrdenCompraForm
             Exit Sub
         End If
 
+        If recuperarAprobado(BindingSource6.Item(lbOrden.SelectedIndex)(25)) > 0 Then 'Ya se aprobo por gerencia
+            MessageBox.Show("Proceso denegado, ya fue aprobado por [GERENCIA]", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
+            Exit Sub
+        End If
+
         Dim finalMytrans As Boolean = False
         Dim wait As New waitForm
         wait.Show()
@@ -1123,9 +1141,22 @@ Public Class registraOrdenCompraForm
         cmInserTable1.Parameters("@Identity").Direction = ParameterDirection.Output
     End Sub
 
+    Private Function recuperarAprobado(ByVal idOP As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select COUNT(*) from TPersDesem where estDesem=1 and tipoA=2 and idOP=" & idOP '1=Aprobado  2=Gerencia
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
     Private Sub TSModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSModificar.Click
         If BindingSource5.Count = 0 Then
             StatusBarClass.messageBarraEstado("  NO EXISTE REGISTROS A PROCESAR...")
+            Exit Sub
+        End If
+
+        If recuperarAprobado(BindingSource6.Item(lbOrden.SelectedIndex)(25)) > 0 Then 'Ya se aprobo por gerencia
+            MessageBox.Show("Proceso denegado, ya fue aprobado por [GERENCIA]", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
             Exit Sub
         End If
 
@@ -1283,6 +1314,11 @@ Public Class registraOrdenCompraForm
             Exit Sub
         End If
 
+        If recuperarAprobado(BindingSource6.Item(lbOrden.SelectedIndex)(25)) > 0 Then 'Ya se aprobo por gerencia
+            MessageBox.Show("Proceso denegado, ya fue aprobado por [GERENCIA]", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
+            Exit Sub
+        End If
+
         Dim resp As Short = MessageBox.Show("Esta segúro de eliminar: " & BindingSource5.Item(BindingSource5.Position)(3) & "  Si elimina no podra deshacer...", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
             Exit Sub
@@ -1394,8 +1430,8 @@ Public Class registraOrdenCompraForm
             vfVan3 = False  'Enlazar DetalleOrden TRUE en boton cancelar
 
             'Actualizando el dataTable
-            dsAlmacen.Tables("VOrdenComAper").Clear()
-            daTabla1.Fill(dsAlmacen, "VOrdenComAper")
+            dsAlmacen.Tables("VOrdenComAper1").Clear()
+            daTabla1.Fill(dsAlmacen, "VOrdenComAper1")
 
             recuperarUltimoNro(vSCodigo)
             'BindingSource0.Position = BindingSource0.Find("codGruC", codGruC)  'NO ubicar por grupo borrado
@@ -1466,8 +1502,8 @@ Public Class registraOrdenCompraForm
         vfVan3 = False
 
         'Actualizando el dataTable
-        dsAlmacen.Tables("VOrdenComAper").Clear()
-        daTabla1.Fill(dsAlmacen, "VOrdenComAper")
+        dsAlmacen.Tables("VOrdenComAper1").Clear()
+        daTabla1.Fill(dsAlmacen, "VOrdenComAper1")
 
         'visualizarDet()
         recuperarUltimoNro(vSCodigo)
@@ -1491,6 +1527,14 @@ Public Class registraOrdenCompraForm
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
         cmdCampo.CommandText = "select case when nroCot<100 then '000'+ltrim(str(nroCot)) when nroCot>=100 and nroCot<1000 then '00'+ltrim(str(nroCot)) when nroCot>=1000 and nroCot<10000 then '0'+ltrim(str(nroCot)) else ltrim(str(nroCot)) end + ' - ' + ltrim(str(year(fecCot))) from TCotizacion where codCot=" & codCot
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
+    Private Function recuperarOrdenDes(ByVal idOP As Integer) As String
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select serie+' - '+case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end from TOrdenDesembolso where idOP=" & idOP
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function
@@ -1534,6 +1578,11 @@ Public Class registraOrdenCompraForm
         vCod1 = lbOrden.Text.Trim()
         vNroOrden = lbOrden.SelectedValue
         vCod2 = "0"  'retornar el idSol de solicitud
+
+        If recuperarAprobado(BindingSource6.Item(lbOrden.SelectedIndex)(25)) > 0 Then 'Ya se aprobo por gerencia
+            MessageBox.Show("Proceso denegado, ya fue aprobado por [GERENCIA]", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
+            Exit Sub
+        End If
 
         Dim jala As New jalarSolicitud1Form
         jala.ShowDialog()

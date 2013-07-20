@@ -191,6 +191,18 @@
       <DependentUpon>DataSetAlmacen.xsd</DependentUpon>
     </Compile>
     <Compile Include="DatasetAlmacenModule.vb" />
+    <Compile Include="entradaSalidaAlmacen1Form.Designer.vb">
+      <DependentUpon>entradaSalidaAlmacen1Form.vb</DependentUpon>
+    </Compile>
+    <Compile Include="entradaSalidaAlmacen1Form.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gerencia1OrdenDesembolsoForm.Designer.vb">
+      <DependentUpon>gerencia1OrdenDesembolsoForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="gerencia1OrdenDesembolsoForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="gerenciaOrdenDesembolsoForm.Designer.vb">
       <DependentUpon>gerenciaOrdenDesembolsoForm.vb</DependentUpon>
     </Compile>
@@ -497,6 +509,12 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport4.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="entradaSalidaAlmacen1Form.resx">
+      <DependentUpon>entradaSalidaAlmacen1Form.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gerencia1OrdenDesembolsoForm.resx">
+      <DependentUpon>gerencia1OrdenDesembolsoForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="gerenciaOrdenDesembolsoForm.resx">
       <DependentUpon>gerenciaOrdenDesembolsoForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -644,7 +662,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\images\Magnify.gif" />
     <Content Include="SSP1.ico" />
   </ItemGroup>
   <ItemGroup>

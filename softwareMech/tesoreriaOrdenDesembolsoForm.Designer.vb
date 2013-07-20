@@ -524,12 +524,13 @@ Partial Class tesoreriaOrdenDesembolsoForm
         'cbMod
         '
         Me.cbMod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbMod.DropDownWidth = 400
+        Me.cbMod.DropDownWidth = 500
         Me.cbMod.Enabled = False
         Me.cbMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbMod.FormattingEnabled = True
         Me.cbMod.IntegralHeight = False
         Me.cbMod.Location = New System.Drawing.Point(124, 23)
+        Me.cbMod.MaxDropDownItems = 16
         Me.cbMod.Name = "cbMod"
         Me.cbMod.Size = New System.Drawing.Size(243, 21)
         Me.cbMod.TabIndex = 337

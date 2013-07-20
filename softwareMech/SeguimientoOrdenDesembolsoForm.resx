@@ -120,6 +120,9 @@
   <metadata name="BindingNavigator1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="BindingNavigator1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="BindingNavigatorMoveFirstItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -174,6 +177,13 @@
         gTgvl0us12tMJhMkk0l4PB7I5XKo1Wo4HA6USiVMp1Ok02k6h4MVJ2TiRiDE+fw8tBtWbPd9BYxGI+Ry
         Odq/WCw+TLCnkagKhQJCoRACgQCnpxKcnb2ASCSCRCKBVqt9eivJ2j6kf2P/Ap2WATUWW/EmAAAAAElF
         TkSuQmCC
+</value>
+  </data>
+  <data name="btnOrdCompra.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhEAAQAIL/AP///4CAAAD//wAAAMDAwAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQB
+        AAAEACwAAAAAEAAQAAAIOwAJCBxIsKDBgwgTKlxocIBDhgMESBygMCIAABMTWpQogCLCiBw7agQp8mMA
+        hw9Neqx4kiGBlC5jxgwIADs=
 </value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

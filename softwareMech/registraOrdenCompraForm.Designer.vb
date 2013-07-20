@@ -21,8 +21,8 @@ Partial Class registraOrdenCompraForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(registraOrdenCompraForm))
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.txtDet = New System.Windows.Forms.TextBox
         Me.Label32 = New System.Windows.Forms.Label
@@ -132,6 +132,8 @@ Partial Class registraOrdenCompraForm
         Me.Label23 = New System.Windows.Forms.Label
         Me.txtCan = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Label24 = New System.Windows.Forms.Label
+        Me.Label34 = New System.Windows.Forms.Label
+        Me.txtNroDes = New System.Windows.Forms.TextBox
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -896,6 +898,8 @@ Partial Class registraOrdenCompraForm
         '
         'Panel3
         '
+        Me.Panel3.Controls.Add(Me.txtNroDes)
+        Me.Panel3.Controls.Add(Me.Label34)
         Me.Panel3.Controls.Add(Me.Label26)
         Me.Panel3.Controls.Add(Me.btnSol)
         Me.Panel3.Controls.Add(Me.txtNroSol)
@@ -947,8 +951,8 @@ Partial Class registraOrdenCompraForm
         Me.dgTabla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgTabla2.Location = New System.Drawing.Point(1, 0)
         Me.dgTabla2.Name = "dgTabla2"
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle9
         Me.dgTabla2.Size = New System.Drawing.Size(900, 173)
         Me.dgTabla2.TabIndex = 15
         '
@@ -1212,8 +1216,8 @@ Partial Class registraOrdenCompraForm
         Me.dgTabla1.Location = New System.Drawing.Point(0, 25)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle10
         Me.dgTabla1.Size = New System.Drawing.Size(900, 123)
         Me.dgTabla1.TabIndex = 7
         '
@@ -1272,6 +1276,27 @@ Partial Class registraOrdenCompraForm
         Me.Label24.Size = New System.Drawing.Size(41, 13)
         Me.Label24.TabIndex = 308
         Me.Label24.Text = "Cant.:"
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Location = New System.Drawing.Point(770, 174)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(131, 13)
+        Me.Label34.TabIndex = 326
+        Me.Label34.Text = "Orden Desembolso Nº"
+        '
+        'txtNroDes
+        '
+        Me.txtNroDes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNroDes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.txtNroDes.Location = New System.Drawing.Point(779, 187)
+        Me.txtNroDes.Name = "txtNroDes"
+        Me.txtNroDes.ReadOnly = True
+        Me.txtNroDes.Size = New System.Drawing.Size(119, 22)
+        Me.txtNroDes.TabIndex = 327
+        Me.txtNroDes.TabStop = False
+        Me.txtNroDes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'registraOrdenCompraForm
         '
@@ -1417,5 +1442,7 @@ Partial Class registraOrdenCompraForm
     Friend WithEvents Label32 As System.Windows.Forms.Label
     Friend WithEvents txtNot As System.Windows.Forms.TextBox
     Friend WithEvents Label33 As System.Windows.Forms.Label
+    Friend WithEvents Label34 As System.Windows.Forms.Label
+    Friend WithEvents txtNroDes As System.Windows.Forms.TextBox
 
 End Class

@@ -518,7 +518,7 @@ Public Class pantallaInicialForm
     End Sub
 
     Private Sub opcOrdDes2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDesAprobacion.Click
-        Dim mant As New gerenciaOrdenDesembolsoForm
+        Dim mant As New gerencia1OrdenDesembolsoForm
         mant.MdiParent = Me
         mant.Show()
     End Sub
@@ -571,5 +571,11 @@ Public Class pantallaInicialForm
         Dim mant As New contaOrdenDesembolsoForm
         mant.MdiParent = Me
         mant.Show()
+    End Sub
+
+    Private Sub opcAlm_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcAlm.Click
+        Dim alm As New entradaSalidaAlmacen1Form
+        alm.MdiParent = Me
+        alm.Show()
     End Sub
 End Class
