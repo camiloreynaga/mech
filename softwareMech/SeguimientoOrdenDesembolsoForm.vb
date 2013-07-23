@@ -42,6 +42,12 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' <remarks></remarks>
     Dim BindingSource5 As New BindingSource
 
+    ''' <summary>
+    ''' Solicitante
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim BindignSource6 As New BindingSource
+
 
     ''' <summary>
     ''' Instancia de objeto para Customizar grilla
@@ -52,6 +58,21 @@ Public Class SeguimientoOrdenDesembolsoForm
 
 #Region "Métodos"
 
+    ''' <summary>
+    ''' Crea un DataAdapter 
+    ''' </summary>
+    ''' <param name="DATable">Adapater</param>
+    ''' <param name="sele">Procedimiento Almacenado</param>
+    ''' <remarks></remarks>
+    Public Sub crearDataAdapterTableProcedure(ByRef DATable As SqlDataAdapter, ByVal sele As String)
+        DATable = New SqlDataAdapter
+        Dim cmSele As New SqlCommand
+        cmSele.CommandType = CommandType.StoredProcedure
+        cmSele.CommandText = sele
+        cmSele.Connection = Cn
+        'Agregando el comado select al dataAdapter
+        DATable.SelectCommand = cmSele
+    End Sub
 
     ''' <summary>
     ''' Metodo que carga los datos iniciales
@@ -63,24 +84,39 @@ Public Class SeguimientoOrdenDesembolsoForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         wait.Show()
-        Dim sele As String = "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,moneda,simbolo,solicitante,ruc,fono,email,codObra,codIde from VOrdenDesembolsoSeguimiento Order By idOp Desc"
-        crearDataAdapterTable(daVDetOrden, sele)
+        Dim sele As String '= "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,moneda,simbolo,solicitante,ruc,fono,email,codObra,codIde from VOrdenDesembolsoSeguimiento"
+        sele = "PA_SeguimientoDesembolso"
+        crearDataAdapterTableProcedure(daVDetOrden, sele)
+        'crearDataAdapterTable(daVDetOrden, sele)
 
-        sele = "Select codDesembolso,fecPago,montoPago,tipoP,moneda,simbolo,nroCue,banco,pagoDet,montoD,nroP,clasif from VPagoDesembolsoSeguimiento"
-        crearDataAdapterTable(daTabla1, sele)
+        sele = "PA_SeguimientoPagos"
+        'sele = "Select codDesembolso,fecPago,montoPago,tipoP,moneda,simbolo,nroCue,banco,pagoDet,montoD,nroP,clasif from VPagoDesembolsoSeguimiento"
+        'crearDataAdapterTable(daTabla1, sele)
+        crearDataAdapterTableProcedure(daTabla1, sele)
 
+        'sele = "PA_SeguimientoComprobantes"
         sele = "select idOP,fecEnt,nroConfor  from TOrdenDesembolso"
         crearDataAdapterTable(daTabla2, sele)
+        'crearDataAdapterTableProcedure(daTabla2, sele)
 
+        'sele = "PA_SeguimientoAprobaciones"
         sele = "select idOp,nombre,apellido,Area,Estado,ObserDesem,fecFir from VAprobacionesSeguimiento "
+
         crearDataAdapterTable(daTabla3, sele)
+        'crearDataAdapterTableProcedure(daTabla3, sele)
 
-        sele = "Select codigo,nombre from tLugarTrabajo"
-        crearDataAdapterTable(daTabla4, sele)
+        sele = "PA_LugarTrabajo" '"Select codigo,nombre from tLugarTrabajo"
+        'crearDataAdapterTable(daTabla4, sele)
+        crearDataAdapterTableProcedure(daTabla4, sele)
 
-        sele = "Select codIde,razon from TIdentidad where idTipId=2 order by razon asc"
-        crearDataAdapterTable(daTabla5, sele)
+        sele = "PA_Proveedores"
+        '"Select codIde,razon from TIdentidad where idTipId=2"
+        'crearDataAdapterTable(daTabla5, sele)
+        crearDataAdapterTableProcedure(daTabla5, sele)
         'daTabla1.SelectCommand.Parameters.Add("@idDesembolso", SqlDbType.Int).Value = 0
+
+        sele = "select (nombre +' '+ apellido) as solicitante from Tpersonal where codPers > 1"
+        crearDataAdapterTable(daTabla6, sele)
 
         Try
             crearDSAlmacen()
@@ -115,9 +151,19 @@ Public Class SeguimientoOrdenDesembolsoForm
             daTabla5.Fill(dsAlmacen, "TIdentidad")
             BindingSource5.DataSource = dsAlmacen
             BindingSource5.DataMember = "TIdentidad"
+            ' BindingSource5.Filter = "idTipId=2"
+            BindingSource5.Sort = "razon asc"
             cbProveedor.DataSource = BindingSource5
             cbProveedor.DisplayMember = "razon"
             cbProveedor.ValueMember = "codIde"
+
+            daTabla6.Fill(dsAlmacen, "TSolicitante")
+            BindignSource6.DataSource = dsAlmacen
+            BindignSource6.DataMember = "TSolicitante"
+            BindignSource6.Sort = "solicitante ASC"
+            cbSolicitante.ComboBox.DataSource = BindignSource6
+            cbSolicitante.ComboBox.DisplayMember = "solicitante"
+            cbSolicitante.ComboBox.ValueMember = "solicitante"
 
         Catch f As Exception
             MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
@@ -164,10 +210,6 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         'dgPagos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         Try
-
-            
-
-
             With dgPagos
                 'codigo Desembolo
                 .Columns("codDesembolso").Visible = False
@@ -243,9 +285,6 @@ Public Class SeguimientoOrdenDesembolsoForm
         dgDesembolso.ReadOnly = True
         dgDesembolso.AllowUserToAddRows = False
         dgDesembolso.AllowUserToDeleteRows = False
-
-
-
         With dgDesembolso
 
             .Columns("idOP").Visible = False
@@ -524,7 +563,7 @@ Public Class SeguimientoOrdenDesembolsoForm
                 txtNombreTesoreria.Text = BindingSource3.Item(2)(1) & " " & BindingSource3.Item(2)(2)
                 txtFechaTesoreria.Text = BindingSource3.Item(2)(6)
             End If
-            
+
         Else
             txtEstadoTesoreria.Text = "PENDIENTE"
             txtNombreTesoreria.Text = ""
@@ -599,7 +638,7 @@ Public Class SeguimientoOrdenDesembolsoForm
                         If TypeOf TabControl1.TabPages(j).Controls(index).Controls(k) Is TextBox Then
                             CType(TabControl1.TabPages(j).Controls(index).Controls(k), TextBox).ReadOnly = True  ' ForeColorLabel
                         End If
-                        
+
                     Next
 
                 End If
@@ -619,6 +658,10 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         'Para el Group Box del form
         oGrilla.configurarColorControl("Label", GroupBox2, ForeColorLabel)
+
+        '
+        chkSolicitante.BackColor = Color.White
+
 
     End Sub
 
@@ -680,13 +723,17 @@ Public Class SeguimientoOrdenDesembolsoForm
                 pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
             End If
 
-            If txtBuscarSolicitante.Text.Trim().Length > 0 Then
-                pCriterio = "solicitante like '%" & txtBuscarSolicitante.Text.Trim() & "%'"
+            If chkSolicitante.Checked = False Then
+                pCriterio = "solicitante = '" & cbSolicitante.Text.Trim() & "'"
                 pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
             End If
 
             BindingSource0.Filter = pFiltro
+
+            BindingSource0.Sort = "idOp Desc"
         End If
+        'Colorea la Grilla
+        ColorearGrilla()
 
     End Sub
 
@@ -721,10 +768,12 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function RecuperarOrdenCompra(ByVal criterio As String) As Object
-        Dim consulta As String = "select nroOrden from TDesOrden where idOp=" & criterio
+        Dim consulta As String = "PA_RecuperarOrdenCompra" ' "select nroOrden from TDesOrden where idOp=" & criterio
         Dim comando As New SqlCommand
         comando.Connection = Cn
-        comando.CommandType = CommandType.Text
+        comando.Parameters.Add(New SqlParameter("@idDesembolso", SqlDbType.Int)).Value = criterio
+
+        comando.CommandType = CommandType.StoredProcedure
         comando.CommandText = consulta
         Return comando.ExecuteScalar
     End Function
@@ -784,10 +833,8 @@ Public Class SeguimientoOrdenDesembolsoForm
 
     Private Sub dgDesembolso_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgDesembolso.CellClick, dgDesembolso.CellEnter
         enlazarText()
-
-
         'filtrando para que muestre los registros de pagos por orden de desembolso seleccionado
-        ' 
+        '  
         BindingSource1.Filter = "codDesembolso=" & BindingSource0.Item(BindingSource0.Position)(0)
         'filtrando para que muestre los registros de contabilidad por orden de desembolso seleccionado
         BindingSource2.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
@@ -797,11 +844,21 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         enlazarTextAprobaciones()
 
-        txtOrdCompra.Text = RecuperarOrdenCompra(BindingSource0.Item(BindingSource0.Position)(0))
+              ''
 
-        'ModificandoColumnasDGVPagos()
-        'ModificandoColumnaDGVConta()
+    End Sub
 
+    Private Sub dgDesembolso_CurrentCellChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgDesembolso.CurrentCellChanged
+        Me.Cursor = Cursors.WaitCursor
+        Try
+            txtOrdCompra.Text = recuperarNroOrdenCompra(CInt(BindingSource0.Item(BindingSource0.Position)(0)))
+
+        Catch ex As Exception
+
+        Finally
+            Me.Cursor = Cursors.Default
+        End Try
+       
     End Sub
 
 
@@ -841,7 +898,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         Me.Close()
     End Sub
 
-   
+
 
     Private Sub DataGridView1_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
 
@@ -860,8 +917,11 @@ Public Class SeguimientoOrdenDesembolsoForm
         ColorearGrilla()
     End Sub
 
-    Private Sub dgDesembolso_RowPostPaint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewRowPostPaintEventArgs) Handles dgDesembolso.RowPostPaint
-        ColorearGrilla()
+    Private Sub dgDesembolso_RowPostPaint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewRowPostPaintEventArgs)
+        'If dgDesembolso.SortedColumn.Index > 0 Then
+
+        'End If
+
     End Sub
 
     Private Sub chkObras_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkObras.CheckedChanged
@@ -929,7 +989,7 @@ Public Class SeguimientoOrdenDesembolsoForm
     End Sub
 
 
-    Private Sub txtBuscarSolicitante_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtBuscarSolicitante.TextChanged
+    Private Sub txtBuscarSolicitante_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         filtrando()
     End Sub
 
@@ -940,7 +1000,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         End If
 
         'vCod1 = BindingSource3.Item(BindingSource3.Position)(2) & " - " & BindingSource3.Item(BindingSource3.Position)(3)
-        vNroOrden = txtOrdCompra.Text  '(BindingSource3.Item(BindingSource3.Position)(0)) 'idOP 
+        vNroOrden = RecuperarOrdenCompra(BindingSource0.Item(BindingSource0.Position)(0)) ' txtOrdCompra.Text  '(BindingSource3.Item(BindingSource3.Position)(0)) 'idOP 
 
         Dim jala As New jalarOrdenCompra2Form
         jala.ShowDialog()
@@ -953,4 +1013,29 @@ Public Class SeguimientoOrdenDesembolsoForm
     Private Sub txtObsGerencia_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtObsGerencia.TextChanged
 
     End Sub
+
+    Private Sub dgDesembolso_Sorted(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgDesembolso.Sorted
+        ColorearGrilla()
+    End Sub
+
+   
+   
+    Private Sub cbSolicitante_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSolicitante.SelectedIndexChanged
+        filtrando()
+
+    End Sub
+
+    Private Sub chkSolicitante_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSolicitante.CheckedChanged
+        If chkSolicitante.Checked Then
+            cbSolicitante.Visible = False
+            TSLabelSolicitante.Visible = False
+        Else
+            cbSolicitante.Visible = True
+            TSLabelSolicitante.Visible = True
+        End If
+
+        filtrando()
+    End Sub
+
+    
 End Class

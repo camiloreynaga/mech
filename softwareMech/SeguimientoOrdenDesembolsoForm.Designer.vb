@@ -21,9 +21,9 @@ Partial Class SeguimientoOrdenDesembolsoForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SeguimientoOrdenDesembolsoForm))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.gbDesembolso = New System.Windows.Forms.GroupBox
         Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
@@ -42,7 +42,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.cbEstadoDesembolso = New System.Windows.Forms.ToolStripComboBox
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
         Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel
-        Me.txtBuscarSolicitante = New System.Windows.Forms.ToolStripTextBox
         Me.dgDesembolso = New System.Windows.Forms.DataGridView
         Me.TabControl1 = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
@@ -127,6 +126,9 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Label21 = New System.Windows.Forms.Label
         Me.chkObras = New System.Windows.Forms.CheckBox
         Me.chkProveedor = New System.Windows.Forms.CheckBox
+        Me.cbSolicitante = New System.Windows.Forms.ToolStripComboBox
+        Me.chkSolicitante = New System.Windows.Forms.CheckBox
+        Me.TSLabelSolicitante = New System.Windows.Forms.ToolStripLabel
         Me.gbDesembolso.SuspendLayout()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindingNavigator1.SuspendLayout()
@@ -152,6 +154,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         '
         'gbDesembolso
         '
+        Me.gbDesembolso.Controls.Add(Me.chkSolicitante)
         Me.gbDesembolso.Controls.Add(Me.BindingNavigator1)
         Me.gbDesembolso.Controls.Add(Me.dgDesembolso)
         Me.gbDesembolso.Location = New System.Drawing.Point(18, 47)
@@ -166,7 +169,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.BindingNavigator1.CountItem = Me.BindingNavigatorCountItem
         Me.BindingNavigator1.DeleteItem = Nothing
         Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.btnImprimir, Me.ToolStripSeparator1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.cbEstadoDesembolso, Me.ToolStripSeparator3, Me.ToolStripLabel2, Me.txtBuscarSolicitante})
+        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.btnImprimir, Me.ToolStripSeparator1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.cbEstadoDesembolso, Me.ToolStripSeparator3, Me.ToolStripLabel2, Me.TSLabelSolicitante, Me.cbSolicitante})
         Me.BindingNavigator1.Location = New System.Drawing.Point(3, 212)
         Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -291,18 +294,13 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.ToolStripLabel2.Size = New System.Drawing.Size(61, 22)
         Me.ToolStripLabel2.Text = "Solicitante"
         '
-        'txtBuscarSolicitante
-        '
-        Me.txtBuscarSolicitante.Name = "txtBuscarSolicitante"
-        Me.txtBuscarSolicitante.Size = New System.Drawing.Size(270, 25)
-        '
         'dgDesembolso
         '
         Me.dgDesembolso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgDesembolso.Location = New System.Drawing.Point(0, 6)
         Me.dgDesembolso.Name = "dgDesembolso"
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgDesembolso.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgDesembolso.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgDesembolso.Size = New System.Drawing.Size(887, 203)
         Me.dgDesembolso.TabIndex = 0
         '
@@ -480,9 +478,9 @@ Partial Class SeguimientoOrdenDesembolsoForm
         'btnOrdCompra
         '
         Me.btnOrdCompra.Image = CType(resources.GetObject("btnOrdCompra.Image"), System.Drawing.Image)
-        Me.btnOrdCompra.Location = New System.Drawing.Point(778, 5)
+        Me.btnOrdCompra.Location = New System.Drawing.Point(792, 3)
         Me.btnOrdCompra.Name = "btnOrdCompra"
-        Me.btnOrdCompra.Size = New System.Drawing.Size(68, 25)
+        Me.btnOrdCompra.Size = New System.Drawing.Size(62, 25)
         Me.btnOrdCompra.TabIndex = 8
         Me.btnOrdCompra.Text = "Ver"
         Me.btnOrdCompra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -572,7 +570,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         '
         Me.txtOrdCompra.Location = New System.Drawing.Point(706, 6)
         Me.txtOrdCompra.Name = "txtOrdCompra"
-        Me.txtOrdCompra.Size = New System.Drawing.Size(66, 20)
+        Me.txtOrdCompra.Size = New System.Drawing.Size(80, 20)
         Me.txtOrdCompra.TabIndex = 7
         '
         'txtProveedor
@@ -618,8 +616,8 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dgPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgPagos.Location = New System.Drawing.Point(13, 37)
         Me.dgPagos.Name = "dgPagos"
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgPagos.RowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgPagos.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgPagos.Size = New System.Drawing.Size(845, 132)
         Me.dgPagos.TabIndex = 0
         '
@@ -707,8 +705,8 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dgContabilidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgContabilidad.Location = New System.Drawing.Point(9, 19)
         Me.dgContabilidad.Name = "dgContabilidad"
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgContabilidad.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgContabilidad.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgContabilidad.Size = New System.Drawing.Size(828, 135)
         Me.dgContabilidad.TabIndex = 0
         '
@@ -890,7 +888,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(690, 96)
+        Me.Label5.Location = New System.Drawing.Point(675, 96)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(102, 13)
         Me.Label5.TabIndex = 34
@@ -899,7 +897,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(717, 71)
+        Me.Label4.Location = New System.Drawing.Point(702, 69)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(75, 13)
         Me.Label4.TabIndex = 35
@@ -907,17 +905,17 @@ Partial Class SeguimientoOrdenDesembolsoForm
         '
         'txtDetraccion
         '
-        Me.txtDetraccion.Location = New System.Drawing.Point(798, 91)
+        Me.txtDetraccion.Location = New System.Drawing.Point(783, 91)
         Me.txtDetraccion.Name = "txtDetraccion"
-        Me.txtDetraccion.Size = New System.Drawing.Size(85, 20)
+        Me.txtDetraccion.Size = New System.Drawing.Size(100, 20)
         Me.txtDetraccion.TabIndex = 32
         Me.txtDetraccion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtMonto
         '
-        Me.txtMonto.Location = New System.Drawing.Point(798, 65)
+        Me.txtMonto.Location = New System.Drawing.Point(783, 65)
         Me.txtMonto.Name = "txtMonto"
-        Me.txtMonto.Size = New System.Drawing.Size(85, 20)
+        Me.txtMonto.Size = New System.Drawing.Size(100, 20)
         Me.txtMonto.TabIndex = 33
         Me.txtMonto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -1090,6 +1088,30 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.chkProveedor.Text = "Todos"
         Me.chkProveedor.UseVisualStyleBackColor = True
         '
+        'cbSolicitante
+        '
+        Me.cbSolicitante.Name = "cbSolicitante"
+        Me.cbSolicitante.Size = New System.Drawing.Size(240, 25)
+        Me.cbSolicitante.Visible = False
+        '
+        'chkSolicitante
+        '
+        Me.chkSolicitante.AutoSize = True
+        Me.chkSolicitante.Checked = True
+        Me.chkSolicitante.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkSolicitante.Location = New System.Drawing.Point(563, 217)
+        Me.chkSolicitante.Name = "chkSolicitante"
+        Me.chkSolicitante.Size = New System.Drawing.Size(61, 17)
+        Me.chkSolicitante.TabIndex = 2
+        Me.chkSolicitante.Text = "Todos"
+        Me.chkSolicitante.UseVisualStyleBackColor = True
+        '
+        'TSLabelSolicitante
+        '
+        Me.TSLabelSolicitante.Name = "TSLabelSolicitante"
+        Me.TSLabelSolicitante.Size = New System.Drawing.Size(70, 22)
+        Me.TSLabelSolicitante.Text = "      Todos    "
+        '
         'SeguimientoOrdenDesembolsoForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
@@ -1097,20 +1119,20 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.ClientSize = New System.Drawing.Size(915, 675)
         Me.Controls.Add(Me.cbProveedor)
         Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.gbDesembolso)
         Me.Controls.Add(Me.Label20)
         Me.Controls.Add(Me.cbObra)
         Me.Controls.Add(Me.Label21)
         Me.Controls.Add(Me.chkObras)
         Me.Controls.Add(Me.chkProveedor)
+        Me.Controls.Add(Me.gbDesembolso)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "SeguimientoOrdenDesembolsoForm"
+        Me.Controls.SetChildIndex(Me.gbDesembolso, 0)
         Me.Controls.SetChildIndex(Me.chkProveedor, 0)
         Me.Controls.SetChildIndex(Me.chkObras, 0)
         Me.Controls.SetChildIndex(Me.Label21, 0)
         Me.Controls.SetChildIndex(Me.cbObra, 0)
         Me.Controls.SetChildIndex(Me.Label20, 0)
-        Me.Controls.SetChildIndex(Me.gbDesembolso, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
         Me.Controls.SetChildIndex(Me.cbProveedor, 0)
         Me.Controls.SetChildIndex(Me.lblTitulo, 0)
@@ -1210,7 +1232,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
     Friend WithEvents chkProveedor As System.Windows.Forms.CheckBox
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripLabel2 As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents txtBuscarSolicitante As System.Windows.Forms.ToolStripTextBox
     Friend WithEvents btnOrdCompra As System.Windows.Forms.Button
     Friend WithEvents dgPagos As System.Windows.Forms.DataGridView
     Friend WithEvents txtNombreGerente As System.Windows.Forms.TextBox
@@ -1240,5 +1261,8 @@ Partial Class SeguimientoOrdenDesembolsoForm
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents txtObsGerencia As System.Windows.Forms.TextBox
     Friend WithEvents btnCerrar As System.Windows.Forms.Button
+    Friend WithEvents cbSolicitante As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents chkSolicitante As System.Windows.Forms.CheckBox
+    Friend WithEvents TSLabelSolicitante As System.Windows.Forms.ToolStripLabel
 
 End Class
