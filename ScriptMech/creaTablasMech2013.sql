@@ -65,8 +65,6 @@ create table TIdentidad
 --update TIdentidad set cuentaDet=''
 
 --LUGARES DE TRABAJO. OBRAS O SEDES
---DROP table TLugarTrabajo
---select * from TLugarTrabajo
 create table TLugarTrabajo
 (	codigo varchar(10) primary key,  
 	fecAper date,
@@ -82,7 +80,6 @@ create table TLugarTrabajo
 	foreign key(codIde) references TIdentidad
 )
 --TABLA INTERMEDIA RELACIONA PERSONAL CON OBRAS/SEDES (LUGARES DE TRABAJO)
---DROP table TPersLugar
 create table TPersLugar
 (	codPL int identity primary key,
 	codPers int,
@@ -91,7 +88,6 @@ create table TPersLugar
 	foreign key(codigo) references TLugarTrabajo
 )
 -- UBICACIONES. (ALMACENES DE OBRA)
---DROP table TUbicacion
 create table TUbicacion
 (	codUbi int identity primary key,
 	ubicacion varchar(50),
@@ -116,8 +112,6 @@ create table TUnidad
 	unidad varchar(20)
 )
 -- REGISTROS DE MATERIALES (INSUMOS)
---select * from TMaterial
---DROP table TMaterial
 create table TMaterial
 (	codMat int identity(10,1) primary key,
 	material varchar(100),
@@ -144,8 +138,12 @@ create table TTipoDocCompra
 --FORMA DE PAGO DISPONIBLES PARA COMPRAS
 create table TFormaPago
 (	codPag int identity(1,1) primary key,	
-	forma varchar(20)  --Contado, Credito	
+	forma varchar(60)  --Contado, Credito	
 )	
+-- select * from TFormaPago
+--MODIFICAR TIPO de DATOS campos a la estructura de nuestra base de datos
+--ALTER TABLE TFormaPago ALTER COLUMN forma varchar(60)
+
 -- MONEDAS USADAS EN TRANSACCIONES
 create table TMoneda
 (	codMon int identity(30,5) primary key,	--NO CAMBIAR JUAN
@@ -329,8 +327,7 @@ create table TGrupoCot
 	descrip varchar(40),  -- descripcion del grupo de cotizaciones
 	estGru int	--0=abierto,1=cerrado
 )
---SELECT * FROM TCotizacion
---DROP table TCotizacion
+
 create table TCotizacion
 (	codCot int identity(1,1) primary key,
 	nroCot int,  --007-MECH-2013
@@ -360,8 +357,6 @@ create table TCotizacion
 --ALTER TABLE TCotizacion ADD codMon int default 30
 --update TCotizacion set codMon=30
 
---select * from TDetalleCot
---DROP table TDetalleCot
 create table TDetalleCot
 (	codDetC int identity(1,1) primary key,
 	cant decimal(8,2),
@@ -376,8 +371,6 @@ create table TDetalleCot
 	foreign key(codCot) references TCotizacion
 )
 
---select * from TOrdenCompra
---DROP table TOrdenCompra
 create table TOrdenCompra
 (	nroOrden int identity(1,1) primary key,
 	nroO int,	
@@ -414,8 +407,6 @@ create table TOrdenCompra
 --ALTER TABLE TOrdenCompra ADD nota varchar(200) default ''
 --update TOrdenCompra set nota=''
 
---SELECT * FROM TDetalleOrden
---DROP table TDetalleOrden
 create table TDetalleOrden
 (	codDetO int identity(1,1) primary key,
 	cant decimal(8,2),
@@ -428,7 +419,7 @@ create table TDetalleOrden
 	foreign key(codMat) references TMaterial,
 	foreign key(nroOrden) references TOrdenCompra
 )
---DROP table TOrdenGuia
+
 create table TOrdenGuia
 (	nroOG int identity(1,1) primary key,
 	nroOrden int,
@@ -437,8 +428,6 @@ create table TOrdenGuia
 	foreign key(codGuia) references TGuiaRemision
 )
 
---SELECT * FROM TOrdenDesembolso
---DROP table TOrdenDesembolso
 create table TOrdenDesembolso
 (	idOP int identity(1,1) primary key,
 	serie varchar(5),
@@ -481,8 +470,6 @@ create table TOrdenDesembolso
 --ALTER TABLE TOrdenDesembolso ADD codSerO int default 1
 --update TOrdenDesembolso set codSerO=1
 
---SELECT * FROM TDesOrden
---DROP table TDesOrden
 create table TDesOrden
 (	nroDO int identity(1,1) primary key,
 	idOP int,
@@ -567,7 +554,7 @@ create table TSeriePers
 )
 
 -----------------MODULO ALMACEN-----------------------
------------------EJECUTAR 15/07/2013------------------
+-----------------EJECUTAR 22/07/2013------------------
 ------------------------------------------------------
 
 create table TMatUbi
@@ -586,7 +573,7 @@ create table TTipoTransac
 
 create table TSaldo
 (	codSal int identity primary key,
-	saldo int,
+	saldo decimal(10,2),
 	codLug varchar(10)  --codigo obra
 )
 

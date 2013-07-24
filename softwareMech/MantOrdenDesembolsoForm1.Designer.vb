@@ -21,7 +21,7 @@ Partial Class MantOrdenDesembolsoForm1
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MantOrdenDesembolsoForm1))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.txtLetraTotal = New System.Windows.Forms.TextBox
         Me.date1 = New System.Windows.Forms.DateTimePicker
@@ -141,7 +141,6 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.btnAnula)
         Me.Panel1.Controls.Add(Me.cbMon)
-        Me.Panel1.Controls.Add(Me.btnAperturar1)
         Me.Panel1.Controls.Add(Me.txtTot)
         Me.Panel1.Controls.Add(Me.txtDet)
         Me.Panel1.Controls.Add(Me.btnImprimir)
@@ -156,10 +155,9 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Panel1.Controls.Add(Me.btnCerrar)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Controls.Add(Me.btnAperturar)
         Me.Panel1.Location = New System.Drawing.Point(14, 190)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(892, 89)
+        Me.Panel1.Size = New System.Drawing.Size(892, 64)
         Me.Panel1.TabIndex = 3
         '
         'txtLetraTotal
@@ -194,12 +192,11 @@ Partial Class MantOrdenDesembolsoForm1
         'btnAnula
         '
         Me.btnAnula.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnAnula.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAnula.Image = CType(resources.GetObject("btnAnula.Image"), System.Drawing.Image)
         Me.btnAnula.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAnula.Location = New System.Drawing.Point(816, 31)
+        Me.btnAnula.Location = New System.Drawing.Point(800, 3)
         Me.btnAnula.Name = "btnAnula"
-        Me.btnAnula.Size = New System.Drawing.Size(71, 27)
+        Me.btnAnula.Size = New System.Drawing.Size(77, 25)
         Me.btnAnula.TabIndex = 331
         Me.btnAnula.TabStop = False
         Me.btnAnula.Text = "Anular"
@@ -224,7 +221,7 @@ Partial Class MantOrdenDesembolsoForm1
         Me.btnAperturar1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAperturar1.Image = CType(resources.GetObject("btnAperturar1.Image"), System.Drawing.Image)
         Me.btnAperturar1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAperturar1.Location = New System.Drawing.Point(394, 56)
+        Me.btnAperturar1.Location = New System.Drawing.Point(370, 112)
         Me.btnAperturar1.Name = "btnAperturar1"
         Me.btnAperturar1.Size = New System.Drawing.Size(209, 27)
         Me.btnAperturar1.TabIndex = 329
@@ -255,12 +252,11 @@ Partial Class MantOrdenDesembolsoForm1
         'btnImprimir
         '
         Me.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnImprimir.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
         Me.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnImprimir.Location = New System.Drawing.Point(719, 59)
+        Me.btnImprimir.Location = New System.Drawing.Point(717, 29)
         Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(91, 27)
+        Me.btnImprimir.Size = New System.Drawing.Size(77, 25)
         Me.btnImprimir.TabIndex = 327
         Me.btnImprimir.TabStop = False
         Me.btnImprimir.Text = "Imprimir"
@@ -271,12 +267,11 @@ Partial Class MantOrdenDesembolsoForm1
         'btnElimina
         '
         Me.btnElimina.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnElimina.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnElimina.Image = CType(resources.GetObject("btnElimina.Image"), System.Drawing.Image)
         Me.btnElimina.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnElimina.Location = New System.Drawing.Point(719, 31)
+        Me.btnElimina.Location = New System.Drawing.Point(800, 28)
         Me.btnElimina.Name = "btnElimina"
-        Me.btnElimina.Size = New System.Drawing.Size(91, 27)
+        Me.btnElimina.Size = New System.Drawing.Size(77, 25)
         Me.btnElimina.TabIndex = 326
         Me.btnElimina.TabStop = False
         Me.btnElimina.Text = "Eliminar"
@@ -287,12 +282,11 @@ Partial Class MantOrdenDesembolsoForm1
         'btnModificar
         '
         Me.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnModificar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnModificar.Image = CType(resources.GetObject("btnModificar.Image"), System.Drawing.Image)
         Me.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnModificar.Location = New System.Drawing.Point(719, 3)
+        Me.btnModificar.Location = New System.Drawing.Point(717, 3)
         Me.btnModificar.Name = "btnModificar"
-        Me.btnModificar.Size = New System.Drawing.Size(91, 27)
+        Me.btnModificar.Size = New System.Drawing.Size(77, 25)
         Me.btnModificar.TabIndex = 325
         Me.btnModificar.TabStop = False
         Me.btnModificar.Text = "Guardar"
@@ -392,9 +386,9 @@ Partial Class MantOrdenDesembolsoForm1
         Me.btnAperturar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAperturar.Image = CType(resources.GetObject("btnAperturar.Image"), System.Drawing.Image)
         Me.btnAperturar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAperturar.Location = New System.Drawing.Point(154, 56)
+        Me.btnAperturar.Location = New System.Drawing.Point(370, 83)
         Me.btnAperturar.Name = "btnAperturar"
-        Me.btnAperturar.Size = New System.Drawing.Size(205, 27)
+        Me.btnAperturar.Size = New System.Drawing.Size(209, 27)
         Me.btnAperturar.TabIndex = 309
         Me.btnAperturar.TabStop = False
         Me.btnAperturar.Text = "Nuevo Sin Orden Compra"
@@ -422,7 +416,7 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Panel2.Controls.Add(Me.cbProv)
         Me.Panel2.Controls.Add(Me.Label9)
         Me.Panel2.Controls.Add(Me.Label7)
-        Me.Panel2.Location = New System.Drawing.Point(14, 280)
+        Me.Panel2.Location = New System.Drawing.Point(14, 255)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(892, 179)
         Me.Panel2.TabIndex = 4
@@ -593,7 +587,7 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Panel3.Controls.Add(Me.txtOrden)
         Me.Panel3.Controls.Add(Me.Label17)
         Me.Panel3.Controls.Add(Me.Label16)
-        Me.Panel3.Location = New System.Drawing.Point(14, 460)
+        Me.Panel3.Location = New System.Drawing.Point(14, 436)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(892, 71)
         Me.Panel3.TabIndex = 5
@@ -682,6 +676,7 @@ Partial Class MantOrdenDesembolsoForm1
         'Panel6
         '
         Me.Panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel6.Controls.Add(Me.btnAperturar1)
         Me.Panel6.Controls.Add(Me.txtObs)
         Me.Panel6.Controls.Add(Me.txtEst)
         Me.Panel6.Controls.Add(Me.txtGer)
@@ -700,15 +695,16 @@ Partial Class MantOrdenDesembolsoForm1
         Me.Panel6.Controls.Add(Me.Label35)
         Me.Panel6.Controls.Add(Me.txtNom1)
         Me.Panel6.Controls.Add(Me.Label32)
-        Me.Panel6.Location = New System.Drawing.Point(14, 532)
+        Me.Panel6.Controls.Add(Me.btnAperturar)
+        Me.Panel6.Location = New System.Drawing.Point(14, 509)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(892, 119)
+        Me.Panel6.Size = New System.Drawing.Size(892, 144)
         Me.Panel6.TabIndex = 8
         '
         'txtObs
         '
         Me.txtObs.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtObs.Location = New System.Drawing.Point(679, 100)
+        Me.txtObs.Location = New System.Drawing.Point(678, 100)
         Me.txtObs.Name = "txtObs"
         Me.txtObs.ReadOnly = True
         Me.txtObs.Size = New System.Drawing.Size(210, 13)
@@ -746,9 +742,9 @@ Partial Class MantOrdenDesembolsoForm1
         '
         'txtOtro
         '
-        Me.txtOtro.Location = New System.Drawing.Point(104, 94)
+        Me.txtOtro.Location = New System.Drawing.Point(104, 90)
         Me.txtOtro.Name = "txtOtro"
-        Me.txtOtro.Size = New System.Drawing.Size(240, 20)
+        Me.txtOtro.Size = New System.Drawing.Size(166, 20)
         Me.txtOtro.TabIndex = 377
         '
         'txtEst1
@@ -774,7 +770,7 @@ Partial Class MantOrdenDesembolsoForm1
         '
         Me.checkB7.AutoSize = True
         Me.checkB7.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.checkB7.Location = New System.Drawing.Point(42, 94)
+        Me.checkB7.Location = New System.Drawing.Point(42, 90)
         Me.checkB7.Name = "checkB7"
         Me.checkB7.Size = New System.Drawing.Size(56, 17)
         Me.checkB7.TabIndex = 376
@@ -785,7 +781,7 @@ Partial Class MantOrdenDesembolsoForm1
         '
         Me.checkB4.AutoSize = True
         Me.checkB4.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.checkB4.Location = New System.Drawing.Point(311, 65)
+        Me.checkB4.Location = New System.Drawing.Point(311, 61)
         Me.checkB4.Name = "checkB4"
         Me.checkB4.Size = New System.Drawing.Size(115, 17)
         Me.checkB4.TabIndex = 375
@@ -796,7 +792,7 @@ Partial Class MantOrdenDesembolsoForm1
         '
         Me.checkB6.AutoSize = True
         Me.checkB6.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.checkB6.Location = New System.Drawing.Point(130, 65)
+        Me.checkB6.Location = New System.Drawing.Point(130, 61)
         Me.checkB6.Name = "checkB6"
         Me.checkB6.Size = New System.Drawing.Size(139, 17)
         Me.checkB6.TabIndex = 374
@@ -807,7 +803,7 @@ Partial Class MantOrdenDesembolsoForm1
         '
         Me.checkB5.AutoSize = True
         Me.checkB5.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.checkB5.Location = New System.Drawing.Point(25, 65)
+        Me.checkB5.Location = New System.Drawing.Point(25, 61)
         Me.checkB5.Name = "checkB5"
         Me.checkB5.Size = New System.Drawing.Size(73, 17)
         Me.checkB5.TabIndex = 373
@@ -818,7 +814,7 @@ Partial Class MantOrdenDesembolsoForm1
         '
         Me.checkB3.AutoSize = True
         Me.checkB3.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.checkB3.Location = New System.Drawing.Point(319, 27)
+        Me.checkB3.Location = New System.Drawing.Point(319, 25)
         Me.checkB3.Name = "checkB3"
         Me.checkB3.Size = New System.Drawing.Size(107, 17)
         Me.checkB3.TabIndex = 372
@@ -829,7 +825,7 @@ Partial Class MantOrdenDesembolsoForm1
         '
         Me.checkB2.AutoSize = True
         Me.checkB2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.checkB2.Location = New System.Drawing.Point(208, 27)
+        Me.checkB2.Location = New System.Drawing.Point(208, 25)
         Me.checkB2.Name = "checkB2"
         Me.checkB2.Size = New System.Drawing.Size(62, 17)
         Me.checkB2.TabIndex = 371
@@ -840,7 +836,7 @@ Partial Class MantOrdenDesembolsoForm1
         '
         Me.checkB1.AutoSize = True
         Me.checkB1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.checkB1.Location = New System.Drawing.Point(29, 28)
+        Me.checkB1.Location = New System.Drawing.Point(29, 26)
         Me.checkB1.Name = "checkB1"
         Me.checkB1.Size = New System.Drawing.Size(69, 17)
         Me.checkB1.TabIndex = 370
@@ -849,7 +845,7 @@ Partial Class MantOrdenDesembolsoForm1
         '
         'txtObs1
         '
-        Me.txtObs1.Location = New System.Drawing.Point(214, 94)
+        Me.txtObs1.Location = New System.Drawing.Point(139, 90)
         Me.txtObs1.Name = "txtObs1"
         Me.txtObs1.Size = New System.Drawing.Size(110, 20)
         Me.txtObs1.TabIndex = 348
@@ -857,7 +853,7 @@ Partial Class MantOrdenDesembolsoForm1
         'Label35
         '
         Me.Label35.AutoSize = True
-        Me.Label35.Location = New System.Drawing.Point(125, 97)
+        Me.Label35.Location = New System.Drawing.Point(125, 93)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(86, 13)
         Me.Label35.TabIndex = 347
@@ -1070,8 +1066,8 @@ Partial Class MantOrdenDesembolsoForm1
         Me.dgTabla1.Location = New System.Drawing.Point(0, 0)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgTabla1.Size = New System.Drawing.Size(892, 140)
         Me.dgTabla1.TabIndex = 329
         '

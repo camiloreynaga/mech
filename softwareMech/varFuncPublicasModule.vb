@@ -72,6 +72,7 @@ Module varFuncPublicasModule
     Public vCodTipo As Integer
     Public vCont As Integer
     Public vCodProd As Integer
+    Public vCodUbi As Integer
     Public vCodGuia As Integer
     Public vObs As String
 

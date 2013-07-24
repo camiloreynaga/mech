@@ -2400,4 +2400,8 @@ Public Class registraCotizacion1Form
         Dim informe As New ReportViewerCotizacionForm
         informe.ShowDialog()
     End Sub
+
+    Private Sub lbCot_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbCot.SelectedIndexChanged
+
+    End Sub
 End Class

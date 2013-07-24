@@ -32,8 +32,6 @@ insert into TTipoUsu(tipo,tipoCargo) values('Administrador Obra',1)--9
 insert into TTipoUsu(tipo,tipoCargo) values('Almacenero',1)--10
 insert into TTipoUsu(tipo,tipoCargo) values('Contabilidad',0)--11
 insert into TTipoUsu(tipo,tipoCargo) values('Caja Chica',0)--12
-
-
 --update TTipoUsu set tipo='Residente' where codTipU=3
 --select * from TTipoUsu
 GO
@@ -104,10 +102,12 @@ insert TClasifPago (clasif) values ('CTS') --4
 GO
 -- select * from TClasifPago
 --*****************************************************
---------------------FIN DE SCRIPT----------------------
+--------------------EJECUTAR 22/07/2013----------------------
 --*****************************************************
-
-
+insert TTipoTransac (tipo) values ('ENTRADA') --1
+insert TTipoTransac (tipo) values ('SALIDA') --2
+GO
+--select * from TTipoTransac
 
 
 

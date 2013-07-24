@@ -83,8 +83,6 @@ as
 	 Return @Identity
 GO
 
---EJECUTAR AHORITA
---DROP procedure PA_InsertTPagoDesembolso
 create procedure PA_InsertTPagoDesembolso
 	@fec date,@codT int,@nro varchar(20),@pago varchar(100),@codC int,@codM int,@monto decimal(10,2),@montoD decimal(10,2),@idOP int,@idC int,
 	@Identity int output --parametro de salida
@@ -96,7 +94,6 @@ as
 	RETURN  @Identity
 GO
 
---DROP procedure PA_InsertOrdenCompra
 create procedure PA_InsertOrdenCompra
 	@nroO int,@fecO date, @codIde int, @codPers int,@codPag int, @igv decimal(6,2),@calIGV int,@codMon int,
 	@atiendeCom varchar(50),@cel varchar(50),@plazoEnt varchar(40),@transfe varchar(100),@nroProf varchar(40),@obsFac varchar(200), @estado int,
@@ -108,57 +105,113 @@ as
 	 SET @Identity=@@IDENTITY 
 	 Return @Identity
 go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---Sujeto de evaluación para permanencia
---inserta un registro en la tabla DocCompra. Documento de compra (Factura/Boleta)
-create procedure PA_InsertDocCompra
-	@serie varchar(5), @nroDoc int,@fecDoc date,@fechaCan varchar(10),@codTipDc int,@estado int, @codIde int, @codPag int, @igv decimal(6,2),@calIGV int,@codMon int,
-	@camD decimal(5,2),@obs varchar(100), @hist varchar(500),
-	@Identity int output
+--------EJECUTADOS CR-----------------
+-----------23/07/2013-----------------------
+-- PAra consultar los seguimientos
+create proc PA_SeguimientoDesembolso
 as
-	insert into TDocCompra(serie,nroDoc,fecDoc,fecCan,codTipDc,estado,codIde,codPag,igv,calIGV,codMon,camD,obs,hist)
-	 values (@serie,@nroDoc,@fecDoc,@fechaCan,@codTipDc,@estado,@codIde,@codPag,@igv,@calIGV,@codMon,@camD,@obs,@hist)
-	 SET @Identity=@@IDENTITY 
-	 Return @Identity
+Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,
+banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,
+descOtro,nroConfor,fecEnt,moneda,simbolo,solicitante,ruc,fono,email,codObra,codIde 
+from VOrdenDesembolsoSeguimiento
 go
 
---inserta un ítem en la tabla detalleCompra. Para Orden de compra.
+--Para recuperar las ordenes de compra
+create proc PA_RecuperarOrdenCompra
+@idDesembolso int
+as
+select nroOrden from TDesOrden where idOp=@idDesembolso
+go
 
-create procedure PA_InsertDetalleCompra
-	@cant decimal(8,2),@unidad varchar(20),@material varchar(100),@pre decimal(8,2),@codDocComp int,@codM int,
+--Para consultar los Pagos de Desembolsos
+create proc PA_SeguimientoPagos
+as
+Select codDesembolso,fecPago,montoPago,tipoP,moneda,simbolo,nroCue,banco,pagoDet,montoD,nroP,clasif 
+from VPagoDesembolsoSeguimiento
+go
+
+--Para consultar los Comprobantes registrados
+
+create proc PA_SeguimientoComprobantes
+as
+select idOP,fecEnt,nroConfor  from TOrdenDesembolso
+go
+
+-- Para Consultar los estados de Aprobacion
+create proc PA_SeguimientoAprobaciones
+as
+select idOp,nombre,apellido,Area,Estado,ObserDesem,fecFir 
+from VAprobacionesSeguimiento
+go
+
+--PAra consultar los lugares de trabajo
+create proc PA_LugarTrabajo
+as
+Select codigo,nombre from tLugarTrabajo
+go
+--Para consultar los proveedores
+create proc PA_Proveedores
+as
+Select codIde,razon from TIdentidad where idTipId=2
+go
+
+
+
+--------EJECUTAR AHORITA-----------------
+-----------23/07/2013-----------------------
+
+create procedure PA_InsertTMatUbi
+	@codMat int,@codUbi int,@stock decimal(10,2),
 	@Identity int output --parametro de salida
 as
-	insert into TDetalleCompra(cant,unidad,material,preUni,codDocC,codMat) 
-		values(@cant,@unidad,@material,@pre,@codDocComp,@codM)	
+	insert into TMatUbi(codMat,codUbi,stock) values(@codMat,@codUbi,@stock)	
 	SET @Identity = @@Identity
 	
 	RETURN  @Identity
 GO
+
+create procedure PA_InsertTSaldo 
+	@sal decimal(10,2),@codS varchar(10),
+	@Identity int output --parametro de salida
+as
+	insert into TSaldo(saldo,codLug) values(@sal,@codS)	
+	SET @Identity = @@Identity
+	
+	RETURN  @Identity
+GO
+
+create procedure PA_InsertTEntradaSalida	---ENTRADAS y Salida
+	@fecha date,@codMat int,@idMU int,@codUbi int,@can1 decimal(8,2),@valor1 decimal(8,2),@can2 decimal(8,2),@valor2 decimal(8,2),
+	@codGuia int,@nroGuia varchar(30),@codDoc int,@nroDoc varchar(30),@otroDoc varchar(30),@codTrans int,@codUsu int,@codPers int,@obs varchar(200),@codSal int,
+	@Identity int output --parametro de salida
+as
+	insert into TEntradaSalida(fecha,codMat,idMU,codUbi,cantEnt,preUniEnt,cantSal,preUniSal,codGuia,nroGuia,codDoc,nroDoc,otroDoc,codTrans,codUsu,codPers,obs,codSal) 
+				values(@fecha,@codMat,@idMU,@codUbi,@can1,@valor1,@can2,@valor2,@codGuia,@nroGuia,@codDoc,@nroDoc,@otroDoc,@codTrans,@codUsu,@codPers,@obs,@codSal)
+	SET @Identity = @@Identity
+	
+	RETURN  @Identity
+GO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

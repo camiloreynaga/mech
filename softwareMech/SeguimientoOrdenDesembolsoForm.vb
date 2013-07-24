@@ -979,7 +979,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         vCodDoc = BindingSource0.Item(BindingSource0.Position)(0)
         vParam1 = cambiarNroTotalLetra()
         If String.IsNullOrEmpty(txtOrdCompra.Text) = False Then
-            vParam2 = recuperarNroOrdenCompra(txtOrdCompra.Text.Trim())
+            vParam2 = txtOrdCompra.Text.Trim() 'recuperarNroOrdenCompra()
         Else
             vParam2 = ""
         End If

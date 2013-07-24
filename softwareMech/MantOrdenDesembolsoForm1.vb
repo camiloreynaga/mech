@@ -83,11 +83,7 @@ Public Class MantOrdenDesembolsoForm1
             configurarColorControl()
 
             recuperarUltimoNro(vSCodSerO)
-
-            vfVan1 = True   'para selePersDesem() se llama dentro de enlazarText()
-            vfVan2 = True
-            leerProvee()
-            enlazarText()
+            BindingSource3.MoveLast()
 
             wait.Close()
             Me.Cursor = Cursors.Default
@@ -101,10 +97,13 @@ Public Class MantOrdenDesembolsoForm1
     End Sub
 
     Private Sub MantOrdenDesembolsoForm1_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+        vfVan1 = True   'para selePersDesem() se llama dentro de enlazarText()
+        vfVan2 = True
+        leerProvee()
+        'enlazarText()
+
         colorearFila()
         calcularTotales()
-
-        BindingSource3.MoveLast()
     End Sub
 
     Private Sub calcularTotales()
@@ -856,6 +855,11 @@ Public Class MantOrdenDesembolsoForm1
             Exit Sub
         End If
 
+        If txtNom1.Text.Trim() = "" Then
+            StatusBarClass.messageBarraEstado("  Seleccione Orden de Desembolso a actualizar...")
+            Exit Sub
+        End If
+
         'If ValidaFechaMayorXXXX(date1.Value.Date, 2013) Then
         '    MessageBox.Show("Ingrese fecha mayor al año 2012", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
         '    date1.Focus()
@@ -1151,6 +1155,11 @@ Public Class MantOrdenDesembolsoForm1
             Exit Sub
         End If
 
+        If txtNom1.Text.Trim() = "" Then
+            StatusBarClass.messageBarraEstado("  No existe Orden de Desembolso a Eliminar...")
+            Exit Sub
+        End If
+
         If (recuperarCount1(BindingSource3.Item(BindingSource3.Position)(0)) > 0) Then
             StatusBarClass.messageBarraEstado("  PROCESO DENEGADO, Orden de Desembolso tiene registros en Pago Desembolso...")
             Exit Sub
@@ -1402,6 +1411,11 @@ Public Class MantOrdenDesembolsoForm1
             Exit Sub
         End If
 
+        If txtNom1.Text.Trim() = "" Then
+            StatusBarClass.messageBarraEstado("  No existe Orden de Desembolso a Anular...")
+            Exit Sub
+        End If
+
         If (recuperarCount1(BindingSource3.Item(BindingSource3.Position)(0)) > 0) Then
             MessageBox.Show("Anulación denegada, Orden de Desembolso tiene registros en Pago Desembolso. Si Desea anular de todas formas, quitese Pagos Fisicos de Desembolso [TEsoreria]", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
@@ -1577,5 +1591,9 @@ Public Class MantOrdenDesembolsoForm1
 
         Dim jala As New jalarOrdenCompra2Form
         jala.ShowDialog()
+    End Sub
+
+    Private Sub dgTabla1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla1.CellContentClick
+
     End Sub
 End Class

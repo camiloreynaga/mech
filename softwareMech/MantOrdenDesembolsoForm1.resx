@@ -137,7 +137,7 @@
   <data name="btnAperturar1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsAAAA7AAWrWiQkAAAB/SURBVDhPY6AKkAhs+U8qhmqFAJDAvfvX4Pj543tw/P71
+        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAAB/SURBVDhPY6AKkAhs+U8qhmqFAJDAvfvX4Pj543tw/P71
         cwh+/x6Mv3/+jtsAhqb/BDHMABgm2wAUl4AYIOdi04CO///+P0gMgNFwA0AhjU0DOqahAcA4xqYBHdPO
         gO+fIakMhEGS+DBWA0jFKAbAAEiAVJdAtUIAzHTicct/AAkKRjcgCfIfAAAAAElFTkSuQmCC
 </value>
@@ -160,7 +160,7 @@
   <data name="btnElimina.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAE7SURBVDhPvZKxjoMwEET9K/mVfEJ+40rKtJSUKVG6pHO6
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAE7SURBVDhPvZKxjoMwEET9K/mVfEJ+40rKtJSUKVG6pHO6
         pIMSpCugIx2UlL6Ocm7GxCd8oDQn3UajgPG83fXa/FvYJ3CqqRa4fn7htfw+ZLq0Dmk5eWX1LDsgBjQj
         oM1BMiUPhw9K/0eaJZkL7q2GPgbI1CNWN3GjA+7Mdqep4XP4tgKIujTHcgQUhDXYP/bg1m2Asq3VY3fd
         wZyNlwAd123b/QIM01zqQoIeygOObYqUCoCK6ytANThcdHgL6WBlHnkWSZ14s1SM/RrQj26e8UKqIpjU
@@ -180,7 +180,7 @@
   <data name="btnAperturar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsAAAA7AAWrWiQkAAADrSURBVDhPrZGhDsIwFEX5DOw+AYlF4kBikUgkFsknoPAY
+        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAADrSURBVDhPrZGhDsIwFEX5DOw+AYlF4kBikUgkFsknoPAY
         xMQSMEtAkIBAIBBIBALBB1z2+u5bt9CRLaHJTZM25/S2bf1ltAdzNA1RHbKA9wl47YHnFnisgfsSuC2A
         a7Z3mWWZAucJcBxXCGrCOIy+mzgB4WgVVUZgpEMHlpq4BZ4cAi0CI+2rgE28gLVDoEVg7ChgEy/gnUOg
         RWAkPQpU5AV8sBBoERhJVwVs4gV87RBoERgxBWxSEOhXhUCLwNh0KFCRFxT+2V7b7uxOlmRwLmATL/gF
@@ -207,6 +207,9 @@
         HIQm0skAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="Navigator1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>452, 17</value>
+  </metadata>
   <metadata name="Navigator1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>452, 17</value>
   </metadata>
