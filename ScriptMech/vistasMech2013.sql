@@ -356,18 +356,6 @@ as
 	from TPersDesem TPD join TPersonal TP on TPD.codPers=TP.codPers where TPD.estDesem=1 and tipoA=2 --1=aprobado 2=firma gerencia
 GO
 
-create view VOrdenDesemTesoreria  
-as	
-	select TOD.idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,TOD.estado,'est'=case when TOD.estado=0 then 'PENDIENTE' when TOD.estado=1 then 'TERMINADO' when TOD.estado=2 then 'CERRADO' else 'ANULADO' end, 
-	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,
-	banco,nroCta,nroDet,datoReq,hist,TL.codigo,TL.nombre,TI.codIde,TI.razon,TI.ruc,TP.codPers,TP.nom,TP.dni,isnull(TP.codPersDes,0) as codPersDes,isnull(TP.estDesem,0) as estDesem,TP.obserDesem,isnull(TP.estApro,'') as estApro
-	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon 
-	join TLugarTrabajo TL on TOD.codigo=TL.codigo
-	join TIdentidad TI on TOD.codIde=TI.codIde
-	join VPersDesemTesoreria TP on TOD.idOP=TP.idOP --2=gerencia
-	where TOD.estado=0 --0=pendiente 1=terminado
-GO
-
 create view VBancoCuenta
 as
 	select TB.codBan,banco,idCue,nroCue,TM.codMon,TM.moneda,TM.simbolo,
@@ -594,9 +582,7 @@ as
 	from TOrdenCompra TOC left join TDesOrden TDO on TOC.nroOrden=TDO.nroOrden 
 	where estado=0 --0=abierto
 GO
----------------------------------------
---EJECUTAR 22/07/2013-------------
----------------------------------------
+
 create view VMaterialStock
 as
 	select TM.codMat,material,TU1.unidad as uniBase,preBase,estado,TT.codTipM,TT.tipoM,isnull(TMS.stock,-1) as stock,TM.codUni,TM.hist
@@ -627,6 +613,7 @@ select TOD.idOP,tod.codigo as codObra,tod.serie,tod.nroDes,tod.fecDes,tod.monto,
 	--join TOrdenCompra TOC on toc.nroOrden =tdeco.nroOrden   
 	where TPDE.tipoA=1	
 GO
+
 -- Nueva Vista para Seguimeinto de Desembolso
 --Pago de desembolsos
 create view VPagoDesembolsoSeguimiento
@@ -673,9 +660,33 @@ as
 	join TLugarTrabajo TL on TUB.codigo=TL.codigo
 	join TPersonal TP on TES.codUsu=TP.codPers
 GO
+---------------------------------------
+-------EJECUTAR 25/07/2013-------------
+---------------------------------------
+
+create view VPersDesemSolic
+as
+	select TP.codPers,TP.nombre+' '+TP.apellido as nom,TP.dni,TPD.codPersDes,TPD.estDesem,TPD.tipoA,TPD.obserDesem,TPD.idOP
+	from TPersDesem TPD join TPersonal TP on TPD.codPers=TP.codPers where tipoA=1 -- 1=firma solicitante
+GO
+--DROP view VOrdenDesemTesoreria
+create view VOrdenDesemTesoreria  
+as	
+	select TOD.idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,TOD.estado,'est'=case when TOD.estado=0 then 'PENDIENTE' when TOD.estado=1 then 'TERMINADO' when TOD.estado=2 then 'CERRADO' else 'ANULADO' end,TOD.codSerO, 
+	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,TP1.codPers as codPersSol,TP1.nom as nomSol,
+	banco,nroCta,nroDet,datoReq,hist,TL.codigo,TL.nombre,TI.codIde,TI.razon,TI.ruc,TP.codPers,TP.nom,TP.dni,isnull(TP.codPersDes,0) as codPersDes,isnull(TP.estDesem,0) as estDesem,TP.obserDesem,isnull(TP.estApro,'') as estApro
+	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon 
+	join TLugarTrabajo TL on TOD.codigo=TL.codigo
+	join TIdentidad TI on TOD.codIde=TI.codIde
+	join VPersDesemTesoreria TP on TOD.idOP=TP.idOP --2=gerencia
+	join VPersDesemSolic TP1 on TOD.idOP=TP1.idOP
+	where TOD.estado=0 --0=pendiente 1=terminado
+GO
 
 
-select nroNota,tipo,fecha,material,cantEnt,preUniEnt,cantSal,preUniSal,saldo,unidad,nroGuia,nroDoc,otroDoc,ubicacion,nombre,nom,obs,codMat,idMU,codUbi,codigo,codGuia,codDoc,codTrans,codPers,codSal from VKardex where codMat=@codMat and codUbi=@codUbi
+select idOP,fecDes,serie,nro,simbolo,monto,montoDet,montoDif,nombre,estApro,nom,datoReq,ruc,razon,banco,nroCta,nroDet,hist,estDesem,codPersDes,estado,codMon,nomSol,codPersSol,codSerO from VOrdenDesemTesoreria
+
+select codSerO,serie from TSerieOrden where estado=1 order by serie
 
 select MAX(nroNota) from TEntradaSalida where codUbi=8
 select codSal from TEntradaSalida where nroNota=6

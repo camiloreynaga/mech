@@ -66,6 +66,8 @@ Partial Class pantallaInicialForm
         Me.opcDocCompra = New System.Windows.Forms.ToolStripDropDownButton
         Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator
         Me.opcGuiaRemision = New System.Windows.Forms.ToolStripDropDownButton
+        Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator
+        Me.opcAlm = New System.Windows.Forms.ToolStripButton
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator
         Me.opcPersonal = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcPers1 = New System.Windows.Forms.ToolStripMenuItem
@@ -87,8 +89,7 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcAlm = New System.Windows.Forms.ToolStripButton
+        Me.CajaChicaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -332,7 +333,7 @@ Partial Class pantallaInicialForm
         '
         'opcOrdDesembolso
         '
-        Me.opcOrdDesembolso.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrdDesApertura, Me.opcOrdDesAprobacion, Me.opcOrdDesRegPagos, Me.opcOrdDesConta, Me.ToolStripSeparator6_1, Me.opcOrdDesSeguimiento, Me.ToolStripSeparator6_2, Me.opcOrdDesModPago, Me.opcOrdDesCtasBco})
+        Me.opcOrdDesembolso.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrdDesApertura, Me.opcOrdDesAprobacion, Me.opcOrdDesRegPagos, Me.opcOrdDesConta, Me.ToolStripSeparator6_1, Me.opcOrdDesSeguimiento, Me.ToolStripSeparator6_2, Me.opcOrdDesModPago, Me.opcOrdDesCtasBco, Me.CajaChicaToolStripMenuItem})
         Me.opcOrdDesembolso.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.opcOrdDesembolso.Image = CType(resources.GetObject("opcOrdDesembolso.Image"), System.Drawing.Image)
         Me.opcOrdDesembolso.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -447,6 +448,22 @@ Partial Class pantallaInicialForm
         Me.opcGuiaRemision.Name = "opcGuiaRemision"
         Me.opcGuiaRemision.Size = New System.Drawing.Size(93, 20)
         Me.opcGuiaRemision.Text = "Guia Remis."
+        '
+        'ToolStripSeparator12
+        '
+        Me.ToolStripSeparator12.Name = "ToolStripSeparator12"
+        Me.ToolStripSeparator12.Size = New System.Drawing.Size(93, 6)
+        '
+        'opcAlm
+        '
+        Me.opcAlm.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.opcAlm.Image = CType(resources.GetObject("opcAlm.Image"), System.Drawing.Image)
+        Me.opcAlm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.opcAlm.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.opcAlm.Name = "opcAlm"
+        Me.opcAlm.Size = New System.Drawing.Size(93, 20)
+        Me.opcAlm.Text = "Almacen..."
+        Me.opcAlm.ToolTipText = "Entradas y salidas a Almacenes..."
         '
         'ToolStripSeparator8
         '
@@ -633,21 +650,11 @@ Partial Class pantallaInicialForm
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'ToolStripSeparator12
+        'CajaChicaToolStripMenuItem
         '
-        Me.ToolStripSeparator12.Name = "ToolStripSeparator12"
-        Me.ToolStripSeparator12.Size = New System.Drawing.Size(93, 6)
-        '
-        'opcAlm
-        '
-        Me.opcAlm.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.opcAlm.Image = CType(resources.GetObject("opcAlm.Image"), System.Drawing.Image)
-        Me.opcAlm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.opcAlm.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.opcAlm.Name = "opcAlm"
-        Me.opcAlm.Size = New System.Drawing.Size(93, 20)
-        Me.opcAlm.Text = "Almacen..."
-        Me.opcAlm.ToolTipText = "Entradas y salidas a Almacenes..."
+        Me.CajaChicaToolStripMenuItem.Name = "CajaChicaToolStripMenuItem"
+        Me.CajaChicaToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
+        Me.CajaChicaToolStripMenuItem.Text = "Caja Chica"
         '
         'pantallaInicialForm
         '
@@ -739,4 +746,5 @@ Partial Class pantallaInicialForm
     Friend WithEvents ToolStripSeparator6_2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripSeparator12 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents opcAlm As System.Windows.Forms.ToolStripButton
+    Friend WithEvents CajaChicaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

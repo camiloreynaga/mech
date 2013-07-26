@@ -203,6 +203,12 @@
     <Compile Include="entradaSalidaAlmacen1Form.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MantCajaChicaForm.Designer.vb">
+      <DependentUpon>MantCajaChicaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantCajaChicaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="gerencia1OrdenDesembolsoForm.Designer.vb">
       <DependentUpon>gerencia1OrdenDesembolsoForm.vb</DependentUpon>
     </Compile>
@@ -527,6 +533,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="entradaSalidaAlmacen1Form.resx">
       <DependentUpon>entradaSalidaAlmacen1Form.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantCajaChicaForm.resx">
+      <DependentUpon>MantCajaChicaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gerencia1OrdenDesembolsoForm.resx">
       <DependentUpon>gerencia1OrdenDesembolsoForm.vb</DependentUpon>

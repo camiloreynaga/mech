@@ -20,9 +20,9 @@ Partial Class tesoreriaOrdenDesembolsoForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(tesoreriaOrdenDesembolsoForm))
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.dgTabla1 = New System.Windows.Forms.DataGridView
         Me.btnCerrar = New System.Windows.Forms.Button
@@ -100,6 +100,11 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Label12 = New System.Windows.Forms.Label
         Me.txtMot = New System.Windows.Forms.TextBox
         Me.Label13 = New System.Windows.Forms.Label
+        Me.Label16 = New System.Windows.Forms.Label
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.rb1 = New System.Windows.Forms.RadioButton
+        Me.rb2 = New System.Windows.Forms.RadioButton
+        Me.cbSerie = New System.Windows.Forms.ComboBox
         Me.Panel1.SuspendLayout()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,11 +113,12 @@ Partial Class tesoreriaOrdenDesembolsoForm
         CType(Me.dgTabla2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Navigator2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Navigator2.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(915, 23)
+        Me.lblTitulo.Size = New System.Drawing.Size(1020, 23)
         Me.lblTitulo.Text = "Formulario de Registro de Pagos de Orden de Desembolso"
         '
         'lblDerecha
@@ -121,13 +127,16 @@ Partial Class tesoreriaOrdenDesembolsoForm
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.cbSerie)
+        Me.Panel1.Controls.Add(Me.GroupBox1)
+        Me.Panel1.Controls.Add(Me.Label16)
         Me.Panel1.Controls.Add(Me.dgTabla1)
         Me.Panel1.Controls.Add(Me.btnCerrar)
         Me.Panel1.Controls.Add(Me.Navigator1)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Location = New System.Drawing.Point(14, 23)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(892, 262)
+        Me.Panel1.Size = New System.Drawing.Size(1006, 285)
         Me.Panel1.TabIndex = 3
         '
         'dgTabla1
@@ -135,12 +144,12 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.dgTabla1.AllowUserToAddRows = False
         Me.dgTabla1.AllowUserToDeleteRows = False
         Me.dgTabla1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgTabla1.Location = New System.Drawing.Point(0, 18)
+        Me.dgTabla1.Location = New System.Drawing.Point(0, 32)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgTabla1.Size = New System.Drawing.Size(892, 219)
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle7
+        Me.dgTabla1.Size = New System.Drawing.Size(1006, 228)
         Me.dgTabla1.TabIndex = 332
         '
         'btnCerrar
@@ -164,7 +173,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Navigator1.DeleteItem = Nothing
         Me.Navigator1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Navigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.ToolStripButton5, Me.ToolStripSeparator4, Me.ToolStripLabel2, Me.txtTotal0, Me.ToolStripLabel3, Me.txtTotal1, Me.ToolStripLabel4, Me.txtTotal2, Me.ToolStripLabel5, Me.txtTotal3})
-        Me.Navigator1.Location = New System.Drawing.Point(0, 237)
+        Me.Navigator1.Location = New System.Drawing.Point(0, 260)
         Me.Navigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.Navigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
         Me.Navigator1.MoveNextItem = Me.BindingNavigatorMoveNextItem
@@ -172,7 +181,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Navigator1.Name = "Navigator1"
         Me.Navigator1.PositionItem = Me.BindingNavigatorPositionItem
         Me.Navigator1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.Navigator1.Size = New System.Drawing.Size(892, 25)
+        Me.Navigator1.Size = New System.Drawing.Size(1006, 25)
         Me.Navigator1.TabIndex = 330
         Me.Navigator1.Text = "BindingNavigator1"
         '
@@ -253,8 +262,8 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
         Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton5.Name = "ToolStripButton5"
-        Me.ToolStripButton5.Size = New System.Drawing.Size(109, 22)
-        Me.ToolStripButton5.Text = "Cerrar Orden..."
+        Me.ToolStripButton5.Size = New System.Drawing.Size(171, 22)
+        Me.ToolStripButton5.Text = "Cerrar Orden Desembolso"
         '
         'ToolStripSeparator4
         '
@@ -333,7 +342,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(1, 4)
+        Me.Label1.Location = New System.Drawing.Point(1, 19)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(148, 13)
         Me.Label1.TabIndex = 0
@@ -365,9 +374,9 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Panel2.Controls.Add(Me.date1)
         Me.Panel2.Controls.Add(Me.Navigator2)
         Me.Panel2.Controls.Add(Me.Label2)
-        Me.Panel2.Location = New System.Drawing.Point(14, 370)
+        Me.Panel2.Location = New System.Drawing.Point(14, 389)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(892, 281)
+        Me.Panel2.Size = New System.Drawing.Size(1006, 262)
         Me.Panel2.TabIndex = 4
         '
         'dgTabla2
@@ -378,9 +387,9 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.dgTabla2.Location = New System.Drawing.Point(0, 98)
         Me.dgTabla2.Name = "dgTabla2"
         Me.dgTabla2.ReadOnly = True
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle2
-        Me.dgTabla2.Size = New System.Drawing.Size(890, 155)
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle8
+        Me.dgTabla2.Size = New System.Drawing.Size(1002, 137)
         Me.dgTabla2.TabIndex = 320
         '
         'btnNuevo
@@ -598,7 +607,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Navigator2.DeleteItem = Nothing
         Me.Navigator2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Navigator2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripTextBox1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator3, Me.ToolStripLabel6, Me.txtTotal4, Me.ToolStripLabel7, Me.txtTotal5, Me.ToolStripLabel8, Me.txtTotal6, Me.ToolStripLabel9, Me.txtTotal7})
-        Me.Navigator2.Location = New System.Drawing.Point(0, 252)
+        Me.Navigator2.Location = New System.Drawing.Point(0, 233)
         Me.Navigator2.MoveFirstItem = Me.ToolStripButton1
         Me.Navigator2.MoveLastItem = Me.ToolStripButton4
         Me.Navigator2.MoveNextItem = Me.ToolStripButton3
@@ -606,7 +615,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Navigator2.Name = "Navigator2"
         Me.Navigator2.PositionItem = Me.ToolStripTextBox1
         Me.Navigator2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.Navigator2.Size = New System.Drawing.Size(888, 25)
+        Me.Navigator2.Size = New System.Drawing.Size(1002, 25)
         Me.Navigator2.TabIndex = 326
         Me.Navigator2.Text = "BindingNavigator1"
         '
@@ -759,7 +768,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(126, 289)
+        Me.Label8.Location = New System.Drawing.Point(126, 312)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(69, 13)
         Me.Label8.TabIndex = 5
@@ -767,7 +776,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         '
         'txtProv
         '
-        Me.txtProv.Location = New System.Drawing.Point(129, 302)
+        Me.txtProv.Location = New System.Drawing.Point(129, 325)
         Me.txtProv.Name = "txtProv"
         Me.txtProv.ReadOnly = True
         Me.txtProv.Size = New System.Drawing.Size(329, 20)
@@ -776,7 +785,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         '
         'txtRuc
         '
-        Me.txtRuc.Location = New System.Drawing.Point(25, 302)
+        Me.txtRuc.Location = New System.Drawing.Point(25, 325)
         Me.txtRuc.Name = "txtRuc"
         Me.txtRuc.ReadOnly = True
         Me.txtRuc.Size = New System.Drawing.Size(94, 20)
@@ -786,7 +795,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(22, 289)
+        Me.Label9.Location = New System.Drawing.Point(22, 312)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(49, 13)
         Me.Label9.TabIndex = 7
@@ -794,7 +803,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         '
         'txtForma
         '
-        Me.txtForma.Location = New System.Drawing.Point(28, 340)
+        Me.txtForma.Location = New System.Drawing.Point(28, 363)
         Me.txtForma.Name = "txtForma"
         Me.txtForma.ReadOnly = True
         Me.txtForma.Size = New System.Drawing.Size(320, 20)
@@ -804,7 +813,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(25, 326)
+        Me.Label10.Location = New System.Drawing.Point(25, 349)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(78, 13)
         Me.Label10.TabIndex = 9
@@ -812,7 +821,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         '
         'txtNC
         '
-        Me.txtNC.Location = New System.Drawing.Point(360, 340)
+        Me.txtNC.Location = New System.Drawing.Point(360, 363)
         Me.txtNC.Name = "txtNC"
         Me.txtNC.ReadOnly = True
         Me.txtNC.Size = New System.Drawing.Size(267, 20)
@@ -822,7 +831,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(357, 326)
+        Me.Label11.Location = New System.Drawing.Point(357, 349)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(69, 13)
         Me.Label11.TabIndex = 11
@@ -830,7 +839,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         '
         'txtND
         '
-        Me.txtND.Location = New System.Drawing.Point(633, 340)
+        Me.txtND.Location = New System.Drawing.Point(633, 363)
         Me.txtND.Name = "txtND"
         Me.txtND.ReadOnly = True
         Me.txtND.Size = New System.Drawing.Size(273, 20)
@@ -840,7 +849,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(630, 326)
+        Me.Label12.Location = New System.Drawing.Point(630, 349)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(114, 13)
         Me.Label12.TabIndex = 13
@@ -848,7 +857,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         '
         'txtMot
         '
-        Me.txtMot.Location = New System.Drawing.Point(473, 302)
+        Me.txtMot.Location = New System.Drawing.Point(473, 325)
         Me.txtMot.Name = "txtMot"
         Me.txtMot.ReadOnly = True
         Me.txtMot.Size = New System.Drawing.Size(433, 20)
@@ -858,17 +867,69 @@ Partial Class tesoreriaOrdenDesembolsoForm
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(470, 289)
+        Me.Label13.Location = New System.Drawing.Point(470, 312)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(51, 13)
         Me.Label13.TabIndex = 15
         Me.Label13.Text = "Detalle:"
         '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(186, 10)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(0, 13)
+        Me.Label16.TabIndex = 333
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.rb2)
+        Me.GroupBox1.Controls.Add(Me.rb1)
+        Me.GroupBox1.Location = New System.Drawing.Point(228, 1)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(200, 28)
+        Me.GroupBox1.TabIndex = 334
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Filtro"
+        '
+        'rb1
+        '
+        Me.rb1.AutoSize = True
+        Me.rb1.Location = New System.Drawing.Point(40, 8)
+        Me.rb1.Name = "rb1"
+        Me.rb1.Size = New System.Drawing.Size(60, 17)
+        Me.rb1.TabIndex = 0
+        Me.rb1.TabStop = True
+        Me.rb1.Text = "Todos"
+        Me.rb1.UseVisualStyleBackColor = True
+        '
+        'rb2
+        '
+        Me.rb2.AutoSize = True
+        Me.rb2.Location = New System.Drawing.Point(106, 8)
+        Me.rb2.Name = "rb2"
+        Me.rb2.Size = New System.Drawing.Size(77, 17)
+        Me.rb2.TabIndex = 1
+        Me.rb2.TabStop = True
+        Me.rb2.Text = "Por Serie"
+        Me.rb2.UseVisualStyleBackColor = True
+        '
+        'cbSerie
+        '
+        Me.cbSerie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbSerie.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbSerie.FormattingEnabled = True
+        Me.cbSerie.Location = New System.Drawing.Point(434, 8)
+        Me.cbSerie.Name = "cbSerie"
+        Me.cbSerie.Size = New System.Drawing.Size(66, 21)
+        Me.cbSerie.TabIndex = 335
+        Me.cbSerie.Visible = False
+        '
         'tesoreriaOrdenDesembolsoForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
-        Me.ClientSize = New System.Drawing.Size(915, 673)
+        Me.ClientSize = New System.Drawing.Size(1020, 673)
         Me.Controls.Add(Me.txtMot)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.txtND)
@@ -913,6 +974,8 @@ Partial Class tesoreriaOrdenDesembolsoForm
         CType(Me.Navigator2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Navigator2.ResumeLayout(False)
         Me.Navigator2.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -994,5 +1057,10 @@ Partial Class tesoreriaOrdenDesembolsoForm
     Friend WithEvents txtTotal6 As System.Windows.Forms.ToolStripTextBox
     Friend WithEvents ToolStripLabel9 As System.Windows.Forms.ToolStripLabel
     Friend WithEvents txtTotal7 As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label16 As System.Windows.Forms.Label
+    Friend WithEvents rb2 As System.Windows.Forms.RadioButton
+    Friend WithEvents rb1 As System.Windows.Forms.RadioButton
+    Friend WithEvents cbSerie As System.Windows.Forms.ComboBox
 
 End Class

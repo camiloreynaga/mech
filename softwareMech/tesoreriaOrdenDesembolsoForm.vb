@@ -22,7 +22,7 @@ Public Class tesoreriaOrdenDesembolsoForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select idOP,fecDes,serie,nro,simbolo,monto,montoDet,montoDif,nombre,estApro,nom,datoReq,ruc,razon,banco,nroCta,nroDet,hist,estDesem,codPersDes,estado,codMon from VOrdenDesemTesoreria" 'order by idOP
+        Dim sele As String = "select idOP,fecDes,serie,nro,simbolo,monto,montoDet,montoDif,nombre,estApro,nom,datoReq,ruc,razon,banco,nroCta,nroDet,hist,estDesem,codPersDes,estado,codMon,nomSol,codPersSol,codSerO from VOrdenDesemTesoreria" 'order by idOP
         crearDataAdapterTable(daTabla1, sele)
         'daTabla1.SelectCommand.Parameters.Add("@ser", SqlDbType.VarChar, 5).Value = vSerie
 
@@ -42,6 +42,9 @@ Public Class tesoreriaOrdenDesembolsoForm
         sele = "select codCla,clasif from TClasifPago"
         crearDataAdapterTable(daTabla4, sele)
 
+        sele = "select codSerO,serie from TSerieOrden where estado=1 order by serie"
+        crearDataAdapterTable(daTabla5, sele)
+
         Try
             'procedimiento para instanciar el dataSet - DatasetAlmacenModule.vb
             crearDSAlmacen()
@@ -52,6 +55,7 @@ Public Class tesoreriaOrdenDesembolsoForm
             daTabla2.Fill(dsAlmacen, "TTipoPago")
             daTabla3.Fill(dsAlmacen, "VBancoCuenta")
             daTabla4.Fill(dsAlmacen, "TClasifPago")
+            daTabla5.Fill(dsAlmacen, "TSerieOrden")
 
             BindingSource1.DataSource = dsAlmacen
             BindingSource1.DataMember = "VOrdenDesemTesoreria"
@@ -90,6 +94,10 @@ Public Class tesoreriaOrdenDesembolsoForm
             cbCla.DisplayMember = "clasif"
             cbCla.ValueMember = "codCla"
 
+            cbSerie.DataSource = dsAlmacen
+            cbSerie.DisplayMember = "TSerieOrden.serie"
+            cbSerie.ValueMember = "codSerO"
+
             configurarColorControl()
 
             txtProv.DataBindings.Add("Text", BindingSource1, "razon")
@@ -101,6 +109,8 @@ Public Class tesoreriaOrdenDesembolsoForm
 
             vfVan1 = True
             visualizarDet()
+
+            rb1.Checked = True
 
             wait.Close()
             Me.Cursor = Cursors.Default
@@ -137,6 +147,30 @@ Public Class tesoreriaOrdenDesembolsoForm
             If txtTotal1.Text.Trim() = "" Then txtTotal1.Text = "0.00"
             If txtTotal2.Text.Trim() = "" Then txtTotal2.Text = "0.00"
             If txtTotal3.Text.Trim() = "" Then txtTotal3.Text = "0.00"
+
+            If txtTotal0.Text.Trim() = "" Then
+                txtTotal0.Text = "0.00"
+            Else
+                txtTotal0.Text = Format(CDbl(txtTotal0.Text), "0,0.00")
+            End If
+
+            If txtTotal1.Text.Trim() = "" Then
+                txtTotal1.Text = "0.00"
+            Else
+                txtTotal1.Text = Format(CDbl(txtTotal1.Text), "0,0.00")
+            End If
+
+            If txtTotal2.Text.Trim() = "" Then
+                txtTotal2.Text = "0.00"
+            Else
+                txtTotal2.Text = Format(CDbl(txtTotal2.Text), "0,0.00")
+            End If
+
+            If txtTotal3.Text.Trim() = "" Then
+                txtTotal3.Text = "0.00"
+            Else
+                txtTotal3.Text = Format(CDbl(txtTotal3.Text), "0,0.00")
+            End If
 
         Catch f As Exception
             Exit Sub
@@ -181,15 +215,18 @@ Public Class tesoreriaOrdenDesembolsoForm
             .Columns(5).Width = 80
             .Columns(5).HeaderText = "Monto"
             .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(5).DefaultCellStyle.Format = "N2"
             .Columns(6).Width = 70
             .Columns(6).HeaderText = "Detracción"
             .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(6).DefaultCellStyle.Format = "N2"
             .Columns(7).Width = 75
-            .Columns(7).HeaderText = "Monto_Dif."
+            .Columns(7).HeaderText = "Diferencia"
             .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            .Columns(8).Width = 235
+            .Columns(7).DefaultCellStyle.Format = "N2"
+            .Columns(8).Width = 260
             .Columns(8).HeaderText = "Lugar / Obra"
-            .Columns(9).Width = 70
+            .Columns(9).Width = 50
             .Columns(9).HeaderText = "Estado"
             .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(10).Width = 110
@@ -205,6 +242,10 @@ Public Class tesoreriaOrdenDesembolsoForm
             .Columns(19).Visible = False
             .Columns(20).Visible = False
             .Columns(21).Visible = False
+            .Columns(22).Width = 110
+            .Columns(22).HeaderText = "Solicito"
+            .Columns(23).Visible = False
+            .Columns(24).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -265,6 +306,7 @@ Public Class tesoreriaOrdenDesembolsoForm
         Label14.ForeColor = ForeColorLabel
         Label15.ForeColor = ForeColorLabel
         CheckBox1.ForeColor = ForeColorLabel
+        GroupBox1.ForeColor = ForeColorLabel
         btnNuevo.ForeColor = ForeColorButtom
         btnModificar.ForeColor = ForeColorButtom
         btnCancelar.ForeColor = ForeColorButtom

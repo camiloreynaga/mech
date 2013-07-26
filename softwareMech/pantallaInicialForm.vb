@@ -578,4 +578,11 @@ Public Class pantallaInicialForm
         alm.MdiParent = Me
         alm.Show()
     End Sub
+
+    Private Sub CajaChicaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CajaChicaToolStripMenuItem.Click
+        Dim caja As New MantCajaChicaForm
+        caja.MdiParent = Me
+        caja.Show()
+
+    End Sub
 End Class
