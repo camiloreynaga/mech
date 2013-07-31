@@ -809,7 +809,7 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         DatosIniciales()
 
-        ' dgDesembolso.FirstDisplayedScrollingRowIndex = 0
+        'dgDesembolso.FirstDisplayedScrollingRowIndex = 0
 
 
         'Modifica las columnas de Grilla Desembolso

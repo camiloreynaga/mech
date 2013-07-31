@@ -20,18 +20,18 @@ Partial Class MantCajaChicaForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MantCajaChicaForm))
         Me.Label1 = New System.Windows.Forms.Label
         Me.txtCodCaja = New System.Windows.Forms.TextBox
         Me.Label2 = New System.Windows.Forms.Label
-        Me.TextBox2 = New System.Windows.Forms.TextBox
+        Me.txtSaldo = New System.Windows.Forms.TextBox
         Me.cbMoneda = New System.Windows.Forms.ComboBox
         Me.cbObra = New System.Windows.Forms.ComboBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.Label4 = New System.Windows.Forms.Label
         Me.cbResponsable = New System.Windows.Forms.ComboBox
         Me.Label5 = New System.Windows.Forms.Label
-        Me.chkEstado = New System.Windows.Forms.CheckBox
         Me.dgCaja = New System.Windows.Forms.DataGridView
         Me.btnNuevo = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnCerrar = New System.Windows.Forms.Button
@@ -39,11 +39,12 @@ Partial Class MantCajaChicaForm
         Me.btnEliminar = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnModificar = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.RbActivo = New System.Windows.Forms.RadioButton
+        Me.RbInactivo = New System.Windows.Forms.RadioButton
+        Me.Label6 = New System.Windows.Forms.Label
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
         Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
-        Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
-        Me.BindingNavigatorDeleteItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorSeparator = New System.Windows.Forms.ToolStripSeparator
@@ -71,50 +72,54 @@ Partial Class MantCajaChicaForm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(20, 16)
+        Me.Label1.Location = New System.Drawing.Point(415, 18)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(62, 13)
+        Me.Label1.Size = New System.Drawing.Size(50, 13)
         Me.Label1.TabIndex = 5
-        Me.Label1.Text = "Cod Caja:"
+        Me.Label1.Text = "Estado:"
         '
         'txtCodCaja
         '
         Me.txtCodCaja.Location = New System.Drawing.Point(96, 13)
         Me.txtCodCaja.Name = "txtCodCaja"
-        Me.txtCodCaja.Size = New System.Drawing.Size(100, 20)
+        Me.txtCodCaja.ReadOnly = True
+        Me.txtCodCaja.Size = New System.Drawing.Size(60, 20)
         Me.txtCodCaja.TabIndex = 6
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(204, 16)
+        Me.Label2.Location = New System.Drawing.Point(162, 16)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(56, 13)
         Me.Label2.TabIndex = 5
         Me.Label2.Text = "Moneda:"
         '
-        'TextBox2
+        'txtSaldo
         '
-        Me.TextBox2.Location = New System.Drawing.Point(493, 67)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(116, 20)
-        Me.TextBox2.TabIndex = 6
+        Me.txtSaldo.Location = New System.Drawing.Point(493, 67)
+        Me.txtSaldo.Name = "txtSaldo"
+        Me.txtSaldo.Size = New System.Drawing.Size(116, 20)
+        Me.txtSaldo.TabIndex = 3
+        Me.txtSaldo.Text = "0.0"
         '
         'cbMoneda
         '
+        Me.cbMoneda.Enabled = False
         Me.cbMoneda.FormattingEnabled = True
-        Me.cbMoneda.Location = New System.Drawing.Point(266, 13)
+        Me.cbMoneda.Location = New System.Drawing.Point(224, 13)
         Me.cbMoneda.Name = "cbMoneda"
         Me.cbMoneda.Size = New System.Drawing.Size(172, 21)
-        Me.cbMoneda.TabIndex = 8
+        Me.cbMoneda.TabIndex = 0
         '
         'cbObra
         '
+        Me.cbObra.Enabled = False
         Me.cbObra.FormattingEnabled = True
         Me.cbObra.Location = New System.Drawing.Point(96, 39)
         Me.cbObra.Name = "cbObra"
         Me.cbObra.Size = New System.Drawing.Size(513, 21)
-        Me.cbObra.TabIndex = 8
+        Me.cbObra.TabIndex = 1
         '
         'Label3
         '
@@ -136,11 +141,12 @@ Partial Class MantCajaChicaForm
         '
         'cbResponsable
         '
+        Me.cbResponsable.Enabled = False
         Me.cbResponsable.FormattingEnabled = True
         Me.cbResponsable.Location = New System.Drawing.Point(96, 66)
         Me.cbResponsable.Name = "cbResponsable"
         Me.cbResponsable.Size = New System.Drawing.Size(342, 21)
-        Me.cbResponsable.TabIndex = 8
+        Me.cbResponsable.TabIndex = 2
         '
         'Label5
         '
@@ -151,23 +157,14 @@ Partial Class MantCajaChicaForm
         Me.Label5.TabIndex = 5
         Me.Label5.Text = "Responsable:"
         '
-        'chkEstado
-        '
-        Me.chkEstado.AutoSize = True
-        Me.chkEstado.Location = New System.Drawing.Point(444, 16)
-        Me.chkEstado.Name = "chkEstado"
-        Me.chkEstado.Size = New System.Drawing.Size(62, 17)
-        Me.chkEstado.TabIndex = 9
-        Me.chkEstado.Text = "Activo"
-        Me.chkEstado.UseVisualStyleBackColor = True
-        '
         'dgCaja
         '
         Me.dgCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgCaja.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgCaja.Location = New System.Drawing.Point(3, 16)
         Me.dgCaja.Name = "dgCaja"
-        Me.dgCaja.Size = New System.Drawing.Size(608, 350)
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgCaja.RowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgCaja.Size = New System.Drawing.Size(608, 322)
         Me.dgCaja.TabIndex = 10
         '
         'btnNuevo
@@ -237,14 +234,16 @@ Partial Class MantCajaChicaForm
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.RbActivo)
+        Me.GroupBox1.Controls.Add(Me.RbInactivo)
         Me.GroupBox1.Controls.Add(Me.cbMoneda)
         Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.TextBox2)
+        Me.GroupBox1.Controls.Add(Me.txtSaldo)
         Me.GroupBox1.Controls.Add(Me.cbResponsable)
         Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.chkEstado)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.txtCodCaja)
+        Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.cbObra)
         Me.GroupBox1.Controls.Add(Me.Label3)
@@ -253,6 +252,39 @@ Partial Class MantCajaChicaForm
         Me.GroupBox1.Size = New System.Drawing.Size(614, 98)
         Me.GroupBox1.TabIndex = 16
         Me.GroupBox1.TabStop = False
+        '
+        'RbActivo
+        '
+        Me.RbActivo.AutoSize = True
+        Me.RbActivo.Checked = True
+        Me.RbActivo.Enabled = False
+        Me.RbActivo.Location = New System.Drawing.Point(471, 16)
+        Me.RbActivo.Name = "RbActivo"
+        Me.RbActivo.Size = New System.Drawing.Size(61, 17)
+        Me.RbActivo.TabIndex = 4
+        Me.RbActivo.TabStop = True
+        Me.RbActivo.Text = "Activo"
+        Me.RbActivo.UseVisualStyleBackColor = True
+        '
+        'RbInactivo
+        '
+        Me.RbInactivo.AutoSize = True
+        Me.RbInactivo.Enabled = False
+        Me.RbInactivo.Location = New System.Drawing.Point(538, 16)
+        Me.RbInactivo.Name = "RbInactivo"
+        Me.RbInactivo.Size = New System.Drawing.Size(71, 17)
+        Me.RbInactivo.TabIndex = 5
+        Me.RbInactivo.Text = "Inactivo"
+        Me.RbInactivo.UseVisualStyleBackColor = True
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(28, 13)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(62, 13)
+        Me.Label6.TabIndex = 5
+        Me.Label6.Text = "Cod Caja:"
         '
         'GroupBox2
         '
@@ -266,11 +298,11 @@ Partial Class MantCajaChicaForm
         '
         'BindingNavigator1
         '
-        Me.BindingNavigator1.AddNewItem = Me.BindingNavigatorAddNewItem
+        Me.BindingNavigator1.AddNewItem = Nothing
         Me.BindingNavigator1.CountItem = Me.BindingNavigatorCountItem
-        Me.BindingNavigator1.DeleteItem = Me.BindingNavigatorDeleteItem
+        Me.BindingNavigator1.DeleteItem = Nothing
         Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem})
+        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
         Me.BindingNavigator1.Location = New System.Drawing.Point(3, 341)
         Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -282,30 +314,12 @@ Partial Class MantCajaChicaForm
         Me.BindingNavigator1.TabIndex = 0
         Me.BindingNavigator1.Text = "BindingNavigator1"
         '
-        'BindingNavigatorAddNewItem
-        '
-        Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
-        Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorAddNewItem.Text = "Agregar nuevo"
-        '
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
         Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(37, 22)
         Me.BindingNavigatorCountItem.Text = "de {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
-        '
-        'BindingNavigatorDeleteItem
-        '
-        Me.BindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorDeleteItem.Image = CType(resources.GetObject("BindingNavigatorDeleteItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
-        Me.BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorDeleteItem.Text = "Eliminar"
         '
         'BindingNavigatorMoveFirstItem
         '
@@ -404,14 +418,13 @@ Partial Class MantCajaChicaForm
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents txtCodCaja As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Friend WithEvents txtSaldo As System.Windows.Forms.TextBox
     Friend WithEvents cbMoneda As System.Windows.Forms.ComboBox
     Friend WithEvents cbObra As System.Windows.Forms.ComboBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents cbResponsable As System.Windows.Forms.ComboBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents chkEstado As System.Windows.Forms.CheckBox
     Friend WithEvents dgCaja As System.Windows.Forms.DataGridView
     Friend WithEvents btnNuevo As ComponentesSolucion2008.BottomSSP
     Friend WithEvents btnCerrar As System.Windows.Forms.Button
@@ -421,9 +434,7 @@ Partial Class MantCajaChicaForm
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents BindingNavigator1 As System.Windows.Forms.BindingNavigator
-    Friend WithEvents BindingNavigatorAddNewItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorCountItem As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents BindingNavigatorDeleteItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorMoveFirstItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorMovePreviousItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorSeparator As System.Windows.Forms.ToolStripSeparator
@@ -432,5 +443,8 @@ Partial Class MantCajaChicaForm
     Friend WithEvents BindingNavigatorMoveNextItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorMoveLastItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorSeparator2 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents RbActivo As System.Windows.Forms.RadioButton
+    Friend WithEvents RbInactivo As System.Windows.Forms.RadioButton
+    Friend WithEvents Label6 As System.Windows.Forms.Label
 
 End Class
