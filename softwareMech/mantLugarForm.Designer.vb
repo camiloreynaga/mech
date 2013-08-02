@@ -57,8 +57,10 @@ Partial Class mantLugarForm
         Me.txtUbi = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Label2 = New System.Windows.Forms.Label
         Me.Panel4 = New System.Windows.Forms.Panel
+        Me.cbColor = New softwareMech.cColorComboBox
         Me.Panel2 = New System.Windows.Forms.Panel
         Me.Label14 = New System.Windows.Forms.Label
+        Me.cbColorLugar = New softwareMech.cColorComboBox
         Me.cbCli = New System.Windows.Forms.ComboBox
         Me.Label13 = New System.Windows.Forms.Label
         Me.lbEstadoObra = New System.Windows.Forms.ListBox
@@ -83,8 +85,6 @@ Partial Class mantLugarForm
         Me.btnCancelar1 = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnModificar1 = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnNuevo1 = New ComponentesSolucion2008.BottomSSP(Me.components)
-        Me.cbColorLugar = New softwareMech.cColorComboBox
-        Me.cbColor = New softwareMech.cColorComboBox
         Me.Panel1.SuspendLayout()
         CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Navigator1.SuspendLayout()
@@ -461,6 +461,18 @@ Partial Class mantLugarForm
         Me.Panel4.Size = New System.Drawing.Size(321, 155)
         Me.Panel4.TabIndex = 4
         '
+        'cbColor
+        '
+        Me.cbColor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbColor.FormattingEnabled = True
+        Me.cbColor.Items.AddRange(New Object() {"White", "CadetBlue", "Chocolate", "CornflowerBlue", "DarkOliveGreen", "DarkOrange", "DarkSeaGreen", "DimGray", "DodgerBlue", "Goldenrod", "Orange", "OrangeRed", "LIghtSeaGreen", "LightSlateGray", "LightSteelBlue"})
+        Me.cbColor.Location = New System.Drawing.Point(9, 64)
+        Me.cbColor.MyColors = New String() {"CadetBlue", "Chocolate", "CornflowerBlue", "DarkOliveGreen"}
+        Me.cbColor.Name = "cbColor"
+        Me.cbColor.Size = New System.Drawing.Size(121, 21)
+        Me.cbColor.TabIndex = 33
+        '
         'Panel2
         '
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -504,6 +516,19 @@ Partial Class mantLugarForm
         Me.Label14.Size = New System.Drawing.Size(71, 13)
         Me.Label14.TabIndex = 52
         Me.Label14.Text = "Color Obra:"
+        '
+        'cbColorLugar
+        '
+        Me.cbColorLugar.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cbColorLugar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbColorLugar.Enabled = False
+        Me.cbColorLugar.FormattingEnabled = True
+        Me.cbColorLugar.Items.AddRange(New Object() {"White", "CadetBlue", "Chocolate", "CornflowerBlue", "DarkOliveGreen", "DarkOrange", "DarkSeaGreen", "DimGray", "DodgerBlue", "Goldenrod", "Orange", "OrangeRed", "LIghtSeaGreen", "LightSlateGray", "LightSteelBlue"})
+        Me.cbColorLugar.Location = New System.Drawing.Point(483, 31)
+        Me.cbColorLugar.MyColors = New String() {"CadetBlue", "Chocolate", "CornflowerBlue", "DarkOliveGreen"}
+        Me.cbColorLugar.Name = "cbColorLugar"
+        Me.cbColorLugar.Size = New System.Drawing.Size(122, 21)
+        Me.cbColorLugar.TabIndex = 7
         '
         'cbCli
         '
@@ -736,31 +761,6 @@ Partial Class mantLugarForm
         Me.btnNuevo1.TabIndex = 8
         Me.btnNuevo1.Text = "Nuevo"
         Me.btnNuevo1.UseVisualStyleBackColor = True
-        '
-        'cbColorLugar
-        '
-        Me.cbColorLugar.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cbColorLugar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbColorLugar.Enabled = False
-        Me.cbColorLugar.FormattingEnabled = True
-        Me.cbColorLugar.Items.AddRange(New Object() {"White", "CadetBlue", "Chocolate", "CornflowerBlue", "DarkOliveGreen", "DarkOrange", "DarkSeaGreen", "DimGray", "DodgerBlue", "Goldenrod", "Orange", "OrangeRed", "LIghtSeaGreen", "LightSlateGray", "LightSteelBlue"})
-        Me.cbColorLugar.Location = New System.Drawing.Point(483, 31)
-        Me.cbColorLugar.MyColors = New String() {"CadetBlue", "Chocolate", "CornflowerBlue", "DarkOliveGreen"}
-        Me.cbColorLugar.Name = "cbColorLugar"
-        Me.cbColorLugar.Size = New System.Drawing.Size(122, 21)
-        Me.cbColorLugar.TabIndex = 7
-        '
-        'cbColor
-        '
-        Me.cbColor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbColor.FormattingEnabled = True
-        Me.cbColor.Items.AddRange(New Object() {"White", "CadetBlue", "Chocolate", "CornflowerBlue", "DarkOliveGreen", "DarkOrange", "DarkSeaGreen", "DimGray", "DodgerBlue", "Goldenrod", "Orange", "OrangeRed", "LIghtSeaGreen", "LightSlateGray", "LightSteelBlue"})
-        Me.cbColor.Location = New System.Drawing.Point(9, 64)
-        Me.cbColor.MyColors = New String() {"CadetBlue", "Chocolate", "CornflowerBlue", "DarkOliveGreen"}
-        Me.cbColor.Name = "cbColor"
-        Me.cbColor.Size = New System.Drawing.Size(121, 21)
-        Me.cbColor.TabIndex = 33
         '
         'mantLugarForm
         '

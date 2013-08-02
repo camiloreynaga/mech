@@ -24,7 +24,7 @@ Public Class mantLugarForm
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
         Dim sele As String = "select codigo,fecAper,nombre,lugar,tiempoMeta,tiempoContr,presupMeta,presupContr,razon,dir,codIde,idTipId,estado,codEstado,color from VLugarUbicacion"
         crearDataAdapterTable(daTabla1, sele)
-        sele = "select codUbi,ubicacion,'est'=case when estado=0 then 'Abierto' else 'Cerrado' end,color,codigo,estado from TUbicacion"
+        sele = "select codUbi,ubicacion,'est'=case when estado=1 then 'Abierto' else 'Cerrado' end,color,codigo,estado from TUbicacion"
         crearDataAdapterTable(daTUbi, sele)
         sele = "select codIde,razon,idTipId from TIdentidad where idTipId=1 and estado=1 order by razon"  'idTipId=1 Cliente
         crearDataAdapterTable(daTCliente, sele)
@@ -232,10 +232,10 @@ Public Class mantLugarForm
             'desEnlazarText()
         Else
             txtUbi.Text = BindingSource2.Item(BindingSource2.Position)(1)
-            If BindingSource2.Item(BindingSource2.Position)(5) = 0 Then
+            If BindingSource2.Item(BindingSource2.Position)(5) = 1 Then
                 lbEst2.SelectedIndex = 0   'Abierto
             Else
-                If BindingSource2.Item(BindingSource2.Position)(5) = 1 Then 'CERRAdO
+                If BindingSource2.Item(BindingSource2.Position)(5) = 0 Then 'CERRAdO
                     lbEst2.SelectedIndex = 1
 
                 End If
@@ -296,10 +296,10 @@ Public Class mantLugarForm
 
     Dim vfNuevo1 As String = "nuevo"
     Private Sub btnNuevo2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNuevo2.Click
-        If BindingSource1.Item(BindingSource1.Position)(0) = "00-00" Then
-            StatusBarClass.messageBarraEstado(" PROCESO DENEGADO, SOLO DEBE EXISTIR UN ALMACEN PRINCIPAL...")
-            Exit Sub
-        End If
+        'If BindingSource1.Item(BindingSource1.Position)(0) = "00-00" Then
+        '    StatusBarClass.messageBarraEstado(" PROCESO DENEGADO, SOLO DEBE EXISTIR UN ALMACEN PRINCIPAL...")
+        '    Exit Sub
+        'End If
 
         If vfNuevo1 = "nuevo" Then
             vfNuevo1 = "guardar"
@@ -436,7 +436,7 @@ Public Class mantLugarForm
             Dim vfCampo1 As String = BindingSource2.Item(BindingSource2.Position)(1)
             If vfCampo1.ToUpper() <> txtUbi.Text.ToUpper.Trim() Then
                 If BindingSource2.Find("ubicacion", txtUbi.Text.Trim()) >= 0 Then
-                    MessageBox.Show("Ya exíste ubicación: " & txtUbi.Text.Trim() & Chr(13) & "Cambie de nombre... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
+                    MessageBox.Show("Ya existe ubicación: " & txtUbi.Text.Trim() & Chr(13) & "Cambie de nombre... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
                     txtUbi.Focus()
                     txtUbi.SelectAll()
                     Exit Sub
@@ -650,7 +650,7 @@ Public Class mantLugarForm
     Private Sub comandoInsert1(ByVal ubicacion As String, ByVal codigo As Object, ByVal color As String)
         cmInserTable1 = New SqlCommand
         cmInserTable1.CommandType = CommandType.Text
-        cmInserTable1.CommandText = "insert TUbicacion(ubicacion,estado,codigo,color) values(@ubi,0,@cod,@col)"
+        cmInserTable1.CommandText = "insert TUbicacion(ubicacion,estado,codigo,color) values(@ubi,1,@cod,@col)"
         cmInserTable1.Connection = Cn
         cmInserTable1.Parameters.Add("@ubi", SqlDbType.VarChar, 50).Value = ubicacion 'txtUbi.Text.Trim()
         cmInserTable1.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = codigo 'BindingSource1.Item(BindingSource1.Position)(0)
@@ -666,10 +666,10 @@ Public Class mantLugarForm
         cmUpdateTable.Connection = Cn
         cmUpdateTable.Parameters.Add("@ubi", SqlDbType.VarChar, 50).Value = txtUbi.Text.Trim()
         If lbEst2.SelectedIndex = 0 Then 'Abierto
-            cmUpdateTable.Parameters.Add("@est", SqlDbType.Int, 0).Value = 0
+            cmUpdateTable.Parameters.Add("@est", SqlDbType.Int, 0).Value = 1
         Else  'Inactivo
             If lbEst2.SelectedIndex = 1 Then 'Cerrado
-                cmUpdateTable.Parameters.Add("@est", SqlDbType.Int, 0).Value = 1
+                cmUpdateTable.Parameters.Add("@est", SqlDbType.Int, 0).Value = 0
             
             End If
         End If
@@ -1384,5 +1384,7 @@ Public Class mantLugarForm
     Private Sub dgTabla1_CellEnter(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla1.CellEnter
         enlazarText()
     End Sub
+
+   
 End Class
 

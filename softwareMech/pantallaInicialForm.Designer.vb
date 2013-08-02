@@ -62,6 +62,7 @@ Partial Class pantallaInicialForm
         Me.ToolStripSeparator6_2 = New System.Windows.Forms.ToolStripSeparator
         Me.opcOrdDesModPago = New System.Windows.Forms.ToolStripMenuItem
         Me.opcOrdDesCtasBco = New System.Windows.Forms.ToolStripMenuItem
+        Me.CajaChicaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator
         Me.opcDocCompra = New System.Windows.Forms.ToolStripDropDownButton
         Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator
@@ -89,7 +90,7 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.CajaChicaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.TransportistasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -419,6 +420,12 @@ Partial Class pantallaInicialForm
         Me.opcOrdDesCtasBco.Size = New System.Drawing.Size(271, 22)
         Me.opcOrdDesCtasBco.Text = "Mant. Cuentas Bancarias"
         '
+        'CajaChicaToolStripMenuItem
+        '
+        Me.CajaChicaToolStripMenuItem.Name = "CajaChicaToolStripMenuItem"
+        Me.CajaChicaToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
+        Me.CajaChicaToolStripMenuItem.Text = "Caja Chica"
+        '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
@@ -441,6 +448,7 @@ Partial Class pantallaInicialForm
         '
         'opcGuiaRemision
         '
+        Me.opcGuiaRemision.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TransportistasToolStripMenuItem})
         Me.opcGuiaRemision.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.opcGuiaRemision.Image = CType(resources.GetObject("opcGuiaRemision.Image"), System.Drawing.Image)
         Me.opcGuiaRemision.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -650,11 +658,11 @@ Partial Class pantallaInicialForm
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'CajaChicaToolStripMenuItem
+        'TransportistasToolStripMenuItem
         '
-        Me.CajaChicaToolStripMenuItem.Name = "CajaChicaToolStripMenuItem"
-        Me.CajaChicaToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
-        Me.CajaChicaToolStripMenuItem.Text = "Caja Chica"
+        Me.TransportistasToolStripMenuItem.Name = "TransportistasToolStripMenuItem"
+        Me.TransportistasToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.TransportistasToolStripMenuItem.Text = "Transportistas"
         '
         'pantallaInicialForm
         '
@@ -747,4 +755,5 @@ Partial Class pantallaInicialForm
     Friend WithEvents ToolStripSeparator12 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents opcAlm As System.Windows.Forms.ToolStripButton
     Friend WithEvents CajaChicaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TransportistasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

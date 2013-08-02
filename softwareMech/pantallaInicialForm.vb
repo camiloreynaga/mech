@@ -585,4 +585,11 @@ Public Class pantallaInicialForm
         caja.Show()
 
     End Sub
+
+    Private Sub TransportistasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TransportistasToolStripMenuItem.Click
+        Dim trans As New MantVehiculoTransportistaFrm
+        trans.MdiParent = Me
+        trans.Show()
+
+    End Sub
 End Class
