@@ -23,22 +23,18 @@ Partial Class MantVehiculoTransportistaFrm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MantVehiculoTransportistaFrm))
         Me.dgVehiculo = New System.Windows.Forms.DataGridView
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.Label3 = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
         Me.Label1 = New System.Windows.Forms.Label
-        Me.txtCodVehiculo = New System.Windows.Forms.TextBox
         Me.txtMarcaPlaca = New System.Windows.Forms.TextBox
         Me.txtConstancia = New System.Windows.Forms.TextBox
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
-        Me.Label7 = New System.Windows.Forms.Label
         Me.txtLicencia = New System.Windows.Forms.TextBox
         Me.txtDni = New System.Windows.Forms.TextBox
         Me.Label6 = New System.Windows.Forms.Label
         Me.Label8 = New System.Windows.Forms.Label
         Me.txtNombre = New System.Windows.Forms.TextBox
         Me.Label5 = New System.Windows.Forms.Label
-        Me.txtCodConductor = New System.Windows.Forms.TextBox
         Me.GroupBox4 = New System.Windows.Forms.GroupBox
         Me.dgConductor = New System.Windows.Forms.DataGridView
         Me.cbEmpTrans = New System.Windows.Forms.ComboBox
@@ -52,12 +48,36 @@ Partial Class MantVehiculoTransportistaFrm
         Me.btnEliminarV = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnCancelarV = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnNuevoV = New ComponentesSolucion2008.BottomSSP(Me.components)
+        Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
+        Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorSeparator = New System.Windows.Forms.ToolStripSeparator
+        Me.BindingNavigatorPositionItem = New System.Windows.Forms.ToolStripTextBox
+        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
+        Me.BindingNavigatorSeparator1 = New System.Windows.Forms.ToolStripSeparator
+        Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
+        Me.BindingNavigator2 = New System.Windows.Forms.BindingNavigator(Me.components)
+        Me.BindingNavigatorMoveFirstItem1 = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorMovePreviousItem1 = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorSeparator3 = New System.Windows.Forms.ToolStripSeparator
+        Me.BindingNavigatorPositionItem1 = New System.Windows.Forms.ToolStripTextBox
+        Me.BindingNavigatorCountItem1 = New System.Windows.Forms.ToolStripLabel
+        Me.BindingNavigatorSeparator4 = New System.Windows.Forms.ToolStripSeparator
+        Me.BindingNavigatorMoveNextItem1 = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorMoveLastItem1 = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorSeparator5 = New System.Windows.Forms.ToolStripSeparator
         CType(Me.dgVehiculo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         CType(Me.dgConductor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.BindingNavigator1.SuspendLayout()
+        CType(Me.BindingNavigator2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.BindingNavigator2.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitulo
@@ -66,44 +86,33 @@ Partial Class MantVehiculoTransportistaFrm
         '
         'lblDerecha
         '
-        Me.lblDerecha.Size = New System.Drawing.Size(14, 443)
+        Me.lblDerecha.Size = New System.Drawing.Size(14, 405)
         '
         'dgVehiculo
         '
+        Me.dgVehiculo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgVehiculo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgVehiculo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgVehiculo.Location = New System.Drawing.Point(3, 16)
         Me.dgVehiculo.Name = "dgVehiculo"
-        Me.dgVehiculo.Size = New System.Drawing.Size(392, 240)
+        Me.dgVehiculo.Size = New System.Drawing.Size(392, 208)
         Me.dgVehiculo.TabIndex = 3
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.txtCodVehiculo)
         Me.GroupBox1.Controls.Add(Me.txtMarcaPlaca)
         Me.GroupBox1.Controls.Add(Me.txtConstancia)
         Me.GroupBox1.Location = New System.Drawing.Point(20, 53)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(401, 96)
+        Me.GroupBox1.Size = New System.Drawing.Size(398, 65)
         Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(9, 22)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(86, 13)
-        Me.Label3.TabIndex = 1
-        Me.Label3.Text = "Cod Vehiculo:"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(9, 48)
+        Me.Label2.Location = New System.Drawing.Point(13, 16)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(92, 13)
         Me.Label2.TabIndex = 1
@@ -112,38 +121,31 @@ Partial Class MantVehiculoTransportistaFrm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(222, 48)
+        Me.Label1.Location = New System.Drawing.Point(226, 16)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(92, 13)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "N° Constancia:"
         '
-        'txtCodVehiculo
-        '
-        Me.txtCodVehiculo.Location = New System.Drawing.Point(103, 19)
-        Me.txtCodVehiculo.Name = "txtCodVehiculo"
-        Me.txtCodVehiculo.ReadOnly = True
-        Me.txtCodVehiculo.Size = New System.Drawing.Size(100, 20)
-        Me.txtCodVehiculo.TabIndex = 2
-        '
         'txtMarcaPlaca
         '
-        Me.txtMarcaPlaca.Location = New System.Drawing.Point(12, 64)
+        Me.txtMarcaPlaca.Location = New System.Drawing.Point(16, 32)
         Me.txtMarcaPlaca.Name = "txtMarcaPlaca"
         Me.txtMarcaPlaca.Size = New System.Drawing.Size(191, 20)
         Me.txtMarcaPlaca.TabIndex = 0
         '
         'txtConstancia
         '
-        Me.txtConstancia.Location = New System.Drawing.Point(225, 64)
+        Me.txtConstancia.Location = New System.Drawing.Point(229, 32)
         Me.txtConstancia.Name = "txtConstancia"
         Me.txtConstancia.Size = New System.Drawing.Size(163, 20)
         Me.txtConstancia.TabIndex = 1
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.BindingNavigator1)
         Me.GroupBox2.Controls.Add(Me.dgVehiculo)
-        Me.GroupBox2.Location = New System.Drawing.Point(23, 184)
+        Me.GroupBox2.Location = New System.Drawing.Point(20, 153)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(398, 259)
         Me.GroupBox2.TabIndex = 4
@@ -151,39 +153,28 @@ Partial Class MantVehiculoTransportistaFrm
         '
         'GroupBox3
         '
-        Me.GroupBox3.Controls.Add(Me.Label7)
         Me.GroupBox3.Controls.Add(Me.txtLicencia)
         Me.GroupBox3.Controls.Add(Me.txtDni)
         Me.GroupBox3.Controls.Add(Me.Label6)
         Me.GroupBox3.Controls.Add(Me.Label8)
         Me.GroupBox3.Controls.Add(Me.txtNombre)
         Me.GroupBox3.Controls.Add(Me.Label5)
-        Me.GroupBox3.Controls.Add(Me.txtCodConductor)
         Me.GroupBox3.Location = New System.Drawing.Point(427, 53)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(512, 96)
+        Me.GroupBox3.Size = New System.Drawing.Size(512, 65)
         Me.GroupBox3.TabIndex = 4
         Me.GroupBox3.TabStop = False
         '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(6, 22)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(95, 13)
-        Me.Label7.TabIndex = 1
-        Me.Label7.Text = "Cod Conductor:"
-        '
         'txtLicencia
         '
-        Me.txtLicencia.Location = New System.Drawing.Point(362, 64)
+        Me.txtLicencia.Location = New System.Drawing.Point(365, 32)
         Me.txtLicencia.Name = "txtLicencia"
         Me.txtLicencia.Size = New System.Drawing.Size(87, 20)
         Me.txtLicencia.TabIndex = 2
         '
         'txtDni
         '
-        Me.txtDni.Location = New System.Drawing.Point(18, 64)
+        Me.txtDni.Location = New System.Drawing.Point(17, 32)
         Me.txtDni.MaxLength = 8
         Me.txtDni.Name = "txtDni"
         Me.txtDni.Size = New System.Drawing.Size(83, 20)
@@ -192,7 +183,7 @@ Partial Class MantVehiculoTransportistaFrm
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(115, 48)
+        Me.Label6.Location = New System.Drawing.Point(114, 16)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(54, 13)
         Me.Label6.TabIndex = 1
@@ -201,7 +192,7 @@ Partial Class MantVehiculoTransportistaFrm
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(359, 48)
+        Me.Label8.Location = New System.Drawing.Point(362, 16)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(77, 13)
         Me.Label8.TabIndex = 1
@@ -209,7 +200,7 @@ Partial Class MantVehiculoTransportistaFrm
         '
         'txtNombre
         '
-        Me.txtNombre.Location = New System.Drawing.Point(115, 64)
+        Me.txtNombre.Location = New System.Drawing.Point(114, 32)
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(234, 20)
         Me.txtNombre.TabIndex = 1
@@ -217,24 +208,17 @@ Partial Class MantVehiculoTransportistaFrm
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(15, 48)
+        Me.Label5.Location = New System.Drawing.Point(14, 16)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(33, 13)
         Me.Label5.TabIndex = 1
         Me.Label5.Text = "DNI:"
         '
-        'txtCodConductor
-        '
-        Me.txtCodConductor.Location = New System.Drawing.Point(115, 19)
-        Me.txtCodConductor.Name = "txtCodConductor"
-        Me.txtCodConductor.ReadOnly = True
-        Me.txtCodConductor.Size = New System.Drawing.Size(100, 20)
-        Me.txtCodConductor.TabIndex = 3
-        '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.BindingNavigator2)
         Me.GroupBox4.Controls.Add(Me.dgConductor)
-        Me.GroupBox4.Location = New System.Drawing.Point(427, 184)
+        Me.GroupBox4.Location = New System.Drawing.Point(427, 153)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(512, 259)
         Me.GroupBox4.TabIndex = 4
@@ -242,15 +226,17 @@ Partial Class MantVehiculoTransportistaFrm
         '
         'dgConductor
         '
+        Me.dgConductor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgConductor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgConductor.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgConductor.Location = New System.Drawing.Point(3, 16)
         Me.dgConductor.Name = "dgConductor"
-        Me.dgConductor.Size = New System.Drawing.Size(506, 240)
+        Me.dgConductor.Size = New System.Drawing.Size(506, 208)
         Me.dgConductor.TabIndex = 3
         '
         'cbEmpTrans
         '
+        Me.cbEmpTrans.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.cbEmpTrans.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbEmpTrans.FormattingEnabled = True
         Me.cbEmpTrans.Location = New System.Drawing.Point(179, 26)
         Me.cbEmpTrans.Name = "cbEmpTrans"
@@ -271,7 +257,7 @@ Partial Class MantVehiculoTransportistaFrm
         Me.btnNuevoC.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnNuevoC.Image = CType(resources.GetObject("btnNuevoC.Image"), System.Drawing.Image)
         Me.btnNuevoC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnNuevoC.Location = New System.Drawing.Point(504, 155)
+        Me.btnNuevoC.Location = New System.Drawing.Point(504, 124)
         Me.btnNuevoC.Name = "btnNuevoC"
         Me.btnNuevoC.Size = New System.Drawing.Size(84, 23)
         Me.btnNuevoC.TabIndex = 16
@@ -283,7 +269,7 @@ Partial Class MantVehiculoTransportistaFrm
         '
         Me.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCerrar.Location = New System.Drawing.Point(864, 155)
+        Me.btnCerrar.Location = New System.Drawing.Point(864, 124)
         Me.btnCerrar.Name = "btnCerrar"
         Me.btnCerrar.Size = New System.Drawing.Size(75, 23)
         Me.btnCerrar.TabIndex = 20
@@ -297,7 +283,7 @@ Partial Class MantVehiculoTransportistaFrm
         Me.btnCancelarC.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancelarC.Image = CType(resources.GetObject("btnCancelarC.Image"), System.Drawing.Image)
         Me.btnCancelarC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCancelarC.Location = New System.Drawing.Point(684, 155)
+        Me.btnCancelarC.Location = New System.Drawing.Point(684, 124)
         Me.btnCancelarC.Name = "btnCancelarC"
         Me.btnCancelarC.Size = New System.Drawing.Size(84, 23)
         Me.btnCancelarC.TabIndex = 18
@@ -310,7 +296,7 @@ Partial Class MantVehiculoTransportistaFrm
         Me.btnEliminarC.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnEliminarC.Image = CType(resources.GetObject("btnEliminarC.Image"), System.Drawing.Image)
         Me.btnEliminarC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnEliminarC.Location = New System.Drawing.Point(774, 155)
+        Me.btnEliminarC.Location = New System.Drawing.Point(774, 124)
         Me.btnEliminarC.Name = "btnEliminarC"
         Me.btnEliminarC.Size = New System.Drawing.Size(84, 23)
         Me.btnEliminarC.TabIndex = 19
@@ -323,7 +309,7 @@ Partial Class MantVehiculoTransportistaFrm
         Me.btnModificarC.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnModificarC.Image = CType(resources.GetObject("btnModificarC.Image"), System.Drawing.Image)
         Me.btnModificarC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnModificarC.Location = New System.Drawing.Point(594, 155)
+        Me.btnModificarC.Location = New System.Drawing.Point(594, 124)
         Me.btnModificarC.Name = "btnModificarC"
         Me.btnModificarC.Size = New System.Drawing.Size(84, 23)
         Me.btnModificarC.TabIndex = 17
@@ -336,7 +322,7 @@ Partial Class MantVehiculoTransportistaFrm
         Me.btnModificarV.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnModificarV.Image = CType(resources.GetObject("btnModificarV.Image"), System.Drawing.Image)
         Me.btnModificarV.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnModificarV.Location = New System.Drawing.Point(157, 155)
+        Me.btnModificarV.Location = New System.Drawing.Point(154, 124)
         Me.btnModificarV.Name = "btnModificarV"
         Me.btnModificarV.Size = New System.Drawing.Size(84, 23)
         Me.btnModificarV.TabIndex = 17
@@ -349,7 +335,7 @@ Partial Class MantVehiculoTransportistaFrm
         Me.btnEliminarV.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnEliminarV.Image = CType(resources.GetObject("btnEliminarV.Image"), System.Drawing.Image)
         Me.btnEliminarV.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnEliminarV.Location = New System.Drawing.Point(337, 155)
+        Me.btnEliminarV.Location = New System.Drawing.Point(334, 124)
         Me.btnEliminarV.Name = "btnEliminarV"
         Me.btnEliminarV.Size = New System.Drawing.Size(84, 23)
         Me.btnEliminarV.TabIndex = 19
@@ -364,7 +350,7 @@ Partial Class MantVehiculoTransportistaFrm
         Me.btnCancelarV.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancelarV.Image = CType(resources.GetObject("btnCancelarV.Image"), System.Drawing.Image)
         Me.btnCancelarV.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCancelarV.Location = New System.Drawing.Point(247, 155)
+        Me.btnCancelarV.Location = New System.Drawing.Point(244, 124)
         Me.btnCancelarV.Name = "btnCancelarV"
         Me.btnCancelarV.Size = New System.Drawing.Size(84, 23)
         Me.btnCancelarV.TabIndex = 18
@@ -377,7 +363,7 @@ Partial Class MantVehiculoTransportistaFrm
         Me.btnNuevoV.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnNuevoV.Image = CType(resources.GetObject("btnNuevoV.Image"), System.Drawing.Image)
         Me.btnNuevoV.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnNuevoV.Location = New System.Drawing.Point(67, 155)
+        Me.btnNuevoV.Location = New System.Drawing.Point(64, 124)
         Me.btnNuevoV.Name = "btnNuevoV"
         Me.btnNuevoV.Size = New System.Drawing.Size(84, 23)
         Me.btnNuevoV.TabIndex = 16
@@ -385,10 +371,181 @@ Partial Class MantVehiculoTransportistaFrm
         Me.btnNuevoV.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnNuevoV.UseVisualStyleBackColor = True
         '
+        'BindingNavigator1
+        '
+        Me.BindingNavigator1.AddNewItem = Nothing
+        Me.BindingNavigator1.CountItem = Me.BindingNavigatorCountItem
+        Me.BindingNavigator1.DeleteItem = Nothing
+        Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
+        Me.BindingNavigator1.Location = New System.Drawing.Point(3, 231)
+        Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
+        Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
+        Me.BindingNavigator1.MoveNextItem = Me.BindingNavigatorMoveNextItem
+        Me.BindingNavigator1.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
+        Me.BindingNavigator1.Name = "BindingNavigator1"
+        Me.BindingNavigator1.PositionItem = Me.BindingNavigatorPositionItem
+        Me.BindingNavigator1.Size = New System.Drawing.Size(392, 25)
+        Me.BindingNavigator1.TabIndex = 4
+        Me.BindingNavigator1.Text = "BindingNavigator1"
+        '
+        'BindingNavigatorMoveFirstItem
+        '
+        Me.BindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
+        Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveFirstItem.Text = "Mover primero"
+        '
+        'BindingNavigatorMovePreviousItem
+        '
+        Me.BindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
+        Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMovePreviousItem.Text = "Mover anterior"
+        '
+        'BindingNavigatorSeparator
+        '
+        Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 25)
+        '
+        'BindingNavigatorPositionItem
+        '
+        Me.BindingNavigatorPositionItem.AccessibleName = "Posición"
+        Me.BindingNavigatorPositionItem.AutoSize = False
+        Me.BindingNavigatorPositionItem.Name = "BindingNavigatorPositionItem"
+        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(50, 23)
+        Me.BindingNavigatorPositionItem.Text = "0"
+        Me.BindingNavigatorPositionItem.ToolTipText = "Posición actual"
+        '
+        'BindingNavigatorCountItem
+        '
+        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(37, 22)
+        Me.BindingNavigatorCountItem.Text = "de {0}"
+        Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
+        '
+        'BindingNavigatorSeparator1
+        '
+        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
+        'BindingNavigatorMoveNextItem
+        '
+        Me.BindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
+        Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveNextItem.Text = "Mover siguiente"
+        '
+        'BindingNavigatorMoveLastItem
+        '
+        Me.BindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
+        Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveLastItem.Text = "Mover último"
+        '
+        'BindingNavigatorSeparator2
+        '
+        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
+        '
+        'BindingNavigator2
+        '
+        Me.BindingNavigator2.AddNewItem = Nothing
+        Me.BindingNavigator2.CountItem = Me.BindingNavigatorCountItem1
+        Me.BindingNavigator2.DeleteItem = Nothing
+        Me.BindingNavigator2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BindingNavigator2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem1, Me.BindingNavigatorMovePreviousItem1, Me.BindingNavigatorSeparator3, Me.BindingNavigatorPositionItem1, Me.BindingNavigatorCountItem1, Me.BindingNavigatorSeparator4, Me.BindingNavigatorMoveNextItem1, Me.BindingNavigatorMoveLastItem1, Me.BindingNavigatorSeparator5})
+        Me.BindingNavigator2.Location = New System.Drawing.Point(3, 231)
+        Me.BindingNavigator2.MoveFirstItem = Me.BindingNavigatorMoveFirstItem1
+        Me.BindingNavigator2.MoveLastItem = Me.BindingNavigatorMoveLastItem1
+        Me.BindingNavigator2.MoveNextItem = Me.BindingNavigatorMoveNextItem1
+        Me.BindingNavigator2.MovePreviousItem = Me.BindingNavigatorMovePreviousItem1
+        Me.BindingNavigator2.Name = "BindingNavigator2"
+        Me.BindingNavigator2.PositionItem = Me.BindingNavigatorPositionItem1
+        Me.BindingNavigator2.Size = New System.Drawing.Size(506, 25)
+        Me.BindingNavigator2.TabIndex = 4
+        Me.BindingNavigator2.Text = "BindingNavigator2"
+        '
+        'BindingNavigatorMoveFirstItem1
+        '
+        Me.BindingNavigatorMoveFirstItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveFirstItem1.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem1.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveFirstItem1.Name = "BindingNavigatorMoveFirstItem"
+        Me.BindingNavigatorMoveFirstItem1.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveFirstItem1.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveFirstItem1.Text = "Mover primero"
+        '
+        'BindingNavigatorMovePreviousItem1
+        '
+        Me.BindingNavigatorMovePreviousItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMovePreviousItem1.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem1.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMovePreviousItem1.Name = "BindingNavigatorMovePreviousItem"
+        Me.BindingNavigatorMovePreviousItem1.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMovePreviousItem1.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMovePreviousItem1.Text = "Mover anterior"
+        '
+        'BindingNavigatorSeparator3
+        '
+        Me.BindingNavigatorSeparator3.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator3.Size = New System.Drawing.Size(6, 25)
+        '
+        'BindingNavigatorPositionItem1
+        '
+        Me.BindingNavigatorPositionItem1.AccessibleName = "Posición"
+        Me.BindingNavigatorPositionItem1.AutoSize = False
+        Me.BindingNavigatorPositionItem1.Name = "BindingNavigatorPositionItem"
+        Me.BindingNavigatorPositionItem1.Size = New System.Drawing.Size(50, 23)
+        Me.BindingNavigatorPositionItem1.Text = "0"
+        Me.BindingNavigatorPositionItem1.ToolTipText = "Posición actual"
+        '
+        'BindingNavigatorCountItem1
+        '
+        Me.BindingNavigatorCountItem1.Name = "BindingNavigatorCountItem"
+        Me.BindingNavigatorCountItem1.Size = New System.Drawing.Size(37, 22)
+        Me.BindingNavigatorCountItem1.Text = "de {0}"
+        Me.BindingNavigatorCountItem1.ToolTipText = "Número total de elementos"
+        '
+        'BindingNavigatorSeparator4
+        '
+        Me.BindingNavigatorSeparator4.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator4.Size = New System.Drawing.Size(6, 25)
+        '
+        'BindingNavigatorMoveNextItem1
+        '
+        Me.BindingNavigatorMoveNextItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveNextItem1.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem1.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveNextItem1.Name = "BindingNavigatorMoveNextItem"
+        Me.BindingNavigatorMoveNextItem1.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveNextItem1.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveNextItem1.Text = "Mover siguiente"
+        '
+        'BindingNavigatorMoveLastItem1
+        '
+        Me.BindingNavigatorMoveLastItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveLastItem1.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem1.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveLastItem1.Name = "BindingNavigatorMoveLastItem"
+        Me.BindingNavigatorMoveLastItem1.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveLastItem1.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveLastItem1.Text = "Mover último"
+        '
+        'BindingNavigatorSeparator5
+        '
+        Me.BindingNavigatorSeparator5.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator5.Size = New System.Drawing.Size(6, 25)
+        '
         'MantVehiculoTransportistaFrm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(946, 488)
+        Me.CancelButton = Me.btnCerrar
+        Me.ClientSize = New System.Drawing.Size(946, 450)
         Me.Controls.Add(Me.btnNuevoV)
         Me.Controls.Add(Me.btnNuevoC)
         Me.Controls.Add(Me.btnCancelarV)
@@ -427,10 +584,18 @@ Partial Class MantVehiculoTransportistaFrm
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         CType(Me.dgConductor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.BindingNavigator1.ResumeLayout(False)
+        Me.BindingNavigator1.PerformLayout()
+        CType(Me.BindingNavigator2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.BindingNavigator2.ResumeLayout(False)
+        Me.BindingNavigator2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -441,20 +606,16 @@ Partial Class MantVehiculoTransportistaFrm
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
     Friend WithEvents dgConductor As System.Windows.Forms.DataGridView
-    Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents txtCodVehiculo As System.Windows.Forms.TextBox
     Friend WithEvents txtMarcaPlaca As System.Windows.Forms.TextBox
     Friend WithEvents txtConstancia As System.Windows.Forms.TextBox
     Friend WithEvents cbEmpTrans As System.Windows.Forms.ComboBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents txtDni As System.Windows.Forms.TextBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents txtNombre As System.Windows.Forms.TextBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents txtCodConductor As System.Windows.Forms.TextBox
     Friend WithEvents txtLicencia As System.Windows.Forms.TextBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents btnNuevoC As ComponentesSolucion2008.BottomSSP
@@ -466,5 +627,25 @@ Partial Class MantVehiculoTransportistaFrm
     Friend WithEvents btnEliminarV As ComponentesSolucion2008.BottomSSP
     Friend WithEvents btnCancelarV As ComponentesSolucion2008.BottomSSP
     Friend WithEvents btnNuevoV As ComponentesSolucion2008.BottomSSP
+    Friend WithEvents BindingNavigator1 As System.Windows.Forms.BindingNavigator
+    Friend WithEvents BindingNavigatorCountItem As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents BindingNavigatorMoveFirstItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorMovePreviousItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorSeparator As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BindingNavigatorPositionItem As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents BindingNavigatorSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BindingNavigatorMoveNextItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorMoveLastItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorSeparator2 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BindingNavigator2 As System.Windows.Forms.BindingNavigator
+    Friend WithEvents BindingNavigatorCountItem1 As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents BindingNavigatorMoveFirstItem1 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorMovePreviousItem1 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorSeparator3 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BindingNavigatorPositionItem1 As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents BindingNavigatorSeparator4 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BindingNavigatorMoveNextItem1 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorMoveLastItem1 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorSeparator5 As System.Windows.Forms.ToolStripSeparator
 
 End Class

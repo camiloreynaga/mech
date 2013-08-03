@@ -41,6 +41,7 @@ Public Class MantVehiculoTransportistaFrm
     ''' </summary>
     ''' <remarks></remarks>
     Dim vfCampo1 As String
+
     ''' <summary>
     ''' auxiliar para Modificar vehiculo
     ''' </summary>
@@ -57,6 +58,10 @@ Public Class MantVehiculoTransportistaFrm
     ''' </summary>
     ''' <remarks></remarks>
     Dim vfCampoC As String
+    Dim vfCampo2C As String
+    Dim vfCampo3C As String
+
+
     ''' <summary>
     ''' auxiliar para Modificar conductor
     ''' </summary>
@@ -140,11 +145,14 @@ Public Class MantVehiculoTransportistaFrm
             BindingSource2.DataSource = dsAlmacen
             BindingSource2.DataMember = "TVehiculo"
             dgVehiculo.DataSource = BindingSource2
+            BindingNavigator1.BindingSource = BindingSource2
 
             daTabla3.Fill(dsAlmacen, "TTransportista")
             BindingSource3.DataSource = dsAlmacen
             BindingSource3.DataMember = "TTransportista"
             dgConductor.DataSource = BindingSource3
+
+            BindingNavigator2.BindingSource = BindingSource3
 
             BindingSource3.Sort = "nombre ASC"
 
@@ -347,7 +355,6 @@ Public Class MantVehiculoTransportistaFrm
     ''' <remarks></remarks>
     Private Sub enlazarTextVehiculo()
         If dgVehiculo.RowCount = 0 Then
-            txtCodVehiculo.Clear()
             txtMarcaPlaca.Clear()
             txtConstancia.Clear()
             Exit Sub
@@ -365,7 +372,6 @@ Public Class MantVehiculoTransportistaFrm
     ''' <remarks></remarks>
     Private Sub enlazarTextConductor()
         If dgConductor.RowCount = 0 Then
-            txtCodConductor.Clear()
             txtNombre.Clear()
             txtDni.Clear()
             txtLicencia.Clear()
@@ -566,7 +572,6 @@ Public Class MantVehiculoTransportistaFrm
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub limpiarTextVehiculo()
-        txtCodVehiculo.Clear()
         txtMarcaPlaca.Clear()
         txtConstancia.Clear()
     End Sub
@@ -575,11 +580,200 @@ Public Class MantVehiculoTransportistaFrm
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub limpiarTextConductor()
-        txtCodConductor.Clear()
         txtNombre.Clear()
         txtDni.Clear()
         txtLicencia.Clear()
     End Sub
+
+    ''' <summary>
+    ''' Valida los datos necesario para vehiculo
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function ValidarVehiculo() As Boolean
+        'Marca y placa no vacia
+        If validaCampoVacio(txtMarcaPlaca.Text.Trim()) Then
+            MessageBox.Show("Por favor ingrese una marca y N° de placa ", nomNegocio, Nothing, MessageBoxIcon.Error)
+            txtMarcaPlaca.Focus()
+            Return True
+        End If
+
+        'Constancia no vacia
+        'If validaCampoVacio(txtConstancia.Text.Trim()) Then
+        '    MessageBox.Show("Por favor ingrese un N° de constancia ", nomNegocio, Nothing, MessageBoxIcon.Error)
+        '    txtConstancia.Focus()
+        '    Return True
+        'End If
+
+        'Validando Duplicidad
+       
+
+
+    End Function
+
+    Private Function ValidarConductor() As Boolean
+
+        'DNI no vacio y valido, ocho digitos
+        If validaCampoVacio(txtDni.Text.Trim()) Or txtDni.Text.Length < 8 Then
+            'txtDni.errorProv()
+            MessageBox.Show("Por favor ingrese un DNI valido", nomNegocio, Nothing, MessageBoxIcon.Error)
+            txtDni.Focus()
+            txtDni.SelectAll()
+            Return True
+
+
+        End If
+        'Nombre valido no menor a tres letras
+        If validaCampoVacioMinCaracNoNumer(txtNombre.Text.Trim, 3) Then
+            MessageBox.Show("Por favor ingrese un nombre valido", nomNegocio, Nothing, MessageBoxIcon.Error)
+            txtNombre.Focus()
+            txtNombre.SelectAll()
+            Return True
+        End If
+        'Licencia no vacia
+        If validaCampoVacio(txtLicencia.Text.Trim) Then
+            MessageBox.Show("Por favor ingrese un N° de licencia valido", nomNegocio, Nothing, MessageBoxIcon.Error)
+            txtLicencia.Focus()
+            txtLicencia.SelectAll()
+            Return True
+        End If
+
+       
+
+    End Function
+
+    ''' <summary>
+    ''' Valida la Duplicidad de datos de Vehiculo
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function ValidarDuplicidadVehiculo() As Boolean
+
+        If VerificaVehiculo(txtMarcaPlaca.Text.Trim()) > 0 Then
+            MessageBox.Show("Ya existe un vehiculo de marca y placa: " & txtMarcaPlaca.Text.Trim & Chr(13) & "Cambie de marca y placa... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
+            txtMarcaPlaca.Focus()
+            txtMarcaPlaca.SelectAll()
+            Return True
+        End If
+
+    End Function
+
+    ''' <summary>
+    ''' Valida la Duplicidad de datos de Conductor
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function ValidarDuplicidadConductor() As Boolean
+
+        'Validando Duplicidad Nombre
+        If VerificarNombreConductor(txtNombre.Text.Trim()) > 0 Then
+            MessageBox.Show("Ya existe un chofer con el nombre: " & txtNombre.Text.Trim & Chr(13) & "Cambie de nombre... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
+            txtNombre.Focus()
+            txtNombre.SelectAll()
+            Return True
+        End If
+
+        'Validando Duplicidad Nombre
+        If VerificarDniConductor(txtDni.Text.Trim()) > 0 Then
+            MessageBox.Show("Ya existe un chofer con el DNI: " & txtDni.Text.Trim & Chr(13) & "Cambie de DNI... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
+            txtDni.Focus()
+            txtDni.SelectAll()
+            Return True
+        End If
+
+
+        'Validando Duplicidad Nombre
+        If VerificarLicenciaConductor(txtLicencia.Text.Trim()) > 0 Then
+            MessageBox.Show("Ya existe un chofer con la Licencia N°: " & txtLicencia.Text.Trim & Chr(13) & "Cambie de N° de liencia... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
+            txtLicencia.Focus()
+            txtLicencia.SelectAll()
+            Return True
+        End If
+
+    End Function
+
+
+    ''' <summary>
+    ''' Verifica la duplicidad de datos de un vehiculo
+    ''' </summary>
+    ''' <param name="cod">Marca/placa del vehiculo</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function VerificaVehiculo(ByVal cod As String) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select COUNT(marcaNro) from TVehiculo where marcaNro='" & cod & "'"
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+
+    End Function
+
+    ''' <summary>
+    ''' Verifica la Duplicidad de Datos en Nombre de conductor
+    ''' </summary>
+    ''' <param name="cod">Nombre de conductor</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function VerificarNombreConductor(ByVal cod As String) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select COUNT(nombre) from TTransportista where nombre='" & cod & "'"
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+    ''' <summary>
+    ''' Verifica la duplicidad de DNI para Conductor
+    ''' </summary>
+    ''' <param name="cod">DNI de conductor</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function VerificarDniConductor(ByVal cod As String) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select COUNT(DNI) from TTransportista where DNI='" & cod & "'"
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+    ''' <summary>
+    ''' Verifica la duplicidad de Licencia de conductor
+    ''' </summary>
+    ''' <param name="cod">licencia de conductor</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function VerificarLicenciaConductor(ByVal cod As String) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select COUNT(nroLic) from TTransportista where nroLic='" & cod & "'"
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
+    ''' <summary>
+    ''' recupera las GR por Vehiculo
+    ''' </summary>
+    ''' <param name="cod"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function RecuperarGrVehiculo(ByVal cod As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select count (codGuiaE) from TGuiaRemEmp where codVeh  =" & cod
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+    ''' <summary>
+    ''' recupera las GR por Conductor
+    ''' </summary>
+    ''' <param name="cod"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function RecuperarGrConductor(ByVal cod As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select count (codGuiaE) from TGuiaRemEmp where codT  =" & cod
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
 
 
 
@@ -599,7 +793,11 @@ Public Class MantVehiculoTransportistaFrm
 
 #End Region
 
-    
+    Private Sub MantVehiculoTransportistaFrm_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
+        Me.Close()
+    End Sub
+
+
     Private Sub MantVehiculoTransportistaFrm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim wait As New waitForm
         wait.Show()
@@ -629,6 +827,25 @@ Public Class MantVehiculoTransportistaFrm
         Else
 
             'Validar controles
+            If ValidarVehiculo() Then
+                Exit Sub
+            End If
+
+            If ValidarDuplicidadVehiculo() Then
+                Exit Sub
+            End If
+
+            vfCampo1 = txtMarcaPlaca.Text
+
+
+            ' Validando Duplicidad de Marca y Placa
+            'If BindingSource2.Find("marcaNro", txtMarcaPlaca.Text.Trim) >= 0 Then
+            '    MessageBox.Show("Ya existe un vehiculo de marca y placa: " & txtMarcaPlaca.Text.Trim & Chr(13) & "Cambie de marca y placa... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
+            '    txtMarcaPlaca.Focus()
+            '    'Filtrando 
+            '    'BindingSource2.Filter = "codET =" & cbEmpTrans.SelectedValue
+            '    Exit Sub
+            'End If
 
             'If BindingSource2. 
             Dim finalMyTrans As Boolean = False
@@ -640,14 +857,6 @@ Public Class MantVehiculoTransportistaFrm
 
                 StatusBarClass.messageBarraEstado("  GUARDANDO DATOS...")
                 Me.Refresh()
-                vfCampo1 = txtMarcaPlaca.Text
-
-                If BindingSource2.Find("marcaNro", txtMarcaPlaca.Text.Trim) >= 0 Then
-                    MessageBox.Show("Ya existe un vehiculo de marca y placa: " & txtMarcaPlaca.Text.Trim & Chr(13) & "Cambie de marca y placa... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
-                    txtMarcaPlaca.Focus()
-                    Exit Sub
-                End If
-
 
                 comandoInsertarVehiculo()
                 cmInserTable1.Transaction = myTrans
@@ -718,15 +927,19 @@ Public Class MantVehiculoTransportistaFrm
 
             Me.AcceptButton = Me.btnModificarV
         Else
+            'Validar Vehiculo
+            If ValidarVehiculo() Then
+                Exit Sub
+            End If
 
-            vfCampo1 = dgVehiculo.Rows(BindingSource2.Position).Cells(1).Value
+            vfCampo1 = BindingSource2.Item(BindingSource2.Position)(1)
+
             If vfCampo1 <> txtMarcaPlaca.Text.Trim Then
-                If BindingSource2.Find("marcaNro", txtMarcaPlaca.Text.Trim) >= 0 Then
-                    MessageBox.Show("Ya existe un vehiculo de marca y placa: " & txtMarcaPlaca.Text.Trim & Chr(13) & "Cambie de marca y placa... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
-                    txtMarcaPlaca.Focus()
+                If ValidarDuplicidadVehiculo() Then
                     Exit Sub
                 End If
             End If
+
 
             Dim finalMytrans As Boolean = False
             Dim myTrans As SqlTransaction = Cn.BeginTransaction()
@@ -807,6 +1020,13 @@ Public Class MantVehiculoTransportistaFrm
             Exit Sub
         End If
 
+        If RecuperarGrVehiculo(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
+            StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... VEHICULO TIENE GUIAS DE REMISIÓN REGISTRADAS...")
+            Exit Sub
+        End If
+
+
+
         Dim resp As String = MessageBox.Show("Está seguro de eliminar registro?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
             txtMarcaPlaca.Focus()
@@ -878,6 +1098,14 @@ Public Class MantVehiculoTransportistaFrm
         Else
 
             'Validar controles
+            If ValidarConductor() Then
+                Exit Sub
+
+            End If
+
+            If ValidarDuplicidadConductor() Then
+                Exit Sub
+            End If
 
             'If BindingSource2. 
             Dim finalMyTrans As Boolean = False
@@ -885,19 +1113,15 @@ Public Class MantVehiculoTransportistaFrm
             Dim wait As New waitForm
             wait.Show()
 
-            vfCampoC = txtDni.Text.Trim()
 
-            If BindingSource3.Find("DNI", txtDni.Text.Trim) >= 0 Then
-                MessageBox.Show("Ya existe un chofer con el DNI: " & txtDni.Text.Trim & Chr(13) & "Cambie de DNI... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
-                txtDni.Focus()
-                Exit Sub
-            End If
+
+            vfCampoC = txtDni.Text.Trim()
 
             Try
 
                 StatusBarClass.messageBarraEstado("  GUARDANDO DATOS...")
                 Me.Refresh()
-                
+
 
 
                 comandoInsertarConductor()
@@ -966,13 +1190,22 @@ Public Class MantVehiculoTransportistaFrm
             Me.AcceptButton = Me.btnModificarC
         Else
 
-            vfCampoC = dgVehiculo.Rows(BindingSource3.Position).Cells(2).Value
-            If vfCampoC <> txtDni.Text.Trim Then
-                If BindingSource3.Find("DNI", txtDni.Text.Trim) >= 0 Then
-                    MessageBox.Show("Ya existe un chofer con el DNI: " & txtDni.Text.Trim & Chr(13) & "Cambie de DNI... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
-                    txtDni.Focus()
+            If ValidarConductor() Then
+                Exit Sub
+            End If
+
+
+
+            vfCampoC = BindingSource3.Item(BindingSource3.Position)(2) 'DNI
+            vfCampo2C = BindingSource3.Item(BindingSource3.Position)(1) ' Nombre
+            vfCampo3C = BindingSource3.Item(BindingSource3.Position)(4) 'Licencia
+
+            'Validando Duplicidad de datos de Conductor
+            If vfCampoC <> txtDni.Text.Trim Or vfCampo2C <> txtNombre.Text.Trim() Or vfCampo3C <> txtLicencia.Text.Trim Then
+                If ValidarDuplicidadConductor() Then
                     Exit Sub
                 End If
+
             End If
 
             Dim finalMytrans As Boolean = False
@@ -1037,6 +1270,12 @@ Public Class MantVehiculoTransportistaFrm
             Exit Sub
         End If
 
+
+        If RecuperarGrConductor(BindingSource3.Item(BindingSource3.Position)(0)) > 0 Then
+            StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... CHOFER TIENE GUIAS DE REMISIÓN REGISTRADAS...")
+            Exit Sub
+        End If
+
         Dim resp As String = MessageBox.Show("Está seguro de eliminar registro?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
             txtDni.Focus()
@@ -1093,7 +1332,7 @@ Public Class MantVehiculoTransportistaFrm
         End Try
     End Sub
 
-   
+
 
     Private Sub btnCancelarC_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCancelarC.Click
 
@@ -1120,10 +1359,20 @@ Public Class MantVehiculoTransportistaFrm
         If BindingSource1.Count >= 0 Then
 
             Try
+                ' If btnNuevoV.
 
-                BindingSource2.Filter = "codET=" & cbEmpTrans.SelectedValue
-                BindingSource3.Filter = "codET=" & cbEmpTrans.SelectedValue
+                'If vfNuevo1 = "nuevo" And vfModificar = "modificar" And vfNuevoC = "nuevo" And vfModificarC = "modificar" Then
+                If vfModificar = "modificar" And vfModificarC = "modificar" Then
 
+                    If IsNumeric(cbEmpTrans.SelectedValue) Then
+                        BindingSource2.Filter = "codET=" & cbEmpTrans.SelectedValue
+                        BindingSource3.Filter = "codET=" & cbEmpTrans.SelectedValue
+                    Else
+                        BindingSource2.Filter = "codET=" & BindingSource1.Item(BindingSource1.Position)(0)
+                        BindingSource3.Filter = "codET=" & BindingSource1.Item(BindingSource1.Position)(0)
+                    End If
+
+                End If
             Catch ex As Exception
 
             End Try
