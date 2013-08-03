@@ -175,6 +175,8 @@ Public Class MantVehiculoTransportistaFrm
     Private Sub configurarColorControl()
         Me.BackColor = BackColorP
 
+        GroupBox1.ForeColor = ForeColorLabel
+        GroupBox3.ForeColor = ForeColorLabel
 
 
         'Me.lblTitulo.BackColor = TituloBackColorP
@@ -329,11 +331,11 @@ Public Class MantVehiculoTransportistaFrm
         cmUpdateTable2.CommandType = CommandType.Text
         cmUpdateTable2.CommandText = "Update TTransportista set nombre=@nombre,DNI=@DNI,nroLic=@nroLic,codET=@codET WHERE codT=@codT"
         cmUpdateTable2.Connection = Cn
-        cmUpdateTable2.Parameters.Add("@nombre", SqlDbType.VarChar, 60).Value = txtMarcaPlaca.Text.Trim
-        cmUpdateTable2.Parameters.Add("@DNI", SqlDbType.VarChar, 8).Value = txtConstancia.Text.Trim
+        cmUpdateTable2.Parameters.Add("@nombre", SqlDbType.VarChar, 60).Value = txtNombre.Text.Trim
+        cmUpdateTable2.Parameters.Add("@DNI", SqlDbType.VarChar, 8).Value = txtDni.Text.Trim
         cmUpdateTable2.Parameters.Add("@nroLic", SqlDbType.VarChar, 30).Value = txtLicencia.Text
         cmUpdateTable2.Parameters.Add("@codET", SqlDbType.Int).Value = cbEmpTrans.SelectedValue
-        cmUpdateTable2.Parameters.Add("@codVeh", SqlDbType.Int).Value = BindingSource3.Item(BindingSource3.Position)(0)
+        cmUpdateTable2.Parameters.Add("@codT", SqlDbType.Int).Value = BindingSource3.Item(BindingSource3.Position)(0)
 
     End Sub
 
@@ -658,38 +660,48 @@ Public Class MantVehiculoTransportistaFrm
 
     End Function
 
+
     ''' <summary>
     ''' Valida la Duplicidad de datos de Conductor
     ''' </summary>
+    ''' <param name="dato">1 = DNI,2 para Nombre , 3 para Licencia</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Private Function ValidarDuplicidadConductor() As Boolean
-
+    Private Function ValidarDuplicidadConductor(ByVal dato As Integer) As Boolean
         'Validando Duplicidad Nombre
-        If VerificarNombreConductor(txtNombre.Text.Trim()) > 0 Then
-            MessageBox.Show("Ya existe un chofer con el nombre: " & txtNombre.Text.Trim & Chr(13) & "Cambie de nombre... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
-            txtNombre.Focus()
-            txtNombre.SelectAll()
-            Return True
+        If dato = 1 Then
+
+
+
+            If VerificarDniConductor(txtDni.Text.Trim()) > 0 Then
+                MessageBox.Show("Ya existe un chofer con el DNI: " & txtDni.Text.Trim & Chr(13) & "Cambie de DNI... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
+                txtDni.Focus()
+                txtDni.SelectAll()
+                Return True
+            End If
+        End If
+        'Validando Duplicidad Nombre
+        If dato = 2 Then
+
+
+            If VerificarNombreConductor(txtNombre.Text.Trim()) > 0 Then
+                MessageBox.Show("Ya existe un chofer con el nombre: " & txtNombre.Text.Trim & Chr(13) & "Cambie de nombre... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
+                txtNombre.Focus()
+                txtNombre.SelectAll()
+                Return True
+            End If
         End If
 
-        'Validando Duplicidad Nombre
-        If VerificarDniConductor(txtDni.Text.Trim()) > 0 Then
-            MessageBox.Show("Ya existe un chofer con el DNI: " & txtDni.Text.Trim & Chr(13) & "Cambie de DNI... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
-            txtDni.Focus()
-            txtDni.SelectAll()
-            Return True
+        'Validando Duplicidad Licencia
+        If dato = 3 Then
+
+            If VerificarLicenciaConductor(txtLicencia.Text.Trim()) > 0 Then
+                MessageBox.Show("Ya existe un chofer con la Licencia N°: " & txtLicencia.Text.Trim & Chr(13) & "Cambie de N° de liencia... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
+                txtLicencia.Focus()
+                txtLicencia.SelectAll()
+                Return True
+            End If
         End If
-
-
-        'Validando Duplicidad Nombre
-        If VerificarLicenciaConductor(txtLicencia.Text.Trim()) > 0 Then
-            MessageBox.Show("Ya existe un chofer con la Licencia N°: " & txtLicencia.Text.Trim & Chr(13) & "Cambie de N° de liencia... o cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
-            txtLicencia.Focus()
-            txtLicencia.SelectAll()
-            Return True
-        End If
-
     End Function
 
 
@@ -1103,7 +1115,15 @@ Public Class MantVehiculoTransportistaFrm
 
             End If
 
-            If ValidarDuplicidadConductor() Then
+            If ValidarDuplicidadConductor(1) Then ' DNI
+                Exit Sub
+            End If
+
+            If ValidarDuplicidadConductor(2) Then ' Nombre
+                Exit Sub
+            End If
+
+            If ValidarDuplicidadConductor(3) Then ' Licencia
                 Exit Sub
             End If
 
@@ -1201,8 +1221,22 @@ Public Class MantVehiculoTransportistaFrm
             vfCampo3C = BindingSource3.Item(BindingSource3.Position)(4) 'Licencia
 
             'Validando Duplicidad de datos de Conductor
-            If vfCampoC <> txtDni.Text.Trim Or vfCampo2C <> txtNombre.Text.Trim() Or vfCampo3C <> txtLicencia.Text.Trim Then
-                If ValidarDuplicidadConductor() Then
+            If vfCampoC <> txtDni.Text.Trim Then
+                If ValidarDuplicidadConductor(1) Then
+                    Exit Sub
+                End If
+
+            End If
+
+            If vfCampo2C <> txtNombre.Text.Trim() Then
+                If ValidarDuplicidadConductor(2) Then
+                    Exit Sub
+                End If
+
+            End If
+
+            If vfCampo3C <> txtLicencia.Text.Trim Then
+                If ValidarDuplicidadConductor(3) Then
                     Exit Sub
                 End If
 
@@ -1387,4 +1421,6 @@ Public Class MantVehiculoTransportistaFrm
             e.Handled = True
         End If
     End Sub
+
+   
 End Class

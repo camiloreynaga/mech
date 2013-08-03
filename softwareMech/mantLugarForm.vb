@@ -958,12 +958,12 @@ Public Class mantLugarForm
                 finalMytrans = True
 
                 'actualizando los estados de los almacenes
-                If lbEstadoObra.SelectedIndex > 0 Then
-                    ActualizarEstadoAlmacen(BindingSource1.Item(BindingSource1.Position)(0), 1)
+                If lbEstadoObra.SelectedIndex > 1 Then
+                    ActualizarEstadoAlmacen(BindingSource1.Item(BindingSource1.Position)(0), 0)
                 End If
 
-                If lbEstadoObra.SelectedIndex = 0 Then
-                    ActualizarEstadoAlmacen(BindingSource1.Item(BindingSource1.Position)(0), 0)
+                If lbEstadoObra.SelectedIndex < 2 Then
+                    ActualizarEstadoAlmacen(BindingSource1.Item(BindingSource1.Position)(0), 1)
                 End If
 
 
@@ -1198,17 +1198,17 @@ Public Class mantLugarForm
             Exit Sub
         End If
 
-        If DevolverNroSolicitudes(BindingSource1.Item(BindingSource1.Position)(0)) > 0 Then
-            StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... OBRA TIENE SOLICITUDES PENDIENTES.")
-            lbEstadoObra.SelectedIndex = 0
-            Exit Sub
-        End If
+        'If DevolverNroSolicitudes(BindingSource1.Item(BindingSource1.Position)(0)) > 0 Then
+        '    StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... OBRA TIENE SOLICITUDES DE REQUERIMIENTO PENDIENTES.")
+        '    lbEstadoObra.SelectedIndex = 0
+        '    Exit Sub
+        'End If
 
-        If DevolverNroCotizaciones(BindingSource1.Item(BindingSource1.Position)(0)) > 0 Then
-            StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... OBRA TIENE COTIZACIONES PENDIENTES.")
-            lbEstadoObra.SelectedIndex = 0
-            Exit Sub
-        End If
+        'If DevolverNroCotizaciones(BindingSource1.Item(BindingSource1.Position)(0)) > 0 Then
+        '    StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... OBRA TIENE COTIZACIONES PENDIENTES.")
+        '    lbEstadoObra.SelectedIndex = 0
+        '    Exit Sub
+        'End If
 
         If DevolverNroOrdenesCompra(BindingSource1.Item(BindingSource1.Position)(0)) > 0 Then
             StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... OBRA TIENE ORDENES DE COMPRA PENDIENTES.")
@@ -1292,7 +1292,7 @@ Public Class mantLugarForm
     Private Function DevolverNroOrdenesCompra(ByVal idLugar As String) As Integer
         Dim consulta As SqlCommand = New SqlCommand
         consulta.CommandType = CommandType.Text
-        consulta.CommandText = "select COUNT(estado) from TOrdenCompra where codigo =@codigo and (estado=0 or estado =1)"
+        consulta.CommandText = "select COUNT(estado) from TOrdenCompra where codigo =@codigo and estado=0"
         consulta.Connection = Cn
         consulta.Parameters.Add("@codigo", SqlDbType.VarChar, 10).Value = idLugar
         Return consulta.ExecuteScalar()
