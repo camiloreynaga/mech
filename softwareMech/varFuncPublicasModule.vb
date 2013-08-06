@@ -134,12 +134,19 @@ Module varFuncPublicasModule
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function
-
-    Public Function recuperarVariosTSerie(ByVal codTipo As Integer, ByVal campo As String) As String
+    'LITO
+    Public Function recuperarVariosTSerie(ByVal codSer As Integer, ByVal campo As String) As String
         Dim cmdCampo As SqlCommand = New SqlCommand
-        Dim sele As String = "select " & campo & " from TSerie where estado=1 and codTipD=" & codTipo
         cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = sele
+        cmdCampo.CommandText = "select " & campo & " from TSerieSede where estado=1 and codSerS=" & codSer
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+    'LITO
+    Public Function recuperarSeries(ByVal codTipo As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select COUNT(*) from TSerieSede where estado=1 and codTipDE=" & codTipo  '75=Guia Rem  70=Factura
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function

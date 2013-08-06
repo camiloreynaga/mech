@@ -529,7 +529,24 @@
         tOduR7iQ7QlDtdqFnPf/gC9ktYZy7v85Cw9lUf47z/lP5nqEIG51VxIAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="opcDocCompra.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="ToolStripDropDownButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKASURBVDhPhdNJSJRhHMfxl4qIumSHAqFTaBFJRWBJmxhF
+        E9mhLnkU8hDikpllaqSVGLnhktm4DGluTI407iMYaZpOOurY5Iyj4ZY2jsvIqLn1TV9SslfqgYfn8Of3
+        eXZB+N2Ck/tY7YoCM+piI62NQ+L4qKCbMMVnse6X0MxqZt0YkDbK9Rpwfwt7c5YoNi/yoX+Oqi47ypYJ
+        FPUWUqqHCFIO4uKjkSLeCVYulsOhItgpX6Cpb5ah0WkMvRN81H+nqnGAwmqzuJr9nrFSwCtunOMqcMyB
+        zck/qDNN0TNow6R9iirjNoVhMl6VmsStOMuipcDlmAn25cP2DBASptG0W0l5ZyUwtZMYhY741x3IVV8I
+        fqHD6XykFDgTOYVD9nI4/SdbYm1YphbE3mCcJkXZJSKJ+XrxEJ3cI6SA24NJNqUvA6mL+GrmWWkNX2fQ
+        6G2odHZ8ojU4no3CwTUQj2sZeHp6rkfcwg0IaUsIiTMIYf2EK9qJLe8nVNnDy9pvZDfbyCvVUVRlRFlm
+        2AC4r0NImkN4ZkMIMbNtjys2+zyDFjt68xgNHSOU1feTX2kmV6WXAidWgDg7whMrwq0ujshCsYzPYuyb
+        RKPIoEKpJivIC4XaSGZB2wZAyCeE5ZsQHg4j+Hdyyb+CgRE7Hd1jyPOKSZaXEyVvIalAz/OcVikgHsq9
+        XnH/wk0dF3zLxNm1Bgs1TYPkVXaTWdJFfG4HCVlaKbDyrkXET49wQ4ubdwltJit1bcOo3/eRV9FNRJqW
+        g+fUuHgkbgysIV617DiVyd3HLRy7Ws3Ww2/Y5RLKgdNBuF8JEMOSa/zzZ60Udx+NwPnkHdxkgWuB/wb/
+        RlYD/5rtF6dk+rAU89lEAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="opcCajaChica.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABwAAAAVCAYAAABVAo5cAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAH2SURBVEhLtZUtj4NAEIYr+QlnkcimCotEIrGX9A8gsUjk
@@ -544,7 +561,17 @@
         AElFTkSuQmCC
 </value>
   </data>
-  <data name="opcGuiaRemision.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="opcGuiaRem1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADr4AAA6+AepCscAAAADwSURBVFhH7ZWLDoUgCED9dD/NPzOwMETSfLTd7cLGSoZw
+        wJdzJtYB64B14Ac6EIHhC31dWvTeb9WroDGACIIg9OX/0qb5cv9lgEQhRAPiYFsBaElkpU9j6d/ZU9XS
+        5NZT0SMAfA79JwBYTgeGQtF2bvhCwAvcNmrugATAsQKxNTkWggAhhKbyTmh7bsmGwXsd/R6gU4IKgEZ+
+        KaVKJoTmteKxk3InweT8CNF4lIFiaPGKk3KdiByfJuIG4iCzAFo8FUBeHBJg9bFqxKsvpYdk6DjyYvb8
+        y8S08bQkKy/lm3g90pGqZ32rZTCDdeC/OnAACydjflktnwkAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="opcGuiaRem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADwSURBVFhH7ZWLDoUgCED9dD/NPzOwMETSfLTd7cLGSoZw
@@ -606,6 +633,16 @@
         YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAAB6SURBVDhPzZJRDoAwCEM5OjfHIU4ZA7pPSTCZhu61QvTH
         kgFVNeQVESr7ES5FisHxWr8YVVtBwAZ9IZGE4BtnZkjRWlABZAVamDydFSiCctCUncga4kkOrQDKwP/j
         9+pkK9E62BqPx9In3m/8bFjFAklKsd0aKebZ01x4VkpJgGViNgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="opcConfSerieGuia.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADr0AAA69AUf7kK0AAADGSURBVFhH7ZbbDoAwCEP9/5/2FmfmIjst6pNb4hNt6RDE
+        aRpnVMCvwLxSeo+vKDIocRsXZRnmCrv4roNajK1eEU+4u1IRiBKrNyWd8GJE/NRAL3kUy3BSt//cAJWe
+        eiIbP3nDgFsBFa/icP7bd6wKqzjZgCx4OJbxKlDFlYrJeAJS/PEY0h7IGLA5r35WhcV2WzX65LbLiPDu
+        Og+nIUr8uoG6FzZx99RGXe4Fr+79dtzsxiOXVHrXKOXDfwW1CdOJBvEfFVgA9Ua3SZ/sJxAAAAAASUVO
+        RK5CYII=
 </value>
   </data>
   <data name="opcConfColorPantalla.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

@@ -171,8 +171,8 @@ Public Class pantallaInicialForm
         opcCotizacion.Visible = False 'Cotizacion
         opcOrdenCompra.Visible = False ' Orde de compra
         opcOrdDesembolso.Visible = False ' Orden de Desembolso
-        opcDocCompra.Visible = False ' Documento de Compra
-        opcGuiaRemision.Visible = False ' Guia de Remision
+        opcCajaChica.Visible = False ' Documento de Compra
+        opcGuiaRem.Visible = False ' Guia de Remision
         opcPersonal.Visible = False ' Personal
         opcConfObra.Visible = False 'Lugar de Trabajo
         opcConfSeriePersonal.Visible = False 'Asignar Serie de Orden de desembolso
@@ -201,11 +201,11 @@ Public Class pantallaInicialForm
 
         opcCotizacion.Visible = False
         opcOrdenCompra.Visible = False
-        opcDocCompra.Visible = False
+        opcCajaChica.Visible = False
         opcOrdDesAprobacion.Visible = False
         opcOrdDesConta.Visible = False
 
-        opcGuiaRemision.Visible = False
+        opcGuiaRem.Visible = False
         opcPersonal.Visible = False
         opcConfObra.Visible = False
         opcConfSeriePersonal.Visible = False 'Asignar Serie de Orden de desembolso
@@ -260,8 +260,8 @@ Public Class pantallaInicialForm
         opcOrdDesModPago.Visible = False
         opcOrdDesCtasBco.Visible = False
 
-        opcDocCompra.Visible = False
-        opcGuiaRemision.Visible = False
+        opcCajaChica.Visible = False
+        opcGuiaRem.Visible = False
 
         opcPersonal.Visible = False
 
@@ -300,8 +300,8 @@ Public Class pantallaInicialForm
         opcOrdDesAprobacion.Visible = False
         opcOrdDesRegPagos.Visible = False
 
-        opcDocCompra.Visible = False
-        opcGuiaRemision.Visible = False
+        opcCajaChica.Visible = False
+        opcGuiaRem.Visible = False
         opcPersonal.Visible = False
         opcConfObra.Visible = False
         opcConfSeriePersonal.Visible = False 'Asignar Serie de Orden de desembolso
@@ -579,17 +579,39 @@ Public Class pantallaInicialForm
         alm.Show()
     End Sub
 
-    Private Sub CajaChicaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CajaChicaToolStripMenuItem.Click
+    Private Sub opcConfSerieGuia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConfSerieGuia.Click
+        Dim mant As New ConfiguracionSerieEmpForm
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
+
+    Private Sub opcGuiaRem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcGuiaRem2.Click
+        Dim mant As New MantMotivoGuiaForm
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
+
+    Private Sub opcGuiaRem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcGuiaRem1.Click
+        If recuperarSeries(75) = 0 Then  '75=Guia de remision
+            MessageBox.Show("Acceso denegado, el administrador no le asigno serie de guias de remision", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        Dim guia As New registraGuiaRemEmpForm
+        guia.MdiParent = Me
+        guia.Show()
+    End Sub
+
+    Private Sub ToolStripDropDownButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripDropDownButton1.Click
         Dim caja As New MantCajaChicaForm
         caja.MdiParent = Me
         caja.Show()
 
     End Sub
 
-    Private Sub TransportistasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TransportistasToolStripMenuItem.Click
-        Dim trans As New MantVehiculoTransportistaFrm
-        trans.MdiParent = Me
-        trans.Show()
-
+    Private Sub SeguimientoGuiaRemisiónToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SeguimientoGuiaRemisiónToolStripMenuItem.Click
+        Dim SegGr As New SeguimientoGRform
+        SegGr.MdiParent = Me
+        SegGr.Show()
     End Sub
 End Class

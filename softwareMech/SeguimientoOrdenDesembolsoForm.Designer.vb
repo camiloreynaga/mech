@@ -25,6 +25,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.gbDesembolso = New System.Windows.Forms.GroupBox
+        Me.chkSolicitante = New System.Windows.Forms.CheckBox
         Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton
@@ -42,6 +43,8 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.cbEstadoDesembolso = New System.Windows.Forms.ToolStripComboBox
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
         Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel
+        Me.TSLabelSolicitante = New System.Windows.Forms.ToolStripLabel
+        Me.cbSolicitante = New System.Windows.Forms.ToolStripComboBox
         Me.dgDesembolso = New System.Windows.Forms.DataGridView
         Me.TabControl1 = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
@@ -126,9 +129,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Label21 = New System.Windows.Forms.Label
         Me.chkObras = New System.Windows.Forms.CheckBox
         Me.chkProveedor = New System.Windows.Forms.CheckBox
-        Me.cbSolicitante = New System.Windows.Forms.ToolStripComboBox
-        Me.chkSolicitante = New System.Windows.Forms.CheckBox
-        Me.TSLabelSolicitante = New System.Windows.Forms.ToolStripLabel
         Me.gbDesembolso.SuspendLayout()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindingNavigator1.SuspendLayout()
@@ -162,6 +162,18 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.gbDesembolso.Size = New System.Drawing.Size(891, 240)
         Me.gbDesembolso.TabIndex = 3
         Me.gbDesembolso.TabStop = False
+        '
+        'chkSolicitante
+        '
+        Me.chkSolicitante.AutoSize = True
+        Me.chkSolicitante.Checked = True
+        Me.chkSolicitante.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkSolicitante.Location = New System.Drawing.Point(563, 217)
+        Me.chkSolicitante.Name = "chkSolicitante"
+        Me.chkSolicitante.Size = New System.Drawing.Size(61, 17)
+        Me.chkSolicitante.TabIndex = 2
+        Me.chkSolicitante.Text = "Todos"
+        Me.chkSolicitante.UseVisualStyleBackColor = True
         '
         'BindingNavigator1
         '
@@ -293,6 +305,18 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.ToolStripLabel2.Name = "ToolStripLabel2"
         Me.ToolStripLabel2.Size = New System.Drawing.Size(61, 22)
         Me.ToolStripLabel2.Text = "Solicitante"
+        '
+        'TSLabelSolicitante
+        '
+        Me.TSLabelSolicitante.Name = "TSLabelSolicitante"
+        Me.TSLabelSolicitante.Size = New System.Drawing.Size(70, 22)
+        Me.TSLabelSolicitante.Text = "      Todos    "
+        '
+        'cbSolicitante
+        '
+        Me.cbSolicitante.Name = "cbSolicitante"
+        Me.cbSolicitante.Size = New System.Drawing.Size(240, 25)
+        Me.cbSolicitante.Visible = False
         '
         'dgDesembolso
         '
@@ -1087,30 +1111,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.chkProveedor.TabIndex = 7
         Me.chkProveedor.Text = "Todos"
         Me.chkProveedor.UseVisualStyleBackColor = True
-        '
-        'cbSolicitante
-        '
-        Me.cbSolicitante.Name = "cbSolicitante"
-        Me.cbSolicitante.Size = New System.Drawing.Size(240, 25)
-        Me.cbSolicitante.Visible = False
-        '
-        'chkSolicitante
-        '
-        Me.chkSolicitante.AutoSize = True
-        Me.chkSolicitante.Checked = True
-        Me.chkSolicitante.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkSolicitante.Location = New System.Drawing.Point(563, 217)
-        Me.chkSolicitante.Name = "chkSolicitante"
-        Me.chkSolicitante.Size = New System.Drawing.Size(61, 17)
-        Me.chkSolicitante.TabIndex = 2
-        Me.chkSolicitante.Text = "Todos"
-        Me.chkSolicitante.UseVisualStyleBackColor = True
-        '
-        'TSLabelSolicitante
-        '
-        Me.TSLabelSolicitante.Name = "TSLabelSolicitante"
-        Me.TSLabelSolicitante.Size = New System.Drawing.Size(70, 22)
-        Me.TSLabelSolicitante.Text = "      Todos    "
         '
         'SeguimientoOrdenDesembolsoForm
         '

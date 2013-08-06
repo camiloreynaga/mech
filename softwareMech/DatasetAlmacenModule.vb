@@ -22,6 +22,7 @@ Module DatasetAlmacenModule
     Public daVDetOrden As SqlDataAdapter
     Public daVMes As SqlDataAdapter
     Public daTUbi As SqlDataAdapter
+    Public daVObra As SqlDataAdapter
     Public daVKardex As SqlDataAdapter
     Public daVSuc As SqlDataAdapter
     Public daTTipo As SqlDataAdapter
@@ -31,6 +32,8 @@ Module DatasetAlmacenModule
     Public daTUni1 As SqlDataAdapter
     Public daTPago As SqlDataAdapter
     Public daTMon As SqlDataAdapter
+    Public daVSerie As SqlDataAdapter
+    Public daVStock As SqlDataAdapter
 
     'RESERVADO PARA DataTable() asno cututu esto solo utilizar en form secundarios
     Public dTable1 As SqlDataAdapter

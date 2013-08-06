@@ -146,6 +146,12 @@
     <Compile Include="ConfiguracionSerieDocForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ConfiguracionSerieEmpForm.Designer.vb">
+      <DependentUpon>ConfiguracionSerieEmpForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ConfiguracionSerieEmpForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="contaOrdenDesembolsoForm.designer.vb">
       <DependentUpon>contaOrdenDesembolsoForm.vb</DependentUpon>
     </Compile>
@@ -201,12 +207,6 @@
       <DependentUpon>entradaSalidaAlmacen1Form.vb</DependentUpon>
     </Compile>
     <Compile Include="entradaSalidaAlmacen1Form.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MantCajaChicaForm.Designer.vb">
-      <DependentUpon>MantCajaChicaForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MantCajaChicaForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="gerencia1OrdenDesembolsoForm.Designer.vb">
@@ -281,6 +281,12 @@
     <Compile Include="MantAreaMatForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MantCajaChicaForm.Designer.vb">
+      <DependentUpon>MantCajaChicaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantCajaChicaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MantCargoForm.Designer.vb">
       <DependentUpon>MantCargoForm.vb</DependentUpon>
     </Compile>
@@ -321,6 +327,12 @@
       <DependentUpon>MantMaterialForm.vb</DependentUpon>
     </Compile>
     <Compile Include="MantMaterialForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantMotivoGuiaForm.designer.vb">
+      <DependentUpon>MantMotivoGuiaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantMotivoGuiaForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MantOrdenDesembolsoForm.Designer.vb">
@@ -411,6 +423,12 @@
     <Compile Include="registraCotizacionForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="registraGuiaRemEmpForm.Designer.vb">
+      <DependentUpon>registraGuiaRemEmpForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="registraGuiaRemEmpForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="registraOrdenCompraForm.Designer.vb">
       <DependentUpon>registraOrdenCompraForm.vb</DependentUpon>
     </Compile>
@@ -445,6 +463,12 @@
       <DependentUpon>ReportViewerSolicitudForm.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportViewerSolicitudForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SeguimientoGRform.Designer.vb">
+      <DependentUpon>SeguimientoGRform.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SeguimientoGRform.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SeguimientoOrdenDesembolsoForm.Designer.vb">
@@ -511,6 +535,9 @@
     <EmbeddedResource Include="ConfiguracionSerieDocForm.resx">
       <DependentUpon>ConfiguracionSerieDocForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConfiguracionSerieEmpForm.resx">
+      <DependentUpon>ConfiguracionSerieEmpForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="contaOrdenDesembolsoForm.resx">
       <DependentUpon>contaOrdenDesembolsoForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -539,9 +566,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="entradaSalidaAlmacen1Form.resx">
       <DependentUpon>entradaSalidaAlmacen1Form.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MantCajaChicaForm.resx">
-      <DependentUpon>MantCajaChicaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gerencia1OrdenDesembolsoForm.resx">
       <DependentUpon>gerencia1OrdenDesembolsoForm.vb</DependentUpon>
@@ -579,6 +603,9 @@
     <EmbeddedResource Include="MantAreaMatForm.resx">
       <DependentUpon>MantAreaMatForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MantCajaChicaForm.resx">
+      <DependentUpon>MantCajaChicaForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MantCargoForm.resx">
       <DependentUpon>MantCargoForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -599,6 +626,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MantMaterialForm.resx">
       <DependentUpon>MantMaterialForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantMotivoGuiaForm.resx">
+      <DependentUpon>MantMotivoGuiaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MantOrdenDesembolsoForm.resx">
       <DependentUpon>MantOrdenDesembolsoForm.vb</DependentUpon>
@@ -642,6 +672,9 @@
     <EmbeddedResource Include="registraCotizacionForm.resx">
       <DependentUpon>registraCotizacionForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="registraGuiaRemEmpForm.resx">
+      <DependentUpon>registraGuiaRemEmpForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="registraOrdenCompraForm.resx">
       <DependentUpon>registraOrdenCompraForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -659,6 +692,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerSolicitudForm.resx">
       <DependentUpon>ReportViewerSolicitudForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeguimientoGRform.resx">
+      <DependentUpon>SeguimientoGRform.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SeguimientoOrdenDesembolsoForm.resx">
       <DependentUpon>SeguimientoOrdenDesembolsoForm.vb</DependentUpon>

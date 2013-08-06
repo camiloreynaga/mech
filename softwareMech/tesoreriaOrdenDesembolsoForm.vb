@@ -22,9 +22,10 @@ Public Class tesoreriaOrdenDesembolsoForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select idOP,fecDes,serie,nro,simbolo,monto,montoDet,montoDif,nombre,estApro,nom,datoReq,ruc,razon,banco,nroCta,nroDet,hist,estDesem,codPersDes,estado,codMon,nomSol,codPersSol,codSerO from VOrdenDesemTesoreria" 'order by idOP
+        Dim sele As String = "select idOP,fecDes,serie,nro,simbolo,monto,montoDet,montoDif,nombre,estApro,nom,datoReq,ruc,razon,banco,nroCta,nroDet,hist,estDesem,codPersDes,estado,codMon,nomSol,codPersSol,codSerO from VOrdenDesemTesoreria where codSerO>@codSer1 or codSerO=@codSer2" 'order by idOP
         crearDataAdapterTable(daTabla1, sele)
-        'daTabla1.SelectCommand.Parameters.Add("@ser", SqlDbType.VarChar, 5).Value = vSerie
+        daTabla1.SelectCommand.Parameters.Add("@codSer1", SqlDbType.Int, 0).Value = 0 'Todos
+        daTabla1.SelectCommand.Parameters.Add("@codSer2", SqlDbType.Int, 0).Value = 0
 
         sele = "select codPagD,fecPago,tipoP,nroP,pagoDet,simbolo,montoPago,montoD,clasif,codTipP,codMon,idOP,idCue,codCla from VPagoDesemTesoreria where idOP=@idOP"
         crearDataAdapterTable(daDetDoc, sele)
@@ -179,7 +180,6 @@ Public Class tesoreriaOrdenDesembolsoForm
 
     Private Sub cbCue_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCue.SelectedIndexChanged
         cbMon.SelectedValue = BindingSource4.Item(cbCue.SelectedIndex)(7)
-        txtDes.Text = cbCue.Text.Trim()
     End Sub
 
     Private Sub colorearFila()
@@ -253,22 +253,24 @@ Public Class tesoreriaOrdenDesembolsoForm
         End With
         With dgTabla2
             .Columns(0).Visible = False
-            .Columns(1).Width = 75
+            .Columns(1).Width = 70
             .Columns(1).HeaderText = "Fecha"
-            .Columns(2).Width = 180
+            .Columns(2).Width = 206
             .Columns(2).HeaderText = "Medio Pago"
-            .Columns(3).Width = 80
+            .Columns(3).Width = 90
             .Columns(3).HeaderText = "Nº"
             .Columns(4).HeaderText = "Descripción"
-            .Columns(4).Width = 240
+            .Columns(4).Width = 320
             .Columns(5).HeaderText = ""
             .Columns(5).Width = 30
-            .Columns(6).Width = 70
+            .Columns(6).Width = 75
             .Columns(6).HeaderText = "Monto"
             .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            .Columns(7).Width = 70
+            .Columns(6).DefaultCellStyle.Format = "N2"
+            .Columns(7).Width = 65
             .Columns(7).HeaderText = "Detracción"
             .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(7).DefaultCellStyle.Format = "N2"
             .Columns(8).HeaderText = "Clasificación"
             .Columns(8).Width = 100
             .Columns(9).Visible = False
@@ -443,6 +445,7 @@ Public Class tesoreriaOrdenDesembolsoForm
 
             cbMon.SelectedValue = BindingSource1.Item(BindingSource1.Position)(21)
             txtMon.Text = BindingSource1.Item(BindingSource1.Position)(5)
+            txtDes.Text = BindingSource1.Item(BindingSource1.Position)(11)
         Else   ' guardar
             'validaCampoVacio... creado en el Module ValidarCamposModule.vb, 3=minimo de caractres
             If ValidarCampos() Then
@@ -491,6 +494,7 @@ Public Class tesoreriaOrdenDesembolsoForm
                 wait.Close()
                 Me.Cursor = Cursors.Default
                 colorearFila()
+
             Catch f As Exception
                 wait.Close()
                 Me.Cursor = Cursors.Default
@@ -518,6 +522,13 @@ Public Class tesoreriaOrdenDesembolsoForm
         'Clase definida y con miembros shared en la biblioteca ComponentesRAS
         StatusBarClass.messageBarraEstado("  Proceso cancelado...")
         enlazarText()
+
+        cbCue.SelectedIndex = 0
+        txtNro.Clear()
+        cbCla.SelectedIndex = 0
+        txtDes.Clear()
+        txtMon.Clear()
+        CheckBox1.Checked = False
     End Sub
 
     Dim cmInserTable As SqlCommand
@@ -847,7 +858,65 @@ Public Class tesoreriaOrdenDesembolsoForm
         txtMon.SelectAll()
     End Sub
 
-    Private Sub Label12_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label12.Click
+    Dim codSer1 As Integer
+    Dim codSer2 As Integer
+    Private Sub rb1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rb1.CheckedChanged, rb2.CheckedChanged
+        If rb1.Checked Then 'Todos
+            cbSerie.Visible = False
+            btnF1.Visible = False
+            codSer1 = 0
+            codSer2 = 0
 
+            vfVan1 = False
+            visualizarOrd()
+            BindingSource1.MoveLast()
+            vfVan1 = True
+            visualizarDet()
+            colorearFila()
+            calcularTotales()
+        End If
+        If rb2.Checked Then 'Por serie
+            cbSerie.Visible = True
+            btnF1.Visible = True
+            codSer1 = 100
+            codSer2 = cbSerie.SelectedValue
+        End If
+    End Sub
+
+    Private Sub visualizarOrd()
+        Me.Cursor = Cursors.WaitCursor
+        dsAlmacen.Tables("VOrdenDesemTesoreria").Clear()
+        daTabla1.SelectCommand.Parameters("@codSer1").Value = codSer1
+        daTabla1.SelectCommand.Parameters("@codSer2").Value = codSer2
+        daTabla1.Fill(dsAlmacen, "VOrdenDesemTesoreria")
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub btnF1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnF1.Click
+        codSer1 = 100
+        codSer2 = cbSerie.SelectedValue
+        vfVan1 = False
+        visualizarOrd()
+        BindingSource1.MoveLast()
+        vfVan1 = True
+        visualizarDet()
+        colorearFila()
+        calcularTotales()
+    End Sub
+
+    Private Sub txtMon_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtMon.KeyPress
+        If e.KeyChar.IsDigit(e.KeyChar) Then  'te deja escribir digitos
+            e.Handled = False
+        Else
+            If e.KeyChar.IsControl(e.KeyChar) Then  'te deja escribir enter, backSpace (controles)
+                e.Handled = False
+            Else
+                If e.KeyChar = "." Then   'te deja escribir punto
+                    e.Handled = False
+                Else    'lo demas no te deja escribir ASNOOOO
+                    e.Handled = True
+                End If
+            End If
+        End If
     End Sub
 End Class

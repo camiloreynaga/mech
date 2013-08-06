@@ -8,8 +8,6 @@ Public Class ReportViewerOrdenCompraForm
         Me.Cursor = Cursors.WaitCursor
         Dim reporte As New CrystalReport4
 
-
-
         'Realizando la conexion con SQL Server ConexionModule.vb
         'conexion()
         VerificaConexion()
