@@ -99,8 +99,8 @@ Public Class cConfigFormControls
 
             Dim obj As Object = grilla(columna, j).Value
             If grilla(columna, j).Value = criterio Then 'Aprobado
-                grilla.Rows(j).Cells(5).Style.BackColor = pBackColor 'Color.YellowGreen
-                grilla.Rows(j).Cells(5).Style.ForeColor = pForeColor
+                grilla.Rows(j).Cells(columna).Style.BackColor = pBackColor 'Color.YellowGreen
+                grilla.Rows(j).Cells(columna).Style.ForeColor = pForeColor
             End If
             'If BindingSource1.Item(j)(13) = 2 Then 'Observado
             '    dgTabla1.Rows(j).Cells(1).Style.BackColor = Color.Yellow

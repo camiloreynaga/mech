@@ -732,4 +732,7 @@ Public Class MantCajaChicaForm
     End Sub
 
 
+    Private Sub MantCajaChicaForm_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Leave
+        Me.Close()
+    End Sub
 End Class

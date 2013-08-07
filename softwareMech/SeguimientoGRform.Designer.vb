@@ -20,9 +20,9 @@ Partial Class SeguimientoGRform
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SeguimientoGRform))
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.dgGR = New System.Windows.Forms.DataGridView
         Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
@@ -66,8 +66,14 @@ Partial Class SeguimientoGRform
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox
+        Me.chkDestino = New System.Windows.Forms.CheckBox
+        Me.cbObra = New System.Windows.Forms.ComboBox
+        Me.btnCerrar = New System.Windows.Forms.Button
+        Me.btnImprimir = New System.Windows.Forms.ToolStripButton
+        Me.cbSerie = New System.Windows.Forms.ToolStripComboBox
+        Me.cbAlmacen = New System.Windows.Forms.ComboBox
+        Me.lblAlmacen = New System.Windows.Forms.Label
+        Me.Label2 = New System.Windows.Forms.Label
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgGR, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,8 +110,8 @@ Partial Class SeguimientoGRform
         Me.dgGR.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgGR.Location = New System.Drawing.Point(3, 16)
         Me.dgGR.Name = "dgGR"
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgGR.RowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgGR.RowsDefaultCellStyle = DataGridViewCellStyle11
         Me.dgGR.Size = New System.Drawing.Size(874, 170)
         Me.dgGR.TabIndex = 1
         '
@@ -115,7 +121,7 @@ Partial Class SeguimientoGRform
         Me.BindingNavigator1.CountItem = Me.BindingNavigatorCountItem
         Me.BindingNavigator1.DeleteItem = Nothing
         Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
+        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.btnImprimir, Me.cbSerie})
         Me.BindingNavigator1.Location = New System.Drawing.Point(3, 186)
         Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -368,12 +374,13 @@ Partial Class SeguimientoGRform
         '
         'dgDetalleGR
         '
+        Me.dgDetalleGR.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgDetalleGR.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgDetalleGR.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgDetalleGR.Location = New System.Drawing.Point(3, 16)
         Me.dgDetalleGR.Name = "dgDetalleGR"
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgDetalleGR.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgDetalleGR.RowsDefaultCellStyle = DataGridViewCellStyle12
         Me.dgDetalleGR.Size = New System.Drawing.Size(877, 205)
         Me.dgDetalleGR.TabIndex = 1
         '
@@ -462,55 +469,116 @@ Partial Class SeguimientoGRform
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
         '
-        'CheckBox1
+        'chkDestino
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(27, 28)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(90, 17)
-        Me.CheckBox1.TabIndex = 9
-        Me.CheckBox1.Text = "CheckBox1"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.chkDestino.AutoSize = True
+        Me.chkDestino.Checked = True
+        Me.chkDestino.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkDestino.Location = New System.Drawing.Point(83, 31)
+        Me.chkDestino.Name = "chkDestino"
+        Me.chkDestino.Size = New System.Drawing.Size(61, 17)
+        Me.chkDestino.TabIndex = 9
+        Me.chkDestino.Text = "Todos"
+        Me.chkDestino.UseVisualStyleBackColor = True
         '
-        'ComboBox1
+        'cbObra
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(123, 26)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBox1.TabIndex = 10
+        Me.cbObra.FormattingEnabled = True
+        Me.cbObra.Location = New System.Drawing.Point(150, 30)
+        Me.cbObra.Name = "cbObra"
+        Me.cbObra.Size = New System.Drawing.Size(439, 21)
+        Me.cbObra.TabIndex = 10
+        '
+        'btnCerrar
+        '
+        Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnCerrar.Location = New System.Drawing.Point(810, 310)
+        Me.btnCerrar.Name = "btnCerrar"
+        Me.btnCerrar.Size = New System.Drawing.Size(75, 23)
+        Me.btnCerrar.TabIndex = 11
+        Me.btnCerrar.Text = "Cerrar"
+        Me.btnCerrar.UseVisualStyleBackColor = True
+        '
+        'btnImprimir
+        '
+        Me.btnImprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
+        Me.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(23, 22)
+        Me.btnImprimir.Text = "Imprimir"
+        '
+        'cbSerie
+        '
+        Me.cbSerie.Name = "cbSerie"
+        Me.cbSerie.Size = New System.Drawing.Size(121, 25)
+        '
+        'cbAlmacen
+        '
+        Me.cbAlmacen.FormattingEnabled = True
+        Me.cbAlmacen.Location = New System.Drawing.Point(660, 32)
+        Me.cbAlmacen.Name = "cbAlmacen"
+        Me.cbAlmacen.Size = New System.Drawing.Size(243, 21)
+        Me.cbAlmacen.TabIndex = 10
+        '
+        'lblAlmacen
+        '
+        Me.lblAlmacen.AutoSize = True
+        Me.lblAlmacen.Location = New System.Drawing.Point(595, 33)
+        Me.lblAlmacen.Name = "lblAlmacen"
+        Me.lblAlmacen.Size = New System.Drawing.Size(59, 13)
+        Me.lblAlmacen.TabIndex = 12
+        Me.lblAlmacen.Text = "Almacen:"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(23, 32)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(54, 13)
+        Me.Label2.TabIndex = 12
+        Me.Label2.Text = "Destino:"
         '
         'SeguimientoGRform
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
+        Me.CancelButton = Me.btnCerrar
         Me.ClientSize = New System.Drawing.Size(915, 675)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.ComboBox1)
-        Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.GroupBox2)
+        Me.Controls.Add(Me.btnCerrar)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.txtPartida)
         Me.Controls.Add(Me.txtMotivo)
+        Me.Controls.Add(Me.chkDestino)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.txtLlegada)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.lblAlmacen)
+        Me.Controls.Add(Me.cbObra)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.txtEstado)
+        Me.Controls.Add(Me.cbAlmacen)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "SeguimientoGRform"
+        Me.Controls.SetChildIndex(Me.cbAlmacen, 0)
         Me.Controls.SetChildIndex(Me.txtEstado, 0)
         Me.Controls.SetChildIndex(Me.Label6, 0)
         Me.Controls.SetChildIndex(Me.Label15, 0)
         Me.Controls.SetChildIndex(Me.Label9, 0)
+        Me.Controls.SetChildIndex(Me.cbObra, 0)
+        Me.Controls.SetChildIndex(Me.lblAlmacen, 0)
+        Me.Controls.SetChildIndex(Me.Label2, 0)
         Me.Controls.SetChildIndex(Me.txtLlegada, 0)
         Me.Controls.SetChildIndex(Me.Label10, 0)
+        Me.Controls.SetChildIndex(Me.chkDestino, 0)
         Me.Controls.SetChildIndex(Me.txtMotivo, 0)
         Me.Controls.SetChildIndex(Me.txtPartida, 0)
         Me.Controls.SetChildIndex(Me.GroupBox3, 0)
+        Me.Controls.SetChildIndex(Me.btnCerrar, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
-        Me.Controls.SetChildIndex(Me.CheckBox1, 0)
-        Me.Controls.SetChildIndex(Me.ComboBox1, 0)
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
         Me.Controls.SetChildIndex(Me.lblTitulo, 0)
         Me.Controls.SetChildIndex(Me.lblDerecha, 0)
@@ -575,7 +643,13 @@ Partial Class SeguimientoGRform
     Friend WithEvents ToolStripButton3 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripButton4 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents chkDestino As System.Windows.Forms.CheckBox
+    Friend WithEvents cbObra As System.Windows.Forms.ComboBox
+    Friend WithEvents btnCerrar As System.Windows.Forms.Button
+    Friend WithEvents btnImprimir As System.Windows.Forms.ToolStripButton
+    Friend WithEvents cbSerie As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents cbAlmacen As System.Windows.Forms.ComboBox
+    Friend WithEvents lblAlmacen As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
 
 End Class
