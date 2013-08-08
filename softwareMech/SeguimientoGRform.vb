@@ -30,6 +30,12 @@ Public Class SeguimientoGRform
     ''' <remarks></remarks>
     Dim BindingSource3 As New BindingSource
 
+    ''' <summary>
+    ''' Nro Serie GR
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim BindingSource4 As New BindingSource
+
     Dim oGrilla As New cConfigFormControls
 
     Dim countEntradas As Integer = 0
@@ -70,10 +76,11 @@ Public Class SeguimientoGRform
         crearDataAdapterTable(daTabla1, sele)
 
         'sele = "PA_SeguimientoComprobantes"
-        'crearDataAdapterTableProcedure(daTabla2, sele)
         sele = "PA_LugarTrabajo" '"Select codigo,nombre from tLugarTrabajo"
-        crearDataAdapterTable(daTabla3, sele)
         crearDataAdapterTableProcedure(daTabla3, sele)
+
+        sele = "select codSerS,serie from VSeguimientoGRSerie "
+        crearDataAdapterTable(daTabla5, sele)
 
         'sele = "PA_Proveedores"
         '"Select codIde,razon from TIdentidad where idTipId=2"
@@ -92,9 +99,6 @@ Public Class SeguimientoGRform
             dgGR.DataSource = BindingSource0
             BindingNavigator1.BindingSource = BindingSource0
 
-            
-
-
             daTabla3.Fill(dsAlmacen, "TLugarTrabajo")
             BindingSource2.DataSource = dsAlmacen
             BindingSource2.DataMember = "TLugarTrabajo"
@@ -102,6 +106,12 @@ Public Class SeguimientoGRform
             cbObra.DisplayMember = "nombre"
             cbObra.ValueMember = "codigo"
 
+            daTabla5.Fill(dsAlmacen, "VSeguimientoGRSerie")
+            BindingSource4.DataSource = dsAlmacen
+            BindingSource4.DataMember = "VSeguimientoGRSerie"
+            cbSerie.DataSource = BindingSource4
+            cbSerie.DisplayMember = "serie"
+            cbSerie.ValueMember = "codSerS"
 
             'daTabla5.Fill(dsAlmacen, "TIdentidad")
             'BindingSource5.DataSource = dsAlmacen
@@ -129,8 +139,6 @@ Public Class SeguimientoGRform
         End Try
 
     End Sub
-
-
 
     ''' <summary>
     ''' Consulta Datos del Detalle de GR desde la BD
@@ -197,7 +205,7 @@ Public Class SeguimientoGRform
 
             Try
                 If dgGR.RowCount > 0 Then 'BindingSource0.Count > 0 Then
-                    Dim sele As String = "select codDGE, codigo,cant,descrip,unidad,peso,codGuiaE,codMat,linea1 FROM VSeguimientoGRDetalle where codGuiaE=" & cod
+                    Dim sele As String = "select codDGE, codigo,cant,descrip,unidad,peso,codGuiaE,codMat,linea1,entregado,personal,recibido,obsR FROM VSeguimientoGRDetalle where codGuiaE=" & cod
                     crearDataAdapterTable(daTabla2, sele)
                 Else
                     Exit Sub
@@ -212,6 +220,7 @@ Public Class SeguimientoGRform
                 BindingSource1.DataSource = dsAlmacen
                 BindingSource1.DataMember = "VSeguimientoGRDetalle"
                 dgDetalleGR.DataSource = BindingSource1 ' 
+                BindingNavigator2.BindingSource = BindingSource1
 
             Catch f As Exception
 
@@ -355,18 +364,18 @@ Public Class SeguimientoGRform
 
                 'nro Guia
                 .Columns("cant").HeaderText = "Cantidad"
-                .Columns("cant").Width = 35
+                .Columns("cant").Width = 60
                 .Columns("cant").DefaultCellStyle.Format = "N2"
                 .Columns("cant").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 'fecha de Inicio 
                 .Columns("descrip").HeaderText = "Decripción"
-                .Columns("descrip").Width = 220
+                .Columns("descrip").Width = 300
                 'Codigo de Serie
                 .Columns("unidad").HeaderText = "Und"
-                .Columns("unidad").Width = 30
+                .Columns("unidad").Width = 60
                 'razon
                 .Columns("peso").HeaderText = "Peso"
-                .Columns("peso").Width = 35
+                .Columns("peso").Width = 60
                 .Columns("peso").DefaultCellStyle.Format = "N2"
                 .Columns("peso").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
@@ -375,8 +384,17 @@ Public Class SeguimientoGRform
 
                 .Columns("codMat").Visible = False
 
-                .Columns("linea1").HeaderText = "Obs"
+                .Columns("linea1").HeaderText = "Nota"
                 .Columns("linea1").Width = 150
+                .Columns("entregado").HeaderText = "Entregado"
+                .Columns("entregado").Width = 70
+                .Columns("personal").HeaderText = "Personal"
+                .Columns("personal").Width = 150
+                .Columns("recibido").HeaderText = "Recibido"
+                .Columns("recibido").Width = 70
+                .Columns("obsR").HeaderText = "Obs."
+                .Columns("obsR").Width = 120
+                'entregado,personal,recibido,obsR
 
             End With
         Catch ex As Exception
@@ -498,7 +516,7 @@ Public Class SeguimientoGRform
     End Sub
 
     ''' <summary>
-    ''' Pinta la grila de Desembolsos
+    ''' Pinta la grila de GR y Detalle GR
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub ColorearGrilla()
@@ -507,6 +525,11 @@ Public Class SeguimientoGRform
         ' oGrilla.colorearFilasDGV(dgDesembolso, "estado_desembolso", "PENDIENTE", Color.Yellow, Color.Red)
 
         oGrilla.colorearFilasDGV(dgGR, "Estado", "ANULADO", Color.Red, Color.White)
+
+        oGrilla.colorearFilasDGV(dgDetalleGR, "entregado", "ENTREGADO", Color.Green, Color.White)
+        oGrilla.colorearFilasDGV(dgDetalleGR, "recibido", "RECIBIDO", Color.Green, Color.White)
+
+        oGrilla.colorearFilasDGV(dgDetalleGR, "recibido", "INCOMPLETO", Color.Yellow, Color.Red)
 
     End Sub
 
@@ -545,6 +568,11 @@ Public Class SeguimientoGRform
             '    cbAlmacen.SelectedIndex = 0
             'End If
             pCriterio = "codUbiDes=" & cbAlmacen.SelectedValue
+            pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+        End If
+
+        If chkSerie.Checked = False Then
+            pCriterio = "codSerS=" & cbSerie.SelectedValue
             pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
         End If
 
@@ -640,9 +668,11 @@ Public Class SeguimientoGRform
         If chkDestino.Checked Then
             cbObra.Visible = False
             cbAlmacen.Visible = False
+            lblAlmacen.Visible = False
         Else
             cbObra.Visible = True
             cbAlmacen.Visible = True
+            lblAlmacen.Visible = True
 
             'cambia el estado de bandera de consulta de detalle de guia
             '
@@ -684,4 +714,37 @@ Public Class SeguimientoGRform
         ' LLenandoDetalleGR()
         ' MsgBox("cambio data")
     End Sub
+
+    Private Sub chkSerie_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSerie.CheckedChanged
+        If chkSerie.Checked Then
+            cbSerie.Visible = False
+        Else
+            cbSerie.Visible = True
+
+            'cambia el estado de bandera de consulta de detalle de guia
+            '
+            'consultaBd = False
+
+        End If
+
+        filtrando()
+    End Sub
+
+    Private Sub cbSerie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSerie.SelectedIndexChanged
+        'Try
+        '    If BindingSource4.Position >= 0 Then
+        '        'If cbSerie.SelectedValue.ToString() = "System.Data.DataRowView" Then
+        '        '    ' DatosAlmacenGR(BindingSource4.Item(BindingSource4.Position)(0))
+        '        'Else
+        '        '    DatosAlmacenGR(cbObra.SelectedValue)
+        '        'End If
+        '    End If
+        'Catch ex As Exception
+        'End Try
+
+
+        filtrando()
+    End Sub
+
+   
 End Class
