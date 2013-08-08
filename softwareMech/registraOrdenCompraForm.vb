@@ -244,7 +244,7 @@ Public Class registraOrdenCompraForm
 
     Private Sub asignarNro(ByVal max As Integer)
         Select Case CInt(max)
-            Case Is < 99
+            Case Is <= 99
                 txtNro.Text = "000" & max
             Case 100 To 999
                 txtNro.Text = "00" & max

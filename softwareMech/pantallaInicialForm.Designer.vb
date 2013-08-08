@@ -71,6 +71,7 @@ Partial Class pantallaInicialForm
         Me.opcGuiaRem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator15 = New System.Windows.Forms.ToolStripSeparator
         Me.opcGuiaRem2 = New System.Windows.Forms.ToolStripMenuItem
+        Me.SeguimientoGuiaRemisiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator
         Me.opcAlm = New System.Windows.Forms.ToolStripButton
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator
@@ -97,7 +98,7 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.SeguimientoGuiaRemisiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.MantVehiculoChoferToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -465,7 +466,7 @@ Partial Class pantallaInicialForm
         '
         'opcGuiaRem
         '
-        Me.opcGuiaRem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcGuiaRem1, Me.ToolStripSeparator15, Me.opcGuiaRem2, Me.SeguimientoGuiaRemisiónToolStripMenuItem})
+        Me.opcGuiaRem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcGuiaRem1, Me.ToolStripSeparator15, Me.opcGuiaRem2, Me.SeguimientoGuiaRemisiónToolStripMenuItem, Me.MantVehiculoChoferToolStripMenuItem})
         Me.opcGuiaRem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.opcGuiaRem.Image = CType(resources.GetObject("opcGuiaRem.Image"), System.Drawing.Image)
         Me.opcGuiaRem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -497,6 +498,12 @@ Partial Class pantallaInicialForm
         Me.opcGuiaRem2.Size = New System.Drawing.Size(224, 22)
         Me.opcGuiaRem2.Text = "Mant. Motivo de Guia..."
         Me.opcGuiaRem2.ToolTipText = "Mantenimiento de Motivo de Guia de Remisión"
+        '
+        'SeguimientoGuiaRemisiónToolStripMenuItem
+        '
+        Me.SeguimientoGuiaRemisiónToolStripMenuItem.Name = "SeguimientoGuiaRemisiónToolStripMenuItem"
+        Me.SeguimientoGuiaRemisiónToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.SeguimientoGuiaRemisiónToolStripMenuItem.Text = "Seguimiento Guia Remisión"
         '
         'ToolStripSeparator12
         '
@@ -719,11 +726,11 @@ Partial Class pantallaInicialForm
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'SeguimientoGuiaRemisiónToolStripMenuItem
+        'MantVehiculoChoferToolStripMenuItem
         '
-        Me.SeguimientoGuiaRemisiónToolStripMenuItem.Name = "SeguimientoGuiaRemisiónToolStripMenuItem"
-        Me.SeguimientoGuiaRemisiónToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
-        Me.SeguimientoGuiaRemisiónToolStripMenuItem.Text = "Seguimiento Guia Remisión"
+        Me.MantVehiculoChoferToolStripMenuItem.Name = "MantVehiculoChoferToolStripMenuItem"
+        Me.MantVehiculoChoferToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.MantVehiculoChoferToolStripMenuItem.Text = "Mant. Vehiculo Chofer"
         '
         'pantallaInicialForm
         '
@@ -824,4 +831,5 @@ Partial Class pantallaInicialForm
     Friend WithEvents ToolStripSeparator16 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripDropDownButton1 As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents SeguimientoGuiaRemisiónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MantVehiculoChoferToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

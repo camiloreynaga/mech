@@ -614,4 +614,11 @@ Public Class pantallaInicialForm
         SegGr.MdiParent = Me
         SegGr.Show()
     End Sub
+
+    Private Sub MantVehiculoChoferToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MantVehiculoChoferToolStripMenuItem.Click
+        Dim manVeh As New MantVehiculoTransportistaFrm
+        manVeh.MdiParent = Me
+        manVeh.Show()
+
+    End Sub
 End Class

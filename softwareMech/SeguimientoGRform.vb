@@ -10,7 +10,7 @@ Public Class SeguimientoGRform
     ''' <summary>
     ''' Guia Remision
     ''' </summary>
-    ''' <remarks></remarks>
+    ''' <remarks>Guia de Remision</remarks>
     Dim BindingSource0 As New BindingSource
 
     ''' <summary>
@@ -69,11 +69,8 @@ Public Class SeguimientoGRform
         sele = "select  codGuiaE, talon, nroGuia, fecIni, codSerS,razon,  codIde, codestado, Estado,Origen,Destino,codUbiOri,codUbiDes,partida, llegada, codET, empTrans,marcaNro,codVeh,nombre,  codT, motivo,   codMotG, nroFact, obs, Personal,  codPers,ruc from VSeguimientoGR"
         crearDataAdapterTable(daTabla1, sele)
 
-
         'sele = "PA_SeguimientoComprobantes"
-        
         'crearDataAdapterTableProcedure(daTabla2, sele)
-
         sele = "PA_LugarTrabajo" '"Select codigo,nombre from tLugarTrabajo"
         crearDataAdapterTable(daTabla3, sele)
         crearDataAdapterTableProcedure(daTabla3, sele)
@@ -132,11 +129,15 @@ Public Class SeguimientoGRform
         End Try
 
     End Sub
+
+
+
     ''' <summary>
     ''' Consulta Datos del Detalle de GR desde la BD
     ''' </summary>
+    ''' <param name="cod"> codigo de obra  para filtrar </param>
     ''' <remarks></remarks>
-    Private Sub DatosDetalleGR()
+    Private Sub DatosAlmacenGR(ByVal cod As String)
 
         VerificaConexion()
         Dim wait As New waitForm
@@ -145,28 +146,24 @@ Public Class SeguimientoGRform
         wait.Show()
 
         'Validando la cantidad de datos de GR 
-        Dim cod As Integer = BindingSource0.Item(BindingSource0.Position)(0)
+        ' BindingSource2.Item(BindingSource0.Position)(0)
 
         Try
-            If dgGR.RowCount > 0 Then 'BindingSource0.Count > 0 Then
-                Dim sele As String = "select codDGE, codigo,cant,descrip,unidad,peso,codGuiaE,codMat,linea1 FROM VSeguimientoGRDetalle where codGuiaE=" & cod
-                crearDataAdapterTable(daTabla2, sele)
 
-            Else
-                Exit Sub
-            End If
+            Dim sele As String = "select codUbi,ubicacion,codigo from TUbicacion where codigo ='" & cod & "'"
+            crearDataAdapterTable(daTabla4, sele)
 
-            If dgDetalleGR.RowCount > 0 Then
-                dsAlmacen.Tables("VSeguimientoGRDetalle").Clear()
+            If cbAlmacen.Items.Count > 0 Then
+                dsAlmacen.Tables("TUbicacion").Clear()
                 'daTPers.Fill(dsAlmacen, "VSeguimientoGRDetalle")
             End If
-            
-            daTabla2.Fill(dsAlmacen, "VSeguimientoGRDetalle")
-            BindingSource1.DataSource = dsAlmacen
-            BindingSource1.DataMember = "VSeguimientoGRDetalle"
-            dgDetalleGR.DataSource = BindingSource1 ' 
 
-
+            daTabla4.Fill(dsAlmacen, "TUbicacion")
+            BindingSource3.DataSource = dsAlmacen
+            BindingSource3.DataMember = "TUbicacion"
+            cbAlmacen.DataSource = BindingSource3
+            cbAlmacen.DisplayMember = "ubicacion"
+            cbAlmacen.ValueMember = "codUbi"
 
         Catch f As Exception
 
@@ -177,6 +174,62 @@ Public Class SeguimientoGRform
             Me.Cursor = Cursors.Default
         End Try
 
+    End Sub
+
+
+    ''' <summary>
+    ''' Consulta Datos del Detalle de GR desde la BD
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub DatosDetalleGR()
+        VerificaConexion()
+
+        'Validando la cantidad de datos de GR 
+        If BindingSource0.Count > 0 Then
+
+
+            Dim wait As New waitForm
+            wait.Show()
+            Me.Cursor = Cursors.WaitCursor
+            wait.Show()
+
+            Dim cod As Integer = BindingSource0.Item(BindingSource0.Position)(0)
+
+            Try
+                If dgGR.RowCount > 0 Then 'BindingSource0.Count > 0 Then
+                    Dim sele As String = "select codDGE, codigo,cant,descrip,unidad,peso,codGuiaE,codMat,linea1 FROM VSeguimientoGRDetalle where codGuiaE=" & cod
+                    crearDataAdapterTable(daTabla2, sele)
+                Else
+                    Exit Sub
+                End If
+
+                If dgDetalleGR.RowCount > 0 Then
+                    dsAlmacen.Tables("VSeguimientoGRDetalle").Clear()
+                    'daTPers.Fill(dsAlmacen, "VSeguimientoGRDetalle")
+                End If
+
+                daTabla2.Fill(dsAlmacen, "VSeguimientoGRDetalle")
+                BindingSource1.DataSource = dsAlmacen
+                BindingSource1.DataMember = "VSeguimientoGRDetalle"
+                dgDetalleGR.DataSource = BindingSource1 ' 
+
+            Catch f As Exception
+
+                MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Exit Sub
+            Finally
+                wait.Close()
+                Me.Cursor = Cursors.Default
+            End Try
+        Else
+
+            If dgDetalleGR.RowCount > 0 Then
+                dsAlmacen.Tables("VSeguimientoGRDetalle").Clear()
+                'daTPers.Fill(dsAlmacen, "VSeguimientoGRDetalle")
+            End If
+
+
+        End If
     End Sub
 
 
@@ -362,13 +415,20 @@ Public Class SeguimientoGRform
 
     Private Sub enlazarTextDetalleGR()
 
-        txtDenominacion.Text = BindingSource0.Item(BindingSource0.Position)(5)
-        txtRuc.Text = BindingSource0.Item(BindingSource0.Position)(27)
+        If dgGR.RowCount = 0 Then
+            Exit Sub
+        Else
+            ' If BindingSource0.Count > 0 Then
 
-        txtChofer.Text = BindingSource0.Item(BindingSource0.Position)(19)
-        txtVehiculo.Text = BindingSource0.Item(BindingSource0.Position)(17)
-        txtObs.Text = BindingSource0.Item(BindingSource0.Position)(24)
 
+            txtDenominacion.Text = BindingSource0.Item(BindingSource0.Position)(5)
+            txtRuc.Text = BindingSource0.Item(BindingSource0.Position)(27)
+
+            txtChofer.Text = BindingSource0.Item(BindingSource0.Position)(19)
+            txtVehiculo.Text = BindingSource0.Item(BindingSource0.Position)(17)
+            txtObs.Text = BindingSource0.Item(BindingSource0.Position)(24)
+
+        End If
 
 
     End Sub
@@ -450,49 +510,95 @@ Public Class SeguimientoGRform
 
     End Sub
 
+
+    ''' <summary>
+    ''' Añade criterios a los filtros
+    ''' </summary>
+    ''' <param name="criterio"></param>
+    ''' <param name="filtro"></param>
+    ''' <remarks></remarks>
+    Private Function AddCriterioFiltro(ByVal criterio As String, ByVal filtro As String) As String
+        If filtro.Length > 0 Then
+            filtro &= " and " & criterio
+        Else
+            filtro &= " " & criterio
+        End If
+        Return filtro
+    End Function
+
     ''' <summary>
     ''' Filtra Desembolso 
     ''' </summary>
     ''' <remarks></remarks>
-    'Private Sub filtrando()
-    '    'If BindingSource4.Position >= 0 And BindingSource5.Position >= 0 Then
+    Private Sub filtrando()
+        'If BindingSource4.Position >= 0 And BindingSource5.Position >= 0 Then
 
 
-    '    BindingSource0.Filter = ""
-    '    Dim pFiltro As String = BindingSource0.Filter
-    '    Dim pCriterio As String
+        BindingSource0.Filter = ""
+        Dim pFiltro As String = BindingSource0.Filter
+        Dim pCriterio As String
 
-    '    If chkDestino.Checked = False Then
-    '        pCriterio = "codObra='" & cbObra.SelectedValue & "'"
-    '        pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
-    '    End If
+        If chkDestino.Checked = False Then
 
-    '    If chkProveedor.Checked = False Then
-    '        pCriterio = "codIde =" & cbProveedor.SelectedValue
-    '        pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
-    '    End If
+            'Dim vAlmacen As Integer = cbAlmacen.SelectedValue
+            'If String.IsNullOrEmpty(cbAlmacen.SelectedValue) Then
+            '    cbAlmacen.SelectedIndex = 0
+            'End If
+            pCriterio = "codUbiDes=" & cbAlmacen.SelectedValue
+            pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+        End If
 
-    '    If cbEstadoDesembolso.Text = "TODOS" Or cbEstadoDesembolso.Text = "" Then
-    '        ' AddCriterioFiltro(pCriterio, pFiltro)
+        'If cbSerieGR.Text = "TODOS" Or cbSerieGR.Text = "" Then
+        '    ' AddCriterioFiltro(pCriterio, pFiltro)
 
-    '    Else
-    '        pCriterio = "estado_desembolso='" & cbEstadoDesembolso.Text.Trim() & "'"
-    '        pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
-    '    End If
+        'Else
+        '    pCriterio = "estado_desembolso='" & cbSerieGR.Text.Trim() & "'"
+        '    pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+        'End If
 
-    '    If chkSolicitante.Checked = False Then
-    '        pCriterio = "solicitante = '" & cbSolicitante.Text.Trim() & "'"
-    '        pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
-    '    End If
+        'If chkSolicitante.Checked = False Then
+        '    pCriterio = "solicitante = '" & cbSolicitante.Text.Trim() & "'"
+        '    pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+        'End If
 
-    '    BindingSource0.Filter = pFiltro
+        BindingSource0.Filter = pFiltro
 
-    '    BindingSource0.Sort = "idOp Desc"
-    '    'End If
-    '    'Colorea la Grilla
-    '    ColorearGrilla()
+        'BindingSource0.Sort = "codGuiaE Desc"
+        'End If
+        'Colorea la Grilla
+        ColorearGrilla()
+        'LLenandoDetalleGR()
 
-    'End Sub
+        DatosDetalleGR()
+
+        '
+    End Sub
+
+
+    Private Sub LLenandoDetalleGR()
+        'cambia la posición de la variable Posicion para iniciar de nuevo el proceso de llenado de datos de 
+        'detalle
+        'If chkDestino.Checked = False Then
+
+
+        'End If
+
+
+        ' Valida si cambio la fila seleccionada
+        If VPosicionGrilla <> BindingSource0.Position Then
+            VPosicionGrilla = BindingSource0.Position
+            consultaBd = False
+        End If
+
+
+        'Verifica si ya se consulto a la BD
+        If consultaBd = False Then
+            DatosDetalleGR()
+            consultaBd = True
+        End If
+        enlazarTextGR()
+        enlazarTextDetalleGR()
+    End Sub
 
 #End Region
 
@@ -508,23 +614,15 @@ Public Class SeguimientoGRform
         DatosIniciales()
         'DatosDetalleGR()
         ModificandoColumnasDGV_GR()
-        ModificandoColumnasDGV_DetalleGR()
+        If BindingSource1.Count > 0 Then
+            ModificandoColumnasDGV_DetalleGR()
+        End If
+
         configurarColorControl()
     End Sub
 
     Private Sub dgGR_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgGR.CellClick, dgGR.CellEnter
-        ' Valida si cambio la fila seleccionada
-        If VPosicionGrilla <> BindingSource0.Position Then
-            VPosicionGrilla = BindingSource0.Position
-            consultaBd = False
-        End If
-        'Verifica si ya se consulto a la BD
-        If consultaBd = False Then
-            DatosDetalleGR()
-            consultaBd = True
-        End If
-        enlazarTextGR()
-        enlazarTextDetalleGR()
+        LLenandoDetalleGR()
     End Sub
 
 #End Region
@@ -544,10 +642,46 @@ Public Class SeguimientoGRform
             cbAlmacen.Visible = False
         Else
             cbObra.Visible = True
+            cbAlmacen.Visible = True
+
+            'cambia el estado de bandera de consulta de detalle de guia
+            '
+            'consultaBd = False
 
         End If
 
-        'filtrando()
+        filtrando()
 
+    End Sub
+
+    Private Sub cbObra_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbObra.SelectedIndexChanged
+
+        Try
+            If BindingSource2.Position >= 0 Then
+                If cbObra.SelectedValue.ToString() = "System.Data.DataRowView" Then
+                    DatosAlmacenGR(BindingSource2.Item(BindingSource2.Position)(0))
+                Else
+                    DatosAlmacenGR(cbObra.SelectedValue)
+                End If
+            End If
+        Catch ex As Exception
+        End Try
+
+
+        filtrando()
+
+    End Sub
+
+
+    Private Sub cbAlmacen_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbAlmacen.SelectedIndexChanged
+        If BindingSource3.Count > 0 Then
+            filtrando()
+        End If
+    End Sub
+
+    Private Sub dgGR_DataBindingComplete(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewBindingCompleteEventArgs) Handles dgGR.DataBindingComplete
+
+        ' LLenandoDetalleGR()
+        ' MsgBox("cambio data")
     End Sub
 End Class
