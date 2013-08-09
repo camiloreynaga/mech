@@ -20,9 +20,9 @@ Partial Class SeguimientoGRform
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SeguimientoGRform))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.dgGR = New System.Windows.Forms.DataGridView
         Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
@@ -91,7 +91,7 @@ Partial Class SeguimientoGRform
         'lblTitulo
         '
         Me.lblTitulo.Size = New System.Drawing.Size(1020, 23)
-        Me.lblTitulo.Text = "Seguimiento Guia de Remision"
+        Me.lblTitulo.Text = "Seguimiento Guia de Remisión"
         '
         'lblDerecha
         '
@@ -113,8 +113,8 @@ Partial Class SeguimientoGRform
         Me.dgGR.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgGR.Location = New System.Drawing.Point(3, 16)
         Me.dgGR.Name = "dgGR"
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgGR.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgGR.RowsDefaultCellStyle = DataGridViewCellStyle5
         Me.dgGR.Size = New System.Drawing.Size(990, 178)
         Me.dgGR.TabIndex = 1
         '
@@ -396,8 +396,8 @@ Partial Class SeguimientoGRform
         Me.dgDetalleGR.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgDetalleGR.Location = New System.Drawing.Point(3, 16)
         Me.dgDetalleGR.Name = "dgDetalleGR"
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgDetalleGR.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgDetalleGR.RowsDefaultCellStyle = DataGridViewCellStyle6
         Me.dgDetalleGR.Size = New System.Drawing.Size(990, 233)
         Me.dgDetalleGR.TabIndex = 1
         '
@@ -510,9 +510,9 @@ Partial Class SeguimientoGRform
         'btnCerrar
         '
         Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCerrar.Location = New System.Drawing.Point(683, 297)
+        Me.btnCerrar.Location = New System.Drawing.Point(597, 300)
         Me.btnCerrar.Name = "btnCerrar"
-        Me.btnCerrar.Size = New System.Drawing.Size(75, 23)
+        Me.btnCerrar.Size = New System.Drawing.Size(67, 18)
         Me.btnCerrar.TabIndex = 11
         Me.btnCerrar.Text = "Cerrar"
         Me.btnCerrar.UseVisualStyleBackColor = True
@@ -584,7 +584,6 @@ Partial Class SeguimientoGRform
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.btnCerrar)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.txtMotivo)
         Me.Controls.Add(Me.Label10)
@@ -599,8 +598,10 @@ Partial Class SeguimientoGRform
         Me.Controls.Add(Me.cbObra)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.lblAlmacen)
+        Me.Controls.Add(Me.btnCerrar)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "SeguimientoGRform"
+        Me.Controls.SetChildIndex(Me.btnCerrar, 0)
         Me.Controls.SetChildIndex(Me.lblAlmacen, 0)
         Me.Controls.SetChildIndex(Me.Label2, 0)
         Me.Controls.SetChildIndex(Me.cbObra, 0)
@@ -615,7 +616,6 @@ Partial Class SeguimientoGRform
         Me.Controls.SetChildIndex(Me.Label10, 0)
         Me.Controls.SetChildIndex(Me.txtMotivo, 0)
         Me.Controls.SetChildIndex(Me.GroupBox3, 0)
-        Me.Controls.SetChildIndex(Me.btnCerrar, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
         Me.Controls.SetChildIndex(Me.lblTitulo, 0)

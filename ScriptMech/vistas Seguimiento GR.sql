@@ -1,7 +1,8 @@
 create  view VSeguimientoGR
 as
 select TGR.codGuiaE,TGR.talon,TGR.nroGuia,TGR.fecIni,TGR.codSerS,tid.razon, TGR.codIde,
-TGR.estado codestado, 'Estado'=case when TGR.estado=0 then 'PENDIENTE' when TGR.estado=1 then 'CERRADO' else 'ANULADO' end,
+TGR.estado codestado, 'Estado'=case when TGR.estado=0 then 'ABIERTO' when TGR.estado=1 then 'TERMINADO' when TGR.estado=2 
+then 'CERRADO' else 'ANULADO' end,
 tu.ubicacion Origen,tu2.ubicacion Destino ,  TGR.codUbiOri,TGR.codUbiDes,
 TGR.partida,TGR.llegada,TGR.codET, TET.nombre empTrans,TVE.marcaNro, TGR.codVeh, 
 TCO.nombre, TGR.codT, TMO.motivo,  TGR.codMotG,TGR.nroFact,TGR.obs,
@@ -51,3 +52,8 @@ select * from TSerieSede
 select * from tpersonal
 select * from TDetalleGuiaEmp 
 select * from TGuiaRemEmp 
+
+update TGuiaRemEmp set estado=1 where nroGuia =830
+
+update TDetalleGuiaEmp set entregado =1 where codGuiaE =3
+

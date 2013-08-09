@@ -370,12 +370,6 @@ Public Class pantallaInicialForm
 
     End Sub
 
-    Private Sub opcPers2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        'Dim mant As New asignarAccesoUsuarioForm
-        'mant.MdiParent = Me
-        'mant.Show()
-    End Sub
-
     Private Sub opcConf1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConfColorPantalla.Click
         Dim mant As New configuracionColorForm
         mant.MdiParent = Me
@@ -573,12 +567,6 @@ Public Class pantallaInicialForm
         mant.Show()
     End Sub
 
-    Private Sub opcAlm_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcAlm.Click
-        Dim alm As New entradaSalidaAlmacen1Form
-        alm.MdiParent = Me
-        alm.Show()
-    End Sub
-
     Private Sub opcConfSerieGuia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConfSerieGuia.Click
         Dim mant As New ConfiguracionSerieEmpForm
         mant.MdiParent = Me
@@ -592,7 +580,7 @@ Public Class pantallaInicialForm
     End Sub
 
     Private Sub opcGuiaRem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcGuiaRem1.Click
-        If recuperarSeries(75) = 0 Then  '75=Guia de remision
+        If recuperarSerieGuiaRemEmp(75) = 0 Then  '75=Guia de remision
             MessageBox.Show("Acceso denegado, el administrador no le asigno serie de guias de remision", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
@@ -606,19 +594,40 @@ Public Class pantallaInicialForm
         Dim caja As New MantCajaChicaForm
         caja.MdiParent = Me
         caja.Show()
-
     End Sub
 
-    Private Sub SeguimientoGuiaRemisiónToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SeguimientoGuiaRemisiónToolStripMenuItem.Click
-        Dim SegGr As New SeguimientoGRform
-        SegGr.MdiParent = Me
-        SegGr.Show()
+    Private Sub opcAlmE1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcAlmE1.Click
+        If vSCodigo <> "00-00" Then 'Sede principal
+            MessageBox.Show("Acceso denegado, Este tipo de entradas a almacén solo se pueden procesar en SEDE PRINCIPAL", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        Dim ent As New entradaAlmacenMechForm
+        ent.MdiParent = Me
+        ent.Show()
+    End Sub
+
+    Private Sub opcAlmS1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcAlmS1.Click
+        If vSCodigo <> "00-00" Then 'Sede principal
+            MessageBox.Show("Acceso denegado, Este tipo de salidas de almacén solo se pueden procesar en SEDE PRINCIPAL", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        Dim ent As New salidaAlmacenMechForm
+        ent.MdiParent = Me
+        ent.Show()
     End Sub
 
     Private Sub MantVehiculoChoferToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MantVehiculoChoferToolStripMenuItem.Click
-        Dim manVeh As New MantVehiculoTransportistaFrm
-        manVeh.MdiParent = Me
-        manVeh.Show()
+        Dim matVeh As New MantVehiculoTransportistaFrm
+        matVeh.MdiParent = Me
+        matVeh.Show()
 
+    End Sub
+
+    Private Sub SeguimientoGRToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SeguimientoGRToolStripMenuItem.Click
+        Dim segGr As New SeguimientoGRform
+        segGr.MdiParent = Me
+        segGr.Show()
     End Sub
 End Class

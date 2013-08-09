@@ -143,10 +143,10 @@ Module varFuncPublicasModule
         Return cmdCampo.ExecuteScalar
     End Function
     'LITO
-    Public Function recuperarSeries(ByVal codTipo As Integer) As Integer
+    Public Function recuperarSerieGuiaRemEmp(ByVal codTipo As Integer) As Integer
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = "select COUNT(*) from TSerieSede where estado=1 and codTipDE=" & codTipo  '75=Guia Rem  70=Factura
+        cmdCampo.CommandText = "select COUNT(*) from TSerieSede where estado=1 and codSerS>1 and codTipDE=" & codTipo  '75=Guia Rem  70=Factura
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function

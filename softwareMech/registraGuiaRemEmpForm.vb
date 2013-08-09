@@ -14,6 +14,7 @@ Public Class registraGuiaRemEmpForm
     Dim BindingSource10 As New BindingSource
     Dim BindingSource11 As New BindingSource
     Dim BindingSource12 As New BindingSource
+    Dim BindingSource13 As New BindingSource
 
     Private Sub registraGuiaRemEmpForm_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
         Me.Close()
@@ -46,7 +47,7 @@ Public Class registraGuiaRemEmpForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select codSerS,serie,iniNroDoc,finNroDoc from TSerieSede where estado=1 and codTipDE=75"  '75=Guia Remision 70=Factura
+        Dim sele As String = "select codSerS,serie,iniNroDoc,finNroDoc from TSerieSede where estado=1 and codSerS>1 and codTipDE=75"  '75=Guia Remision 70=Factura 1=Reservado Guia Remision provvedor
         crearDataAdapterTable(daVSerie, sele)
 
         sele = "select codIde,razon,ruc,dir,fono,fax,celRpm,email,repres,fono+'  '+fax as fono1,cuentaBan,cuentaDet from TIdentidad where estado=1" ' 'clientes y proveedores 
@@ -71,6 +72,10 @@ Public Class registraGuiaRemEmpForm
         crearDataAdapterTable(daTabla1, sele)
         daTabla1.SelectCommand.Parameters.Add("@codSer", SqlDbType.Int, 0).Value = 0
 
+        sele = "select codDGE,cant,descrip,linea1,unidad,peso,detalle,codGuiaE,codMat from VDetGuiaE where codGuiaE=@nro"
+        crearDataAdapterTable(daDetDoc, sele)
+        daDetDoc.SelectCommand.Parameters.Add("@nro", SqlDbType.Int, 0).Value = 0
+
         Try
             'procedimiento para instanciar el dataSet - DatasetAlmacenModule.vb
             crearDSAlmacen()
@@ -84,6 +89,7 @@ Public Class registraGuiaRemEmpForm
             daTPers.Fill(dsAlmacen, "TTransportista")
             daTabla2.Fill(dsAlmacen, "TMotivoGuia")
             daTabla1.Fill(dsAlmacen, "VGuiaRemEmpAper")
+            daDetDoc.Fill(dsAlmacen, "VDetGuiaE")
 
             AgregarRelacion()
 
@@ -153,11 +159,19 @@ Public Class registraGuiaRemEmpForm
             lbOrden.ValueMember = "codGuiaE"
             BindingSource12.Sort = "nroGuia"
 
+            BindingSource13.DataSource = dsAlmacen
+            BindingSource13.DataMember = "VDetGuiaE"
+            Navigator2.BindingSource = BindingSource13
+            dgTabla2.DataSource = BindingSource13
+            BindingSource13.Sort = "codDGE"
+            ModificarColumnasDGV()
+
             configurarColorControl()
 
             txtRuc.DataBindings.Add("Text", BindingSource2, "ruc")
             txtRuc1.DataBindings.Add("Text", BindingSource7, "ruc")
 
+            vfVan3 = False
             vFVan = True
             parametrosSerieDoc()
 
@@ -167,8 +181,8 @@ Public Class registraGuiaRemEmpForm
             vfVan2 = True
             enlazarText()
 
-            'vfVan3 = True
-            'visualizarDet()  'en un inicio no enlazar pa NUEVO
+            vfVan3 = True
+            visualizarDet()
 
             cbBuscar.SelectedIndex = 0
             wait.Close()
@@ -183,8 +197,38 @@ Public Class registraGuiaRemEmpForm
     End Sub
 
     Private Sub cbSerie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSerie.SelectedIndexChanged
+        vfVan3 = False  'no filtrar detalle
         parametrosSerieDoc()
         visualizarGuia()
+        vfVan3 = True  'filtrar detalle
+        visualizarDet()
+    End Sub
+
+    Private Sub ModificarColumnasDGV()
+        With dgTabla2
+            .Columns(0).Visible = False
+            .Columns(1).Width = 60
+            .Columns(1).HeaderText = "Cant."
+            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(2).HeaderText = "Descripción Insumo"
+            .Columns(2).Width = 420
+            .Columns(2).ReadOnly = True 'NO editable
+            .Columns(3).Width = 222
+            .Columns(3).HeaderText = ""
+            .Columns(4).Width = 50
+            .Columns(4).HeaderText = "Unid."
+            .Columns(4).ReadOnly = True 'NO editable
+            .Columns(5).Width = 75
+            .Columns(5).HeaderText = "Peso"
+            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(6).Visible = False
+            .Columns(7).Visible = False
+            .Columns(8).Visible = False
+            .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
+            .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
+            .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
+            .RowHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
+        End With
     End Sub
 
     Dim vfVan4 As Boolean = False
@@ -227,8 +271,6 @@ Public Class registraGuiaRemEmpForm
         Label5.ForeColor = ForeColorLabel
         Label6.ForeColor = ForeColorLabel
         Label7.ForeColor = ForeColorLabel
-        Label8.ForeColor = ForeColorLabel
-        Label9.ForeColor = ForeColorLabel
         Label10.ForeColor = ForeColorLabel
         Label18.ForeColor = ForeColorLabel
         Label19.ForeColor = ForeColorLabel
@@ -237,6 +279,7 @@ Public Class registraGuiaRemEmpForm
         Label22.ForeColor = ForeColorLabel
         Label23.ForeColor = ForeColorLabel
         Label24.ForeColor = ForeColorLabel
+        Label25.ForeColor = ForeColorLabel
         GroupBox1.ForeColor = ForeColorLabel
         GroupBox2.ForeColor = ForeColorLabel
         GroupBox3.ForeColor = ForeColorLabel
@@ -320,7 +363,8 @@ Public Class registraGuiaRemEmpForm
             txtPar.Text = ""
             Exit Sub
         End If
-        txtPar.Text = BindingSource4.Item(cbAlm1.SelectedIndex)(1) + " - " + BindingSource3.Item(cbObra1.SelectedIndex)(2)
+        'txtPar.Text = BindingSource4.Item(cbAlm1.SelectedIndex)(1) + " - " + BindingSource3.Item(cbObra1.SelectedIndex)(2)
+        txtPar.Text = BindingSource3.Item(cbObra1.SelectedIndex)(2)
     End Sub
 
     Private Sub enlazarLlegada()
@@ -328,7 +372,8 @@ Public Class registraGuiaRemEmpForm
             txtLleg.Text = ""
             Exit Sub
         End If
-        txtLleg.Text = BindingSource6.Item(cbAlm2.SelectedIndex)(1) + " - " + BindingSource5.Item(cbObra2.SelectedIndex)(2)
+        'txtLleg.Text = BindingSource6.Item(cbAlm2.SelectedIndex)(1) + " - " + BindingSource5.Item(cbObra2.SelectedIndex)(2)
+        txtLleg.Text = BindingSource5.Item(cbObra2.SelectedIndex)(2)
     End Sub
 
     Private Sub cbAlm1_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbAlm1.SelectedValueChanged
@@ -341,7 +386,7 @@ Public Class registraGuiaRemEmpForm
 
     Private Sub lbOrden_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles lbOrden.SelectedValueChanged
         enlazarText()
-        'visualizarDet()
+        visualizarDet()
     End Sub
 
     Dim vfVan2 As Boolean = False
@@ -368,6 +413,31 @@ Public Class registraGuiaRemEmpForm
             End If
             Me.Cursor = Cursors.Default
         End If
+    End Sub
+
+    Dim vfVan3 As Boolean = False
+    Private Sub visualizarDet()
+        If vfVan3 Then
+            If BindingSource12.Position = -1 Then
+                dsAlmacen.Tables("VDetGuiaE").Clear()
+                Exit Sub
+            End If
+            Me.Cursor = Cursors.WaitCursor
+            dsAlmacen.Tables("VDetGuiaE").Clear()
+            daDetDoc.SelectCommand.Parameters("@nro").Value = BindingSource12.Item(lbOrden.SelectedIndex)(0)
+            daDetDoc.Fill(dsAlmacen, "VDetGuiaE")
+            'colorearFila()
+            colorear()
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub colorear()
+        For j As Short = 0 To BindingSource13.Count - 1
+            dgTabla2.Rows(j).Cells(1).Style.BackColor = Color.AliceBlue
+            dgTabla2.Rows(j).Cells(3).Style.BackColor = Color.AliceBlue
+            dgTabla2.Rows(j).Cells(5).Style.BackColor = Color.AliceBlue
+        Next
     End Sub
 
     Dim vFClear1 As Boolean = False
@@ -552,6 +622,8 @@ Public Class registraGuiaRemEmpForm
 
     Private Sub desactivarControles1()
         Panel1.Enabled = False
+        Panel3.Enabled = False
+        Panel4.Enabled = False
         If vfNuevo1 = "guardar" Then
             btnModificar.Enabled = False
             btnModificar.FlatStyle = FlatStyle.Flat
@@ -569,6 +641,8 @@ Public Class registraGuiaRemEmpForm
 
     Private Sub activarControles1()
         Panel1.Enabled = True
+        Panel3.Enabled = True
+        Panel4.Enabled = True
         btnNuevo.Enabled = True
         btnNuevo.FlatStyle = FlatStyle.Standard
         btnModificar.Enabled = True
@@ -610,7 +684,7 @@ Public Class registraGuiaRemEmpForm
             txtBuscar.Focus()
             StatusBarClass.messageBarraEstado("")
             Me.AcceptButton = Me.btnNuevo
-
+            dsAlmacen.Tables("VDetGuiaE").Clear()
         Else   ' guardar
             If ValidaFechaMayorXXXX(date1.Value.Date, 2013) Then
                 MessageBox.Show("Ingrese fecha mayor al año 2012", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
@@ -664,6 +738,7 @@ Public Class registraGuiaRemEmpForm
                 StatusBarClass.messageBarraEstado("  LOS DATOS FUERON GUARDADOS CON EXITO...")
                 finalMytrans = True
                 vfVan2 = False 'Enlazar Text
+                vfVan3 = False 'Detalle
 
                 'Actualizando el dataTable
                 parametrosSerieDoc()
@@ -677,7 +752,9 @@ Public Class registraGuiaRemEmpForm
                 StatusBarClass.messageBarraEstado("  Registro fué guardado con exito...")
 
                 vfVan2 = True
+                vfVan3 = True
                 btnCancelar.PerformClick()
+
 
                 wait.Close()
                 Me.Cursor = Cursors.Default
@@ -695,7 +772,7 @@ Public Class registraGuiaRemEmpForm
                     Exit Sub
                 End If
             End Try
-            
+
         End If
     End Sub
 
@@ -709,6 +786,7 @@ Public Class registraGuiaRemEmpForm
         'Clase definida y con miembros shared en la biblioteca ComponentesRAS
         StatusBarClass.messageBarraEstado("  Proceso cancelado...")
         enlazarText()
+        visualizarDet()
     End Sub
 
     Dim cmInserTable As SqlCommand
@@ -814,6 +892,7 @@ Public Class registraGuiaRemEmpForm
                 StatusBarClass.messageBarraEstado("  LOS DATOS FUERON GUARDADOS CON EXITO...")
                 finalMytrans = True
                 vfVan2 = False 'Enlazar Text
+                vfVan3 = False
 
                 'Actualizando el dataTable
                 parametrosSerieDoc()
@@ -827,7 +906,9 @@ Public Class registraGuiaRemEmpForm
                 StatusBarClass.messageBarraEstado("  Registro fué guardado con exito...")
 
                 vfVan2 = True
+                vfVan3 = True
                 btnCancelar.PerformClick()
+
 
                 StatusBarClass.messageBarraEstado("  Registro fué actualizado con exito...")
                 wait.Close()
@@ -934,6 +1015,7 @@ Public Class registraGuiaRemEmpForm
             StatusBarClass.messageBarraEstado("  REGISTRO FUE ELIMINADO CON EXITO...")
             finalMytrans = True
             vfVan2 = False 'Enlazar Text
+            vfVan3 = False
 
             'Actualizando el dataTable
             parametrosSerieDoc()
@@ -943,6 +1025,9 @@ Public Class registraGuiaRemEmpForm
 
             vfVan2 = True
             enlazarText()
+
+            vfVan3 = True
+            visualizarDet()
 
             'Clase definida y con miembros shared en la biblioteca ComponentesRAS
             StatusBarClass.messageBarraEstado("  Registro fué eliminado con exito...")
@@ -969,5 +1054,391 @@ Public Class registraGuiaRemEmpForm
         cmDeleteTable1.CommandText = "delete from TGuiaRemEmp where codGuiaE=@cod"
         cmDeleteTable1.Connection = Cn
         cmDeleteTable1.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource12.Item(BindingSource12.Position)(0)
+    End Sub
+
+    Private Sub btnAgrega_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgrega.Click
+        If dgTabla1.Rows.Count = 0 Then
+            StatusBarClass.messageBarraEstado("  Seleccione Insumo a agregar...")
+            Exit Sub
+        End If
+
+        If BindingSource12.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  Proceso denegado, Guia de remisión NO APERTURADA...")
+            Exit Sub
+        End If
+
+        If ValidarCampos() Then
+            Exit Sub
+        End If
+
+        If BindingSource13.Find("codMat", BindingSource10.Item(BindingSource10.Position)(0)) >= 0 Then
+            MessageBox.Show("Ya exíste insumo: " & BindingSource10.Item(BindingSource10.Position)(1), nomNegocio, Nothing, MessageBoxIcon.Information)
+            txtBuscar.Focus()
+            txtBuscar.SelectAll()
+            Exit Sub
+        End If
+
+        Dim finalMytrans As Boolean = False
+        Dim wait As New waitForm
+        wait.Show()
+        Me.Cursor = Cursors.WaitCursor
+        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
+        Try
+            StatusBarClass.messageBarraEstado("  GUARDANDO DATOS...")
+            Me.Refresh()
+
+            'TDetalleGuiaEmp
+            comandoInsert1()
+            cmInserTable1.Transaction = myTrans
+            If cmInserTable1.ExecuteNonQuery() < 1 Then
+                wait.Close()
+                Me.Cursor = Cursors.Default
+                myTrans.Rollback()
+                MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+            Dim codDGE As Integer = cmInserTable1.Parameters("@Identity").Value
+
+            'confirma la transaccion
+            myTrans.Commit()    'con exito RAS
+
+            StatusBarClass.messageBarraEstado("  LOS DATOS FUERON GUARDADOS CON EXITO...")
+            finalMytrans = True
+
+            'Actualizando el dataSet 
+            visualizarDet()
+
+            'Buscando por nombre de campo y luego pocisionarlo con el indice
+            BindingSource13.Position = BindingSource13.Find("codDGE", codDGE)
+
+            'Clase definida y con miembros shared en la biblioteca ComponentesRAS
+            StatusBarClass.messageBarraEstado("  Registro fué guardado con exito...")
+            wait.Close()
+            Me.Cursor = Cursors.Default
+
+            txtLinea.Clear()
+            txtBus.Focus()
+            txtBus.SelectAll()
+        Catch f As Exception
+            wait.Close()
+            Me.Cursor = Cursors.Default
+            If finalMytrans Then
+                MessageBox.Show("NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Information)
+                Me.Close()
+                Exit Sub
+            Else
+                myTrans.Rollback()
+                MessageBox.Show("tipoM de exception: " & f.Message & Chr(13) & "NO SE GUARDO LA INFORMACION PROCESADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+        End Try
+    End Sub
+
+    Dim cmInserTable1 As SqlCommand
+    Private Sub comandoInsert1()
+        cmInserTable1 = New SqlCommand
+        cmInserTable1.CommandType = CommandType.StoredProcedure
+        cmInserTable1.CommandText = "PA_InsertDetalleGuiaEmp"
+        cmInserTable1.Connection = Cn
+        cmInserTable1.Parameters.Add("@cod", SqlDbType.VarChar, 20).Value = ""
+        cmInserTable1.Parameters.Add("@can", SqlDbType.Decimal, 0).Value = txtCan.Text
+        cmInserTable1.Parameters.Add("@des", SqlDbType.VarChar, 100).Value = BindingSource10.Item(BindingSource10.Position)(1)
+        cmInserTable1.Parameters.Add("@uni", SqlDbType.VarChar, 20).Value = BindingSource10.Item(BindingSource10.Position)(3)
+        cmInserTable1.Parameters.Add("@peso", SqlDbType.Decimal, 0).Value = txtPeso.Text
+        cmInserTable1.Parameters.Add("@codG", SqlDbType.Int, 0).Value = BindingSource12.Item(BindingSource12.Position)(0)
+        cmInserTable1.Parameters.Add("@codM", SqlDbType.Int, 0).Value = BindingSource10.Item(BindingSource10.Position)(0)
+        cmInserTable1.Parameters.Add("@linea", SqlDbType.VarChar, 300).Value = txtLinea.Text.Trim()
+        'configurando direction output = parametro de solo salida
+        cmInserTable1.Parameters.Add("@Identity", SqlDbType.Int, 0)
+        cmInserTable1.Parameters("@Identity").Direction = ParameterDirection.Output
+    End Sub
+
+    Private Sub ToolStripButton6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton6.Click
+        If BindingSource13.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  No existe linea de insumo a eliminar...")
+            Exit Sub
+        End If
+
+        Dim resp As Short = MessageBox.Show("Esta segúro de eliminar: " & BindingSource13.Item(BindingSource13.Position)(2) & "  Si elimina no podra deshacer...", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resp <> 6 Then
+            Exit Sub
+        End If
+
+        Me.Cursor = Cursors.AppStarting
+        Dim finalMytrans As Boolean = False
+        Dim wait As New waitForm
+        wait.Show()
+        'estableciendo una transaccion
+        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
+        Try
+            StatusBarClass.messageBarraEstado("  PROCESANDO DATOS...")
+            Me.Refresh()
+
+            'TDetalleGuiaEmp
+            comandoDelete3()
+            cmDeleteTable3.Transaction = myTrans
+            If cmDeleteTable3.ExecuteNonQuery() < 1 Then
+                wait.Close()
+                Me.Cursor = Cursors.Default
+                myTrans.Rollback()
+                MessageBox.Show("No se puede eliminar...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+
+            'confirma la transaccion
+            myTrans.Commit()    'con exito RAS
+            StatusBarClass.messageBarraEstado("  ELIMINACION CON EXITO...")
+            finalMytrans = True
+
+            'Actualizando el dataTable
+            visualizarDet()
+
+            wait.Close()
+            Me.Cursor = Cursors.Default
+            'accionesIniciales()
+            StatusBarClass.messageBarraEstado("  ELIMINACION CON EXITO...")
+        Catch f As Exception
+            wait.Close()
+            Me.Cursor = Cursors.Default
+            If finalMytrans Then
+                MessageBox.Show("NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Information)
+                Me.Close()
+                Exit Sub
+            Else
+                myTrans.Rollback()
+                MessageBox.Show("Tipo de exception: " & f.Message & Chr(13) & "NO SE ALMACENO LA INFORMACION PROCESADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+        End Try
+    End Sub
+
+    Dim cmDeleteTable3 As SqlCommand
+    Private Sub comandoDelete3()
+        cmDeleteTable3 = New SqlCommand
+        cmDeleteTable3.CommandType = CommandType.Text
+        cmDeleteTable3.CommandText = "delete from TDetalleGuiaEmp where codDGE=@cod"
+        cmDeleteTable3.Connection = Cn
+        cmDeleteTable3.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource13.Item(BindingSource13.Position)(0)
+    End Sub
+
+    Private Sub dgTabla1_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla1.CellDoubleClick
+        btnAgrega.PerformClick()
+    End Sub
+
+    'Evento  Se produce cuando la celda termina de validar
+    Private Sub dgTabla2_CellValidated(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla2.CellValidated
+        dgTabla2.Rows(e.RowIndex).ErrorText = Nothing   'Borrar el error
+    End Sub
+
+    Private Sub dgTabla2_CellValidating(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellValidatingEventArgs) Handles dgTabla2.CellValidating
+        Try
+            If dgTabla2.Columns(e.ColumnIndex).Name = "cant" Then
+                If Not IsNumeric(e.FormattedValue) Then
+                    dgTabla2.Rows(e.RowIndex).ErrorText = "ERROR, DIGITE VALOR NUMERICO"
+                    e.Cancel = True
+                Else
+                    Dim valor As Double = e.FormattedValue 'cant
+                    If CDbl(e.FormattedValue) < 0 Then
+                        dgTabla2.Rows(e.RowIndex).ErrorText = "ERROR, DIGITE VALOR NUMERICO > 0"
+                        e.Cancel = True
+                    Else
+                        'BindingSource5.Item(BindingSource5.Position)(5) = Format(CDbl(BindingSource5.Item(BindingSource5.Position)(4)) * valor, "0.00")
+                    End If
+                End If
+            End If
+
+            If dgTabla2.Columns(e.ColumnIndex).Name = "peso" Then
+                If Not IsNumeric(e.FormattedValue) Then
+                    dgTabla2.Rows(e.RowIndex).ErrorText = "ERROR, DIGITE VALOR NUMERICO"
+                    e.Cancel = True
+                Else
+                    Dim valor As Double = e.FormattedValue 'peso
+                    If CDbl(e.FormattedValue) < 0 Then
+                        dgTabla2.Rows(e.RowIndex).ErrorText = "ERROR, DIGITE VALOR NUMERICO > 0"
+                        e.Cancel = True
+                    Else
+                        'BindingSource5.Item(BindingSource5.Position)(5) = Format(CDbl(BindingSource5.Item(BindingSource5.Position)(1)) * valor, "0.00")
+                    End If
+                End If
+            End If
+        Catch f As Exception
+            MessageBox.Show("Tipo de exception: " & f.Message, nomNegocio, Nothing, MessageBoxIcon.Information)
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub TSModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSModificar.Click
+        If BindingSource13.Count = 0 Then
+            StatusBarClass.messageBarraEstado("  NO EXISTE REGISTROS A PROCESAR...")
+            Exit Sub
+        End If
+
+        Dim resp As Short = MessageBox.Show("ESTA SEGURO DE GUARDAR MODIFICACIONES?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resp <> 6 Then
+            Exit Sub
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+        Me.Refresh()
+        Dim finalMytrans As Boolean = False
+        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
+        Dim wait As New waitForm
+        wait.Show()
+        Try
+            StatusBarClass.messageBarraEstado("  ESPERE POR FAVOR, ACTUALIZANDO INFORMACION....")
+
+            For j As Short = 0 To BindingSource13.Count - 1
+                'actualizando TDetalleGuiaEmp
+                comandoUpdate3(BindingSource13.Item(j)(1), BindingSource13.Item(j)(5), BindingSource13.Item(j)(3).ToString(), BindingSource13.Item(j)(0))
+                cmdUpdateTable3.Transaction = myTrans
+                If cmdUpdateTable3.ExecuteNonQuery() < 1 Then
+                    wait.Close()
+                    Me.Cursor = Cursors.Default
+                    'deshace la transaccion
+                    myTrans.Rollback()
+                    MessageBox.Show("ERROR DE CONCURRENCIA, VUELVA A EJECUTAR LA INTERFAZ." & Chr(13) & "No se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                End If
+            Next
+
+            'confirma la transaccion
+            myTrans.Commit()    'con exito RAS
+            finalMytrans = True
+            StatusBarClass.messageBarraEstado("  LOS DATOS FUERON ACTUALIZADOS CON EXITO...")
+
+            visualizarDet()
+
+            StatusBarClass.messageBarraEstado("  Registros fué actualizado con exito...")
+            wait.Close()
+            Me.Cursor = Cursors.Default
+        Catch f As Exception
+            wait.Close()
+            Me.Cursor = Cursors.Default
+            If finalMytrans Then
+                MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            Else
+                myTrans.Rollback()
+                MessageBox.Show(f.Message & Chr(13) & "NO SE ACTUALIZO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+        End Try
+    End Sub
+
+    Dim cmdUpdateTable3 As SqlCommand
+    Private Sub comandoUpdate3(ByVal can As Decimal, ByVal peso As Decimal, ByVal linea As String, ByVal codDGE As Integer)
+        cmdUpdateTable3 = New SqlCommand
+        cmdUpdateTable3.CommandType = CommandType.Text
+        cmdUpdateTable3.CommandText = "update TDetalleGuiaEmp set cant=@can,peso=@peso,linea1=@lin where codDGE=@cod"
+        cmdUpdateTable3.Connection = Cn
+        cmdUpdateTable3.Parameters.Add("@can", SqlDbType.Decimal, 0).Value = can
+        cmdUpdateTable3.Parameters.Add("@peso", SqlDbType.Decimal, 0).Value = peso
+        cmdUpdateTable3.Parameters.Add("@lin", SqlDbType.VarChar, 300).Value = linea
+        cmdUpdateTable3.Parameters.Add("@cod", SqlDbType.Int, 0).Value = codDGE
+    End Sub
+
+    Private Sub btnAnula_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAnula.Click
+        If BindingSource12.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  No existe Guia de Remision a ANULAR...")
+            Exit Sub
+        End If
+
+        Dim resp As String = MessageBox.Show("Esta segúro de ANULAR Guia de Remisión" & Chr(13) & " Nº " & BindingSource12.Item(BindingSource12.Position)(1), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resp <> 6 Then
+            Exit Sub
+        End If
+
+        Me.Refresh()
+        Dim finalMytrans As Boolean = False
+        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
+        Dim wait As New waitForm
+        wait.Show()
+        Me.Cursor = Cursors.WaitCursor
+        Try
+            StatusBarClass.messageBarraEstado("  ESPERE PROCESANDO INFORMACION....")
+
+            'TOrdenDesembolso
+            comandoUpdate13()
+            cmUpdateTable13.Transaction = myTrans
+            If cmUpdateTable13.ExecuteNonQuery() < 1 Then
+                'deshace la transaccion
+                wait.Close()
+                Me.Cursor = Cursors.Default
+                myTrans.Rollback()
+                MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+
+            'confirma la transaccion
+            myTrans.Commit()    'con exito RAS
+            finalMytrans = True
+            StatusBarClass.messageBarraEstado("  LOS DATOS FUERON ACTUALIZADOS CON EXITO...")
+            vfVan2 = False 'Enlazar Text
+            vfVan3 = False
+
+            'Actualizando el dataTable
+            parametrosSerieDoc()
+            visualizarGuia()
+
+            BindingSource2.RemoveFilter()
+
+            vfVan2 = True
+            enlazarText()
+
+            vfVan3 = True
+            visualizarDet()
+
+            'Clase definida y con miembros shared en la biblioteca ComponentesRAS
+            StatusBarClass.messageBarraEstado("  Registro fué anulado con exito...")
+            wait.Close()
+            Me.Cursor = Cursors.Default
+        Catch f As Exception
+            wait.Close()
+            Me.Cursor = Cursors.Default
+            If finalMytrans Then
+                MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            Else
+                myTrans.Rollback()
+                MessageBox.Show(f.Message & Chr(13) & "NO SE ACTUALIZO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+        End Try
+    End Sub
+
+    Dim cmUpdateTable13 As SqlCommand
+    Private Sub comandoUpdate13()
+        cmUpdateTable13 = New SqlCommand
+        cmUpdateTable13.CommandType = CommandType.Text
+        cmUpdateTable13.CommandText = "update TGuiaRemEmp set estado=@est,hist=@hist where codGuiaE=@cod"
+        cmUpdateTable13.Connection = Cn
+        cmUpdateTable13.Parameters.Add("@est", SqlDbType.Int, 0).Value = 2 '2 = anulado
+        cmUpdateTable13.Parameters.Add("@hist", SqlDbType.VarChar, 500).Value = BindingSource12.Item(BindingSource12.Position)(20) & " ANULO " & Now.Date & " " & vPass & "-" & vSUsuario
+        cmUpdateTable13.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource12.Item(BindingSource12.Position)(0)
+    End Sub
+
+    Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
+        If BindingSource12.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Guia de Remisión...")
+            Exit Sub
+        End If
+
+        vCodDoc = BindingSource12.Item(BindingSource12.Position)(0)
+      
+        Dim informe As New ReportViewerGuiaRemEForm
+        informe.ShowDialog()
+    End Sub
+
+    Private Sub dgTabla1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla1.CellContentClick
+
     End Sub
 End Class

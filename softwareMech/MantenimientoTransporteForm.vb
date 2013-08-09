@@ -638,7 +638,7 @@ Public Class MantenimientoTransporteForm
         End If
         'Valida relación con Transportistas
         If recuperarTransportista(dgTransportes.Rows(BindingSource0.Position).Cells("codET").Value) > 0 Then
-            StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... EMPRESA DE TRANSPORTES TIENE CHOFERES ASIGNADOS...")
+            StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... EMPRESA DE TRANSPORTES TIENE TRANSPORTISTAS ASIGNADOS...")
             Exit Sub
         End If
 

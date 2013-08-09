@@ -71,9 +71,12 @@ Partial Class pantallaInicialForm
         Me.opcGuiaRem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator15 = New System.Windows.Forms.ToolStripSeparator
         Me.opcGuiaRem2 = New System.Windows.Forms.ToolStripMenuItem
-        Me.SeguimientoGuiaRemisiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcAlm = New System.Windows.Forms.ToolStripButton
+        Me.opcAlmE = New System.Windows.Forms.ToolStripDropDownButton
+        Me.opcAlmE1 = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripSeparator17 = New System.Windows.Forms.ToolStripSeparator
+        Me.opcAlmS = New System.Windows.Forms.ToolStripDropDownButton
+        Me.opcAlmS1 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator
         Me.opcPersonal = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcPers1 = New System.Windows.Forms.ToolStripMenuItem
@@ -99,6 +102,7 @@ Partial Class pantallaInicialForm
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
         Me.MantVehiculoChoferToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.SeguimientoGRToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -108,7 +112,7 @@ Partial Class pantallaInicialForm
         '
         Me.TSMenu.Dock = System.Windows.Forms.DockStyle.Left
         Me.TSMenu.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TSMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripProgressBar1, Me.ToolStripProgressBar2, Me.ToolStripSeparator0, Me.opcClien_Prov, Me.ToolStripSeparator1, Me.opcInsumo, Me.ToolStripSeparator2, Me.opcRequerimientoObra, Me.ToolStripSeparator3, Me.opcCotizacion, Me.ToolStripSeparator4, Me.opcOrdenCompra, Me.ToolStripSeparator5, Me.opcOrdDesembolso, Me.ToolStripSeparator16, Me.ToolStripDropDownButton1, Me.ToolStripSeparator6, Me.opcCajaChica, Me.ToolStripSeparator7, Me.opcGuiaRem, Me.ToolStripSeparator12, Me.opcAlm, Me.ToolStripSeparator8, Me.opcPersonal, Me.ToolStripSeparator9, Me.opcConfigurar, Me.ToolStripSeparator10, Me.opcAce, Me.ToolStripSeparator11})
+        Me.TSMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripProgressBar1, Me.ToolStripProgressBar2, Me.ToolStripSeparator0, Me.opcClien_Prov, Me.ToolStripSeparator1, Me.opcInsumo, Me.ToolStripSeparator2, Me.opcRequerimientoObra, Me.ToolStripSeparator3, Me.opcCotizacion, Me.ToolStripSeparator4, Me.opcOrdenCompra, Me.ToolStripSeparator5, Me.opcOrdDesembolso, Me.ToolStripSeparator16, Me.ToolStripDropDownButton1, Me.ToolStripSeparator6, Me.opcCajaChica, Me.ToolStripSeparator7, Me.opcGuiaRem, Me.ToolStripSeparator12, Me.opcAlmE, Me.ToolStripSeparator17, Me.opcAlmS, Me.ToolStripSeparator8, Me.opcPersonal, Me.ToolStripSeparator9, Me.opcConfigurar, Me.ToolStripSeparator10, Me.opcAce, Me.ToolStripSeparator11})
         Me.TSMenu.Location = New System.Drawing.Point(0, 0)
         Me.TSMenu.Name = "TSMenu"
         Me.TSMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
@@ -466,7 +470,7 @@ Partial Class pantallaInicialForm
         '
         'opcGuiaRem
         '
-        Me.opcGuiaRem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcGuiaRem1, Me.ToolStripSeparator15, Me.opcGuiaRem2, Me.SeguimientoGuiaRemisiónToolStripMenuItem, Me.MantVehiculoChoferToolStripMenuItem})
+        Me.opcGuiaRem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcGuiaRem1, Me.ToolStripSeparator15, Me.opcGuiaRem2, Me.MantVehiculoChoferToolStripMenuItem, Me.SeguimientoGRToolStripMenuItem})
         Me.opcGuiaRem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.opcGuiaRem.Image = CType(resources.GetObject("opcGuiaRem.Image"), System.Drawing.Image)
         Me.opcGuiaRem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -499,27 +503,62 @@ Partial Class pantallaInicialForm
         Me.opcGuiaRem2.Text = "Mant. Motivo de Guia..."
         Me.opcGuiaRem2.ToolTipText = "Mantenimiento de Motivo de Guia de Remisión"
         '
-        'SeguimientoGuiaRemisiónToolStripMenuItem
-        '
-        Me.SeguimientoGuiaRemisiónToolStripMenuItem.Name = "SeguimientoGuiaRemisiónToolStripMenuItem"
-        Me.SeguimientoGuiaRemisiónToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
-        Me.SeguimientoGuiaRemisiónToolStripMenuItem.Text = "Seguimiento Guia Remisión"
-        '
         'ToolStripSeparator12
         '
         Me.ToolStripSeparator12.Name = "ToolStripSeparator12"
         Me.ToolStripSeparator12.Size = New System.Drawing.Size(94, 6)
         '
-        'opcAlm
+        'opcAlmE
         '
-        Me.opcAlm.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.opcAlm.Image = CType(resources.GetObject("opcAlm.Image"), System.Drawing.Image)
-        Me.opcAlm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.opcAlm.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.opcAlm.Name = "opcAlm"
-        Me.opcAlm.Size = New System.Drawing.Size(94, 20)
-        Me.opcAlm.Text = "Almacen..."
-        Me.opcAlm.ToolTipText = "Entradas y salidas a Almacenes..."
+        Me.opcAlmE.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcAlmE1})
+        Me.opcAlmE.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.opcAlmE.Image = CType(resources.GetObject("opcAlmE.Image"), System.Drawing.Image)
+        Me.opcAlmE.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.opcAlmE.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.opcAlmE.Name = "opcAlmE"
+        Me.opcAlmE.Size = New System.Drawing.Size(94, 20)
+        Me.opcAlmE.Text = "Entradas..."
+        Me.opcAlmE.ToolTipText = "Entradas de insumos a Almacenes..."
+        '
+        'opcAlmE1
+        '
+        Me.opcAlmE1.BackColor = System.Drawing.Color.SteelBlue
+        Me.opcAlmE1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcAlmE1.ForeColor = System.Drawing.Color.White
+        Me.opcAlmE1.Image = CType(resources.GetObject("opcAlmE1.Image"), System.Drawing.Image)
+        Me.opcAlmE1.Name = "opcAlmE1"
+        Me.opcAlmE1.Size = New System.Drawing.Size(170, 22)
+        Me.opcAlmE1.Text = "Almacenes Mech"
+        Me.opcAlmE1.ToolTipText = "Ingresos de insumos a Almacenes principales Mech..."
+        '
+        'ToolStripSeparator17
+        '
+        Me.ToolStripSeparator17.Name = "ToolStripSeparator17"
+        Me.ToolStripSeparator17.Size = New System.Drawing.Size(94, 6)
+        '
+        'opcAlmS
+        '
+        Me.opcAlmS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcAlmS1})
+        Me.opcAlmS.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.opcAlmS.Image = CType(resources.GetObject("opcAlmS.Image"), System.Drawing.Image)
+        Me.opcAlmS.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.opcAlmS.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.opcAlmS.Name = "opcAlmS"
+        Me.opcAlmS.Size = New System.Drawing.Size(94, 20)
+        Me.opcAlmS.Text = "Salidas..."
+        Me.opcAlmS.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.opcAlmS.ToolTipText = "Salidas de insumos de almacenes..."
+        '
+        'opcAlmS1
+        '
+        Me.opcAlmS1.BackColor = System.Drawing.Color.SteelBlue
+        Me.opcAlmS1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcAlmS1.ForeColor = System.Drawing.Color.White
+        Me.opcAlmS1.Image = CType(resources.GetObject("opcAlmS1.Image"), System.Drawing.Image)
+        Me.opcAlmS1.Name = "opcAlmS1"
+        Me.opcAlmS1.Size = New System.Drawing.Size(170, 22)
+        Me.opcAlmS1.Text = "Almacenes Mech"
+        Me.opcAlmS1.ToolTipText = "Salidas de insumos de Almacenes principales Mech..."
         '
         'ToolStripSeparator8
         '
@@ -732,6 +771,12 @@ Partial Class pantallaInicialForm
         Me.MantVehiculoChoferToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
         Me.MantVehiculoChoferToolStripMenuItem.Text = "Mant. Vehiculo Chofer"
         '
+        'SeguimientoGRToolStripMenuItem
+        '
+        Me.SeguimientoGRToolStripMenuItem.Name = "SeguimientoGRToolStripMenuItem"
+        Me.SeguimientoGRToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.SeguimientoGRToolStripMenuItem.Text = "Seguimiento GR"
+        '
         'pantallaInicialForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -821,7 +866,6 @@ Partial Class pantallaInicialForm
     Friend WithEvents opcOrdDesSeguimiento As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator6_2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripSeparator12 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents opcAlm As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator13 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents opcConfSerieGuia As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator14 As System.Windows.Forms.ToolStripSeparator
@@ -830,6 +874,11 @@ Partial Class pantallaInicialForm
     Friend WithEvents opcGuiaRem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator16 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripDropDownButton1 As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents SeguimientoGuiaRemisiónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcAlmE As System.Windows.Forms.ToolStripDropDownButton
+    Friend WithEvents opcAlmE1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator17 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents opcAlmS As System.Windows.Forms.ToolStripDropDownButton
+    Friend WithEvents opcAlmS1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MantVehiculoChoferToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SeguimientoGRToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

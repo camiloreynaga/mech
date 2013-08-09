@@ -41,6 +41,11 @@ Public Class SeguimientoGRform
     Dim countEntradas As Integer = 0
     Dim consultaBd As Boolean = False
     Dim VPosicionGrilla As Integer = 0
+    ''' <summary>
+    ''' Variable Auxiliar que almacena el codigo de GR
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim VCodGR As Integer = -1
 #End Region
 
 #Region "Métodos"
@@ -200,16 +205,16 @@ Public Class SeguimientoGRform
             wait.Show()
             Me.Cursor = Cursors.WaitCursor
             wait.Show()
-
+            'Obteniendo la primera fila de la lista de Encabezados GR
             Dim cod As Integer = BindingSource0.Item(BindingSource0.Position)(0)
 
             Try
-                If dgGR.RowCount > 0 Then 'BindingSource0.Count > 0 Then
-                    Dim sele As String = "select codDGE, codigo,cant,descrip,unidad,peso,codGuiaE,codMat,linea1,entregado,personal,recibido,obsR FROM VSeguimientoGRDetalle where codGuiaE=" & cod
-                    crearDataAdapterTable(daTabla2, sele)
-                Else
-                    Exit Sub
-                End If
+                'If dgGR.RowCount > 0 Then 'BindingSource0.Count > 0 Then
+                Dim sele As String = "select codDGE, codigo,cant,descrip,unidad,peso,codGuiaE,codMat,linea1,entregado,personal,recibido,obsR FROM VSeguimientoGRDetalle where codGuiaE=" & cod
+                crearDataAdapterTable(daTabla2, sele)
+                'Else
+                '    Exit Sub
+                'End If
 
                 If dgDetalleGR.RowCount > 0 Then
                     dsAlmacen.Tables("VSeguimientoGRDetalle").Clear()
@@ -310,25 +315,29 @@ Public Class SeguimientoGRform
                 .Columns("empTrans").HeaderText = "Emp. Transp."
                 .Columns("empTrans").Width = 150
 
-                .Columns("marcaNro").HeaderText = "Vehiculo"
-                .Columns("marcaNro").Width = 100
+                .Columns("marcaNro").Visible = False
+                '.Columns("marcaNro").HeaderText = "Vehiculo"
+                '.Columns("marcaNro").Width = 100
                 .Columns("codVeh").Visible = False
 
-                .Columns("nombre").HeaderText = "Chofer"
-                .Columns("nombre").Width = 120
+                .Columns("nombre").Visible = False
+                '.Columns("nombre").HeaderText = "Chofer"
+                '.Columns("nombre").Width = 120
                 'Clasificación de pagos 
                 .Columns("codT").Visible = False
 
-                .Columns("motivo").HeaderText = "Motivo"
-                .Columns("motivo").Width = 120
+                .Columns("motivo").Visible = False
+                '.Columns("motivo").HeaderText = "Motivo"
+                '.Columns("motivo").Width = 120
 
                 .Columns("codMotG").Visible = False
 
                 .Columns("nroFact").HeaderText = "Factura"
-                .Columns("nrofact").Width = 50
+                .Columns("nrofact").Width = 70
 
-                .Columns("obs").HeaderText = "Observaciones"
-                .Columns("obs").Width = 100
+                .Columns("obs").Visible = False
+                '.Columns("obs").HeaderText = "Observaciones"
+                '.Columns("obs").Width = 100
                 .Columns("Personal").HeaderText = "Personal"
                 .Columns("Personal").Width = 120
                 .Columns("codPers").Visible = False
@@ -410,12 +419,17 @@ Public Class SeguimientoGRform
     Private Sub enlazarTextGR()
 
         If dgGR.RowCount = 0 Then
+            txtPartida.Clear()
+            txtLlegada.Clear()
+            txtMotivo.Clear()
+            txtEstado.Clear()
+            txtEstado.BackColor = Color.White
             Exit Sub
         Else
 
-            Dim aCriterios As String() = {"PENDIENTE", "CERRADO", "ANULADO"}
-            Dim aBackColors As Color() = {Color.White, Color.Green, Color.Red}
-            Dim aForeColors As Color() = {Color.Black, Color.White, Color.White}
+            Dim aCriterios As String() = {"ABIERTO", "TERMINADO", "CERRADO", "ANULADO"}
+            Dim aBackColors As Color() = {Color.White, Color.Yellow, Color.Green, Color.Red}
+            Dim aForeColors As Color() = {Color.Black, Color.Red, Color.White, Color.White}
 
             'If txtEstado.Text.Trim() = "PENDIENTE" Then
             'End If
@@ -434,18 +448,19 @@ Public Class SeguimientoGRform
     Private Sub enlazarTextDetalleGR()
 
         If dgGR.RowCount = 0 Then
+            txtDenominacion.Clear()
+            txtRuc.Clear()
+            txtChofer.Clear()
+            txtVehiculo.Clear()
+            txtObs.Clear()
             Exit Sub
         Else
             ' If BindingSource0.Count > 0 Then
-
-
             txtDenominacion.Text = BindingSource0.Item(BindingSource0.Position)(5)
             txtRuc.Text = BindingSource0.Item(BindingSource0.Position)(27)
-
             txtChofer.Text = BindingSource0.Item(BindingSource0.Position)(19)
             txtVehiculo.Text = BindingSource0.Item(BindingSource0.Position)(17)
             txtObs.Text = BindingSource0.Item(BindingSource0.Position)(24)
-
         End If
 
 
@@ -521,18 +536,32 @@ Public Class SeguimientoGRform
     ''' <remarks></remarks>
     Private Sub ColorearGrilla()
 
+        'Encabezado
+        oGrilla.colorearFilasDGV(dgGR, "Estado", "TERMINADO", Color.Yellow, Color.Red)
         oGrilla.colorearFilasDGV(dgGR, "Estado", "CERRADO", Color.Green, Color.White)
         ' oGrilla.colorearFilasDGV(dgDesembolso, "estado_desembolso", "PENDIENTE", Color.Yellow, Color.Red)
-
         oGrilla.colorearFilasDGV(dgGR, "Estado", "ANULADO", Color.Red, Color.White)
+        oGrilla.colorearFilasDGV(dgGR, "Estado", "ABIERTO", Color.White, Color.Black)
+
+        ''Detalle
+        'oGrilla.colorearFilasDGV(dgDetalleGR, "entregado", "ENTREGADO", Color.Green, Color.White)
+        'oGrilla.colorearFilasDGV(dgDetalleGR, "recibido", "RECIBIDO", Color.Green, Color.White)
+        'oGrilla.colorearFilasDGV(dgDetalleGR, "recibido", "INCOMPLETO", Color.Yellow, Color.Red)
+
+    End Sub
+    ''' <summary>
+    ''' Pinta la grila de GR y Detalle GR
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub ColorearGrillaDetalle()
+
+        'Detalle
 
         oGrilla.colorearFilasDGV(dgDetalleGR, "entregado", "ENTREGADO", Color.Green, Color.White)
         oGrilla.colorearFilasDGV(dgDetalleGR, "recibido", "RECIBIDO", Color.Green, Color.White)
-
         oGrilla.colorearFilasDGV(dgDetalleGR, "recibido", "INCOMPLETO", Color.Yellow, Color.Red)
 
     End Sub
-
 
     ''' <summary>
     ''' Añade criterios a los filtros
@@ -560,72 +589,77 @@ Public Class SeguimientoGRform
         BindingSource0.Filter = ""
         Dim pFiltro As String = BindingSource0.Filter
         Dim pCriterio As String
+        If BindingSource0.Position >= 0 Then
+            If chkDestino.Checked = False Then
 
-        If chkDestino.Checked = False Then
+                'Dim vAlmacen As Integer = cbAlmacen.SelectedValue
+                'If String.IsNullOrEmpty(cbAlmacen.SelectedValue) Then
+                '    cbAlmacen.SelectedIndex = 0
+                'End If
+                pCriterio = "codUbiDes=" & cbAlmacen.SelectedValue
+                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+            End If
 
-            'Dim vAlmacen As Integer = cbAlmacen.SelectedValue
-            'If String.IsNullOrEmpty(cbAlmacen.SelectedValue) Then
-            '    cbAlmacen.SelectedIndex = 0
+            If chkSerie.Checked = False Then
+                pCriterio = "codSerS=" & cbSerie.SelectedValue
+                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+            End If
+
+            'If cbSerieGR.Text = "TODOS" Or cbSerieGR.Text = "" Then
+            '    ' AddCriterioFiltro(pCriterio, pFiltro)
+
+            'Else
+            '    pCriterio = "estado_desembolso='" & cbSerieGR.Text.Trim() & "'"
+            '    pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
             'End If
-            pCriterio = "codUbiDes=" & cbAlmacen.SelectedValue
-            pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+
+            'If chkSolicitante.Checked = False Then
+            '    pCriterio = "solicitante = '" & cbSolicitante.Text.Trim() & "'"
+            '    pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+            'End If
+
+            BindingSource0.Filter = pFiltro
+
+            'BindingSource0.Sort = "codGuiaE Desc"
+            'End If
+
+
+
+            'enlazarTextDetalleGR()
+            'enlazarTextGR()
+
+            'Colorea la Grillas
+
         End If
 
-        If chkSerie.Checked = False Then
-            pCriterio = "codSerS=" & cbSerie.SelectedValue
-            pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
-        End If
+        LLenandoDetalleGR()
 
-        'If cbSerieGR.Text = "TODOS" Or cbSerieGR.Text = "" Then
-        '    ' AddCriterioFiltro(pCriterio, pFiltro)
-
-        'Else
-        '    pCriterio = "estado_desembolso='" & cbSerieGR.Text.Trim() & "'"
-        '    pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
-        'End If
-
-        'If chkSolicitante.Checked = False Then
-        '    pCriterio = "solicitante = '" & cbSolicitante.Text.Trim() & "'"
-        '    pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
-        'End If
-
-        BindingSource0.Filter = pFiltro
-
-        'BindingSource0.Sort = "codGuiaE Desc"
-        'End If
-        'Colorea la Grilla
-        ColorearGrilla()
-        'LLenandoDetalleGR()
-
-        DatosDetalleGR()
-
-        '
     End Sub
 
-
+    ''' <summary>
+    ''' Consulta el Detalle de GR desde la BD cuando cambio el foco de la Fila de grilla encabezado GR
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub LLenandoDetalleGR()
-        'cambia la posición de la variable Posicion para iniciar de nuevo el proceso de llenado de datos de 
-        'detalle
-        'If chkDestino.Checked = False Then
+        If BindingSource0.Position > -1 Then
+            If VCodGR <> BindingSource0.Item(BindingSource0.Position)(0) Then
+                DatosDetalleGR()
+                'Colorea Grilla Detalle
+                ColorearGrillaDetalle()
 
-
-        'End If
-
-
-        ' Valida si cambio la fila seleccionada
-        If VPosicionGrilla <> BindingSource0.Position Then
-            VPosicionGrilla = BindingSource0.Position
-            consultaBd = False
+            End If
+        Else
+            If dgDetalleGR.RowCount > 0 Then
+                dsAlmacen.Tables("VSeguimientoGRDetalle").Clear()
+                'daTPers.Fill(dsAlmacen, "VSeguimientoGRDetalle")
+            End If
         End If
-
-
-        'Verifica si ya se consulto a la BD
-        If consultaBd = False Then
-            DatosDetalleGR()
-            consultaBd = True
-        End If
+        'ColoreaGrillaEncabezado GR
+        ColorearGrilla()
+        'Enlaza texto De GR
         enlazarTextGR()
         enlazarTextDetalleGR()
+
     End Sub
 
 #End Region
@@ -640,7 +674,6 @@ Public Class SeguimientoGRform
 
     Private Sub SeguimientoGRform_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         DatosIniciales()
-        'DatosDetalleGR()
         ModificandoColumnasDGV_GR()
         If BindingSource1.Count > 0 Then
             ModificandoColumnasDGV_DetalleGR()
@@ -650,13 +683,20 @@ Public Class SeguimientoGRform
     End Sub
 
     Private Sub dgGR_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgGR.CellClick, dgGR.CellEnter
-        LLenandoDetalleGR()
-    End Sub
+        If BindingSource0.Count > 0 Then
+            LLenandoDetalleGR()
+            VCodGR = BindingSource0.Item(BindingSource0.Position)(0)
 
-#End Region
+        End If
+
+
+    End Sub
 
     Private Sub SeguimientoGRform_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         ColorearGrilla()
+        ColorearGrillaDetalle()
+
+
     End Sub
 
     Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
@@ -709,12 +749,6 @@ Public Class SeguimientoGRform
         End If
     End Sub
 
-    Private Sub dgGR_DataBindingComplete(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewBindingCompleteEventArgs) Handles dgGR.DataBindingComplete
-
-        ' LLenandoDetalleGR()
-        ' MsgBox("cambio data")
-    End Sub
-
     Private Sub chkSerie_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSerie.CheckedChanged
         If chkSerie.Checked Then
             cbSerie.Visible = False
@@ -747,4 +781,17 @@ Public Class SeguimientoGRform
     End Sub
 
    
+    Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
+        If BindingSource0.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Guia de Remisión...")
+            Exit Sub
+        End If
+
+        vCodDoc = BindingSource0.Item(BindingSource0.Position)(0)
+
+        Dim informe As New ReportViewerGuiaRemEForm
+        informe.ShowDialog()
+    End Sub
+
+#End Region
 End Class

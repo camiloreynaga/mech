@@ -58,16 +58,12 @@ Partial Class registraGuiaRemEmpForm
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
         Me.cbObra2 = New System.Windows.Forms.ComboBox
         Me.txtLleg = New System.Windows.Forms.TextBox
-        Me.Label11 = New System.Windows.Forms.Label
         Me.cbAlm2 = New System.Windows.Forms.ComboBox
-        Me.Label12 = New System.Windows.Forms.Label
         Me.Label13 = New System.Windows.Forms.Label
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.cbObra1 = New System.Windows.Forms.ComboBox
         Me.txtPar = New System.Windows.Forms.TextBox
-        Me.Label9 = New System.Windows.Forms.Label
         Me.cbAlm1 = New System.Windows.Forms.ComboBox
-        Me.Label8 = New System.Windows.Forms.Label
         Me.Label7 = New System.Windows.Forms.Label
         Me.cbProv = New System.Windows.Forms.ComboBox
         Me.txtRuc = New System.Windows.Forms.TextBox
@@ -95,6 +91,8 @@ Partial Class registraGuiaRemEmpForm
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator
         Me.dgTabla2 = New System.Windows.Forms.DataGridView
         Me.Panel4 = New System.Windows.Forms.Panel
+        Me.txtLinea = New System.Windows.Forms.TextBox
+        Me.Label25 = New System.Windows.Forms.Label
         Me.Label24 = New System.Windows.Forms.Label
         Me.dgStock = New System.Windows.Forms.DataGridView
         Me.txtBus = New System.Windows.Forms.TextBox
@@ -225,9 +223,10 @@ Partial Class registraGuiaRemEmpForm
         Me.txtNro.Location = New System.Drawing.Point(62, 17)
         Me.txtNro.Name = "txtNro"
         Me.txtNro.ReadOnly = True
-        Me.txtNro.Size = New System.Drawing.Size(50, 20)
+        Me.txtNro.Size = New System.Drawing.Size(41, 20)
         Me.txtNro.TabIndex = 2
         Me.txtNro.TabStop = False
+        Me.txtNro.Text = "1000"
         '
         'cbSerie
         '
@@ -401,9 +400,9 @@ Partial Class registraGuiaRemEmpForm
         Me.Label18.AutoSize = True
         Me.Label18.Location = New System.Drawing.Point(6, 252)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(79, 13)
+        Me.Label18.Size = New System.Drawing.Size(102, 13)
         Me.Label18.TabIndex = 300
-        Me.Label18.Text = "Motivo Guia:"
+        Me.Label18.Text = "Motivo Traslado:"
         '
         'GroupBox3
         '
@@ -505,9 +504,7 @@ Partial Class registraGuiaRemEmpForm
         '
         Me.GroupBox2.Controls.Add(Me.cbObra2)
         Me.GroupBox2.Controls.Add(Me.txtLleg)
-        Me.GroupBox2.Controls.Add(Me.Label11)
         Me.GroupBox2.Controls.Add(Me.cbAlm2)
-        Me.GroupBox2.Controls.Add(Me.Label12)
         Me.GroupBox2.Controls.Add(Me.Label13)
         Me.GroupBox2.Enabled = False
         Me.GroupBox2.Location = New System.Drawing.Point(4, 115)
@@ -532,19 +529,10 @@ Partial Class registraGuiaRemEmpForm
         '
         'txtLleg
         '
-        Me.txtLleg.Location = New System.Drawing.Point(94, 44)
+        Me.txtLleg.Location = New System.Drawing.Point(242, 44)
         Me.txtLleg.Name = "txtLleg"
-        Me.txtLleg.Size = New System.Drawing.Size(649, 20)
+        Me.txtLleg.Size = New System.Drawing.Size(501, 20)
         Me.txtLleg.TabIndex = 298
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(7, 46)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(93, 13)
-        Me.Label11.TabIndex = 297
-        Me.Label11.Text = "Punto Llegada:"
         '
         'cbAlm2
         '
@@ -552,19 +540,10 @@ Partial Class registraGuiaRemEmpForm
         Me.cbAlm2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbAlm2.FormattingEnabled = True
         Me.cbAlm2.IntegralHeight = False
-        Me.cbAlm2.Location = New System.Drawing.Point(543, 17)
+        Me.cbAlm2.Location = New System.Drawing.Point(94, 43)
         Me.cbAlm2.Name = "cbAlm2"
-        Me.cbAlm2.Size = New System.Drawing.Size(200, 21)
+        Me.cbAlm2.Size = New System.Drawing.Size(147, 21)
         Me.cbAlm2.TabIndex = 295
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(483, 20)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(59, 13)
-        Me.Label12.TabIndex = 296
-        Me.Label12.Text = "Almacen:"
         '
         'Label13
         '
@@ -579,9 +558,7 @@ Partial Class registraGuiaRemEmpForm
         '
         Me.GroupBox1.Controls.Add(Me.cbObra1)
         Me.GroupBox1.Controls.Add(Me.txtPar)
-        Me.GroupBox1.Controls.Add(Me.Label9)
         Me.GroupBox1.Controls.Add(Me.cbAlm1)
-        Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Enabled = False
         Me.GroupBox1.Location = New System.Drawing.Point(3, 43)
@@ -606,19 +583,10 @@ Partial Class registraGuiaRemEmpForm
         '
         'txtPar
         '
-        Me.txtPar.Location = New System.Drawing.Point(94, 44)
+        Me.txtPar.Location = New System.Drawing.Point(243, 44)
         Me.txtPar.Name = "txtPar"
-        Me.txtPar.Size = New System.Drawing.Size(649, 20)
+        Me.txtPar.Size = New System.Drawing.Size(500, 20)
         Me.txtPar.TabIndex = 298
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(7, 46)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(88, 13)
-        Me.Label9.TabIndex = 297
-        Me.Label9.Text = "Punto Partida:"
         '
         'cbAlm1
         '
@@ -626,19 +594,10 @@ Partial Class registraGuiaRemEmpForm
         Me.cbAlm1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbAlm1.FormattingEnabled = True
         Me.cbAlm1.IntegralHeight = False
-        Me.cbAlm1.Location = New System.Drawing.Point(543, 17)
+        Me.cbAlm1.Location = New System.Drawing.Point(94, 43)
         Me.cbAlm1.Name = "cbAlm1"
-        Me.cbAlm1.Size = New System.Drawing.Size(200, 21)
+        Me.cbAlm1.Size = New System.Drawing.Size(148, 21)
         Me.cbAlm1.TabIndex = 295
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(483, 20)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(59, 13)
-        Me.Label8.TabIndex = 296
-        Me.Label8.Text = "Almacen:"
         '
         'Label7
         '
@@ -855,8 +814,7 @@ Partial Class registraGuiaRemEmpForm
         Me.ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), System.Drawing.Image)
         Me.ToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton6.Name = "ToolStripButton6"
-        Me.ToolStripButton6.Size = New System.Drawing.Size(114, 22)
-        Me.ToolStripButton6.Text = "Eliminar insumo"
+        Me.ToolStripButton6.Size = New System.Drawing.Size(23, 22)
         '
         'ToolStripSeparator5
         '
@@ -878,6 +836,8 @@ Partial Class registraGuiaRemEmpForm
         'Panel4
         '
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel4.Controls.Add(Me.txtLinea)
+        Me.Panel4.Controls.Add(Me.Label25)
         Me.Panel4.Controls.Add(Me.Label24)
         Me.Panel4.Controls.Add(Me.dgStock)
         Me.Panel4.Controls.Add(Me.txtBus)
@@ -895,6 +855,22 @@ Partial Class registraGuiaRemEmpForm
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(892, 141)
         Me.Panel4.TabIndex = 12
+        '
+        'txtLinea
+        '
+        Me.txtLinea.Location = New System.Drawing.Point(396, 2)
+        Me.txtLinea.Name = "txtLinea"
+        Me.txtLinea.Size = New System.Drawing.Size(242, 20)
+        Me.txtLinea.TabIndex = 3
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(360, 6)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(38, 13)
+        Me.Label25.TabIndex = 317
+        Me.Label25.Text = "Dato:"
         '
         'Label24
         '
@@ -923,10 +899,10 @@ Partial Class registraGuiaRemEmpForm
         '
         'txtBus
         '
-        Me.txtBus.Location = New System.Drawing.Point(266, 2)
+        Me.txtBus.Location = New System.Drawing.Point(87, 2)
         Me.txtBus.Name = "txtBus"
         Me.txtBus.Size = New System.Drawing.Size(169, 20)
-        Me.txtBus.TabIndex = 2
+        Me.txtBus.TabIndex = 1
         '
         'dgTabla1
         '
@@ -955,26 +931,26 @@ Partial Class registraGuiaRemEmpForm
         '
         'txtPeso
         '
-        Me.txtPeso.Location = New System.Drawing.Point(508, 2)
+        Me.txtPeso.Location = New System.Drawing.Point(675, 2)
         Me.txtPeso.Name = "txtPeso"
-        Me.txtPeso.Size = New System.Drawing.Size(65, 20)
-        Me.txtPeso.TabIndex = 3
+        Me.txtPeso.Size = New System.Drawing.Size(58, 20)
+        Me.txtPeso.TabIndex = 4
         Me.txtPeso.Text = "0.00"
         Me.txtPeso.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(441, 6)
+        Me.Label22.Location = New System.Drawing.Point(635, 6)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(67, 13)
+        Me.Label22.Size = New System.Drawing.Size(39, 13)
         Me.Label22.TabIndex = 313
-        Me.Label22.Text = "Prec_Uni.:"
+        Me.Label22.Text = "Peso:"
         '
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(180, 4)
+        Me.Label23.Location = New System.Drawing.Point(1, 4)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(87, 13)
         Me.Label23.TabIndex = 311
@@ -982,16 +958,16 @@ Partial Class registraGuiaRemEmpForm
         '
         'txtCan
         '
-        Me.txtCan.Location = New System.Drawing.Point(125, 2)
+        Me.txtCan.Location = New System.Drawing.Point(298, 2)
         Me.txtCan.Name = "txtCan"
         Me.txtCan.Size = New System.Drawing.Size(52, 20)
-        Me.txtCan.TabIndex = 1
+        Me.txtCan.TabIndex = 2
         Me.txtCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(84, 6)
+        Me.Label21.Location = New System.Drawing.Point(257, 6)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(41, 13)
         Me.Label21.TabIndex = 308
@@ -1002,10 +978,10 @@ Partial Class registraGuiaRemEmpForm
         Me.btnAgrega.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAgrega.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAgrega.Image = CType(resources.GetObject("btnAgrega.Image"), System.Drawing.Image)
-        Me.btnAgrega.Location = New System.Drawing.Point(577, 1)
+        Me.btnAgrega.Location = New System.Drawing.Point(741, 1)
         Me.btnAgrega.Name = "btnAgrega"
         Me.btnAgrega.Size = New System.Drawing.Size(25, 23)
-        Me.btnAgrega.TabIndex = 4
+        Me.btnAgrega.TabIndex = 5
         Me.btnAgrega.TabStop = False
         Me.ToolTip1.SetToolTip(Me.btnAgrega, "Agregar insumos a Guia de remisión...")
         Me.btnAgrega.UseVisualStyleBackColor = True
@@ -1017,10 +993,10 @@ Partial Class registraGuiaRemEmpForm
         Me.btnCrear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCrear.Image = CType(resources.GetObject("btnCrear.Image"), System.Drawing.Image)
         Me.btnCrear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCrear.Location = New System.Drawing.Point(796, 1)
+        Me.btnCrear.Location = New System.Drawing.Point(820, 1)
         Me.btnCrear.Name = "btnCrear"
         Me.btnCrear.Size = New System.Drawing.Size(60, 23)
-        Me.btnCrear.TabIndex = 6
+        Me.btnCrear.TabIndex = 7
         Me.btnCrear.TabStop = False
         Me.btnCrear.Text = "Crear"
         Me.btnCrear.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1034,10 +1010,10 @@ Partial Class registraGuiaRemEmpForm
         Me.btnProcesa.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnProcesa.Image = CType(resources.GetObject("btnProcesa.Image"), System.Drawing.Image)
         Me.btnProcesa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnProcesa.Location = New System.Drawing.Point(744, 1)
+        Me.btnProcesa.Location = New System.Drawing.Point(768, 1)
         Me.btnProcesa.Name = "btnProcesa"
         Me.btnProcesa.Size = New System.Drawing.Size(49, 23)
-        Me.btnProcesa.TabIndex = 5
+        Me.btnProcesa.TabIndex = 6
         Me.btnProcesa.TabStop = False
         Me.btnProcesa.Text = "F5"
         Me.btnProcesa.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1057,10 +1033,10 @@ Partial Class registraGuiaRemEmpForm
         Me.Name = "registraGuiaRemEmpForm"
         Me.Controls.SetChildIndex(Me.Panel2, 0)
         Me.Controls.SetChildIndex(Me.Panel1, 0)
-        Me.Controls.SetChildIndex(Me.lblTitulo, 0)
-        Me.Controls.SetChildIndex(Me.lblDerecha, 0)
         Me.Controls.SetChildIndex(Me.Panel3, 0)
         Me.Controls.SetChildIndex(Me.Panel4, 0)
+        Me.Controls.SetChildIndex(Me.lblTitulo, 0)
+        Me.Controls.SetChildIndex(Me.lblDerecha, 0)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
@@ -1104,16 +1080,12 @@ Partial Class registraGuiaRemEmpForm
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents cbObra1 As System.Windows.Forms.ComboBox
     Friend WithEvents txtPar As System.Windows.Forms.TextBox
-    Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents cbAlm1 As System.Windows.Forms.ComboBox
-    Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents cbObra2 As System.Windows.Forms.ComboBox
     Friend WithEvents txtLleg As System.Windows.Forms.TextBox
-    Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents cbAlm2 As System.Windows.Forms.ComboBox
-    Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents txtRuc1 As System.Windows.Forms.TextBox
@@ -1125,7 +1097,6 @@ Partial Class registraGuiaRemEmpForm
     Friend WithEvents cbLic As System.Windows.Forms.ComboBox
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents Label18 As System.Windows.Forms.Label
-    Friend WithEvents txtObs As System.Windows.Forms.TextBox
     Friend WithEvents Label20 As System.Windows.Forms.Label
     Friend WithEvents txtFac As System.Windows.Forms.TextBox
     Friend WithEvents Label19 As System.Windows.Forms.Label
@@ -1169,5 +1140,8 @@ Partial Class registraGuiaRemEmpForm
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents dgStock As System.Windows.Forms.DataGridView
     Friend WithEvents Label24 As System.Windows.Forms.Label
+    Friend WithEvents txtLinea As System.Windows.Forms.TextBox
+    Friend WithEvents Label25 As System.Windows.Forms.Label
+    Friend WithEvents txtObs As System.Windows.Forms.TextBox
 
 End Class
