@@ -254,7 +254,7 @@ Public Class MantVehiculoTransportistaFrm
             .Columns("codET").Visible = False
             .Columns("nroLic").HeaderText = "N° Licencia"
             .Columns("nroLic").Width = 100
-            .Columns("saldo").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns("nroLic").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP

@@ -20,7 +20,7 @@ Public Class ConfiguracionSerieEmpForm
         Dim sele As String = "select codTipDE,tipoDE,estado from TTipoDocEmp where estado=1"
         crearDataAdapterTable(daTabla1, sele)
 
-        sele = "select codSerS,serie,iniNroDoc,finNroDoc,'est'=case when estado=1 then 'Activo' else 'INACTIVO' end,descrip,codTipDE,estado from TSerieSede  where codSerS>2 order by serie"   '1=Nota Venta
+        sele = "select codSerS,serie,iniNroDoc,finNroDoc,'est'=case when estado=1 then 'Activo' else 'INACTIVO' end,descrip,codTipDE,estado from TSerieSede  where codSerS>2 order by serie"   '1=guia remision prove 2=Factura Proveedor
         crearDataAdapterTable(daTabla2, sele)
 
         Try

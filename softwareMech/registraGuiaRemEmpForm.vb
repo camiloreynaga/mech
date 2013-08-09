@@ -72,7 +72,7 @@ Public Class registraGuiaRemEmpForm
         crearDataAdapterTable(daTabla1, sele)
         daTabla1.SelectCommand.Parameters.Add("@codSer", SqlDbType.Int, 0).Value = 0
 
-        sele = "select codDGE,cant,descrip,linea1,unidad,peso,detalle,codGuiaE,codMat from VDetGuiaE where codGuiaE=@nro"
+        sele = "select codDGE,cant,descrip,linea1,unidad,peso,detalle,codGuiaE,codMat,entre,entregado from VDetGuiaE where codGuiaE=@nro"
         crearDataAdapterTable(daDetDoc, sele)
         daDetDoc.SelectCommand.Parameters.Add("@nro", SqlDbType.Int, 0).Value = 0
 
@@ -181,9 +181,6 @@ Public Class registraGuiaRemEmpForm
             vfVan2 = True
             enlazarText()
 
-            vfVan3 = True
-            visualizarDet()
-
             cbBuscar.SelectedIndex = 0
             wait.Close()
             Me.Cursor = Cursors.Default
@@ -194,6 +191,11 @@ Public Class registraGuiaRemEmpForm
             Me.Close()
             Exit Sub
         End Try
+    End Sub
+
+    Private Sub registraGuiaRemEmpForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+        vfVan3 = True
+        visualizarDet()
     End Sub
 
     Private Sub cbSerie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSerie.SelectedIndexChanged
@@ -211,19 +213,23 @@ Public Class registraGuiaRemEmpForm
             .Columns(1).HeaderText = "Cant."
             .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(2).HeaderText = "Descripción Insumo"
-            .Columns(2).Width = 420
+            .Columns(2).Width = 400
             .Columns(2).ReadOnly = True 'NO editable
-            .Columns(3).Width = 222
+            .Columns(3).Width = 207
             .Columns(3).HeaderText = ""
             .Columns(4).Width = 50
             .Columns(4).HeaderText = "Unid."
             .Columns(4).ReadOnly = True 'NO editable
-            .Columns(5).Width = 75
+            .Columns(5).Width = 50
             .Columns(5).HeaderText = "Peso"
             .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(6).Visible = False
             .Columns(7).Visible = False
             .Columns(8).Visible = False
+            .Columns(9).Width = 60
+            .Columns(9).HeaderText = "Estado"
+            .Columns(9).ReadOnly = True 'NO editable
+            .Columns(10).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -437,6 +443,10 @@ Public Class registraGuiaRemEmpForm
             dgTabla2.Rows(j).Cells(1).Style.BackColor = Color.AliceBlue
             dgTabla2.Rows(j).Cells(3).Style.BackColor = Color.AliceBlue
             dgTabla2.Rows(j).Cells(5).Style.BackColor = Color.AliceBlue
+            If BindingSource13.Item(j)(10) = 1 Then 'Recibido
+                dgTabla2.Rows(j).Cells(9).Style.BackColor = Color.Green 'Color.YellowGreen
+                dgTabla2.Rows(j).Cells(9).Style.ForeColor = Color.White
+            End If
         Next
     End Sub
 
@@ -675,6 +685,10 @@ Public Class registraGuiaRemEmpForm
 
     Dim vfNuevo1 As String = "nuevo"
     Private Sub btnNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNuevo.Click
+        'If CDbl(txtCan.Text.Trim()) > CDbl(txtSto.Text) Then
+        'MessageBox.Show("Proceso denegado, NO existe STOCK...", nomNegocio, Nothing, MessageBoxIcon.Information)
+        'Exit Sub
+        'End If
         If vfNuevo1 = "nuevo" Then
             vfNuevo1 = "guardar"
             Me.btnNuevo.Text = "Guardar"
@@ -1056,6 +1070,21 @@ Public Class registraGuiaRemEmpForm
         cmDeleteTable1.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource12.Item(BindingSource12.Position)(0)
     End Sub
 
+    Private Function ValidarCampos1() As Boolean
+        'Todas las funciones estan creadas en el module ValidarCamposModule.vb
+        If ValidarCantMayorCero(txtCan.Text) Then
+            txtCan.errorProv()
+            Return True
+        End If
+
+        If ValidaNroMayorOigualCero(txtPeso.Text) Then
+            txtPeso.errorProv()
+            Return True
+        End If
+        'Todo OK RAS
+        Return False
+    End Function
+
     Private Sub btnAgrega_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgrega.Click
         If dgTabla1.Rows.Count = 0 Then
             StatusBarClass.messageBarraEstado("  Seleccione Insumo a agregar...")
@@ -1067,7 +1096,7 @@ Public Class registraGuiaRemEmpForm
             Exit Sub
         End If
 
-        If ValidarCampos() Then
+        If ValidarCampos1() Then
             Exit Sub
         End If
 
@@ -1363,7 +1392,7 @@ Public Class registraGuiaRemEmpForm
         Try
             StatusBarClass.messageBarraEstado("  ESPERE PROCESANDO INFORMACION....")
 
-            'TOrdenDesembolso
+            'TGuiaRemEmp
             comandoUpdate13()
             cmUpdateTable13.Transaction = myTrans
             If cmUpdateTable13.ExecuteNonQuery() < 1 Then
@@ -1421,7 +1450,7 @@ Public Class registraGuiaRemEmpForm
         cmUpdateTable13.CommandType = CommandType.Text
         cmUpdateTable13.CommandText = "update TGuiaRemEmp set estado=@est,hist=@hist where codGuiaE=@cod"
         cmUpdateTable13.Connection = Cn
-        cmUpdateTable13.Parameters.Add("@est", SqlDbType.Int, 0).Value = 2 '2 = anulado
+        cmUpdateTable13.Parameters.Add("@est", SqlDbType.Int, 0).Value = 3 '3 = anulado
         cmUpdateTable13.Parameters.Add("@hist", SqlDbType.VarChar, 500).Value = BindingSource12.Item(BindingSource12.Position)(20) & " ANULO " & Now.Date & " " & vPass & "-" & vSUsuario
         cmUpdateTable13.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource12.Item(BindingSource12.Position)(0)
     End Sub
@@ -1438,7 +1467,35 @@ Public Class registraGuiaRemEmpForm
         informe.ShowDialog()
     End Sub
 
-    Private Sub dgTabla1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla1.CellContentClick
+    Private Sub txtCan_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCan.KeyPress
+        If e.KeyChar.IsDigit(e.KeyChar) Then  'te deja escribir digitos
+            e.Handled = False
+        Else
+            If e.KeyChar.IsControl(e.KeyChar) Then  'te deja escribir enter, backSpace (controles)
+                e.Handled = False
+            Else
+                If e.KeyChar = "." Then   'te deja escribir punto
+                    e.Handled = False
+                Else    'lo demas no te deja escribir ASNOOOO
+                    e.Handled = True
+                End If
+            End If
+        End If
+    End Sub
 
+    Private Sub txtPeso_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtPeso.KeyPress
+        If e.KeyChar.IsDigit(e.KeyChar) Then  'te deja escribir digitos
+            e.Handled = False
+        Else
+            If e.KeyChar.IsControl(e.KeyChar) Then  'te deja escribir enter, backSpace (controles)
+                e.Handled = False
+            Else
+                If e.KeyChar = "." Then   'te deja escribir punto
+                    e.Handled = False
+                Else    'lo demas no te deja escribir ASNOOOO
+                    e.Handled = True
+                End If
+            End If
+        End If
     End Sub
 End Class

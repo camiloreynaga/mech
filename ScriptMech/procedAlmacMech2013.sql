@@ -105,8 +105,6 @@ as
 	 SET @Identity=@@IDENTITY 
 	 Return @Identity
 go
---------EJECUTADOS CR-----------------
------------23/07/2013-----------------------
 -- PAra consultar los seguimientos
 create proc PA_SeguimientoDesembolso
 as
@@ -155,11 +153,6 @@ as
 Select codIde,razon from TIdentidad where idTipId=2
 go
 
-
-
---------EJECUTAR AHORITA-----------------
------------23/07/2013-----------------------
-
 create procedure PA_InsertTMatUbi
 	@codMat int,@codUbi int,@stock decimal(10,2),
 	@Identity int output --parametro de salida
@@ -191,8 +184,29 @@ as
 	
 	RETURN  @Identity
 GO
+--------EJECUTAR AHORITA-----------------
+-----------09/08/2013-----------------------
+create procedure PA_InsertGuiaRemEmp
+	@tal varchar(5),@nroG int,@fecI date,@codSer int,@codIde int,@est int,@codUbiO int,@codUbiD int,@par varchar(100),@lleg varchar(100),
+	@codET int,@codV int,@codT int,@codMot int,@nroFact varchar(30),@obs varchar(200),@codPers int,@hist varchar(500),
+	@Identity int output
+as
+	insert into TGuiaRemEmp(talon,nroGuia,fecIni,codSerS,codIde,estado,codUbiOri,codUbiDes,partida,llegada,codET,codVeh,codT,codMotG,nroFact,obs,codPers,hist)
+	 values (@tal,@nroG,@fecI,@codSer,@codIde,@est,@codUbiO,@codUbiD,@par,@lleg,@codET,@codV,@codT,@codMot,@nroFact,@obs,@codPers,@hist)
+	 SET @Identity=@@IDENTITY 
+	 Return @Identity
+go
 
-
+create procedure PA_InsertDetalleGuiaEmp
+	@cod varchar(20),@can decimal(8,2),@des varchar(100),@uni varchar(20),@peso decimal(7,2),@codG int,@codM int,@linea varchar(300),
+	@Identity int output --parametro de salida
+as
+	insert into TDetalleGuiaEmp(codigo,cant,descrip,unidad,peso,codGuiaE,codMat,linea1) 
+		values(@cod,@can,@des,@uni,@peso,@codG,@codM,@linea)	
+	SET @Identity = @@Identity
+	
+	RETURN  @Identity
+GO
 
 
 

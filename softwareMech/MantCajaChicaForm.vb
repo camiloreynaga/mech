@@ -387,29 +387,6 @@ Public Class MantCajaChicaForm
         End If
     End Sub
 
-    ''' <summary>
-    ''' valida caja saldo de Chica
-    ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Private Function ValidarCaja() As Boolean
-        'Cantida vacia
-
-        If validaCampoVacio(txtSaldo.Text.Trim) Then
-            MessageBox.Show("Por favor ingrese saldo valido", nomNegocio, Nothing, MessageBoxIcon.Error)
-            txtSaldo.Focus()
-            Return True
-        End If
-
-        If IsNumeric(txtSaldo.Text.Trim()) = False Then
-            MessageBox.Show("Por favor ingrese saldo valido", nomNegocio, Nothing, MessageBoxIcon.Error)
-            txtSaldo.Focus()
-            Return True
-        End If
-
-
-    End Function
-
 
 
 
@@ -462,11 +439,6 @@ Public Class MantCajaChicaForm
         Else
 
             'Validar Controles
-
-            If ValidarCaja() Then
-                Exit Sub
-
-            End If
 
             'Revisa la no duplicidad de Caja en una Obra
             'una caja por obra
@@ -558,10 +530,6 @@ Public Class MantCajaChicaForm
             'If ValidarCampos() Then
             '    Exit Sub
             'End If
-            If ValidarCaja() Then
-                Exit Sub
-
-            End If
 
             vfCampo1 = dgCaja.Rows(BindingSource1.Position).Cells(5).Value
             If vfCampo1 <> cbObra.SelectedValue Then
@@ -726,13 +694,10 @@ Public Class MantCajaChicaForm
 
     End Sub
 
-
+    
     Private Sub dgCaja_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgCaja.CellClick, dgCaja.CellEnter
         enlazarText()
     End Sub
 
-
-    Private Sub MantCajaChicaForm_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Leave
-        Me.Close()
-    End Sub
+  
 End Class

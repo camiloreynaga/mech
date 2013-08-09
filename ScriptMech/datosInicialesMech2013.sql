@@ -101,13 +101,19 @@ insert TClasifPago (clasif) values ('HABERES') --3
 insert TClasifPago (clasif) values ('CTS') --4
 GO
 -- select * from TClasifPago
---*****************************************************
---------------------EJECUTAR 22/07/2013----------------------
---*****************************************************
 insert TTipoTransac (tipo) values ('ENTRADA') --1
 insert TTipoTransac (tipo) values ('SALIDA') --2
 GO
 --select * from TTipoTransac
-
-
+--*****************************************************
+--------------------EJECUTAR 09/08/2013----------------------
+--*****************************************************
+insert TTipoDocEmp(tipoDE,estado) values ('FACTURA',1)--70
+insert TTipoDocEmp(tipoDE,estado) values ('GUIA DE REMISION',1)--75
+GO
+-- select * from TTipoDocEmp
+insert TSerieSede(serie,iniNroDoc,finNroDoc,descrip,estado,codTipDE) values ('001',1,99999,'SERIE GUIA PROVEEDOR',1,75)  --codSerS=1
+insert TSerieSede(serie,iniNroDoc,finNroDoc,descrip,estado,codTipDE) values ('001',1,99999,'SERIE FACTURA PROVEEDOR',1,70) --codSerS=2
+GO
+-- select * from TSerieSede
 

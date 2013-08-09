@@ -185,82 +185,6 @@ create table TDetalleCompra
 	foreign key(codDocC) references TDocCompra,
 	foreign key(codMat) references TMaterial
 )
--- EMPRESA DE TRANSPORTES
-create table TEmpTransp
-(	codET int identity primary key, 
-	nombre varchar(60),
-	ruc varchar(11),
-	dir varchar(120),
-	fono varchar(60),
-	contacto varchar(60)
-)
--- VEHICULO QUE REALIZA TRANSPORTE
-create table TVehiculo
-(	codVeh int identity primary key, 
-	marcaNro varchar(40), --marca nro placa
-	nroConst varchar(40),
-	codET int,
-	foreign key(codET) references TEmpTransp
-)	
--- TRANPOSRTISTA
-create table TTransportista
-(	codT int identity primary key, 
-	nombre varchar(60),
-	DNI varchar(8),
-	nroLic varchar (30),
-	codET int,
-	foreign key(codET) references TEmpTransp
-)	
---
-create table TMotivoGuia
-(	codMotG int identity primary key, 
-	motivo varchar(40)  --venta compra traspaso
-)	
---DROP table TGuiaRemision
-create table TGuiaRemision
-(	codGuia int identity primary key,
-	talon varchar(5) default '001',
-	nroGuia int,
-	fecIni date,
-	estado int,	--0=abierto,1=cerrado,2=anulado
-	codIde int, --proveedor
-	codIde1 int, --cliente
-	partida varchar(60),
-	llegada varchar(60),
-	codVeh int,  --vehiculo
-	codT int,	-- transportista
-	codMotG int,
-	obs varchar(100),
-	hist varchar(500),	--quien creo/anulo y en que fecha
-	foreign key(codIde) references TIdentidad,
-	foreign key(codVeh) references TVehiculo,
-	foreign key(codT) references TTransportista,
-	foreign key(codMotG) references TMotivoGuia
-)
--- DROP table TDocGuia
-create table TDocGuia
-(	nroDG int identity(1,1) primary key,
-	codDocC int,
-	codGuia int 
-	foreign key(codDocC) references TDocCompra,
-	foreign key(codGuia) references TGuiaRemision
-)
---DROP table TDetalleGuia
-create table TDetalleGuia
-(	codDG int identity(1,1) primary key,
-	codigo varchar(20),
-	descrip varchar(100),
-	cant decimal(8,2),
-	unidad varchar(20),
-	peso decimal(7,2),
-	--capacDeri int,
-	codGuia int,
-	codMat int,
-	linea1 varchar(100), --algun tipo de descripcion por lines
-	foreign key(codGuia) references TGuiaRemision,
-	foreign key(codMat) references TMaterial
-)
--- SOLICITUD DE REQUERIMIENTO DE OBRA
 --select * from TSolicitud
 --DROP table TSolicitud
 create table TSolicitud
@@ -420,14 +344,6 @@ create table TDetalleOrden
 	foreign key(nroOrden) references TOrdenCompra
 )
 
-create table TOrdenGuia
-(	nroOG int identity(1,1) primary key,
-	nroOrden int,
-	codGuia int, 
-	foreign key(nroOrden) references TOrdenCompra,
-	foreign key(codGuia) references TGuiaRemision
-)
-
 create table TOrdenDesembolso
 (	idOP int identity(1,1) primary key,
 	serie varchar(5),
@@ -501,7 +417,7 @@ create table TClasifPago
 (	codCla int identity(1,1) primary key,	
 	clasif varchar(20)  --Proveedores, Haberes CTS	
 )	
---select * from TPagoDesembolso
+
 --DROP table TPagoDesembolso
 create table TPagoDesembolso
 (	codPagD int identity(1,1) primary key,
@@ -582,7 +498,7 @@ create table TEntradaSalida
 	fecha date,
 	codMat int,
 	idMU int,
-	codUbi int,
+	codUbi int,  --Alamcen origeb
 	cantEnt decimal(8,2) default 0,
 	preUniEnt decimal(8,2) default 0,
 	cantSal decimal(8,2) default 0,
@@ -591,18 +507,250 @@ create table TEntradaSalida
 	nroGuia varchar(30),
 	codDoc int,
 	nroDoc varchar(30),
-	otroDoc varchar(30),
+	otroDoc varchar(100),  --Rescatado para obser. de Incompleto u otro
 	codTrans int,
 	codUsu int  default 0,
 	codPers int,	
 	obs varchar(200) default '',
 	codSal int,
+	codUbiDes int default 0,  --Almacen destino para salidas de Mech
+	vanET int default 0,    --0=Pendiente  1=Recibido 2=Incompleto
 	foreign key(codMat) references TMaterial,
 	foreign key(idMU) references TMatUbi,
 	foreign key(codUbi) references TUbicacion,
 	foreign key(codTrans) references TTipoTransac,
 	foreign key(codSal) references  TSaldo
 )
+--- select * from  TEntradaSalida
+--MODIFICAR TIPO de DATOS campos a la estructura de nuestra base de datos
+--ALTER TABLE  TEntradaSalida ALTER COLUMN otroDoc varchar(100)
+
+--select * from TEntradaSalida
+--aumentar campos a la estructura de nuestra base de datos
+--ALTER TABLE TEntradaSalida ADD codUbiDes int default 0
+--ALTER TABLE TEntradaSalida ADD vanET int default 0
+--update TEntradaSalida set codUbiDes=0, vanET=0
+
+-----------------MODULO CAJA CHICA-----------------------
+-----------------EJECUTAR 09/08/2013------------------
+------------------------------------------------------
+
+-- EMPRESA DE TRANSPORTES
+-- select * from TEmpTransp
+create table TEmpTransp
+(	codET int identity primary key, 
+	nombre varchar(60),
+	ruc varchar(11),
+	dir varchar(120),
+	fono varchar(60),
+	contacto varchar(60)
+)
+-- DROP table TVehiculo
+-- select * from TVehiculo
+create table TVehiculo
+(	codVeh int identity primary key, 
+	marcaNro varchar(40), --marca nro placa
+	nroConst varchar(40),
+	codET int,
+	foreign key(codET) references TEmpTransp
+)	
+--DROP table TTransportista
+-- select * from TTransportista
+create table TTransportista
+(	codT int identity primary key, 
+	nombre varchar(60),
+	DNI varchar(8),
+	nroLic varchar (30),
+	codET int,
+	foreign key(codET) references TEmpTransp
+)	
+--DROP table TMotivoGuia
+-- select * from TMotivoGuia
+create table TMotivoGuia
+(	codMotG int identity primary key, 
+	motivo varchar(40)  --venta compra traspaso
+)	
+--select * from TTipoDocEmp
+create table TTipoDocEmp
+(	codTipDE int identity(70,5) primary key, --NO CAMBIAR JUAN...
+	tipoDE varchar(30),  --Factura, guia de REmision...
+	estado int, 	--1=Activo 0=Inactivo
+)	
+--select * from TSerieSede
+create table TSerieSede
+(	codSerS int identity primary key, 
+	serie varchar(10) default '001',
+	iniNroDoc int,
+	finNroDoc int,
+	descrip varchar(40),
+	estado int, 	--1 Activo 0 Inactivo
+	codTipDE int,
+	foreign key(codTipDE) references TTipoDocEmp
+)
+
+--DROP table TGuiaRemision
+-- select * from TGuiaRemEmp
+create table TGuiaRemEmp
+(	codGuiaE int identity primary key,
+	talon varchar(5) default '001',
+	nroGuia int,
+	fecIni date,
+	codSerS int,
+	codIdeProv int default 0,  --PROVEEDOR EXTERNO
+	codIde int,		--DESTINATARIO
+	estado int,	--0=abierto,1=cerrado,2=anulado
+	codUbiOri int, --Alamcen origen
+	codUbiDes int, --almacen destino
+	partida varchar(100),
+	llegada varchar(100),
+	codET int, --Empresa Transporte
+	codVeh int,  --vehiculo
+	codT int,	-- transportista
+	codMotG int,
+	nroFact varchar(30),
+	obs varchar(200),
+	codPers int,  --personal que crea nueva guia
+	hist varchar(500),	--quien creo/anulo y en que fecha
+	foreign key(codSerS) references TSerieSede,
+	foreign key(codIde) references TIdentidad,
+	foreign key(codVeh) references TVehiculo,
+	foreign key(codT) references TTransportista,
+	foreign key(codMotG) references TMotivoGuia,
+	foreign key(codPers) references TPersonal
+)
+--DROP table TDetalleGuia
+create table TDetalleGuiaEmp
+(	codDGE int identity(1,1) primary key,
+	codigo varchar(20), --codigo articulo proveedor
+	cant decimal(8,2),
+	descrip varchar(100),
+	unidad varchar(20),
+	peso decimal(7,2),
+	codGuiaE int,
+	codMat int,
+	linea1 varchar(300), --algun tipo de descripcion por lines
+	entregado int default 0,	--0=pendiente  1=recibido
+	codPers int default 0, --personal que recibe
+	recibido int default 0, --0 pendiente 1=recibido 2=incompleto
+	obsR varchar(100) default '', --Observacion recibido 
+	foreign key(codGuiaE) references TGuiaRemEmp,
+	foreign key(codMat) references TMaterial
+)
+
+-- DROP table TDocGuia
+create table TDocGuia
+(	nroDG int identity(1,1) primary key,
+	codDocC int,
+	codGuia int 
+	foreign key(codDocC) references TDocCompra,
+	foreign key(codGuia) references TGuiaRemision
+)
+
+--DROP table TOrdenGuia
+create table TOrdenGuia
+(	nroOG int identity(1,1) primary key,
+	nroOrden int,
+	codGuia int, 
+	foreign key(nroOrden) references TOrdenCompra,
+	foreign key(codGuia) references TGuiaRemision
+)
+----------------------------------------------------------
+----------------------------------------------------------
+create table TCajaChica
+(	codCC int identity primary key,
+	fechaCre date,
+	codMon int, --Moneda a utilizar FK
+	saldo decimal(10,2),
+	codigo varchar(10), --codigo de la Obra FK
+	codPers int, --responsable codigo de la persona responsable
+	estCaja int,  --0=Inactivo  1=Inactivo
+	foreign key(codMon) references TMoneda,
+	foreign key (codigo) references TLugarTrabajo,
+	foreign key (codPers) references TPersonal
+)
+
+create table TSolicitudCaja
+(	codSC int identity primary key,
+	nroSol int,
+	fechaSol date,
+	codPers int,
+	codCC int,
+	estSol int,  --0 abierto 1 cerrado
+	montoSol decimal(10,2),  --solicitado
+	montoRen decimal(10,2),   --rendido
+	foreign key (codPers) references TPersonal,
+	foreign key (codCC) references TCajaChica
+)
+
+create table TSaldoPers
+(	codSP int identity primary key,
+	salPers decimal(10,2),
+	codSC int,
+	foreign key (codSC) references TSolicitudCaja
+)
+
+create table DetSolCaja
+(	codDetSol int identity primary key,
+	cant1 decimal (8,2), --cant pedida
+	cant2 decimal (8,2), --cant real
+	insumo varchar(100),
+	prec1 decimal(8,2), --precio proyectado
+	prec2 decimal(8,2), --precio real
+	uniMed varchar(20),
+	obsSol varchar(200),
+	codApro int,
+	estDet int, --0 pendiente, 1 aprobado, 2 observado
+	obsApro varchar(200),
+	codMat int,
+	codAreaM int,
+	codSC int,
+	estRen int, --0 pendiente  1 OK
+	codRen int, --personal revisa rendicion
+	nroDocRen varchar(30) -- Nº fact boleta u otro
+	foreign key(codMat) references TMaterial,
+	foreign key(codAreaM) references TAreaMat,
+	foreign key (codSC) references TSolicitudCaja
+)
+
+create table TTipoMovCaja
+(	codTM int identity(1,1) primary key,
+	tipoMov varchar(20),
+)
+
+create table TDiaCaja
+(	codDia int identity primary key,
+	fecha date,
+	estado int,	--1=Abierto,  2=cerrado
+	horaAbrio varchar(10),
+	horaCerro varchar(10),
+	codPersA int,	--aperturo
+	codPersC int,    --Cerro
+	codigo varchar(10),
+	foreign key(codigo) references TLugarTrabajo
+)
+
+create table TMovimientoCaja
+(	nroMC int identity primary key,
+	codDia int,
+	codTM int,
+	idMU int,
+	codigo varchar(10),
+	codCC int,
+	idOP int,
+	codPers int  default 0,  --Solicitante
+	montoEnt decimal(10,2),
+	montoSal decimal(10,2),
+	codUsu int,  --cajera
+	descrip varchar(200) default '',
+	foreign key(codDia) references TDiaCaja,
+	foreign key(codTM) references TTipoMovCaja,
+	foreign key(codigo) references TLugarTrabajo,
+	foreign key (codCC) references TCajaChica,
+	foreign key(idOP) references TOrdenDesembolso
+)
+
+
+
 
 
 --*****************************************************

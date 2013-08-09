@@ -1627,8 +1627,4 @@ Public Class registraOrdenCompraForm
             End If
         End If
     End Sub
-
-    Private Sub dgTabla1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla1.CellContentClick
-
-    End Sub
 End Class

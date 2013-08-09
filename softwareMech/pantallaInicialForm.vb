@@ -613,21 +613,34 @@ Public Class pantallaInicialForm
             Exit Sub
         End If
 
+        Dim ent As New salidaAlmacenGuiaMechForm
+        ent.MdiParent = Me
+        ent.Show()
+    End Sub
+
+    Private Sub opcAlmS2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcAlmS2.Click
+        If vSCodigo <> "00-00" Then 'Sede principal
+            MessageBox.Show("Acceso denegado, Este tipo de salidas de almacén solo se pueden procesar en SEDE PRINCIPAL", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
         Dim ent As New salidaAlmacenMechForm
         ent.MdiParent = Me
         ent.Show()
     End Sub
 
-    Private Sub MantVehiculoChoferToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MantVehiculoChoferToolStripMenuItem.Click
-        Dim matVeh As New MantVehiculoTransportistaFrm
-        matVeh.MdiParent = Me
-        matVeh.Show()
+  
+    Private Sub ToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem2.Click
+        Dim mantVeh As New MantVehiculoTransportistaFrm
+        mantVeh.MdiParent = Me
+        mantVeh.Show()
 
     End Sub
 
-    Private Sub SeguimientoGRToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SeguimientoGRToolStripMenuItem.Click
-        Dim segGr As New SeguimientoGRform
-        segGr.MdiParent = Me
-        segGr.Show()
+    Private Sub ToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem1.Click
+        Dim SegGr As New SeguimientoGRform
+        SegGr.MdiParent = Me
+        SegGr.Show()
+
     End Sub
 End Class

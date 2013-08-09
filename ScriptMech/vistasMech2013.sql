@@ -400,24 +400,6 @@ BEGIN
 	RETURN isnull((select est from VPersDesemFirma where idOP=@id and tipoA=@tipo),'')
 END
 GO
---DROP view VOrdenDesembolsoImprimir
-create view VOrdenDesembolsoImprimir
-as
-	select TD.idOP,TD.serie+' - '+ltrim(str(TD.nroDes)) as nro,TD.fecDes,TM.codMon,TM.moneda,TM.simbolo,TD.monto,TD.montoDet,TD.montoDif,TD.estado,TL.codigo,TL.nombre as obra,
-	TI.codIde,TI.razon,TI.ruc,TI.fono,TI.email,TD.banco,TD.nroCta,TD.nroDet,TD.datoReq,TD.factCheck,'faCheck'=case when TD.factCheck=1 then 'X' else '' end, 
-	TD.bolCheck,'boCheck'=case when TD.bolCheck=1 then 'X' else '' end,TD.guiaCheck,'guCheck'=case when TD.guiaCheck=1 then 'X' else '' end,
-	TD.vouCheck,'voCheck'=case when TD.vouCheck=1 then 'X' else '' end,TD.vouDCheck,'voDCheck'=case when TD.vouDCheck=1 then 'X' else '' end,
-	TD.reciCheck,'reCheck'=case when TD.reciCheck=1 then 'X' else '' end,TD.otroCheck,TD.descOtro,'otCheck'=case when TD.otroCheck=1 then 'X' else '' end,
-	TD.nroConfor,TD.fecEnt,TD.hist,mech.FN_ConcaTPersDesem(TD.idOP,1) as soli,mech.FN_ConcaTPersDesem(TD.idOP,2) as gere,mech.FN_ConcaTPersDesem(TD.idOP,3) as teso,mech.FN_ConcaTPersDesem(TD.idOP,4) as conta,
-	mech.FN_ConcaEstadoDesem(TD.idOP,1) as soliEst,mech.FN_ConcaEstadoDesem(TD.idOP,2) as gereEst,mech.FN_ConcaEstadoDesem(TD.idOP,3) as tesoEst,mech.FN_ConcaEstadoDesem(TD.idOP,4) as contaEst,
-	TT.codTipP,TT.tipoP,TP.codPagD,TP.fecPago,TP.pagoDet,TMO.codMon as codMon1,TMO.moneda as moneda1,TMO.simbolo as simbolo1,TP.montoPago
-	from TOrdenDesembolso TD join TMoneda TM on TD.codMon=TM.codMon
-	join TLugarTrabajo TL on TD.codigo=TL.codigo
-	join TIdentidad TI on TD.codIde=TI.codIde
-	left join TPagoDesembolso TP on TD.idOP=TP.idOP
-	left join TTipoPago TT on TP.codTipP=TT.codTipP
-	left join TMoneda TMO on  TP.codMon=TMO.codMon
-GO
 
 create view VOrdenDesemGerencia  
 as	
@@ -467,22 +449,22 @@ as
 	from TOrdenCompra where estado=0 --0=abierto
 GO
 
-create view VOrdenDetOrden  --impresion
-as
-	select TC.nroOrden,TC.nroO,TC.fecOrden,TI.codIde,TI.razon,TI.ruc,TI.repres,TI.celRpm,TI.fono+' '+TI.fax as fonos,TI.email,TI.dir,TC.estado,TC.nroProf,TC.idSol,TI.cuentaBan,TI.cuentaDet,
-	'nro'=case when TC.nroO<100 then '000'+ltrim(str(TC.nroO)) when TC.nroO>=100 and TC.nroO<1000 then '00'+ltrim(str(TC.nroO)) when TC.nroO>=1000 and TC.nroO<10000 then '0'+ltrim(str(TC.nroO)) else ltrim(str(TC.nroO)) end,
-	TC.transfe,TC.atiendeCom,TC.celAti,TC.plazoEnt,TF.codPag,TF.forma,TC.lugarEnt,TC.igv,TC.calIGV,TC.codPersO,TP2.nombre+' '+TP2.apellido as nomAte,TP2.dni,TP2.fono as fonoAte,
-	TL.codigo,TL.lugar,TL.nombre,TP1.codPers,TP1.nombre+' '+TP1.apellido as nomRem,TP1.fono,TP1.email as emaRem,TC.obsFac,TC.codCot,TC.nota,
-	TD.codDetO,TD.cant,TD.descrip as material,TD.unidad,TD.precio,TD.subTotal,TMO.codMon,TMO.moneda,TMO.simbolo,TE.codET,TE.nombre as trans,TE.ruc as rucT,TE.dir as dirT,TE.fono as fonoT,TE.contacto
-	from TOrdenCompra TC join TPersonal TP1 on TC.codPers=TP1.codPers
-	join TPersonal TP2 on TC.codPersO=TP2.codPers
-	join TIdentidad TI on TC.codIde=TI.codIde
-	join TDetalleOrden TD on TC.nroOrden=TD.nroOrden 
-	join TLugarTrabajo TL on TC.codigo=TL.codigo
-	join TFormaPago TF on TC.codPag=TF.codPag
-	join TMoneda TMO on TC.codMon=TMO.codMon
-	join TEmpTransp TE on TC.codET=TE.codET
-GO
+	create view VOrdenDetOrden  --impresion
+	as
+		select TC.nroOrden,TC.nroO,TC.fecOrden,TI.codIde,TI.razon,TI.ruc,TI.repres,TI.celRpm,TI.fono+' '+TI.fax as fonos,TI.email,TI.dir,TC.estado,TC.nroProf,TC.idSol,TI.cuentaBan,TI.cuentaDet,
+		'nro'=case when TC.nroO<100 then '000'+ltrim(str(TC.nroO)) when TC.nroO>=100 and TC.nroO<1000 then '00'+ltrim(str(TC.nroO)) when TC.nroO>=1000 and TC.nroO<10000 then '0'+ltrim(str(TC.nroO)) else ltrim(str(TC.nroO)) end,
+		TC.transfe,TC.atiendeCom,TC.celAti,TC.plazoEnt,TF.codPag,TF.forma,TC.lugarEnt,TC.igv,TC.calIGV,TC.codPersO,TP2.nombre+' '+TP2.apellido as nomAte,TP2.dni,TP2.fono as fonoAte,
+		TL.codigo,TL.lugar,TL.nombre,TP1.codPers,TP1.nombre+' '+TP1.apellido as nomRem,TP1.fono,TP1.email as emaRem,TC.obsFac,TC.codCot,TC.nota,
+		TD.codDetO,TD.cant,TD.descrip as material,TD.unidad,TD.precio,TD.subTotal,TMO.codMon,TMO.moneda,TMO.simbolo,TE.codET,TE.nombre as trans,TE.ruc as rucT,TE.dir as dirT,TE.fono as fonoT,TE.contacto
+		from TOrdenCompra TC join TPersonal TP1 on TC.codPers=TP1.codPers
+		join TPersonal TP2 on TC.codPersO=TP2.codPers
+		join TIdentidad TI on TC.codIde=TI.codIde
+		join TDetalleOrden TD on TC.nroOrden=TD.nroOrden 
+		join TLugarTrabajo TL on TC.codigo=TL.codigo
+		join TFormaPago TF on TC.codPag=TF.codPag
+		join TMoneda TMO on TC.codMon=TMO.codMon
+		join TEmpTransp TE on TC.codET=TE.codET
+	GO
 
 create view VSerieOrdenPers
 as
@@ -640,13 +622,6 @@ obserDesem,fecFir
   -- where tod.idOP= 2
 GO
 
-create view VLugarUbiStoc
-as
-	select TL.codigo,TL.nombre,TL.estado,TU.codUbi,TU.ubicacion,TU.estado as estUbi
-	from TLugarTrabajo TL join TUbicacion TU on TL.codigo=TU.codigo
-	where TL.estado=1  --1=en ejecucion
-GO
-
 create view VKardex
 as
 	select TES.nroNota,TES.fecha,TM.codMat,TM.material,TU.unidad,TES.idMU,TUB.codUbi,TUB.ubicacion,TUB.color,TL.codigo,TL.nombre,
@@ -660,9 +635,6 @@ as
 	join TLugarTrabajo TL on TUB.codigo=TL.codigo
 	join TPersonal TP on TES.codUsu=TP.codPers
 GO
----------------------------------------
--------EJECUTAR 25/07/2013-------------
----------------------------------------
 
 create view VPersDesemSolic
 as
@@ -682,32 +654,194 @@ as
 	join VPersDesemSolic TP1 on TOD.idOP=TP1.idOP
 	where TOD.estado=0 --0=pendiente 1=terminado
 GO
+--DROP view VOrdenDesembolsoImprimir
+create view VOrdenDesembolsoImprimir
+as
+	select TD.idOP,TD.serie+' - '+ltrim(str(TD.nroDes)) as nro,TD.fecDes,TM.codMon,TM.moneda,TM.simbolo,TD.monto,TD.montoDet,TD.montoDif,TD.estado,TL.codigo,TL.nombre as obra,
+	TI.codIde,TI.razon,TI.ruc,TI.fono,TI.email,TD.banco,TD.nroCta,TD.nroDet,TD.datoReq,TD.factCheck,'faCheck'=case when TD.factCheck=1 then 'X' else '' end, 
+	TD.bolCheck,'boCheck'=case when TD.bolCheck=1 then 'X' else '' end,TD.guiaCheck,'guCheck'=case when TD.guiaCheck=1 then 'X' else '' end,
+	TD.vouCheck,'voCheck'=case when TD.vouCheck=1 then 'X' else '' end,TD.vouDCheck,'voDCheck'=case when TD.vouDCheck=1 then 'X' else '' end,
+	TD.reciCheck,'reCheck'=case when TD.reciCheck=1 then 'X' else '' end,TD.otroCheck,TD.descOtro,'otCheck'=case when TD.otroCheck=1 then 'X' else '' end,
+	TD.nroConfor,TD.fecEnt,TD.hist,mech.FN_ConcaTPersDesem(TD.idOP,1) as soli,mech.FN_ConcaTPersDesem(TD.idOP,2) as gere,mech.FN_ConcaTPersDesem(TD.idOP,3) as teso,mech.FN_ConcaTPersDesem(TD.idOP,4) as conta,
+	mech.FN_ConcaEstadoDesem(TD.idOP,1) as soliEst,mech.FN_ConcaEstadoDesem(TD.idOP,2) as gereEst,mech.FN_ConcaEstadoDesem(TD.idOP,3) as tesoEst,mech.FN_ConcaEstadoDesem(TD.idOP,4) as contaEst,
+	TT.codTipP,TT.tipoP,TP.codPagD,TP.fecPago,TP.nroP,TP.pagoDet,TMO.codMon as codMon1,TMO.moneda as moneda1,TMO.simbolo as simbolo1,TP.montoPago,TP.montoD,TC.codCla,TC.clasif
+	from TOrdenDesembolso TD join TMoneda TM on TD.codMon=TM.codMon
+	join TLugarTrabajo TL on TD.codigo=TL.codigo
+	join TIdentidad TI on TD.codIde=TI.codIde
+	left join TPagoDesembolso TP on TD.idOP=TP.idOP
+	left join TTipoPago TT on TP.codTipP=TT.codTipP
+	left join TMoneda TMO on  TP.codMon=TMO.codMon
+	left join TClasifPago TC on TP.codCla=TC.codCla
+GO
+
+---------------------------------------
+-------EJECUTAR 09/08/2013-------------
+---------------------------------------
+
+create view VLugarObraAlmacen  
+as
+	select TL.codigo,TL.nombre,TU.codUbi,TU.ubicacion,TU.estado,TL.color,TL.lugar 
+	from TLugarTrabajo TL join TUbicacion TU on TL.codigo=TU.codigo
+	where TU.estado=1  --1=Activo
+GO
+-- DROP VIEW VCajaChica
+CREATE VIEW VCajaChica
+As
+SELECT tcc.codCC,tcc.fechaCre ,tcc.codMon,tcc.saldo,tcc.codigo --Obra
+,tcc.codPers ,tcc.estCaja codEstado,case when tcc.estCaja =1 then 'Activo' else 'Inactivo' end as estado,
+TLU.nombre  as obra,(TPE.nombre + ' '+ TPE.apellido) as responsable,TMO.moneda ,TMO.simbolo   
+
+from TCajaChica TCC 
+INNER JOIN TLugarTrabajo TLU on TLU.codigo=TCC.codigo
+INNER JOIN TPersonal TPE on TPE.codPers=TCC.codPers
+INNER JOIN TMoneda TMO on Tmo.codMon = TCC.codMon
+GO
+
+create view VTransporte
+as
+	select TE.codET,TE.nombre as razon,TE.ruc,TV.codVeh,TV.marcaNro,TV.nroConst,TT.codT,TT.nombre,TT.DNI,TT.nroLic
+	from TEmpTransp TE join TVehiculo TV on TE.codET=TV.codET
+	join TTransportista TT on TE.codET=TT.codET
+GO
+
+create view VStockUbi
+as
+	select TL.codigo,TL.nombre as obra,TL.estado,TU.codUbi,TU.ubicacion,TU.estado as estUbi,TU.color,TMU.idMU,TMU.codMat,TMU.stock
+	from TLugarTrabajo TL join TUbicacion TU on TL.codigo=TU.codigo
+	join TMatUbi TMU on TU.codUbi=TMU.codUbi
+	where TU.estado=1 -- solo almacen activo
+GO
+
+create view VGuiaRemEmpAper  
+as	
+	select codGuiaE,talon,nroGuia,fecIni,codSerS,codIde,TG.estado,codUbiOri,codUbiDes,partida,llegada,codVeh,codT,codMotG,nroFact,obs,codPers,hist,TU1.codigo as codObraOri,TU2.codigo as codObraDes,codET,
+	talon+' - '+case when nroGuia<100 then '000'+ltrim(str(nroGuia)) when nroGuia>=100 and nroGuia<1000 then '00'+ltrim(str(nroGuia)) when nroGuia>=1000 and nroGuia<10000 then '0'+ltrim(str(nroGuia)) else ltrim(str(nroGuia)) end as nro
+	from TGuiaRemEmp TG join TUbicacion TU1 on TG.codUbiOri=TU1.codUbi
+	join TUbicacion TU2 on TG.codUbiDes=TU2.codUbi 
+	where TG.estado in(0,1) --0=abierto 1=terminado
+GO
+
+create view VDetGuiaE --utilizado en dos interfaces
+as
+	select TD.codDGE,TD.codigo,TD.cant,TD.descrip,TD.unidad,TD.peso,TD.codGuiaE,TD.linea1,TM.codMat,TM.material,TM.codTipM,
+	TD.descrip+'. '+TD.linea1 as detalle,TD.entregado,'entre'=case when TD.entregado=0 then 'Pendiente' else 'Entregado' end
+	from TDetalleGuiaEmp TD join TMaterial TM on TD.codMat=TM.codMat
+GO
+
+create view VGuiaDetGuiaE  --impresion
+as
+		select TG.codGuiaE,TG.talon+' - '+ltrim(str(TG.nroGuia)) as nroGuia,TG.fecIni,TG.codSerS,TI.codIde,TI.razon,TI.ruc,TG.estado,TG.codUbiOri,TU1.ubicacion as almOri,
+		TG.codUbiDes,TU2.ubicacion as almDes,TG.partida,TG.llegada,TE.nombre as empresa,TE.ruc as rucEmp,TV.marcaNro,TV.nroConst,TT.nroLic,TT.nombre as nomTrans,TT.DNI,TM.codMotG,TM.motivo,TG.nroFact,TG.obs,TG.codPers,
+		TD.codDGE,TD.codigo,TD.cant,TD.descrip+'. '+TD.linea1 as descrip,TD.unidad,TD.peso,TD.codMat
+		from TGuiaRemEmp TG join TIdentidad TI on TG.codIde=TI.codIde
+		join TDetalleGuiaEmp TD on TG.codGuiaE=TD.codGuiaE 
+		join TUbicacion TU1 on TG.codUbiOri=TU1.codUbi
+		join TUbicacion TU2 on TG.codUbiDes=TU2.codUbi
+		join TVehiculo TV on TG.codVeh=TV.codVeh
+		join TTransportista TT on TG.codT=TT.codT
+		join TEmpTransp TE on TV.codET=TE.codET
+		join TMotivoGuia TM on TG.codMotG=TM.codMotG
+GO
+--DROP view VLugarUbiStoc
+create view VLugarUbiStoc
+as
+	select TL.codigo,TL.nombre,TL.estado,TU.codUbi,TU.ubicacion,TU.estado as estUbi
+	from TLugarTrabajo TL join TUbicacion TU on TL.codigo=TU.codigo
+	where TU.estado=1  --1=ALMACENES ACTIVOS
+GO
+
+create view VKardex1
+as
+	select TES.nroNota,TES.fecha,TM.codMat,TM.material,TU.unidad,TES.idMU,TUB1.codUbi,TUB1.ubicacion,TUB1.color,TL1.codigo,TL1.nombre,TES.cantEnt,TES.preUniEnt,
+	TES.cantSal,TES.preUniSal,TES.codGuia,TES.nroGuia,TES.codDoc,TES.nroDoc,TES.otroDoc,TT.codTrans,TT.tipo,TP.codPers,TP.nombre+' '+TP.apellido as nom,TES.obs,
+	TS.codSal,TS.saldo,TS.codLug,TES.codUbiDes,TUB2.ubicacion as almObra,TUB2.color as colorDes,TL2.codigo as codigoObra,TL2.nombre as nomObraDes,
+	TES.vanET,'veri'=case when TES.vanET=0 and TES.codTrans=2 then 'Pendiente' when TES.vanET=1 and TES.codTrans=2 then 'Recibido' when TES.vanET=3 and TES.codTrans=2 then 'Incompleto' else '' end  --3=incompleto 2=Salida
+	from TEntradaSalida TES join TTipoTransac TT on TES.codTrans=TT.codTrans
+	join TSaldo TS on TES.codSal=TS.codSal
+	join TMaterial TM on TES.codMat=TM.codMat
+	join TUnidad TU on TM.codUni=TU.codUni
+	join TUbicacion TUB1 on TES.codUbi=TUB1.codUbi
+	join TLugarTrabajo TL1 on TUB1.codigo=TL1.codigo
+	join TPersonal TP on TES.codUsu=TP.codPers
+	left join TUbicacion TUB2 on TES.codUbiDes=TUB2.codUbi
+	left join TLugarTrabajo TL2 on TUB2.codigo=TL2.codigo
+GO
+
+create view VGuiaRemEmpEnt  
+as	
+	select codGuiaE,talon,nroGuia,fecIni,codSerS,TG.estado,codUbiOri,codUbiDes,TU1.ubicacion+' - '+partida as partida,TU2.ubicacion+' - '+llegada as llegada,
+	nroFact,obs,hist,TU1.codigo as codObraOri,TU2.codigo as codObraDes,TI.codIde,TI.razon,TI.ruc,TE.codET,TE.nombre as empTra,TE.ruc as rucTra,
+	TV.codVeh,TV.marcaNro,TV.nroConst,TT.codT,TT.nombre as nomTra,TT.DNI,TT.nroLic,TM.codMotG,TM.motivo,TP.codPers,TP.nombre+' '+TP.apellido as nomPers,
+	talon+' - '+case when nroGuia<100 then '000'+ltrim(str(nroGuia)) when nroGuia>=100 and nroGuia<1000 then '00'+ltrim(str(nroGuia)) when nroGuia>=1000 and nroGuia<10000 then '0'+ltrim(str(nroGuia)) else ltrim(str(nroGuia)) end as nro
+	from TGuiaRemEmp TG join TUbicacion TU1 on TG.codUbiOri=TU1.codUbi
+	join TUbicacion TU2 on TG.codUbiDes=TU2.codUbi
+	join TIdentidad TI on TG.codIde=TI.codIde 
+	join TEmpTransp TE on TG.codET=TE.codET
+	join TVehiculo TV on TG.codVeh=TV.codVeh
+	join TTransportista TT on TG.codT=TT.codT
+	join TMotivoGuia TM on TG.codMotG=TM.codMotG
+	join TPersonal TP on TG.codPers=TP.codPers
+	where TG.codSerS>1 and TG.estado=0 --0=abierto  1=reservado guia remision provee
+GO
 
 
-select idOP,fecDes,serie,nro,simbolo,monto,montoDet,montoDif,nombre,estApro,nom,datoReq,ruc,razon,banco,nroCta,nroDet,hist,estDesem,codPersDes,estado,codMon,nomSol,codPersSol,codSerO from VOrdenDesemTesoreria
+---Vistas para seguimiento de Guias de Remision
+---Ejecutar en BD Web 09-08-2013
+create  view VSeguimientoGR
+as
+select TGR.codGuiaE,TGR.talon,TGR.nroGuia,TGR.fecIni,TGR.codSerS,tid.razon, TGR.codIde,
+TGR.estado codestado, 'Estado'=case when TGR.estado=0 then 'ABIERTO' when TGR.estado=1 then 'TERMINADO' when TGR.estado=2 
+then 'CERRADO' else 'ANULADO' end,
+tu.ubicacion Origen,tu2.ubicacion Destino ,  TGR.codUbiOri,TGR.codUbiDes,
+TGR.partida,TGR.llegada,TGR.codET, TET.nombre empTrans,TVE.marcaNro, TGR.codVeh, 
+TCO.nombre, TGR.codT, TMO.motivo,  TGR.codMotG,TGR.nroFact,TGR.obs,
+(TPE.nombre + TPE.apellido) as Personal, TGR.codPers, TID.ruc ,TSE.serie  
+from TGuiaRemEmp TGR
+inner join TUbicacion TU on tu.codUbi =TGR.codUbiOri 
+inner join TUbicacion TU2 on tu2.codUbi=TGR.codUbiDes 
+inner join TIdentidad TID on Tid.codIde = Tgr.codIde 
+inner join TEmpTransp TET on TET.codET = TGR.codET 
+inner join TVehiculo TVE on TVE.codVeh = TGR.codVeh 
+inner join TTransportista TCO on TCO.codT = TGR.codT 
+inner join TMotivoGuia TMO on TMO.codMotG =TGR.codMotG 
+inner join TPersonal TPE on TPE.codPers = tgr.codPers 
+inner join TSerieSede  TSE on TSE.codSerS = TGR.codSerS  
+inner join TTipoDocEmp TTD on TTD.codTipDE=TSE.codTipDE 
+where TSE.codSerS>1 and TTD.codTipDE =75
+go
 
-select codSerO,serie from TSerieOrden where estado=1 order by serie
+create view VSeguimientoGRDetalle
+as
+select TDEGR.codDGE,  TDEGR.codigo, TDEGR.cant, TDEGR.descrip, TDEGR.unidad, TDEGR.peso, TDEGR.codGuiaE,
+TDEGR.codMat, TDEGR.linea1,TDEGR.entregado codEnt, 
+'entregado' = case when TDEGR.entregado=0 then 'PENDIENTE' else 'ENTREGADO' end,
+TDEGR.codPers  ,isnull((TPE.nombre +' '+ TPE.apellido),'') personal,  TDEGR.recibido codRecib,
+'recibido'=case when TDEGR.recibido=0 then 'PENDIENTE' when TDEGR.recibido=1 then 'RECIBIDO' else 'INCOMPLETO' end,
+TDEGR.obsR   
+FROM TDetalleGuiaEmp TDEGR
+left join TPersonal TPE on TPE.codPers=TDEGR.codPers    
+--
+go   
 
-select MAX(nroNota) from TEntradaSalida where codUbi=8
-select codSal from TEntradaSalida where nroNota=6
-select codTrans from TEntradaSalida where nroNota=6
-select idMU from TEntradaSalida where nroNota=6
-select COUNT(*) from TEntradaSalida where idMU=5
-select cantEnt+cantSal from TEntradaSalida where nroNota=5
+create view VSeguimientoGRSerie
+as
+select codSerS,serie 
+from TSerieSede TSE
+inner join TTipoDocEmp TTD on TTD.codTipDE = TSE.codTipDE 
+where TTD.codTipDE =75 and TSE.codSerS >1
 
-select isNull(max(stock),-1) as stock from TMatUbi where codMat=13 and codUbi=3
+select codGuiaE,fecIni,nro,razon,ruc,partida,llegada,motivo,nroFact,nomPers,empTra,rucTra,marcaNro,nroConst,nroLic,nomTra,DNI,obs,hist,talon,nroGuia,codVeh,codT,codMotG,codPers,codObraOri,codObraDes,codET,codSerS,codIde,codUbiOri,codUbiDes from VGuiaRemEmpEnt 
+			0		1	2	3	  4		5		6		7		8		9		10	11		12		  13	  14	  15   16  17	18	 19		20		21	  22	23		24		25			26		27		28		29		30		31
+select codDGE,codigo,cant,unidad,detalle,peso,entre,entregado,codGuiaE,codMat from VDetGuiaE where codGuiaE=@nro
 
-select codMat,material,stock,uniBase,preBase,tipoM,hist,estado,codTipM,codUni from VMaterialStock
-
-select distinct codigo,nombre from VLugarUbiStoc TObra
-select codUbi,ubicacion,codigo from VLugarUbiStoc TUbicacion
-
-select * from TTipoTransac
+select nroNota,tipo,fecha,material,cantEnt,preUniEnt,cantSal,preUniSal,saldo,unidad,nroGuia,nroDoc,veri,almObra,nomObraDes,nom,obs,codMat,idMU,codUbi,codigo,codGuia,codDoc,codTrans,codPers,codSal,vanET,codUbiDes,ubicacion,nombre from VKardex1 where codMat=@codMat and codUbi=@codUbi
+		0		1	  2		3		4			5		6		7		8		9		10		11	12		13		14		15	16	 17		18	  19	20		21		22		23		24		25	  26		27		28		29	
 
 select * from TMatUbi
---delete from TMatUbi where idMU=5
 select * from TSaldo
+select * from TUbicacion
 select * from TEntradaSalida
+select * from TTipoTransac
 
 
 
@@ -740,76 +874,13 @@ select * from TEntradaSalida
 
 
 
-create view VArticuloConfig		
-as
-	select ltrim(str(TA.codArt))+'Q' as codigo,TA.codigo as codArtP,TA.artMod,isnull(TDA.stock,0) as stock,TU.unidad,TM.codMar,TM.marca,TT.codTipA,TT.tipo,
-	TA.codArt,TA.nro,TU.codUni
-	from TMarca TM join TTipoArt TT on TM.codMar=TT.codMar
-	join TArticulo TA  on TT.codTipA=TA.codTipA
-	join TUnidad TU on TA.codUni=TU.codUni 
-	left join (select SUM(cant) as stock,codArt from TDetalleArt where error=0 group by codArt) TDA on TA.codArt=TDA.codArt
-	where TA.estado=1 --Activo
-GO
 
-create view VArticuloStockUbi
-as
-	select sum(cant) as stock,TD.codUbi,TD.codArt,TU.ubicacion,TU.color 
-	from TDetalleArt TD join TUbicacion TU on TD.codUbi=TU.codUbi 
-	where TD.cant>0 group by TD.codUbi,TD.codArt,TU.ubicacion,TU.color
-GO
 
-create view VDetalleArt
-as
-		select ltrim(str(TAR.codArt))+'Q'+ltrim(str(TDA.nroDet)) as codigo,TDA.cant,TC.codCol,TC.color,TDA.letra,TAR.codTipA,
-		TT.talla,TT.idTalla,TDA.precioC,TDA.precioV,TU.ubicacion,TM.codMar,TM.marca,'LT.'+ltrim(str(TB.nrolote))+'.'+convert(varchar(10),TB.fechaLot,103) lote1, 
-		TB.nrolote,TB.fechaLot,TB.idB,TU.codUbi,TDA.codArt,TDA.nroDet,TDA.codDetA,TU.color as color1
-		from TDetalleArt TDA join TColor TC on TDA.codCol=TC.codCol
-		join TUbicacion TU on TDA.codUbi=TU.codUbi
-		join TArticulo TAR on TDA.codArt=TAR.codArt
-		join TMarca TM on TAR.codMar=TM.codMar
-		join TLoteEntrada TB on TDA.idB=TB.idB
-		join TTalla TT on TDA.idTalla=TT.idTalla
-		where TDA.cant>0
-GO
 
-create view VDetArtLoteEntrada		
-as
-		select ltrim(str(TAR.codArt))+'Q'+ltrim(str(TDA.nroDet)) as codigo,TAR.codigo as codArtP,TDA.cant,TT.talla,TT.idTalla,ltrim(str(TAR.codArt))+'Q' as cod,
-		TC.color,TDA.precioC,TDA.precioV,'almacen'=case when TDA.cant<=0 then 'SALIO DE '+TU.ubicacion else TU.ubicacion end,TU.color as color1,TAR.artMod,TMA.codMar,
-		TB.nrolote,TB.idB,TU.codUbi,TC.codCol,TDA.codArt,TDA.nroDet,TU.codigo as idSuc,TDA.error,TDA.codDetA,TMA.marca,'LT.'+ltrim(str(TB.nrolote))+'.'+convert(varchar(10),TB.fechaLot,103) lote1
-		from TDetalleArt TDA join TColor TC on TDA.codCol=TC.codCol
-		join TUbicacion TU on TDA.codUbi=TU.codUbi
-		join TArticulo TAR on TDA.codArt=TAR.codArt
-		join TMarca TMA on TAR.codMar=TMA.codMar
-		join TLoteEntrada TB on TDA.idB=TB.idB
-		join TTalla TT on TDA.idTalla=TT.idTalla
-		where TDA.error=0	--0=normal  1=salio error 
-GO
 
-create view VArticuloStock			--Instanciado en varias interfaces
-as
-	select ltrim(str(TA.codArt))+'Q' as codigo,TA.codigo as codArtP,TA.artMod,TDA.stock,TU.unidad,TM.codMar,TM.marca,TT.codTipA,TT.tipo,
-	TA.codArt,TA.nro,TU.codUni
-	from TMarca TM join TTipoArt TT on TM.codMar=TT.codMar
-	join TArticulo TA  on TT.codTipA=TA.codTipA
-	join TUnidad TU on TA.codUni=TU.codUni 
-	join (select SUM(cant) as stock,codArt from TDetalleArt where error=0 group by codArt) TDA on TA.codArt=TDA.codArt
-	where TA.estado=1 --Activo
-GO
 
-create view VDetalleArtStock		--VISTA IMPORTANTE NO MODIFICAR
-as
-		select ltrim(str(TAR.codArt))+'Q'+ltrim(str(TDA.nroDet)) as codigo,TAR.codigo as codArtP,TDA.cant,TT.talla,ltrim(str(TAR.codArt))+'Q' as codigo1,TT.idTalla,
-		TC.color,TDA.codDetA,TMA.marca,TDA.codArt,TU.ubicacion,TDA.nroDet,TU.codUbi,TU.codigo as codSuc,TB.idB,TDA.seleEtiq,TMA.codMar,TDA.precioC,TDA.precioV,
-		TU.color as color1,'LT.'+ltrim(str(TB.nrolote))+'.'+convert(varchar(10),TB.fechaLot,103) lote1,TB.nrolote,TB.fechaLot 
-		from TDetalleArt TDA join TColor TC on TDA.codCol=TC.codCol
-		join TTalla TT on TDA.idTalla=TT.idTalla
-		join TUbicacion TU on TDA.codUbi=TU.codUbi
-		join TArticulo TAR on TDA.codArt=TAR.codArt
-		join TMarca TMA on TAR.codMar=TMA.codMar
-		join TLoteEntrada TB on TDA.idB=TB.idB
-		where TDA.cant>0
-GO
+
+
 
 create view VMovimientosArticulo
 as
@@ -903,27 +974,6 @@ as
 	join TSerieSucursal TUS on TS.codSer=TUS.codSer where TS.estado=1
 GO
 
-create view VSerieSucursal
-as
-	select TT.codTipD,TT.tipo,TS.codSer,TS.serie,TS.iniNroDoc,TS.finNroDoc,TS.descrip,TSS.codSS,TSS.codigo 
-	from TTipoDoc TT join TSerie TS on TT.codTipD=TS.codTipD
-	join TSerieSucursal TSS on TS.codSer=TSS.codSer
-	where TS.estado=1  --Activo
-GO
-
-create view VDetalleArtBuscar1
-as
-		select ltrim(str(TAR.codArt))+'Q'+ltrim(str(TDA.nroDet)) as codigo,TDA.cant,TT.talla,ltrim(str(TAR.codArt))+'Q' as codigo1,TAR.artMod,
-		TC.color,TDA.codDetA,TMA.marca,TDA.codArt,TU.ubicacion,TDA.nroDet,TU.codUbi,TU.codigo as codSuc,TDA.seleEtiq,TMA.codMar,TDA.precioC,TDA.precioV,TU.color as color1,
-		ISNULL(TD.serie+'.'+ltrim(str(TD.nroDoc)),'') as doc
-		from TDetalleArt TDA join TColor TC on TDA.codCol=TC.codCol
-		join TUbicacion TU on TDA.codUbi=TU.codUbi
-		join TArticulo TAR on TDA.codArt=TAR.codArt
-		join TMarca TMA on TAR.codMar=TMA.codMar
-		join TTalla TT on TDA.idTalla=TT.idTalla
-		left join TDocCompra TD on TDA.codDC=TD.codDC
-		where TDA.cant>0
-GO
 
 create view VVentasAnuladas --REPETIDO... esta mas abajo
 AS
