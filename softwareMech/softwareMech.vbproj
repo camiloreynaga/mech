@@ -209,6 +209,18 @@
       <DependentUpon>DataSetAlmacen.xsd</DependentUpon>
     </Compile>
     <Compile Include="DatasetAlmacenModule.vb" />
+    <Compile Include="entradaAlmacenGuiaMechForm.designer.vb">
+      <DependentUpon>entradaAlmacenGuiaMechForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="entradaAlmacenGuiaMechForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="entradaAlmacenGuiaObraForm.designer.vb">
+      <DependentUpon>entradaAlmacenGuiaObraForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="entradaAlmacenGuiaObraForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="entradaAlmacenMechForm.designer.vb">
       <DependentUpon>entradaAlmacenMechForm.vb</DependentUpon>
     </Compile>
@@ -441,10 +453,22 @@
     <Compile Include="registraGuiaRemEmpForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="registraGuiaRemProvForm.Designer.vb">
+      <DependentUpon>registraGuiaRemProvForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="registraGuiaRemProvForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="registraOrdenCompraForm.Designer.vb">
       <DependentUpon>registraOrdenCompraForm.vb</DependentUpon>
     </Compile>
     <Compile Include="registraOrdenCompraForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteCardexForm.Designer.vb">
+      <DependentUpon>ReporteCardexForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteCardexForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReportViewerCotizacionForm.Designer.vb">
@@ -499,6 +523,12 @@
       <DependentUpon>SeguimientoGRform.vb</DependentUpon>
     </Compile>
     <Compile Include="SeguimientoGRform.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SeguimientoGRProvform.designer.vb">
+      <DependentUpon>SeguimientoGRProvform.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SeguimientoGRProvform.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SeguimientoOrdenDesembolsoForm.Designer.vb">
@@ -597,6 +627,12 @@
     <EmbeddedResource Include="CrystalReport6.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport6.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="entradaAlmacenGuiaMechForm.resx">
+      <DependentUpon>entradaAlmacenGuiaMechForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="entradaAlmacenGuiaObraForm.resx">
+      <DependentUpon>entradaAlmacenGuiaObraForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="entradaAlmacenMechForm.resx">
       <DependentUpon>entradaAlmacenMechForm.vb</DependentUpon>
@@ -712,8 +748,14 @@
     <EmbeddedResource Include="registraGuiaRemEmpForm.resx">
       <DependentUpon>registraGuiaRemEmpForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="registraGuiaRemProvForm.resx">
+      <DependentUpon>registraGuiaRemProvForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="registraOrdenCompraForm.resx">
       <DependentUpon>registraOrdenCompraForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteCardexForm.resx">
+      <DependentUpon>ReporteCardexForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerCotizacionForm.resx">
       <DependentUpon>ReportViewerCotizacionForm.vb</DependentUpon>
@@ -741,6 +783,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SeguimientoGRform.resx">
       <DependentUpon>SeguimientoGRform.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeguimientoGRProvform.resx">
+      <DependentUpon>SeguimientoGRProvform.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SeguimientoOrdenDesembolsoForm.resx">
       <DependentUpon>SeguimientoOrdenDesembolsoForm.vb</DependentUpon>

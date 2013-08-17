@@ -125,6 +125,15 @@ Public Class pantallaInicialForm
         opcInsumoTipo.Visible = False
         opcInsumoArea.Visible = False
 
+        opcAlmE.Visible = True ' Menú Entradas (Almacen)
+        opcGuiaRem.Visible = True 'Menú guia de remision
+
+        opcGuiaRem2.Visible = False ' Mantenimiento de Motivos GR
+        ToolStripMenuItem2.Visible = False 'Mantenimiento de Vehiculos / Chofer
+
+        ToolStripSeparator7.Visible = True
+        ToolStripSeparator12.Visible = True
+
         ToolStripSeparator2_1.Visible = False
     End Sub
     ''' <summary>
@@ -171,12 +180,19 @@ Public Class pantallaInicialForm
         opcCotizacion.Visible = False 'Cotizacion
         opcOrdenCompra.Visible = False ' Orde de compra
         opcOrdDesembolso.Visible = False ' Orden de Desembolso
-        opcCajaChica.Visible = False ' Documento de Compra
+        opcDocCompra.Visible = False ' Documento de Compra
+
+        opcCajaChica.Visible = False 'Caja Chica
+
         opcGuiaRem.Visible = False ' Guia de Remision
         opcPersonal.Visible = False ' Personal
         opcConfObra.Visible = False 'Lugar de Trabajo
         opcConfSeriePersonal.Visible = False 'Asignar Serie de Orden de desembolso
         opcConfSerieDesem.Visible = False 'Mantenimiento de series de orden de desembolso
+        opcConfSerieGuia.Visible = False 'Mantenimienro de Serie Guia de remision por persona
+
+        opcAlmE.Visible = False 'Entrada Almacen
+        opcAlmS.Visible = False 'Salida Almacen
 
         ToolStripSeparator5.Visible = False
         ToolStripSeparator1.Visible = False
@@ -185,6 +201,15 @@ Public Class pantallaInicialForm
         ToolStripSeparator6.Visible = False
         ToolStripSeparator7.Visible = False
         ToolStripSeparator8.Visible = False
+
+        ToolStripSeparator16.Visible = False
+        ToolStripSeparator12.Visible = False
+        ToolStripSeparator17.Visible = False
+
+        'Separadores sub menú Configuración
+        ToolStripSeparator13.Visible = False
+        ToolStripSeparator14.Visible = False
+        ToolStripSeparator10_1.Visible = False
 
     End Sub
     ''' <summary>
@@ -201,15 +226,21 @@ Public Class pantallaInicialForm
 
         opcCotizacion.Visible = False
         opcOrdenCompra.Visible = False
-        opcCajaChica.Visible = False
+        opcDocCompra.Visible = False
+        opcCajaChica.Visible = False 'Caja Chica
+
         opcOrdDesAprobacion.Visible = False
         opcOrdDesConta.Visible = False
 
-        opcGuiaRem.Visible = False
+        opcGuiaRem.Visible = False 'Guia de remision
         opcPersonal.Visible = False
         opcConfObra.Visible = False
         opcConfSeriePersonal.Visible = False 'Asignar Serie de Orden de desembolso
         opcConfSerieDesem.Visible = False 'Mantenimiento de series de orden de desembolso
+        opcConfSerieGuia.Visible = False 'Mantenimienro de Serie Guia de remision por persona
+
+        opcAlmE.Visible = False 'Entrada Almacen
+        opcAlmS.Visible = False 'Salida Almacen
 
 
         'separadores
@@ -220,6 +251,15 @@ Public Class pantallaInicialForm
         ToolStripSeparator7.Visible = False
         ToolStripSeparator8.Visible = False
         ToolStripSeparator10.Visible = False
+
+        ToolStripSeparator16.Visible = False
+        ToolStripSeparator12.Visible = False
+        ToolStripSeparator17.Visible = False
+
+        'Separadores sub menú Configuración
+        ToolStripSeparator13.Visible = False
+        ToolStripSeparator14.Visible = False
+        ToolStripSeparator10_1.Visible = False
     End Sub
 
     ''' <summary>
@@ -234,6 +274,10 @@ Public Class pantallaInicialForm
         opcOrdDesModPago.Visible = False
         opcOrdDesCtasBco.Visible = False
 
+        opcCajaChica.Visible = False 'Caja Chica
+
+        opcConfSerieGuia.Visible = False 'Mantenimienro de Serie Guia de remision por persona
+
         opcPersonal.Visible = False
 
         opcConfObra.Visible = False
@@ -242,6 +286,12 @@ Public Class pantallaInicialForm
 
         ToolStripSeparator9.Visible = False
 
+        ToolStripSeparator16.Visible = False
+
+        'Separadores sub menú Configuración
+        ToolStripSeparator13.Visible = False
+        ToolStripSeparator14.Visible = False
+        ToolStripSeparator10_1.Visible = False
 
     End Sub
     ''' <summary>
@@ -260,19 +310,43 @@ Public Class pantallaInicialForm
         opcOrdDesModPago.Visible = False
         opcOrdDesCtasBco.Visible = False
 
-        opcCajaChica.Visible = False
-        opcGuiaRem.Visible = False
+        opcDocCompra.Visible = False
+
+        opcCajaChica.Visible = False 'Caja Chica
+        opcGuiaRem.Visible = True ' Guia de remision
 
         opcPersonal.Visible = False
 
         opcConfSerieDesem.Visible = False
         opcConfSeriePersonal.Visible = False
 
+        opcConfSerieGuia.Visible = False  'Mantenimienro de Serie Guia de remision por persona
+
+        opcGuiaRem1.Visible = False 'registro GR MECH
+        opcGuiaRem3.Visible = False 'Registro GR Proveedor
+        opcGuiaRem2.Visible = False 'Mant motivo GR
+        ToolStripMenuItem2.Visible = False 'Mant Vehiculo / Chofer
+
+        opcAlmE.Visible = False 'Entrada Almacen
+        opcAlmS.Visible = False 'Salida Almacen
+
+
+
         ToolStripSeparator3.Visible = False
         ToolStripSeparator4.Visible = False
         ToolStripSeparator7.Visible = False
         ToolStripSeparator8.Visible = False
         ToolStripSeparator9.Visible = False
+
+        ToolStripSeparator6.Visible = False
+        ToolStripSeparator17.Visible = False
+
+
+
+        'Separadores sub menú Configuración
+        ToolStripSeparator14.Visible = False
+        ToolStripSeparator10_1.Visible = False
+
     End Sub
     ''' <summary>
     ''' permisos de acceso para Gerencia General
@@ -300,7 +374,7 @@ Public Class pantallaInicialForm
         opcOrdDesAprobacion.Visible = False
         opcOrdDesRegPagos.Visible = False
 
-        opcCajaChica.Visible = False
+        opcDocCompra.Visible = False
         opcGuiaRem.Visible = False
         opcPersonal.Visible = False
         opcConfObra.Visible = False
@@ -323,8 +397,6 @@ Public Class pantallaInicialForm
 
         opcOrdDesCtasBco.Visible = False
         opcOrdDesModPago.Visible = False
-
-
         opcOrdDesRegPagos.Visible = False
 
     End Sub
@@ -590,28 +662,17 @@ Public Class pantallaInicialForm
         guia.Show()
     End Sub
 
-    Private Sub ToolStripDropDownButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripDropDownButton1.Click
+    Private Sub ToolStripDropDownButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCajaChica.Click
         Dim caja As New MantCajaChicaForm
         caja.MdiParent = Me
         caja.Show()
     End Sub
 
-    Private Sub opcAlmE1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcAlmE1.Click
-        If vSCodigo <> "00-00" Then 'Sede principal
-            MessageBox.Show("Acceso denegado, Este tipo de entradas a almacén solo se pueden procesar en SEDE PRINCIPAL", nomNegocio, Nothing, MessageBoxIcon.Error)
-            Exit Sub
-        End If
-
-        Dim ent As New entradaAlmacenMechForm
-        ent.MdiParent = Me
-        ent.Show()
-    End Sub
-
     Private Sub opcAlmS1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcAlmS1.Click
-        If vSCodigo <> "00-00" Then 'Sede principal
-            MessageBox.Show("Acceso denegado, Este tipo de salidas de almacén solo se pueden procesar en SEDE PRINCIPAL", nomNegocio, Nothing, MessageBoxIcon.Error)
-            Exit Sub
-        End If
+        'If vSCodigo <> "00-00" Then 'Sede principal
+        '    MessageBox.Show("Acceso denegado, Este tipo de salidas de almacén solo se pueden procesar en SEDE PRINCIPAL", nomNegocio, Nothing, MessageBoxIcon.Error)
+        '    Exit Sub
+        'End If
 
         Dim ent As New salidaAlmacenGuiaMechForm
         ent.MdiParent = Me
@@ -634,13 +695,56 @@ Public Class pantallaInicialForm
         Dim mantVeh As New MantVehiculoTransportistaFrm
         mantVeh.MdiParent = Me
         mantVeh.Show()
-
     End Sub
 
-    Private Sub ToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem1.Click
+    Private Sub opcGuiaRem3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcGuiaRem3.Click
+        Dim guia As New registraGuiaRemProvForm
+        guia.MdiParent = Me
+        guia.Show()
+    End Sub
+
+    Private Sub opcGuiaRem4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcGuiaRem4.Click
         Dim SegGr As New SeguimientoGRform
         SegGr.MdiParent = Me
         SegGr.Show()
+    End Sub
 
+    Private Sub opcAlmE2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcAlmE2.Click
+        'If vSCodigo <> "00-00" Then 'Sede principal
+        '    MessageBox.Show("Acceso denegado, Este tipo de entradas a almacén solo se pueden procesar en SEDE PRINCIPAL", nomNegocio, Nothing, MessageBoxIcon.Error)
+        '    Exit Sub
+        'End If
+
+        Dim ent As New entradaAlmacenMechForm
+        ent.MdiParent = Me
+        ent.Show()
+    End Sub
+
+    Private Sub opcAlmE1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcAlmE1.Click
+        'If vSCodigo <> "00-00" Then 'Sede principal
+        '    MessageBox.Show("Acceso denegado, Este tipo de entradas a almacén solo se pueden procesar en SEDE PRINCIPAL", nomNegocio, Nothing, MessageBoxIcon.Error)
+        '    Exit Sub
+        'End If
+        Dim ent As New entradaAlmacenGuiaMechForm
+        ent.MdiParent = Me
+        ent.Show()
+    End Sub
+
+    Private Sub opcAlmE3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcAlmE3.Click
+        Dim ent As New entradaAlmacenGuiaObraForm
+        ent.MdiParent = Me
+        ent.Show()
+    End Sub
+
+    Private Sub opcGuiaRem5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcGuiaRem5.Click
+        Dim segProv As New SeguimientoGRProvform
+        segProv.MdiParent = Me
+        segProv.Show()
+    End Sub
+
+    Private Sub ReporteCardexToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReporteCardexToolStripMenuItem.Click
+        Dim rCardex As New ReporteCardexForm
+        rCardex.MdiParent = Me
+        rCardex.Show()
     End Sub
 End Class

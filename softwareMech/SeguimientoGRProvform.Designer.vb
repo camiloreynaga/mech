@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class SeguimientoGRform
+Partial Class SeguimientoGRProvform
     Inherits ComponentesSolucion2008.plantillaForm1
 
     'Form invalida a Dispose para limpiar la lista de componentes.
@@ -21,7 +21,7 @@ Partial Class SeguimientoGRform
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SeguimientoGRform))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SeguimientoGRProvform))
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.dgGR = New System.Windows.Forms.DataGridView
@@ -37,6 +37,8 @@ Partial Class SeguimientoGRform
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
         Me.btnImprimir = New System.Windows.Forms.ToolStripButton
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel
+        Me.txtNroGuia_search = New System.Windows.Forms.ToolStripTextBox
         Me.Label6 = New System.Windows.Forms.Label
         Me.txtPartida = New System.Windows.Forms.TextBox
         Me.Label7 = New System.Windows.Forms.Label
@@ -74,7 +76,7 @@ Partial Class SeguimientoGRform
         Me.cbAlmacen = New System.Windows.Forms.ComboBox
         Me.lblAlmacen = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
-        Me.cbSerie = New System.Windows.Forms.ComboBox
+        Me.cbProveedor = New System.Windows.Forms.ComboBox
         Me.chkSerie = New System.Windows.Forms.CheckBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.GroupBox1.SuspendLayout()
@@ -91,7 +93,7 @@ Partial Class SeguimientoGRform
         'lblTitulo
         '
         Me.lblTitulo.Size = New System.Drawing.Size(1020, 23)
-        Me.lblTitulo.Text = "Seguimiento Guia de Remisión MECH"
+        Me.lblTitulo.Text = "Seguimiento Guia de Remisión Proveedores"
         '
         'lblDerecha
         '
@@ -124,7 +126,7 @@ Partial Class SeguimientoGRform
         Me.BindingNavigator1.CountItem = Me.BindingNavigatorCountItem
         Me.BindingNavigator1.DeleteItem = Nothing
         Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.btnImprimir, Me.ToolStripSeparator4})
+        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.btnImprimir, Me.ToolStripSeparator4, Me.ToolStripLabel2, Me.txtNroGuia_search})
         Me.BindingNavigator1.Location = New System.Drawing.Point(3, 194)
         Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -202,6 +204,7 @@ Partial Class SeguimientoGRform
         '
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
         Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
+        Me.BindingNavigatorSeparator2.Visible = False
         '
         'btnImprimir
         '
@@ -212,11 +215,25 @@ Partial Class SeguimientoGRform
         Me.btnImprimir.Size = New System.Drawing.Size(149, 22)
         Me.btnImprimir.Text = "Imprimir Guia Remision"
         Me.btnImprimir.ToolTipText = "Imprimir orden de desembolso"
+        Me.btnImprimir.Visible = False
         '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
         Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripLabel2
+        '
+        Me.ToolStripLabel2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.ToolStripLabel2.Name = "ToolStripLabel2"
+        Me.ToolStripLabel2.Size = New System.Drawing.Size(49, 22)
+        Me.ToolStripLabel2.Text = "Guia N°"
+        '
+        'txtNroGuia_search
+        '
+        Me.txtNroGuia_search.Name = "txtNroGuia_search"
+        Me.txtNroGuia_search.Size = New System.Drawing.Size(100, 25)
+        Me.txtNroGuia_search.ToolTipText = "Ingrese el N° de Guia a buscar."
         '
         'Label6
         '
@@ -491,7 +508,8 @@ Partial Class SeguimientoGRform
         Me.chkDestino.AutoSize = True
         Me.chkDestino.Checked = True
         Me.chkDestino.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkDestino.Location = New System.Drawing.Point(275, 26)
+        Me.chkDestino.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkDestino.Location = New System.Drawing.Point(392, 26)
         Me.chkDestino.Name = "chkDestino"
         Me.chkDestino.Size = New System.Drawing.Size(61, 17)
         Me.chkDestino.TabIndex = 9
@@ -500,11 +518,12 @@ Partial Class SeguimientoGRform
         '
         'cbObra
         '
+        Me.cbObra.DropDownWidth = 370
         Me.cbObra.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbObra.FormattingEnabled = True
-        Me.cbObra.Location = New System.Drawing.Point(338, 26)
+        Me.cbObra.Location = New System.Drawing.Point(456, 26)
         Me.cbObra.Name = "cbObra"
-        Me.cbObra.Size = New System.Drawing.Size(434, 21)
+        Me.cbObra.Size = New System.Drawing.Size(350, 21)
         Me.cbObra.TabIndex = 10
         '
         'btnCerrar
@@ -519,17 +538,19 @@ Partial Class SeguimientoGRform
         '
         'cbAlmacen
         '
+        Me.cbAlmacen.DropDownWidth = 160
         Me.cbAlmacen.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbAlmacen.FormattingEnabled = True
-        Me.cbAlmacen.Location = New System.Drawing.Point(840, 26)
+        Me.cbAlmacen.Location = New System.Drawing.Point(872, 26)
         Me.cbAlmacen.Name = "cbAlmacen"
-        Me.cbAlmacen.Size = New System.Drawing.Size(176, 21)
+        Me.cbAlmacen.Size = New System.Drawing.Size(141, 21)
         Me.cbAlmacen.TabIndex = 10
         '
         'lblAlmacen
         '
         Me.lblAlmacen.AutoSize = True
-        Me.lblAlmacen.Location = New System.Drawing.Point(775, 27)
+        Me.lblAlmacen.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAlmacen.Location = New System.Drawing.Point(810, 27)
         Me.lblAlmacen.Name = "lblAlmacen"
         Me.lblAlmacen.Size = New System.Drawing.Size(59, 13)
         Me.lblAlmacen.TabIndex = 12
@@ -538,27 +559,30 @@ Partial Class SeguimientoGRform
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(221, 27)
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(340, 27)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(54, 13)
         Me.Label2.TabIndex = 12
         Me.Label2.Text = "Destino:"
         '
-        'cbSerie
+        'cbProveedor
         '
-        Me.cbSerie.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbSerie.FormattingEnabled = True
-        Me.cbSerie.Location = New System.Drawing.Point(136, 26)
-        Me.cbSerie.Name = "cbSerie"
-        Me.cbSerie.Size = New System.Drawing.Size(79, 21)
-        Me.cbSerie.TabIndex = 16
+        Me.cbProveedor.DropDownWidth = 300
+        Me.cbProveedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbProveedor.FormattingEnabled = True
+        Me.cbProveedor.Location = New System.Drawing.Point(144, 26)
+        Me.cbProveedor.Name = "cbProveedor"
+        Me.cbProveedor.Size = New System.Drawing.Size(192, 21)
+        Me.cbProveedor.TabIndex = 16
         '
         'chkSerie
         '
         Me.chkSerie.AutoSize = True
         Me.chkSerie.Checked = True
         Me.chkSerie.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkSerie.Location = New System.Drawing.Point(69, 26)
+        Me.chkSerie.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkSerie.Location = New System.Drawing.Point(83, 26)
         Me.chkSerie.Name = "chkSerie"
         Me.chkSerie.Size = New System.Drawing.Size(61, 17)
         Me.chkSerie.TabIndex = 14
@@ -568,18 +592,21 @@ Partial Class SeguimientoGRform
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(23, 27)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(16, 27)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(40, 13)
+        Me.Label1.Size = New System.Drawing.Size(69, 13)
         Me.Label1.TabIndex = 15
-        Me.Label1.Text = "Serie:"
+        Me.Label1.Text = "Proveedor:"
         '
-        'SeguimientoGRform
+        'SeguimientoGRProvform
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
         Me.ClientSize = New System.Drawing.Size(1020, 675)
-        Me.Controls.Add(Me.cbSerie)
+        Me.Controls.Add(Me.cbAlmacen)
+        Me.Controls.Add(Me.cbObra)
+        Me.Controls.Add(Me.cbProveedor)
         Me.Controls.Add(Me.chkSerie)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.GroupBox1)
@@ -594,18 +621,14 @@ Partial Class SeguimientoGRform
         Me.Controls.Add(Me.txtLlegada)
         Me.Controls.Add(Me.chkDestino)
         Me.Controls.Add(Me.Label15)
-        Me.Controls.Add(Me.cbAlmacen)
-        Me.Controls.Add(Me.cbObra)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.lblAlmacen)
         Me.Controls.Add(Me.btnCerrar)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "SeguimientoGRform"
+        Me.Name = "SeguimientoGRProvform"
         Me.Controls.SetChildIndex(Me.btnCerrar, 0)
         Me.Controls.SetChildIndex(Me.lblAlmacen, 0)
         Me.Controls.SetChildIndex(Me.Label2, 0)
-        Me.Controls.SetChildIndex(Me.cbObra, 0)
-        Me.Controls.SetChildIndex(Me.cbAlmacen, 0)
         Me.Controls.SetChildIndex(Me.Label15, 0)
         Me.Controls.SetChildIndex(Me.chkDestino, 0)
         Me.Controls.SetChildIndex(Me.txtLlegada, 0)
@@ -622,7 +645,9 @@ Partial Class SeguimientoGRform
         Me.Controls.SetChildIndex(Me.lblDerecha, 0)
         Me.Controls.SetChildIndex(Me.Label1, 0)
         Me.Controls.SetChildIndex(Me.chkSerie, 0)
-        Me.Controls.SetChildIndex(Me.cbSerie, 0)
+        Me.Controls.SetChildIndex(Me.cbProveedor, 0)
+        Me.Controls.SetChildIndex(Me.cbObra, 0)
+        Me.Controls.SetChildIndex(Me.cbAlmacen, 0)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.dgGR, System.ComponentModel.ISupportInitialize).EndInit()
@@ -692,8 +717,10 @@ Partial Class SeguimientoGRform
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents btnImprimir As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents cbSerie As System.Windows.Forms.ComboBox
+    Friend WithEvents cbProveedor As System.Windows.Forms.ComboBox
     Friend WithEvents chkSerie As System.Windows.Forms.CheckBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents ToolStripLabel2 As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents txtNroGuia_search As System.Windows.Forms.ToolStripTextBox
 
 End Class

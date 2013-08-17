@@ -1,11 +1,8 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
 Imports ComponentesSolucion2008
-Public Class registraGuiaRemEmpForm
-    Dim BindingSource1 As New BindingSource
+Public Class registraGuiaRemProvForm
     Dim BindingSource2 As New BindingSource
-    Dim BindingSource3 As New BindingSource
-    Dim BindingSource4 As New BindingSource
     Dim BindingSource5 As New BindingSource
     Dim BindingSource6 As New BindingSource
     Dim BindingSource7 As New BindingSource
@@ -16,7 +13,7 @@ Public Class registraGuiaRemEmpForm
     Dim BindingSource12 As New BindingSource
     Dim BindingSource13 As New BindingSource
 
-    Private Sub registraGuiaRemEmpForm_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
+    Private Sub registraGuiaRemProvForm_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
         Me.Close()
     End Sub
 
@@ -38,7 +35,7 @@ Public Class registraGuiaRemEmpForm
 
     End Function
 
-    Private Sub registraGuiaRemEmpForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub registraGuiaRemProvForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Realizando la conexion con SQL Server - ConexionModule.vb
         'conexion() 'active esta linea si desea ejecutar el form independientemente RAS
         'AsignarColoresFormControles()
@@ -47,16 +44,16 @@ Public Class registraGuiaRemEmpForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select codSerS,serie,iniNroDoc,finNroDoc from TSerieSede where estado=1 and codSerS>1 and codTipDE=75"  '75=Guia Remision 70=Factura 1=Reservado Guia Remision provvedor
-        crearDataAdapterTable(daVSerie, sele)
-
-        sele = "select codIde,razon,ruc,dir,fono,fax,celRpm,email,repres,fono+'  '+fax as fono1,cuentaBan,cuentaDet from TIdentidad where estado=1 and codIde=1" ' 1=MECH 
+        Dim sele As String = "select codIde,razon,ruc,dir,fono,fax,celRpm,email,repres,fono+'  '+fax as fono1,cuentaBan,cuentaDet from TIdentidad where estado=1" ' 'clientes y proveedores 
         crearDataAdapterTable(daTProvee, sele)
 
-        sele = "select distinct codigo,nombre,lugar,color from VLugarObraAlmacen"
+        sele = "select distinct codigo,nombre,lugar,color from VLugarObraAlmacen where codigo=@cod"
         crearDataAdapterTable(daVObra, sele)
-        sele = "select codUbi,ubicacion,codigo,color from VLugarObraAlmacen TAlmacen"
+        daVObra.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vSCodigo  'Guia remision por Destino Obra
+
+        sele = "select codUbi,ubicacion,codigo,color from VLugarObraAlmacen TAlmacen where codigo=@cod"
         crearDataAdapterTable(daTUbi, sele)
+        daTUbi.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vSCodigo
 
         sele = "select distinct codET,razon,ruc from VTransporte TEmpTransp order by razon"
         crearDataAdapterTable(daVNeg, sele)
@@ -68,9 +65,9 @@ Public Class registraGuiaRemEmpForm
         sele = "select codMotG,motivo from TMotivoGuia order by motivo"
         crearDataAdapterTable(daTabla2, sele)
 
-        sele = "select codGuiaE,nro,talon,nroGuia,fecIni,codSerS,codIde,codUbiOri,codUbiDes,partida,llegada,codVeh,codT,codMotG,nroFact,obs,codPers,codObraOri,codObraDes,codET,hist,estado from VGuiaRemEmpAper where codSerS=@codSer" 'order by nroGuia"
+        sele = "select codGuiaE,nro,talon,nroGuia,fecIni,codSerS,codIde,codUbiOri,codUbiDes,partida,llegada,codVeh,codT,codMotG,nroFact,obs,codPers,codIdeProv,codObraDes,codET,hist,estado from VGuiaRemEmpAperProv where codSerS=1 and codObraDes=@cod" '1=Reservado para guia proveedor
         crearDataAdapterTable(daTabla1, sele)
-        daTabla1.SelectCommand.Parameters.Add("@codSer", SqlDbType.Int, 0).Value = 0
+        daTabla1.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vSCodigo  'Guia remision por Destino Obra
 
         sele = "select codDGE,cant,descrip,linea1,unidad,peso,detalle,codGuiaE,codMat,entre,entregado,recib,obsR,nomRec,recibido from VDetGuiaE where codGuiaE=@nro"
         crearDataAdapterTable(daDetDoc, sele)
@@ -80,7 +77,6 @@ Public Class registraGuiaRemEmpForm
             'procedimiento para instanciar el dataSet - DatasetAlmacenModule.vb
             crearDSAlmacen()
             'llenat el dataSet con los dataAdapter
-            daVSerie.Fill(dsAlmacen, "TSerieSede")
             daTProvee.Fill(dsAlmacen, "TIdentidad")
             daVObra.Fill(dsAlmacen, "VLugarObraAlmacen")
             daTUbi.Fill(dsAlmacen, "TAlmacen")
@@ -88,17 +84,10 @@ Public Class registraGuiaRemEmpForm
             daTUni.Fill(dsAlmacen, "TVehiculo")
             daTPers.Fill(dsAlmacen, "TTransportista")
             daTabla2.Fill(dsAlmacen, "TMotivoGuia")
-            daTabla1.Fill(dsAlmacen, "VGuiaRemEmpAper")
+            daTabla1.Fill(dsAlmacen, "VGuiaRemEmpAperProv")
             daDetDoc.Fill(dsAlmacen, "VDetGuiaE")
 
             AgregarRelacion()
-
-            BindingSource1.DataSource = dsAlmacen
-            BindingSource1.DataMember = "TSerieSede"
-            cbSerie.DataSource = BindingSource1
-            cbSerie.DisplayMember = "serie"
-            cbSerie.ValueMember = "codSerS"
-            BindingSource1.Sort = "serie"
 
             BindingSource2.DataSource = dsAlmacen
             BindingSource2.DataMember = "TIdentidad"
@@ -106,17 +95,6 @@ Public Class registraGuiaRemEmpForm
             cbProv.DisplayMember = "razon"
             cbProv.ValueMember = "codIde"
             BindingSource2.Sort = "razon"
-
-            BindingSource3.DataSource = dsAlmacen
-            BindingSource3.DataMember = "VLugarObraAlmacen"
-            cbObra1.DataSource = BindingSource3
-            cbObra1.DisplayMember = "nombre"
-            cbObra1.ValueMember = "codigo"
-            BindingSource4.DataSource = BindingSource3
-            BindingSource4.DataMember = "Relacion1"
-            cbAlm1.DataSource = BindingSource4
-            cbAlm1.DisplayMember = "ubicacion"
-            cbAlm1.ValueMember = "codUbi"
 
             BindingSource5.DataSource = dsAlmacen
             BindingSource5.DataMember = "VLugarObraAlmacen"
@@ -153,7 +131,7 @@ Public Class registraGuiaRemEmpForm
             cbMot.ValueMember = "codMotG"
 
             BindingSource12.DataSource = dsAlmacen
-            BindingSource12.DataMember = "VGuiaRemEmpAper"
+            BindingSource12.DataMember = "VGuiaRemEmpAperProv"
             lbOrden.DataSource = BindingSource12
             lbOrden.DisplayMember = "nro"
             lbOrden.ValueMember = "codGuiaE"
@@ -172,11 +150,6 @@ Public Class registraGuiaRemEmpForm
             txtRuc1.DataBindings.Add("Text", BindingSource7, "ruc")
 
             vfVan3 = False
-            vFVan = True
-            parametrosSerieDoc()
-
-            vfVan4 = True
-            visualizarGuia()
 
             vfVan2 = True
             enlazarText()
@@ -193,16 +166,9 @@ Public Class registraGuiaRemEmpForm
         End Try
     End Sub
 
-    Private Sub registraGuiaRemEmpForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+    Private Sub registraGuiaRemProvForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         vfVan3 = True
-        visualizarDet()
-    End Sub
-
-    Private Sub cbSerie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSerie.SelectedIndexChanged
-        vfVan3 = False  'no filtrar detalle
-        parametrosSerieDoc()
-        visualizarGuia()
-        vfVan3 = True  'filtrar detalle
+        vfVan4 = True
         visualizarDet()
     End Sub
 
@@ -229,6 +195,7 @@ Public Class registraGuiaRemEmpForm
             .Columns(9).Width = 60
             .Columns(9).HeaderText = "Entregado"
             .Columns(9).ReadOnly = True 'NO editable
+            .Columns(9).Visible = False
             .Columns(10).Visible = False
             .Columns(11).Width = 60
             .Columns(11).HeaderText = "Recibido"
@@ -245,20 +212,6 @@ Public Class registraGuiaRemEmpForm
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .RowHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
         End With
-    End Sub
-
-    Dim vfVan4 As Boolean = False
-    Private Sub visualizarGuia()
-        If vfVan4 Then
-            If BindingSource1.Position = -1 Then
-                Exit Sub
-            End If
-            Me.Cursor = Cursors.WaitCursor
-            dsAlmacen.Tables("VGuiaRemEmpAper").Clear()
-            daTabla1.SelectCommand.Parameters("@codSer").Value = cbSerie.SelectedValue
-            daTabla1.Fill(dsAlmacen, "VGuiaRemEmpAper")
-            Me.Cursor = Cursors.Default
-        End If
     End Sub
 
     Private Sub AgregarRelacion()
@@ -302,7 +255,6 @@ Public Class registraGuiaRemEmpForm
         btnCerrar.ForeColor = ForeColorButtom
         btnAnula.ForeColor = ForeColorButtom
         btnCierra.ForeColor = ForeColorButtom
-        btnImprimir.ForeColor = ForeColorButtom
         btnNuevo.ForeColor = ForeColorButtom
         btnModificar.ForeColor = ForeColorButtom
         btnCancelar.ForeColor = ForeColorButtom
@@ -313,49 +265,8 @@ Public Class registraGuiaRemEmpForm
 
     Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
         dgTabla1.Dispose()
-        'dgTabla2.Dispose()
+        dgTabla2.Dispose()
         Me.Close()
-    End Sub
-
-    Dim vFVan As Boolean = False
-    Private Sub parametrosSerieDoc()
-        If vFVan Then
-            vIniNroDoc = recuperarVariosTSerie(cbSerie.SelectedValue, "iniNroDoc")
-            vFinNroDoc = recuperarVariosTSerie(cbSerie.SelectedValue, "finNroDoc")
-
-            recuperarUltimoCodigo(cbSerie.SelectedValue)
-        End If
-    End Sub
-
-    Private Sub recuperarUltimoCodigo(ByVal codSer As Integer)
-        Dim cmdMaxCodigo As SqlCommand = New SqlCommand
-        Dim maxCodigo As Object
-        cmdMaxCodigo.CommandType = CommandType.Text
-        cmdMaxCodigo.CommandText = "select max(nroGuia) from TGuiaRemEmp where codSerS=" & codSer
-        cmdMaxCodigo.Connection = Cn
-        maxCodigo = cmdMaxCodigo.ExecuteScalar
-        asignarCodigo(maxCodigo)
-    End Sub
-
-    Private Sub asignarCodigo(ByVal max As Object)
-        If IsNumeric(max) Then
-            max = max + 1
-            Select Case CInt(max)
-                Case Is < 10
-                    txtNro.Text = "0000" & max
-                Case 10 To 99
-                    txtNro.Text = "000" & max
-                Case 100 To 999
-                    txtNro.Text = "00" & max
-                Case 1000 To 9999
-                    txtNro.Text = "0" & max
-                Case Is > 9999
-                    txtNro.Text = max
-            End Select
-        Else
-            'en caso de k no haya registros en la tabla su valor es Null
-            txtNro.Text = vIniNroDoc
-        End If
     End Sub
 
     Private Sub txtBuscar_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtBuscar.GotFocus, txtBuscar.MouseClick
@@ -375,12 +286,11 @@ Public Class registraGuiaRemEmpForm
     End Sub
 
     Private Sub enlazarPartida()
-        If BindingSource4.Count = 0 Then
+        If BindingSource2.Count = 0 Then
             txtPar.Text = ""
             Exit Sub
         End If
-        'txtPar.Text = BindingSource4.Item(cbAlm1.SelectedIndex)(1) + " - " + BindingSource3.Item(cbObra1.SelectedIndex)(2)
-        txtPar.Text = BindingSource3.Item(cbObra1.SelectedIndex)(2)
+        txtPar.Text = BindingSource2.Item(cbProv.SelectedIndex)(3)
     End Sub
 
     Private Sub enlazarLlegada()
@@ -388,11 +298,10 @@ Public Class registraGuiaRemEmpForm
             txtLleg.Text = ""
             Exit Sub
         End If
-        'txtLleg.Text = BindingSource6.Item(cbAlm2.SelectedIndex)(1) + " - " + BindingSource5.Item(cbObra2.SelectedIndex)(2)
         txtLleg.Text = BindingSource5.Item(cbObra2.SelectedIndex)(2)
     End Sub
 
-    Private Sub cbAlm1_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbAlm1.SelectedValueChanged
+    Private Sub cbProv_SelectedValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbProv.SelectedValueChanged
         enlazarPartida()
     End Sub
 
@@ -412,10 +321,10 @@ Public Class registraGuiaRemEmpForm
             If BindingSource12.Count = 0 Then
                 'desEnlazarText()
             Else
+                txtSerie.Text = BindingSource12.Item(lbOrden.SelectedIndex)(2)
+                txtNro.Text = BindingSource12.Item(lbOrden.SelectedIndex)(3)
                 date1.Value = BindingSource12.Item(lbOrden.SelectedIndex)(4)
                 cbProv.SelectedValue = BindingSource12.Item(lbOrden.SelectedIndex)(6)
-                cbObra1.SelectedValue = BindingSource12.Item(lbOrden.SelectedIndex)(17)
-                cbAlm1.SelectedValue = BindingSource12.Item(lbOrden.SelectedIndex)(7)
                 txtPar.Text = BindingSource12.Item(lbOrden.SelectedIndex)(9)
                 cbObra2.SelectedValue = BindingSource12.Item(lbOrden.SelectedIndex)(18)
                 cbAlm2.SelectedValue = BindingSource12.Item(lbOrden.SelectedIndex)(8)
@@ -637,6 +546,8 @@ Public Class registraGuiaRemEmpForm
     End Sub
 
     Private Sub desactivarControles()
+        txtSerie.ReadOnly = True
+        txtNro.ReadOnly = True
         date1.Enabled = False
         txtBuscar.ReadOnly = True
         cbProv.Enabled = False
@@ -649,7 +560,9 @@ Public Class registraGuiaRemEmpForm
     End Sub
 
     Private Sub desactivarControles1()
-        Panel1.Enabled = False
+        lbOrden.Enabled = False
+        btnAnula.Enabled = False
+        btnCierra.Enabled = False
         Panel3.Enabled = False
         Panel4.Enabled = False
         If vfNuevo1 = "guardar" Then
@@ -668,7 +581,9 @@ Public Class registraGuiaRemEmpForm
     End Sub
 
     Private Sub activarControles1()
-        Panel1.Enabled = True
+        lbOrden.Enabled = True
+        btnAnula.Enabled = True
+        btnCierra.Enabled = True
         Panel3.Enabled = True
         Panel4.Enabled = True
         btnNuevo.Enabled = True
@@ -684,6 +599,8 @@ Public Class registraGuiaRemEmpForm
     End Sub
 
     Private Sub activarControles()
+        txtSerie.ReadOnly = False
+        txtNro.ReadOnly = False
         date1.Enabled = True
         txtBuscar.ReadOnly = False
         cbProv.Enabled = True
@@ -699,7 +616,28 @@ Public Class registraGuiaRemEmpForm
         date1.Value = Now.Date
         txtFac.Clear()
         txtObs.Clear()
+        txtSerie.Text = "001"
+        txtNro.Clear()
     End Sub
+
+    Dim vfVan4 As Boolean = False
+    Private Sub visualizarGuia()
+        If vfVan4 Then
+            Me.Cursor = Cursors.WaitCursor
+            dsAlmacen.Tables("VGuiaRemEmpAperProv").Clear()
+            'daTabla1.SelectCommand.Parameters("@codSer").Value = cbSerie.SelectedValue
+            daTabla1.Fill(dsAlmacen, "VGuiaRemEmpAperProv")
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Function recuperarCodDoc(ByVal codIde As Integer, ByVal codSer As Short, ByVal serie As Integer, ByVal nroDoc As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select isnull(max(codGuiaE),0) from TGuiaRemEmp where codIde=" & codIde & " and codSerS=" & codSer & " and cast(talon as int)=" & serie & " and nroGuia=" & nroDoc
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
 
     Dim vfNuevo1 As String = "nuevo"
     Private Sub btnNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNuevo.Click
@@ -713,7 +651,7 @@ Public Class registraGuiaRemEmpForm
             desactivarControles1()
             activarControles()
             limpiarText()
-            txtBuscar.Focus()
+            txtSerie.Focus()
             StatusBarClass.messageBarraEstado("")
             Me.AcceptButton = Me.btnNuevo
             dsAlmacen.Tables("VDetGuiaE").Clear()
@@ -723,23 +661,26 @@ Public Class registraGuiaRemEmpForm
                 Exit Sub
             End If
 
+            If ValidarCampos() Then
+                Exit Sub
+            End If
+
             If BindingSource2.Position = -1 Then
-                MessageBox.Show("selecione destinatario valido...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                MessageBox.Show("selecione proveedor valido...", nomNegocio, Nothing, MessageBoxIcon.Error)
                 txtBuscar.Focus()
                 Exit Sub
             End If
 
-            If cbAlm1.SelectedValue = cbAlm2.SelectedValue Then
-                MessageBox.Show("Proceso denegado, almacén de salida tiene que ser diferente con almacén de llegada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Dim valorDoc As Integer = recuperarCodDoc(cbProv.SelectedValue, 1, txtSerie.Text.Trim(), txtNro.Text.Trim()) '1=CodSer Reservado para guia proveedor
+            If valorDoc > 0 Then
+                MessageBox.Show("Ya existe registrado => Nº " & txtSerie.Text.Trim() & "-" & txtNro.Text.Trim() & " en el Proveedor: " & cbProv.Text.Trim(), nomNegocio, Nothing, MessageBoxIcon.Information)
                 Exit Sub
             End If
 
-            Dim resp As String = MessageBox.Show("Esta segúro de aperturar Guia de Remisión Nº " & cbSerie.Text & " - " & txtNro.Text.Trim(), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            Dim resp As String = MessageBox.Show("Esta segúro de Registrar Guia de Remisión Nº " & txtSerie.Text & " - " & txtNro.Text.Trim(), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If resp <> 6 Then
                 Exit Sub
             End If
-
-            parametrosSerieDoc()
 
             Dim finalMytrans As Boolean = False
             Dim wait As New waitForm
@@ -773,7 +714,6 @@ Public Class registraGuiaRemEmpForm
                 vfVan3 = False 'Detalle
 
                 'Actualizando el dataTable
-                parametrosSerieDoc()
                 visualizarGuia()
 
                 BindingSource2.RemoveFilter()
@@ -786,7 +726,6 @@ Public Class registraGuiaRemEmpForm
                 vfVan2 = True
                 vfVan3 = True
                 btnCancelar.PerformClick()
-
 
                 wait.Close()
                 Me.Cursor = Cursors.Default
@@ -804,7 +743,6 @@ Public Class registraGuiaRemEmpForm
                     Exit Sub
                 End If
             End Try
-
         End If
     End Sub
 
@@ -827,13 +765,13 @@ Public Class registraGuiaRemEmpForm
         cmInserTable.CommandType = CommandType.StoredProcedure
         cmInserTable.CommandText = "PA_InsertGuiaRemEmp"
         cmInserTable.Connection = Cn
-        cmInserTable.Parameters.Add("@tal", SqlDbType.VarChar, 5).Value = cbSerie.Text.Trim()
+        cmInserTable.Parameters.Add("@tal", SqlDbType.VarChar, 5).Value = txtSerie.Text.Trim()
         cmInserTable.Parameters.Add("@nroG", SqlDbType.Int, 0).Value = txtNro.Text.Trim()
         cmInserTable.Parameters.Add("@fecI", SqlDbType.Date).Value = date1.Value.Date
-        cmInserTable.Parameters.Add("@codSer", SqlDbType.Int, 0).Value = cbSerie.SelectedValue
+        cmInserTable.Parameters.Add("@codSer", SqlDbType.Int, 0).Value = 1  '1= reservado para guia proveedor
         cmInserTable.Parameters.Add("@codIde", SqlDbType.Int, 0).Value = cbProv.SelectedValue
         cmInserTable.Parameters.Add("@est", SqlDbType.Int, 0).Value = 0 'abierto
-        cmInserTable.Parameters.Add("@codUbiO", SqlDbType.Int, 0).Value = cbAlm1.SelectedValue
+        cmInserTable.Parameters.Add("@codUbiO", SqlDbType.Int, 0).Value = 0  'sin obra origen, SINO PROVVEDOR codIde
         cmInserTable.Parameters.Add("@codUbiD", SqlDbType.Int, 0).Value = cbAlm2.SelectedValue
         cmInserTable.Parameters.Add("@par", SqlDbType.VarChar, 100).Value = txtPar.Text.Trim()
         cmInserTable.Parameters.Add("@lleg", SqlDbType.VarChar, 100).Value = txtLleg.Text.Trim()
@@ -851,6 +789,14 @@ Public Class registraGuiaRemEmpForm
     End Sub
 
     Private Function ValidarCampos() As Boolean
+        If ValidarCantMayorCero(txtSerie.Text.Trim()) Then
+            txtSerie.errorProv()
+            Return True
+        End If
+        If ValidarCantMayorCero(txtNro.Text.Trim()) Then
+            txtNro.errorProv()
+            Return True
+        End If
         'Todas las funciones estan creadas en el module ValidarCamposModule.vb
         If validaCampoVacioMinCaracNoNumer(txtPar.Text.Trim, 3) Then
             'txtPar.errorProv()
@@ -870,14 +816,14 @@ Public Class registraGuiaRemEmpForm
     Private Sub btnModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnModificar.Click
         Dim vCom As Boolean = False
         For j As Short = 0 To BindingSource13.Count - 1
-            If BindingSource13.Item(j)(10) = 1 Then
+            If BindingSource13.Item(j)(14) = 1 Then
                 vCom = True
                 Exit For
             End If
         Next
 
         If vCom = True Then
-            MessageBox.Show("Proceso denegado en MODIFICAR, por estar en el estado de [ENTREGADO]", nomNegocio, Nothing, MessageBoxIcon.Error)
+            MessageBox.Show("Proceso denegado en MODIFICAR, por estar en el estado de [RECIBIDO]", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
 
@@ -901,14 +847,21 @@ Public Class registraGuiaRemEmpForm
             End If
 
             If BindingSource2.Position = -1 Then
-                MessageBox.Show("selecione destinatario valido...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                MessageBox.Show("selecione proveedor valido...", nomNegocio, Nothing, MessageBoxIcon.Error)
                 txtBuscar.Focus()
                 Exit Sub
             End If
 
-            If cbAlm1.SelectedValue = cbAlm2.SelectedValue Then
-                MessageBox.Show("Proceso denegado, almacén de salida tiene que ser diferente con almacén de llegada...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                Exit Sub
+            Dim cad1 As String = CInt(BindingSource12.Item(BindingSource12.Position)(6)) & CInt(BindingSource12.Item(BindingSource12.Position)(5)) & CInt(BindingSource12.Item(BindingSource12.Position)(2)) & CInt(BindingSource12.Item(BindingSource12.Position)(3))
+            Dim cad2 As String = CInt(cbProv.SelectedValue) & "1" & CInt(txtSerie.Text.Trim()) & CInt(txtNro.Text.Trim()) '1=CodSer Reservado para guia proveedor
+
+            Dim valorDoc As Integer
+            If cad1 <> cad2 Then
+                valorDoc = recuperarCodDoc(cbProv.SelectedValue, 1, txtSerie.Text.Trim(), txtNro.Text.Trim()) '1=CodSer Reservado para guia proveedor
+                If valorDoc > 0 Then
+                    MessageBox.Show("Ya existe registrado => Nº " & txtSerie.Text.Trim() & "-" & txtNro.Text.Trim() & " en el Proveedor: " & cbProv.Text.Trim(), nomNegocio, Nothing, MessageBoxIcon.Information)
+                    Exit Sub
+                End If
             End If
 
             Me.Refresh()
@@ -940,7 +893,6 @@ Public Class registraGuiaRemEmpForm
                 vfVan3 = False
 
                 'Actualizando el dataTable
-                parametrosSerieDoc()
                 visualizarGuia()
 
                 BindingSource2.RemoveFilter()
@@ -953,7 +905,6 @@ Public Class registraGuiaRemEmpForm
                 vfVan2 = True
                 vfVan3 = True
                 btnCancelar.PerformClick()
-
 
                 StatusBarClass.messageBarraEstado("  Registro fué actualizado con exito...")
                 wait.Close()
@@ -977,11 +928,12 @@ Public Class registraGuiaRemEmpForm
     Private Sub comandoUpdate()
         cmUpdateTable = New SqlCommand
         cmUpdateTable.CommandType = CommandType.Text
-        cmUpdateTable.CommandText = "update TGuiaRemEmp set fecIni=@fec,codIde=@codI,codUbiOri=@codUbi1,codUbiDes=@codUbi2,partida=@par,llegada=@lleg,codET=@codE,codVeh=@codV,codT=@codT,codMotG=@codM,nroFact=@nroFac,obs=@obs,hist=@hist where codGuiaE=@nro"
+        cmUpdateTable.CommandText = "update TGuiaRemEmp set talon=@tal,nroGuia=@nroGuia,fecIni=@fec,codIde=@codI,codUbiDes=@codUbi2,partida=@par,llegada=@lleg,codET=@codE,codVeh=@codV,codT=@codT,codMotG=@codM,nroFact=@nroFac,obs=@obs,hist=@hist where codGuiaE=@nro"
         cmUpdateTable.Connection = Cn
+        cmUpdateTable.Parameters.Add("@tal", SqlDbType.VarChar, 5).Value = txtSerie.Text.Trim()
+        cmUpdateTable.Parameters.Add("@nroGuia", SqlDbType.Int, 0).Value = txtNro.Text.Trim()
         cmUpdateTable.Parameters.Add("@fec", SqlDbType.Date).Value = date1.Value.Date
         cmUpdateTable.Parameters.Add("@codI", SqlDbType.Int, 0).Value = cbProv.SelectedValue
-        cmUpdateTable.Parameters.Add("@codUbi1", SqlDbType.Int, 0).Value = cbAlm1.SelectedValue
         cmUpdateTable.Parameters.Add("@codUbi2", SqlDbType.Int, 0).Value = cbAlm2.SelectedValue
         cmUpdateTable.Parameters.Add("@par", SqlDbType.VarChar, 100).Value = txtPar.Text.Trim()
         cmUpdateTable.Parameters.Add("@lleg", SqlDbType.VarChar, 100).Value = txtLleg.Text.Trim()
@@ -995,14 +947,6 @@ Public Class registraGuiaRemEmpForm
         cmUpdateTable.Parameters.Add("@nro", SqlDbType.Int, 0).Value = BindingSource12.Item(BindingSource12.Position)(0)
     End Sub
 
-    Private Function recuperarUltimoDoc(ByVal codSer As Integer) As Integer
-        Dim cmdCampo As SqlCommand = New SqlCommand
-        cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = "select MAX(nroGuia) from TGuiaRemEmp where codSerS=" & codSer
-        cmdCampo.Connection = Cn
-        Return cmdCampo.ExecuteScalar
-    End Function
-
     Private Function recuperarCount(ByVal cod As Integer) As Integer
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
@@ -1014,11 +958,6 @@ Public Class registraGuiaRemEmpForm
     Private Sub btnEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEliminar.Click
         If BindingSource12.Position = -1 Then
             StatusBarClass.messageBarraEstado("  No existe registro a eliminar...")
-            Exit Sub
-        End If
-
-        If recuperarUltimoDoc(BindingSource12.Item(BindingSource12.Position)(5)) <> CInt(BindingSource12.Item(BindingSource12.Position)(3)) Then
-            MessageBox.Show("No se puede ELIMINAR por no ser la ultima GUIA DE REMISION ingresada...", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
 
@@ -1063,7 +1002,6 @@ Public Class registraGuiaRemEmpForm
             vfVan3 = False
 
             'Actualizando el dataTable
-            parametrosSerieDoc()
             visualizarGuia()
 
             BindingSource2.RemoveFilter()
@@ -1229,8 +1167,8 @@ Public Class registraGuiaRemEmpForm
             Exit Sub
         End If
 
-        If BindingSource13.Item(BindingSource13.Position)(10) = 1 Then
-            MessageBox.Show("NO se debe eliminar por estar en el estado de [ENTREGADO]", nomNegocio, Nothing, MessageBoxIcon.Error)
+        If BindingSource13.Item(BindingSource13.Position)(14) = 1 Then
+            MessageBox.Show("NO se debe eliminar por estar en el estado de [RECIBIDO]", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
 
@@ -1357,14 +1295,14 @@ Public Class registraGuiaRemEmpForm
 
         Dim vCom As Boolean = False
         For j As Short = 0 To BindingSource13.Count - 1
-            If BindingSource13.Item(j)(10) = 0 Then
+            If BindingSource13.Item(j)(14) = 0 Then
                 vCom = True
                 Exit For
             End If
         Next
 
         If vCom = False Then
-            MessageBox.Show("Proceso denegado en actualizar modificaciones, por estar en el estado de [ENTREGADO]", nomNegocio, Nothing, MessageBoxIcon.Error)
+            MessageBox.Show("Proceso denegado en actualizar modificaciones, por estar en el estado de [RECIBIDO]", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
 
@@ -1384,7 +1322,7 @@ Public Class registraGuiaRemEmpForm
 
             For j As Short = 0 To BindingSource13.Count - 1
 
-                If BindingSource13.Item(j)(10) = 0 Then 'solo pendientes se puede actualizar
+                If BindingSource13.Item(j)(14) = 0 Then 'solo pendientes se puede actualizar
                     'actualizando TDetalleGuiaEmp
                     comandoUpdate3(BindingSource13.Item(j)(1), BindingSource13.Item(j)(5), BindingSource13.Item(j)(3).ToString(), BindingSource13.Item(j)(0))
                     cmdUpdateTable3.Transaction = myTrans
@@ -1450,17 +1388,16 @@ Public Class registraGuiaRemEmpForm
 
         Dim vCom As Boolean = False
         For j As Short = 0 To BindingSource13.Count - 1
-            If BindingSource13.Item(j)(10) = 1 Then
+            If BindingSource13.Item(j)(14) = 1 Then
                 vCom = True
                 Exit For
             End If
         Next
 
         If vCom = True Then
-            MessageBox.Show("Proceso denegado en ANULAR, por estar en el estado de [ENTREGADO]", nomNegocio, Nothing, MessageBoxIcon.Error)
+            MessageBox.Show("Proceso denegado en ANULAR, por estar en el estado de [RECIBIDO]", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
-
 
         Dim resp As String = MessageBox.Show("Esta segúro de ANULAR Guia de Remisión" & Chr(13) & " Nº " & BindingSource12.Item(BindingSource12.Position)(1), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
@@ -1497,7 +1434,6 @@ Public Class registraGuiaRemEmpForm
             vfVan3 = False
 
             'Actualizando el dataTable
-            parametrosSerieDoc()
             visualizarGuia()
 
             BindingSource2.RemoveFilter()
@@ -1537,18 +1473,6 @@ Public Class registraGuiaRemEmpForm
         cmUpdateTable13.Parameters.Add("@est", SqlDbType.Int, 0).Value = estado '3 = anulado
         cmUpdateTable13.Parameters.Add("@hist", SqlDbType.VarChar, 500).Value = BindingSource12.Item(BindingSource12.Position)(20) & texto
         cmUpdateTable13.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource12.Item(BindingSource12.Position)(0)
-    End Sub
-
-    Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
-        If BindingSource12.Position = -1 Then
-            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Guia de Remisión...")
-            Exit Sub
-        End If
-
-        vCodDoc = BindingSource12.Item(BindingSource12.Position)(0)
-      
-        Dim informe As New ReportViewerGuiaRemEForm
-        informe.ShowDialog()
     End Sub
 
     Private Sub txtCan_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCan.KeyPress
@@ -1642,7 +1566,6 @@ Public Class registraGuiaRemEmpForm
             vfVan3 = False
 
             'Actualizando el dataTable
-            parametrosSerieDoc()
             visualizarGuia()
 
             BindingSource2.RemoveFilter()
@@ -1671,5 +1594,20 @@ Public Class registraGuiaRemEmpForm
                 Exit Sub
             End If
         End Try
+    End Sub
+
+    Private Sub txtSerie_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtSerie.GotFocus, txtSerie.MouseClick
+        txtSerie.SelectAll()
+    End Sub
+
+    'solo deja escribir Nros sin punto
+    Private Sub txtSerie_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtSerie.KeyPress, txtNro.KeyPress
+        If e.KeyChar.IsDigit(e.KeyChar) Then
+            e.Handled = False
+        ElseIf e.KeyChar.IsControl(e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
     End Sub
 End Class

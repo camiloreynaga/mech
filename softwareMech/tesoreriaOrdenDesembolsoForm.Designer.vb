@@ -21,8 +21,8 @@ Partial Class tesoreriaOrdenDesembolsoForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(tesoreriaOrdenDesembolsoForm))
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.btnF1 = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.cbSerie = New System.Windows.Forms.ComboBox
@@ -215,8 +215,8 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.dgTabla1.Location = New System.Drawing.Point(0, 32)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgTabla1.Size = New System.Drawing.Size(1006, 228)
         Me.dgTabla1.TabIndex = 332
         '
@@ -455,8 +455,8 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.dgTabla2.Location = New System.Drawing.Point(0, 98)
         Me.dgTabla2.Name = "dgTabla2"
         Me.dgTabla2.ReadOnly = True
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgTabla2.Size = New System.Drawing.Size(1002, 137)
         Me.dgTabla2.TabIndex = 320
         '
@@ -468,7 +468,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.btnNuevo.Location = New System.Drawing.Point(689, 61)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(76, 23)
-        Me.btnNuevo.TabIndex = 340
+        Me.btnNuevo.TabIndex = 10
         Me.btnNuevo.Text = "Pagar"
         Me.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnNuevo.UseVisualStyleBackColor = True
@@ -479,7 +479,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.CheckBox1.Location = New System.Drawing.Point(595, 65)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(88, 17)
-        Me.CheckBox1.TabIndex = 350
+        Me.CheckBox1.TabIndex = 9
         Me.CheckBox1.Text = "Detracción"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
@@ -493,7 +493,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.cbCla.Location = New System.Drawing.Point(688, 22)
         Me.cbCla.Name = "cbCla"
         Me.cbCla.Size = New System.Drawing.Size(159, 21)
-        Me.cbCla.TabIndex = 349
+        Me.cbCla.TabIndex = 5
         '
         'Label15
         '
@@ -519,7 +519,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.txtNro.Name = "txtNro"
         Me.txtNro.ReadOnly = True
         Me.txtNro.Size = New System.Drawing.Size(161, 20)
-        Me.txtNro.TabIndex = 346
+        Me.txtNro.TabIndex = 4
         '
         'cbCue
         '
@@ -531,7 +531,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.cbCue.Location = New System.Drawing.Point(380, 23)
         Me.cbCue.Name = "cbCue"
         Me.cbCue.Size = New System.Drawing.Size(118, 21)
-        Me.cbCue.TabIndex = 345
+        Me.cbCue.TabIndex = 3
         '
         'Label7
         '
@@ -549,7 +549,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.btnEliminar.Location = New System.Drawing.Point(952, 61)
         Me.btnEliminar.Name = "btnEliminar"
         Me.btnEliminar.Size = New System.Drawing.Size(34, 23)
-        Me.btnEliminar.TabIndex = 343
+        Me.btnEliminar.TabIndex = 13
         Me.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnEliminar.UseVisualStyleBackColor = True
         '
@@ -563,7 +563,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.btnCancelar.Location = New System.Drawing.Point(771, 61)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(84, 23)
-        Me.btnCancelar.TabIndex = 342
+        Me.btnCancelar.TabIndex = 11
         Me.btnCancelar.Text = "Cancelar"
         Me.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnCancelar.UseVisualStyleBackColor = True
@@ -576,7 +576,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.btnModificar.Location = New System.Drawing.Point(863, 61)
         Me.btnModificar.Name = "btnModificar"
         Me.btnModificar.Size = New System.Drawing.Size(84, 23)
-        Me.btnModificar.TabIndex = 341
+        Me.btnModificar.TabIndex = 12
         Me.btnModificar.Text = "Modificar"
         Me.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnModificar.UseVisualStyleBackColor = True
@@ -587,7 +587,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.txtDes.Name = "txtDes"
         Me.txtDes.ReadOnly = True
         Me.txtDes.Size = New System.Drawing.Size(441, 20)
-        Me.txtDes.TabIndex = 339
+        Me.txtDes.TabIndex = 6
         '
         'Label6
         '
@@ -610,7 +610,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.cbMod.MaxDropDownItems = 16
         Me.cbMod.Name = "cbMod"
         Me.cbMod.Size = New System.Drawing.Size(243, 21)
-        Me.cbMod.TabIndex = 337
+        Me.cbMod.TabIndex = 2
         '
         'Label5
         '
@@ -630,7 +630,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.cbMon.Location = New System.Drawing.Point(457, 63)
         Me.cbMon.Name = "cbMon"
         Me.cbMon.Size = New System.Drawing.Size(50, 21)
-        Me.cbMon.TabIndex = 335
+        Me.cbMon.TabIndex = 7
         '
         'Label3
         '
@@ -647,7 +647,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.txtMon.Name = "txtMon"
         Me.txtMon.ReadOnly = True
         Me.txtMon.Size = New System.Drawing.Size(78, 20)
-        Me.txtMon.TabIndex = 333
+        Me.txtMon.TabIndex = 8
         Me.txtMon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label4
@@ -665,7 +665,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.date1.Location = New System.Drawing.Point(11, 23)
         Me.date1.Name = "date1"
         Me.date1.Size = New System.Drawing.Size(107, 20)
-        Me.date1.TabIndex = 332
+        Me.date1.TabIndex = 1
         '
         'Navigator2
         '

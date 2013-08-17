@@ -515,13 +515,15 @@ create table TEntradaSalida
 	codSal int,
 	codUbiDes int default 0,  --Almacen destino para salidas de Mech
 	vanET int default 0,    --0=Pendiente  1=Recibido 2=Incompleto
+	codProv int default 0,  --Proveedor de entrada
 	foreign key(codMat) references TMaterial,
 	foreign key(idMU) references TMatUbi,
 	foreign key(codUbi) references TUbicacion,
 	foreign key(codTrans) references TTipoTransac,
 	foreign key(codSal) references  TSaldo
 )
---- select * from  TEntradaSalida
+--- select * from  TEntradaSalida 
+update TEntradaSalida set codUbiDes=1,codProv=1
 --MODIFICAR TIPO de DATOS campos a la estructura de nuestra base de datos
 --ALTER TABLE  TEntradaSalida ALTER COLUMN otroDoc varchar(100)
 
@@ -529,10 +531,11 @@ create table TEntradaSalida
 --aumentar campos a la estructura de nuestra base de datos
 --ALTER TABLE TEntradaSalida ADD codUbiDes int default 0
 --ALTER TABLE TEntradaSalida ADD vanET int default 0
---update TEntradaSalida set codUbiDes=0, vanET=0
+--ALTER TABLE TEntradaSalida ADD codProv int default 0
+--update TEntradaSalida set codUbiDes=0, vanET=0, codProv=0
 
 -----------------MODULO CAJA CHICA-----------------------
------------------EJECUTAR 09/08/2013------------------
+-----------------EJECUTAR 13/08/2013------------------
 ------------------------------------------------------
 
 -- EMPRESA DE TRANSPORTES

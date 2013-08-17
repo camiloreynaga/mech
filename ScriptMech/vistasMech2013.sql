@@ -675,7 +675,7 @@ as
 GO
 
 ---------------------------------------
--------EJECUTAR 09/08/2013-------------
+-------EJECUTAR 14/08/2013-------------
 ---------------------------------------
 
 create view VLugarObraAlmacen  
@@ -711,21 +711,23 @@ as
 	join TMatUbi TMU on TU.codUbi=TMU.codUbi
 	where TU.estado=1 -- solo almacen activo
 GO
-
+--DROP view VGuiaRemEmpAper
 create view VGuiaRemEmpAper  
 as	
-	select codGuiaE,talon,nroGuia,fecIni,codSerS,codIde,TG.estado,codUbiOri,codUbiDes,partida,llegada,codVeh,codT,codMotG,nroFact,obs,codPers,hist,TU1.codigo as codObraOri,TU2.codigo as codObraDes,codET,
+	select codGuiaE,talon,nroGuia,fecIni,codSerS,codIde,TG.estado,codUbiOri,codUbiDes,partida,llegada,codVeh,codT,codMotG,nroFact,obs,codPers,hist,TU1.codigo as codObraOri,TU2.codigo as codObraDes,codET,TG.codIdeProv,
 	talon+' - '+case when nroGuia<100 then '000'+ltrim(str(nroGuia)) when nroGuia>=100 and nroGuia<1000 then '00'+ltrim(str(nroGuia)) when nroGuia>=1000 and nroGuia<10000 then '0'+ltrim(str(nroGuia)) else ltrim(str(nroGuia)) end as nro
 	from TGuiaRemEmp TG join TUbicacion TU1 on TG.codUbiOri=TU1.codUbi
 	join TUbicacion TU2 on TG.codUbiDes=TU2.codUbi 
 	where TG.estado in(0,1) --0=abierto 1=terminado
 GO
-
+--DROP view VDetGuiaE
 create view VDetGuiaE --utilizado en dos interfaces
 as
-	select TD.codDGE,TD.codigo,TD.cant,TD.descrip,TD.unidad,TD.peso,TD.codGuiaE,TD.linea1,TM.codMat,TM.material,TM.codTipM,
-	TD.descrip+'. '+TD.linea1 as detalle,TD.entregado,'entre'=case when TD.entregado=0 then 'Pendiente' else 'Entregado' end
+	select TD.codDGE,TD.codigo,TD.cant,TD.descrip,TD.unidad,TD.peso,TD.codGuiaE,TD.linea1,TM.codMat,TM.material,TM.codTipM,TD.codPers,TP.nombre+' '+TP.apellido as nomRec,
+	TD.descrip+'. '+TD.linea1 as detalle,TD.entregado,'entre'=case when TD.entregado=0 then 'Pendiente' else 'Entregado' end,TD.recibido,TD.obsR,
+	'recib'=case when TD.recibido=0 then 'Pendiente' when TD.recibido=1 then 'Recibido' else 'Incompleto' end
 	from TDetalleGuiaEmp TD join TMaterial TM on TD.codMat=TM.codMat
+	left join TPersonal TP on TD.codPers=TP.codPers
 GO
 
 create view VGuiaDetGuiaE  --impresion
@@ -749,12 +751,12 @@ as
 	from TLugarTrabajo TL join TUbicacion TU on TL.codigo=TU.codigo
 	where TU.estado=1  --1=ALMACENES ACTIVOS
 GO
-
+--DROP view VKardex1
 create view VKardex1
 as
-	select TES.nroNota,TES.fecha,TM.codMat,TM.material,TU.unidad,TES.idMU,TUB1.codUbi,TUB1.ubicacion,TUB1.color,TL1.codigo,TL1.nombre,TES.cantEnt,TES.preUniEnt,
-	TES.cantSal,TES.preUniSal,TES.codGuia,TES.nroGuia,TES.codDoc,TES.nroDoc,TES.otroDoc,TT.codTrans,TT.tipo,TP.codPers,TP.nombre+' '+TP.apellido as nom,TES.obs,
-	TS.codSal,TS.saldo,TS.codLug,TES.codUbiDes,TUB2.ubicacion as almObra,TUB2.color as colorDes,TL2.codigo as codigoObra,TL2.nombre as nomObraDes,
+	select TES.nroNota,TES.fecha,TM.codMat,TM.material,TU.unidad,TES.idMU,TUB1.codUbi,TUB1.ubicacion,TUB1.color,TL1.codigo,TL1.nombre,TES.cantEnt,TES.preUniEnt,TES.codProv,TI.razon as provee,TI.ruc,
+	TES.cantSal,TES.preUniSal,TES.codGuia,TES.nroGuia,TES.codDoc,TES.nroDoc,TES.otroDoc,TT.codTrans,TT.tipo,TES.codUsu,TP1.nombre+' '+TP1.apellido as usuario,TES.obs,
+	TS.codSal,TS.saldo,TS.codLug,TES.codUbiDes,TUB2.ubicacion as almObra,TUB2.color as colorDes,TL2.codigo as codigoObra,TL2.nombre as nomObraDes,TES.codPers,TP2.nombre+' '+TP2.apellido as nomRecibe,
 	TES.vanET,'veri'=case when TES.vanET=0 and TES.codTrans=2 then 'Pendiente' when TES.vanET=1 and TES.codTrans=2 then 'Recibido' when TES.vanET=3 and TES.codTrans=2 then 'Incompleto' else '' end  --3=incompleto 2=Salida
 	from TEntradaSalida TES join TTipoTransac TT on TES.codTrans=TT.codTrans
 	join TSaldo TS on TES.codSal=TS.codSal
@@ -762,9 +764,11 @@ as
 	join TUnidad TU on TM.codUni=TU.codUni
 	join TUbicacion TUB1 on TES.codUbi=TUB1.codUbi
 	join TLugarTrabajo TL1 on TUB1.codigo=TL1.codigo
-	join TPersonal TP on TES.codUsu=TP.codPers
+	join TPersonal TP1 on TES.codUsu=TP1.codPers
+	left join TPersonal TP2 on TES.codPers=TP2.codPers
 	left join TUbicacion TUB2 on TES.codUbiDes=TUB2.codUbi
 	left join TLugarTrabajo TL2 on TUB2.codigo=TL2.codigo
+	left join TIdentidad TI on TES.codProv=TI.codIde
 GO
 
 create view VGuiaRemEmpEnt  
@@ -784,9 +788,8 @@ as
 	where TG.codSerS>1 and TG.estado=0 --0=abierto  1=reservado guia remision provee
 GO
 
-
 ---Vistas para seguimiento de Guias de Remision
----Ejecutar en BD Web 09-08-2013
+---Ejecutar en BD Web 10-08-2013
 create  view VSeguimientoGR
 as
 select TGR.codGuiaE,TGR.talon,TGR.nroGuia,TGR.fecIni,TGR.codSerS,tid.razon, TGR.codIde,
@@ -829,19 +832,76 @@ select codSerS,serie
 from TSerieSede TSE
 inner join TTipoDocEmp TTD on TTD.codTipDE = TSE.codTipDE 
 where TTD.codTipDE =75 and TSE.codSerS >1
+GO
 
-select codGuiaE,fecIni,nro,razon,ruc,partida,llegada,motivo,nroFact,nomPers,empTra,rucTra,marcaNro,nroConst,nroLic,nomTra,DNI,obs,hist,talon,nroGuia,codVeh,codT,codMotG,codPers,codObraOri,codObraDes,codET,codSerS,codIde,codUbiOri,codUbiDes from VGuiaRemEmpEnt 
-			0		1	2	3	  4		5		6		7		8		9		10	11		12		  13	  14	  15   16  17	18	 19		20		21	  22	23		24		25			26		27		28		29		30		31
-select codDGE,codigo,cant,unidad,detalle,peso,entre,entregado,codGuiaE,codMat from VDetGuiaE where codGuiaE=@nro
+create view VGuiaRemEmpAperProv  
+as	
+	select codGuiaE,talon,nroGuia,fecIni,codSerS,codIde,TG.estado,codUbiOri,codUbiDes,partida,llegada,codVeh,codT,codMotG,nroFact,obs,codPers,hist,
+	TU2.codigo as codObraDes,codET,TG.codIdeProv,talon+' - '+ltrim(str(nroGuia)) as nro
+	from TGuiaRemEmp TG join TUbicacion TU2 on TG.codUbiDes=TU2.codUbi 
+	where TG.estado in(0,1) --0=abierto 1=terminado
+GO
 
-select nroNota,tipo,fecha,material,cantEnt,preUniEnt,cantSal,preUniSal,saldo,unidad,nroGuia,nroDoc,veri,almObra,nomObraDes,nom,obs,codMat,idMU,codUbi,codigo,codGuia,codDoc,codTrans,codPers,codSal,vanET,codUbiDes,ubicacion,nombre from VKardex1 where codMat=@codMat and codUbi=@codUbi
-		0		1	  2		3		4			5		6		7		8		9		10		11	12		13		14		15	16	 17		18	  19	20		21		22		23		24		25	  26		27		28		29	
+create view VGuiaRemProvEnt  
+as	
+	select codGuiaE,talon,nroGuia,fecIni,codSerS,TG.estado,codUbiOri,codUbiDes,partida,TU2.ubicacion+' - '+llegada as llegada,
+	nroFact,obs,hist,TU2.codigo as codObraDes,TI.codIde,TI.razon,TI.ruc,TE.codET,TE.nombre as empTra,TE.ruc as rucTra,talon+' - '+ltrim(str(nroGuia)) as nro,
+	TV.codVeh,TV.marcaNro,TV.nroConst,TT.codT,TT.nombre as nomTra,TT.DNI,TT.nroLic,TM.codMotG,TM.motivo,TP.codPers,TP.nombre+' '+TP.apellido as nomPers
+	from TGuiaRemEmp TG join TUbicacion TU2 on TG.codUbiDes=TU2.codUbi
+	join TIdentidad TI on TG.codIde=TI.codIde 
+	join TEmpTransp TE on TG.codET=TE.codET
+	join TVehiculo TV on TG.codVeh=TV.codVeh
+	join TTransportista TT on TG.codT=TT.codT
+	join TMotivoGuia TM on TG.codMotG=TM.codMotG
+	join TPersonal TP on TG.codPers=TP.codPers
+	where TG.codSerS=1 and TG.estado=0 --0=abierto  1=reservado guia remision provee
+GO
+
+create view VSeguimientoGR_Proveedor
+as
+SELECT TGR.codGuiaE, TGR.talon, TGR.nroGuia, TGR.fecIni, TGR.codSerS, TID.razon, TGR.codIde, TGR.estado AS codestado, 
+CASE WHEN TGR.estado = 0 THEN 'ABIERTO' WHEN TGR.estado = 1 THEN 'TERMINADO' WHEN TGR.estado = 2 THEN 'CERRADO' ELSE 'ANULADO' END
+AS Estado, TU2.ubicacion AS Destino, TGR.codUbiOri, TGR.codUbiDes, TGR.partida, TGR.llegada, TGR.codET, TET.nombre AS empTrans, 
+TVE.marcaNro, TGR.codVeh, TCO.nombre, TGR.codT, TMO.motivo, TGR.codMotG, TGR.nroFact, TGR.obs, TPE.nombre + TPE.apellido AS Personal, 
+TGR.codPers, TID.ruc
+FROM mech.TGuiaRemEmp AS TGR INNER JOIN
+mech.TUbicacion AS TU2 ON TU2.codUbi = TGR.codUbiDes INNER JOIN
+mech.TIdentidad AS TID ON TID.codIde = TGR.codIde INNER JOIN
+mech.TEmpTransp AS TET ON TET.codET = TGR.codET INNER JOIN
+mech.TVehiculo AS TVE ON TVE.codVeh = TGR.codVeh INNER JOIN
+mech.TTransportista AS TCO ON TCO.codT = TGR.codT INNER JOIN
+mech.TMotivoGuia AS TMO ON TMO.codMotG = TGR.codMotG INNER JOIN
+mech.TPersonal AS TPE ON TPE.codPers = TGR.codPers INNER JOIN
+mech.TSerieSede AS TSE ON TSE.codSerS = TGR.codSerS
+WHERE     (TGR.codSerS = 1)
+go
+
+select codGuiaE,fecIni,nro,razon,ruc,partida,llegada,motivo,nroFact,nomPers,empTra,rucTra,marcaNro,nroConst,nroLic,nomTra,DNI,obs,hist,talon,nroGuia,codVeh,codT,codMotG,codPers,codUbiOri,codObraDes,codET,codSerS,codIde,codUbiDes from VGuiaRemProvEnt
+			0		1	2	3	  4		5		6		7		8		9		10	11		12		  13	  14	  15   16  17	18	 19		20		21	  22	23		24		25			26		27		28		29		30	
+																																												
+	
+select nroNota,tipo,fecha,material,cantEnt,preUniEnt,cantSal,preUniSal,saldo,unidad,nroGuia,nroDoc,veri,almObra,nomObraDes,obs,nomRecibe,provee,ruc,usuario,codMat,idMU,codUbi,codigo,codGuia,codDoc,codTrans,codPers,codSal,vanET,codUbiDes,ubicacion,nombre,codUsu from VKardex1 where codMat=@codMat and codUbi=@codUbi
+		0		1	  2		3		  4			5		6		7		  8		9		10	   11	12		13		14		15		16		17	 18		19	  20	21	  22	23		24		25		26		27		28	   29		30		31		32		33	
+	
+
+select codGuiaE,fecIni,nro,razon,ruc,partida,llegada,motivo,nroFact,nomPers,empTra,rucTra,marcaNro,nroConst,nroLic,nomTra,DNI,obs,hist,talon,nroGuia,codVeh,codT,codMotG,codPers,codObraOri,codObraDes,codET,codSerS,codIde,codUbiOri,codUbiDes from VGuiaRemEmpEnt where codObraDes='00-06'
+			0		1	2	3	  4		5		6		7		8		9		10	11		12		13			14	  15   16  17  18    19		20		21	  22	23		24		25			26		  27	28		29		30			31
+
+select codDGE,codigo,cant,unidad,detalle,peso,entre,entregado,codGuiaE,codMat,recib,nomRec,obsR,recibido,codPers from VDetGuiaE where codGuiaE=@nro
+		 0	1	  2		  3		4	   5	   6		7		 8		9	   10	  11	12		   13	14
+select codDGE,codigo,cant,unidad,detalle,peso,entre,entregado,codGuiaE,codMat,recib,nomRec,obsR,recibido,codPers from VDetGuiaE where codGuiaE=@nro
+select codDGE,codigo,cant,unidad,detalle,peso,entre,entregado,codGuiaE,codMat,recib,nomRec,obsR,recibido,codPers from VDetGuiaE where codGuiaE=@nro
+
 
 select * from TMatUbi
 select * from TSaldo
 select * from TUbicacion
 select * from TEntradaSalida
 select * from TTipoTransac
+
+select * from TUbicacion
+update TUbicacion set estado=1
+select hist,codGuiaE from TGuiaRemEmp
 
 
 

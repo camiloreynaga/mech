@@ -137,6 +137,7 @@ Partial Class MantVehiculoTransportistaFrm
         '
         Me.txtMarcaPlaca.Location = New System.Drawing.Point(16, 39)
         Me.txtMarcaPlaca.Name = "txtMarcaPlaca"
+        Me.txtMarcaPlaca.ReadOnly = True
         Me.txtMarcaPlaca.Size = New System.Drawing.Size(191, 20)
         Me.txtMarcaPlaca.TabIndex = 0
         '
@@ -144,6 +145,7 @@ Partial Class MantVehiculoTransportistaFrm
         '
         Me.txtConstancia.Location = New System.Drawing.Point(229, 39)
         Me.txtConstancia.Name = "txtConstancia"
+        Me.txtConstancia.ReadOnly = True
         Me.txtConstancia.Size = New System.Drawing.Size(163, 20)
         Me.txtConstancia.TabIndex = 1
         '
@@ -261,6 +263,7 @@ Partial Class MantVehiculoTransportistaFrm
         '
         Me.txtLicencia.Location = New System.Drawing.Point(358, 39)
         Me.txtLicencia.Name = "txtLicencia"
+        Me.txtLicencia.ReadOnly = True
         Me.txtLicencia.Size = New System.Drawing.Size(87, 20)
         Me.txtLicencia.TabIndex = 2
         '
@@ -269,6 +272,7 @@ Partial Class MantVehiculoTransportistaFrm
         Me.txtDni.Location = New System.Drawing.Point(10, 39)
         Me.txtDni.MaxLength = 8
         Me.txtDni.Name = "txtDni"
+        Me.txtDni.ReadOnly = True
         Me.txtDni.Size = New System.Drawing.Size(83, 20)
         Me.txtDni.TabIndex = 0
         '
@@ -294,6 +298,7 @@ Partial Class MantVehiculoTransportistaFrm
         '
         Me.txtNombre.Location = New System.Drawing.Point(107, 39)
         Me.txtNombre.Name = "txtNombre"
+        Me.txtNombre.ReadOnly = True
         Me.txtNombre.Size = New System.Drawing.Size(234, 20)
         Me.txtNombre.TabIndex = 1
         '

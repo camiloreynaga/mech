@@ -136,4 +136,31 @@ Module ValidarCamposModule
         End If
         Return False
     End Function
+
+
+    'Validaciones para números
+    ''' <summary>
+    ''' Valida el ingreso de números y separador decimal
+    ''' </summary>
+    ''' <param name="CajaTexto">Texbox a validar</param>
+    ''' <param name="e">Evento KeyPress</param>
+    ''' <remarks>Obtiene el Separador decimal configurado y valida sólo el ingreso de número con decimales</remarks>
+    Public Sub ValidarNumeroDecimal(ByVal CajaTexto As Windows.Forms.TextBox, ByVal e As System.Windows.Forms.KeyPressEventArgs)
+        'Obtiendo el separador Decimal (coma o punto)
+        Dim sDecimal As String = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator
+        'Label1.Text = "El separador decimal es: '" & s & ""
+
+        If Char.IsDigit(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        ElseIf e.KeyChar = sDecimal And Not CajaTexto.Text.IndexOf(sDecimal) Then
+            e.Handled = True
+        ElseIf e.KeyChar = sDecimal Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+    End Sub
+
 End Module

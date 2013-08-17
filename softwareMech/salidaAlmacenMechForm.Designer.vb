@@ -21,9 +21,9 @@ Partial Class salidaAlmacenMechForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(salidaAlmacenMechForm))
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.btnCrear = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Label17 = New System.Windows.Forms.Label
@@ -46,10 +46,13 @@ Partial Class salidaAlmacenMechForm
         Me.btnExtraer = New System.Windows.Forms.ToolStripButton
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator
         Me.Panel2 = New System.Windows.Forms.Panel
+        Me.cbUbi1 = New System.Windows.Forms.ComboBox
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.cbObra1 = New System.Windows.Forms.ComboBox
+        Me.Label18 = New System.Windows.Forms.Label
         Me.txtMat = New System.Windows.Forms.TextBox
         Me.btnVis = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnPro = New ComponentesSolucion2008.BottomSSP(Me.components)
-        Me.txtObs = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Label13 = New System.Windows.Forms.Label
         Me.txtOtro = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Label12 = New System.Windows.Forms.Label
@@ -72,6 +75,7 @@ Partial Class salidaAlmacenMechForm
         Me.cbObra = New System.Windows.Forms.ComboBox
         Me.Label2 = New System.Windows.Forms.Label
         Me.Label1 = New System.Windows.Forms.Label
+        Me.txtObs = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Panel3 = New System.Windows.Forms.Panel
         Me.txtObra = New System.Windows.Forms.TextBox
         Me.Label16 = New System.Windows.Forms.Label
@@ -96,11 +100,6 @@ Partial Class salidaAlmacenMechForm
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator
         Me.dgTabla2 = New System.Windows.Forms.DataGridView
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.cbObra1 = New System.Windows.Forms.ComboBox
-        Me.Label18 = New System.Windows.Forms.Label
-        Me.cbUbi1 = New System.Windows.Forms.ComboBox
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.btnGuia = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Panel1.SuspendLayout()
         CType(Me.dgStock, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,8 +170,8 @@ Partial Class salidaAlmacenMechForm
         Me.dgStock.Name = "dgStock"
         Me.dgStock.ReadOnly = True
         Me.dgStock.RowHeadersVisible = False
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgStock.RowsDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgStock.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgStock.Size = New System.Drawing.Size(245, 132)
         Me.dgStock.TabIndex = 316
         Me.dgStock.TabStop = False
@@ -185,8 +184,8 @@ Partial Class salidaAlmacenMechForm
         Me.dgTabla1.Location = New System.Drawing.Point(1, 0)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgTabla1.Size = New System.Drawing.Size(739, 146)
         Me.dgTabla1.TabIndex = 8
         '
@@ -331,7 +330,6 @@ Partial Class salidaAlmacenMechForm
         '
         'Panel2
         '
-        Me.Panel2.Controls.Add(Me.btnGuia)
         Me.Panel2.Controls.Add(Me.cbUbi1)
         Me.Panel2.Controls.Add(Me.Label6)
         Me.Panel2.Controls.Add(Me.cbObra1)
@@ -366,6 +364,44 @@ Partial Class salidaAlmacenMechForm
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(986, 133)
         Me.Panel2.TabIndex = 6
+        '
+        'cbUbi1
+        '
+        Me.cbUbi1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbUbi1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbUbi1.FormattingEnabled = True
+        Me.cbUbi1.Location = New System.Drawing.Point(741, 33)
+        Me.cbUbi1.Name = "cbUbi1"
+        Me.cbUbi1.Size = New System.Drawing.Size(197, 21)
+        Me.cbUbi1.TabIndex = 337
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(600, 37)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(127, 13)
+        Me.Label6.TabIndex = 336
+        Me.Label6.Text = "Enviado a Alm. Obra:"
+        '
+        'cbObra1
+        '
+        Me.cbObra1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbObra1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbObra1.FormattingEnabled = True
+        Me.cbObra1.Location = New System.Drawing.Point(103, 33)
+        Me.cbObra1.Name = "cbObra1"
+        Me.cbObra1.Size = New System.Drawing.Size(494, 21)
+        Me.cbObra1.TabIndex = 335
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(6, 36)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(99, 13)
+        Me.Label18.TabIndex = 334
+        Me.Label18.Text = "Enviado a Obra:"
         '
         'txtMat
         '
@@ -404,21 +440,14 @@ Partial Class salidaAlmacenMechForm
         Me.ToolTip1.SetToolTip(Me.btnPro, "Procesar Entrada o Salida de Insumos...")
         Me.btnPro.UseVisualStyleBackColor = True
         '
-        'txtObs
-        '
-        Me.txtObs.Location = New System.Drawing.Point(544, 108)
-        Me.txtObs.Name = "txtObs"
-        Me.txtObs.Size = New System.Drawing.Size(439, 20)
-        Me.txtObs.TabIndex = 15
-        '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(542, 95)
+        Me.Label13.Location = New System.Drawing.Point(456, 95)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(78, 13)
+        Me.Label13.Size = New System.Drawing.Size(34, 13)
         Me.Label13.TabIndex = 323
-        Me.Label13.Text = "Observación"
+        Me.Label13.Text = "Nota"
         '
         'txtOtro
         '
@@ -440,7 +469,7 @@ Partial Class salidaAlmacenMechForm
         '
         'txtFac
         '
-        Me.txtFac.Location = New System.Drawing.Point(431, 108)
+        Me.txtFac.Location = New System.Drawing.Point(345, 108)
         Me.txtFac.Name = "txtFac"
         Me.txtFac.Size = New System.Drawing.Size(107, 20)
         Me.txtFac.TabIndex = 13
@@ -448,7 +477,7 @@ Partial Class salidaAlmacenMechForm
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(428, 95)
+        Me.Label11.Location = New System.Drawing.Point(342, 95)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(68, 13)
         Me.Label11.TabIndex = 319
@@ -614,6 +643,13 @@ Partial Class salidaAlmacenMechForm
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Salida de Sede:"
         '
+        'txtObs
+        '
+        Me.txtObs.Location = New System.Drawing.Point(458, 108)
+        Me.txtObs.Name = "txtObs"
+        Me.txtObs.Size = New System.Drawing.Size(480, 20)
+        Me.txtObs.TabIndex = 15
+        '
         'Panel3
         '
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
@@ -633,21 +669,21 @@ Partial Class salidaAlmacenMechForm
         'txtObra
         '
         Me.txtObra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtObra.Location = New System.Drawing.Point(583, 19)
+        Me.txtObra.Location = New System.Drawing.Point(596, 19)
         Me.txtObra.Name = "txtObra"
         Me.txtObra.ReadOnly = True
-        Me.txtObra.Size = New System.Drawing.Size(396, 20)
+        Me.txtObra.Size = New System.Drawing.Size(386, 20)
         Me.txtObra.TabIndex = 336
         Me.txtObra.TabStop = False
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(580, 6)
+        Me.Label16.Location = New System.Drawing.Point(592, 6)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(81, 13)
+        Me.Label16.Size = New System.Drawing.Size(142, 13)
         Me.Label16.TabIndex = 335
-        Me.Label16.Text = "Sede / Obra:"
+        Me.Label16.Text = "Kardex de Sede / Obra:"
         '
         'txtUbi
         '
@@ -655,7 +691,7 @@ Partial Class salidaAlmacenMechForm
         Me.txtUbi.Location = New System.Drawing.Point(415, 19)
         Me.txtUbi.Name = "txtUbi"
         Me.txtUbi.ReadOnly = True
-        Me.txtUbi.Size = New System.Drawing.Size(160, 20)
+        Me.txtUbi.Size = New System.Drawing.Size(180, 20)
         Me.txtUbi.TabIndex = 334
         Me.txtUbi.TabStop = False
         '
@@ -666,7 +702,7 @@ Partial Class salidaAlmacenMechForm
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(68, 13)
         Me.Label15.TabIndex = 333
-        Me.Label15.Text = "Ubicación:"
+        Me.Label15.Text = "Kardex de:"
         '
         'txtIns1
         '
@@ -683,9 +719,9 @@ Partial Class salidaAlmacenMechForm
         Me.Label14.AutoSize = True
         Me.Label14.Location = New System.Drawing.Point(4, 6)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(68, 13)
+        Me.Label14.Size = New System.Drawing.Size(112, 13)
         Me.Label14.TabIndex = 331
-        Me.Label14.Text = "Kardex de:"
+        Me.Label14.Text = "Kardex de Insumo:"
         '
         'Navigator2
         '
@@ -828,65 +864,10 @@ Partial Class salidaAlmacenMechForm
         Me.dgTabla2.Location = New System.Drawing.Point(1, 42)
         Me.dgTabla2.Name = "dgTabla2"
         Me.dgTabla2.ReadOnly = True
-        DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgTabla2.Size = New System.Drawing.Size(981, 252)
         Me.dgTabla2.TabIndex = 330
-        '
-        'cbObra1
-        '
-        Me.cbObra1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbObra1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbObra1.FormattingEnabled = True
-        Me.cbObra1.Location = New System.Drawing.Point(103, 33)
-        Me.cbObra1.Name = "cbObra1"
-        Me.cbObra1.Size = New System.Drawing.Size(494, 21)
-        Me.cbObra1.TabIndex = 335
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(6, 36)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(99, 13)
-        Me.Label18.TabIndex = 334
-        Me.Label18.Text = "Enviado a Obra:"
-        '
-        'cbUbi1
-        '
-        Me.cbUbi1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbUbi1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbUbi1.FormattingEnabled = True
-        Me.cbUbi1.Location = New System.Drawing.Point(741, 33)
-        Me.cbUbi1.Name = "cbUbi1"
-        Me.cbUbi1.Size = New System.Drawing.Size(197, 21)
-        Me.cbUbi1.TabIndex = 337
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(600, 37)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(133, 13)
-        Me.Label6.TabIndex = 336
-        Me.Label6.Text = "Seleccione Alm. Obra:"
-        '
-        'btnGuia
-        '
-        Me.btnGuia.BackColor = System.Drawing.SystemColors.Control
-        Me.btnGuia.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnGuia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnGuia.Image = CType(resources.GetObject("btnGuia.Image"), System.Drawing.Image)
-        Me.btnGuia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnGuia.Location = New System.Drawing.Point(340, 106)
-        Me.btnGuia.Name = "btnGuia"
-        Me.btnGuia.Size = New System.Drawing.Size(86, 23)
-        Me.btnGuia.TabIndex = 338
-        Me.btnGuia.TabStop = False
-        Me.btnGuia.Text = "Sele.Guia"
-        Me.btnGuia.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolTip1.SetToolTip(Me.btnGuia, "Seleccionar guia de remision a enviar...")
-        Me.btnGuia.UseVisualStyleBackColor = False
         '
         'salidaAlmacenMechForm
         '
@@ -997,6 +978,5 @@ Partial Class salidaAlmacenMechForm
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents cbUbi1 As System.Windows.Forms.ComboBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents btnGuia As ComponentesSolucion2008.BottomSSP
 
 End Class

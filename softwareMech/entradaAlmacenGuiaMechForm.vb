@@ -2,17 +2,17 @@
 Imports System.Data.SqlClient
 Imports ComponentesSolucion2008
 
-Public Class salidaAlmacenGuiaMechForm
+Public Class entradaAlmacenGuiaMechForm
     Dim BindingSource1 As New BindingSource
     Dim BindingSource2 As New BindingSource
     Dim BindingSource4 As New BindingSource
     Dim BindingSource11 As New BindingSource
 
-    Private Sub salidaAlmacenGuiaMechForm_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
+    Private Sub entradaAlmacenGuiaMechForm_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
         Me.Close()
     End Sub
 
-    Private Sub salidaAlmacenGuiaMechForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub entradaAlmacenGuiaMechForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.Cursor = Cursors.WaitCursor
         'Realizando la conexion con SQL Server - ConexionModule.vb
         'conexion() 'active esta tipoM si desea ejecutar el form independientemente RAS
@@ -22,11 +22,11 @@ Public Class salidaAlmacenGuiaMechForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select codGuiaE,fecIni,nro,razon,ruc,partida,llegada,motivo,nroFact,nomPers,empTra,rucTra,marcaNro,nroConst,nroLic,nomTra,DNI,obs,hist,talon,nroGuia,codVeh,codT,codMotG,codPers,codObraOri,codObraDes,codET,codSerS,codIde,codUbiOri,codUbiDes from VGuiaRemEmpEnt"
+        Dim sele As String = "select codGuiaE,fecIni,nro,razon,ruc,partida,llegada,motivo,nroFact,nomPers,empTra,rucTra,marcaNro,nroConst,nroLic,nomTra,DNI,obs,hist,talon,nroGuia,codVeh,codT,codMotG,codPers,codUbiOri,codObraDes,codET,codSerS,codIde,codUbiDes from VGuiaRemProvEnt where codObraDes=@cod"  'solo filtrar por obra destino
         crearDataAdapterTable(daTabla1, sele)
-        'daTabla1.SelectCommand.Parameters.Add("@codSer", SqlDbType.Int, 0).Value = 0
+        daTabla1.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vSCodigo  'Guia remision por Destino Obra
 
-        sele = "select codDGE,codigo,cant,unidad,detalle,peso,entre,entregado,codGuiaE,codMat,recib,nomRec,obsR,recibido,codPers from VDetGuiaE where codGuiaE=@nro"
+        sele = "select codDGE,codigo,cant,unidad,detalle,peso,recib,recibido,codGuiaE,codMat,nomRec from VDetGuiaE where codGuiaE=@nro"
         crearDataAdapterTable(daDetDoc, sele)
         daDetDoc.SelectCommand.Parameters.Add("@nro", SqlDbType.Int, 0).Value = 0
 
@@ -43,13 +43,13 @@ Public Class salidaAlmacenGuiaMechForm
             crearDSAlmacen()
 
             'llenat el dataSet con los dataAdapter
-            daTabla1.Fill(dsAlmacen, "VGuiaRemEmpEnt")
+            daTabla1.Fill(dsAlmacen, "VGuiaRemProvEnt")
             daDetDoc.Fill(dsAlmacen, "VDetGuiaE")
             daVKardex.Fill(dsAlmacen, "VKardex1")
             daVStock.Fill(dsAlmacen, "VStockUbi")
 
             BindingSource1.DataSource = dsAlmacen
-            BindingSource1.DataMember = "VGuiaRemEmpEnt"
+            BindingSource1.DataMember = "VGuiaRemProvEnt"
             Navigator1.BindingSource = BindingSource1
             dgTabla1.DataSource = BindingSource1
             BindingSource1.Sort = "codGuiaE"
@@ -99,7 +99,7 @@ Public Class salidaAlmacenGuiaMechForm
         End Try
     End Sub
 
-    Private Sub salidaAlmacenGuiaMechForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+    Private Sub entradaAlmacenGuiaMechForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         'BindingSource1.MoveLast()
         vfVan3 = True
         visualizarDet()
@@ -140,10 +140,6 @@ Public Class salidaAlmacenGuiaMechForm
                 dgTabla3.Rows(j).Cells(6).Style.BackColor = Color.Green 'Color.YellowGreen
                 dgTabla3.Rows(j).Cells(6).Style.ForeColor = Color.White
             End If
-            If BindingSource2.Item(j)(13) = 1 Then 'Recibido
-                dgTabla3.Rows(j).Cells(10).Style.BackColor = Color.Green 'Color.YellowGreen
-                dgTabla3.Rows(j).Cells(10).Style.ForeColor = Color.White
-            End If
         Next
     End Sub
 
@@ -154,8 +150,8 @@ Public Class salidaAlmacenGuiaMechForm
             .Columns(1).Width = 70
             .Columns(2).HeaderText = "NºGuia"
             .Columns(2).Width = 70
-            .Columns(3).HeaderText = "Destinatario"
-            .Columns(3).Width = 180
+            .Columns(3).HeaderText = "Proveedor"
+            .Columns(3).Width = 250
             .Columns(4).HeaderText = "RUC"
             .Columns(4).Width = 75
             .Columns(5).HeaderText = "Punto de Partida"
@@ -198,7 +194,6 @@ Public Class salidaAlmacenGuiaMechForm
             .Columns(28).Visible = False
             .Columns(29).Visible = False
             .Columns(30).Visible = False
-            .Columns(31).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -218,18 +213,11 @@ Public Class salidaAlmacenGuiaMechForm
             .Columns(5).HeaderText = "Peso"
             .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(6).Width = 60
-            .Columns(6).HeaderText = "Entreg."
+            .Columns(6).HeaderText = "Recib."
             .Columns(7).Visible = False
             .Columns(8).Visible = False
             .Columns(9).Visible = False
-            .Columns(10).Width = 60
-            .Columns(10).HeaderText = "Recibido"
-            .Columns(11).Width = 120
-            .Columns(11).HeaderText = "Pers. Recibe"
-            .Columns(12).Width = 300
-            .Columns(12).HeaderText = "Nota Recibe"
-            .Columns(13).Visible = False
-            .Columns(14).Visible = False
+            .Columns(10).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -352,11 +340,10 @@ Public Class salidaAlmacenGuiaMechForm
         Me.Close()
     End Sub
 
-    Private Function recuperarNroNota1(ByVal codMat As Integer) As Integer
+    Private Function recuperarNroNota1(ByVal codUbi As Integer, ByVal codMat As Integer) As Integer
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
-        'cmdCampo.CommandText = "select MAX(nroNota) from TEntradaSalida where codUbi=" & codUbi & " and codMat=" & codMat
-        cmdCampo.CommandText = "select MAX(nroNota) from TEntradaSalida where codMat=" & codMat
+        cmdCampo.CommandText = "select MAX(nroNota) from TEntradaSalida where codUbi=" & codUbi & " and codMat=" & codMat
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function
@@ -393,13 +380,22 @@ Public Class salidaAlmacenGuiaMechForm
         Return cmdCampo.ExecuteScalar
     End Function
 
+    Private Function recuperarVan(ByVal idMU As Integer, ByVal myTrans As SqlTransaction) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select COUNT(*) from TEntradaSalida where idMU=" & idMU
+        cmdCampo.Connection = Cn
+        cmdCampo.Transaction = myTrans
+        Return cmdCampo.ExecuteScalar
+    End Function
+
     Private Sub btnDes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDes.Click
         If dgTabla2.Rows.Count = 0 Then
             StatusBarClass.messageBarraEstado("  NO Existe registro de KARDEX a deshacer...")
             Exit Sub
         End If
 
-        Dim nroNota As Integer = recuperarNroNota1(BindingSource4.Item(BindingSource4.Position)(20))  'codUbi  codMat
+        Dim nroNota As Integer = recuperarNroNota1(BindingSource4.Item(BindingSource4.Position)(22), BindingSource4.Item(BindingSource4.Position)(20))  'codUbi  codMat
 
         If BindingSource4.Item(BindingSource4.Position)(0) <> nroNota Then
             MessageBox.Show("Seleccione Ultimo Movimiento. Solo Ultimo Movimiento se puede deshacer...", nomNegocio, Nothing, MessageBoxIcon.Error)
@@ -407,14 +403,14 @@ Public Class salidaAlmacenGuiaMechForm
         End If
 
         If BindingSource4.Item(BindingSource4.Position)(33) <> vPass Then
-            MessageBox.Show("Proceso denegado, usuario no es el mismo que registro SALIDA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            MessageBox.Show("Proceso denegado, usuario no es el mismo que registro ENTRADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
 
-        'si es salida Mech=2 Y Nro Guia = Nro Guia entonces deshacer
-        If BindingSource4.Item(BindingSource4.Position)(26) = 2 And BindingSource4.Item(BindingSource4.Position)(24) = BindingSource2.Item(BindingSource2.Position)(0) Then  'Salida Mech >0 con guia
+        'si es ENTRADA Mech=1 Y Nro Guia = Nro Guia entonces deshacer
+        If BindingSource4.Item(BindingSource4.Position)(26) = 1 And BindingSource4.Item(BindingSource4.Position)(24) = BindingSource2.Item(BindingSource2.Position)(0) Then
         Else
-            MessageBox.Show("Proceso denegado, Movimiento NO es proceso de SALIDA de MECH con la misma Guia...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            MessageBox.Show("Proceso denegado, Movimiento NO es proceso de ENTRADA de MECH con la misma Guia...", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
 
@@ -423,7 +419,7 @@ Public Class salidaAlmacenGuiaMechForm
             Exit Sub
         End If
 
-        nroNota = recuperarNroNota1(BindingSource4.Item(BindingSource4.Position)(20))  'codUbi  codMat
+        nroNota = recuperarNroNota1(BindingSource4.Item(BindingSource4.Position)(22), BindingSource4.Item(BindingSource4.Position)(20))  'codUbi  codMat
         If BindingSource4.Item(BindingSource4.Position)(0) <> nroNota Then
             MessageBox.Show("Seleccione Ultimo Movimiento. Solo Ultimo Movimiento se puede deshacer...", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
@@ -463,21 +459,36 @@ Public Class salidaAlmacenGuiaMechForm
                 Exit Sub
             End If
 
-            '2=SALIDA
-            'MsgBox("modificando AUMENTAR TMATUBI")
-            'TMatUbi
-            comandoUpdate4(cant, idMU)
-            cmUpdateTable4.Transaction = myTrans
-            If cmUpdateTable4.ExecuteNonQuery() < 1 Then
-                'deshace la transaccion
-                wait.Close()
-                myTrans.Rollback()
-                MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                Me.Close()
+            Dim vFBorrar As Integer = recuperarVan(idMU, myTrans)
+
+            If vFBorrar = 0 Then
+                'MsgBox("Eliminando TMATUBI")
+                'Tabla TMatUbi
+                comandoDelete1(idMU)
+                cmDeleteTable1.Transaction = myTrans
+                If cmDeleteTable1.ExecuteNonQuery() < 1 Then
+                    wait.Close()
+                    myTrans.Rollback()
+                    MessageBox.Show("No se puede eliminar Representante por qué esta actualmente compartiendo...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                End If
+            Else
+                'MsgBox("modificando DISMINUIR TMATUBI")
+                'TMatUbi
+                comandoUpdate5(cant, idMU)
+                cmUpdateTable5.Transaction = myTrans
+                If cmUpdateTable5.ExecuteNonQuery() < 1 Then
+                    'deshace la transaccion
+                    wait.Close()
+                    myTrans.Rollback()
+                    MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                End If
             End If
 
             'TDetalleGuiaEmp
-            comandoUpdate1(0, BindingSource2.Item(BindingSource2.Position)(0)) '0=pendiente
+            comandoUpdate1(0, 0, "", BindingSource2.Item(BindingSource2.Position)(0)) '0=pendiente
             cmUpdateTable1.Transaction = myTrans
             If cmUpdateTable1.ExecuteNonQuery() < 1 Then
                 'deshace la transaccion
@@ -522,6 +533,15 @@ Public Class salidaAlmacenGuiaMechForm
         End Try
     End Sub
 
+    Dim cmDeleteTable1 As SqlCommand
+    Private Sub comandoDelete1(ByVal idMU As Integer)
+        cmDeleteTable1 = New SqlCommand
+        cmDeleteTable1.CommandType = CommandType.Text
+        cmDeleteTable1.CommandText = "delete from TMatUbi where idMU=@cod"
+        cmDeleteTable1.Connection = Cn
+        cmDeleteTable1.Parameters.Add("@cod", SqlDbType.Int, 0).Value = idMU
+    End Sub
+
     Dim cmDeleteTable2 As SqlCommand
     Private Sub comandoDelete2(ByVal nroNota As Integer)
         cmDeleteTable2 = New SqlCommand
@@ -540,14 +560,14 @@ Public Class salidaAlmacenGuiaMechForm
         cmDeleteTable3.Parameters.Add("@cod", SqlDbType.Int, 0).Value = codSal
     End Sub
 
-    Dim cmUpdateTable4 As SqlCommand
-    Private Sub comandoUpdate4(ByVal cant As Decimal, ByVal idMU As Integer)
-        cmUpdateTable4 = New SqlCommand
-        cmUpdateTable4.CommandType = CommandType.Text
-        cmUpdateTable4.CommandText = "update TMatUbi set stock=stock+@can where idMU=@nro"
-        cmUpdateTable4.Connection = Cn
-        cmUpdateTable4.Parameters.Add("@can", SqlDbType.Decimal, 0).Value = cant
-        cmUpdateTable4.Parameters.Add("@nro", SqlDbType.Int, 0).Value = idMU
+    Dim cmUpdateTable5 As SqlCommand
+    Private Sub comandoUpdate5(ByVal cant As Decimal, ByVal idMU As Integer)
+        cmUpdateTable5 = New SqlCommand
+        cmUpdateTable5.CommandType = CommandType.Text
+        cmUpdateTable5.CommandText = "update TMatUbi set stock=stock-@can where idMU=@nro"
+        cmUpdateTable5.Connection = Cn
+        cmUpdateTable5.Parameters.Add("@can", SqlDbType.Decimal, 0).Value = cant
+        cmUpdateTable5.Parameters.Add("@nro", SqlDbType.Int, 0).Value = idMU
     End Sub
 
     Private Sub btnImp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImp.Click
@@ -600,14 +620,6 @@ Public Class salidaAlmacenGuiaMechForm
     End Sub
     '--------------------------------------------------------------------------------------------------------
     '--------------------------------------------------------------------------------------------------------
-    Private Function recuperarStock(ByVal codMat As Integer, ByVal codUbi As Integer) As Double
-        Dim cmdCampo As SqlCommand = New SqlCommand
-        cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = "select isNull(max(stock),-1) as stock from TMatUbi where codMat=" & codMat & " and codUbi=" & codUbi
-        cmdCampo.Connection = Cn
-        Return cmdCampo.ExecuteScalar
-    End Function
-
     Private Function recuperarAlmacenado(ByVal codMat As Integer, ByVal codUbi As Integer) As Integer
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
@@ -641,31 +653,18 @@ Public Class salidaAlmacenGuiaMechForm
         End If
 
         If BindingSource2.Item(BindingSource2.Position)(7) = 1 Then
-            MessageBox.Show("Proceso denegado, ya fue ENTREGADO y procesado en KARDEX...", nomNegocio, Nothing, MessageBoxIcon.Information)
+            MessageBox.Show("Proceso denegado, ya fue RECIBIDO y procesado en KARDEX...", nomNegocio, Nothing, MessageBoxIcon.Information)
             Exit Sub
         End If
 
-        If CDbl(BindingSource2.Item(BindingSource2.Position)(2)) > CDbl(recuperarStock(BindingSource2.Item(BindingSource2.Position)(9), BindingSource1.Item(BindingSource1.Position)(30))) Then
-            MessageBox.Show("Proceso denegado, NO existe STOCK...", nomNegocio, Nothing, MessageBoxIcon.Information)
-            Exit Sub
-        End If
-
-        Dim resp As Short = MessageBox.Show("Esta segúro de procesar SALIDA de  " & BindingSource2.Item(BindingSource2.Position)(2) & " " & BindingSource2.Item(BindingSource2.Position)(3) & Chr(13) & BindingSource2.Item(BindingSource2.Position)(4) & Chr(13) & "De =>" & BindingSource1.Item(BindingSource1.Position)(5) & Chr(13), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Dim resp As Short = MessageBox.Show("Esta segúro de procesar INGRESOS de  " & BindingSource2.Item(BindingSource2.Position)(2) & " " & BindingSource2.Item(BindingSource2.Position)(3) & Chr(13) & BindingSource2.Item(BindingSource2.Position)(4) & Chr(13) & "A =>" & BindingSource1.Item(BindingSource1.Position)(6) & Chr(13), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
-            Exit Sub
-        End If
-
-        If CDbl(BindingSource2.Item(BindingSource2.Position)(2)) > recuperarStock(BindingSource2.Item(BindingSource2.Position)(9), BindingSource1.Item(BindingSource1.Position)(30)) Then
-            MessageBox.Show("Proceso denegado, NO existe STOCK...", nomNegocio, Nothing, MessageBoxIcon.Information)
-            Dim indice As Integer = BindingSource1.Item(BindingSource1.Position)(0)
-            BindingSource11.Filter = "codMat=" & BindingSource2.Item(BindingSource2.Position)(9) 'Sele Stock
             Exit Sub
         End If
 
         Dim existe As Single = recuperarAlmacenado(BindingSource2.Item(BindingSource2.Position)(9), BindingSource1.Item(BindingSource1.Position)(30))
         If existe = 0 Then
-            MsgBox("NO EXISTE STOCK")
-            Exit Sub
+            'MsgBox("NO EXISTE STOCK")
         Else
             'MsgBox("SI EXISTE STOCK")
         End If
@@ -679,22 +678,38 @@ Public Class salidaAlmacenGuiaMechForm
             StatusBarClass.messageBarraEstado("  GUARDANDO DATOS...")
             Me.Refresh()
 
-            Dim idMU As Integer = existe
-            'TMatUbi
-            comandoUpdate3(BindingSource2.Item(BindingSource2.Position)(2), idMU)
-            cmUpdateTable3.Transaction = myTrans
-            If cmUpdateTable3.ExecuteNonQuery() < 1 Then
-                'deshace la transaccion
-                wait.Close()
-                myTrans.Rollback()
-                MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                Me.Close()
-                Exit Sub
+            Dim idMU As Integer
+            If existe = 0 Then 'No existe stock crear...
+                'TMatUbi
+                comandoInsert1(BindingSource2.Item(BindingSource2.Position)(9), BindingSource1.Item(BindingSource1.Position)(30), CDbl(BindingSource2.Item(BindingSource2.Position)(2)))
+                cmdInserTable1.Transaction = myTrans
+                If cmdInserTable1.ExecuteNonQuery() < 1 Then
+                    wait.Close()
+                    Me.Cursor = Cursors.Default
+                    myTrans.Rollback()
+                    MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                End If
+                idMU = cmdInserTable1.Parameters("@Identity").Value
+            Else 'existe = 1 si hay stock Aumentar
+                'TMatUbi
+                comandoUpdate2(existe, CDbl(BindingSource2.Item(BindingSource2.Position)(2)))
+                cmUpdateTable2.Transaction = myTrans
+                If cmUpdateTable2.ExecuteNonQuery() < 1 Then
+                    'deshace la transaccion
+                    wait.Close()
+                    myTrans.Rollback()
+                    MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                End If
+                idMU = existe
             End If
 
             Dim saldo As Decimal = recuperarSaldo(idMU, myTrans) 'saldo de almacen
             'TSaldo
-            comandoInsert11(saldo, BindingSource1.Item(BindingSource1.Position)(25))
+            comandoInsert11(saldo, BindingSource1.Item(BindingSource1.Position)(26))
             cmInserTable11.Transaction = myTrans
             If cmInserTable11.ExecuteNonQuery() < 1 Then
                 wait.Close()
@@ -706,18 +721,18 @@ Public Class salidaAlmacenGuiaMechForm
             End If
             Dim codSal As Integer = cmInserTable11.Parameters("@Identity").Value
 
-            Dim cantEnt As Decimal = 0
+            Dim cantEnt As Decimal = BindingSource2.Item(BindingSource2.Position)(2)
             Dim precio As Decimal = recuperarPreBase(BindingSource2.Item(BindingSource2.Position)(9), myTrans)
-            Dim cantSal As Decimal = BindingSource2.Item(BindingSource2.Position)(2)
+            Dim cantSal As Decimal = 0
 
             'TEntradaSalida
-            comandoInsert2(Now.Date, BindingSource2.Item(BindingSource2.Position)(9), idMU, BindingSource1.Item(BindingSource1.Position)(30), cantEnt, 0, cantSal, precio, BindingSource2.Item(BindingSource2.Position)(0), "R " & BindingSource1.Item(BindingSource1.Position)(2), 0, BindingSource1.Item(BindingSource1.Position)(8), "", 2, vPass, 0, "", codSal, BindingSource1.Item(BindingSource1.Position)(31), 0, BindingSource1.Item(BindingSource1.Position)(29)) '2=Salida 0=pendiente
+            comandoInsert2(Now.Date, BindingSource2.Item(BindingSource2.Position)(9), idMU, BindingSource1.Item(BindingSource1.Position)(30), cantEnt, precio, cantSal, 0, BindingSource2.Item(BindingSource2.Position)(0), "R " & BindingSource1.Item(BindingSource1.Position)(2), 0, BindingSource1.Item(BindingSource1.Position)(8), "", 1, vPass, vPass, "", codSal, BindingSource1.Item(BindingSource1.Position)(30), 1, BindingSource1.Item(BindingSource1.Position)(29)) '1=Entrada 1=recibido
             cmdInserTable2.Transaction = myTrans
             cmdInserTable2.ExecuteNonQuery()
             Dim nroNota As Integer = cmdInserTable2.Parameters("@Identity").Value
 
             'TDetalleGuiaEmp
-            comandoUpdate1(1, BindingSource2.Item(BindingSource2.Position)(0)) '1=entregado
+            comandoUpdate1(1, vPass, "", BindingSource2.Item(BindingSource2.Position)(0)) '1=Recibido
             cmUpdateTable1.Transaction = myTrans
             If cmUpdateTable1.ExecuteNonQuery() < 1 Then
                 'deshace la transaccion
@@ -766,14 +781,28 @@ Public Class salidaAlmacenGuiaMechForm
         End Try
     End Sub
 
-    Dim cmUpdateTable3 As SqlCommand
-    Private Sub comandoUpdate3(ByVal cant As Decimal, ByVal idMU As Integer)
-        cmUpdateTable3 = New SqlCommand
-        cmUpdateTable3.CommandType = CommandType.Text
-        cmUpdateTable3.CommandText = "update TMatUbi set stock=stock-@can where idMU=@cod"
-        cmUpdateTable3.Connection = Cn
-        cmUpdateTable3.Parameters.Add("@can", SqlDbType.Decimal, 0).Value = cant
-        cmUpdateTable3.Parameters.Add("@cod", SqlDbType.Int, 0).Value = idMU
+    Dim cmdInserTable1 As SqlCommand
+    Private Sub comandoInsert1(ByVal codArt As Integer, ByVal codUbi As Integer, ByVal can As Decimal)
+        cmdInserTable1 = New SqlCommand
+        cmdInserTable1.CommandType = CommandType.StoredProcedure
+        cmdInserTable1.CommandText = "PA_InsertTMatUbi"
+        cmdInserTable1.Connection = Cn
+        cmdInserTable1.Parameters.Add("@codMat", SqlDbType.Int, 0).Value = codArt
+        cmdInserTable1.Parameters.Add("@codUbi", SqlDbType.Int, 0).Value = codUbi
+        cmdInserTable1.Parameters.Add("@stock", SqlDbType.Decimal, 0).Value = can
+        'configurando direction output = parametro de solo salida
+        cmdInserTable1.Parameters.Add("@Identity", SqlDbType.Int, 0)
+        cmdInserTable1.Parameters("@Identity").Direction = ParameterDirection.Output
+    End Sub
+
+    Dim cmUpdateTable2 As SqlCommand
+    Private Sub comandoUpdate2(ByVal idMU As Integer, ByVal cant As Double)
+        cmUpdateTable2 = New SqlCommand
+        cmUpdateTable2.CommandType = CommandType.Text
+        cmUpdateTable2.CommandText = "update TMatUbi set stock=stock+@can where idMU=@cod"
+        cmUpdateTable2.Connection = Cn
+        cmUpdateTable2.Parameters.Add("@can", SqlDbType.Decimal, 0).Value = cant
+        cmUpdateTable2.Parameters.Add("@cod", SqlDbType.Int, 0).Value = idMU
     End Sub
 
     Dim cmInserTable11 As SqlCommand
@@ -822,12 +851,14 @@ Public Class salidaAlmacenGuiaMechForm
     End Sub
 
     Dim cmUpdateTable1 As SqlCommand
-    Private Sub comandoUpdate1(ByVal ent As Integer, ByVal cod As Integer)
+    Private Sub comandoUpdate1(ByVal ent As Integer, ByVal codPers As Integer, ByVal obs As String, ByVal cod As Integer)
         cmUpdateTable1 = New SqlCommand
         cmUpdateTable1.CommandType = CommandType.Text
-        cmUpdateTable1.CommandText = "update TDetalleGuiaEmp set entregado=@ent where codDGE=@cod"
+        cmUpdateTable1.CommandText = "update TDetalleGuiaEmp set recibido=@ent,codPers=@codPers,obsR=@obs where codDGE=@cod"
         cmUpdateTable1.Connection = Cn
         cmUpdateTable1.Parameters.Add("@ent", SqlDbType.Int, 0).Value = ent
+        cmUpdateTable1.Parameters.Add("@codPers", SqlDbType.Int, 0).Value = codPers
+        cmUpdateTable1.Parameters.Add("@obs", SqlDbType.VarChar, 100).Value = obs
         cmUpdateTable1.Parameters.Add("@cod", SqlDbType.Int, 0).Value = cod
     End Sub
 
@@ -838,14 +869,7 @@ Public Class salidaAlmacenGuiaMechForm
         End If
 
         For i As Short = 0 To BindingSource2.Count - 1
-            If BindingSource2.Item(i)(7) = 0 Then '0=No entregado
-                MessageBox.Show("Proceso denegado, Hay Insumos NO ENTREGADOs NI procesados en KARDEX...", nomNegocio, Nothing, MessageBoxIcon.Information)
-                Exit Sub
-            End If
-        Next
-
-        For i As Short = 0 To BindingSource2.Count - 1
-            If BindingSource2.Item(i)(13) = 0 Then '0=No entregado
+            If BindingSource2.Item(i)(7) = 0 Then '0=No RECIBIDO
                 MessageBox.Show("Proceso denegado, Hay Insumos NO RECIBIDOS NI procesados en KARDEX...", nomNegocio, Nothing, MessageBoxIcon.Information)
                 Exit Sub
             End If
@@ -886,10 +910,10 @@ Public Class salidaAlmacenGuiaMechForm
 
             'Actualizando el dataSet 
             dsAlmacen.Tables("VStockUbi").Clear()
-            dsAlmacen.Tables("VGuiaRemEmpEnt").Clear()
+            dsAlmacen.Tables("VGuiaRemProvEnt").Clear()
 
             daVStock.Fill(dsAlmacen, "VStockUbi")
-            daTabla1.Fill(dsAlmacen, "VGuiaRemEmpEnt")
+            daTabla1.Fill(dsAlmacen, "VGuiaRemProvEnt")
 
             vfVan3 = True
             visualizarDet()

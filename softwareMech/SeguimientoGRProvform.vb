@@ -3,7 +3,7 @@ Imports System.Data.SqlClient
 Imports ComponentesSolucion2008
 
 
-Public Class SeguimientoGRform
+Public Class SeguimientoGRProvform
 
 #Region "Variables"
 
@@ -77,20 +77,20 @@ Public Class SeguimientoGRform
         Me.Cursor = Cursors.WaitCursor
         wait.Show()
         Dim sele As String '= "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,moneda,simbolo,solicitante,ruc,fono,email,codObra,codIde from VOrdenDesembolsoSeguimiento"
-        sele = "select  codGuiaE, talon, nroGuia, fecIni, codSerS,razon,  codIde, codestado, Estado,Origen,Destino,codUbiOri,codUbiDes,partida, llegada, codET, empTrans,marcaNro,codVeh,nombre,  codT, motivo,   codMotG, nroFact, obs, Personal,  codPers,ruc from VSeguimientoGR"
+        sele = "select  codGuiaE, talon, nroGuia, fecIni, codSerS,razon,  codIde, codestado, Estado,Destino,codUbiOri,codUbiDes,partida, llegada, codET, empTrans,marcaNro,codVeh,nombre,  codT, motivo,   codMotG, nroFact, obs, Personal,  codPers,ruc from VSeguimientoGR_Proveedor"
         crearDataAdapterTable(daTabla1, sele)
 
         'sele = "PA_SeguimientoComprobantes"
         sele = "PA_LugarTrabajo" '"Select codigo,nombre from tLugarTrabajo"
         crearDataAdapterTableProcedure(daTabla3, sele)
 
-        sele = "select codSerS,serie from VSeguimientoGRSerie "
-        crearDataAdapterTable(daTabla5, sele)
+        'sele = "select codSerS,serie from VSeguimientoGRSerie "
+        'crearDataAdapterTable(daTabla5, sele)
 
-        'sele = "PA_Proveedores"
+        sele = "PA_Proveedores"
         '"Select codIde,razon from TIdentidad where idTipId=2"
         'crearDataAdapterTable(daTabla5, sele)
-        'crearDataAdapterTableProcedure(daTabla5, sele)
+        crearDataAdapterTableProcedure(daTabla5, sele)
         'daTabla1.SelectCommand.Parameters.Add("@idDesembolso", SqlDbType.Int).Value = 0
 
         'sele = "select (nombre +' '+ apellido) as solicitante from Tpersonal where codPers > 1"
@@ -111,12 +111,13 @@ Public Class SeguimientoGRform
             cbObra.DisplayMember = "nombre"
             cbObra.ValueMember = "codigo"
 
-            daTabla5.Fill(dsAlmacen, "VSeguimientoGRSerie")
+            daTabla5.Fill(dsAlmacen, "TIdentidad")
             BindingSource4.DataSource = dsAlmacen
-            BindingSource4.DataMember = "VSeguimientoGRSerie"
-            cbSerie.DataSource = BindingSource4
-            cbSerie.DisplayMember = "serie"
-            cbSerie.ValueMember = "codSerS"
+            BindingSource4.DataMember = "TIdentidad"
+            BindingSource4.Sort = "razon asc"
+            cbProveedor.DataSource = BindingSource4
+            cbProveedor.DisplayMember = "razon"
+            cbProveedor.ValueMember = "codIde"
 
             'daTabla5.Fill(dsAlmacen, "TIdentidad")
             'BindingSource5.DataSource = dsAlmacen
@@ -289,8 +290,7 @@ Public Class SeguimientoGRform
                 .Columns("codestado").Visible = False
 
                 'Numero de Cuenta usada
-                .Columns("Origen").HeaderText = "Origen"
-                .Columns("Origen").Width = 160
+
 
                 .Columns("Destino").HeaderText = "Destino"
                 .Columns("Destino").Width = 160
@@ -434,9 +434,9 @@ Public Class SeguimientoGRform
             'If txtEstado.Text.Trim() = "PENDIENTE" Then
             'End If
 
-            txtPartida.Text = BindingSource0.Item(BindingSource0.Position)(13)
-            txtLlegada.Text = BindingSource0.Item(BindingSource0.Position)(14)
-            txtMotivo.Text = BindingSource0.Item(BindingSource0.Position)(21)
+            txtPartida.Text = BindingSource0.Item(BindingSource0.Position)(12)
+            txtLlegada.Text = BindingSource0.Item(BindingSource0.Position)(13)
+            txtMotivo.Text = BindingSource0.Item(BindingSource0.Position)(20)
             txtEstado.Text = BindingSource0.Item(BindingSource0.Position)(8)
 
             'Dandole Color al Textbox 
@@ -457,10 +457,10 @@ Public Class SeguimientoGRform
         Else
             ' If BindingSource0.Count > 0 Then
             txtDenominacion.Text = BindingSource0.Item(BindingSource0.Position)(5)
-            txtRuc.Text = BindingSource0.Item(BindingSource0.Position)(27)
-            txtChofer.Text = BindingSource0.Item(BindingSource0.Position)(19)
-            txtVehiculo.Text = BindingSource0.Item(BindingSource0.Position)(17)
-            txtObs.Text = BindingSource0.Item(BindingSource0.Position)(24)
+            txtRuc.Text = BindingSource0.Item(BindingSource0.Position)(26)
+            txtChofer.Text = BindingSource0.Item(BindingSource0.Position)(18)
+            txtVehiculo.Text = BindingSource0.Item(BindingSource0.Position)(16)
+            txtObs.Text = BindingSource0.Item(BindingSource0.Position)(23)
         End If
 
 
@@ -601,7 +601,12 @@ Public Class SeguimientoGRform
             End If
 
             If chkSerie.Checked = False Then
-                pCriterio = "codSerS=" & cbSerie.SelectedValue
+                pCriterio = "codIde=" & cbProveedor.SelectedValue
+                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+            End If
+
+            If String.IsNullOrEmpty(txtNroGuia_search.Text) = False Then
+                pCriterio = " CONVERT(nroGuia, 'System.String') LIKE '" & txtNroGuia_search.Text.Trim & "%'"
                 pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
             End If
 
@@ -666,13 +671,13 @@ Public Class SeguimientoGRform
 
 #Region "Eventos"
 
-    Private Sub SeguimientoGRform_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
+    Private Sub SeguimientoGRProvform_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
 
         Me.Close()
 
     End Sub
 
-    Private Sub SeguimientoGRform_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub SeguimientoGRProvform_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         DatosIniciales()
         ModificandoColumnasDGV_GR()
         If BindingSource1.Count > 0 Then
@@ -692,7 +697,7 @@ Public Class SeguimientoGRform
 
     End Sub
 
-    Private Sub SeguimientoGRform_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+    Private Sub SeguimientoGRProvform_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         ColorearGrilla()
         ColorearGrillaDetalle()
 
@@ -713,6 +718,7 @@ Public Class SeguimientoGRform
             cbObra.Visible = True
             cbAlmacen.Visible = True
             lblAlmacen.Visible = True
+
 
             'cambia el estado de bandera de consulta de detalle de guia
             '
@@ -751,9 +757,9 @@ Public Class SeguimientoGRform
 
     Private Sub chkSerie_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSerie.CheckedChanged
         If chkSerie.Checked Then
-            cbSerie.Visible = False
+            cbProveedor.Visible = False
         Else
-            cbSerie.Visible = True
+            cbProveedor.Visible = True
 
             'cambia el estado de bandera de consulta de detalle de guia
             '
@@ -764,7 +770,7 @@ Public Class SeguimientoGRform
         filtrando()
     End Sub
 
-    Private Sub cbSerie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSerie.SelectedIndexChanged
+    Private Sub cbSerie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbProveedor.SelectedIndexChanged
         'Try
         '    If BindingSource4.Position >= 0 Then
         '        'If cbSerie.SelectedValue.ToString() = "System.Data.DataRowView" Then
@@ -780,7 +786,7 @@ Public Class SeguimientoGRform
         filtrando()
     End Sub
 
-   
+
     Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
         If BindingSource0.Position = -1 Then
             StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Guia de Remisión...")
@@ -794,4 +800,8 @@ Public Class SeguimientoGRform
     End Sub
 
 #End Region
+
+    Private Sub txtNroGuia_search_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNroGuia_search.TextChanged
+        filtrando()
+    End Sub
 End Class

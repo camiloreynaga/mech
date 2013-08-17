@@ -972,4 +972,5 @@ Public Class MantIdentidadForm
 
 
     End Sub
+
 End Class

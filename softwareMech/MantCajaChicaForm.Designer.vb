@@ -20,7 +20,7 @@ Partial Class MantCajaChicaForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MantCajaChicaForm))
         Me.Label1 = New System.Windows.Forms.Label
         Me.txtCodCaja = New System.Windows.Forms.TextBox
@@ -162,8 +162,8 @@ Partial Class MantCajaChicaForm
         Me.dgCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgCaja.Location = New System.Drawing.Point(3, 16)
         Me.dgCaja.Name = "dgCaja"
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgCaja.RowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgCaja.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgCaja.Size = New System.Drawing.Size(608, 322)
         Me.dgCaja.TabIndex = 10
         '

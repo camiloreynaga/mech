@@ -21,9 +21,9 @@ Partial Class entradaAlmacenMechForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(entradaAlmacenMechForm))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.btnCrear = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Label17 = New System.Windows.Forms.Label
@@ -49,7 +49,6 @@ Partial Class entradaAlmacenMechForm
         Me.txtMat = New System.Windows.Forms.TextBox
         Me.btnVis = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnPro = New ComponentesSolucion2008.BottomSSP(Me.components)
-        Me.txtObs = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Label13 = New System.Windows.Forms.Label
         Me.txtOtro = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Label12 = New System.Windows.Forms.Label
@@ -63,8 +62,6 @@ Partial Class entradaAlmacenMechForm
         Me.Label8 = New System.Windows.Forms.Label
         Me.date1 = New System.Windows.Forms.DateTimePicker
         Me.Label7 = New System.Windows.Forms.Label
-        Me.cbPro = New System.Windows.Forms.ComboBox
-        Me.Label6 = New System.Windows.Forms.Label
         Me.txtUni = New System.Windows.Forms.TextBox
         Me.Label5 = New System.Windows.Forms.Label
         Me.txtSto = New System.Windows.Forms.TextBox
@@ -74,6 +71,7 @@ Partial Class entradaAlmacenMechForm
         Me.cbObra = New System.Windows.Forms.ComboBox
         Me.Label2 = New System.Windows.Forms.Label
         Me.Label1 = New System.Windows.Forms.Label
+        Me.txtObs = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Panel3 = New System.Windows.Forms.Panel
         Me.txtObra = New System.Windows.Forms.TextBox
         Me.Label16 = New System.Windows.Forms.Label
@@ -113,7 +111,7 @@ Partial Class entradaAlmacenMechForm
         'lblTitulo
         '
         Me.lblTitulo.Size = New System.Drawing.Size(1000, 23)
-        Me.lblTitulo.Text = "Entradas a Almacenes de Constructora Mech"
+        Me.lblTitulo.Text = "Entradas de Insumos a Almacenes sin guia.."
         '
         'lblDerecha
         '
@@ -168,8 +166,8 @@ Partial Class entradaAlmacenMechForm
         Me.dgStock.Name = "dgStock"
         Me.dgStock.ReadOnly = True
         Me.dgStock.RowHeadersVisible = False
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgStock.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgStock.RowsDefaultCellStyle = DataGridViewCellStyle7
         Me.dgStock.Size = New System.Drawing.Size(245, 147)
         Me.dgStock.TabIndex = 316
         Me.dgStock.TabStop = False
@@ -182,8 +180,8 @@ Partial Class entradaAlmacenMechForm
         Me.dgTabla1.Location = New System.Drawing.Point(1, 0)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.dgTabla1.Size = New System.Drawing.Size(739, 161)
         Me.dgTabla1.TabIndex = 8
         '
@@ -331,7 +329,6 @@ Partial Class entradaAlmacenMechForm
         Me.Panel2.Controls.Add(Me.txtMat)
         Me.Panel2.Controls.Add(Me.btnVis)
         Me.Panel2.Controls.Add(Me.btnPro)
-        Me.Panel2.Controls.Add(Me.txtObs)
         Me.Panel2.Controls.Add(Me.Label13)
         Me.Panel2.Controls.Add(Me.txtOtro)
         Me.Panel2.Controls.Add(Me.Label12)
@@ -345,8 +342,6 @@ Partial Class entradaAlmacenMechForm
         Me.Panel2.Controls.Add(Me.Label8)
         Me.Panel2.Controls.Add(Me.date1)
         Me.Panel2.Controls.Add(Me.Label7)
-        Me.Panel2.Controls.Add(Me.cbPro)
-        Me.Panel2.Controls.Add(Me.Label6)
         Me.Panel2.Controls.Add(Me.txtUni)
         Me.Panel2.Controls.Add(Me.Label5)
         Me.Panel2.Controls.Add(Me.txtSto)
@@ -356,6 +351,7 @@ Partial Class entradaAlmacenMechForm
         Me.Panel2.Controls.Add(Me.cbObra)
         Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Controls.Add(Me.Label1)
+        Me.Panel2.Controls.Add(Me.txtObs)
         Me.Panel2.Location = New System.Drawing.Point(14, 210)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(986, 118)
@@ -398,21 +394,14 @@ Partial Class entradaAlmacenMechForm
         Me.ToolTip1.SetToolTip(Me.btnPro, "Procesar Entrada o Salida de Insumos...")
         Me.btnPro.UseVisualStyleBackColor = True
         '
-        'txtObs
-        '
-        Me.txtObs.Location = New System.Drawing.Point(436, 93)
-        Me.txtObs.Name = "txtObs"
-        Me.txtObs.Size = New System.Drawing.Size(519, 20)
-        Me.txtObs.TabIndex = 15
-        '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(435, 80)
+        Me.Label13.Location = New System.Drawing.Point(460, 80)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(78, 13)
+        Me.Label13.Size = New System.Drawing.Size(34, 13)
         Me.Label13.TabIndex = 323
-        Me.Label13.Text = "Observación"
+        Me.Label13.Text = "Nota"
         '
         'txtOtro
         '
@@ -434,7 +423,7 @@ Partial Class entradaAlmacenMechForm
         '
         'txtFac
         '
-        Me.txtFac.Location = New System.Drawing.Point(322, 93)
+        Me.txtFac.Location = New System.Drawing.Point(347, 93)
         Me.txtFac.Name = "txtFac"
         Me.txtFac.Size = New System.Drawing.Size(107, 20)
         Me.txtFac.TabIndex = 13
@@ -442,7 +431,7 @@ Partial Class entradaAlmacenMechForm
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(319, 80)
+        Me.Label11.Location = New System.Drawing.Point(344, 80)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(68, 13)
         Me.Label11.TabIndex = 319
@@ -452,7 +441,7 @@ Partial Class entradaAlmacenMechForm
         '
         Me.txtGuia.Location = New System.Drawing.Point(210, 93)
         Me.txtGuia.Name = "txtGuia"
-        Me.txtGuia.Size = New System.Drawing.Size(107, 20)
+        Me.txtGuia.Size = New System.Drawing.Size(129, 20)
         Me.txtGuia.TabIndex = 12
         '
         'Label10
@@ -460,9 +449,9 @@ Partial Class entradaAlmacenMechForm
         Me.Label10.AutoSize = True
         Me.Label10.Location = New System.Drawing.Point(207, 80)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(51, 13)
+        Me.Label10.Size = New System.Drawing.Size(132, 13)
         Me.Label10.TabIndex = 317
-        Me.Label10.Text = "Nº Guia"
+        Me.Label10.Text = "Digite Nº Guia manual"
         '
         'txtPre
         '
@@ -519,27 +508,6 @@ Partial Class entradaAlmacenMechForm
         Me.Label7.Size = New System.Drawing.Size(46, 13)
         Me.Label7.TabIndex = 13
         Me.Label7.Text = "Fecha:"
-        '
-        'cbPro
-        '
-        Me.cbPro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbPro.Enabled = False
-        Me.cbPro.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbPro.FormattingEnabled = True
-        Me.cbPro.Location = New System.Drawing.Point(548, 93)
-        Me.cbPro.Name = "cbPro"
-        Me.cbPro.Size = New System.Drawing.Size(93, 21)
-        Me.cbPro.TabIndex = 8
-        Me.cbPro.TabStop = False
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(453, 96)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(57, 13)
-        Me.Label6.TabIndex = 11
-        Me.Label6.Text = "Proceso:"
         '
         'txtUni
         '
@@ -625,9 +593,16 @@ Partial Class entradaAlmacenMechForm
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(6, 4)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(99, 13)
+        Me.Label1.Size = New System.Drawing.Size(140, 13)
         Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Entrada a Sede:"
+        Me.Label1.Text = "Entrada a Sede / Obra:"
+        '
+        'txtObs
+        '
+        Me.txtObs.Location = New System.Drawing.Point(460, 93)
+        Me.txtObs.Name = "txtObs"
+        Me.txtObs.Size = New System.Drawing.Size(495, 20)
+        Me.txtObs.TabIndex = 15
         '
         'Panel3
         '
@@ -648,7 +623,7 @@ Partial Class entradaAlmacenMechForm
         'txtObra
         '
         Me.txtObra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtObra.Location = New System.Drawing.Point(583, 19)
+        Me.txtObra.Location = New System.Drawing.Point(586, 19)
         Me.txtObra.Name = "txtObra"
         Me.txtObra.ReadOnly = True
         Me.txtObra.Size = New System.Drawing.Size(396, 20)
@@ -660,9 +635,9 @@ Partial Class entradaAlmacenMechForm
         Me.Label16.AutoSize = True
         Me.Label16.Location = New System.Drawing.Point(580, 6)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(81, 13)
+        Me.Label16.Size = New System.Drawing.Size(142, 13)
         Me.Label16.TabIndex = 335
-        Me.Label16.Text = "Sede / Obra:"
+        Me.Label16.Text = "Kardex de Sede / Obra:"
         '
         'txtUbi
         '
@@ -670,7 +645,7 @@ Partial Class entradaAlmacenMechForm
         Me.txtUbi.Location = New System.Drawing.Point(415, 19)
         Me.txtUbi.Name = "txtUbi"
         Me.txtUbi.ReadOnly = True
-        Me.txtUbi.Size = New System.Drawing.Size(160, 20)
+        Me.txtUbi.Size = New System.Drawing.Size(171, 20)
         Me.txtUbi.TabIndex = 334
         Me.txtUbi.TabStop = False
         '
@@ -681,7 +656,7 @@ Partial Class entradaAlmacenMechForm
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(68, 13)
         Me.Label15.TabIndex = 333
-        Me.Label15.Text = "Ubicación:"
+        Me.Label15.Text = "Kardex de:"
         '
         'txtIns1
         '
@@ -698,9 +673,9 @@ Partial Class entradaAlmacenMechForm
         Me.Label14.AutoSize = True
         Me.Label14.Location = New System.Drawing.Point(4, 6)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(68, 13)
+        Me.Label14.Size = New System.Drawing.Size(112, 13)
         Me.Label14.TabIndex = 331
-        Me.Label14.Text = "Kardex de:"
+        Me.Label14.Text = "Kardex de Insumo:"
         '
         'Navigator2
         '
@@ -843,8 +818,8 @@ Partial Class entradaAlmacenMechForm
         Me.dgTabla2.Location = New System.Drawing.Point(1, 42)
         Me.dgTabla2.Name = "dgTabla2"
         Me.dgTabla2.ReadOnly = True
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle9
         Me.dgTabla2.Size = New System.Drawing.Size(981, 252)
         Me.dgTabla2.TabIndex = 330
         '
@@ -910,8 +885,6 @@ Partial Class entradaAlmacenMechForm
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents txtUni As System.Windows.Forms.TextBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents cbPro As System.Windows.Forms.ComboBox
-    Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents date1 As System.Windows.Forms.DateTimePicker
     Friend WithEvents txtCan As ComponentesSolucion2008.TextBoxSSP

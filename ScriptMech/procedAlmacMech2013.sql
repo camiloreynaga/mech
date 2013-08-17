@@ -185,7 +185,7 @@ as
 	RETURN  @Identity
 GO
 --------EJECUTAR AHORITA-----------------
------------09/08/2013-----------------------
+-----------14/08/2013-----------------------
 create procedure PA_InsertGuiaRemEmp
 	@tal varchar(5),@nroG int,@fecI date,@codSer int,@codIde int,@est int,@codUbiO int,@codUbiD int,@par varchar(100),@lleg varchar(100),
 	@codET int,@codV int,@codT int,@codMot int,@nroFact varchar(30),@obs varchar(200),@codPers int,@hist varchar(500),
@@ -203,6 +203,18 @@ create procedure PA_InsertDetalleGuiaEmp
 as
 	insert into TDetalleGuiaEmp(codigo,cant,descrip,unidad,peso,codGuiaE,codMat,linea1) 
 		values(@cod,@can,@des,@uni,@peso,@codG,@codM,@linea)	
+	SET @Identity = @@Identity
+	
+	RETURN  @Identity
+GO
+
+create procedure PA_InsertTEntradaSalida1	---ENTRADAS y Salida
+	@fecha date,@codMat int,@idMU int,@codUbi int,@can1 decimal(8,2),@valor1 decimal(8,2),@can2 decimal(8,2),@valor2 decimal(8,2),@codGuia int,@nroGuia varchar(30),
+	@codDoc int,@nroDoc varchar(30),@otroDoc varchar(100),@codTrans int,@codUsu int,@codPers int,@obs varchar(200),@codSal int,@codUbiD int,@vanET int,@codProv int,
+	@Identity int output --parametro de salida
+as
+	insert into TEntradaSalida(fecha,codMat,idMU,codUbi,cantEnt,preUniEnt,cantSal,preUniSal,codGuia,nroGuia,codDoc,nroDoc,otroDoc,codTrans,codUsu,codPers,obs,codSal,codUbiDes,vanET,codProv) 
+				values(@fecha,@codMat,@idMU,@codUbi,@can1,@valor1,@can2,@valor2,@codGuia,@nroGuia,@codDoc,@nroDoc,@otroDoc,@codTrans,@codUsu,@codPers,@obs,@codSal,@codUbiD,@vanET,@codProv)
 	SET @Identity = @@Identity
 	
 	RETURN  @Identity

@@ -387,8 +387,20 @@ Public Class MantCajaChicaForm
         End If
     End Sub
 
+    ''' <summary>
+    ''' valida el registro de datos
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function ValidarCaja() As Boolean
+        If validaCampoVacio(txtSaldo.Text) Then
+            MessageBox.Show("Por favor ingrese un saldo valido", nomNegocio, Nothing, MessageBoxIcon.Error)
+            txtSaldo.Focus()
 
+            Return True
+        End If
 
+    End Function
 
 #End Region
 
@@ -439,7 +451,9 @@ Public Class MantCajaChicaForm
         Else
 
             'Validar Controles
-
+            If ValidarCaja() Then
+                Exit Sub
+            End If
             'Revisa la no duplicidad de Caja en una Obra
             'una caja por obra
             If BindingSource1.Find("codigo", cbObra.SelectedValue) >= 0 Then
@@ -527,9 +541,12 @@ Public Class MantCajaChicaForm
             Me.AcceptButton = Me.btnModificar
 
         Else
-            'If ValidarCampos() Then
-            '    Exit Sub
-            'End If
+            'Validar Controles
+            If ValidarCaja() Then
+                Exit Sub
+            End If
+
+
 
             vfCampo1 = dgCaja.Rows(BindingSource1.Position).Cells(5).Value
             If vfCampo1 <> cbObra.SelectedValue Then
@@ -700,4 +717,12 @@ Public Class MantCajaChicaForm
     End Sub
 
   
+    Private Sub MantCajaChicaForm_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Leave
+        Me.Close()
+    End Sub
+
+    Private Sub txtSaldo_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtSaldo.KeyPress
+        ValidarNumeroDecimal(txtSaldo, e)
+
+    End Sub
 End Class
