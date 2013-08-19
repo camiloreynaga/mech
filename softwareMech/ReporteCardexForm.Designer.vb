@@ -20,8 +20,8 @@ Partial Class ReporteCardexForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReporteCardexForm))
         Me.Label1 = New System.Windows.Forms.Label
         Me.cbObras = New System.Windows.Forms.ComboBox
@@ -34,6 +34,7 @@ Partial Class ReporteCardexForm
         Me.Label3 = New System.Windows.Forms.Label
         Me.txtInsumo = New System.Windows.Forms.TextBox
         Me.btnVis = New ComponentesSolucion2008.BottomSSP(Me.components)
+        Me.btnCerrar = New System.Windows.Forms.Button
         CType(Me.dgCardex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -91,8 +92,8 @@ Partial Class ReporteCardexForm
         Me.dgCardex.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgCardex.Location = New System.Drawing.Point(3, 16)
         Me.dgCardex.Name = "dgCardex"
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgCardex.RowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgCardex.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgCardex.Size = New System.Drawing.Size(1149, 328)
         Me.dgCardex.TabIndex = 5
         '
@@ -121,8 +122,8 @@ Partial Class ReporteCardexForm
         Me.dgInsumos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgInsumos.Location = New System.Drawing.Point(3, 16)
         Me.dgInsumos.Name = "dgInsumos"
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgInsumos.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgInsumos.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.dgInsumos.Size = New System.Drawing.Size(1146, 205)
         Me.dgInsumos.TabIndex = 5
         '
@@ -157,9 +158,21 @@ Partial Class ReporteCardexForm
         Me.btnVis.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnVis.UseVisualStyleBackColor = True
         '
+        'btnCerrar
+        '
+        Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnCerrar.Location = New System.Drawing.Point(1046, 27)
+        Me.btnCerrar.Name = "btnCerrar"
+        Me.btnCerrar.Size = New System.Drawing.Size(75, 23)
+        Me.btnCerrar.TabIndex = 335
+        Me.btnCerrar.Text = "Cerrar"
+        Me.btnCerrar.UseVisualStyleBackColor = True
+        '
         'ReporteCardexForm
         '
+        Me.AcceptButton = Me.btnVis
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
+        Me.CancelButton = Me.btnCerrar
         Me.ClientSize = New System.Drawing.Size(1185, 675)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cbObras)
@@ -170,8 +183,10 @@ Partial Class ReporteCardexForm
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.btnVis)
+        Me.Controls.Add(Me.btnCerrar)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "ReporteCardexForm"
+        Me.Controls.SetChildIndex(Me.btnCerrar, 0)
         Me.Controls.SetChildIndex(Me.btnVis, 0)
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
@@ -202,5 +217,6 @@ Partial Class ReporteCardexForm
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents txtInsumo As System.Windows.Forms.TextBox
     Friend WithEvents btnVis As ComponentesSolucion2008.BottomSSP
+    Friend WithEvents btnCerrar As System.Windows.Forms.Button
 
 End Class

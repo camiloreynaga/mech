@@ -377,7 +377,15 @@ Public Class ReporteCardexForm
         configurarColorControl()
 
 
-        CargarCombo("PA_LugarTrabajo", CommandType.StoredProcedure, cbObras, "codigo", "nombre")
+        If vSCodigo = "00-00" Then
+            CargarCombo("PA_LugarTrabajo", CommandType.StoredProcedure, cbObras, "codigo", "nombre")
+        Else
+            Dim sele1 As String = "select distinct codigo,nombre from VLugarUbiStoc TObra where codigo='" & vSCodigo & "'"
+            CargarCombo(sele1, CommandType.Text, cbObras, "codigo", "nombre")
+        End If
+
+      
+
         'Consulta
         'parametro de consulta
         ' filtro 
@@ -452,6 +460,10 @@ Public Class ReporteCardexForm
 
     Private Sub dgCardex_Sorted(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgCardex.Sorted
         ColorearGrilla()
+    End Sub
+
+    Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
+        Me.Close()
     End Sub
 End Class
 
