@@ -20,6 +20,8 @@ Partial Class ReporteCardexForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReporteCardexForm))
         Me.Label1 = New System.Windows.Forms.Label
         Me.cbObras = New System.Windows.Forms.ComboBox
@@ -58,6 +60,7 @@ Partial Class ReporteCardexForm
         '
         'cbObras
         '
+        Me.cbObras.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbObras.FormattingEnabled = True
         Me.cbObras.Location = New System.Drawing.Point(94, 26)
         Me.cbObras.Name = "cbObras"
@@ -66,6 +69,7 @@ Partial Class ReporteCardexForm
         '
         'cbAlmacen
         '
+        Me.cbAlmacen.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbAlmacen.FormattingEnabled = True
         Me.cbAlmacen.Location = New System.Drawing.Point(523, 26)
         Me.cbAlmacen.Name = "cbAlmacen"
@@ -87,6 +91,8 @@ Partial Class ReporteCardexForm
         Me.dgCardex.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgCardex.Location = New System.Drawing.Point(3, 16)
         Me.dgCardex.Name = "dgCardex"
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgCardex.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgCardex.Size = New System.Drawing.Size(1149, 328)
         Me.dgCardex.TabIndex = 5
         '
@@ -115,6 +121,8 @@ Partial Class ReporteCardexForm
         Me.dgInsumos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgInsumos.Location = New System.Drawing.Point(3, 16)
         Me.dgInsumos.Name = "dgInsumos"
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgInsumos.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgInsumos.Size = New System.Drawing.Size(1146, 205)
         Me.dgInsumos.TabIndex = 5
         '
@@ -129,6 +137,7 @@ Partial Class ReporteCardexForm
         '
         'txtInsumo
         '
+        Me.txtInsumo.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtInsumo.Location = New System.Drawing.Point(744, 26)
         Me.txtInsumo.Name = "txtInsumo"
         Me.txtInsumo.Size = New System.Drawing.Size(296, 20)

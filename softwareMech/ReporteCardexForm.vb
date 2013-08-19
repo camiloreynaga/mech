@@ -61,8 +61,14 @@ Public Class ReporteCardexForm
 
     End Sub
 
-    'Public Sub CargarGrilla(ByVal storedProcedure As String, ByVal Type As CommandType, ByVal grilla As DataGridView)
-
+    ''' <summary>
+    ''' Llenar un Datagrid de datos desde una BD
+    ''' </summary>
+    ''' <param name="consulta">consulta o stored procedure</param>
+    ''' <param name="type">tipo </param>
+    ''' <param name="grilla">DatagridView</param>
+    ''' <param name="dataView">DataView</param>
+    ''' <remarks></remarks>
     Public Sub CargarGrilla(ByVal consulta As String, ByVal type As CommandType, ByVal grilla As DataGridView, ByVal dataView As DataView)
         Dim con As SqlConnection = Cn
         Dim storedProcedure As String = consulta '
@@ -96,8 +102,15 @@ Public Class ReporteCardexForm
             dataR.Close()
         End Try
     End Sub
-
-    Public Sub CargarGrilla(ByVal consulta As String, ByVal type As CommandType, ByVal grilla As DataGridView, ByVal bindingSource As BindingSource)
+    ''' <summary>
+    ''' Llenar un Datagrid de datos desde una BD
+    ''' </summary>
+    ''' <param name="consulta">consulta o stored procedure</param>
+    ''' <param name="type">tipo </param>
+    ''' <param name="grilla">DatagridView</param>
+    ''' <param name="bindingSource">BindingSource</param>
+    ''' <remarks></remarks>
+    Public Function CargarGrilla(ByVal consulta As String, ByVal type As CommandType, ByVal grilla As DataGridView, ByVal bindingSource As BindingSource) As Integer
         Dim con As SqlConnection = Cn
         Dim storedProcedure As String = consulta '
         Dim command As New SqlCommand(consulta, con)
@@ -130,8 +143,10 @@ Public Class ReporteCardexForm
             MsgBox(ex.Message)
         Finally
             dataR.Close()
+
         End Try
-    End Sub
+        Return oTabla.Rows.Count
+    End Function
     ''' <summary>
     ''' Metodo que carga los datos iniciales
     ''' </summary>
@@ -229,7 +244,7 @@ Public Class ReporteCardexForm
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub ModificandoColumnasDGV_Insumo()
-        oGrilla.ConfigGrilla(dgInsumos)
+        'oGrilla.ConfigGrilla(dgInsumos)
         dgInsumos.ReadOnly = True
         dgInsumos.AllowUserToAddRows = False
         dgInsumos.AllowUserToDeleteRows = False
@@ -238,25 +253,26 @@ Public Class ReporteCardexForm
         Try
             With dgInsumos
                 'codigo material
-                .Columns("codmat").Visible = False
+                .Columns("codmat").HeaderText = "Cod"
+                .Columns("codmat").Width = 50
                 'Material
                 .Columns("material").HeaderText = "Insumo"
-                .Columns("material").Width = 360
+                .Columns("material").Width = 550
                 'Codigo de Serie
                 .Columns("unidad").HeaderText = "Und"
                 .Columns("unidad").Width = 60
                 'razon
                 .Columns("preBase").HeaderText = "Precio"
-                .Columns("preBase").Width = 60
+                .Columns("preBase").Width = 80
                 .Columns("preBase").DefaultCellStyle.Format = "N2"
                 .Columns("preBase").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
                 .Columns("tipoM").HeaderText = "Tipo"
-                .Columns("tipoM").Width = 70
+                .Columns("tipoM").Width = 120
 
                 'Stock
                 .Columns("stock").HeaderText = "Stock"
-                .Columns("stock").Width = 60
+                .Columns("stock").Width = 80
                 .Columns("stock").DefaultCellStyle.Format = "N2"
                 .Columns("stock").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
@@ -270,6 +286,80 @@ Public Class ReporteCardexForm
             MessageBox.Show(ex.Message)
 
         End Try
+    End Sub
+
+    Private Sub ModificandoColumnasDGV_kardex()
+        'oGrilla.ConfigGrilla(dgInsumos)
+        dgCardex.ReadOnly = True
+        dgCardex.AllowUserToAddRows = False
+        dgCardex.AllowUserToDeleteRows = False
+        With dgCardex
+            .Columns(0).Visible = False
+            .Columns(1).HeaderText = "Transac."
+            .Columns(1).Width = 70
+            .Columns(2).HeaderText = "Fecha"
+            .Columns(2).Width = 70
+            .Columns(3).HeaderText = "Descripción Insumo"
+            .Columns(3).Width = 340
+            .Columns(3).Visible = False
+            .Columns(4).Width = 60
+            .Columns(4).HeaderText = "CantEnt"
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(5).Width = 50
+            .Columns(5).HeaderText = "Ent.S/."
+            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(6).Width = 60
+            .Columns(6).HeaderText = "CantSal"
+            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(7).Width = 50
+            .Columns(7).HeaderText = "Sal.S/."
+            .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(8).Width = 65
+            .Columns(8).HeaderText = "Saldo"
+            .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(9).Width = 40
+            .Columns(9).HeaderText = "Unid."
+            .Columns(10).Width = 80
+            .Columns(10).HeaderText = "NºGuia"
+            .Columns(11).Width = 60
+            .Columns(11).HeaderText = "NºFact"
+            .Columns(12).Width = 60
+            .Columns(12).HeaderText = "Salida"
+            .Columns(12).Visible = False
+            .Columns(13).HeaderText = "Recepción"
+            .Columns(13).Width = 110
+            .Columns(14).HeaderText = "Recepción Obra/Sede"
+            .Columns(14).Width = 300
+            .Columns(15).Width = 400
+            .Columns(15).HeaderText = "Nota"
+            .Columns(16).Width = 130
+            .Columns(16).HeaderText = "Personal_Recibe"
+            .Columns(17).Width = 240
+            .Columns(17).HeaderText = "Proveedor"
+            .Columns(18).Width = 75
+            .Columns(18).HeaderText = "Ruc"
+            .Columns(19).Width = 130
+            .Columns(19).HeaderText = "Usuario"
+            .Columns(20).Visible = False
+            .Columns(21).Visible = False
+            .Columns(22).Visible = False
+            .Columns(23).Visible = False
+            .Columns(24).Visible = False
+            .Columns(25).Visible = False
+            .Columns(26).Visible = False
+            .Columns(27).Visible = False
+            .Columns(28).Visible = False
+            .Columns(29).Visible = False
+            .Columns(30).Visible = False
+            .Columns(31).Visible = False
+            .Columns(32).Visible = False
+            .Columns(33).Visible = False
+            .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
+            .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
+            .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
+            .RowHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
+        End With
+
     End Sub
 
 #End Region
@@ -295,6 +385,7 @@ Public Class ReporteCardexForm
         CargarGrilla(sele, CommandType.Text, dgInsumos, BindingSource0)
 
         ModificandoColumnasDGV_Insumo()
+
     End Sub
 
     Private Sub cbObras_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbObras.SelectedIndexChanged
@@ -326,15 +417,28 @@ Public Class ReporteCardexForm
             CargarGrilla(sele, CommandType.Text, dgCardex, BindingSource1)
 
             ColorearGrilla()
+            ModificandoColumnasDGV_kardex()
         End If
     End Sub
 
     Private Sub cbAlmacen_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbAlmacen.SelectedIndexChanged
         Try
-            If TypeOf cbObras.SelectedValue Is String Then
+            If TypeOf cbAlmacen.SelectedValue Is String Then
+
+
+
                 Dim sele As String = "select codmat,material,unidad,unidad,preBase,tipoM,stock from VMaterialObra where codUbi = " & cbAlmacen.SelectedValue
-                CargarGrilla(sele, CommandType.Text, dgInsumos, BindingSource0)
+                If CargarGrilla(sele, CommandType.Text, dgInsumos, BindingSource0) > 0 Then
+                    btnVis.Enabled = True
+
+                Else
+                    btnVis.Enabled = False
+                    BindingSource1.DataSource = ""
+                End If
+
             End If
+
+
         Catch ex As Exception
 
         End Try
@@ -344,6 +448,10 @@ Public Class ReporteCardexForm
 
     Private Sub ReporteCardexForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
 
+    End Sub
+
+    Private Sub dgCardex_Sorted(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgCardex.Sorted
+        ColorearGrilla()
     End Sub
 End Class
 

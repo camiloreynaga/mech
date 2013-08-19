@@ -5,8 +5,8 @@ Module ConexionModule
     Public Cn As SqlConnection
     Public Sub conexion()
         Cn = New SqlConnection
-        ' Cn.ConnectionString = "Data Source=sv32.dbsqlserver.com,8888;Initial Catalog=BD_ConstrucMech;User Id=mech;password=mechcusco2013;Connection Timeout=59"
-        Cn.ConnectionString = "Data Source=(local);Initial Catalog=BD_ConstrucMech;User Id=mech;password=mechcusco2013;Connection Timeout=59"
+        Cn.ConnectionString = "Data Source=sv32.dbsqlserver.com,8888;Initial Catalog=BD_ConstrucMech;User Id=mech;password=mechcusco2013;Connection Timeout=59"
+        'Cn.ConnectionString = "Data Source=(local);Initial Catalog=BD_ConstrucMech;User Id=mech;password=mechcusco2013;Connection Timeout=59"
         Cn.Open()
     End Sub
 

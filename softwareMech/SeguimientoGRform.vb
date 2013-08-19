@@ -794,4 +794,8 @@ Public Class SeguimientoGRform
     End Sub
 
 #End Region
+
+    Private Sub dgDetalleGR_Sorted(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgDetalleGR.Sorted
+        ColorearGrillaDetalle()
+    End Sub
 End Class

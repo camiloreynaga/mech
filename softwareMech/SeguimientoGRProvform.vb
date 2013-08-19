@@ -804,4 +804,8 @@ Public Class SeguimientoGRProvform
     Private Sub txtNroGuia_search_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNroGuia_search.TextChanged
         filtrando()
     End Sub
+
+    Private Sub dgDetalleGR_Sorted(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgDetalleGR.Sorted
+        ColorearGrillaDetalle()
+    End Sub
 End Class
