@@ -75,6 +75,7 @@ Partial Class pantallaInicialForm
         Me.ToolStripSeparator15 = New System.Windows.Forms.ToolStripSeparator
         Me.opcGuiaRem2 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
+        Me.ReporteCardexToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator
         Me.opcAlmE = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcAlmE1 = New System.Windows.Forms.ToolStripMenuItem
@@ -110,7 +111,7 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.ReporteCardexToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.ReporteTesoreriaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -354,7 +355,7 @@ Partial Class pantallaInicialForm
         '
         'opcOrdDesembolso
         '
-        Me.opcOrdDesembolso.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrdDesApertura, Me.opcOrdDesAprobacion, Me.opcOrdDesRegPagos, Me.opcOrdDesConta, Me.ToolStripSeparator6_1, Me.opcOrdDesSeguimiento, Me.ToolStripSeparator6_2, Me.opcOrdDesModPago, Me.opcOrdDesCtasBco})
+        Me.opcOrdDesembolso.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrdDesApertura, Me.opcOrdDesAprobacion, Me.opcOrdDesRegPagos, Me.opcOrdDesConta, Me.ToolStripSeparator6_1, Me.opcOrdDesSeguimiento, Me.ToolStripSeparator6_2, Me.opcOrdDesModPago, Me.opcOrdDesCtasBco, Me.ReporteTesoreriaToolStripMenuItem})
         Me.opcOrdDesembolso.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.opcOrdDesembolso.Image = CType(resources.GetObject("opcOrdDesembolso.Image"), System.Drawing.Image)
         Me.opcOrdDesembolso.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -548,6 +549,12 @@ Partial Class pantallaInicialForm
         Me.ToolStripMenuItem2.Size = New System.Drawing.Size(303, 22)
         Me.ToolStripMenuItem2.Text = "Mant. Vehiculo Chofer"
         Me.ToolStripMenuItem2.ToolTipText = "Mantenimiento de Motivo de Guia de Remisión"
+        '
+        'ReporteCardexToolStripMenuItem
+        '
+        Me.ReporteCardexToolStripMenuItem.Name = "ReporteCardexToolStripMenuItem"
+        Me.ReporteCardexToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.ReporteCardexToolStripMenuItem.Text = "Reporte Cardex"
         '
         'ToolStripSeparator12
         '
@@ -849,11 +856,11 @@ Partial Class pantallaInicialForm
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'ReporteCardexToolStripMenuItem
+        'ReporteTesoreriaToolStripMenuItem
         '
-        Me.ReporteCardexToolStripMenuItem.Name = "ReporteCardexToolStripMenuItem"
-        Me.ReporteCardexToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
-        Me.ReporteCardexToolStripMenuItem.Text = "Reporte Cardex"
+        Me.ReporteTesoreriaToolStripMenuItem.Name = "ReporteTesoreriaToolStripMenuItem"
+        Me.ReporteTesoreriaToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
+        Me.ReporteTesoreriaToolStripMenuItem.Text = "Reporte Tesoreria"
         '
         'pantallaInicialForm
         '
@@ -967,4 +974,5 @@ Partial Class pantallaInicialForm
     Friend WithEvents opcAlmE3 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents opcGuiaRem5 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ReporteCardexToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ReporteTesoreriaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

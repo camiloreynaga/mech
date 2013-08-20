@@ -747,4 +747,11 @@ Public Class pantallaInicialForm
         rCardex.MdiParent = Me
         rCardex.Show()
     End Sub
+
+    Private Sub ReporteTesoreriaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReporteTesoreriaToolStripMenuItem.Click
+        Dim rpteTesoreria As New GastosPorDiaForm
+        rpteTesoreria.MdiParent = Me
+        rpteTesoreria.Show()
+
+    End Sub
 End Class

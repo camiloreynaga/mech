@@ -120,6 +120,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="cConfigFormControls.vb" />
+    <Compile Include="cDataManager.vb" />
     <Compile Include="chekeoSolicitudReqForm.Designer.vb">
       <DependentUpon>chekeoSolicitudReqForm.vb</DependentUpon>
     </Compile>
@@ -200,6 +201,12 @@
       <DependentUpon>CrystalReport6.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReport7.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport7.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DataSetAlmacen.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -231,6 +238,12 @@
       <DependentUpon>entradaSalidaAlmacen1Form.vb</DependentUpon>
     </Compile>
     <Compile Include="entradaSalidaAlmacen1Form.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GastosPorDiaForm.Designer.vb">
+      <DependentUpon>GastosPorDiaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GastosPorDiaForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="gerencia1OrdenDesembolsoForm.Designer.vb">
@@ -477,6 +490,12 @@
     <Compile Include="ReportViewerCotizacionForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReportViewerGastoPorDiaForm.Designer.vb">
+      <DependentUpon>ReportViewerGastoPorDiaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewerGastoPorDiaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReportViewerGuiaRemEForm.Designer.vb">
       <DependentUpon>ReportViewerGuiaRemEForm.vb</DependentUpon>
     </Compile>
@@ -628,6 +647,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport6.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport7.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport7.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="entradaAlmacenGuiaMechForm.resx">
       <DependentUpon>entradaAlmacenGuiaMechForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -639,6 +662,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="entradaSalidaAlmacen1Form.resx">
       <DependentUpon>entradaSalidaAlmacen1Form.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GastosPorDiaForm.resx">
+      <DependentUpon>GastosPorDiaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gerencia1OrdenDesembolsoForm.resx">
       <DependentUpon>gerencia1OrdenDesembolsoForm.vb</DependentUpon>
@@ -759,6 +785,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerCotizacionForm.resx">
       <DependentUpon>ReportViewerCotizacionForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewerGastoPorDiaForm.resx">
+      <DependentUpon>ReportViewerGastoPorDiaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerGuiaRemEForm.resx">
       <DependentUpon>ReportViewerGuiaRemEForm.vb</DependentUpon>

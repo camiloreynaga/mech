@@ -147,6 +147,8 @@ Public Class ReporteCardexForm
         End Try
         Return oTabla.Rows.Count
     End Function
+
+
     ''' <summary>
     ''' Metodo que carga los datos iniciales
     ''' </summary>
