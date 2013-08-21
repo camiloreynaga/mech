@@ -313,6 +313,7 @@ Public Class tesoreriaOrdenDesembolsoForm
         btnModificar.ForeColor = ForeColorButtom
         btnCancelar.ForeColor = ForeColorButtom
         btnEliminar.ForeColor = ForeColorButtom
+        btnImprimir.ForeColor = ForeColorButtom
         btnCerrar.ForeColor = ForeColorButtom
     End Sub
 
@@ -917,6 +918,36 @@ Public Class tesoreriaOrdenDesembolsoForm
                     e.Handled = True
                 End If
             End If
+        End If
+    End Sub
+
+    Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
+        If BindingSource3.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Orden de Desembolso...")
+            Exit Sub
+        End If
+
+        vCodDoc = BindingSource1.Item(BindingSource1.Position)(0)
+        'vParam1 = cambiarNroTotalLetra()
+        cambiarNroTotalLetra()
+        vParam2 = "" 'txtOrden.Text.Trim()
+
+        Dim informe As New ReportViewerOrdenDesembolsoForm
+        informe.ShowDialog()
+    End Sub
+
+    Private Sub cambiarNroTotalLetra()
+        Dim cALetra As New Num2LetEsp  'clase definida por el usuario
+        '30=Nuevos solesl
+        If BindingSource1.Item(BindingSource1.Position)(21) = 30 Then
+            cALetra.Moneda = "Nuevos Soles"
+        Else    'dolares
+            cALetra.Moneda = "Dólares Americanos"
+        End If
+        'Inicia el Proceso para identificar la cantidad a convertir
+        If Val(BindingSource1.Item(BindingSource1.Position)(5)) > 0 Then
+            cALetra.Numero = Val(CDbl(BindingSource1.Item(BindingSource1.Position)(5)))
+            vParam1 = "SON: " & cALetra.ALetra.ToUpper()
         End If
     End Sub
 End Class

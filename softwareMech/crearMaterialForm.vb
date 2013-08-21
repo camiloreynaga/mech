@@ -26,7 +26,7 @@ Public Class crearMaterialForm
 
         sele = "select codTipM,tipoM from TTipoMat"
         crearDataAdapterTable(dTable2, sele)
-        sele = "select codUni,unidad from TUnidad where codUni>1 order by codUni"  '1=""
+        sele = "select codUni,unidad from TUnidad where codUni>1 order by unidad"  '1=""
         crearDataAdapterTable(dTable4, sele)
 
         Try

@@ -21,9 +21,9 @@ Partial Class registraGuiaRemProvForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(registraGuiaRemProvForm))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.txtNro = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Label2 = New System.Windows.Forms.Label
@@ -406,18 +406,19 @@ Partial Class registraGuiaRemProvForm
         'cbLic
         '
         Me.cbLic.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbLic.DropDownWidth = 250
         Me.cbLic.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbLic.FormattingEnabled = True
         Me.cbLic.IntegralHeight = False
-        Me.cbLic.Location = New System.Drawing.Point(567, 31)
+        Me.cbLic.Location = New System.Drawing.Point(596, 31)
         Me.cbLic.Name = "cbLic"
-        Me.cbLic.Size = New System.Drawing.Size(174, 21)
+        Me.cbLic.Size = New System.Drawing.Size(166, 21)
         Me.cbLic.TabIndex = 15
         '
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(565, 17)
+        Me.Label17.Location = New System.Drawing.Point(594, 17)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(130, 13)
         Me.Label17.TabIndex = 301
@@ -426,12 +427,13 @@ Partial Class registraGuiaRemProvForm
         'cbMarca
         '
         Me.cbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbMarca.DropDownWidth = 250
         Me.cbMarca.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbMarca.FormattingEnabled = True
         Me.cbMarca.IntegralHeight = False
         Me.cbMarca.Location = New System.Drawing.Point(377, 31)
         Me.cbMarca.Name = "cbMarca"
-        Me.cbMarca.Size = New System.Drawing.Size(172, 21)
+        Me.cbMarca.Size = New System.Drawing.Size(213, 21)
         Me.cbMarca.TabIndex = 14
         '
         'Label16
@@ -784,8 +786,8 @@ Partial Class registraGuiaRemProvForm
         Me.dgTabla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgTabla2.Location = New System.Drawing.Point(1, -1)
         Me.dgTabla2.Name = "dgTabla2"
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle7
         Me.dgTabla2.Size = New System.Drawing.Size(889, 178)
         Me.dgTabla2.TabIndex = 15
         '
@@ -847,8 +849,8 @@ Partial Class registraGuiaRemProvForm
         Me.dgStock.Name = "dgStock"
         Me.dgStock.ReadOnly = True
         Me.dgStock.RowHeadersVisible = False
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgStock.RowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgStock.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.dgStock.Size = New System.Drawing.Size(212, 101)
         Me.dgStock.TabIndex = 314
         Me.dgStock.TabStop = False
@@ -868,8 +870,8 @@ Partial Class registraGuiaRemProvForm
         Me.dgTabla1.Location = New System.Drawing.Point(0, 25)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle9
         Me.dgTabla1.Size = New System.Drawing.Size(676, 118)
         Me.dgTabla1.TabIndex = 7
         '

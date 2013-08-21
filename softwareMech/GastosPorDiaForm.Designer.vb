@@ -19,7 +19,9 @@ Partial Class GastosPorDiaForm
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Me.components = New System.ComponentModel.Container
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GastosPorDiaForm))
         Me.dtpInicio = New System.Windows.Forms.DateTimePicker
         Me.dtpFin = New System.Windows.Forms.DateTimePicker
         Me.Label1 = New System.Windows.Forms.Label
@@ -39,13 +41,29 @@ Partial Class GastosPorDiaForm
         Me.Label5 = New System.Windows.Forms.Label
         Me.Label4 = New System.Windows.Forms.Label
         Me.txtDetraccionDolares = New System.Windows.Forms.TextBox
+        Me.chkBanco = New System.Windows.Forms.CheckBox
+        Me.lblCta = New System.Windows.Forms.Label
+        Me.cbCuenta = New System.Windows.Forms.ComboBox
+        Me.chkCuenta = New System.Windows.Forms.CheckBox
+        Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
+        Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorSeparator = New System.Windows.Forms.ToolStripSeparator
+        Me.BindingNavigatorPositionItem = New System.Windows.Forms.ToolStripTextBox
+        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
+        Me.BindingNavigatorSeparator1 = New System.Windows.Forms.ToolStripSeparator
+        Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgReporte, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.BindingNavigator1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(915, 23)
+        Me.lblTitulo.Size = New System.Drawing.Size(950, 23)
         Me.lblTitulo.Text = "Gastos por día"
         '
         'lblDerecha
@@ -56,7 +74,7 @@ Partial Class GastosPorDiaForm
         '
         Me.dtpInicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpInicio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpInicio.Location = New System.Drawing.Point(106, 26)
+        Me.dtpInicio.Location = New System.Drawing.Point(69, 29)
         Me.dtpInicio.Name = "dtpInicio"
         Me.dtpInicio.Size = New System.Drawing.Size(106, 20)
         Me.dtpInicio.TabIndex = 3
@@ -65,7 +83,7 @@ Partial Class GastosPorDiaForm
         '
         Me.dtpFin.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpFin.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFin.Location = New System.Drawing.Point(284, 26)
+        Me.dtpFin.Location = New System.Drawing.Point(225, 29)
         Me.dtpFin.Name = "dtpFin"
         Me.dtpFin.Size = New System.Drawing.Size(106, 20)
         Me.dtpFin.TabIndex = 3
@@ -73,53 +91,55 @@ Partial Class GastosPorDiaForm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(20, 28)
+        Me.Label1.Location = New System.Drawing.Point(20, 33)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(76, 13)
+        Me.Label1.Size = New System.Drawing.Size(47, 13)
         Me.Label1.TabIndex = 4
-        Me.Label1.Text = "Fecha inicio"
+        Me.Label1.Text = "Desde:"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(218, 28)
+        Me.Label2.Location = New System.Drawing.Point(175, 33)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(60, 13)
+        Me.Label2.Size = New System.Drawing.Size(44, 13)
         Me.Label2.TabIndex = 4
-        Me.Label2.Text = "Fecha fin"
+        Me.Label2.Text = "Hasta:"
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.BindingNavigator1)
         Me.GroupBox1.Controls.Add(Me.dgReporte)
-        Me.GroupBox1.Location = New System.Drawing.Point(20, 48)
+        Me.GroupBox1.Controls.Add(Me.btnCerrar)
+        Me.GroupBox1.Controls.Add(Me.btnImprimir)
+        Me.GroupBox1.Location = New System.Drawing.Point(20, 55)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(895, 578)
+        Me.GroupBox1.Size = New System.Drawing.Size(930, 571)
         Me.GroupBox1.TabIndex = 5
         Me.GroupBox1.TabStop = False
         '
         'dgReporte
         '
         Me.dgReporte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgReporte.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgReporte.Location = New System.Drawing.Point(3, 16)
         Me.dgReporte.Name = "dgReporte"
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgReporte.RowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgReporte.Size = New System.Drawing.Size(889, 559)
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgReporte.RowsDefaultCellStyle = DataGridViewCellStyle6
+        Me.dgReporte.Size = New System.Drawing.Size(921, 523)
         Me.dgReporte.TabIndex = 0
         '
         'btnMostrar
         '
-        Me.btnMostrar.Location = New System.Drawing.Point(661, 28)
+        Me.btnMostrar.Location = New System.Drawing.Point(862, 28)
         Me.btnMostrar.Name = "btnMostrar"
-        Me.btnMostrar.Size = New System.Drawing.Size(82, 22)
+        Me.btnMostrar.Size = New System.Drawing.Size(58, 22)
         Me.btnMostrar.TabIndex = 6
-        Me.btnMostrar.Text = "Mostrar"
+        Me.btnMostrar.Text = "Ver"
         Me.btnMostrar.UseVisualStyleBackColor = True
         '
         'txtTotalDolares
         '
-        Me.txtTotalDolares.Location = New System.Drawing.Point(358, 629)
+        Me.txtTotalDolares.Location = New System.Drawing.Point(390, 629)
         Me.txtTotalDolares.Name = "txtTotalDolares"
         Me.txtTotalDolares.Size = New System.Drawing.Size(120, 20)
         Me.txtTotalDolares.TabIndex = 336
@@ -128,7 +148,7 @@ Partial Class GastosPorDiaForm
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(275, 632)
+        Me.Label7.Location = New System.Drawing.Point(307, 632)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(77, 13)
         Me.Label7.TabIndex = 335
@@ -136,7 +156,7 @@ Partial Class GastosPorDiaForm
         '
         'txtTotalSoles
         '
-        Me.txtTotalSoles.Location = New System.Drawing.Point(149, 629)
+        Me.txtTotalSoles.Location = New System.Drawing.Point(181, 629)
         Me.txtTotalSoles.Name = "txtTotalSoles"
         Me.txtTotalSoles.Size = New System.Drawing.Size(120, 20)
         Me.txtTotalSoles.TabIndex = 337
@@ -145,7 +165,7 @@ Partial Class GastosPorDiaForm
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(81, 632)
+        Me.Label6.Location = New System.Drawing.Point(113, 632)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(62, 13)
         Me.Label6.TabIndex = 334
@@ -153,7 +173,7 @@ Partial Class GastosPorDiaForm
         '
         'btnImprimir
         '
-        Me.btnImprimir.Location = New System.Drawing.Point(749, 28)
+        Me.btnImprimir.Location = New System.Drawing.Point(317, 546)
         Me.btnImprimir.Name = "btnImprimir"
         Me.btnImprimir.Size = New System.Drawing.Size(82, 22)
         Me.btnImprimir.TabIndex = 6
@@ -163,24 +183,24 @@ Partial Class GastosPorDiaForm
         'cbBanco
         '
         Me.cbBanco.FormattingEnabled = True
-        Me.cbBanco.Location = New System.Drawing.Point(445, 26)
+        Me.cbBanco.Location = New System.Drawing.Point(451, 30)
         Me.cbBanco.Name = "cbBanco"
-        Me.cbBanco.Size = New System.Drawing.Size(121, 21)
+        Me.cbBanco.Size = New System.Drawing.Size(105, 21)
         Me.cbBanco.TabIndex = 338
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(396, 28)
+        Me.Label3.Location = New System.Drawing.Point(333, 33)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(43, 13)
+        Me.Label3.Size = New System.Drawing.Size(47, 13)
         Me.Label3.TabIndex = 4
-        Me.Label3.Text = "Banco"
+        Me.Label3.Text = "Banco:"
         '
         'btnCerrar
         '
         Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCerrar.Location = New System.Drawing.Point(837, 27)
+        Me.btnCerrar.Location = New System.Drawing.Point(236, 545)
         Me.btnCerrar.Name = "btnCerrar"
         Me.btnCerrar.Size = New System.Drawing.Size(75, 23)
         Me.btnCerrar.TabIndex = 339
@@ -189,7 +209,7 @@ Partial Class GastosPorDiaForm
         '
         'txtTotalDetraccion
         '
-        Me.txtTotalDetraccion.Location = New System.Drawing.Point(599, 629)
+        Me.txtTotalDetraccion.Location = New System.Drawing.Point(631, 629)
         Me.txtTotalDetraccion.Name = "txtTotalDetraccion"
         Me.txtTotalDetraccion.Size = New System.Drawing.Size(103, 20)
         Me.txtTotalDetraccion.TabIndex = 345
@@ -198,7 +218,7 @@ Partial Class GastosPorDiaForm
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(498, 632)
+        Me.Label5.Location = New System.Drawing.Point(530, 632)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(95, 13)
         Me.Label5.TabIndex = 344
@@ -207,7 +227,7 @@ Partial Class GastosPorDiaForm
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(708, 632)
+        Me.Label4.Location = New System.Drawing.Point(740, 632)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(84, 13)
         Me.Label4.TabIndex = 344
@@ -215,32 +235,160 @@ Partial Class GastosPorDiaForm
         '
         'txtDetraccionDolares
         '
-        Me.txtDetraccionDolares.Location = New System.Drawing.Point(809, 629)
+        Me.txtDetraccionDolares.Location = New System.Drawing.Point(841, 629)
         Me.txtDetraccionDolares.Name = "txtDetraccionDolares"
         Me.txtDetraccionDolares.Size = New System.Drawing.Size(103, 20)
         Me.txtDetraccionDolares.TabIndex = 345
         Me.txtDetraccionDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
+        'chkBanco
+        '
+        Me.chkBanco.AutoSize = True
+        Me.chkBanco.Checked = True
+        Me.chkBanco.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkBanco.Location = New System.Drawing.Point(386, 32)
+        Me.chkBanco.Name = "chkBanco"
+        Me.chkBanco.Size = New System.Drawing.Size(61, 17)
+        Me.chkBanco.TabIndex = 346
+        Me.chkBanco.Text = "Todos"
+        Me.chkBanco.UseVisualStyleBackColor = True
+        '
+        'lblCta
+        '
+        Me.lblCta.AutoSize = True
+        Me.lblCta.Location = New System.Drawing.Point(558, 33)
+        Me.lblCta.Name = "lblCta"
+        Me.lblCta.Size = New System.Drawing.Size(51, 13)
+        Me.lblCta.TabIndex = 4
+        Me.lblCta.Text = "Cuenta:"
+        '
+        'cbCuenta
+        '
+        Me.cbCuenta.FormattingEnabled = True
+        Me.cbCuenta.Location = New System.Drawing.Point(677, 31)
+        Me.cbCuenta.Name = "cbCuenta"
+        Me.cbCuenta.Size = New System.Drawing.Size(179, 21)
+        Me.cbCuenta.TabIndex = 338
+        '
+        'chkCuenta
+        '
+        Me.chkCuenta.AutoSize = True
+        Me.chkCuenta.Checked = True
+        Me.chkCuenta.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkCuenta.Location = New System.Drawing.Point(615, 33)
+        Me.chkCuenta.Name = "chkCuenta"
+        Me.chkCuenta.Size = New System.Drawing.Size(61, 17)
+        Me.chkCuenta.TabIndex = 346
+        Me.chkCuenta.Text = "Todos"
+        Me.chkCuenta.UseVisualStyleBackColor = True
+        '
+        'BindingNavigator1
+        '
+        Me.BindingNavigator1.AddNewItem = Nothing
+        Me.BindingNavigator1.CountItem = Me.BindingNavigatorCountItem
+        Me.BindingNavigator1.DeleteItem = Nothing
+        Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
+        Me.BindingNavigator1.Location = New System.Drawing.Point(3, 543)
+        Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
+        Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
+        Me.BindingNavigator1.MoveNextItem = Me.BindingNavigatorMoveNextItem
+        Me.BindingNavigator1.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
+        Me.BindingNavigator1.Name = "BindingNavigator1"
+        Me.BindingNavigator1.PositionItem = Me.BindingNavigatorPositionItem
+        Me.BindingNavigator1.Size = New System.Drawing.Size(924, 25)
+        Me.BindingNavigator1.TabIndex = 1
+        Me.BindingNavigator1.Text = "BindingNavigator1"
+        '
+        'BindingNavigatorMoveFirstItem
+        '
+        Me.BindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
+        Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveFirstItem.Text = "Mover primero"
+        '
+        'BindingNavigatorMovePreviousItem
+        '
+        Me.BindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
+        Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMovePreviousItem.Text = "Mover anterior"
+        '
+        'BindingNavigatorSeparator
+        '
+        Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 25)
+        '
+        'BindingNavigatorPositionItem
+        '
+        Me.BindingNavigatorPositionItem.AccessibleName = "Posición"
+        Me.BindingNavigatorPositionItem.AutoSize = False
+        Me.BindingNavigatorPositionItem.Name = "BindingNavigatorPositionItem"
+        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(50, 23)
+        Me.BindingNavigatorPositionItem.Text = "0"
+        Me.BindingNavigatorPositionItem.ToolTipText = "Posición actual"
+        '
+        'BindingNavigatorCountItem
+        '
+        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(37, 22)
+        Me.BindingNavigatorCountItem.Text = "de {0}"
+        Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
+        '
+        'BindingNavigatorSeparator1
+        '
+        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
+        'BindingNavigatorMoveNextItem
+        '
+        Me.BindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
+        Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveNextItem.Text = "Mover siguiente"
+        '
+        'BindingNavigatorMoveLastItem
+        '
+        Me.BindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
+        Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveLastItem.Text = "Mover último"
+        '
+        'BindingNavigatorSeparator2
+        '
+        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
+        '
         'GastosPorDiaForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
-        Me.ClientSize = New System.Drawing.Size(915, 675)
+        Me.ClientSize = New System.Drawing.Size(950, 675)
+        Me.Controls.Add(Me.chkCuenta)
+        Me.Controls.Add(Me.chkBanco)
         Me.Controls.Add(Me.txtDetraccionDolares)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.txtTotalDetraccion)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.btnCerrar)
+        Me.Controls.Add(Me.cbCuenta)
         Me.Controls.Add(Me.cbBanco)
         Me.Controls.Add(Me.txtTotalDolares)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.txtTotalSoles)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.btnImprimir)
-        Me.Controls.Add(Me.btnMostrar)
         Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.lblCta)
         Me.Controls.Add(Me.dtpInicio)
+        Me.Controls.Add(Me.btnMostrar)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.dtpFin)
@@ -249,25 +397,31 @@ Partial Class GastosPorDiaForm
         Me.Controls.SetChildIndex(Me.dtpFin, 0)
         Me.Controls.SetChildIndex(Me.Label2, 0)
         Me.Controls.SetChildIndex(Me.Label3, 0)
-        Me.Controls.SetChildIndex(Me.dtpInicio, 0)
-        Me.Controls.SetChildIndex(Me.GroupBox1, 0)
         Me.Controls.SetChildIndex(Me.btnMostrar, 0)
-        Me.Controls.SetChildIndex(Me.btnImprimir, 0)
+        Me.Controls.SetChildIndex(Me.dtpInicio, 0)
+        Me.Controls.SetChildIndex(Me.lblCta, 0)
+        Me.Controls.SetChildIndex(Me.GroupBox1, 0)
         Me.Controls.SetChildIndex(Me.Label1, 0)
-        Me.Controls.SetChildIndex(Me.lblTitulo, 0)
-        Me.Controls.SetChildIndex(Me.lblDerecha, 0)
         Me.Controls.SetChildIndex(Me.Label6, 0)
         Me.Controls.SetChildIndex(Me.txtTotalSoles, 0)
         Me.Controls.SetChildIndex(Me.Label7, 0)
         Me.Controls.SetChildIndex(Me.txtTotalDolares, 0)
         Me.Controls.SetChildIndex(Me.cbBanco, 0)
-        Me.Controls.SetChildIndex(Me.btnCerrar, 0)
+        Me.Controls.SetChildIndex(Me.cbCuenta, 0)
         Me.Controls.SetChildIndex(Me.Label5, 0)
         Me.Controls.SetChildIndex(Me.txtTotalDetraccion, 0)
         Me.Controls.SetChildIndex(Me.Label4, 0)
         Me.Controls.SetChildIndex(Me.txtDetraccionDolares, 0)
+        Me.Controls.SetChildIndex(Me.chkBanco, 0)
+        Me.Controls.SetChildIndex(Me.chkCuenta, 0)
+        Me.Controls.SetChildIndex(Me.lblTitulo, 0)
+        Me.Controls.SetChildIndex(Me.lblDerecha, 0)
         Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         CType(Me.dgReporte, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.BindingNavigator1.ResumeLayout(False)
+        Me.BindingNavigator1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -291,5 +445,19 @@ Partial Class GastosPorDiaForm
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents txtDetraccionDolares As System.Windows.Forms.TextBox
+    Friend WithEvents chkBanco As System.Windows.Forms.CheckBox
+    Friend WithEvents lblCta As System.Windows.Forms.Label
+    Friend WithEvents cbCuenta As System.Windows.Forms.ComboBox
+    Friend WithEvents chkCuenta As System.Windows.Forms.CheckBox
+    Friend WithEvents BindingNavigator1 As System.Windows.Forms.BindingNavigator
+    Friend WithEvents BindingNavigatorCountItem As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents BindingNavigatorMoveFirstItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorMovePreviousItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorSeparator As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BindingNavigatorPositionItem As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents BindingNavigatorSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BindingNavigatorMoveNextItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorMoveLastItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorSeparator2 As System.Windows.Forms.ToolStripSeparator
 
 End Class

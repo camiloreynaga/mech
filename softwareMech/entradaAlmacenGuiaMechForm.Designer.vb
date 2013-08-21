@@ -20,11 +20,11 @@ Partial Class entradaAlmacenGuiaMechForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(entradaAlmacenGuiaMechForm))
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.dgTabla1 = New System.Windows.Forms.DataGridView
         Me.btnCerrar = New System.Windows.Forms.Button
@@ -58,7 +58,6 @@ Partial Class entradaAlmacenGuiaMechForm
         Me.ToolStripTextBox4 = New System.Windows.Forms.ToolStripTextBox
         Me.ToolStripSeparator13 = New System.Windows.Forms.ToolStripSeparator
         Me.btnVisKardex = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripSeparator14 = New System.Windows.Forms.ToolStripSeparator
         Me.btnPro = New System.Windows.Forms.ToolStripButton
         Me.ToolStripSeparator15 = New System.Windows.Forms.ToolStripSeparator
         Me.txtMot = New System.Windows.Forms.TextBox
@@ -103,6 +102,8 @@ Partial Class entradaAlmacenGuiaMechForm
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator
         Me.dgTabla2 = New System.Windows.Forms.DataGridView
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.btnProInc = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripSeparator14 = New System.Windows.Forms.ToolStripSeparator
         Me.Panel1.SuspendLayout()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,8 +147,8 @@ Partial Class entradaAlmacenGuiaMechForm
         Me.dgTabla1.Location = New System.Drawing.Point(1, 0)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle9
         Me.dgTabla1.Size = New System.Drawing.Size(983, 120)
         Me.dgTabla1.TabIndex = 8
         '
@@ -316,8 +317,8 @@ Partial Class entradaAlmacenGuiaMechForm
         Me.dgStock.Name = "dgStock"
         Me.dgStock.ReadOnly = True
         Me.dgStock.RowHeadersVisible = False
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgStock.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgStock.RowsDefaultCellStyle = DataGridViewCellStyle10
         Me.dgStock.Size = New System.Drawing.Size(261, 128)
         Me.dgStock.TabIndex = 318
         Me.dgStock.TabStop = False
@@ -337,7 +338,7 @@ Partial Class entradaAlmacenGuiaMechForm
         Me.Navigator3.CountItem = Me.ToolStripLabel2
         Me.Navigator3.DeleteItem = Nothing
         Me.Navigator3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Navigator3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton9, Me.ToolStripButton10, Me.ToolStripSeparator4, Me.ToolStripTextBox3, Me.ToolStripLabel2, Me.ToolStripSeparator5, Me.ToolStripButton11, Me.ToolStripButton12, Me.ToolStripSeparator12, Me.ToolStripTextBox4, Me.ToolStripSeparator13, Me.btnVisKardex, Me.ToolStripSeparator14, Me.btnPro, Me.ToolStripSeparator15})
+        Me.Navigator3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton9, Me.ToolStripButton10, Me.ToolStripSeparator4, Me.ToolStripTextBox3, Me.ToolStripLabel2, Me.ToolStripSeparator5, Me.ToolStripButton11, Me.ToolStripButton12, Me.ToolStripSeparator12, Me.ToolStripTextBox4, Me.ToolStripSeparator13, Me.btnVisKardex, Me.btnPro, Me.ToolStripSeparator15, Me.btnProInc, Me.ToolStripSeparator14})
         Me.Navigator3.Location = New System.Drawing.Point(0, 221)
         Me.Navigator3.MoveFirstItem = Me.ToolStripButton9
         Me.Navigator3.MoveLastItem = Me.ToolStripButton12
@@ -428,7 +429,7 @@ Partial Class entradaAlmacenGuiaMechForm
         Me.ToolStripTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.ToolStripTextBox4.Name = "ToolStripTextBox4"
         Me.ToolStripTextBox4.ReadOnly = True
-        Me.ToolStripTextBox4.Size = New System.Drawing.Size(254, 25)
+        Me.ToolStripTextBox4.Size = New System.Drawing.Size(122, 25)
         '
         'ToolStripSeparator13
         '
@@ -447,12 +448,6 @@ Partial Class entradaAlmacenGuiaMechForm
         Me.btnVisKardex.Size = New System.Drawing.Size(134, 22)
         Me.btnVisKardex.Text = "Visualizar Kardex"
         '
-        'ToolStripSeparator14
-        '
-        Me.ToolStripSeparator14.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.ToolStripSeparator14.Name = "ToolStripSeparator14"
-        Me.ToolStripSeparator14.Size = New System.Drawing.Size(6, 25)
-        '
         'btnPro
         '
         Me.btnPro.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -460,9 +455,9 @@ Partial Class entradaAlmacenGuiaMechForm
         Me.btnPro.Image = CType(resources.GetObject("btnPro.Image"), System.Drawing.Image)
         Me.btnPro.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnPro.Name = "btnPro"
-        Me.btnPro.Size = New System.Drawing.Size(238, 22)
-        Me.btnPro.Text = "Procesar Entrada de Linea de Guia"
-        Me.btnPro.ToolTipText = "Procesar Ingresos de Linea de Guia a recibir..."
+        Me.btnPro.Size = New System.Drawing.Size(195, 22)
+        Me.btnPro.Text = "Procesar Ingreso Conforme"
+        Me.btnPro.ToolTipText = "Procesar Ingresos de Linea de Guia a recibir [CONFORME]"
         '
         'ToolStripSeparator15
         '
@@ -637,8 +632,8 @@ Partial Class entradaAlmacenGuiaMechForm
         Me.dgTabla3.Location = New System.Drawing.Point(2, 93)
         Me.dgTabla3.Name = "dgTabla3"
         Me.dgTabla3.ReadOnly = True
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla3.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla3.RowsDefaultCellStyle = DataGridViewCellStyle11
         Me.dgTabla3.Size = New System.Drawing.Size(722, 128)
         Me.dgTabla3.TabIndex = 315
         '
@@ -856,10 +851,26 @@ Partial Class entradaAlmacenGuiaMechForm
         Me.dgTabla2.Location = New System.Drawing.Point(1, 37)
         Me.dgTabla2.Name = "dgTabla2"
         Me.dgTabla2.ReadOnly = True
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle12
         Me.dgTabla2.Size = New System.Drawing.Size(981, 173)
         Me.dgTabla2.TabIndex = 330
+        '
+        'btnProInc
+        '
+        Me.btnProInc.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnProInc.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnProInc.Image = CType(resources.GetObject("btnProInc.Image"), System.Drawing.Image)
+        Me.btnProInc.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnProInc.Name = "btnProInc"
+        Me.btnProInc.Size = New System.Drawing.Size(204, 22)
+        Me.btnProInc.Text = "Procesar Ingreso Incompleto"
+        Me.btnProInc.ToolTipText = "Procesar Ingresos de Linea de Guia a recibir [INCOMPLETO]"
+        '
+        'ToolStripSeparator14
+        '
+        Me.ToolStripSeparator14.Name = "ToolStripSeparator14"
+        Me.ToolStripSeparator14.Size = New System.Drawing.Size(6, 25)
         '
         'entradaAlmacenGuiaMechForm
         '
@@ -972,11 +983,12 @@ Partial Class entradaAlmacenGuiaMechForm
     Friend WithEvents ToolStripTextBox4 As System.Windows.Forms.ToolStripTextBox
     Friend WithEvents ToolStripSeparator13 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents btnVisKardex As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripSeparator14 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents btnPro As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator15 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripSeparator16 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents btnTermi As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator17 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents btnProInc As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator14 As System.Windows.Forms.ToolStripSeparator
 
 End Class

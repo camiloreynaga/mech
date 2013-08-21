@@ -827,6 +827,19 @@ Public Class registraGuiaRemProvForm
             Exit Sub
         End If
 
+        vCom = False
+        For j As Short = 0 To BindingSource13.Count - 1
+            If BindingSource13.Item(j)(14) = 2 Then
+                vCom = True
+                Exit For
+            End If
+        Next
+
+        If vCom = True Then
+            MessageBox.Show("Proceso denegado en ANULAR, por estar en el estado de [PROCESADO EN KARDEX]", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
         If vfModificar1 = "modificar" Then
             If BindingSource12.Position = -1 Then
                 StatusBarClass.messageBarraEstado("  No existe registro a modificar...")
@@ -1073,6 +1086,11 @@ Public Class registraGuiaRemProvForm
             MessageBox.Show("Ya exíste insumo: " & BindingSource10.Item(BindingSource10.Position)(1), nomNegocio, Nothing, MessageBoxIcon.Information)
             txtBuscar.Focus()
             txtBuscar.SelectAll()
+            Exit Sub
+        End If
+
+        If BindingSource12.Item(BindingSource12.Position)(21) = 1 Then  'Estado=1 TERMINado 2=CERRADO
+            MessageBox.Show("No se puede AGREGAR ITEM por estar GUIA en el estado de [TERMINADO]", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
 
@@ -1396,6 +1414,19 @@ Public Class registraGuiaRemProvForm
 
         If vCom = True Then
             MessageBox.Show("Proceso denegado en ANULAR, por estar en el estado de [RECIBIDO]", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        vCom = False
+        For j As Short = 0 To BindingSource13.Count - 1
+            If BindingSource13.Item(j)(14) = 2 Then
+                vCom = True
+                Exit For
+            End If
+        Next
+
+        If vCom = True Then
+            MessageBox.Show("Proceso denegado en ANULAR, por estar en el estado de [PROCESADO EN KARDEX]", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
 

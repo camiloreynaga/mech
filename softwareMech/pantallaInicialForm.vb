@@ -125,8 +125,10 @@ Public Class pantallaInicialForm
         opcInsumoTipo.Visible = False
         opcInsumoArea.Visible = False
 
-        opcAlmE.Visible = True ' Menú Entradas (Almacen)
         opcGuiaRem.Visible = True 'Menú guia de remision
+        opcAlmE.Visible = True ' Menú Entradas (Almacen)
+        ToolStripSeparator17.Visible = True 'raya
+        opcAlmS.Visible = True ' Menú Salidas (Almacen)
 
         opcGuiaRem2.Visible = False ' Mantenimiento de Motivos GR
         ToolStripMenuItem2.Visible = False 'Mantenimiento de Vehiculos / Chofer
@@ -193,6 +195,7 @@ Public Class pantallaInicialForm
 
         opcAlmE.Visible = False 'Entrada Almacen
         opcAlmS.Visible = False 'Salida Almacen
+        infT2.Visible = False ' informe de gastos por dia
 
         ToolStripSeparator5.Visible = False
         ToolStripSeparator1.Visible = False
@@ -284,6 +287,8 @@ Public Class pantallaInicialForm
         opcConfSerieDesem.Visible = False
         opcConfSeriePersonal.Visible = False
 
+        infT2.Visible = False ' informe de gastos por dia
+
         ToolStripSeparator9.Visible = False
 
         ToolStripSeparator16.Visible = False
@@ -330,7 +335,7 @@ Public Class pantallaInicialForm
         opcAlmE.Visible = False 'Entrada Almacen
         opcAlmS.Visible = False 'Salida Almacen
 
-
+        infT2.Visible = False ' informe de gastos por dia
 
         ToolStripSeparator3.Visible = False
         ToolStripSeparator4.Visible = False
@@ -381,6 +386,7 @@ Public Class pantallaInicialForm
         opcConfSeriePersonal.Visible = False 'Asignar Serie de Orden de desembolso
         opcConfSerieDesem.Visible = False 'Mantenimiento de series de orden de desembolso
 
+        infT2.Visible = False ' informe de gastos por dia
 
         'separadores
         'ToolStripSeparator1.Visible = False
@@ -398,6 +404,8 @@ Public Class pantallaInicialForm
         opcOrdDesCtasBco.Visible = False
         opcOrdDesModPago.Visible = False
         opcOrdDesRegPagos.Visible = False
+
+        infT2.Visible = False ' informe de gastos por dia
 
     End Sub
 
@@ -742,16 +750,22 @@ Public Class pantallaInicialForm
         segProv.Show()
     End Sub
 
-    Private Sub ReporteCardexToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReporteCardexToolStripMenuItem.Click
-        Dim rCardex As New ReporteCardexForm
-        rCardex.MdiParent = Me
-        rCardex.Show()
+    Private Sub opcAlmS3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcAlmS3.Click
+        Dim ent As New salidaAlmacenPersForm
+        ent.MdiParent = Me
+        ent.Show()
     End Sub
 
-    Private Sub ReporteTesoreriaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReporteTesoreriaToolStripMenuItem.Click
-        Dim rpteTesoreria As New GastosPorDiaForm
-        rpteTesoreria.MdiParent = Me
-        rpteTesoreria.Show()
+    Private Sub infT1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles infT1.Click
+        Dim frmKardex As New ReporteCardexForm
+        frmKardex.MdiParent = Me
+        frmKardex.Show()
 
+    End Sub
+
+    Private Sub infT2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles infT2.Click
+        Dim frmGastDia As New GastosPorDiaForm
+        frmGastDia.MdiParent = Me
+        frmGastDia.Show()
     End Sub
 End Class

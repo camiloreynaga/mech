@@ -68,9 +68,10 @@ Public Class registraGuiaRemEmpForm
         sele = "select codMotG,motivo from TMotivoGuia order by motivo"
         crearDataAdapterTable(daTabla2, sele)
 
-        sele = "select codGuiaE,nro,talon,nroGuia,fecIni,codSerS,codIde,codUbiOri,codUbiDes,partida,llegada,codVeh,codT,codMotG,nroFact,obs,codPers,codObraOri,codObraDes,codET,hist,estado from VGuiaRemEmpAper where codSerS=@codSer" 'order by nroGuia"
+        sele = "select codGuiaE,nro,talon,nroGuia,fecIni,codSerS,codIde,codUbiOri,codUbiDes,partida,llegada,codVeh,codT,codMotG,nroFact,obs,codPers,codObraOri,codObraDes,codET,hist,estado from VGuiaRemEmpAper where codSerS=@codSer and codObraOri=@cod" 'order by nroGuia"
         crearDataAdapterTable(daTabla1, sele)
         daTabla1.SelectCommand.Parameters.Add("@codSer", SqlDbType.Int, 0).Value = 0
+        daTabla1.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vSCodigo
 
         sele = "select codDGE,cant,descrip,linea1,unidad,peso,detalle,codGuiaE,codMat,entre,entregado,recib,obsR,nomRec,recibido from VDetGuiaE where codGuiaE=@nro"
         crearDataAdapterTable(daDetDoc, sele)
@@ -194,6 +195,9 @@ Public Class registraGuiaRemEmpForm
     End Sub
 
     Private Sub registraGuiaRemEmpForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+        BindingSource3.Position = BindingSource3.Find("codigo", vSCodigo)
+        enlazarPartida()
+
         vfVan3 = True
         visualizarDet()
     End Sub
@@ -256,6 +260,7 @@ Public Class registraGuiaRemEmpForm
             Me.Cursor = Cursors.WaitCursor
             dsAlmacen.Tables("VGuiaRemEmpAper").Clear()
             daTabla1.SelectCommand.Parameters("@codSer").Value = cbSerie.SelectedValue
+            daTabla1.SelectCommand.Parameters("@cod").Value = vSCodigo
             daTabla1.Fill(dsAlmacen, "VGuiaRemEmpAper")
             Me.Cursor = Cursors.Default
         End If
@@ -1135,6 +1140,11 @@ Public Class registraGuiaRemEmpForm
             MessageBox.Show("Ya exíste insumo: " & BindingSource10.Item(BindingSource10.Position)(1), nomNegocio, Nothing, MessageBoxIcon.Information)
             txtBuscar.Focus()
             txtBuscar.SelectAll()
+            Exit Sub
+        End If
+
+        If BindingSource12.Item(BindingSource12.Position)(21) = 1 Then  'Estado=1 TERMINado 2=CERRADO
+            MessageBox.Show("No se puede AGREGAR ITEM por estar GUIA en el estado de [TERMINADO]", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
 

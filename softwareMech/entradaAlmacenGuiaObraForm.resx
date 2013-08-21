@@ -120,6 +120,9 @@
   <metadata name="Navigator1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="Navigator1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="ToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -242,6 +245,27 @@
         MbPO+1FS1f1fYUUmp+aDjnzUYWKV4STlnTVvMNJh4lwBMetz/Vv7AbXSKfR2V55xAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="btnProInc.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACEAAAA0CAYAAAAE/1FHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAK1SURBVFhH7VYhd/JAEERWfn+hf6myFlmJxCIrkbWVyMpa
+        JDISi0RG5rvZnTk2IU0DvZQK5r15d7d3uzM5kb3ZHXdci6auG05H4dLzo4CiYwrr3KQmvhL49/jQ2u87
+        82M0x2PTJbfc4MB+MfSJiPXhkBnXTC2HKDSWTC2Her9vRhEGOGdqOdTVrnFWHDVPhOjZuJvSRJfRlNYe
+        Y2o5SOS427bG7jyumVoOKJy5/XQG8eM27HFkajm4MEU+P5wSjMZwhvtMLQcUPXxsTibSmNeRYY+p5ZBN
+        QKRjKMbz/ua9vAkUhZiNiRI6bIKxNJchjEwtBzMgE3F8f3NaLJxJMaaWgwnZl1NcBiiYxcW3dXkT+/Xr
+        SVSMJsAknMfJTERxCSZmgxTXHlPLAYX365UJQHT/uvI1xGGMcRmbxISJijSRhWUsm0vjanm5ie+eYy6w
+        TMUXFEtzUMKaJ3GZZeoZBrWG3oZRwL5cZiy+aKplWsskDTHVoNqDBgA8SLpPN27NYABCLrZqqsWL0UTz
+        1/uoc8gz4Z56g5ARPdFExEyYAs5kAuLZIEzhNpZn+apBme+h51mLKBTWugk35ub6zkWy/DjEJ5rR5qcX
+        U4zDRCtmjGd9ZOnL4G8EfyugCDrmScRfT/mMqLNhVJxlL4cVMoHOm8GKY96z1xNjuevQ7PwGjGjXGmHC
+        1hTEXLTz2vdclrse6pgSiXMI2LprJFFxlvk5rDfQjDH0h9zUxBwr/Kj5UkyGYkzr9FdlejmgOH7FJpIE
+        xFZMZqYwAOgrc79QD0m/ajMgk5hPZQLw/iD671mi2VzqJTw+HdQb1KyiIcx5bFpADL9qa9+5b3jvwB6P
+        TQ/rmC/PWdhMJEPc/h2YCdwCOH9yQ4v575oATPiWBoBqThM2Pt/GBOAmnm5nANBNcHkb/ImbuKMsZrP/
+        qh4XxBzYixgAAAAASUVORK5CYII=
+</value>
+  </data>
+  <metadata name="Navigator2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>241, 17</value>
+  </metadata>
   <metadata name="Navigator2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>241, 17</value>
   </metadata>

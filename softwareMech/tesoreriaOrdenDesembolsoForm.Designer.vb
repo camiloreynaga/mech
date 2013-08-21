@@ -21,8 +21,8 @@ Partial Class tesoreriaOrdenDesembolsoForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(tesoreriaOrdenDesembolsoForm))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.btnF1 = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.cbSerie = New System.Windows.Forms.ComboBox
@@ -106,6 +106,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Label12 = New System.Windows.Forms.Label
         Me.txtMot = New System.Windows.Forms.TextBox
         Me.Label13 = New System.Windows.Forms.Label
+        Me.btnImprimir = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -215,8 +216,8 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.dgTabla1.Location = New System.Drawing.Point(0, 32)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgTabla1.Size = New System.Drawing.Size(1006, 228)
         Me.dgTabla1.TabIndex = 332
         '
@@ -419,6 +420,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         'Panel2
         '
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel2.Controls.Add(Me.btnImprimir)
         Me.Panel2.Controls.Add(Me.dgTabla2)
         Me.Panel2.Controls.Add(Me.btnNuevo)
         Me.Panel2.Controls.Add(Me.CheckBox1)
@@ -455,8 +457,8 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.dgTabla2.Location = New System.Drawing.Point(0, 98)
         Me.dgTabla2.Name = "dgTabla2"
         Me.dgTabla2.ReadOnly = True
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.dgTabla2.Size = New System.Drawing.Size(1002, 137)
         Me.dgTabla2.TabIndex = 320
         '
@@ -465,18 +467,17 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.btnNuevo.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnNuevo.Image = CType(resources.GetObject("btnNuevo.Image"), System.Drawing.Image)
         Me.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnNuevo.Location = New System.Drawing.Point(689, 61)
+        Me.btnNuevo.Location = New System.Drawing.Point(853, 8)
         Me.btnNuevo.Name = "btnNuevo"
-        Me.btnNuevo.Size = New System.Drawing.Size(76, 23)
+        Me.btnNuevo.Size = New System.Drawing.Size(79, 23)
         Me.btnNuevo.TabIndex = 10
         Me.btnNuevo.Text = "Pagar"
-        Me.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnNuevo.UseVisualStyleBackColor = True
         '
         'CheckBox1
         '
         Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(595, 65)
+        Me.CheckBox1.Location = New System.Drawing.Point(816, 65)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(88, 17)
         Me.CheckBox1.TabIndex = 9
@@ -490,9 +491,9 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.cbCla.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbCla.FormattingEnabled = True
         Me.cbCla.IntegralHeight = False
-        Me.cbCla.Location = New System.Drawing.Point(688, 22)
+        Me.cbCla.Location = New System.Drawing.Point(676, 22)
         Me.cbCla.Name = "cbCla"
-        Me.cbCla.Size = New System.Drawing.Size(159, 21)
+        Me.cbCla.Size = New System.Drawing.Size(171, 21)
         Me.cbCla.TabIndex = 5
         '
         'Label15
@@ -546,10 +547,12 @@ Partial Class tesoreriaOrdenDesembolsoForm
         '
         Me.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnEliminar.Image = CType(resources.GetObject("btnEliminar.Image"), System.Drawing.Image)
-        Me.btnEliminar.Location = New System.Drawing.Point(952, 61)
+        Me.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnEliminar.Location = New System.Drawing.Point(938, 37)
         Me.btnEliminar.Name = "btnEliminar"
-        Me.btnEliminar.Size = New System.Drawing.Size(34, 23)
+        Me.btnEliminar.Size = New System.Drawing.Size(64, 23)
         Me.btnEliminar.TabIndex = 13
+        Me.btnEliminar.Text = "Elimin."
         Me.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnEliminar.UseVisualStyleBackColor = True
         '
@@ -560,9 +563,9 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancelar.Image = CType(resources.GetObject("btnCancelar.Image"), System.Drawing.Image)
         Me.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCancelar.Location = New System.Drawing.Point(771, 61)
+        Me.btnCancelar.Location = New System.Drawing.Point(854, 37)
         Me.btnCancelar.Name = "btnCancelar"
-        Me.btnCancelar.Size = New System.Drawing.Size(84, 23)
+        Me.btnCancelar.Size = New System.Drawing.Size(78, 23)
         Me.btnCancelar.TabIndex = 11
         Me.btnCancelar.Text = "Cancelar"
         Me.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -573,11 +576,11 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnModificar.Image = CType(resources.GetObject("btnModificar.Image"), System.Drawing.Image)
         Me.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnModificar.Location = New System.Drawing.Point(863, 61)
+        Me.btnModificar.Location = New System.Drawing.Point(938, 8)
         Me.btnModificar.Name = "btnModificar"
-        Me.btnModificar.Size = New System.Drawing.Size(84, 23)
+        Me.btnModificar.Size = New System.Drawing.Size(64, 23)
         Me.btnModificar.TabIndex = 12
-        Me.btnModificar.Text = "Modificar"
+        Me.btnModificar.Text = "Modif."
         Me.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnModificar.UseVisualStyleBackColor = True
         '
@@ -586,7 +589,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.txtDes.Location = New System.Drawing.Point(10, 64)
         Me.txtDes.Name = "txtDes"
         Me.txtDes.ReadOnly = True
-        Me.txtDes.Size = New System.Drawing.Size(441, 20)
+        Me.txtDes.Size = New System.Drawing.Size(660, 20)
         Me.txtDes.TabIndex = 6
         '
         'Label6
@@ -627,7 +630,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.cbMon.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbMon.FormattingEnabled = True
         Me.cbMon.IntegralHeight = False
-        Me.cbMon.Location = New System.Drawing.Point(457, 63)
+        Me.cbMon.Location = New System.Drawing.Point(678, 63)
         Me.cbMon.Name = "cbMon"
         Me.cbMon.Size = New System.Drawing.Size(50, 21)
         Me.cbMon.TabIndex = 7
@@ -635,7 +638,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(506, 49)
+        Me.Label3.Location = New System.Drawing.Point(727, 49)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(46, 13)
         Me.Label3.TabIndex = 334
@@ -643,7 +646,7 @@ Partial Class tesoreriaOrdenDesembolsoForm
         '
         'txtMon
         '
-        Me.txtMon.Location = New System.Drawing.Point(509, 63)
+        Me.txtMon.Location = New System.Drawing.Point(730, 63)
         Me.txtMon.Name = "txtMon"
         Me.txtMon.ReadOnly = True
         Me.txtMon.Size = New System.Drawing.Size(78, 20)
@@ -941,6 +944,20 @@ Partial Class tesoreriaOrdenDesembolsoForm
         Me.Label13.TabIndex = 15
         Me.Label13.Text = "Detalle:"
         '
+        'btnImprimir
+        '
+        Me.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
+        Me.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnImprimir.Location = New System.Drawing.Point(938, 65)
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(64, 25)
+        Me.btnImprimir.TabIndex = 349
+        Me.btnImprimir.TabStop = False
+        Me.btnImprimir.Text = "Imprim"
+        Me.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnImprimir.UseVisualStyleBackColor = True
+        '
         'tesoreriaOrdenDesembolsoForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
@@ -1079,5 +1096,6 @@ Partial Class tesoreriaOrdenDesembolsoForm
     Friend WithEvents rb1 As System.Windows.Forms.RadioButton
     Friend WithEvents cbSerie As System.Windows.Forms.ComboBox
     Friend WithEvents btnF1 As ComponentesSolucion2008.BottomSSP
+    Friend WithEvents btnImprimir As ComponentesSolucion2008.BottomSSP
 
 End Class

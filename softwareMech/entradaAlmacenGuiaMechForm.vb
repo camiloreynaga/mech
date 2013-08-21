@@ -26,7 +26,7 @@ Public Class entradaAlmacenGuiaMechForm
         crearDataAdapterTable(daTabla1, sele)
         daTabla1.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vSCodigo  'Guia remision por Destino Obra
 
-        sele = "select codDGE,codigo,cant,unidad,detalle,peso,recib,recibido,codGuiaE,codMat,nomRec from VDetGuiaE where codGuiaE=@nro"
+        sele = "select codDGE,codigo,cant,unidad,detalle,peso,recib,recibido,codGuiaE,codMat,nomRec,obsR from VDetGuiaE where codGuiaE=@nro"
         crearDataAdapterTable(daDetDoc, sele)
         daDetDoc.SelectCommand.Parameters.Add("@nro", SqlDbType.Int, 0).Value = 0
 
@@ -35,7 +35,7 @@ Public Class entradaAlmacenGuiaMechForm
         daVKardex.SelectCommand.Parameters.Add("@codMat", SqlDbType.Int, 0).Value = 0
         daVKardex.SelectCommand.Parameters.Add("@codUbi", SqlDbType.Int, 0).Value = 0
 
-        sele = "select idMU,stock,ubicacion+' - '+obra as ubi,codigo,codUbi,codMat,color from VStockUbi"
+        sele = "select idMU,stock,obra+' - '+ubicacion as ubi,codigo,codUbi,codMat,color from VStockUbi"
         crearDataAdapterTable(daVStock, sele)
 
         Try
@@ -140,6 +140,10 @@ Public Class entradaAlmacenGuiaMechForm
                 dgTabla3.Rows(j).Cells(6).Style.BackColor = Color.Green 'Color.YellowGreen
                 dgTabla3.Rows(j).Cells(6).Style.ForeColor = Color.White
             End If
+            If BindingSource2.Item(j)(7) = 2 Then 'Incompleto
+                dgTabla3.Rows(j).Cells(6).Style.BackColor = Color.Red
+                dgTabla3.Rows(j).Cells(6).Style.ForeColor = Color.White
+            End If
         Next
     End Sub
 
@@ -217,7 +221,10 @@ Public Class entradaAlmacenGuiaMechForm
             .Columns(7).Visible = False
             .Columns(8).Visible = False
             .Columns(9).Visible = False
-            .Columns(10).Visible = False
+            .Columns(10).Width = 100
+            .Columns(10).HeaderText = "Pers.Recibe"
+            .Columns(11).Width = 500
+            .Columns(11).HeaderText = "Observación Incompleto"
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -229,7 +236,7 @@ Public Class entradaAlmacenGuiaMechForm
             .Columns(1).Width = 50
             .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(2).HeaderText = "Ubicacion"
-            .Columns(2).Width = 500
+            .Columns(2).Width = 700
             .Columns(3).Visible = False
             .Columns(4).Visible = False
             .Columns(5).Visible = False
@@ -410,7 +417,7 @@ Public Class entradaAlmacenGuiaMechForm
         'si es ENTRADA Mech=1 Y Nro Guia = Nro Guia entonces deshacer
         If BindingSource4.Item(BindingSource4.Position)(26) = 1 And BindingSource4.Item(BindingSource4.Position)(24) = BindingSource2.Item(BindingSource2.Position)(0) Then
         Else
-            MessageBox.Show("Proceso denegado, Movimiento NO es proceso de ENTRADA de MECH con la misma Guia...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            MessageBox.Show("Proceso denegado, Movimiento NO es proceso de ENTRADA con la misma Guia...", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
 
@@ -576,8 +583,8 @@ Public Class entradaAlmacenGuiaMechForm
             Exit Sub
         End If
 
-        vCodProd = BindingSource4.Item(BindingSource4.Position)(17)
-        vCodUbi = BindingSource4.Item(BindingSource4.Position)(19)
+        vCodProd = BindingSource4.Item(BindingSource4.Position)(20)
+        vCodUbi = BindingSource4.Item(BindingSource4.Position)(22)
         'vParam1 = "Nº " & BindingSource6.Item(BindingSource6.Position)(2) & "-MECH-" & CDate(BindingSource6.Item(BindingSource6.Position)(4)).Year
 
         Dim informe As New ReportViewerKardex1Form
@@ -654,6 +661,11 @@ Public Class entradaAlmacenGuiaMechForm
 
         If BindingSource2.Item(BindingSource2.Position)(7) = 1 Then
             MessageBox.Show("Proceso denegado, ya fue RECIBIDO y procesado en KARDEX...", nomNegocio, Nothing, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
+        If BindingSource2.Item(BindingSource2.Position)(7) = 2 Then
+            MessageBox.Show("Proceso denegado, ya fue procesado en KARDEX...", nomNegocio, Nothing, MessageBoxIcon.Information)
             Exit Sub
         End If
 
@@ -947,5 +959,149 @@ Public Class entradaAlmacenGuiaMechForm
         cmUpdateTable33.Parameters.Add("@est", SqlDbType.Int, 0).Value = estado
         cmUpdateTable33.Parameters.Add("@hist", SqlDbType.VarChar, 500).Value = BindingSource1.Item(BindingSource1.Position)(18) & "  Termino " & Now.Date & " " & vPass & "-" & vSUsuario
         cmUpdateTable33.Parameters.Add("@cod", SqlDbType.Int, 0).Value = codGuia
+    End Sub
+
+    Private Sub btnProInc_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnProInc.Click
+        If BindingSource2.Position = -1 Then
+            MessageBox.Show("Seleccione insumo...", nomNegocio, Nothing, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
+        If BindingSource2.Item(BindingSource2.Position)(7) = 1 Then
+            MessageBox.Show("Proceso denegado, ya fue RECIBIDO y procesado en KARDEX...", nomNegocio, Nothing, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
+        If BindingSource2.Item(BindingSource2.Position)(7) = 2 Then
+            MessageBox.Show("Proceso denegado, ya fue procesado en KARDEX...", nomNegocio, Nothing, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
+        vCant1 = BindingSource2.Item(BindingSource2.Position)(2)
+        Dim comentarioCant As New CometarioCantForm
+        comentarioCant.ShowDialog()
+
+        Dim resp As Short = MessageBox.Show("Esta segúro de procesar INGRESOS de  " & vCant & " " & BindingSource2.Item(BindingSource2.Position)(3) & Chr(13) & BindingSource2.Item(BindingSource2.Position)(4) & Chr(13) & "A =>" & BindingSource1.Item(BindingSource1.Position)(6), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resp <> 6 Then
+            Exit Sub
+        End If
+
+        Dim existe As Single = recuperarAlmacenado(BindingSource2.Item(BindingSource2.Position)(9), BindingSource1.Item(BindingSource1.Position)(30))
+        If existe = 0 Then
+            'MsgBox("NO EXISTE STOCK")
+        Else
+            'MsgBox("SI EXISTE STOCK")
+        End If
+
+        Dim finalMytrans As Boolean = False
+        Dim wait As New waitForm
+        wait.Show()
+        Me.Cursor = Cursors.WaitCursor
+        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
+        Try
+            StatusBarClass.messageBarraEstado("  GUARDANDO DATOS...")
+            Me.Refresh()
+
+            Dim idMU As Integer
+            If existe = 0 Then 'No existe stock crear...
+                'TMatUbi
+                comandoInsert1(BindingSource2.Item(BindingSource2.Position)(9), BindingSource1.Item(BindingSource1.Position)(30), CDbl(vCant))
+                cmdInserTable1.Transaction = myTrans
+                If cmdInserTable1.ExecuteNonQuery() < 1 Then
+                    wait.Close()
+                    Me.Cursor = Cursors.Default
+                    myTrans.Rollback()
+                    MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                End If
+                idMU = cmdInserTable1.Parameters("@Identity").Value
+            Else 'existe = 1 si hay stock Aumentar
+                'TMatUbi
+                comandoUpdate2(existe, CDbl(vCant))
+                cmUpdateTable2.Transaction = myTrans
+                If cmUpdateTable2.ExecuteNonQuery() < 1 Then
+                    'deshace la transaccion
+                    wait.Close()
+                    myTrans.Rollback()
+                    MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                End If
+                idMU = existe
+            End If
+
+            Dim saldo As Decimal = recuperarSaldo(idMU, myTrans) 'saldo de almacen
+            'TSaldo
+            comandoInsert11(saldo, BindingSource1.Item(BindingSource1.Position)(26))
+            cmInserTable11.Transaction = myTrans
+            If cmInserTable11.ExecuteNonQuery() < 1 Then
+                wait.Close()
+                Me.Cursor = Cursors.Default
+                myTrans.Rollback()
+                MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+            Dim codSal As Integer = cmInserTable11.Parameters("@Identity").Value
+
+            Dim cantEnt As Decimal = vCant
+            Dim precio As Decimal = recuperarPreBase(BindingSource2.Item(BindingSource2.Position)(9), myTrans)
+            Dim cantSal As Decimal = 0
+
+            'TEntradaSalida
+            comandoInsert2(Now.Date, BindingSource2.Item(BindingSource2.Position)(9), idMU, BindingSource1.Item(BindingSource1.Position)(30), cantEnt, precio, cantSal, 0, BindingSource2.Item(BindingSource2.Position)(0), "R " & BindingSource1.Item(BindingSource1.Position)(2), 0, BindingSource1.Item(BindingSource1.Position)(8), "", 1, vPass, vPass, vObs & " [NºGuia " & BindingSource1.Item(BindingSource1.Position)(2) & "]", codSal, BindingSource1.Item(BindingSource1.Position)(30), 2, BindingSource1.Item(BindingSource1.Position)(29)) '1=Entrada 2=Incompleto
+            cmdInserTable2.Transaction = myTrans
+            cmdInserTable2.ExecuteNonQuery()
+            Dim nroNota As Integer = cmdInserTable2.Parameters("@Identity").Value
+
+            'TDetalleGuiaEmp
+            comandoUpdate1(2, vPass, vObs, BindingSource2.Item(BindingSource2.Position)(0)) '2=Incompleto
+            cmUpdateTable1.Transaction = myTrans
+            If cmUpdateTable1.ExecuteNonQuery() < 1 Then
+                'deshace la transaccion
+                wait.Close()
+                myTrans.Rollback()
+                MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+
+            Dim puntero As Integer = BindingSource2.Item(BindingSource2.Position)(0)
+
+            'confirma la transaccion
+            myTrans.Commit()    'con exito RAS
+
+            StatusBarClass.messageBarraEstado("  LOS DATOS FUERON GUARDADOS CON EXITO...")
+            finalMytrans = True
+
+            'Actualizando el dataSet 
+            dsAlmacen.Tables("VStockUbi").Clear()
+            daVStock.Fill(dsAlmacen, "VStockUbi")
+            visualizarDet()
+
+            'Buscando por nombre de campo y luego pocisionarlo con el indice
+            BindingSource2.Position = BindingSource2.Find("codDGE", puntero)
+
+            visualizarKardex()
+
+            'Clase definida y con miembros shared en la biblioteca ComponentesRAS
+            StatusBarClass.messageBarraEstado("  Registro de SALIDAS fué procesado con exito...")
+            wait.Close()
+            Me.Cursor = Cursors.Default
+        Catch f As Exception
+            wait.Close()
+            Me.Cursor = Cursors.Default
+            If finalMytrans Then
+                MessageBox.Show("NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Information)
+                Me.Close()
+                Exit Sub
+            Else
+                myTrans.Rollback()
+                MessageBox.Show("Tipo de exception: " & f.Message & Chr(13) & "NO SE GUARDO LA INFORMACION PROCESADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+        End Try
     End Sub
 End Class

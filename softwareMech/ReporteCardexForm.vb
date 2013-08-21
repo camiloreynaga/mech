@@ -170,10 +170,7 @@ Public Class ReporteCardexForm
 
         sele = "select codSerS,serie from VSeguimientoGRSerie "
         crearDataAdapterTable(daTabla5, sele)
-
         Try
-
-
             'daTabla5.Fill(dsAlmacen, "TIdentidad")
             'BindingSource5.DataSource = dsAlmacen
             'BindingSource5.DataMember = "TIdentidad"
@@ -209,19 +206,15 @@ Public Class ReporteCardexForm
     Private Sub configurarColorControl()
 
         Me.BackColor = BackColorP
-
         'Color para los labels del contenedor principal
         For i As Integer = 0 To Me.Controls.Count - 1
             If TypeOf Me.Controls(i) Is Label Then 'LABELS
                 Me.Controls(i).ForeColor = ForeColorLabel
-
             End If
 
             If TypeOf Me.Controls(i) Is CheckBox Then 'CHECKBOX
                 Me.Controls(i).ForeColor = ForeColorLabel
-
             End If
-
 
             If TypeOf Me.Controls(i) Is GroupBox Then 'TEXTBOX
                 For c As Integer = 0 To Me.Controls(i).Controls.Count - 1
@@ -229,16 +222,25 @@ Public Class ReporteCardexForm
                 Next
             End If
         Next
-
     End Sub
 
-
+    ''' <summary>
+    ''' Da color a columnas especificas en la grilla
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub ColorearGrilla()
-
         'Encabezado
         oGrilla.colorearFilasDGV(dgCardex, "tipo", "INGRESO", Color.Green, Color.White)
         oGrilla.colorearFilasDGV(dgCardex, "tipo", "SALIDA", Color.Red, Color.White)
+    End Sub
 
+    ''' <summary>
+    ''' Establece un estilo de fuente a las columnas de la grila, 
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub FuenteColumnaGrilla()
+        'pone en negrita la columna stock
+        oGrilla.EstiloColumnaDGV(dgInsumos, "stock", New System.Drawing.Font("Microsoft Sans Serif", 8.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte)))
     End Sub
 
     ''' <summary>
@@ -255,8 +257,8 @@ Public Class ReporteCardexForm
         Try
             With dgInsumos
                 'codigo material
-                .Columns("codmat").HeaderText = "Cod"
-                .Columns("codmat").Width = 50
+                .Columns("codmat").Visible = False
+                ' .Columns("codmat").Width = 50
                 'Material
                 .Columns("material").HeaderText = "Insumo"
                 .Columns("material").Width = 550
@@ -277,8 +279,7 @@ Public Class ReporteCardexForm
                 .Columns("stock").Width = 80
                 .Columns("stock").DefaultCellStyle.Format = "N2"
                 .Columns("stock").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-
-
+                .Columns("stock").DefaultCellStyle.Font = New Font("Arial", FontStyle.Bold)
 
 
                 'entregado,personal,recibido,obsR
@@ -366,7 +367,7 @@ Public Class ReporteCardexForm
 
 #End Region
 
-#Region "Aventos"
+#Region "Eventos"
 
 #End Region
 
@@ -377,22 +378,18 @@ Public Class ReporteCardexForm
 
     Private Sub ReporteCardexForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         configurarColorControl()
-
-
         If vSCodigo = "00-00" Then
             CargarCombo("PA_LugarTrabajo", CommandType.StoredProcedure, cbObras, "codigo", "nombre")
         Else
             Dim sele1 As String = "select distinct codigo,nombre from VLugarUbiStoc TObra where codigo='" & vSCodigo & "'"
             CargarCombo(sele1, CommandType.Text, cbObras, "codigo", "nombre")
         End If
-
-      
-
         'Consulta
         'parametro de consulta
         ' filtro 
-        Dim sele As String = "select codmat,material,unidad,preBase,tipoM,stock from VMaterialObra where codUbi = " & cbAlmacen.SelectedValue
+        Dim sele As String = "select codmat,material,stock,unidad,preBase,tipoM from VMaterialObra where codUbi = " & cbAlmacen.SelectedValue
         CargarGrilla(sele, CommandType.Text, dgInsumos, BindingSource0)
+        BindingNavigator1.BindingSource = BindingSource0
 
         ModificandoColumnasDGV_Insumo()
 
@@ -425,6 +422,7 @@ Public Class ReporteCardexForm
             Dim codUbicacion As Integer = cbAlmacen.SelectedValue
             Dim sele As String = "select nroNota,tipo,fecha,material,cantEnt,preUniEnt,cantSal,preUniSal,saldo,unidad,nroGuia,nroDoc,veri,almObra,nomObraDes,obs,nomRecibe,provee,ruc,usuario,codMat,idMU,codUbi,codigo,codGuia,codDoc,codTrans,codPers,codSal,vanET,codUbiDes,ubicacion,nombre,codUsu from VKardex1 where codMat=" & codMaterial & " and codUbi=" & codUbicacion
             CargarGrilla(sele, CommandType.Text, dgCardex, BindingSource1)
+            BindingNavigator2.BindingSource = BindingSource1
 
             ColorearGrilla()
             ModificandoColumnasDGV_kardex()
@@ -434,11 +432,11 @@ Public Class ReporteCardexForm
     Private Sub cbAlmacen_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbAlmacen.SelectedIndexChanged
         Try
             If TypeOf cbAlmacen.SelectedValue Is String Then
-
-
-
-                Dim sele As String = "select codmat,material,unidad,unidad,preBase,tipoM,stock from VMaterialObra where codUbi = " & cbAlmacen.SelectedValue
+                Dim sele As String = "select codmat,material,stock,unidad,preBase,tipoM from VMaterialObra where codUbi = " & cbAlmacen.SelectedValue
                 If CargarGrilla(sele, CommandType.Text, dgInsumos, BindingSource0) > 0 Then
+                    'configurando la fuente de las columnas (FONT)
+                    FuenteColumnaGrilla()
+
                     btnVis.Enabled = True
 
                 Else
@@ -457,7 +455,8 @@ Public Class ReporteCardexForm
     End Sub
 
     Private Sub ReporteCardexForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
-
+        ColorearGrilla()
+        FuenteColumnaGrilla()
     End Sub
 
     Private Sub dgCardex_Sorted(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgCardex.Sorted
@@ -467,7 +466,21 @@ Public Class ReporteCardexForm
     Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
         Me.Close()
     End Sub
+
+    Private Sub dgInsumos_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgInsumos.CellDoubleClick
+        btnVis.PerformClick()
+    End Sub
+
+    Private Sub dgInsumos_Sorted(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgInsumos.Sorted
+        FuenteColumnaGrilla()
+    End Sub
+
+    Private Sub dgInsumos_CurrentCellChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgInsumos.CurrentCellChanged
+        dgCardex.DataSource = ""
+    End Sub
 End Class
+
+
 
 ''' <summary>
 ''' Representa un Dato de ítemd de lista (valor,representación)

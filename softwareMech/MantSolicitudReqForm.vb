@@ -247,6 +247,7 @@ Public Class MantSolicitudReqForm
         Label9.ForeColor = ForeColorLabel
         Label10.ForeColor = ForeColorLabel
         Label11.ForeColor = ForeColorLabel
+        btnAperturar.ForeColor = ForeColorButtom
         btnCrear.ForeColor = ForeColorButtom
         btnProcesa.ForeColor = ForeColorButtom
         btnCerrar.ForeColor = ForeColorButtom
@@ -981,6 +982,20 @@ Public Class MantSolicitudReqForm
             Exit Sub
         End If
 
+        Dim vCom As Boolean = False
+        For j As Short = 0 To BindingSource3.Count - 1
+            If BindingSource3.Item(j)(13) = 1 Or BindingSource3.Item(j)(13) = 3 Then '1=pendiente 3=observado
+                vCom = True
+                Exit For
+            End If
+        Next
+
+        If vCom = False Then
+            MessageBox.Show("Proceso denegado en actualizar modificaciones, por estar en el estado de [APROBADO]", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+
         Dim resp As Short = MessageBox.Show("ESTA SEGURO DE GUARDAR MODIFICACIONES?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
             Exit Sub
@@ -996,17 +1011,19 @@ Public Class MantSolicitudReqForm
             StatusBarClass.messageBarraEstado("  ESPERE POR FAVOR, ACTUALIZANDO INFORMACION....")
 
             For j As Short = 0 To BindingSource3.Count - 1
-                'actualizando TDetalleSol
-                comandoUpdate15(BindingSource3.Item(j)(1).ToString().Trim(), BindingSource3.Item(j)(3), BindingSource3.Item(j)(9).ToString().Trim(), BindingSource3.Item(j)(0))
-                cmdUpdateTable15.Transaction = myTrans
-                If cmdUpdateTable15.ExecuteNonQuery() < 1 Then
-                    wait.Close()
-                    Me.Cursor = Cursors.Default
-                    'deshace la transaccion
-                    myTrans.Rollback()
-                    MessageBox.Show("ERROR DE CONCURRENCIA, VUELVA A EJECUTAR LA INTERFAZ." & Chr(13) & "No se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                    Me.Close()
-                    Exit Sub
+                If BindingSource3.Item(j)(13) = 1 Or BindingSource3.Item(j)(13) = 3 Then '1=pendiente  3=Observado
+                    'actualizando TDetalleSol
+                    comandoUpdate15(BindingSource3.Item(j)(1).ToString().Trim(), BindingSource3.Item(j)(3), BindingSource3.Item(j)(9).ToString().Trim(), BindingSource3.Item(j)(0))
+                    cmdUpdateTable15.Transaction = myTrans
+                    If cmdUpdateTable15.ExecuteNonQuery() < 1 Then
+                        wait.Close()
+                        Me.Cursor = Cursors.Default
+                        'deshace la transaccion
+                        myTrans.Rollback()
+                        MessageBox.Show("ERROR DE CONCURRENCIA, VUELVA A EJECUTAR LA INTERFAZ." & Chr(13) & "No se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                        Me.Close()
+                        Exit Sub
+                    End If
                 End If
             Next
 
@@ -1055,15 +1072,19 @@ Public Class MantSolicitudReqForm
 
         BindingSource2.RemoveFilter()
         If vFClear1 Then
-            dsAlmacen.Tables("VMaterialSele").Clear()
-            daVMat.Fill(dsAlmacen, "VMaterialSele")
+            dsAlmacen.Tables("fn_MatStockObra").Clear()
+            daVMat.Fill(dsAlmacen, "fn_MatStockObra")
+
+            colorearFila1()
         Else  'Primera ves Click
-            Dim sele As String = "select codMat,material,uniBase,tipoM,hist from VMaterialSele" 'material
+            Dim sele As String = "select codMat,material,stock,uniBase,preBase,tipoM,codTipM,codUni,codigo from fn_MatStockObra(@cod)" 'material
             crearDataAdapterTable(daVMat, sele)
-            daVMat.Fill(dsAlmacen, "VMaterialSele")
+            daVMat.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vSCodigo
+
+            daVMat.Fill(dsAlmacen, "fn_MatStockObra")
 
             BindingSource2.DataSource = dsAlmacen
-            BindingSource2.DataMember = "VMaterialSele"
+            BindingSource2.DataMember = "fn_MatStockObra"
             Navigator1.BindingSource = BindingSource2
             dgTabla1.DataSource = BindingSource2
             dgTabla1.SelectionMode = DataGridViewSelectionMode.FullRowSelect 'Seleccionar fila completa
@@ -1071,6 +1092,7 @@ Public Class MantSolicitudReqForm
             ModificarColumnasDGV1()
 
             vFClear1 = True
+            colorearFila1()
         End If
         Me.Cursor = Cursors.Default
         wait.Close()
@@ -1079,19 +1101,33 @@ Public Class MantSolicitudReqForm
         txtBuscar.SelectAll()
     End Sub
 
+    Private Sub colorearFila1()
+        For j As Short = 0 To BindingSource2.Count - 1
+            If BindingSource2.Item(j)(2) >= 0 Then 'Resaltando Stock
+                dgTabla1.Rows(j).Cells(2).Style.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            End If
+        Next
+    End Sub
+
     Private Sub ModificarColumnasDGV1()
         With dgTabla1
             .Columns(0).HeaderText = "Cod"
-            .Columns(0).Width = 35
+            .Columns(0).Visible = False
             .Columns(1).HeaderText = "Descripción Insumo"
-            .Columns(1).Width = 356
-            .Columns(2).Width = 45
-            .Columns(2).HeaderText = "Unid."
-            .Columns(3).HeaderText = "Tipo Insumo"
-            .Columns(3).Width = 120
-            .Columns(4).HeaderText = ""
-            .Columns(4).Width = 280
-            '.Columns(5).Visible = False
+            .Columns(1).Width = 555
+            .Columns(2).Width = 60
+            .Columns(2).HeaderText = "Stock"
+            .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(3).Width = 45
+            .Columns(3).HeaderText = "Unidad"
+            .Columns(4).Width = 55
+            .Columns(4).HeaderText = "PrecS/."
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(5).HeaderText = "Tipo Insumo"
+            .Columns(5).Width = 120
+            .Columns(6).Visible = False
+            .Columns(7).Visible = False
+            .Columns(8).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -1127,6 +1163,7 @@ Public Class MantSolicitudReqForm
             'dgTabla1.Focus()
             StatusBarClass.messageBarraEstado("")
             Me.AcceptButton = Me.btnAgrega
+            colorearFila1()
         Else
             'txtBuscar.Focus()
             'txtBuscar.SelectAll()
@@ -1248,7 +1285,7 @@ Public Class MantSolicitudReqForm
         cmInserTable19.Parameters.Add("@pri", SqlDbType.VarChar, 20).Value = cbNec.Text.Trim()
         cmInserTable19.Parameters.Add("@can", SqlDbType.Decimal, 0).Value = txtCan.Text
         cmInserTable19.Parameters.Add("@des", SqlDbType.VarChar, 100).Value = BindingSource2.Item(BindingSource2.Position)(1)
-        cmInserTable19.Parameters.Add("@uni", SqlDbType.VarChar, 20).Value = BindingSource2.Item(BindingSource2.Position)(2)
+        cmInserTable19.Parameters.Add("@uni", SqlDbType.VarChar, 20).Value = BindingSource2.Item(BindingSource2.Position)(3)
         cmInserTable19.Parameters.Add("@codP", SqlDbType.Int, 0).Value = vPass
         cmInserTable19.Parameters.Add("@obs1", SqlDbType.VarChar, 100).Value = txtObs1.Text.Trim()
         cmInserTable19.Parameters.Add("@codP1", SqlDbType.Int, 0).Value = 0 'sin verificador
@@ -1278,6 +1315,11 @@ Public Class MantSolicitudReqForm
 
         If BindingSource3.Item(BindingSource3.Position)(15) <> vPass Then
             MessageBox.Show("Proceso denegado, usuario no es el mismo que registro requerimiento...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        If BindingSource3.Item(BindingSource3.Position)(13) <> 1 Then
+            MessageBox.Show("NO se debe eliminar por NO estar en el estado de [PENDIENTE]", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
 

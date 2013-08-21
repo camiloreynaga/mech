@@ -20,16 +20,36 @@ Partial Class ReporteCardexForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReporteCardexForm))
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Label1 = New System.Windows.Forms.Label
         Me.cbObras = New System.Windows.Forms.ComboBox
         Me.cbAlmacen = New System.Windows.Forms.ComboBox
         Me.Label2 = New System.Windows.Forms.Label
         Me.dgCardex = New System.Windows.Forms.DataGridView
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.BindingNavigator2 = New System.Windows.Forms.BindingNavigator(Me.components)
+        Me.BindingNavigatorCountItem1 = New System.Windows.Forms.ToolStripLabel
+        Me.BindingNavigatorMoveFirstItem1 = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorMovePreviousItem1 = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorSeparator3 = New System.Windows.Forms.ToolStripSeparator
+        Me.BindingNavigatorPositionItem1 = New System.Windows.Forms.ToolStripTextBox
+        Me.BindingNavigatorSeparator4 = New System.Windows.Forms.ToolStripSeparator
+        Me.BindingNavigatorMoveNextItem1 = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorMoveLastItem1 = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorSeparator5 = New System.Windows.Forms.ToolStripSeparator
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
+        Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
+        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
+        Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorSeparator = New System.Windows.Forms.ToolStripSeparator
+        Me.BindingNavigatorPositionItem = New System.Windows.Forms.ToolStripTextBox
+        Me.BindingNavigatorSeparator1 = New System.Windows.Forms.ToolStripSeparator
+        Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
         Me.dgInsumos = New System.Windows.Forms.DataGridView
         Me.Label3 = New System.Windows.Forms.Label
         Me.txtInsumo = New System.Windows.Forms.TextBox
@@ -37,7 +57,11 @@ Partial Class ReporteCardexForm
         Me.btnCerrar = New System.Windows.Forms.Button
         CType(Me.dgCardex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.BindingNavigator2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.BindingNavigator2.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.BindingNavigator1.SuspendLayout()
         CType(Me.dgInsumos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -49,6 +73,7 @@ Partial Class ReporteCardexForm
         'lblDerecha
         '
         Me.lblDerecha.Size = New System.Drawing.Size(14, 630)
+        Me.lblDerecha.TabIndex = 10
         '
         'Label1
         '
@@ -66,7 +91,7 @@ Partial Class ReporteCardexForm
         Me.cbObras.Location = New System.Drawing.Point(94, 26)
         Me.cbObras.Name = "cbObras"
         Me.cbObras.Size = New System.Drawing.Size(366, 21)
-        Me.cbObras.TabIndex = 4
+        Me.cbObras.TabIndex = 1
         '
         'cbAlmacen
         '
@@ -75,7 +100,7 @@ Partial Class ReporteCardexForm
         Me.cbAlmacen.Location = New System.Drawing.Point(523, 26)
         Me.cbAlmacen.Name = "cbAlmacen"
         Me.cbAlmacen.Size = New System.Drawing.Size(164, 21)
-        Me.cbAlmacen.TabIndex = 4
+        Me.cbAlmacen.TabIndex = 2
         '
         'Label2
         '
@@ -89,16 +114,16 @@ Partial Class ReporteCardexForm
         'dgCardex
         '
         Me.dgCardex.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgCardex.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgCardex.Location = New System.Drawing.Point(3, 16)
         Me.dgCardex.Name = "dgCardex"
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgCardex.RowsDefaultCellStyle = DataGridViewCellStyle3
-        Me.dgCardex.Size = New System.Drawing.Size(1149, 328)
-        Me.dgCardex.TabIndex = 5
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgCardex.RowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgCardex.Size = New System.Drawing.Size(1149, 300)
+        Me.dgCardex.TabIndex = 0
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.BindingNavigator2)
         Me.GroupBox1.Controls.Add(Me.dgCardex)
         Me.GroupBox1.Location = New System.Drawing.Point(20, 283)
         Me.GroupBox1.Name = "GroupBox1"
@@ -106,26 +131,196 @@ Partial Class ReporteCardexForm
         Me.GroupBox1.TabIndex = 6
         Me.GroupBox1.TabStop = False
         '
+        'BindingNavigator2
+        '
+        Me.BindingNavigator2.AddNewItem = Nothing
+        Me.BindingNavigator2.CountItem = Me.BindingNavigatorCountItem1
+        Me.BindingNavigator2.DeleteItem = Nothing
+        Me.BindingNavigator2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BindingNavigator2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem1, Me.BindingNavigatorMovePreviousItem1, Me.BindingNavigatorSeparator3, Me.BindingNavigatorPositionItem1, Me.BindingNavigatorCountItem1, Me.BindingNavigatorSeparator4, Me.BindingNavigatorMoveNextItem1, Me.BindingNavigatorMoveLastItem1, Me.BindingNavigatorSeparator5})
+        Me.BindingNavigator2.Location = New System.Drawing.Point(3, 319)
+        Me.BindingNavigator2.MoveFirstItem = Me.BindingNavigatorMoveFirstItem1
+        Me.BindingNavigator2.MoveLastItem = Me.BindingNavigatorMoveLastItem1
+        Me.BindingNavigator2.MoveNextItem = Me.BindingNavigatorMoveNextItem1
+        Me.BindingNavigator2.MovePreviousItem = Me.BindingNavigatorMovePreviousItem1
+        Me.BindingNavigator2.Name = "BindingNavigator2"
+        Me.BindingNavigator2.PositionItem = Me.BindingNavigatorPositionItem1
+        Me.BindingNavigator2.Size = New System.Drawing.Size(1149, 25)
+        Me.BindingNavigator2.TabIndex = 1
+        Me.BindingNavigator2.Text = "BindingNavigator2"
+        '
+        'BindingNavigatorCountItem1
+        '
+        Me.BindingNavigatorCountItem1.Name = "BindingNavigatorCountItem1"
+        Me.BindingNavigatorCountItem1.Size = New System.Drawing.Size(37, 22)
+        Me.BindingNavigatorCountItem1.Text = "de {0}"
+        Me.BindingNavigatorCountItem1.ToolTipText = "Número total de elementos"
+        '
+        'BindingNavigatorMoveFirstItem1
+        '
+        Me.BindingNavigatorMoveFirstItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveFirstItem1.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem1.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveFirstItem1.Name = "BindingNavigatorMoveFirstItem1"
+        Me.BindingNavigatorMoveFirstItem1.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveFirstItem1.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveFirstItem1.Text = "Mover primero"
+        '
+        'BindingNavigatorMovePreviousItem1
+        '
+        Me.BindingNavigatorMovePreviousItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMovePreviousItem1.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem1.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMovePreviousItem1.Name = "BindingNavigatorMovePreviousItem1"
+        Me.BindingNavigatorMovePreviousItem1.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMovePreviousItem1.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMovePreviousItem1.Text = "Mover anterior"
+        '
+        'BindingNavigatorSeparator3
+        '
+        Me.BindingNavigatorSeparator3.Name = "BindingNavigatorSeparator3"
+        Me.BindingNavigatorSeparator3.Size = New System.Drawing.Size(6, 25)
+        '
+        'BindingNavigatorPositionItem1
+        '
+        Me.BindingNavigatorPositionItem1.AccessibleName = "Posición"
+        Me.BindingNavigatorPositionItem1.AutoSize = False
+        Me.BindingNavigatorPositionItem1.Name = "BindingNavigatorPositionItem1"
+        Me.BindingNavigatorPositionItem1.Size = New System.Drawing.Size(50, 23)
+        Me.BindingNavigatorPositionItem1.Text = "0"
+        Me.BindingNavigatorPositionItem1.ToolTipText = "Posición actual"
+        '
+        'BindingNavigatorSeparator4
+        '
+        Me.BindingNavigatorSeparator4.Name = "BindingNavigatorSeparator4"
+        Me.BindingNavigatorSeparator4.Size = New System.Drawing.Size(6, 25)
+        '
+        'BindingNavigatorMoveNextItem1
+        '
+        Me.BindingNavigatorMoveNextItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveNextItem1.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem1.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveNextItem1.Name = "BindingNavigatorMoveNextItem1"
+        Me.BindingNavigatorMoveNextItem1.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveNextItem1.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveNextItem1.Text = "Mover siguiente"
+        '
+        'BindingNavigatorMoveLastItem1
+        '
+        Me.BindingNavigatorMoveLastItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveLastItem1.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem1.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveLastItem1.Name = "BindingNavigatorMoveLastItem1"
+        Me.BindingNavigatorMoveLastItem1.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveLastItem1.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveLastItem1.Text = "Mover último"
+        '
+        'BindingNavigatorSeparator5
+        '
+        Me.BindingNavigatorSeparator5.Name = "BindingNavigatorSeparator5"
+        Me.BindingNavigatorSeparator5.Size = New System.Drawing.Size(6, 25)
+        '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.BindingNavigator1)
         Me.GroupBox2.Controls.Add(Me.dgInsumos)
         Me.GroupBox2.Location = New System.Drawing.Point(20, 53)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(1152, 224)
-        Me.GroupBox2.TabIndex = 6
+        Me.GroupBox2.Size = New System.Drawing.Size(1155, 224)
+        Me.GroupBox2.TabIndex = 5
         Me.GroupBox2.TabStop = False
+        '
+        'BindingNavigator1
+        '
+        Me.BindingNavigator1.AddNewItem = Nothing
+        Me.BindingNavigator1.CountItem = Me.BindingNavigatorCountItem
+        Me.BindingNavigator1.DeleteItem = Nothing
+        Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
+        Me.BindingNavigator1.Location = New System.Drawing.Point(3, 196)
+        Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
+        Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
+        Me.BindingNavigator1.MoveNextItem = Me.BindingNavigatorMoveNextItem
+        Me.BindingNavigator1.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
+        Me.BindingNavigator1.Name = "BindingNavigator1"
+        Me.BindingNavigator1.PositionItem = Me.BindingNavigatorPositionItem
+        Me.BindingNavigator1.Size = New System.Drawing.Size(1149, 25)
+        Me.BindingNavigator1.TabIndex = 1
+        Me.BindingNavigator1.Text = "BindingNavigator1"
+        '
+        'BindingNavigatorCountItem
+        '
+        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(37, 22)
+        Me.BindingNavigatorCountItem.Text = "de {0}"
+        Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
+        '
+        'BindingNavigatorMoveFirstItem
+        '
+        Me.BindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
+        Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveFirstItem.Text = "Mover primero"
+        '
+        'BindingNavigatorMovePreviousItem
+        '
+        Me.BindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
+        Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMovePreviousItem.Text = "Mover anterior"
+        '
+        'BindingNavigatorSeparator
+        '
+        Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 25)
+        '
+        'BindingNavigatorPositionItem
+        '
+        Me.BindingNavigatorPositionItem.AccessibleName = "Posición"
+        Me.BindingNavigatorPositionItem.AutoSize = False
+        Me.BindingNavigatorPositionItem.Name = "BindingNavigatorPositionItem"
+        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(50, 23)
+        Me.BindingNavigatorPositionItem.Text = "0"
+        Me.BindingNavigatorPositionItem.ToolTipText = "Posición actual"
+        '
+        'BindingNavigatorSeparator1
+        '
+        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
+        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
+        'BindingNavigatorMoveNextItem
+        '
+        Me.BindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
+        Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveNextItem.Text = "Mover siguiente"
+        '
+        'BindingNavigatorMoveLastItem
+        '
+        Me.BindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
+        Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveLastItem.Text = "Mover último"
+        '
+        'BindingNavigatorSeparator2
+        '
+        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
+        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
         '
         'dgInsumos
         '
         Me.dgInsumos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgInsumos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgInsumos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgInsumos.Location = New System.Drawing.Point(3, 16)
         Me.dgInsumos.Name = "dgInsumos"
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgInsumos.RowsDefaultCellStyle = DataGridViewCellStyle4
-        Me.dgInsumos.Size = New System.Drawing.Size(1146, 205)
-        Me.dgInsumos.TabIndex = 5
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgInsumos.RowsDefaultCellStyle = DataGridViewCellStyle2
+        Me.dgInsumos.Size = New System.Drawing.Size(1146, 177)
+        Me.dgInsumos.TabIndex = 0
         '
         'Label3
         '
@@ -142,7 +337,7 @@ Partial Class ReporteCardexForm
         Me.txtInsumo.Location = New System.Drawing.Point(744, 26)
         Me.txtInsumo.Name = "txtInsumo"
         Me.txtInsumo.Size = New System.Drawing.Size(296, 20)
-        Me.txtInsumo.TabIndex = 8
+        Me.txtInsumo.TabIndex = 3
         '
         'btnVis
         '
@@ -152,7 +347,7 @@ Partial Class ReporteCardexForm
         Me.btnVis.Location = New System.Drawing.Point(1046, 26)
         Me.btnVis.Name = "btnVis"
         Me.btnVis.Size = New System.Drawing.Size(126, 24)
-        Me.btnVis.TabIndex = 334
+        Me.btnVis.TabIndex = 4
         Me.btnVis.TabStop = False
         Me.btnVis.Text = "Visualizar Kardex"
         Me.btnVis.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -200,7 +395,15 @@ Partial Class ReporteCardexForm
         Me.Controls.SetChildIndex(Me.lblDerecha, 0)
         CType(Me.dgCardex, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        CType(Me.BindingNavigator2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.BindingNavigator2.ResumeLayout(False)
+        Me.BindingNavigator2.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
+        CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.BindingNavigator1.ResumeLayout(False)
+        Me.BindingNavigator1.PerformLayout()
         CType(Me.dgInsumos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -218,5 +421,25 @@ Partial Class ReporteCardexForm
     Friend WithEvents txtInsumo As System.Windows.Forms.TextBox
     Friend WithEvents btnVis As ComponentesSolucion2008.BottomSSP
     Friend WithEvents btnCerrar As System.Windows.Forms.Button
+    Friend WithEvents BindingNavigator2 As System.Windows.Forms.BindingNavigator
+    Friend WithEvents BindingNavigatorCountItem1 As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents BindingNavigatorMoveFirstItem1 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorMovePreviousItem1 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorSeparator3 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BindingNavigatorPositionItem1 As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents BindingNavigatorSeparator4 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BindingNavigatorMoveNextItem1 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorMoveLastItem1 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorSeparator5 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BindingNavigator1 As System.Windows.Forms.BindingNavigator
+    Friend WithEvents BindingNavigatorCountItem As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents BindingNavigatorMoveFirstItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorMovePreviousItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorSeparator As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BindingNavigatorPositionItem As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents BindingNavigatorSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BindingNavigatorMoveNextItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorMoveLastItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorSeparator2 As System.Windows.Forms.ToolStripSeparator
 
 End Class

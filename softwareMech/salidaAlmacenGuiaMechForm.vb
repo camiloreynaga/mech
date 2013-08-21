@@ -22,9 +22,9 @@ Public Class salidaAlmacenGuiaMechForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select codGuiaE,fecIni,nro,razon,ruc,partida,llegada,motivo,nroFact,nomPers,empTra,rucTra,marcaNro,nroConst,nroLic,nomTra,DNI,obs,hist,talon,nroGuia,codVeh,codT,codMotG,codPers,codObraOri,codObraDes,codET,codSerS,codIde,codUbiOri,codUbiDes from VGuiaRemEmpEnt"
+        Dim sele As String = "select codGuiaE,fecIni,nro,razon,ruc,partida,llegada,motivo,nroFact,nomPers,empTra,rucTra,marcaNro,nroConst,nroLic,nomTra,DNI,obs,hist,talon,nroGuia,codVeh,codT,codMotG,codPers,codObraOri,codObraDes,codET,codSerS,codIde,codUbiOri,codUbiDes from VGuiaRemEmpEnt where codObraOri=@cod"
         crearDataAdapterTable(daTabla1, sele)
-        'daTabla1.SelectCommand.Parameters.Add("@codSer", SqlDbType.Int, 0).Value = 0
+        daTabla1.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vSCodigo
 
         sele = "select codDGE,codigo,cant,unidad,detalle,peso,entre,entregado,codGuiaE,codMat,recib,nomRec,obsR,recibido,codPers from VDetGuiaE where codGuiaE=@nro"
         crearDataAdapterTable(daDetDoc, sele)
@@ -35,7 +35,7 @@ Public Class salidaAlmacenGuiaMechForm
         daVKardex.SelectCommand.Parameters.Add("@codMat", SqlDbType.Int, 0).Value = 0
         daVKardex.SelectCommand.Parameters.Add("@codUbi", SqlDbType.Int, 0).Value = 0
 
-        sele = "select idMU,stock,ubicacion+' - '+obra as ubi,codigo,codUbi,codMat,color from VStockUbi"
+        sele = "select idMU,stock,obra+' - '+ubicacion as ubi,codigo,codUbi,codMat,color from VStockUbi"
         crearDataAdapterTable(daVStock, sele)
 
         Try
@@ -142,6 +142,10 @@ Public Class salidaAlmacenGuiaMechForm
             End If
             If BindingSource2.Item(j)(13) = 1 Then 'Recibido
                 dgTabla3.Rows(j).Cells(10).Style.BackColor = Color.Green 'Color.YellowGreen
+                dgTabla3.Rows(j).Cells(10).Style.ForeColor = Color.White
+            End If
+            If BindingSource2.Item(j)(13) = 2 Then 'Incompleto
+                dgTabla3.Rows(j).Cells(10).Style.BackColor = Color.Red
                 dgTabla3.Rows(j).Cells(10).Style.ForeColor = Color.White
             End If
         Next
@@ -556,8 +560,8 @@ Public Class salidaAlmacenGuiaMechForm
             Exit Sub
         End If
 
-        vCodProd = BindingSource4.Item(BindingSource4.Position)(17)
-        vCodUbi = BindingSource4.Item(BindingSource4.Position)(19)
+        vCodProd = BindingSource4.Item(BindingSource4.Position)(20)
+        vCodUbi = BindingSource4.Item(BindingSource4.Position)(22)
         'vParam1 = "Nº " & BindingSource6.Item(BindingSource6.Position)(2) & "-MECH-" & CDate(BindingSource6.Item(BindingSource6.Position)(4)).Year
 
         Dim informe As New ReportViewerKardex1Form

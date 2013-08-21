@@ -38,6 +38,9 @@ Partial Class salidaAlmacenGuiaMechForm
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator16 = New System.Windows.Forms.ToolStripSeparator
+        Me.btnTermi = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripSeparator17 = New System.Windows.Forms.ToolStripSeparator
         Me.Panel2 = New System.Windows.Forms.Panel
         Me.Label13 = New System.Windows.Forms.Label
         Me.dgStock = New System.Windows.Forms.DataGridView
@@ -100,9 +103,6 @@ Partial Class salidaAlmacenGuiaMechForm
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator
         Me.dgTabla2 = New System.Windows.Forms.DataGridView
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ToolStripSeparator16 = New System.Windows.Forms.ToolStripSeparator
-        Me.btnTermi = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripSeparator17 = New System.Windows.Forms.ToolStripSeparator
         Me.Panel1.SuspendLayout()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -255,6 +255,29 @@ Partial Class salidaAlmacenGuiaMechForm
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
         '
+        'ToolStripSeparator16
+        '
+        Me.ToolStripSeparator16.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripSeparator16.Name = "ToolStripSeparator16"
+        Me.ToolStripSeparator16.Size = New System.Drawing.Size(6, 25)
+        '
+        'btnTermi
+        '
+        Me.btnTermi.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.btnTermi.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnTermi.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnTermi.Image = CType(resources.GetObject("btnTermi.Image"), System.Drawing.Image)
+        Me.btnTermi.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnTermi.Name = "btnTermi"
+        Me.btnTermi.Size = New System.Drawing.Size(196, 22)
+        Me.btnTermi.Text = "Terminar Guia de Remisión"
+        '
+        'ToolStripSeparator17
+        '
+        Me.ToolStripSeparator17.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripSeparator17.Name = "ToolStripSeparator17"
+        Me.ToolStripSeparator17.Size = New System.Drawing.Size(6, 25)
+        '
         'Panel2
         '
         Me.Panel2.Controls.Add(Me.Label13)
@@ -289,20 +312,20 @@ Partial Class salidaAlmacenGuiaMechForm
         Me.dgStock.AllowUserToDeleteRows = False
         Me.dgStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgStock.ColumnHeadersVisible = False
-        Me.dgStock.Location = New System.Drawing.Point(725, 93)
+        Me.dgStock.Location = New System.Drawing.Point(750, 93)
         Me.dgStock.Name = "dgStock"
         Me.dgStock.ReadOnly = True
         Me.dgStock.RowHeadersVisible = False
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgStock.RowsDefaultCellStyle = DataGridViewCellStyle2
-        Me.dgStock.Size = New System.Drawing.Size(261, 128)
+        Me.dgStock.Size = New System.Drawing.Size(236, 128)
         Me.dgStock.TabIndex = 318
         Me.dgStock.TabStop = False
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(723, 80)
+        Me.Label12.Location = New System.Drawing.Point(745, 80)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(138, 13)
         Me.Label12.TabIndex = 319
@@ -405,7 +428,7 @@ Partial Class salidaAlmacenGuiaMechForm
         Me.ToolStripTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.ToolStripTextBox4.Name = "ToolStripTextBox4"
         Me.ToolStripTextBox4.ReadOnly = True
-        Me.ToolStripTextBox4.Size = New System.Drawing.Size(254, 25)
+        Me.ToolStripTextBox4.Size = New System.Drawing.Size(230, 25)
         '
         'ToolStripSeparator13
         '
@@ -616,7 +639,7 @@ Partial Class salidaAlmacenGuiaMechForm
         Me.dgTabla3.ReadOnly = True
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgTabla3.RowsDefaultCellStyle = DataGridViewCellStyle3
-        Me.dgTabla3.Size = New System.Drawing.Size(722, 128)
+        Me.dgTabla3.Size = New System.Drawing.Size(748, 128)
         Me.dgTabla3.TabIndex = 315
         '
         'Panel3
@@ -837,29 +860,6 @@ Partial Class salidaAlmacenGuiaMechForm
         Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.dgTabla2.Size = New System.Drawing.Size(981, 173)
         Me.dgTabla2.TabIndex = 330
-        '
-        'ToolStripSeparator16
-        '
-        Me.ToolStripSeparator16.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.ToolStripSeparator16.Name = "ToolStripSeparator16"
-        Me.ToolStripSeparator16.Size = New System.Drawing.Size(6, 25)
-        '
-        'btnTermi
-        '
-        Me.btnTermi.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.btnTermi.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnTermi.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.btnTermi.Image = CType(resources.GetObject("btnTermi.Image"), System.Drawing.Image)
-        Me.btnTermi.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnTermi.Name = "btnTermi"
-        Me.btnTermi.Size = New System.Drawing.Size(196, 22)
-        Me.btnTermi.Text = "Terminar Guia de Remisión"
-        '
-        'ToolStripSeparator17
-        '
-        Me.ToolStripSeparator17.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.ToolStripSeparator17.Name = "ToolStripSeparator17"
-        Me.ToolStripSeparator17.Size = New System.Drawing.Size(6, 25)
         '
         'salidaAlmacenGuiaMechForm
         '

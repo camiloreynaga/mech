@@ -915,12 +915,7 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' <remarks></remarks>
     Private Sub SeguimientoOrdenDesembolsoForm_Shown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Shown
         ColorearGrilla()
-    End Sub
 
-    Private Sub dgDesembolso_RowPostPaint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewRowPostPaintEventArgs)
-        'If dgDesembolso.SortedColumn.Index > 0 Then
-
-        'End If
 
     End Sub
 

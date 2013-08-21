@@ -130,15 +130,22 @@ Partial Class MantSolicitudReqForm
         '
         'btnAperturar
         '
+        Me.btnAperturar.BackColor = System.Drawing.SystemColors.Control
         Me.btnAperturar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnAperturar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red
+        Me.btnAperturar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Olive
+        Me.btnAperturar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAperturar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAperturar.Image = CType(resources.GetObject("btnAperturar.Image"), System.Drawing.Image)
-        Me.btnAperturar.Location = New System.Drawing.Point(434, 2)
+        Me.btnAperturar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnAperturar.Location = New System.Drawing.Point(434, 1)
         Me.btnAperturar.Name = "btnAperturar"
-        Me.btnAperturar.Size = New System.Drawing.Size(31, 23)
+        Me.btnAperturar.Size = New System.Drawing.Size(133, 26)
         Me.btnAperturar.TabIndex = 13
+        Me.btnAperturar.Text = "Nueva Solicitud"
         Me.btnAperturar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ToolTip1.SetToolTip(Me.btnAperturar, "Abrir Nueva Solicitud de requerimiento de insumos...")
-        Me.btnAperturar.UseVisualStyleBackColor = True
+        Me.btnAperturar.UseVisualStyleBackColor = False
         '
         'btnImprimir
         '
