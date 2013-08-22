@@ -203,7 +203,7 @@ Public Class GastosPorDiaForm
     Private Sub btnMostrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMostrar.Click
         'SET DATEFORMAT dmy  da formato dd/mm/yyyy para las fechas
         Dim sele As String = "SET DATEFORMAT dmy select fecPago,nroOperacion,ruc,razon,simbolo,montoPago,montoD,banco,nroCue,(serie +'-'+cast(nroDes as varchar)) nroDes,codBan,codMon,idCue from VGastosPorDia where fecPago between '" & dtpInicio.Text & "' and '" & dtpFin.Text & "'"
-        Dim oTabla As DataTable = oDataManager.CargarGrilla2(sele, CommandType.Text, dgReporte, bindingSource0)
+        oDataManager.CargarGrilla(sele, CommandType.Text, dgReporte, bindingSource0)
 
         'enlanzando con el binding navigator
         BindingNavigator1.BindingSource = bindingSource0
