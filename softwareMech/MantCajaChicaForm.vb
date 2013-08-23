@@ -86,7 +86,7 @@ Public Class MantCajaChicaForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         wait.Show()
-        Dim sele As String = "Select codCC,fechaCre,simbolo,codMon,saldo,codigo,obra,codPers,responsable,codEstado,estado,codSerO from VCajaChica"
+        Dim sele As String = "Select codCC,fechaCre,simbolo,codMon,saldo,codigo,obra,codPers,responsable,codEstado,estado,codSerO,serie from VCajaChica"
         'sele = "select "
         crearDataAdapterTable(daTabla1, sele)
 
@@ -166,8 +166,14 @@ Public Class MantCajaChicaForm
             .Columns("codCC").HeaderText = "Cod"
             .Columns("codCC").Visible = False
             .Columns("fechaCre").HeaderText = "Creación"
-            .Columns("fechaCre").Width = 75
+            .Columns("fechaCre").Width = 70
             '.Columns(1).Width = 100
+
+            .Columns("serie").HeaderText = "Serie"
+            .Columns("serie").Width = 40
+            .Columns("serie").DisplayIndex = 2
+
+
             .Columns("simbolo").HeaderText = "Moneda"
             .Columns("simbolo").Width = 55
             .Columns("simbolo").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
@@ -411,6 +417,11 @@ Public Class MantCajaChicaForm
                     RbInactivo.Checked = True
                     RbActivo.Checked = False
                 End If
+                Dim ob As Object = BindingSource1.Item(BindingSource1.Position)(11)
+                'Dim gg As Object = 
+
+                cbSerie.Text = BindingSource1.Item(BindingSource1.Position)(12)
+
             End If
         End If
     End Sub
@@ -457,12 +468,12 @@ Public Class MantCajaChicaForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
 
-        oDataManager.CargarCombo("select codSerO, serie from TSerieOrden where estado=1", CommandType.Text, cbSerie, "codSerO", "serie")
-        Cn.Open()
+        
 
         configurarColorControl()
 
-
+        oDataManager.CargarCombo("select codSerO, serie from TSerieOrden where estado=1", CommandType.Text, cbSerie, "codSerO", "serie")
+        Cn.Open()
 
         DatosIniciales()
 
@@ -778,13 +789,16 @@ Public Class MantCajaChicaForm
     End Sub
 
     Private Sub RbInactivo_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RbInactivo.CheckedChanged
+        If RbInactivo.Checked = True Then
+            If BindingSource1.Item(BindingSource1.Position)(4) > 0 Then
 
-        If BindingSource1.Item(BindingSource1.Position)(4) > 0 Then
+                StatusBarClass.messageBarraEstado("  PROCESO DENEGADO... EXISTE SALDO MAYOR A CERO...")
+                RbActivo.Checked = True
+                Exit Sub
+            End If
 
-            StatusBarClass.messageBarraEstado("  PROCESO DENEGADO... EXISTE SALDO MAYOR A CERO...")
-            RbActivo.Checked = True
-            Exit Sub
+        Else
+            StatusBarClass.messageBarraEstado(" ")
         End If
-
     End Sub
 End Class
