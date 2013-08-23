@@ -175,4 +175,25 @@ Public Class cDataManager
         End Try
         Return oTabla
     End Function
+
+    ''' <summary>
+    ''' Permite consultar una tablar retorna el primer velor devuelto en la primera celda de la primera columna
+    ''' </summary>
+    ''' <param name="consulta">consulta</param>
+    ''' <param name="type">tipo</param>
+    ''' <returns>primera celda de la primera columna</returns>
+    ''' <remarks></remarks>
+    Public Function consultarTabla(ByVal consulta As String, ByVal type As CommandType) As Object
+        Dim con As SqlConnection = Cn
+        Dim cmdCampo As SqlCommand = New SqlCommand(consulta, con)
+        cmdCampo.CommandType = CommandType.Text
+
+        'If con.State = ConnectionState.Closed Then
+        '    con.Open()
+        'End If
+
+        Return cmdCampo.ExecuteScalar
+
+    End Function
+
 End Class

@@ -86,6 +86,12 @@
     <Compile Include="AcercaDeForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AperturaDiaCajaForm.designer.vb">
+      <DependentUpon>AperturaDiaCajaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AperturaDiaCajaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="aperturaSolicitudForm.Designer.vb">
       <DependentUpon>aperturaSolicitudForm.vb</DependentUpon>
     </Compile>
@@ -372,6 +378,12 @@
     <Compile Include="MantMotivoGuiaForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MantOrdenDesembCajaForm.designer.vb">
+      <DependentUpon>MantOrdenDesembCajaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantOrdenDesembCajaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MantOrdenDesembolsoForm.Designer.vb">
       <DependentUpon>MantOrdenDesembolsoForm.vb</DependentUpon>
     </Compile>
@@ -418,6 +430,12 @@
       <DependentUpon>MantVehiculoTransportistaFrm.vb</DependentUpon>
     </Compile>
     <Compile Include="MantVehiculoTransportistaFrm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="modificarDiaCajaForm.designer.vb">
+      <DependentUpon>modificarDiaCajaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="modificarDiaCajaForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -587,6 +605,9 @@
     <EmbeddedResource Include="AcercaDeForm.resx">
       <DependentUpon>AcercaDeForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AperturaDiaCajaForm.resx">
+      <DependentUpon>AperturaDiaCajaForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="aperturaSolicitudForm.resx">
       <DependentUpon>aperturaSolicitudForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -728,6 +749,9 @@
     <EmbeddedResource Include="MantMotivoGuiaForm.resx">
       <DependentUpon>MantMotivoGuiaForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MantOrdenDesembCajaForm.resx">
+      <DependentUpon>MantOrdenDesembCajaForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MantOrdenDesembolsoForm.resx">
       <DependentUpon>MantOrdenDesembolsoForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -751,6 +775,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MantVehiculoTransportistaFrm.resx">
       <DependentUpon>MantVehiculoTransportistaFrm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="modificarDiaCajaForm.resx">
+      <DependentUpon>modificarDiaCajaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

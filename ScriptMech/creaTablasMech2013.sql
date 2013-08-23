@@ -534,10 +534,6 @@ update TEntradaSalida set codUbiDes=1,codProv=1
 --ALTER TABLE TEntradaSalida ADD codProv int default 0
 --update TEntradaSalida set codUbiDes=0, vanET=0, codProv=0
 
------------------MODULO CAJA CHICA-----------------------
------------------EJECUTAR 13/08/2013------------------
-------------------------------------------------------
-
 -- EMPRESA DE TRANSPORTES
 -- select * from TEmpTransp
 create table TEmpTransp
@@ -657,8 +653,10 @@ create table TOrdenGuia
 	foreign key(nroOrden) references TOrdenCompra,
 	foreign key(codGuia) references TGuiaRemision
 )
-----------------------------------------------------------
-----------------------------------------------------------
+-----------------MODULO CAJA CHICA-----------------------
+-----------------EJECUTAR 24/08/2013------------------
+------------------------------------------------------
+-- DROP table TCajaChica
 create table TCajaChica
 (	codCC int identity primary key,
 	fechaCre date,
@@ -666,7 +664,7 @@ create table TCajaChica
 	saldo decimal(10,2),
 	codigo varchar(10), --codigo de la Obra FK
 	codPers int, --responsable codigo de la persona responsable
-	estCaja int,  --0=Inactivo  1=Inactivo
+	estCaja int,  --0=Inactivo  1=Activo
 	foreign key(codMon) references TMoneda,
 	foreign key (codigo) references TLugarTrabajo,
 	foreign key (codPers) references TPersonal
@@ -717,9 +715,9 @@ create table DetSolCaja
 
 create table TTipoMovCaja
 (	codTM int identity(1,1) primary key,
-	tipoMov varchar(20),
+	tipoMov varchar(20),  --ingreso  egreso
 )
-
+--select * from TDiaCaja
 create table TDiaCaja
 (	codDia int identity primary key,
 	fecha date,
@@ -736,7 +734,7 @@ create table TMovimientoCaja
 (	nroMC int identity primary key,
 	codDia int,
 	codTM int,
-	idMU int,
+	idMU int, --???
 	codigo varchar(10),
 	codCC int,
 	idOP int,

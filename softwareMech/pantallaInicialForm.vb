@@ -42,8 +42,15 @@ Public Class pantallaInicialForm
         End If
         'Funciones recuperarTipoUsu... creado en el modulo varFuncPublicasModule
         vSTipoUsu = recuperarTipoUsu(vPass)          'Administrador almacen
+        vSCodDia = recuperarCodDia(1, vSCodigo) 'estado=1  Abierto CAJA CHICA Dia
 
-        Me.Text = "Cod.Lug=> " & vSCodigo & "   Lugar / Obra => " & vSNomSuc & "     " & vSTipoUsu & ": " & vSUsuario & "     "
+        If vSCodDia = 0 Then
+            Me.Text = "Cod.Lug=> " & vSCodigo & "   Lugar / Obra => " & vSNomSuc & "     " & vSTipoUsu & ": " & vSUsuario
+        Else
+            vSIdDia = " Fecha Caja Chica Aperturada => " & recuperarIdDia(1, vSCodigo) 'estado=1  Abierto
+            vSFecCaja = recuperarFechaCaja(1, vSCodigo) 'estado=1  Abierto
+            Me.Text = "Cod.Lug=> " & vSCodigo & "   Lugar / Obra => " & vSNomSuc & "     " & vSTipoUsu & ": " & vSUsuario & "  " & vSIdDia
+        End If
 
         'If vSCodTipoUsu = 1 Or vSCodTipoUsu = 2 Then
         If vSCodTipoUsu = 1 Then    '1=tipo administrador Sistema
@@ -95,7 +102,7 @@ Public Class pantallaInicialForm
             PermisosContabilidad()
             'DesactivarMenuAlmacen()
         End If
-        If vSCodTipoUsu = 12 Then    '5=tipo Almacenero
+        If vSCodTipoUsu = 12 Then    '12=tipo CajaChica
             TSMenu.Visible = True
             permisosCajaChica()
             'DesactivarMenuAlmacen()
@@ -184,7 +191,7 @@ Public Class pantallaInicialForm
         opcOrdDesembolso.Visible = False ' Orden de Desembolso
         opcDocCompra.Visible = False ' Documento de Compra
 
-        opcCajaChica.Visible = False 'Caja Chica
+        opcCaja.Visible = False 'Caja Chica
 
         opcGuiaRem.Visible = False ' Guia de Remision
         opcPersonal.Visible = False ' Personal
@@ -230,7 +237,7 @@ Public Class pantallaInicialForm
         opcCotizacion.Visible = False
         opcOrdenCompra.Visible = False
         opcDocCompra.Visible = False
-        opcCajaChica.Visible = False 'Caja Chica
+        opcCaja.Visible = False 'Caja Chica
 
         opcOrdDesAprobacion.Visible = False
         opcOrdDesConta.Visible = False
@@ -277,7 +284,7 @@ Public Class pantallaInicialForm
         opcOrdDesModPago.Visible = False
         opcOrdDesCtasBco.Visible = False
 
-        opcCajaChica.Visible = False 'Caja Chica
+        opcCaja.Visible = False 'Caja Chica
 
         opcConfSerieGuia.Visible = False 'Mantenimienro de Serie Guia de remision por persona
 
@@ -317,7 +324,7 @@ Public Class pantallaInicialForm
 
         opcDocCompra.Visible = False
 
-        opcCajaChica.Visible = False 'Caja Chica
+        opcCaja.Visible = False 'Caja Chica
         opcGuiaRem.Visible = True ' Guia de remision
 
         opcPersonal.Visible = False
@@ -406,6 +413,8 @@ Public Class pantallaInicialForm
         opcOrdDesRegPagos.Visible = False
 
         infT2.Visible = False ' informe de gastos por dia
+        ToolStripSeparator16.Visible = True  'Linea encima de caja Chica
+        opcCaja.Visible = True ' Menu Caja Chica
 
     End Sub
 
@@ -670,12 +679,6 @@ Public Class pantallaInicialForm
         guia.Show()
     End Sub
 
-    Private Sub ToolStripDropDownButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCajaChica.Click
-        Dim caja As New MantCajaChicaForm
-        caja.MdiParent = Me
-        caja.Show()
-    End Sub
-
     Private Sub opcAlmS1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcAlmS1.Click
         'If vSCodigo <> "00-00" Then 'Sede principal
         '    MessageBox.Show("Acceso denegado, Este tipo de salidas de almacén solo se pueden procesar en SEDE PRINCIPAL", nomNegocio, Nothing, MessageBoxIcon.Error)
@@ -760,12 +763,29 @@ Public Class pantallaInicialForm
         Dim frmKardex As New ReporteCardexForm
         frmKardex.MdiParent = Me
         frmKardex.Show()
-
     End Sub
 
     Private Sub infT2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles infT2.Click
         Dim frmGastDia As New GastosPorDiaForm
         frmGastDia.MdiParent = Me
         frmGastDia.Show()
+    End Sub
+
+    Private Sub opcCaja1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja1.Click
+        Dim mant As New MantCajaChicaForm
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
+
+    Private Sub opcCaja2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja2.Click
+        Dim dia As New AperturaDiaCajaForm
+        dia.MdiParent = Me
+        dia.Show()
+    End Sub
+
+    Private Sub opcCaja3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja3.Click
+        Dim dia As New modificarDiaCajaForm
+        dia.MdiParent = Me
+        dia.Show()
     End Sub
 End Class

@@ -20,7 +20,7 @@ Partial Class MantCajaChicaForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MantCajaChicaForm))
         Me.Label1 = New System.Windows.Forms.Label
         Me.txtCodCaja = New System.Windows.Forms.TextBox
@@ -53,6 +53,8 @@ Partial Class MantCajaChicaForm
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
+        Me.Label7 = New System.Windows.Forms.Label
+        Me.cbSerie = New System.Windows.Forms.ComboBox
         CType(Me.dgCaja, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -85,11 +87,12 @@ Partial Class MantCajaChicaForm
         Me.txtCodCaja.ReadOnly = True
         Me.txtCodCaja.Size = New System.Drawing.Size(60, 20)
         Me.txtCodCaja.TabIndex = 6
+        Me.txtCodCaja.Visible = False
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(162, 16)
+        Me.Label2.Location = New System.Drawing.Point(176, 16)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(56, 13)
         Me.Label2.TabIndex = 5
@@ -97,28 +100,31 @@ Partial Class MantCajaChicaForm
         '
         'txtSaldo
         '
-        Me.txtSaldo.Location = New System.Drawing.Point(493, 67)
+        Me.txtSaldo.Location = New System.Drawing.Point(534, 67)
         Me.txtSaldo.Name = "txtSaldo"
-        Me.txtSaldo.Size = New System.Drawing.Size(116, 20)
+        Me.txtSaldo.ReadOnly = True
+        Me.txtSaldo.Size = New System.Drawing.Size(75, 20)
         Me.txtSaldo.TabIndex = 3
         Me.txtSaldo.Text = "0.0"
         '
         'cbMoneda
         '
         Me.cbMoneda.Enabled = False
+        Me.cbMoneda.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbMoneda.FormattingEnabled = True
-        Me.cbMoneda.Location = New System.Drawing.Point(224, 13)
+        Me.cbMoneda.Location = New System.Drawing.Point(238, 13)
         Me.cbMoneda.Name = "cbMoneda"
-        Me.cbMoneda.Size = New System.Drawing.Size(172, 21)
+        Me.cbMoneda.Size = New System.Drawing.Size(158, 21)
         Me.cbMoneda.TabIndex = 0
         '
         'cbObra
         '
         Me.cbObra.Enabled = False
+        Me.cbObra.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbObra.FormattingEnabled = True
         Me.cbObra.Location = New System.Drawing.Point(96, 39)
         Me.cbObra.Name = "cbObra"
-        Me.cbObra.Size = New System.Drawing.Size(513, 21)
+        Me.cbObra.Size = New System.Drawing.Size(512, 21)
         Me.cbObra.TabIndex = 1
         '
         'Label3
@@ -133,7 +139,7 @@ Partial Class MantCajaChicaForm
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(444, 70)
+        Me.Label4.Location = New System.Drawing.Point(485, 70)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(43, 13)
         Me.Label4.TabIndex = 5
@@ -142,10 +148,11 @@ Partial Class MantCajaChicaForm
         'cbResponsable
         '
         Me.cbResponsable.Enabled = False
+        Me.cbResponsable.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbResponsable.FormattingEnabled = True
         Me.cbResponsable.Location = New System.Drawing.Point(96, 66)
         Me.cbResponsable.Name = "cbResponsable"
-        Me.cbResponsable.Size = New System.Drawing.Size(342, 21)
+        Me.cbResponsable.Size = New System.Drawing.Size(383, 21)
         Me.cbResponsable.TabIndex = 2
         '
         'Label5
@@ -162,8 +169,8 @@ Partial Class MantCajaChicaForm
         Me.dgCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgCaja.Location = New System.Drawing.Point(3, 16)
         Me.dgCaja.Name = "dgCaja"
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgCaja.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgCaja.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgCaja.Size = New System.Drawing.Size(608, 322)
         Me.dgCaja.TabIndex = 10
         '
@@ -236,7 +243,9 @@ Partial Class MantCajaChicaForm
         '
         Me.GroupBox1.Controls.Add(Me.RbActivo)
         Me.GroupBox1.Controls.Add(Me.RbInactivo)
+        Me.GroupBox1.Controls.Add(Me.cbSerie)
         Me.GroupBox1.Controls.Add(Me.cbMoneda)
+        Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.txtSaldo)
         Me.GroupBox1.Controls.Add(Me.cbResponsable)
@@ -285,6 +294,7 @@ Partial Class MantCajaChicaForm
         Me.Label6.Size = New System.Drawing.Size(62, 13)
         Me.Label6.TabIndex = 5
         Me.Label6.Text = "Cod Caja:"
+        Me.Label6.Visible = False
         '
         'GroupBox2
         '
@@ -381,6 +391,25 @@ Partial Class MantCajaChicaForm
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
         Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
         '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(50, 12)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(40, 13)
+        Me.Label7.TabIndex = 5
+        Me.Label7.Text = "Serie:"
+        '
+        'cbSerie
+        '
+        Me.cbSerie.Enabled = False
+        Me.cbSerie.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbSerie.FormattingEnabled = True
+        Me.cbSerie.Location = New System.Drawing.Point(96, 12)
+        Me.cbSerie.Name = "cbSerie"
+        Me.cbSerie.Size = New System.Drawing.Size(74, 21)
+        Me.cbSerie.TabIndex = 0
+        '
         'MantCajaChicaForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
@@ -446,5 +475,7 @@ Partial Class MantCajaChicaForm
     Friend WithEvents RbActivo As System.Windows.Forms.RadioButton
     Friend WithEvents RbInactivo As System.Windows.Forms.RadioButton
     Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents cbSerie As System.Windows.Forms.ComboBox
+    Friend WithEvents Label7 As System.Windows.Forms.Label
 
 End Class

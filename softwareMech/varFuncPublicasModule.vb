@@ -40,6 +40,9 @@ Module varFuncPublicasModule
     Public vSDirSuc As String 'Variable de sistema no cambiar su valor
     Public vSIGV As Double = 18 'IGV Variable de sistema no cambiar su valor
     Public vSCodSerO As Integer    'Variable de sistema no cambiar su valor
+    Public vSCodDia As Integer    'Variable de sistema no cambiar su valor
+    Public vSIdDia As String    'Variable de sistema no cambiar su valor
+    Public vSFecCaja As String 'Variable de sistema no cambiar su valor
     Public vSSerie As String
     Public vSIniNroDoc As Integer
 
@@ -148,6 +151,30 @@ Module varFuncPublicasModule
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
         cmdCampo.CommandText = "select COUNT(*) from TSerieSede where estado=1 and codSerS>1 and codTipDE=" & codTipo  '75=Guia Rem  70=Factura
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+    'LITO
+    Public Function recuperarCodDia(ByVal estado As Short, ByVal codSuc As String) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select isnull(max(codDia),0) from TDiaCaja where estado=" & estado & " and codigo='" & codSuc & "'"
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+    'LITO
+    Public Function recuperarIdDia(ByVal estado As Short, ByVal codSuc As String) As String
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select ltrim(str(codDia))+'-'+convert(varchar(10),fecha,103) as sesion from TDiaCaja where estado=" & estado & " and codigo='" & codSuc & "'"
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+    'LITO
+    Public Function recuperarFechaCaja(ByVal estado As Short, ByVal codSuc As String) As String
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select convert(varchar(10),fecha,103) as sesion from TDiaCaja where estado=" & estado & " and codigo='" & codSuc & "'"
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function

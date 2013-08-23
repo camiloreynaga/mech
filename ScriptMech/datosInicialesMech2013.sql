@@ -104,11 +104,9 @@ GO
 insert TTipoTransac (tipo) values ('INGRESO') --1
 insert TTipoTransac (tipo) values ('SALIDA') --2
 insert TTipoTransac (tipo) values ('INGRESO OBRA') --3
+insert TTipoTransac (tipo) values ('SALIDA PERS') --4
 GO
 --select * from TTipoTransac
---*****************************************************
---------------------EJECUTAR 14/08/2013----------------------
---*****************************************************
 insert TTipoDocEmp(tipoDE,estado) values ('FACTURA',1)--70
 insert TTipoDocEmp(tipoDE,estado) values ('GUIA DE REMISION',1)--75
 GO
@@ -119,5 +117,9 @@ GO
 -- select * from TSerieSede
 --UPDATE TTipoTransac SET TIPO='SALIDA' WHERE CODTRANS=2
 --UPDATE TTipoTransac SET TIPO='INGRESO' WHERE CODTRANS=1
-insert TTipoTransac (tipo) values ('INGRESO OBRA') --3
+
+--*****************************************************
+--------------------EJECUTAR 15/08/2013----------------------
+--*****************************************************
+insert TTipoTransac (tipo) values ('SALIDA PERS') --4
 GO

@@ -28,8 +28,6 @@ Partial Public Class DataSetAlmacen
     
     Private tableVSolDetSol As VSolDetSolDataTable
     
-    Private tableVCotDetCot As VCotDetCotDataTable
-    
     Private tableVOrdenDesembolsoImprimir As VOrdenDesembolsoImprimirDataTable
     
     Private tableVKardex As VKardexDataTable
@@ -37,6 +35,8 @@ Partial Public Class DataSetAlmacen
     Private tableVOrdenDetOrden As VOrdenDetOrdenDataTable
     
     Private tableVGuiaDetGuiaE As VGuiaDetGuiaEDataTable
+    
+    Private tableVCotDetCot As VCotDetCotDataTable
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -68,9 +68,6 @@ Partial Public Class DataSetAlmacen
             If (Not (ds.Tables("VSolDetSol")) Is Nothing) Then
                 MyBase.Tables.Add(New VSolDetSolDataTable(ds.Tables("VSolDetSol")))
             End If
-            If (Not (ds.Tables("VCotDetCot")) Is Nothing) Then
-                MyBase.Tables.Add(New VCotDetCotDataTable(ds.Tables("VCotDetCot")))
-            End If
             If (Not (ds.Tables("VOrdenDesembolsoImprimir")) Is Nothing) Then
                 MyBase.Tables.Add(New VOrdenDesembolsoImprimirDataTable(ds.Tables("VOrdenDesembolsoImprimir")))
             End If
@@ -82,6 +79,9 @@ Partial Public Class DataSetAlmacen
             End If
             If (Not (ds.Tables("VGuiaDetGuiaE")) Is Nothing) Then
                 MyBase.Tables.Add(New VGuiaDetGuiaEDataTable(ds.Tables("VGuiaDetGuiaE")))
+            End If
+            If (Not (ds.Tables("VCotDetCot")) Is Nothing) Then
+                MyBase.Tables.Add(New VCotDetCotDataTable(ds.Tables("VCotDetCot")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -106,15 +106,6 @@ Partial Public Class DataSetAlmacen
     Public ReadOnly Property VSolDetSol() As VSolDetSolDataTable
         Get
             Return Me.tableVSolDetSol
-        End Get
-    End Property
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.ComponentModel.Browsable(false),  _
-     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property VCotDetCot() As VCotDetCotDataTable
-        Get
-            Return Me.tableVCotDetCot
         End Get
     End Property
     
@@ -151,6 +142,15 @@ Partial Public Class DataSetAlmacen
     Public ReadOnly Property VGuiaDetGuiaE() As VGuiaDetGuiaEDataTable
         Get
             Return Me.tableVGuiaDetGuiaE
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property VCotDetCot() As VCotDetCotDataTable
+        Get
+            Return Me.tableVCotDetCot
         End Get
     End Property
     
@@ -216,9 +216,6 @@ Partial Public Class DataSetAlmacen
             If (Not (ds.Tables("VSolDetSol")) Is Nothing) Then
                 MyBase.Tables.Add(New VSolDetSolDataTable(ds.Tables("VSolDetSol")))
             End If
-            If (Not (ds.Tables("VCotDetCot")) Is Nothing) Then
-                MyBase.Tables.Add(New VCotDetCotDataTable(ds.Tables("VCotDetCot")))
-            End If
             If (Not (ds.Tables("VOrdenDesembolsoImprimir")) Is Nothing) Then
                 MyBase.Tables.Add(New VOrdenDesembolsoImprimirDataTable(ds.Tables("VOrdenDesembolsoImprimir")))
             End If
@@ -230,6 +227,9 @@ Partial Public Class DataSetAlmacen
             End If
             If (Not (ds.Tables("VGuiaDetGuiaE")) Is Nothing) Then
                 MyBase.Tables.Add(New VGuiaDetGuiaEDataTable(ds.Tables("VGuiaDetGuiaE")))
+            End If
+            If (Not (ds.Tables("VCotDetCot")) Is Nothing) Then
+                MyBase.Tables.Add(New VCotDetCotDataTable(ds.Tables("VCotDetCot")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -266,12 +266,6 @@ Partial Public Class DataSetAlmacen
                 Me.tableVSolDetSol.InitVars
             End If
         End If
-        Me.tableVCotDetCot = CType(MyBase.Tables("VCotDetCot"),VCotDetCotDataTable)
-        If (initTable = true) Then
-            If (Not (Me.tableVCotDetCot) Is Nothing) Then
-                Me.tableVCotDetCot.InitVars
-            End If
-        End If
         Me.tableVOrdenDesembolsoImprimir = CType(MyBase.Tables("VOrdenDesembolsoImprimir"),VOrdenDesembolsoImprimirDataTable)
         If (initTable = true) Then
             If (Not (Me.tableVOrdenDesembolsoImprimir) Is Nothing) Then
@@ -296,6 +290,12 @@ Partial Public Class DataSetAlmacen
                 Me.tableVGuiaDetGuiaE.InitVars
             End If
         End If
+        Me.tableVCotDetCot = CType(MyBase.Tables("VCotDetCot"),VCotDetCotDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableVCotDetCot) Is Nothing) Then
+                Me.tableVCotDetCot.InitVars
+            End If
+        End If
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -307,8 +307,6 @@ Partial Public Class DataSetAlmacen
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
         Me.tableVSolDetSol = New VSolDetSolDataTable
         MyBase.Tables.Add(Me.tableVSolDetSol)
-        Me.tableVCotDetCot = New VCotDetCotDataTable
-        MyBase.Tables.Add(Me.tableVCotDetCot)
         Me.tableVOrdenDesembolsoImprimir = New VOrdenDesembolsoImprimirDataTable
         MyBase.Tables.Add(Me.tableVOrdenDesembolsoImprimir)
         Me.tableVKardex = New VKardexDataTable
@@ -317,15 +315,12 @@ Partial Public Class DataSetAlmacen
         MyBase.Tables.Add(Me.tableVOrdenDetOrden)
         Me.tableVGuiaDetGuiaE = New VGuiaDetGuiaEDataTable
         MyBase.Tables.Add(Me.tableVGuiaDetGuiaE)
+        Me.tableVCotDetCot = New VCotDetCotDataTable
+        MyBase.Tables.Add(Me.tableVCotDetCot)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
     Private Function ShouldSerializeVSolDetSol() As Boolean
-        Return false
-    End Function
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-    Private Function ShouldSerializeVCotDetCot() As Boolean
         Return false
     End Function
     
@@ -346,6 +341,11 @@ Partial Public Class DataSetAlmacen
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
     Private Function ShouldSerializeVGuiaDetGuiaE() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+    Private Function ShouldSerializeVCotDetCot() As Boolean
         Return false
     End Function
     
@@ -407,8 +407,6 @@ Partial Public Class DataSetAlmacen
     
     Public Delegate Sub VSolDetSolRowChangeEventHandler(ByVal sender As Object, ByVal e As VSolDetSolRowChangeEvent)
     
-    Public Delegate Sub VCotDetCotRowChangeEventHandler(ByVal sender As Object, ByVal e As VCotDetCotRowChangeEvent)
-    
     Public Delegate Sub VOrdenDesembolsoImprimirRowChangeEventHandler(ByVal sender As Object, ByVal e As VOrdenDesembolsoImprimirRowChangeEvent)
     
     Public Delegate Sub VKardexRowChangeEventHandler(ByVal sender As Object, ByVal e As VKardexRowChangeEvent)
@@ -416,6 +414,8 @@ Partial Public Class DataSetAlmacen
     Public Delegate Sub VOrdenDetOrdenRowChangeEventHandler(ByVal sender As Object, ByVal e As VOrdenDetOrdenRowChangeEvent)
     
     Public Delegate Sub VGuiaDetGuiaERowChangeEventHandler(ByVal sender As Object, ByVal e As VGuiaDetGuiaERowChangeEvent)
+    
+    Public Delegate Sub VCotDetCotRowChangeEventHandler(ByVal sender As Object, ByVal e As VCotDetCotRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -913,629 +913,6 @@ Partial Public Class DataSetAlmacen
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
             attribute2.Name = "tableTypeName"
             attribute2.FixedValue = "VSolDetSolDataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream
-                Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
-                End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the strongly named DataTable class.
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0"),  _
-     Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class VCotDetCotDataTable
-        Inherits Global.System.Data.TypedTableBase(Of VCotDetCotRow)
-        
-        Private columncodDetC As Global.System.Data.DataColumn
-        
-        Private columnnro As Global.System.Data.DataColumn
-        
-        Private columnfecCot As Global.System.Data.DataColumn
-        
-        Private columnrazon As Global.System.Data.DataColumn
-        
-        Private columnruc As Global.System.Data.DataColumn
-        
-        Private columnatencion As Global.System.Data.DataColumn
-        
-        Private columncelRpm As Global.System.Data.DataColumn
-        
-        Private columnfonos As Global.System.Data.DataColumn
-        
-        Private columnemail As Global.System.Data.DataColumn
-        
-        Private columnnomRem As Global.System.Data.DataColumn
-        
-        Private columnfono As Global.System.Data.DataColumn
-        
-        Private columnemaRem As Global.System.Data.DataColumn
-        
-        Private columntiempoVig As Global.System.Data.DataColumn
-        
-        Private columnplazo As Global.System.Data.DataColumn
-        
-        Private columnforma As Global.System.Data.DataColumn
-        
-        Private columnlugarEnt As Global.System.Data.DataColumn
-        
-        Private columnincluir As Global.System.Data.DataColumn
-        
-        Private columncodigo As Global.System.Data.DataColumn
-        
-        Private columnlugar As Global.System.Data.DataColumn
-        
-        Private columnnombre As Global.System.Data.DataColumn
-        
-        Private columnnomSol As Global.System.Data.DataColumn
-        
-        Private columnobs As Global.System.Data.DataColumn
-        
-        Private columncodGruC As Global.System.Data.DataColumn
-        
-        Private columndescrip As Global.System.Data.DataColumn
-        
-        Private columncant As Global.System.Data.DataColumn
-        
-        Private columnunidad As Global.System.Data.DataColumn
-        
-        Private columnmaterial As Global.System.Data.DataColumn
-        
-        Private columnprecio As Global.System.Data.DataColumn
-        
-        Private columnsubTotal As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "VCotDetCot"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property codDetCColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columncodDetC
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property nroColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnnro
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property fecCotColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnfecCot
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property razonColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnrazon
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property rucColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnruc
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property atencionColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnatencion
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property celRpmColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columncelRpm
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property fonosColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnfonos
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property emailColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnemail
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property nomRemColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnnomRem
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property fonoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnfono
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property emaRemColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnemaRem
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property tiempoVigColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columntiempoVig
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property plazoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnplazo
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property formaColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnforma
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property lugarEntColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnlugarEnt
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property incluirColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnincluir
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property codigoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columncodigo
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property lugarColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnlugar
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property nombreColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnnombre
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property nomSolColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnnomSol
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property obsColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnobs
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property codGruCColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columncodGruC
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property descripColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columndescrip
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property cantColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columncant
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property unidadColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnunidad
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property materialColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnmaterial
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property precioColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnprecio
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property subTotalColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnsubTotal
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As VCotDetCotRow
-            Get
-                Return CType(Me.Rows(index),VCotDetCotRow)
-            End Get
-        End Property
-        
-        Public Event VCotDetCotRowChanging As VCotDetCotRowChangeEventHandler
-        
-        Public Event VCotDetCotRowChanged As VCotDetCotRowChangeEventHandler
-        
-        Public Event VCotDetCotRowDeleting As VCotDetCotRowChangeEventHandler
-        
-        Public Event VCotDetCotRowDeleted As VCotDetCotRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Overloads Sub AddVCotDetCotRow(ByVal row As VCotDetCotRow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Overloads Function AddVCotDetCotRow( _
-                    ByVal codDetC As Integer,  _
-                    ByVal nro As String,  _
-                    ByVal fecCot As Date,  _
-                    ByVal razon As String,  _
-                    ByVal ruc As String,  _
-                    ByVal atencion As String,  _
-                    ByVal celRpm As String,  _
-                    ByVal fonos As String,  _
-                    ByVal email As String,  _
-                    ByVal nomRem As String,  _
-                    ByVal fono As String,  _
-                    ByVal emaRem As String,  _
-                    ByVal tiempoVig As String,  _
-                    ByVal plazo As String,  _
-                    ByVal forma As String,  _
-                    ByVal lugarEnt As String,  _
-                    ByVal incluir As String,  _
-                    ByVal codigo As String,  _
-                    ByVal lugar As String,  _
-                    ByVal nombre As String,  _
-                    ByVal nomSol As String,  _
-                    ByVal obs As String,  _
-                    ByVal codGruC As Integer,  _
-                    ByVal descrip As String,  _
-                    ByVal cant As Decimal,  _
-                    ByVal unidad As String,  _
-                    ByVal material As String,  _
-                    ByVal precio As Decimal,  _
-                    ByVal subTotal As Decimal) As VCotDetCotRow
-            Dim rowVCotDetCotRow As VCotDetCotRow = CType(Me.NewRow,VCotDetCotRow)
-            Dim columnValuesArray() As Object = New Object() {codDetC, nro, fecCot, razon, ruc, atencion, celRpm, fonos, email, nomRem, fono, emaRem, tiempoVig, plazo, forma, lugarEnt, incluir, codigo, lugar, nombre, nomSol, obs, codGruC, descrip, cant, unidad, material, precio, subTotal}
-            rowVCotDetCotRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowVCotDetCotRow)
-            Return rowVCotDetCotRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As VCotDetCotDataTable = CType(MyBase.Clone,VCotDetCotDataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New VCotDetCotDataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Friend Sub InitVars()
-            Me.columncodDetC = MyBase.Columns("codDetC")
-            Me.columnnro = MyBase.Columns("nro")
-            Me.columnfecCot = MyBase.Columns("fecCot")
-            Me.columnrazon = MyBase.Columns("razon")
-            Me.columnruc = MyBase.Columns("ruc")
-            Me.columnatencion = MyBase.Columns("atencion")
-            Me.columncelRpm = MyBase.Columns("celRpm")
-            Me.columnfonos = MyBase.Columns("fonos")
-            Me.columnemail = MyBase.Columns("email")
-            Me.columnnomRem = MyBase.Columns("nomRem")
-            Me.columnfono = MyBase.Columns("fono")
-            Me.columnemaRem = MyBase.Columns("emaRem")
-            Me.columntiempoVig = MyBase.Columns("tiempoVig")
-            Me.columnplazo = MyBase.Columns("plazo")
-            Me.columnforma = MyBase.Columns("forma")
-            Me.columnlugarEnt = MyBase.Columns("lugarEnt")
-            Me.columnincluir = MyBase.Columns("incluir")
-            Me.columncodigo = MyBase.Columns("codigo")
-            Me.columnlugar = MyBase.Columns("lugar")
-            Me.columnnombre = MyBase.Columns("nombre")
-            Me.columnnomSol = MyBase.Columns("nomSol")
-            Me.columnobs = MyBase.Columns("obs")
-            Me.columncodGruC = MyBase.Columns("codGruC")
-            Me.columndescrip = MyBase.Columns("descrip")
-            Me.columncant = MyBase.Columns("cant")
-            Me.columnunidad = MyBase.Columns("unidad")
-            Me.columnmaterial = MyBase.Columns("material")
-            Me.columnprecio = MyBase.Columns("precio")
-            Me.columnsubTotal = MyBase.Columns("subTotal")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Private Sub InitClass()
-            Me.columncodDetC = New Global.System.Data.DataColumn("codDetC", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columncodDetC)
-            Me.columnnro = New Global.System.Data.DataColumn("nro", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnnro)
-            Me.columnfecCot = New Global.System.Data.DataColumn("fecCot", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnfecCot)
-            Me.columnrazon = New Global.System.Data.DataColumn("razon", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnrazon)
-            Me.columnruc = New Global.System.Data.DataColumn("ruc", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnruc)
-            Me.columnatencion = New Global.System.Data.DataColumn("atencion", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnatencion)
-            Me.columncelRpm = New Global.System.Data.DataColumn("celRpm", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columncelRpm)
-            Me.columnfonos = New Global.System.Data.DataColumn("fonos", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnfonos)
-            Me.columnemail = New Global.System.Data.DataColumn("email", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnemail)
-            Me.columnnomRem = New Global.System.Data.DataColumn("nomRem", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnnomRem)
-            Me.columnfono = New Global.System.Data.DataColumn("fono", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnfono)
-            Me.columnemaRem = New Global.System.Data.DataColumn("emaRem", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnemaRem)
-            Me.columntiempoVig = New Global.System.Data.DataColumn("tiempoVig", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columntiempoVig)
-            Me.columnplazo = New Global.System.Data.DataColumn("plazo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnplazo)
-            Me.columnforma = New Global.System.Data.DataColumn("forma", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnforma)
-            Me.columnlugarEnt = New Global.System.Data.DataColumn("lugarEnt", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnlugarEnt)
-            Me.columnincluir = New Global.System.Data.DataColumn("incluir", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnincluir)
-            Me.columncodigo = New Global.System.Data.DataColumn("codigo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columncodigo)
-            Me.columnlugar = New Global.System.Data.DataColumn("lugar", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnlugar)
-            Me.columnnombre = New Global.System.Data.DataColumn("nombre", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnnombre)
-            Me.columnnomSol = New Global.System.Data.DataColumn("nomSol", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnnomSol)
-            Me.columnobs = New Global.System.Data.DataColumn("obs", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnobs)
-            Me.columncodGruC = New Global.System.Data.DataColumn("codGruC", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columncodGruC)
-            Me.columndescrip = New Global.System.Data.DataColumn("descrip", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columndescrip)
-            Me.columncant = New Global.System.Data.DataColumn("cant", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columncant)
-            Me.columnunidad = New Global.System.Data.DataColumn("unidad", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnunidad)
-            Me.columnmaterial = New Global.System.Data.DataColumn("material", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnmaterial)
-            Me.columnprecio = New Global.System.Data.DataColumn("precio", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnprecio)
-            Me.columnsubTotal = New Global.System.Data.DataColumn("subTotal", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnsubTotal)
-            Me.columncodDetC.AllowDBNull = false
-            Me.columnnro.ReadOnly = true
-            Me.columnnro.MaxLength = 13
-            Me.columnrazon.MaxLength = 60
-            Me.columnruc.MaxLength = 11
-            Me.columnatencion.MaxLength = 40
-            Me.columncelRpm.MaxLength = 50
-            Me.columnfonos.ReadOnly = true
-            Me.columnfonos.MaxLength = 61
-            Me.columnemail.MaxLength = 30
-            Me.columnnomRem.ReadOnly = true
-            Me.columnnomRem.MaxLength = 51
-            Me.columnfono.MaxLength = 60
-            Me.columnemaRem.MaxLength = 50
-            Me.columntiempoVig.MaxLength = 20
-            Me.columnplazo.MaxLength = 40
-            Me.columnforma.MaxLength = 20
-            Me.columnlugarEnt.MaxLength = 100
-            Me.columnincluir.MaxLength = 100
-            Me.columncodigo.AllowDBNull = false
-            Me.columncodigo.MaxLength = 10
-            Me.columnlugar.MaxLength = 100
-            Me.columnnombre.MaxLength = 100
-            Me.columnnomSol.ReadOnly = true
-            Me.columnnomSol.MaxLength = 51
-            Me.columnobs.MaxLength = 200
-            Me.columncodGruC.AllowDBNull = false
-            Me.columndescrip.MaxLength = 40
-            Me.columnunidad.MaxLength = 20
-            Me.columnmaterial.MaxLength = 100
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function NewVCotDetCotRow() As VCotDetCotRow
-            Return CType(Me.NewRow,VCotDetCotRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New VCotDetCotRow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(VCotDetCotRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.VCotDetCotRowChangedEvent) Is Nothing) Then
-                RaiseEvent VCotDetCotRowChanged(Me, New VCotDetCotRowChangeEvent(CType(e.Row,VCotDetCotRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.VCotDetCotRowChangingEvent) Is Nothing) Then
-                RaiseEvent VCotDetCotRowChanging(Me, New VCotDetCotRowChangeEvent(CType(e.Row,VCotDetCotRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.VCotDetCotRowDeletedEvent) Is Nothing) Then
-                RaiseEvent VCotDetCotRowDeleted(Me, New VCotDetCotRowChangeEvent(CType(e.Row,VCotDetCotRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.VCotDetCotRowDeletingEvent) Is Nothing) Then
-                RaiseEvent VCotDetCotRowDeleting(Me, New VCotDetCotRowChangeEvent(CType(e.Row,VCotDetCotRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub RemoveVCotDetCotRow(ByVal row As VCotDetCotRow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence
-            Dim ds As DataSetAlmacen = New DataSetAlmacen
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "VCotDetCotDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -4547,6 +3924,629 @@ Partial Public Class DataSetAlmacen
     End Class
     
     '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0"),  _
+     Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class VCotDetCotDataTable
+        Inherits Global.System.Data.TypedTableBase(Of VCotDetCotRow)
+        
+        Private columncodDetC As Global.System.Data.DataColumn
+        
+        Private columnnro As Global.System.Data.DataColumn
+        
+        Private columnfecCot As Global.System.Data.DataColumn
+        
+        Private columnrazon As Global.System.Data.DataColumn
+        
+        Private columnruc As Global.System.Data.DataColumn
+        
+        Private columnatencion As Global.System.Data.DataColumn
+        
+        Private columncelRpm As Global.System.Data.DataColumn
+        
+        Private columnfonos As Global.System.Data.DataColumn
+        
+        Private columnemail As Global.System.Data.DataColumn
+        
+        Private columnnomRem As Global.System.Data.DataColumn
+        
+        Private columnfono As Global.System.Data.DataColumn
+        
+        Private columnemaRem As Global.System.Data.DataColumn
+        
+        Private columntiempoVig As Global.System.Data.DataColumn
+        
+        Private columnplazo As Global.System.Data.DataColumn
+        
+        Private columnforma As Global.System.Data.DataColumn
+        
+        Private columnlugarEnt As Global.System.Data.DataColumn
+        
+        Private columnincluir As Global.System.Data.DataColumn
+        
+        Private columncodigo As Global.System.Data.DataColumn
+        
+        Private columnlugar As Global.System.Data.DataColumn
+        
+        Private columnnombre As Global.System.Data.DataColumn
+        
+        Private columnnomSol As Global.System.Data.DataColumn
+        
+        Private columnobs As Global.System.Data.DataColumn
+        
+        Private columncodGruC As Global.System.Data.DataColumn
+        
+        Private columndescrip As Global.System.Data.DataColumn
+        
+        Private columncant As Global.System.Data.DataColumn
+        
+        Private columnunidad As Global.System.Data.DataColumn
+        
+        Private columnmaterial As Global.System.Data.DataColumn
+        
+        Private columnprecio As Global.System.Data.DataColumn
+        
+        Private columnsubTotal As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "VCotDetCot"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codDetCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodDetC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nroColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnro
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property fecCotColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnfecCot
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property razonColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnrazon
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property rucColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnruc
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property atencionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnatencion
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property celRpmColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncelRpm
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property fonosColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnfonos
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property emailColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnemail
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nomRemColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnomRem
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property fonoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnfono
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property emaRemColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnemaRem
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property tiempoVigColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columntiempoVig
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property plazoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnplazo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property formaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnforma
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property lugarEntColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnlugarEnt
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property incluirColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnincluir
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codigoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodigo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property lugarColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnlugar
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nombreColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnombre
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nomSolColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnomSol
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property obsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnobs
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codGruCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodGruC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property descripColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columndescrip
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property cantColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncant
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property unidadColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnunidad
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property materialColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnmaterial
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property precioColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnprecio
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property subTotalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsubTotal
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As VCotDetCotRow
+            Get
+                Return CType(Me.Rows(index),VCotDetCotRow)
+            End Get
+        End Property
+        
+        Public Event VCotDetCotRowChanging As VCotDetCotRowChangeEventHandler
+        
+        Public Event VCotDetCotRowChanged As VCotDetCotRowChangeEventHandler
+        
+        Public Event VCotDetCotRowDeleting As VCotDetCotRowChangeEventHandler
+        
+        Public Event VCotDetCotRowDeleted As VCotDetCotRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Overloads Sub AddVCotDetCotRow(ByVal row As VCotDetCotRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Overloads Function AddVCotDetCotRow( _
+                    ByVal codDetC As Integer,  _
+                    ByVal nro As String,  _
+                    ByVal fecCot As Date,  _
+                    ByVal razon As String,  _
+                    ByVal ruc As String,  _
+                    ByVal atencion As String,  _
+                    ByVal celRpm As String,  _
+                    ByVal fonos As String,  _
+                    ByVal email As String,  _
+                    ByVal nomRem As String,  _
+                    ByVal fono As String,  _
+                    ByVal emaRem As String,  _
+                    ByVal tiempoVig As String,  _
+                    ByVal plazo As String,  _
+                    ByVal forma As String,  _
+                    ByVal lugarEnt As String,  _
+                    ByVal incluir As String,  _
+                    ByVal codigo As String,  _
+                    ByVal lugar As String,  _
+                    ByVal nombre As String,  _
+                    ByVal nomSol As String,  _
+                    ByVal obs As String,  _
+                    ByVal codGruC As Integer,  _
+                    ByVal descrip As String,  _
+                    ByVal cant As Decimal,  _
+                    ByVal unidad As String,  _
+                    ByVal material As String,  _
+                    ByVal precio As Decimal,  _
+                    ByVal subTotal As Decimal) As VCotDetCotRow
+            Dim rowVCotDetCotRow As VCotDetCotRow = CType(Me.NewRow,VCotDetCotRow)
+            Dim columnValuesArray() As Object = New Object() {codDetC, nro, fecCot, razon, ruc, atencion, celRpm, fonos, email, nomRem, fono, emaRem, tiempoVig, plazo, forma, lugarEnt, incluir, codigo, lugar, nombre, nomSol, obs, codGruC, descrip, cant, unidad, material, precio, subTotal}
+            rowVCotDetCotRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowVCotDetCotRow)
+            Return rowVCotDetCotRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As VCotDetCotDataTable = CType(MyBase.Clone,VCotDetCotDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New VCotDetCotDataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Sub InitVars()
+            Me.columncodDetC = MyBase.Columns("codDetC")
+            Me.columnnro = MyBase.Columns("nro")
+            Me.columnfecCot = MyBase.Columns("fecCot")
+            Me.columnrazon = MyBase.Columns("razon")
+            Me.columnruc = MyBase.Columns("ruc")
+            Me.columnatencion = MyBase.Columns("atencion")
+            Me.columncelRpm = MyBase.Columns("celRpm")
+            Me.columnfonos = MyBase.Columns("fonos")
+            Me.columnemail = MyBase.Columns("email")
+            Me.columnnomRem = MyBase.Columns("nomRem")
+            Me.columnfono = MyBase.Columns("fono")
+            Me.columnemaRem = MyBase.Columns("emaRem")
+            Me.columntiempoVig = MyBase.Columns("tiempoVig")
+            Me.columnplazo = MyBase.Columns("plazo")
+            Me.columnforma = MyBase.Columns("forma")
+            Me.columnlugarEnt = MyBase.Columns("lugarEnt")
+            Me.columnincluir = MyBase.Columns("incluir")
+            Me.columncodigo = MyBase.Columns("codigo")
+            Me.columnlugar = MyBase.Columns("lugar")
+            Me.columnnombre = MyBase.Columns("nombre")
+            Me.columnnomSol = MyBase.Columns("nomSol")
+            Me.columnobs = MyBase.Columns("obs")
+            Me.columncodGruC = MyBase.Columns("codGruC")
+            Me.columndescrip = MyBase.Columns("descrip")
+            Me.columncant = MyBase.Columns("cant")
+            Me.columnunidad = MyBase.Columns("unidad")
+            Me.columnmaterial = MyBase.Columns("material")
+            Me.columnprecio = MyBase.Columns("precio")
+            Me.columnsubTotal = MyBase.Columns("subTotal")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Private Sub InitClass()
+            Me.columncodDetC = New Global.System.Data.DataColumn("codDetC", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodDetC)
+            Me.columnnro = New Global.System.Data.DataColumn("nro", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnro)
+            Me.columnfecCot = New Global.System.Data.DataColumn("fecCot", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnfecCot)
+            Me.columnrazon = New Global.System.Data.DataColumn("razon", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnrazon)
+            Me.columnruc = New Global.System.Data.DataColumn("ruc", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnruc)
+            Me.columnatencion = New Global.System.Data.DataColumn("atencion", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnatencion)
+            Me.columncelRpm = New Global.System.Data.DataColumn("celRpm", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncelRpm)
+            Me.columnfonos = New Global.System.Data.DataColumn("fonos", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnfonos)
+            Me.columnemail = New Global.System.Data.DataColumn("email", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnemail)
+            Me.columnnomRem = New Global.System.Data.DataColumn("nomRem", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnomRem)
+            Me.columnfono = New Global.System.Data.DataColumn("fono", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnfono)
+            Me.columnemaRem = New Global.System.Data.DataColumn("emaRem", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnemaRem)
+            Me.columntiempoVig = New Global.System.Data.DataColumn("tiempoVig", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columntiempoVig)
+            Me.columnplazo = New Global.System.Data.DataColumn("plazo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnplazo)
+            Me.columnforma = New Global.System.Data.DataColumn("forma", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnforma)
+            Me.columnlugarEnt = New Global.System.Data.DataColumn("lugarEnt", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnlugarEnt)
+            Me.columnincluir = New Global.System.Data.DataColumn("incluir", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnincluir)
+            Me.columncodigo = New Global.System.Data.DataColumn("codigo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodigo)
+            Me.columnlugar = New Global.System.Data.DataColumn("lugar", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnlugar)
+            Me.columnnombre = New Global.System.Data.DataColumn("nombre", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnombre)
+            Me.columnnomSol = New Global.System.Data.DataColumn("nomSol", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnomSol)
+            Me.columnobs = New Global.System.Data.DataColumn("obs", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnobs)
+            Me.columncodGruC = New Global.System.Data.DataColumn("codGruC", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodGruC)
+            Me.columndescrip = New Global.System.Data.DataColumn("descrip", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columndescrip)
+            Me.columncant = New Global.System.Data.DataColumn("cant", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncant)
+            Me.columnunidad = New Global.System.Data.DataColumn("unidad", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnunidad)
+            Me.columnmaterial = New Global.System.Data.DataColumn("material", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnmaterial)
+            Me.columnprecio = New Global.System.Data.DataColumn("precio", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnprecio)
+            Me.columnsubTotal = New Global.System.Data.DataColumn("subTotal", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsubTotal)
+            Me.columncodDetC.AllowDBNull = false
+            Me.columnnro.ReadOnly = true
+            Me.columnnro.MaxLength = 13
+            Me.columnrazon.MaxLength = 60
+            Me.columnruc.MaxLength = 11
+            Me.columnatencion.MaxLength = 40
+            Me.columncelRpm.MaxLength = 50
+            Me.columnfonos.ReadOnly = true
+            Me.columnfonos.MaxLength = 61
+            Me.columnemail.MaxLength = 30
+            Me.columnnomRem.ReadOnly = true
+            Me.columnnomRem.MaxLength = 51
+            Me.columnfono.MaxLength = 60
+            Me.columnemaRem.MaxLength = 100
+            Me.columntiempoVig.MaxLength = 20
+            Me.columnplazo.MaxLength = 40
+            Me.columnforma.MaxLength = 60
+            Me.columnlugarEnt.MaxLength = 100
+            Me.columnincluir.MaxLength = 100
+            Me.columncodigo.AllowDBNull = false
+            Me.columncodigo.MaxLength = 10
+            Me.columnlugar.MaxLength = 100
+            Me.columnnombre.MaxLength = 100
+            Me.columnnomSol.ReadOnly = true
+            Me.columnnomSol.MaxLength = 51
+            Me.columnobs.MaxLength = 200
+            Me.columncodGruC.AllowDBNull = false
+            Me.columndescrip.MaxLength = 40
+            Me.columnunidad.MaxLength = 20
+            Me.columnmaterial.MaxLength = 100
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function NewVCotDetCotRow() As VCotDetCotRow
+            Return CType(Me.NewRow,VCotDetCotRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New VCotDetCotRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(VCotDetCotRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.VCotDetCotRowChangedEvent) Is Nothing) Then
+                RaiseEvent VCotDetCotRowChanged(Me, New VCotDetCotRowChangeEvent(CType(e.Row,VCotDetCotRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.VCotDetCotRowChangingEvent) Is Nothing) Then
+                RaiseEvent VCotDetCotRowChanging(Me, New VCotDetCotRowChangeEvent(CType(e.Row,VCotDetCotRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.VCotDetCotRowDeletedEvent) Is Nothing) Then
+                RaiseEvent VCotDetCotRowDeleted(Me, New VCotDetCotRowChangeEvent(CType(e.Row,VCotDetCotRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.VCotDetCotRowDeletingEvent) Is Nothing) Then
+                RaiseEvent VCotDetCotRowDeleting(Me, New VCotDetCotRowChangeEvent(CType(e.Row,VCotDetCotRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub RemoveVCotDetCotRow(ByVal row As VCotDetCotRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence
+            Dim ds As DataSetAlmacen = New DataSetAlmacen
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "VCotDetCotDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
@@ -5027,676 +5027,6 @@ Partial Public Class DataSetAlmacen
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetestSolNull()
             Me(Me.tableVSolDetSol.estSolColumn) = Global.System.Convert.DBNull
-        End Sub
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
-    Partial Public Class VCotDetCotRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tableVCotDetCot As VCotDetCotDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tableVCotDetCot = CType(Me.Table,VCotDetCotDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property codDetC() As Integer
-            Get
-                Return CType(Me(Me.tableVCotDetCot.codDetCColumn),Integer)
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.codDetCColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property nro() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.nroColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nro' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.nroColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property fecCot() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.fecCotColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fecCot' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.fecCotColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property razon() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.razonColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'razon' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.razonColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property ruc() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.rucColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'ruc' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.rucColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property atencion() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.atencionColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'atencion' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.atencionColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property celRpm() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.celRpmColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'celRpm' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.celRpmColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property fonos() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.fonosColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fonos' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.fonosColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property email() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.emailColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'email' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.emailColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property nomRem() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.nomRemColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nomRem' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.nomRemColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property fono() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.fonoColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fono' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.fonoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property emaRem() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.emaRemColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'emaRem' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.emaRemColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property tiempoVig() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.tiempoVigColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'tiempoVig' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.tiempoVigColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property plazo() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.plazoColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'plazo' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.plazoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property forma() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.formaColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'forma' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.formaColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property lugarEnt() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.lugarEntColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'lugarEnt' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.lugarEntColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property incluir() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.incluirColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'incluir' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.incluirColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property codigo() As String
-            Get
-                Return CType(Me(Me.tableVCotDetCot.codigoColumn),String)
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.codigoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property lugar() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.lugarColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'lugar' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.lugarColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property nombre() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.nombreColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nombre' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.nombreColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property nomSol() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.nomSolColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nomSol' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.nomSolColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property obs() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.obsColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'obs' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.obsColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property codGruC() As Integer
-            Get
-                Return CType(Me(Me.tableVCotDetCot.codGruCColumn),Integer)
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.codGruCColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property descrip() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.descripColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'descrip' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.descripColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property cant() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.cantColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'cant' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.cantColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property unidad() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.unidadColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'unidad' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.unidadColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property material() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.materialColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'material' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.materialColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property precio() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.precioColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'precio' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.precioColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property subTotal() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableVCotDetCot.subTotalColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'subTotal' de la tabla 'VCotDetCot' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVCotDetCot.subTotalColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsnroNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.nroColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetnroNull()
-            Me(Me.tableVCotDetCot.nroColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsfecCotNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.fecCotColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetfecCotNull()
-            Me(Me.tableVCotDetCot.fecCotColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsrazonNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.razonColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetrazonNull()
-            Me(Me.tableVCotDetCot.razonColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsrucNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.rucColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetrucNull()
-            Me(Me.tableVCotDetCot.rucColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsatencionNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.atencionColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetatencionNull()
-            Me(Me.tableVCotDetCot.atencionColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IscelRpmNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.celRpmColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetcelRpmNull()
-            Me(Me.tableVCotDetCot.celRpmColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsfonosNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.fonosColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetfonosNull()
-            Me(Me.tableVCotDetCot.fonosColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsemailNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.emailColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetemailNull()
-            Me(Me.tableVCotDetCot.emailColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsnomRemNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.nomRemColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetnomRemNull()
-            Me(Me.tableVCotDetCot.nomRemColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsfonoNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.fonoColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetfonoNull()
-            Me(Me.tableVCotDetCot.fonoColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsemaRemNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.emaRemColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetemaRemNull()
-            Me(Me.tableVCotDetCot.emaRemColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IstiempoVigNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.tiempoVigColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SettiempoVigNull()
-            Me(Me.tableVCotDetCot.tiempoVigColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsplazoNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.plazoColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetplazoNull()
-            Me(Me.tableVCotDetCot.plazoColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsformaNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.formaColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetformaNull()
-            Me(Me.tableVCotDetCot.formaColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IslugarEntNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.lugarEntColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetlugarEntNull()
-            Me(Me.tableVCotDetCot.lugarEntColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsincluirNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.incluirColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetincluirNull()
-            Me(Me.tableVCotDetCot.incluirColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IslugarNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.lugarColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetlugarNull()
-            Me(Me.tableVCotDetCot.lugarColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsnombreNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.nombreColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetnombreNull()
-            Me(Me.tableVCotDetCot.nombreColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsnomSolNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.nomSolColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetnomSolNull()
-            Me(Me.tableVCotDetCot.nomSolColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsobsNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.obsColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetobsNull()
-            Me(Me.tableVCotDetCot.obsColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsdescripNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.descripColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetdescripNull()
-            Me(Me.tableVCotDetCot.descripColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IscantNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.cantColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetcantNull()
-            Me(Me.tableVCotDetCot.cantColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsunidadNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.unidadColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetunidadNull()
-            Me(Me.tableVCotDetCot.unidadColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsmaterialNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.materialColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetmaterialNull()
-            Me(Me.tableVCotDetCot.materialColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsprecioNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.precioColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetprecioNull()
-            Me(Me.tableVCotDetCot.precioColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IssubTotalNull() As Boolean
-            Return Me.IsNull(Me.tableVCotDetCot.subTotalColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetsubTotalNull()
-            Me(Me.tableVCotDetCot.subTotalColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -9221,6 +8551,676 @@ Partial Public Class DataSetAlmacen
     End Class
     
     '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
+    Partial Public Class VCotDetCotRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableVCotDetCot As VCotDetCotDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableVCotDetCot = CType(Me.Table,VCotDetCotDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codDetC() As Integer
+            Get
+                Return CType(Me(Me.tableVCotDetCot.codDetCColumn),Integer)
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.codDetCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nro() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.nroColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nro' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.nroColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property fecCot() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.fecCotColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fecCot' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.fecCotColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property razon() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.razonColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'razon' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.razonColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property ruc() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.rucColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'ruc' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.rucColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property atencion() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.atencionColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'atencion' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.atencionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property celRpm() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.celRpmColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'celRpm' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.celRpmColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property fonos() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.fonosColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fonos' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.fonosColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property email() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.emailColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'email' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.emailColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nomRem() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.nomRemColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nomRem' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.nomRemColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property fono() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.fonoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fono' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.fonoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property emaRem() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.emaRemColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'emaRem' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.emaRemColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property tiempoVig() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.tiempoVigColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'tiempoVig' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.tiempoVigColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property plazo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.plazoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'plazo' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.plazoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property forma() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.formaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'forma' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.formaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property lugarEnt() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.lugarEntColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'lugarEnt' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.lugarEntColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property incluir() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.incluirColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'incluir' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.incluirColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codigo() As String
+            Get
+                Return CType(Me(Me.tableVCotDetCot.codigoColumn),String)
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.codigoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property lugar() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.lugarColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'lugar' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.lugarColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nombre() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.nombreColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nombre' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.nombreColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nomSol() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.nomSolColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nomSol' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.nomSolColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property obs() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.obsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'obs' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.obsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codGruC() As Integer
+            Get
+                Return CType(Me(Me.tableVCotDetCot.codGruCColumn),Integer)
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.codGruCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property descrip() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.descripColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'descrip' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.descripColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property cant() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.cantColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'cant' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.cantColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property unidad() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.unidadColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'unidad' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.unidadColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property material() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.materialColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'material' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.materialColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property precio() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.precioColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'precio' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.precioColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property subTotal() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableVCotDetCot.subTotalColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'subTotal' de la tabla 'VCotDetCot' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVCotDetCot.subTotalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnroNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.nroColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnroNull()
+            Me(Me.tableVCotDetCot.nroColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsfecCotNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.fecCotColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetfecCotNull()
+            Me(Me.tableVCotDetCot.fecCotColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsrazonNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.razonColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetrazonNull()
+            Me(Me.tableVCotDetCot.razonColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsrucNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.rucColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetrucNull()
+            Me(Me.tableVCotDetCot.rucColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsatencionNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.atencionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetatencionNull()
+            Me(Me.tableVCotDetCot.atencionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscelRpmNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.celRpmColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcelRpmNull()
+            Me(Me.tableVCotDetCot.celRpmColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsfonosNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.fonosColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetfonosNull()
+            Me(Me.tableVCotDetCot.fonosColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsemailNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.emailColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetemailNull()
+            Me(Me.tableVCotDetCot.emailColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnomRemNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.nomRemColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnomRemNull()
+            Me(Me.tableVCotDetCot.nomRemColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsfonoNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.fonoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetfonoNull()
+            Me(Me.tableVCotDetCot.fonoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsemaRemNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.emaRemColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetemaRemNull()
+            Me(Me.tableVCotDetCot.emaRemColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IstiempoVigNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.tiempoVigColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SettiempoVigNull()
+            Me(Me.tableVCotDetCot.tiempoVigColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsplazoNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.plazoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetplazoNull()
+            Me(Me.tableVCotDetCot.plazoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsformaNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.formaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetformaNull()
+            Me(Me.tableVCotDetCot.formaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IslugarEntNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.lugarEntColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetlugarEntNull()
+            Me(Me.tableVCotDetCot.lugarEntColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsincluirNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.incluirColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetincluirNull()
+            Me(Me.tableVCotDetCot.incluirColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IslugarNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.lugarColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetlugarNull()
+            Me(Me.tableVCotDetCot.lugarColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnombreNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.nombreColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnombreNull()
+            Me(Me.tableVCotDetCot.nombreColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnomSolNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.nomSolColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnomSolNull()
+            Me(Me.tableVCotDetCot.nomSolColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsobsNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.obsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetobsNull()
+            Me(Me.tableVCotDetCot.obsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsdescripNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.descripColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetdescripNull()
+            Me(Me.tableVCotDetCot.descripColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscantNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.cantColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcantNull()
+            Me(Me.tableVCotDetCot.cantColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsunidadNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.unidadColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetunidadNull()
+            Me(Me.tableVCotDetCot.unidadColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsmaterialNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.materialColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetmaterialNull()
+            Me(Me.tableVCotDetCot.materialColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsprecioNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.precioColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetprecioNull()
+            Me(Me.tableVCotDetCot.precioColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IssubTotalNull() As Boolean
+            Return Me.IsNull(Me.tableVCotDetCot.subTotalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetsubTotalNull()
+            Me(Me.tableVCotDetCot.subTotalColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
@@ -9240,39 +9240,6 @@ Partial Public Class DataSetAlmacen
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public ReadOnly Property Row() As VSolDetSolRow
-            Get
-                Return Me.eventRow
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-            Get
-                Return Me.eventAction
-            End Get
-        End Property
-    End Class
-    
-    '''<summary>
-    '''Row event argument class
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
-    Public Class VCotDetCotRowChangeEvent
-        Inherits Global.System.EventArgs
-        
-        Private eventRow As VCotDetCotRow
-        
-        Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub New(ByVal row As VCotDetCotRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
-            Me.eventRow = row
-            Me.eventAction = action
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property Row() As VCotDetCotRow
             Get
                 Return Me.eventRow
             End Get
@@ -9405,6 +9372,39 @@ Partial Public Class DataSetAlmacen
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public ReadOnly Property Row() As VGuiaDetGuiaERow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
+    Public Class VCotDetCotRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As VCotDetCotRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub New(ByVal row As VCotDetCotRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property Row() As VCotDetCotRow
             Get
                 Return Me.eventRow
             End Get
@@ -9607,203 +9607,6 @@ Namespace DataSetAlmacenTableAdapters
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(idSol,Integer)
             Dim dataTable As DataSetAlmacen.VSolDetSolDataTable = New DataSetAlmacen.VSolDetSolDataTable
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the connection and commands used to retrieve and save data.
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0"),  _
-     Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class VCotDetCotTableAdapter
-        Inherits Global.System.ComponentModel.Component
-        
-        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
-        
-        Private _connection As Global.System.Data.SqlClient.SqlConnection
-        
-        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
-        
-        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
-        
-        Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
-            Get
-                If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
-                End If
-                Return Me._adapter
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
-            Get
-                If (Me._connection Is Nothing) Then
-                    Me.InitConnection
-                End If
-                Return Me._connection
-            End Get
-            Set
-                Me._connection = value
-                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = value
-                End If
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
-                    End If
-                    i = (i + 1)
-                Loop
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
-            Get
-                Return Me._transaction
-            End Get
-            Set
-                Me._transaction = value
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    Me.CommandCollection(i).Transaction = Me._transaction
-                    i = (i + 1)
-                Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
-                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
-                    Me.Adapter.InsertCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
-                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
-                End If
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
-            Get
-                If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
-                End If
-                Return Me._commandCollection
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property ClearBeforeFill() As Boolean
-            Get
-                Return Me._clearBeforeFill
-            End Get
-            Set
-                Me._clearBeforeFill = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter
-            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping
-            tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "VCotDetCot"
-            tableMapping.ColumnMappings.Add("codDetC", "codDetC")
-            tableMapping.ColumnMappings.Add("nro", "nro")
-            tableMapping.ColumnMappings.Add("fecCot", "fecCot")
-            tableMapping.ColumnMappings.Add("razon", "razon")
-            tableMapping.ColumnMappings.Add("ruc", "ruc")
-            tableMapping.ColumnMappings.Add("atencion", "atencion")
-            tableMapping.ColumnMappings.Add("celRpm", "celRpm")
-            tableMapping.ColumnMappings.Add("fonos", "fonos")
-            tableMapping.ColumnMappings.Add("email", "email")
-            tableMapping.ColumnMappings.Add("nomRem", "nomRem")
-            tableMapping.ColumnMappings.Add("fono", "fono")
-            tableMapping.ColumnMappings.Add("emaRem", "emaRem")
-            tableMapping.ColumnMappings.Add("tiempoVig", "tiempoVig")
-            tableMapping.ColumnMappings.Add("plazo", "plazo")
-            tableMapping.ColumnMappings.Add("forma", "forma")
-            tableMapping.ColumnMappings.Add("lugarEnt", "lugarEnt")
-            tableMapping.ColumnMappings.Add("incluir", "incluir")
-            tableMapping.ColumnMappings.Add("codigo", "codigo")
-            tableMapping.ColumnMappings.Add("lugar", "lugar")
-            tableMapping.ColumnMappings.Add("nombre", "nombre")
-            tableMapping.ColumnMappings.Add("nomSol", "nomSol")
-            tableMapping.ColumnMappings.Add("obs", "obs")
-            tableMapping.ColumnMappings.Add("codGruC", "codGruC")
-            tableMapping.ColumnMappings.Add("descrip", "descrip")
-            tableMapping.ColumnMappings.Add("cant", "cant")
-            tableMapping.ColumnMappings.Add("unidad", "unidad")
-            tableMapping.ColumnMappings.Add("material", "material")
-            tableMapping.ColumnMappings.Add("precio", "precio")
-            tableMapping.ColumnMappings.Add("subTotal", "subTotal")
-            Me._adapter.TableMappings.Add(tableMapping)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Private Sub InitConnection()
-            Me._connection = New Global.System.Data.SqlClient.SqlConnection
-            Me._connection.ConnectionString = "Data Source=174.36.22.84,8888;Initial Catalog=BD_ConstrucMech;User ID=mech;Passwo"& _ 
-                "rd=mechcusco2013"
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
-            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand
-            Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "select codDetC,nro,fecCot,razon,ruc,atencion,celRpm,fonos,email,nomRem,fono,emaRe"& _ 
-                "m,tiempoVig,plazo,forma,lugarEnt,incluir,codigo,lugar,nombre,nomSol,obs,codGruC,"& _ 
-                "descrip,cant,unidad,material,precio,subTotal from VCotDetCot where codCot=@codC"
-            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@codC", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "codCot", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As DataSetAlmacen.VCotDetCotDataTable, ByVal codC As Integer) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(codC,Integer)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData(ByVal codC As Integer) As DataSetAlmacen.VCotDetCotDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(codC,Integer)
-            Dim dataTable As DataSetAlmacen.VCotDetCotDataTable = New DataSetAlmacen.VCotDetCotDataTable
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
@@ -10637,6 +10440,203 @@ Namespace DataSetAlmacenTableAdapters
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(codGuia,Integer)
             Dim dataTable As DataSetAlmacen.VGuiaDetGuiaEDataTable = New DataSetAlmacen.VGuiaDetGuiaEDataTable
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0"),  _
+     Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class VCotDetCotTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
+        
+        Private _connection As Global.System.Data.SqlClient.SqlConnection
+        
+        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
+        
+        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "VCotDetCot"
+            tableMapping.ColumnMappings.Add("codDetC", "codDetC")
+            tableMapping.ColumnMappings.Add("nro", "nro")
+            tableMapping.ColumnMappings.Add("fecCot", "fecCot")
+            tableMapping.ColumnMappings.Add("razon", "razon")
+            tableMapping.ColumnMappings.Add("ruc", "ruc")
+            tableMapping.ColumnMappings.Add("atencion", "atencion")
+            tableMapping.ColumnMappings.Add("celRpm", "celRpm")
+            tableMapping.ColumnMappings.Add("fonos", "fonos")
+            tableMapping.ColumnMappings.Add("email", "email")
+            tableMapping.ColumnMappings.Add("nomRem", "nomRem")
+            tableMapping.ColumnMappings.Add("fono", "fono")
+            tableMapping.ColumnMappings.Add("emaRem", "emaRem")
+            tableMapping.ColumnMappings.Add("tiempoVig", "tiempoVig")
+            tableMapping.ColumnMappings.Add("plazo", "plazo")
+            tableMapping.ColumnMappings.Add("forma", "forma")
+            tableMapping.ColumnMappings.Add("lugarEnt", "lugarEnt")
+            tableMapping.ColumnMappings.Add("incluir", "incluir")
+            tableMapping.ColumnMappings.Add("codigo", "codigo")
+            tableMapping.ColumnMappings.Add("lugar", "lugar")
+            tableMapping.ColumnMappings.Add("nombre", "nombre")
+            tableMapping.ColumnMappings.Add("nomSol", "nomSol")
+            tableMapping.ColumnMappings.Add("obs", "obs")
+            tableMapping.ColumnMappings.Add("codGruC", "codGruC")
+            tableMapping.ColumnMappings.Add("descrip", "descrip")
+            tableMapping.ColumnMappings.Add("cant", "cant")
+            tableMapping.ColumnMappings.Add("unidad", "unidad")
+            tableMapping.ColumnMappings.Add("material", "material")
+            tableMapping.ColumnMappings.Add("precio", "precio")
+            tableMapping.ColumnMappings.Add("subTotal", "subTotal")
+            Me._adapter.TableMappings.Add(tableMapping)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SqlClient.SqlConnection
+            Me._connection.ConnectionString = "Data Source=sv32.dbsqlserver.com,8888;Initial Catalog=BD_ConstrucMech;User ID=mec"& _ 
+                "h;Password=mechcusco2013"
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "select codDetC,nro,fecCot,razon,ruc,atencion,celRpm,fonos,email,nomRem,fono,emaRe"& _ 
+                "m,tiempoVig,plazo,forma,lugarEnt,incluir,codigo,lugar,nombre,nomSol,obs,codGruC,"& _ 
+                "descrip,cant,unidad,material,precio,subTotal from VCotDetCot where codCot=@codC"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@codC", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "codCot", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As DataSetAlmacen.VCotDetCotDataTable, ByVal codC As Integer) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(codC,Integer)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData(ByVal codC As Integer) As DataSetAlmacen.VCotDetCotDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(codC,Integer)
+            Dim dataTable As DataSetAlmacen.VCotDetCotDataTable = New DataSetAlmacen.VCotDetCotDataTable
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function

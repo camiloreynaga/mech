@@ -54,9 +54,6 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' </summary>
     ''' <remarks></remarks>
     Dim oGrilla As New cConfigFormControls
-
-
-    Dim oDataManager As New cDataManager
 #End Region
 
 #Region "Métodos"
@@ -701,8 +698,7 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub filtrando()
-        If cbObra.SelectedIndex >= 0 And cbProveedor.SelectedIndex >= 0 Then
-            ' BindingSource4 .Position >= 0 And BindingSource5.Position >= 0 Then
+        If BindingSource4.Position >= 0 And BindingSource5.Position >= 0 Then
 
 
             BindingSource0.Filter = ""
@@ -811,24 +807,7 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         configurarColorControl()
 
-        oDataManager.CargarGrilla("PA_SeguimientoDesembolso", CommandType.StoredProcedure, dgDesembolso, BindingSource0)
-        BindingNavigator1.BindingSource = BindingSource0
-
-        oDataManager.CargarGrilla("PA_SeguimientoPagos", CommandType.StoredProcedure, dgPagos, BindingSource1)
-
-        oDataManager.CargarGrilla("select idOP,fecEnt,nroConfor  from TOrdenDesembolso", CommandType.Text, dgContabilidad, BindingSource2)
-
-        oDataManager.CargarCombo("PA_LugarTrabajo", CommandType.StoredProcedure, cbObra, "codigo", "nombre")
-
-        oDataManager.CargarCombo("PA_Proveedores", CommandType.StoredProcedure, cbProveedor, "codIde", "razon")
-
-        oDataManager.CargarCombo("select (nombre +' '+ apellido) as solicitante from Tpersonal where codPers > 1", CommandType.Text, cbSolicitante.ComboBox, "solicitante", "solicitante")
-
-        Dim dg As New DataGridView
-
-        oDataManager.CargarGrilla("select idOp,nombre,apellido,Area,Estado,ObserDesem,fecFir from VAprobacionesSeguimiento ", CommandType.Text, dg, BindingSource3)
-
-        'DatosIniciales()
+        DatosIniciales()
 
         ' dgDesembolso.FirstDisplayedScrollingRowIndex = 0
 
@@ -936,7 +915,12 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' <remarks></remarks>
     Private Sub SeguimientoOrdenDesembolsoForm_Shown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Shown
         ColorearGrilla()
+    End Sub
 
+    Private Sub dgDesembolso_RowPostPaint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewRowPostPaintEventArgs)
+        'If dgDesembolso.SortedColumn.Index > 0 Then
+
+        'End If
 
     End Sub
 

@@ -24,10 +24,22 @@ Public Class MantCajaChicaForm
     Dim BindingSource3 As New BindingSource
 
     ''' <summary>
+    ''' Serie de desembolso
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim BindingSource4 As New BindingSource
+
+    ''' <summary>
     ''' Instancia de objeto para Customizar grilla
     ''' </summary>
     ''' <remarks></remarks>
     Dim oGrilla As New cConfigFormControls
+
+    ''' <summary>
+    ''' instancia de objeto manejador de datos
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim oDataManager As New cDataManager
 
     Dim vfNuevo1 As String = "nuevo"
     Dim vfCampo1 As String
@@ -38,6 +50,7 @@ Public Class MantCajaChicaForm
     Dim cmUpdateTable1 As SqlCommand
     Dim cmDeleteTable1 As SqlCommand
 
+    Dim vMovimientos As Integer
 
 #End Region
 
@@ -73,7 +86,7 @@ Public Class MantCajaChicaForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         wait.Show()
-        Dim sele As String = "Select codCC,fechaCre,simbolo,codMon,saldo,codigo,obra,codPers,responsable,codEstado,estado from VCajaChica"
+        Dim sele As String = "Select codCC,fechaCre,simbolo,codMon,saldo,codigo,obra,codPers,responsable,codEstado,estado,codSerO from VCajaChica"
         'sele = "select "
         crearDataAdapterTable(daTabla1, sele)
 
@@ -90,6 +103,8 @@ Public Class MantCajaChicaForm
 
         sele = "select codPers, (nombre +' '+ apellido) as solicitante from Tpersonal where codPers > 1"
         crearDataAdapterTable(daTabla4, sele)
+
+
 
         Try
             crearDSAlmacen()
@@ -174,6 +189,9 @@ Public Class MantCajaChicaForm
             .Columns("codEstado").Visible = False
             .Columns("estado").HeaderText = "Estado"
             .Columns("estado").Width = 60
+
+            .Columns("codSerO").Visible = False
+
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -217,10 +235,10 @@ Public Class MantCajaChicaForm
         GroupBox2.Enabled = False
         ' Panel3.Enabled = False
         For i As Integer = 0 To GroupBox1.Controls.Count - 1
-            If TypeOf GroupBox1.Controls(i) Is TextBox Then
-                CType(GroupBox1.Controls(i), TextBox).ReadOnly = False
+            'If TypeOf GroupBox1.Controls(i) Is TextBox Then
+            '    CType(GroupBox1.Controls(i), TextBox).ReadOnly = False
 
-            End If
+            'End If
             If TypeOf GroupBox1.Controls(i) Is ComboBox Then
                 GroupBox1.Controls(i).Enabled = True
             End If
@@ -304,7 +322,7 @@ Public Class MantCajaChicaForm
 
         cmInserTable1 = New SqlCommand
         cmInserTable1.CommandType = CommandType.Text
-        cmInserTable1.CommandText = "Insert into TCajaChica values (@fechaCre,@codMon,@saldo,@codigo,@codPers,1) "
+        cmInserTable1.CommandText = "Insert into TCajaChica values (@fechaCre,@codMon,@saldo,@codigo,@codPers,1,@codSerie) "
         cmInserTable1.Connection = Cn
         cmInserTable1.Parameters.Add("@fechaCre", SqlDbType.Date).Value = Date.Today
         cmInserTable1.Parameters.Add("@codMon", SqlDbType.Int).Value = cbMoneda.SelectedValue
@@ -315,6 +333,7 @@ Public Class MantCajaChicaForm
         cmInserTable1.Parameters.Add(param1)
         cmInserTable1.Parameters.Add("@codigo", SqlDbType.VarChar, 10).Value = cbObra.SelectedValue
         cmInserTable1.Parameters.Add("@codPers", SqlDbType.Int).Value = cbResponsable.SelectedValue
+        cmInserTable1.Parameters.Add("@codSerie", SqlDbType.Int).Value = cbSerie.SelectedValue
 
     End Sub
 
@@ -325,7 +344,14 @@ Public Class MantCajaChicaForm
     Private Sub comandoUpdate()
         cmUpdateTable1 = New SqlCommand
         cmUpdateTable1.CommandType = CommandType.Text
-        cmUpdateTable1.CommandText = "Update TCajaChica set fechaCre=@fechaCre,codMon=@codMon,saldo=@saldo,codigo=@codigo,codPers=@codPers, estCaja=@estCaja WHERE codCC=@codCC"
+        If vMovimientos > 0 Then
+            cmUpdateTable1.CommandText = "Update TCajaChica set codPers=@codPers, estCaja=@estCaja WHERE codCC=@codCC"
+        Else
+            cmUpdateTable1.CommandText = "Update TCajaChica set fechaCre=@fechaCre,codMon=@codMon,saldo=@saldo,codigo=@codigo,codPers=@codPers, estCaja=@estCaja,codSerO=@codSerie WHERE codCC=@codCC"
+
+
+        End If
+
         cmUpdateTable1.Connection = Cn
         cmUpdateTable1.Parameters.Add("@fechaCre", SqlDbType.Date).Value = Date.Today
         cmUpdateTable1.Parameters.Add("@codMon", SqlDbType.Int).Value = cbMoneda.SelectedValue
@@ -345,6 +371,8 @@ Public Class MantCajaChicaForm
         End If
 
         cmUpdateTable1.Parameters.Add("@codCC", SqlDbType.Int).Value = BindingSource1.Item(BindingSource1.Position)(0)
+
+        cmUpdateTable1.Parameters.Add("@codSerie", SqlDbType.Int).Value = cbSerie.SelectedValue
 
     End Sub
 
@@ -402,6 +430,13 @@ Public Class MantCajaChicaForm
 
     End Function
 
+    Private Function consultaMovimientoCaja(ByVal cod As Integer) As Integer
+        Dim consulta As String = "select count(*) from TMovimientoCaja where codCC=" & cod
+
+        Return CInt(oDataManager.consultarTabla(consulta, CommandType.Text))
+
+    End Function
+
 #End Region
 
 
@@ -422,7 +457,13 @@ Public Class MantCajaChicaForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
 
+        oDataManager.CargarCombo("select codSerO, serie from TSerieOrden where estado=1", CommandType.Text, cbSerie, "codSerO", "serie")
+        Cn.Open()
+
         configurarColorControl()
+
+
+
         DatosIniciales()
 
         ModificarColumnasDGV()
@@ -430,9 +471,6 @@ Public Class MantCajaChicaForm
         wait.Close()
         Me.Cursor = Cursors.Default
     End Sub
-
-
-
 
     Private Sub MantCajaChicaForm_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
         dgCaja.Dispose()
@@ -468,6 +506,11 @@ Public Class MantCajaChicaForm
                 Exit Sub
             End If
 
+            Dim resp As String = MessageBox.Show("¿Está seguro de crear esté registro?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If resp <> 6 Then
+                cbMoneda.Focus()
+                Exit Sub
+            End If
 
             Dim finalMytrans As Boolean = False
             Dim myTrans As SqlTransaction = Cn.BeginTransaction()
@@ -566,6 +609,11 @@ Public Class MantCajaChicaForm
                 End If
             End If
 
+            vMovimientos = consultaMovimientoCaja(txtCodCaja.Text)
+            If vMovimientos > 0 Then
+                MessageBox.Show("Sólo se actualizará los datos de responsable y estado", nomNegocio, Nothing, MessageBoxIcon.Information)
+
+            End If
 
             Dim finalMytrans As Boolean = False
             Dim myTrans As SqlTransaction = Cn.BeginTransaction()
@@ -647,7 +695,10 @@ Public Class MantCajaChicaForm
             Exit Sub
         End If
 
-
+        If consultaMovimientoCaja(txtCodCaja.Text) > 0 Then
+            StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... CAJA CHICA TIENE MOVIMIENTOS DE CAJA REGISTRADOS...")
+            Exit Sub
+        End If
 
         Dim resp As String = MessageBox.Show("Está seguro de eliminar registro?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
@@ -723,6 +774,17 @@ Public Class MantCajaChicaForm
 
     Private Sub txtSaldo_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtSaldo.KeyPress
         ValidarNumeroDecimal(txtSaldo, e)
+
+    End Sub
+
+    Private Sub RbInactivo_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RbInactivo.CheckedChanged
+
+        If BindingSource1.Item(BindingSource1.Position)(4) > 0 Then
+
+            StatusBarClass.messageBarraEstado("  PROCESO DENEGADO... EXISTE SALDO MAYOR A CERO...")
+            RbActivo.Checked = True
+            Exit Sub
+        End If
 
     End Sub
 End Class
