@@ -176,6 +176,49 @@ Public Class cDataManager
         Return oTabla
     End Function
 
+
+    ''' <summary>
+    ''' Carga un ListBox Usando un data reader
+    ''' </summary>
+    ''' <param name="storedProcedure">Nombre del procedimiento almacenado</param>
+    ''' <param name="listBox">ComboBox</param>
+    ''' <param name="ValueMember">Valor del Item</param>
+    ''' <param name="DisplayMember">Descripcion del Item</param>
+    ''' <remarks></remarks>
+    Public Sub CargarListBox(ByVal storedProcedure As String, ByVal Type As CommandType, ByVal lisBox As ListBox, ByVal ValueMember As String, ByVal DisplayMember As String)
+        Dim con As SqlConnection = Cn
+        Dim command As New SqlCommand(storedProcedure, con)
+        Dim dataR As SqlDataReader
+
+        command.CommandType = Type 'CommandType.StoredProcedure
+        If con.State = ConnectionState.Closed Then
+            con.Open()
+        End If
+        dataR = command.ExecuteReader(CommandBehavior.CloseConnection)
+        Dim lista As New List(Of Dato)
+
+        Try
+            While dataR.Read()
+                Dim item As New Dato
+                item.Id = CStr(dataR(ValueMember))
+                item.Desc = CStr(dataR(DisplayMember))
+                lista.Add(item)
+            End While
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+            dataR.Close()
+        End Try
+
+        lisBox.DataSource = lista
+        lisBox.ValueMember = "Id"
+        lisBox.DisplayMember = "Desc"
+
+    End Sub
+
+    
+
+
     ''' <summary>
     ''' Permite consultar una tablar retorna el primer velor devuelto en la primera celda de la primera columna
     ''' </summary>

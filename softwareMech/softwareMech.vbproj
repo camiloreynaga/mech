@@ -246,6 +246,12 @@
     <Compile Include="entradaSalidaAlmacen1Form.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MantSolicitudCajaForm.Designer.vb">
+      <DependentUpon>MantSolicitudCajaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantSolicitudCajaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GastosPorDiaForm.Designer.vb">
       <DependentUpon>GastosPorDiaForm.vb</DependentUpon>
     </Compile>
@@ -760,6 +766,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MantPersonalForm.resx">
       <DependentUpon>MantPersonalForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantSolicitudCajaForm.resx">
+      <DependentUpon>MantSolicitudCajaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MantSolicitudReqForm.resx">
       <DependentUpon>MantSolicitudReqForm.vb</DependentUpon>

@@ -788,4 +788,11 @@ Public Class pantallaInicialForm
         dia.MdiParent = Me
         dia.Show()
     End Sub
+
+    Private Sub SolicitudCajaChicaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SolicitudCajaChicaToolStripMenuItem.Click
+        Dim oSolCja As New MantSolicitudCajaForm
+        oSolCja.MdiParent = Me
+        oSolCja.Show()
+
+    End Sub
 End Class

@@ -303,7 +303,7 @@ Public Class MantSolicitudReqForm
             Exit Sub
         End If
 
-        Dim resp As String = MessageBox.Show("Esta segúro de aperturar solicitud de requerimiento Nº " & txtNro.Text, nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Dim resp As String = MessageBox.Show("Esta seguro de aperturar solicitud de requerimiento Nº " & txtNro.Text, nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
             Exit Sub
         End If
