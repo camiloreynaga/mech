@@ -21,8 +21,8 @@ Partial Class MantSolicitudCajaForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MantSolicitudCajaForm))
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.btnImprimir = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.lbSolicitud = New System.Windows.Forms.ListBox
@@ -69,6 +69,10 @@ Partial Class MantSolicitudCajaForm
         Me.btnAgrega = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnCrear = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnProcesa = New ComponentesSolucion2008.BottomSSP(Me.components)
+        Me.Label8 = New System.Windows.Forms.Label
+        Me.txtObs = New System.Windows.Forms.TextBox
+        Me.Label9 = New System.Windows.Forms.Label
+        Me.cbArea = New System.Windows.Forms.ComboBox
         Me.Panel1.SuspendLayout()
         CType(Me.dgDetalleSol, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Navigator2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,6 +93,8 @@ Partial Class MantSolicitudCajaForm
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.cbArea)
+        Me.Panel1.Controls.Add(Me.Label9)
         Me.Panel1.Controls.Add(Me.btnImprimir)
         Me.Panel1.Controls.Add(Me.lbSolicitud)
         Me.Panel1.Controls.Add(Me.Label5)
@@ -289,8 +295,8 @@ Partial Class MantSolicitudCajaForm
         Me.dgDetalleSol.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgDetalleSol.Location = New System.Drawing.Point(20, 158)
         Me.dgDetalleSol.Name = "dgDetalleSol"
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgDetalleSol.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgDetalleSol.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgDetalleSol.Size = New System.Drawing.Size(901, 129)
         Me.dgDetalleSol.TabIndex = 315
         '
@@ -421,10 +427,12 @@ Partial Class MantSolicitudCajaForm
         'Panel4
         '
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel4.Controls.Add(Me.txtObs)
         Me.Panel4.Controls.Add(Me.txtInsumo)
         Me.Panel4.Controls.Add(Me.dgInsumo)
         Me.Panel4.Controls.Add(Me.cbBuscar)
         Me.Panel4.Controls.Add(Me.txtPrecio)
+        Me.Panel4.Controls.Add(Me.Label8)
         Me.Panel4.Controls.Add(Me.Label22)
         Me.Panel4.Controls.Add(Me.Label23)
         Me.Panel4.Controls.Add(Me.txtCan)
@@ -452,8 +460,8 @@ Partial Class MantSolicitudCajaForm
         Me.dgInsumo.Location = New System.Drawing.Point(0, 25)
         Me.dgInsumo.Name = "dgInsumo"
         Me.dgInsumo.ReadOnly = True
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgInsumo.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgInsumo.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgInsumo.Size = New System.Drawing.Size(900, 153)
         Me.dgInsumo.TabIndex = 7
         '
@@ -518,7 +526,7 @@ Partial Class MantSolicitudCajaForm
         Me.btnAgrega.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAgrega.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAgrega.Image = CType(resources.GetObject("btnAgrega.Image"), System.Drawing.Image)
-        Me.btnAgrega.Location = New System.Drawing.Point(504, 1)
+        Me.btnAgrega.Location = New System.Drawing.Point(747, 2)
         Me.btnAgrega.Name = "btnAgrega"
         Me.btnAgrega.Size = New System.Drawing.Size(25, 23)
         Me.btnAgrega.TabIndex = 4
@@ -557,6 +565,39 @@ Partial Class MantSolicitudCajaForm
         Me.btnProcesa.Text = "F5"
         Me.btnProcesa.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnProcesa.UseVisualStyleBackColor = False
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(508, 6)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(33, 13)
+        Me.Label8.TabIndex = 311
+        Me.Label8.Text = "Obs:"
+        '
+        'txtObs
+        '
+        Me.txtObs.Location = New System.Drawing.Point(547, 3)
+        Me.txtObs.Name = "txtObs"
+        Me.txtObs.Size = New System.Drawing.Size(169, 20)
+        Me.txtObs.TabIndex = 2
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(269, 90)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(37, 13)
+        Me.Label9.TabIndex = 310
+        Me.Label9.Text = "Área:"
+        '
+        'cbArea
+        '
+        Me.cbArea.FormattingEnabled = True
+        Me.cbArea.Location = New System.Drawing.Point(312, 87)
+        Me.cbArea.Name = "cbArea"
+        Me.cbArea.Size = New System.Drawing.Size(167, 21)
+        Me.cbArea.TabIndex = 311
         '
         'MantSolicitudCajaForm
         '
@@ -639,5 +680,9 @@ Partial Class MantSolicitudCajaForm
     Friend WithEvents btnProcesa As ComponentesSolucion2008.BottomSSP
     Friend WithEvents txtObra As System.Windows.Forms.TextBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents txtObs As System.Windows.Forms.TextBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents cbArea As System.Windows.Forms.ComboBox
+    Friend WithEvents Label9 As System.Windows.Forms.Label
 
 End Class

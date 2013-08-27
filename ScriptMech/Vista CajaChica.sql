@@ -11,6 +11,10 @@ INNER JOIN TMoneda TMO on Tmo.codMon = TCC.codMon
 INNER JOIN TSerieOrden TSO on tso.codSerO = TCC.codSerO  
 GO
 
+select isnull(max(nroSol),0)+1 from TSolicitudCaja where codCC=
+
+select * from TSolicitud 
+
 
 Select codCC,fechaCre,simbolo,codMon,saldo,codigo,obra,codPers,responsable,estado,codSerO
 from VCajaChica
