@@ -182,7 +182,7 @@ Public Class MantUniMedForm
     Private Function recuperarCount2(ByVal cod As Integer) As Integer
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = "select count(*) from TMaterial where codUniD=" & cod
+        cmdCampo.CommandText = "select count(*) from TMaterial where codUni=" & cod
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function

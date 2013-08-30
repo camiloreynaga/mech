@@ -38,15 +38,37 @@ Public Class MantSolicitudCajaForm
     ''' <remarks></remarks>
     Dim cmUdpateTable As SqlCommand
 
+    Dim cmUpdateTableDetalle As SqlCommand
+
+
+    Dim cmDeleteTable As SqlCommand
+
+    Dim cmDeleteTableDetalle As SqlCommand
+
+
     ''' <summary>
     ''' variable para codigo caja chica
     ''' </summary>
     ''' <remarks></remarks>
     Dim vCajaChica As Integer
 
+    ''' <summary>
+    ''' Administracion de data con BD
+    ''' </summary>
+    ''' <remarks></remarks>
     Dim oDataManager As New cDataManager
 
+    ''' <summary>
+    ''' objeto de la clase cConfigControl
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim oGrilla As New cConfigFormControls
 
+    ''' <summary>
+    ''' Lista de Indices de filas para actualizar
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim _listaUpdate As New List(Of Integer)
 
 #End Region
 
@@ -62,7 +84,7 @@ Public Class MantSolicitudCajaForm
     ''' comando Insertar Solicitud Caja chica
     ''' </summary>
     ''' <remarks></remarks>
-    Private Sub comandoInsert()
+    Private Sub comandoInsert(ByVal _idCaja As Integer)
         cmInsertTable = New SqlCommand()
         cmInsertTable.CommandType = CommandType.Text
         cmInsertTable.CommandText = "insert into TSolicitudCaja values (@nroSol,@fechaSol,@codPers,@codCC,0,0,0)"
@@ -70,7 +92,7 @@ Public Class MantSolicitudCajaForm
         cmInsertTable.Parameters.Add("@nroSol", SqlDbType.Int).Value = txtNro.Text.Trim()
         cmInsertTable.Parameters.Add("@fechaSol", SqlDbType.Date).Value = dtpFecha.Value.Date
         cmInsertTable.Parameters.Add("@codPers", SqlDbType.Int).Value = vPass 'obteniendo el codigo de usuario
-        cmInsertTable.Parameters.Add("@codCC", SqlDbType.Int).Value = 1
+        cmInsertTable.Parameters.Add("@codCC", SqlDbType.Int).Value = _idCaja
     End Sub
     ''' <summary>
     ''' comando Actualizar solicitud caja chica
@@ -85,6 +107,14 @@ Public Class MantSolicitudCajaForm
         cmUdpateTable.Parameters.Add("@fechaSol", SqlDbType.Date).Value = dtpFecha.Value.Date
         cmUdpateTable.Parameters.Add("@codPers", SqlDbType.Int).Value = vPass 'obteniendo el codigo de usuario
         cmUdpateTable.Parameters.Add("@codCC", SqlDbType.Int).Value = 1
+    End Sub
+
+    Private Sub comandoDelete()
+        cmDeleteTable = New SqlCommand()
+        cmDeleteTable.CommandType = CommandType.Text
+        cmDeleteTable.CommandText = "Delete TSolicitudCaja codSC=@cod"
+        cmDeleteTable.Connection = Cn
+        cmDeleteTable.Parameters.Add("@codCC", SqlDbType.Int).Value = BindingSource0.Item(BindingSource0.Position)(0)
     End Sub
 
     ''' <summary>
@@ -102,7 +132,7 @@ Public Class MantSolicitudCajaForm
         cmInsertTableDetalle.Parameters.Add("@insumo", SqlDbType.VarChar, 100).Value = BindingSource2.Item(BindingSource2.Position)(1)
         cmInsertTableDetalle.Parameters.Add("@prec1", SqlDbType.Decimal, 0).Value = txtPrecio.Text.Trim()
         cmInsertTableDetalle.Parameters.Add("@prec2", SqlDbType.Decimal, 0).Value = 0.0
-        cmInsertTableDetalle.Parameters.Add("@uniMed", SqlDbType.VarChar, 20).Value = BindingSource2.Item(BindingSource2.Position)(3)
+        cmInsertTableDetalle.Parameters.Add("@uniMed", SqlDbType.VarChar, 20).Value = BindingSource2.Item(BindingSource2.Position)(2)
         cmInsertTableDetalle.Parameters.Add("@obsSol", SqlDbType.VarChar, 200).Value = txtObs.Text.Trim()
         cmInsertTableDetalle.Parameters.Add("@codApro", SqlDbType.Int, 0).Value = 0 'sin verificar
         cmInsertTableDetalle.Parameters.Add("@estDet", SqlDbType.Int, 0).Value = 0
@@ -116,6 +146,35 @@ Public Class MantSolicitudCajaForm
 
         cmInsertTableDetalle.Parameters.Add("@Identity", SqlDbType.Int, 0)
         cmInsertTableDetalle.Parameters("@Identity").Direction = ParameterDirection.Output
+
+    End Sub
+    ''' <summary>
+    ''' comando update Detalle Solicitud
+    ''' </summary>
+    ''' <param name="_cantidad"></param>
+    ''' <param name="_precio"></param>
+    ''' <param name="_obs"></param>
+    ''' <param name="_cod"></param>
+    ''' <remarks></remarks>
+    Private Sub comandoUpdateDetalle(ByVal _cantidad As Decimal, ByVal _precio As Decimal, ByVal _obs As String, ByVal _cod As Integer)
+        cmUpdateTableDetalle = New SqlCommand
+        cmUpdateTableDetalle.CommandType = CommandType.Text
+        cmUpdateTableDetalle.CommandText = "Update DetSolCaja Set cant1=@cant1,prec1=@prec1,obsSol=@obsSol Where codDetSol=@cod"
+        cmUpdateTableDetalle.Connection = Cn
+        cmUpdateTableDetalle.Parameters.Add("@cant1", SqlDbType.Decimal, 0).Value = _cantidad
+        cmUpdateTableDetalle.Parameters.Add("@prec1", SqlDbType.Decimal, 0).Value = _precio
+        cmUpdateTableDetalle.Parameters.Add("@obsSol", SqlDbType.VarChar, 200).Value = _obs
+        cmUpdateTableDetalle.Parameters.Add("@cod", SqlDbType.Int, 0).Value = _cod
+
+    End Sub
+
+    Private Sub comandoDeleteDetalle(ByVal cod As Integer)
+
+        cmDeleteTableDetalle = New SqlCommand
+        cmDeleteTableDetalle.CommandType = CommandType.Text
+        cmDeleteTableDetalle.CommandText = "Delete DetSolCaja where codDetSol=@cod"
+        cmDeleteTableDetalle.Connection = Cn
+        cmDeleteTableDetalle.Parameters.Add("@cod", SqlDbType.Int, 0).Value = cod
 
     End Sub
 
@@ -152,9 +211,23 @@ Public Class MantSolicitudCajaForm
 
     Private Sub ConsultaDetalleCaja()
 
-        oDataManager.CargarGrilla("select  codDetSol,insumo,cant1,uniMed,prec1,obsSol,estDet,codApro,obsApro,codMat,codAreaM,codSC,estRen,codRen,nroDocRen from detSolCaja Where codSC=" & lbSolicitud.SelectedValue & " and codAreaM= " & cbArea.SelectedValue, CommandType.Text, dgDetalleSol, BindingSource1)
+        oDataManager.CargarGrilla("select  codDetSol,insumo,cant1,uniMed,prec1,obsSol,estado,aprobador,obsApro,areaM,tipoM,codMat,codEstado from VDetaleSolCaja Where codSC=" & lbSolicitud.SelectedValue & " and codAreaM= " & cbArea.SelectedValue, CommandType.Text, dgDetalleSol, BindingSource1)
+        Navigator2.BindingSource = BindingSource1
+        ModificarColumnasDetalleSol()
+
+        ColorearColumnas()
+        'Limpiar lista de indice de fila actualizadas
+        _listaUpdate.Clear()
 
     End Sub
+
+    Private Sub ConsultaSolicitudCaja()
+
+        oDataManager.CargarListBox("select codSC,nro +' '+ estado as nro from VsolicitudCaja where codCC=" & vCajaChica, CommandType.Text, lbSolicitud, "codSC", "nro")
+
+
+    End Sub
+
     ''' <summary>
     ''' valida los el registro del detalle de solicitud
     ''' </summary>
@@ -170,49 +243,118 @@ Public Class MantSolicitudCajaForm
         Return False
     End Function
 
+
+    ''' <summary>
+    ''' da formato a la grilla Detalle Solicitud caja
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub ModificarColumnasDetalleSol()
+
+        'dgDetalleSol.ReadOnly = True
+        dgDetalleSol.AllowUserToAddRows = False
+        dgDetalleSol.AllowUserToDeleteRows = False
+
         With dgDetalleSol
             .Columns("codDetSol").Visible = False
             .Columns("insumo").HeaderText = "Insumo"
             .Columns("insumo").Width = 340
-            .Columns("insumo").ReadOnly = True 'NO editable
+            .Columns("insumo").ReadOnly = True
+
             .Columns("cant1").Width = 50
             .Columns("cant1").HeaderText = "Cant."
+            .Columns("cant1").ReadOnly = False
             .Columns("cant1").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns("cant1").DefaultCellStyle.Format = "N2"
 
-            .Columns(4).Width = 45
-            .Columns(4).HeaderText = "Unid."
-            .Columns(4).ReadOnly = True 'NO editable
-            .Columns(5).HeaderText = "Estado"
-            .Columns(5).Width = 75
-            .Columns(5).ReadOnly = True 'NO editable
-            .Columns(6).HeaderText = "Area_Insumo"
-            .Columns(6).Width = 100
-            .Columns(6).ReadOnly = True 'NO editable
-            .Columns(7).HeaderText = "Tipo_Insumo"
-            .Columns(7).Width = 100
-            .Columns(7).Visible = False
-            .Columns(7).ReadOnly = True 'NO editable
-            .Columns(8).Width = 100
-            .Columns(8).HeaderText = "Solicitante"
-            .Columns(8).ReadOnly = True 'NO editable
-            .Columns(9).Width = 300
-            .Columns(9).HeaderText = "Observacion solicitante"
-            .Columns(10).Width = 100
-            .Columns(10).HeaderText = "Verificador"
-            .Columns(11).Width = 400
-            .Columns(11).HeaderText = "Observacion verificador"
-            .Columns(12).Visible = False
-            .Columns(13).Visible = False
-            .Columns(14).Visible = False
-            .Columns(15).Visible = False
-            .Columns(16).Visible = False
+            .Columns("uniMed").Width = 45
+            .Columns("uniMed").HeaderText = "Unid."
+            .Columns("uniMed").ReadOnly = True
+
+            .Columns("prec1").HeaderText = "Precio"
+            .Columns("prec1").Width = 50
+            .Columns("prec1").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns("prec1").DefaultCellStyle.Format = "N2"
+            .Columns("prec1").ReadOnly = False
+
+            .Columns("estado").HeaderText = "Estado"
+            .Columns("estado").Width = 75
+
+            .Columns("obsSol").ReadOnly = False 'NO editable
+            .Columns("obsSol").HeaderText = "Obs."
+            .Columns("obsSol").Width = 100
+
+            .Columns("tipoM").HeaderText = "Tipo_Insumo"
+            .Columns("tipoM").Width = 100
+            .Columns("tipoM").Visible = False
+
+            .Columns("obsSol").Width = 300
+            .Columns("ObsSol").HeaderText = "Observacion solicitante"
+            .Columns("ObsSol").ReadOnly = False
+
+            .Columns("aprobador").Width = 100
+            .Columns("aprobador").HeaderText = "Verificador"
+            .Columns("aprobador").ReadOnly = True
+
+            .Columns("obsApro").Width = 400
+            .Columns("obsApro").HeaderText = "Observacion verificador"
+            .Columns("obsApro").ReadOnly = True
+
+            .Columns("areaM").HeaderText = "Área"
+            .Columns("areaM").Width = 100
+            .Columns("areaM").ReadOnly = True
+
+            .Columns("codMat").Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .RowHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
         End With
+    End Sub
+
+    ''' <summary>
+    ''' Da formato a las columnas de la grilla insumos
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub ModificarColumnasInsumo()
+
+        dgInsumo.ReadOnly = True
+        dgInsumo.AllowUserToAddRows = False
+        dgInsumo.AllowUserToDeleteRows = False
+
+        With dgInsumo
+            .Columns("codMat").Visible = False
+            .Columns("material").HeaderText = "Descripción Insumo"
+            .Columns("material").Width = 595
+
+
+            .Columns("uniBase").Width = 65
+            .Columns("uniBase").HeaderText = "Unid."
+
+            .Columns("preBase").HeaderText = "Precio"
+            .Columns("preBase").Width = 55
+            .Columns("preBase").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns("preBase").DefaultCellStyle.Format = "N2"
+
+            .Columns("tipoM").HeaderText = "Tipo Insumo"
+            .Columns("tipoM").Width = 120
+
+            .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
+            .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
+            .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
+            .RowHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
+        End With
+    End Sub
+
+    Private Sub ColorearColumnas()
+        oGrilla.colorearFilasDGV(dgDetalleSol, "cant1", Color.AliceBlue, Color.Black)
+        oGrilla.colorearFilasDGV(dgDetalleSol, "prec1", Color.AliceBlue, Color.Black)
+        oGrilla.colorearFilasDGV(dgDetalleSol, "obsSol", Color.AliceBlue, Color.Black)
+
+        oGrilla.colorearFilasDGV(dgDetalleSol, "estado", "PENDIENTE", Color.White, Color.Black)
+        oGrilla.colorearFilasDGV(dgDetalleSol, "estado", "APROBADO", Color.Green, Color.White)
+        oGrilla.colorearFilasDGV(dgDetalleSol, "estado", "OBSERVADO", Color.Yellow, Color.Red)
+        oGrilla.colorearFilasDGV(dgDetalleSol, "estado", "RECHAZADO", Color.Red, Color.White)
+
     End Sub
 
 #End Region
@@ -237,13 +379,20 @@ Public Class MantSolicitudCajaForm
         'cargando el combobox Areas 
         oDataManager.CargarCombo("select codAreaM,areaM  from  TAreaMat ", CommandType.Text, cbArea, "codAreaM", "areaM")
         'Cargando el ListBox de Nro de Solicitud
-        oDataManager.CargarListBox("select codSC,nro +' '+ estado as nro from VsolicitudCaja where codCC=" & vCajaChica, CommandType.Text, lbSolicitud, "codSC", "nro")
 
-        Cn.Open()
+        ConsultaSolicitudCaja()
+        'oDataManager.CargarListBox("select codSC,nro +' '+ estado as nro from VsolicitudCaja where codCC=" & vCajaChica, CommandType.Text, lbSolicitud, "codSC", "nro")
+
 
     End Sub
 
     Private Sub btnSolicitud_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSolicitud.Click
+
+        If oDataManager.consultarTabla("select count(*) from TCajaChica", CommandType.Text) = 0 Then
+            StatusBarClass.messageBarraEstado("  POR FAVOR CREE UNA CAJA PRIMERO...")
+            Exit Sub
+        End If
+
 
         recuperarUltimoNro(vCajaChica)
         Dim campo As String = txtNro.Text
@@ -258,7 +407,8 @@ Public Class MantSolicitudCajaForm
             Me.Refresh()
 
             'TSolicitud
-            comandoInsert()
+
+            comandoInsert(vCajaChica)
             cmInsertTable.Transaction = myTrans
             If cmInsertTable.ExecuteNonQuery() < 1 Then
                 wait.Close()
@@ -277,20 +427,21 @@ Public Class MantSolicitudCajaForm
             'vfVan1 = False
             'vfVan2 = False
 
-            'Actualizando el dataTable
+            'Actualizando el lisxbox
+            ConsultaSolicitudCaja()
 
             'dsAlmacen.Tables("VSolAper").Clear()
             'daTabla1.Fill(dsAlmacen, "VSolAper")
 
             'Buscando por nombre de campo y luego pocisionarlo con el indice
 
-            'lbSolicitud.Items. = BindingSource0.Find("nroSol", campo)
+            lbSolicitud.SelectedIndex = lbSolicitud.FindString(campo)
 
             'lbSolicitud.FindString(,
 
             'vfVan1 = True
             'vfVan2 = True
-            recuperarUltimoNro(vSCodigo)
+            recuperarUltimoNro(vCajaChica)
 
             'Clase definida y con miembros shared en la biblioteca ComponentesRAS
             StatusBarClass.messageBarraEstado("  Registro fue guardado con éxito...")
@@ -320,7 +471,7 @@ Public Class MantSolicitudCajaForm
         If Not TypeOf lbSolicitud.SelectedValue Is Dato Then
 
             Dim vgrilla As New DataGridView
-            oDataManager.CargarGrilla("select codSC,fechaSol, nombres  from VsolicitudCaja where codSC = " & lbSolicitud.SelectedValue, CommandType.Text, vgrilla, BindingSource0)
+            oDataManager.CargarGrilla("select codSC,fechaSol, nombres,estSol,codPers  from VsolicitudCaja where codSC = " & lbSolicitud.SelectedValue, CommandType.Text, vgrilla, BindingSource0)
 
             'oDataManager.CargarGrilla("select  * from detSolCaja Where codSC=" & lbSolicitud.SelectedValue, CommandType.Text, dgDetalleSol, BindingSource1)
             ConsultaDetalleCaja()
@@ -329,8 +480,9 @@ Public Class MantSolicitudCajaForm
     End Sub
 
     Private Sub btnProcesa_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnProcesa.Click
-        oDataManager.CargarGrilla("select codMat,material,uniBase,preBase,tipoM,hist from VMaterialSele", CommandType.Text, dgInsumo, BindingSource2)
-
+        oDataManager.CargarGrilla("select codMat,material,uniBase,preBase,tipoM from VMaterialSele", CommandType.Text, dgInsumo, BindingSource2)
+        BindingNavigator1.BindingSource = BindingSource2
+        ModificarColumnasInsumo()
     End Sub
 
     Private Sub btnAgrega_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgrega.Click
@@ -360,7 +512,7 @@ Public Class MantSolicitudCajaForm
         End If
 
         If BindingSource1.Find("codMat", BindingSource2.Item(BindingSource2.Position)(0)) >= 0 Then
-            MessageBox.Show("Ya existe requerimiento: " & BindingSource2.Item(BindingSource2.Position)(2), nomNegocio, Nothing, MessageBoxIcon.Information)
+            MessageBox.Show("Ya existe requerimiento: " & BindingSource2.Item(BindingSource2.Position)(1), nomNegocio, Nothing, MessageBoxIcon.Information)
             txtInsumo.Focus()
             txtInsumo.SelectAll()
             Exit Sub
@@ -434,5 +586,202 @@ Public Class MantSolicitudCajaForm
                 ConsultaDetalleCaja()
             End If
         End If
+    End Sub
+
+    Private Sub MantSolicitudCajaForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+        ColorearColumnas()
+
+    End Sub
+
+    Private Sub dgDetalleSol_Sorted(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgDetalleSol.Sorted
+        ColorearColumnas()
+    End Sub
+
+    Private Sub txtInsumo_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtInsumo.TextChanged
+        'FILTRANDO INSUMO
+        BindingSource2.Filter = "material like '" & txtInsumo.Text.Trim() & "%'"
+    End Sub
+
+
+
+    Private Sub dgDetalleSol_CellEndEdit(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgDetalleSol.CellEndEdit
+
+        Dim _item As Integer = BindingSource1.Position
+        Dim resul As Boolean = _listaUpdate.Exists(Function(p) p = _item)
+        Dim _estado As Integer = BindingSource1.Item(_item)(12)
+
+        'Comprobando si ya existe el indice en la lista
+        If _estado = 0 Or _estado = 2 Then
+            If resul = False Then
+                _listaUpdate.Add(_item) 'agregando a lista
+            End If
+        Else
+            dgDetalleSol.CancelEdit()
+            StatusBarClass.messageBarraEstado(" Sólo se puede modificar si el estado es igual a PENDIENTE u OBSERVADO...")
+        End If
+
+    End Sub
+
+
+
+    Private Sub btnModificar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnModificar.Click
+        If BindingSource1.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  No existe registro a modificar...")
+            Exit Sub
+        End If
+
+
+    End Sub
+
+    Private Sub btnActualizarDetalle_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnActualizarDetalle.Click
+        If BindingSource0.Item(BindingSource0.Position)(3) = 1 Then
+            MessageBox.Show("No se puede actualizar requerimientos por estar en el estado de <CERRADO>", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
+            Exit Sub
+        End If
+
+        If BindingSource1.Count = 0 Then
+            StatusBarClass.messageBarraEstado("  NO EXISTE REGISTROS A PROCESAR...")
+            Exit Sub
+        End If
+
+        ' si estado en aprobado o rechazado no se puede modificar
+        Dim resp As Short = MessageBox.Show("¿ESTÁ SEGURO DE GUARDAR LAS MODIFICACIONES?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resp <> 6 Then
+            Exit Sub
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+        Me.Refresh()
+        Dim finalMytrans As Boolean = False
+        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
+        Dim wait As New waitForm
+        wait.Show()
+        Try
+            StatusBarClass.messageBarraEstado("  ESPERE POR FAVOR, ACTUALIZANDO INFORMACION....")
+
+            'recorriendo las lista de indices de filas modificadas
+            For j As Short = 0 To _listaUpdate.Count - 1
+
+                'If BindingSource1.Item(j)(13) = 1 Or BindingSource3.Item(j)(13) = 3 Then '1=pendiente  3=Observado
+                'actualizando TDetalleSol
+                comandoUpdateDetalle(BindingSource1.Item(_listaUpdate(j))(2), BindingSource1.Item(_listaUpdate(j))(4), BindingSource1.Item(_listaUpdate(j))(5).ToString().Trim(), BindingSource1.Item(_listaUpdate(j))(0))
+                cmUpdateTableDetalle.Transaction = myTrans
+                If cmUpdateTableDetalle.ExecuteNonQuery() < 1 Then
+                    wait.Close()
+                    Me.Cursor = Cursors.Default
+                    'deshace la transaccion
+                    myTrans.Rollback()
+                    MessageBox.Show("ERROR DE CONCURRENCIA, VUELVA A EJECUTAR LA INTERFAZ." & Chr(13) & "No se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                    'End If
+                End If
+            Next
+
+            'confirma la transaccion
+            myTrans.Commit()    'con exito RAS
+            finalMytrans = True
+            StatusBarClass.messageBarraEstado("  LOS DATOS FUERON ACTUALIZADOS CON EXITO...")
+
+            ConsultaSolicitudCaja() ' Actualizando Grilla Y mostrando de nuevo
+
+            StatusBarClass.messageBarraEstado("  Registros actualizados con éxito...")
+
+        Catch f As Exception
+
+            If finalMytrans Then
+                MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            Else
+                myTrans.Rollback()
+                MessageBox.Show(f.Message & Chr(13) & "NO SE ACTUALIZO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+        Finally
+            wait.Close()
+            Me.Cursor = Cursors.Default
+        End Try
+    End Sub
+
+    Private Sub BtnEliminarItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnEliminarItem.Click
+
+        If BindingSource0.Item(BindingSource0.Position)(3) = 1 Then
+            MessageBox.Show("No se puede eliminar requerimiento por estar en el estado de <CERRADO>", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
+            Exit Sub
+        End If
+
+        If BindingSource0.Item(BindingSource0.Position)(4) <> vPass Then
+            MessageBox.Show("Proceso denegado, usuario no es el mismo que registro requerimiento...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        If BindingSource1.Item(BindingSource1.Position)(12) <> 0 Then
+            MessageBox.Show("NO se debe eliminar por NO estar en el estado de [PENDIENTE]", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        Dim resp As Short = MessageBox.Show("Está seguro de eliminar: " & BindingSource1.Item(BindingSource1.Position)(1) & "  Si elimina no podra deshacer...", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resp <> 6 Then
+            Exit Sub
+        End If
+
+        Me.Cursor = Cursors.AppStarting
+        Dim finalMytrans As Boolean = False
+        Dim wait As New waitForm
+        wait.Show()
+        'estableciendo una transaccion
+        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
+        Try
+            StatusBarClass.messageBarraEstado("  PROCESANDO DATOS...")
+            Me.Refresh()
+
+            'TDetalleSol
+            comandoDeleteDetalle(BindingSource1.Item(BindingSource1.Position)(0))
+            cmDeleteTableDetalle.Transaction = myTrans
+            If cmDeleteTableDetalle.ExecuteNonQuery() < 1 Then
+                wait.Close()
+                myTrans.Rollback()
+                MessageBox.Show("No se puede eliminar...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+
+            'confirma la transaccion
+            myTrans.Commit()    'con exito RAS
+            StatusBarClass.messageBarraEstado("  ELIMINACION CON EXITO...")
+            finalMytrans = True
+
+            'Actualizando el dataTable
+            ConsultaDetalleCaja()
+
+            'accionesIniciales()
+            StatusBarClass.messageBarraEstado("  ELIMINACIÓN CON ÉXITO...")
+        Catch f As Exception
+
+            If finalMytrans Then
+                MessageBox.Show("NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Information)
+                Me.Close()
+                Exit Sub
+            Else
+                myTrans.Rollback()
+                MessageBox.Show("Tipo de exception: " & f.Message & Chr(13) & "NO SE ALMACENO LA INFORMACION PROCESADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+        Finally
+            wait.Close()
+            Me.Cursor = Cursors.Default
+        End Try
+
+
+    End Sub
+
+    Private Sub btnElimina_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnElimina.Click
+
+    End Sub
+
+    Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
+
     End Sub
 End Class

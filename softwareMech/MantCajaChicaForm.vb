@@ -464,23 +464,22 @@ Public Class MantCajaChicaForm
 
     Private Sub MantCajaChicaForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-        Dim wait As New waitForm
-        wait.Show()
-        Me.Cursor = Cursors.WaitCursor
+        'Dim wait As New waitForm
+        'wait.Show()
+        'Me.Cursor = Cursors.WaitCursor
 
         
 
         configurarColorControl()
 
         oDataManager.CargarCombo("select codSerO, serie from TSerieOrden where estado=1", CommandType.Text, cbSerie, "codSerO", "serie")
-        Cn.Open()
 
         DatosIniciales()
 
         ModificarColumnasDGV()
 
-        wait.Close()
-        Me.Cursor = Cursors.Default
+        'wait.Close()
+        'Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub MantCajaChicaForm_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing

@@ -21,7 +21,7 @@ Public Class cDataManager
         If con.State = ConnectionState.Closed Then
             con.Open()
         End If
-        dataR = command.ExecuteReader(CommandBehavior.CloseConnection)
+        dataR = command.ExecuteReader() 'CommandBehavior.CloseConnection
         Dim lista As New List(Of Dato)
 
         Try
@@ -194,7 +194,7 @@ Public Class cDataManager
         If con.State = ConnectionState.Closed Then
             con.Open()
         End If
-        dataR = command.ExecuteReader(CommandBehavior.CloseConnection)
+        dataR = command.ExecuteReader()
         Dim lista As New List(Of Dato)
 
         Try

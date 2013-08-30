@@ -24,6 +24,8 @@ Partial Class MantSolicitudCajaForm
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
+        Me.cbArea = New System.Windows.Forms.ComboBox
+        Me.Label9 = New System.Windows.Forms.Label
         Me.btnImprimir = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.lbSolicitud = New System.Windows.Forms.ListBox
         Me.Label5 = New System.Windows.Forms.Label
@@ -53,15 +55,27 @@ Partial Class MantSolicitudCajaForm
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
-        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton
+        Me.btnActualizarDetalle = New System.Windows.Forms.ToolStripButton
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator
-        Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton
+        Me.BtnEliminarItem = New System.Windows.Forms.ToolStripButton
         Me.Panel4 = New System.Windows.Forms.Panel
+        Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
+        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
+        Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorSeparator = New System.Windows.Forms.ToolStripSeparator
+        Me.BindingNavigatorPositionItem = New System.Windows.Forms.ToolStripTextBox
+        Me.BindingNavigatorSeparator1 = New System.Windows.Forms.ToolStripSeparator
+        Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton
+        Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
+        Me.txtObs = New System.Windows.Forms.TextBox
         Me.txtInsumo = New System.Windows.Forms.TextBox
         Me.dgInsumo = New System.Windows.Forms.DataGridView
         Me.cbBuscar = New System.Windows.Forms.ComboBox
         Me.txtPrecio = New ComponentesSolucion2008.TextBoxSSP(Me.components)
+        Me.Label8 = New System.Windows.Forms.Label
         Me.Label22 = New System.Windows.Forms.Label
         Me.Label23 = New System.Windows.Forms.Label
         Me.txtCan = New ComponentesSolucion2008.TextBoxSSP(Me.components)
@@ -69,15 +83,13 @@ Partial Class MantSolicitudCajaForm
         Me.btnAgrega = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnCrear = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnProcesa = New ComponentesSolucion2008.BottomSSP(Me.components)
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.txtObs = New System.Windows.Forms.TextBox
-        Me.Label9 = New System.Windows.Forms.Label
-        Me.cbArea = New System.Windows.Forms.ComboBox
         Me.Panel1.SuspendLayout()
         CType(Me.dgDetalleSol, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Navigator2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Navigator2.SuspendLayout()
         Me.Panel4.SuspendLayout()
+        CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.BindingNavigator1.SuspendLayout()
         CType(Me.dgInsumo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -88,7 +100,7 @@ Partial Class MantSolicitudCajaForm
         '
         'lblDerecha
         '
-        Me.lblDerecha.Size = New System.Drawing.Size(14, 515)
+        Me.lblDerecha.Size = New System.Drawing.Size(14, 598)
         '
         'Panel1
         '
@@ -114,6 +126,23 @@ Partial Class MantSolicitudCajaForm
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(901, 113)
         Me.Panel1.TabIndex = 5
+        '
+        'cbArea
+        '
+        Me.cbArea.FormattingEnabled = True
+        Me.cbArea.Location = New System.Drawing.Point(312, 87)
+        Me.cbArea.Name = "cbArea"
+        Me.cbArea.Size = New System.Drawing.Size(167, 21)
+        Me.cbArea.TabIndex = 311
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(269, 90)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(37, 13)
+        Me.Label9.TabIndex = 310
+        Me.Label9.Text = "Área:"
         '
         'btnImprimir
         '
@@ -265,7 +294,7 @@ Partial Class MantSolicitudCajaForm
         '
         'txtTotal
         '
-        Me.txtTotal.Location = New System.Drawing.Point(768, 295)
+        Me.txtTotal.Location = New System.Drawing.Point(765, 382)
         Me.txtTotal.Name = "txtTotal"
         Me.txtTotal.Size = New System.Drawing.Size(87, 20)
         Me.txtTotal.TabIndex = 15
@@ -273,7 +302,7 @@ Partial Class MantSolicitudCajaForm
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(722, 298)
+        Me.Label3.Location = New System.Drawing.Point(719, 385)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(40, 13)
         Me.Label3.TabIndex = 14
@@ -293,11 +322,11 @@ Partial Class MantSolicitudCajaForm
         Me.dgDetalleSol.AllowUserToAddRows = False
         Me.dgDetalleSol.AllowUserToDeleteRows = False
         Me.dgDetalleSol.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgDetalleSol.Location = New System.Drawing.Point(20, 158)
+        Me.dgDetalleSol.Location = New System.Drawing.Point(17, 158)
         Me.dgDetalleSol.Name = "dgDetalleSol"
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgDetalleSol.RowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgDetalleSol.Size = New System.Drawing.Size(901, 129)
+        Me.dgDetalleSol.Size = New System.Drawing.Size(904, 218)
         Me.dgDetalleSol.TabIndex = 315
         '
         'Navigator2
@@ -308,8 +337,8 @@ Partial Class MantSolicitudCajaForm
         Me.Navigator2.CountItemFormat = "de {0} requerimientos"
         Me.Navigator2.DeleteItem = Nothing
         Me.Navigator2.Dock = System.Windows.Forms.DockStyle.None
-        Me.Navigator2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripTextBox1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator3, Me.ToolStripButton5, Me.ToolStripSeparator4, Me.ToolStripSeparator5, Me.ToolStripButton6})
-        Me.Navigator2.Location = New System.Drawing.Point(20, 290)
+        Me.Navigator2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripTextBox1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator3, Me.btnActualizarDetalle, Me.ToolStripSeparator4, Me.ToolStripSeparator5, Me.BtnEliminarItem})
+        Me.Navigator2.Location = New System.Drawing.Point(17, 377)
         Me.Navigator2.MoveFirstItem = Me.ToolStripButton1
         Me.Navigator2.MoveLastItem = Me.ToolStripButton4
         Me.Navigator2.MoveNextItem = Me.ToolStripButton3
@@ -390,16 +419,16 @@ Partial Class MantSolicitudCajaForm
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
         '
-        'ToolStripButton5
+        'btnActualizarDetalle
         '
-        Me.ToolStripButton5.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStripButton5.ForeColor = System.Drawing.Color.Navy
-        Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
-        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton5.Name = "ToolStripButton5"
-        Me.ToolStripButton5.Size = New System.Drawing.Size(158, 22)
-        Me.ToolStripButton5.Text = "Guardar Modificaciones"
-        Me.ToolStripButton5.ToolTipText = "Guardar Modificaciones establecidad en grilla..."
+        Me.btnActualizarDetalle.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnActualizarDetalle.ForeColor = System.Drawing.Color.Navy
+        Me.btnActualizarDetalle.Image = CType(resources.GetObject("btnActualizarDetalle.Image"), System.Drawing.Image)
+        Me.btnActualizarDetalle.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnActualizarDetalle.Name = "btnActualizarDetalle"
+        Me.btnActualizarDetalle.Size = New System.Drawing.Size(158, 22)
+        Me.btnActualizarDetalle.Text = "Guardar Modificaciones"
+        Me.btnActualizarDetalle.ToolTipText = "Guardar Modificaciones establecidad en grilla..."
         '
         'ToolStripSeparator4
         '
@@ -412,21 +441,22 @@ Partial Class MantSolicitudCajaForm
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
         Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 25)
         '
-        'ToolStripButton6
+        'BtnEliminarItem
         '
-        Me.ToolStripButton6.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.ToolStripButton6.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStripButton6.ForeColor = System.Drawing.Color.Maroon
-        Me.ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), System.Drawing.Image)
-        Me.ToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton6.Name = "ToolStripButton6"
-        Me.ToolStripButton6.Size = New System.Drawing.Size(158, 22)
-        Me.ToolStripButton6.Text = "Eliminar Requerimiento"
-        Me.ToolStripButton6.ToolTipText = "Eliminar Requerimiento de obra..."
+        Me.BtnEliminarItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.BtnEliminarItem.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnEliminarItem.ForeColor = System.Drawing.Color.Maroon
+        Me.BtnEliminarItem.Image = CType(resources.GetObject("BtnEliminarItem.Image"), System.Drawing.Image)
+        Me.BtnEliminarItem.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BtnEliminarItem.Name = "BtnEliminarItem"
+        Me.BtnEliminarItem.Size = New System.Drawing.Size(158, 22)
+        Me.BtnEliminarItem.Text = "Eliminar Requerimiento"
+        Me.BtnEliminarItem.ToolTipText = "Eliminar Requerimiento de obra..."
         '
         'Panel4
         '
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel4.Controls.Add(Me.BindingNavigator1)
         Me.Panel4.Controls.Add(Me.txtObs)
         Me.Panel4.Controls.Add(Me.txtInsumo)
         Me.Panel4.Controls.Add(Me.dgInsumo)
@@ -440,10 +470,102 @@ Partial Class MantSolicitudCajaForm
         Me.Panel4.Controls.Add(Me.btnAgrega)
         Me.Panel4.Controls.Add(Me.btnCrear)
         Me.Panel4.Controls.Add(Me.btnProcesa)
-        Me.Panel4.Location = New System.Drawing.Point(17, 355)
+        Me.Panel4.Location = New System.Drawing.Point(17, 416)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(904, 183)
+        Me.Panel4.Size = New System.Drawing.Size(904, 205)
         Me.Panel4.TabIndex = 318
+        '
+        'BindingNavigator1
+        '
+        Me.BindingNavigator1.AddNewItem = Nothing
+        Me.BindingNavigator1.CountItem = Me.BindingNavigatorCountItem
+        Me.BindingNavigator1.DeleteItem = Nothing
+        Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
+        Me.BindingNavigator1.Location = New System.Drawing.Point(0, 178)
+        Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
+        Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
+        Me.BindingNavigator1.MoveNextItem = Me.BindingNavigatorMoveNextItem
+        Me.BindingNavigator1.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
+        Me.BindingNavigator1.Name = "BindingNavigator1"
+        Me.BindingNavigator1.PositionItem = Me.BindingNavigatorPositionItem
+        Me.BindingNavigator1.Size = New System.Drawing.Size(902, 25)
+        Me.BindingNavigator1.TabIndex = 314
+        Me.BindingNavigator1.Text = "BindingNavigator1"
+        '
+        'BindingNavigatorCountItem
+        '
+        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(37, 22)
+        Me.BindingNavigatorCountItem.Text = "de {0}"
+        Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
+        '
+        'BindingNavigatorMoveFirstItem
+        '
+        Me.BindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
+        Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveFirstItem.Text = "Mover primero"
+        '
+        'BindingNavigatorMovePreviousItem
+        '
+        Me.BindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
+        Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMovePreviousItem.Text = "Mover anterior"
+        '
+        'BindingNavigatorSeparator
+        '
+        Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 25)
+        '
+        'BindingNavigatorPositionItem
+        '
+        Me.BindingNavigatorPositionItem.AccessibleName = "Posición"
+        Me.BindingNavigatorPositionItem.AutoSize = False
+        Me.BindingNavigatorPositionItem.Name = "BindingNavigatorPositionItem"
+        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(50, 23)
+        Me.BindingNavigatorPositionItem.Text = "0"
+        Me.BindingNavigatorPositionItem.ToolTipText = "Posición actual"
+        '
+        'BindingNavigatorSeparator1
+        '
+        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
+        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
+        'BindingNavigatorMoveNextItem
+        '
+        Me.BindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
+        Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveNextItem.Text = "Mover siguiente"
+        '
+        'BindingNavigatorMoveLastItem
+        '
+        Me.BindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
+        Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorMoveLastItem.Text = "Mover último"
+        '
+        'BindingNavigatorSeparator2
+        '
+        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
+        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
+        '
+        'txtObs
+        '
+        Me.txtObs.Location = New System.Drawing.Point(547, 3)
+        Me.txtObs.Name = "txtObs"
+        Me.txtObs.Size = New System.Drawing.Size(169, 20)
+        Me.txtObs.TabIndex = 2
         '
         'txtInsumo
         '
@@ -462,7 +584,7 @@ Partial Class MantSolicitudCajaForm
         Me.dgInsumo.ReadOnly = True
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgInsumo.RowsDefaultCellStyle = DataGridViewCellStyle2
-        Me.dgInsumo.Size = New System.Drawing.Size(900, 153)
+        Me.dgInsumo.Size = New System.Drawing.Size(900, 150)
         Me.dgInsumo.TabIndex = 7
         '
         'cbBuscar
@@ -485,6 +607,15 @@ Partial Class MantSolicitudCajaForm
         Me.txtPrecio.TabIndex = 3
         Me.txtPrecio.Text = "0.00"
         Me.txtPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(508, 6)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(33, 13)
+        Me.Label8.TabIndex = 311
+        Me.Label8.Text = "Obs:"
         '
         'Label22
         '
@@ -566,44 +697,11 @@ Partial Class MantSolicitudCajaForm
         Me.btnProcesa.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnProcesa.UseVisualStyleBackColor = False
         '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(508, 6)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(33, 13)
-        Me.Label8.TabIndex = 311
-        Me.Label8.Text = "Obs:"
-        '
-        'txtObs
-        '
-        Me.txtObs.Location = New System.Drawing.Point(547, 3)
-        Me.txtObs.Name = "txtObs"
-        Me.txtObs.Size = New System.Drawing.Size(169, 20)
-        Me.txtObs.TabIndex = 2
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(269, 90)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(37, 13)
-        Me.Label9.TabIndex = 310
-        Me.Label9.Text = "Área:"
-        '
-        'cbArea
-        '
-        Me.cbArea.FormattingEnabled = True
-        Me.cbArea.Location = New System.Drawing.Point(312, 87)
-        Me.cbArea.Name = "cbArea"
-        Me.cbArea.Size = New System.Drawing.Size(167, 21)
-        Me.cbArea.TabIndex = 311
-        '
         'MantSolicitudCajaForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
-        Me.ClientSize = New System.Drawing.Size(925, 560)
+        Me.ClientSize = New System.Drawing.Size(925, 643)
         Me.Controls.Add(Me.Panel4)
         Me.Controls.Add(Me.Navigator2)
         Me.Controls.Add(Me.Label6)
@@ -629,6 +727,9 @@ Partial Class MantSolicitudCajaForm
         Me.Navigator2.PerformLayout()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
+        CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.BindingNavigator1.ResumeLayout(False)
+        Me.BindingNavigator1.PerformLayout()
         CType(Me.dgInsumo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -662,9 +763,9 @@ Partial Class MantSolicitudCajaForm
     Friend WithEvents ToolStripButton3 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripButton4 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents ToolStripButton5 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents btnActualizarDetalle As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents ToolStripButton6 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BtnEliminarItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator5 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents Panel4 As System.Windows.Forms.Panel
     Friend WithEvents txtInsumo As System.Windows.Forms.TextBox
@@ -684,5 +785,15 @@ Partial Class MantSolicitudCajaForm
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents cbArea As System.Windows.Forms.ComboBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents BindingNavigator1 As System.Windows.Forms.BindingNavigator
+    Friend WithEvents BindingNavigatorCountItem As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents BindingNavigatorMoveFirstItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorMovePreviousItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorSeparator As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BindingNavigatorPositionItem As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents BindingNavigatorSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BindingNavigatorMoveNextItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorMoveLastItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorSeparator2 As System.Windows.Forms.ToolStripSeparator
 
 End Class

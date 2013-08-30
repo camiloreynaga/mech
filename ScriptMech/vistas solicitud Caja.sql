@@ -7,6 +7,22 @@ TSC.estSol,tsc.montoSol,tsc.montoRen,tsc.codCC,tsc.codPers,tpe.nombre +' '+TPE.a
 FROM TSolicitudCaja TSC
 join TPersonal TPE on TPE.codPers = TSC.codPers 
 
+create view VDetaleSolCaja  
+as
+	select TDC.codDetSol,TDC.cant1,TDC.cant2,TDC.insumo,TDC.prec1,TDC.prec2,TDC.uniMed,TDC.obsSol,TDC.codSC,TDC.codApro,
+	isnull(TP.nombre+' '+TP.apellido,'') aprobador,TDC.obsApro,TM.codMat ,TM.material ,TAM.codAreaM,TAM.areaM,TTM.codTipM,
+	TTM.tipoM,TDC.estDet codEstado,
+	'estado'= case when TDC.estDet=0 then 'PENDIENTE' when TDC.estDet=1 then 'APROBADO' when TDC.estDet =2 then 'OBSERVADO' else 'RECHAZADO' end,
+	TDC.estRen , 'rendicion'=case when TDC.estRen =0 then 'PENDIENTE' else 'RENDIDO' end,isnull(TP2.nombre+' '+TP2.apellido,'') rendidor ,tdc.nroDocRen        
+	from detSolCaja TDC
+	left join TPersonal TP on TP.codPers = TDC.codApro 
+	left join TPersonal TP2 on TP2.codPers = TDC.codRen  
+	inner join TMaterial TM on TM.codMat=TDC.codMat 
+	Inner join TAreaMat TAM on TAM.codAreaM = TDC.codAreaM 
+	inner join TTipoMat TTM on TTM.codTipM =TM.codTipM
+GO
+
+
 
 create procedure PA_InsertDetalleSolCaja
 	@pri varchar(20),@can decimal(8,2),@des varchar(100),@uni varchar(20),@codP int,@obs1 varchar(100),@codP1 int,
@@ -51,9 +67,10 @@ return @Identity
 
 
 
-select * from DetSolCaja 
+
 
 
 select codSC,nro from VsolicitudCaja
 
+select * from VDetSol 
 select  * from detSolCaja

@@ -95,6 +95,23 @@ Public Class cConfigFormControls
             End If
         Next
     End Sub
+    ''' <summary>
+    ''' Da color a las filas de un data grid view
+    ''' </summary>
+    ''' <param name="grilla">DataGridView </param>
+    ''' <param name="columna">Columna a Colorear </param>
+    ''' <param name="pBackColor">color de fondo</param>
+    ''' <param name="pForeColor">color de texto</param>
+    ''' <remarks></remarks>
+    Public Sub colorearFilasDGV(ByVal grilla As DataGridView, ByVal columna As String, ByVal pBackColor As Color, ByVal pForeColor As Color)
+        For j As Short = 0 To grilla.Rows.Count - 1
+
+            Dim obj As Object = grilla(columna, j).Value
+            grilla.Rows(j).Cells(columna).Style.BackColor = pBackColor 'Color.YellowGreen
+            grilla.Rows(j).Cells(columna).Style.ForeColor = pForeColor
+        Next
+    End Sub
+
 
     ''' <summary>
     ''' Configurar el Estilo (Font) de la columna por cada fila
