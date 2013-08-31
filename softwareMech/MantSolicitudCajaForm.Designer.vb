@@ -21,8 +21,8 @@ Partial Class MantSolicitudCajaForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MantSolicitudCajaForm))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.cbArea = New System.Windows.Forms.ComboBox
         Me.Label9 = New System.Windows.Forms.Label
@@ -133,7 +133,7 @@ Partial Class MantSolicitudCajaForm
         Me.cbArea.Location = New System.Drawing.Point(312, 87)
         Me.cbArea.Name = "cbArea"
         Me.cbArea.Size = New System.Drawing.Size(167, 21)
-        Me.cbArea.TabIndex = 311
+        Me.cbArea.TabIndex = 2
         '
         'Label9
         '
@@ -252,7 +252,7 @@ Partial Class MantSolicitudCajaForm
         Me.dtpFecha.Location = New System.Drawing.Point(224, 5)
         Me.dtpFecha.Name = "dtpFecha"
         Me.dtpFecha.Size = New System.Drawing.Size(107, 20)
-        Me.dtpFecha.TabIndex = 3
+        Me.dtpFecha.TabIndex = 0
         '
         'Label2
         '
@@ -288,7 +288,7 @@ Partial Class MantSolicitudCajaForm
         Me.btnCerrar.Location = New System.Drawing.Point(492, 5)
         Me.btnCerrar.Name = "btnCerrar"
         Me.btnCerrar.Size = New System.Drawing.Size(75, 23)
-        Me.btnCerrar.TabIndex = 309
+        Me.btnCerrar.TabIndex = 1
         Me.btnCerrar.Text = "Cerrar"
         Me.btnCerrar.UseVisualStyleBackColor = True
         '
@@ -324,8 +324,8 @@ Partial Class MantSolicitudCajaForm
         Me.dgDetalleSol.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgDetalleSol.Location = New System.Drawing.Point(17, 158)
         Me.dgDetalleSol.Name = "dgDetalleSol"
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgDetalleSol.RowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgDetalleSol.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgDetalleSol.Size = New System.Drawing.Size(904, 218)
         Me.dgDetalleSol.TabIndex = 315
         '
@@ -565,14 +565,14 @@ Partial Class MantSolicitudCajaForm
         Me.txtObs.Location = New System.Drawing.Point(547, 3)
         Me.txtObs.Name = "txtObs"
         Me.txtObs.Size = New System.Drawing.Size(169, 20)
-        Me.txtObs.TabIndex = 2
+        Me.txtObs.TabIndex = 3
         '
         'txtInsumo
         '
         Me.txtInsumo.Location = New System.Drawing.Point(193, 2)
         Me.txtInsumo.Name = "txtInsumo"
         Me.txtInsumo.Size = New System.Drawing.Size(169, 20)
-        Me.txtInsumo.TabIndex = 2
+        Me.txtInsumo.TabIndex = 1
         '
         'dgInsumo
         '
@@ -582,8 +582,8 @@ Partial Class MantSolicitudCajaForm
         Me.dgInsumo.Location = New System.Drawing.Point(0, 25)
         Me.dgInsumo.Name = "dgInsumo"
         Me.dgInsumo.ReadOnly = True
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgInsumo.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgInsumo.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.dgInsumo.Size = New System.Drawing.Size(900, 150)
         Me.dgInsumo.TabIndex = 7
         '
@@ -604,7 +604,7 @@ Partial Class MantSolicitudCajaForm
         Me.txtPrecio.Location = New System.Drawing.Point(435, 2)
         Me.txtPrecio.Name = "txtPrecio"
         Me.txtPrecio.Size = New System.Drawing.Size(65, 20)
-        Me.txtPrecio.TabIndex = 3
+        Me.txtPrecio.TabIndex = 2
         Me.txtPrecio.Text = "0.00"
         Me.txtPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -640,7 +640,7 @@ Partial Class MantSolicitudCajaForm
         Me.txtCan.Location = New System.Drawing.Point(49, 2)
         Me.txtCan.Name = "txtCan"
         Me.txtCan.Size = New System.Drawing.Size(52, 20)
-        Me.txtCan.TabIndex = 1
+        Me.txtCan.TabIndex = 0
         Me.txtCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label24

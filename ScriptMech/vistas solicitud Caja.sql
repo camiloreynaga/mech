@@ -9,11 +9,13 @@ join TPersonal TPE on TPE.codPers = TSC.codPers
 
 create view VDetaleSolCaja  
 as
-	select TDC.codDetSol,TDC.cant1,TDC.cant2,TDC.insumo,TDC.prec1,TDC.prec2,TDC.uniMed,TDC.obsSol,TDC.codSC,TDC.codApro,
+	select TDC.codDetSol,TDC.cant1,TDC.cant2,TDC.insumo,TDC.prec1  ,TDC.prec2,TDC.uniMed,TDC.obsSol,TDC.codSC,TDC.codApro,
 	isnull(TP.nombre+' '+TP.apellido,'') aprobador,TDC.obsApro,TM.codMat ,TM.material ,TAM.codAreaM,TAM.areaM,TTM.codTipM,
 	TTM.tipoM,TDC.estDet codEstado,
 	'estado'= case when TDC.estDet=0 then 'PENDIENTE' when TDC.estDet=1 then 'APROBADO' when TDC.estDet =2 then 'OBSERVADO' else 'RECHAZADO' end,
-	TDC.estRen , 'rendicion'=case when TDC.estRen =0 then 'PENDIENTE' else 'RENDIDO' end,isnull(TP2.nombre+' '+TP2.apellido,'') rendidor ,tdc.nroDocRen        
+	TDC.estRen , 'rendicion'=case when TDC.estRen =0 then 'PENDIENTE' else 'RENDIDO' end,isnull(TP2.nombre+' '+TP2.apellido,'') rendidor ,tdc.nroDocRen,
+	(TDC.prec1 * TDC.cant1) as Parcial1
+	    
 	from detSolCaja TDC
 	left join TPersonal TP on TP.codPers = TDC.codApro 
 	left join TPersonal TP2 on TP2.codPers = TDC.codRen  
@@ -67,8 +69,9 @@ return @Identity
 
 
 
+select COUNT(*) from DetSolCaja   where codSC =  1
 
-
+select * from VsolicitudCaja 
 
 select codSC,nro from VsolicitudCaja
 

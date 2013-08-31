@@ -153,4 +153,22 @@ Public Class cConfigFormControls
         End Try
         Return total
     End Function
+    ''' <summary>
+    ''' Suma una Columna de DataGridView
+    ''' </summary>
+    ''' <param name="Dgv">DataGridView</param>
+    ''' <param name="columnaSuma">Columa a Suma</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function SumarColumnaGrilla(ByVal Dgv As DataGridView, ByVal columnaSuma As String) As Double
+
+        Dim total As Double = 0.0
+        Try
+            For i As Integer = 0 To Dgv.RowCount - 1
+                total = total + CDbl(Dgv.Item(columnaSuma, i).Value)
+            Next
+        Catch ex As Exception
+        End Try
+        Return total
+    End Function
 End Class

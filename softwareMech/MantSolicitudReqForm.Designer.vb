@@ -21,8 +21,8 @@ Partial Class MantSolicitudReqForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MantSolicitudReqForm))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.btnElimina = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnModificar = New ComponentesSolucion2008.BottomSSP(Me.components)
@@ -97,7 +97,7 @@ Partial Class MantSolicitudReqForm
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(916, 23)
+        Me.lblTitulo.Size = New System.Drawing.Size(919, 23)
         Me.lblTitulo.Text = "Mantenimiento de Solicitud de Requerimiento de Obra"
         '
         'lblDerecha
@@ -507,9 +507,9 @@ Partial Class MantSolicitudReqForm
         Me.dgTabla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgTabla2.Location = New System.Drawing.Point(1, 29)
         Me.dgTabla2.Name = "dgTabla2"
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgTabla2.Size = New System.Drawing.Size(900, 281)
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle3
+        Me.dgTabla2.Size = New System.Drawing.Size(910, 281)
         Me.dgTabla2.TabIndex = 14
         '
         'Panel2
@@ -712,8 +712,8 @@ Partial Class MantSolicitudReqForm
         Me.dgTabla1.Location = New System.Drawing.Point(0, 35)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.dgTabla1.Size = New System.Drawing.Size(899, 120)
         Me.dgTabla1.TabIndex = 9
         '
@@ -721,7 +721,7 @@ Partial Class MantSolicitudReqForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
-        Me.ClientSize = New System.Drawing.Size(915, 675)
+        Me.ClientSize = New System.Drawing.Size(919, 675)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel1)
