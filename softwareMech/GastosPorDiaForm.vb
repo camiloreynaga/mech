@@ -37,13 +37,9 @@ Public Class GastosPorDiaForm
         'dgPagos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         Try
 
-            'If dgReporte.Columns("banco").Visible = True Then
-            '    dgReporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None
-            'Else
-            '    dgReporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-            'End If
+           
 
-            If dgReporte.Columns("nroCue").Visible = True Then
+            If dgReporte.Columns("nroCue").Visible = True Or dgReporte.Columns("nombre").Visible = True Then
                 dgReporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None
             Else
                 dgReporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
@@ -87,6 +83,13 @@ Public Class GastosPorDiaForm
                 .Columns("montoD").Width = 80
                 .Columns("montoD").DefaultCellStyle.Format = "N2"
                 .Columns("montoD").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+                .Columns("codigo").Visible = False
+
+                .Columns("nombre").HeaderText = "Obra/Lugar"
+                .Columns("nombre").Width = 250
+
+
 
                 .Columns("codBan").Visible = False
                 .Columns("codMon").Visible = False
@@ -178,12 +181,22 @@ Public Class GastosPorDiaForm
                     pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
                 End If
 
-
                 dgReporte.Columns("nroCue").Visible = False
             Else
                 dgReporte.Columns("nroCue").Visible = True
 
             End If
+
+            If chkObra.Checked = False Then
+                If String.IsNullOrEmpty(cbObra.SelectedValue) = False Then
+                    pCriterio = "codigo ='" & cbObra.SelectedValue & "'"
+                    pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+                End If
+                dgReporte.Columns("nombre").Visible = False
+            Else
+                dgReporte.Columns("nombre").Visible = True
+            End If
+
             bindingSource0.Filter = pFiltro
 
         End If
@@ -198,15 +211,19 @@ Public Class GastosPorDiaForm
 
         oDataManager.CargarCombo("select codBan,banco from TBanco", CommandType.Text, cbBanco, "codBan", "banco")
 
+        oDataManager.CargarCombo("PA_LugarTrabajo", CommandType.StoredProcedure, cbObra, "codigo", "nombre")
+
     End Sub
 
     Private Sub btnMostrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMostrar.Click
         'SET DATEFORMAT dmy  da formato dd/mm/yyyy para las fechas
-        Dim sele As String = "SET DATEFORMAT dmy select fecPago,nroOperacion,ruc,razon,simbolo,montoPago,montoD,banco,nroCue,(serie +'-'+cast(nroDes as varchar)) nroDes,codBan,codMon,idCue from VGastosPorDia where fecPago between '" & dtpInicio.Text & "' and '" & dtpFin.Text & "'"
+        Dim sele As String = "SET DATEFORMAT dmy select fecPago,nroOperacion,ruc,razon,simbolo,montoPago,montoD,banco,nroCue,(serie +'-'+cast(nroDes as varchar)) nroDes,codBan,codMon,idCue,codigo,nombre from VGastosPorDia where fecPago between '" & dtpInicio.Text & "' and '" & dtpFin.Text & "'"
         oDataManager.CargarGrilla(sele, CommandType.Text, dgReporte, bindingSource0)
 
         'enlanzando con el binding navigator
         BindingNavigator1.BindingSource = bindingSource0
+
+        Me.Cursor = Cursors.WaitCursor
 
 
         filtrando()
@@ -225,7 +242,7 @@ Public Class GastosPorDiaForm
         txtTotalDetraccion.Text = Format(CDbl(txtTotalDetraccion.Text), "0,0.00")
         txtDetraccionDolares.Text = Format(CDbl(txtDetraccionDolares.Text), "0,0.00")
 
-
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub GastosPorDiaForm_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Leave
@@ -314,5 +331,13 @@ Public Class GastosPorDiaForm
             dtpInicio.Focus()
         End If
 
+    End Sub
+
+    Private Sub chkObra_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkObra.CheckedChanged
+        If chkObra.Checked Then
+            cbObra.Visible = False
+        Else
+            cbObra.Visible = True
+        End If
     End Sub
 End Class
