@@ -1,4 +1,5 @@
 -- PAra consultar los seguimientos
+--Pendiente de actualización
 create proc PA_SeguimientoDesembolso
 @fechaInicio date,
 @fechaFin date
@@ -8,6 +9,8 @@ banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reci
 descOtro,nroConfor,fecEnt,moneda,simbolo,solicitante,ruc,fono,email,codObra,codIde 
 from VOrdenDesembolsoSeguimiento where fecDes between @fechaInicio and @fechaFin 
 go
+
+
 
 --Para recuperar las ordenes de compra
 create proc PA_RecuperarOrdenCompra

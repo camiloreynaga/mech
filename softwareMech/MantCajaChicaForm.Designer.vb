@@ -20,9 +20,9 @@ Partial Class MantCajaChicaForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MantCajaChicaForm))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Label1 = New System.Windows.Forms.Label
         Me.txtCodCaja = New System.Windows.Forms.TextBox
         Me.Label2 = New System.Windows.Forms.Label
@@ -138,7 +138,7 @@ Partial Class MantCajaChicaForm
         Me.cbMoneda.Location = New System.Drawing.Point(406, 294)
         Me.cbMoneda.Name = "cbMoneda"
         Me.cbMoneda.Size = New System.Drawing.Size(158, 21)
-        Me.cbMoneda.TabIndex = 0
+        Me.cbMoneda.TabIndex = 1
         '
         'cbObra
         '
@@ -148,7 +148,7 @@ Partial Class MantCajaChicaForm
         Me.cbObra.Location = New System.Drawing.Point(88, 40)
         Me.cbObra.Name = "cbObra"
         Me.cbObra.Size = New System.Drawing.Size(618, 21)
-        Me.cbObra.TabIndex = 1
+        Me.cbObra.TabIndex = 2
         '
         'Label3
         '
@@ -176,7 +176,7 @@ Partial Class MantCajaChicaForm
         Me.cbResponsable.Location = New System.Drawing.Point(258, 14)
         Me.cbResponsable.Name = "cbResponsable"
         Me.cbResponsable.Size = New System.Drawing.Size(448, 21)
-        Me.cbResponsable.TabIndex = 2
+        Me.cbResponsable.TabIndex = 1
         '
         'Label5
         '
@@ -192,8 +192,8 @@ Partial Class MantCajaChicaForm
         Me.dgCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgCaja.Location = New System.Drawing.Point(3, 16)
         Me.dgCaja.Name = "dgCaja"
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgCaja.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgCaja.RowsDefaultCellStyle = DataGridViewCellStyle5
         Me.dgCaja.Size = New System.Drawing.Size(883, 135)
         Me.dgCaja.TabIndex = 10
         '
@@ -526,8 +526,8 @@ Partial Class MantCajaChicaForm
         Me.dgDetalleCaja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgDetalleCaja.Location = New System.Drawing.Point(3, 10)
         Me.dgDetalleCaja.Name = "dgDetalleCaja"
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgDetalleCaja.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgDetalleCaja.RowsDefaultCellStyle = DataGridViewCellStyle6
         Me.dgDetalleCaja.Size = New System.Drawing.Size(873, 122)
         Me.dgDetalleCaja.TabIndex = 10
         '
@@ -537,7 +537,7 @@ Partial Class MantCajaChicaForm
         Me.txtCaja.Name = "txtCaja"
         Me.txtCaja.ReadOnly = True
         Me.txtCaja.Size = New System.Drawing.Size(253, 20)
-        Me.txtCaja.TabIndex = 18
+        Me.txtCaja.TabIndex = 0
         '
         'Label8
         '

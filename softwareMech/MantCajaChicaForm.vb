@@ -758,20 +758,13 @@ Public Class MantCajaChicaForm
 
 
 #End Region
-
-
-
-
     Private Sub MantCajaChicaForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         'Dim wait As New waitForm
         'wait.Show()
         'Me.Cursor = Cursors.WaitCursor
-
         configurarColorControl()
-
         DatosIniciales()
-
         ModificarColumnasDGV()
 
         'wait.Close()
@@ -1128,7 +1121,12 @@ Public Class MantCajaChicaForm
     End Sub
 
     Private Sub btnNuevoD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNuevoD.Click
+        If dgCaja.RowCount = 0 Then
+            StatusBarClass.messageBarraEstado("  POR FAVOR ASIGNE UN RESPONSABLE Y UBICACIÓN DE CAJA CHICA...")
 
+            Exit Sub
+
+        End If
 
         If vfNuevoD = "nuevo" Then
             vfNuevoD = "guardar"
