@@ -41,6 +41,8 @@ Public Class cDataManager
         combo.ValueMember = "Id"
         combo.DisplayMember = "Desc"
 
+        dataR.Close()
+
     End Sub
 
     ''' <summary>
@@ -102,6 +104,56 @@ Public Class cDataManager
         If con.State = ConnectionState.Closed Then
             con.Open()
         End If
+
+        Dim oTabla As New DataTable
+
+        dataR = command.ExecuteReader() 'CommandBehavior.CloseConnection)
+        'Dim lista As New List(Of Dato)
+        ' oTabla.Rows.Add(New DataRow(
+        Try
+
+            oTabla.Load(dataR, LoadOption.OverwriteChanges)
+
+            'llena la grilla con el binding source
+            bindingSource.DataSource = oTabla '.DefaultView
+
+            'While dataR.Read()
+            '    grilla.Rows.Add(dataR.GetInt32(0), dataR.GetString(1), dataR.GetString(2), dataR.GetDecimal(3), dataR.GetString(4), dataR.GetString(5))
+            'End While
+
+
+            grilla.DataSource = bindingSource  'oTabla
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+            dataR.Close()
+
+        End Try
+        Return oTabla.Rows.Count
+    End Function
+
+
+    ''' <summary>
+    ''' Llenar un Datagrid de datos desde una BD
+    ''' </summary>
+    ''' <param name="consulta">consulta o stored procedure</param>
+    ''' <param name="parametros">parametros</param>
+    ''' <param name="type">tipo </param>
+    ''' <param name="grilla">DatagridView</param>
+    ''' <param name="bindingSource">BindingSource</param>
+    ''' <remarks></remarks>
+    Public Function CargarGrilla(ByVal consulta As String, ByVal parametros As SqlParameter(), ByVal type As CommandType, ByVal grilla As DataGridView, ByVal bindingSource As BindingSource) As Integer
+        Dim con As SqlConnection = Cn
+        Dim storedProcedure As String = consulta '
+        Dim command As New SqlCommand(consulta, con)
+        Dim dataR As SqlDataReader
+
+        command.CommandType = type  ' tipo de Comando
+        If con.State = ConnectionState.Closed Then
+            con.Open()
+        End If
+
+        command.Parameters.AddRange(parametros)
 
         Dim oTabla As New DataTable
 

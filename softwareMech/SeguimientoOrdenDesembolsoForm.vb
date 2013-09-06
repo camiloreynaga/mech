@@ -54,6 +54,13 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' </summary>
     ''' <remarks></remarks>
     Dim oGrilla As New cConfigFormControls
+
+    ''' <summary>
+    ''' instancia de Objeto de la clase datamanager, de administración de datos
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim oDataManager As New cDataManager
+
 #End Region
 
 #Region "Métodos"
@@ -801,54 +808,70 @@ Public Class SeguimientoOrdenDesembolsoForm
 
     Private Sub SeguimientoOrdenDesembolsoForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-        Dim wait As New waitForm
-        wait.Show()
+        'Dim wait As New waitForm
+        'wait.Show()
         Me.Cursor = Cursors.WaitCursor
 
         configurarColorControl()
 
-        DatosIniciales()
+        'Cargando el combo Obras
+        oDataManager.CargarCombo("PA_LugarTrabajo", CommandType.StoredProcedure, cbObra, "codigo", "nombre")
+        'Cargando el combo de Proveedores
+        oDataManager.CargarCombo("PA_Proveedores", CommandType.StoredProcedure, cbProveedor, "codIde", "razon")
+
+        'Cargando el combo Solicitante
+        oDataManager.CargarCombo("select (nombre +' '+ apellido) as solicitante from Tpersonal where codPers > 1", CommandType.Text, cbSolicitante.ComboBox, "solicitante", "solicitante")
+
+
+
+        'DatosIniciales()
 
         ' dgDesembolso.FirstDisplayedScrollingRowIndex = 0
 
 
         'Modifica las columnas de Grilla Desembolso
-        ModificandoColumnasDGV()
-        ModificandoColumnasDGVPagos()
-        ModificandoColumnaDGVConta()
+        'ModificandoColumnasDGV()
+        'ModificandoColumnasDGVPagos()
+        'ModificandoColumnaDGVConta()
 
-        BindingSource1.Filter = "codDesembolso=" & BindingSource0.Item(BindingSource0.Position)(0)
-        BindingSource2.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
-        BindingSource3.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
+        'BindingSource1.Filter = "codDesembolso=" & BindingSource0.Item(BindingSource0.Position)(0)
+        'BindingSource2.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
+        'BindingSource3.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
 
 
 
-        enlazarText()
-        enlazarTextAprobaciones()
+        'enlazarText()
+        'enlazarTextAprobaciones()
 
-        wait.Close()
+        'wait.Close()
         Me.Cursor = Cursors.Default
     End Sub
 
 
     Private Sub dgDesembolso_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgDesembolso.CellClick, dgDesembolso.CellEnter
-        enlazarText()
-        'filtrando para que muestre los registros de pagos por orden de desembolso seleccionado
-        '  
-        BindingSource1.Filter = "codDesembolso=" & BindingSource0.Item(BindingSource0.Position)(0)
-        'filtrando para que muestre los registros de contabilidad por orden de desembolso seleccionado
-        BindingSource2.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
-        BindingSource3.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
 
-        enlazarTextPagos()
+        If dgDesembolso.RowCount > 0 Then
 
-        enlazarTextAprobaciones()
 
-              ''
+
+            enlazarText()
+            'filtrando para que muestre los registros de pagos por orden de desembolso seleccionado
+            '  
+            BindingSource1.Filter = "codDesembolso=" & BindingSource0.Item(BindingSource0.Position)(0)
+            'filtrando para que muestre los registros de contabilidad por orden de desembolso seleccionado
+            BindingSource2.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
+            BindingSource3.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
+
+            enlazarTextPagos()
+
+            enlazarTextAprobaciones()
+
+        End If ''
 
     End Sub
 
     Private Sub dgDesembolso_CurrentCellChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgDesembolso.CurrentCellChanged
+
         Me.Cursor = Cursors.WaitCursor
         Try
             txtOrdCompra.Text = recuperarNroOrdenCompra(CInt(BindingSource0.Item(BindingSource0.Position)(0)))
@@ -881,12 +904,17 @@ Public Class SeguimientoOrdenDesembolsoForm
     End Sub
 
     Private Sub TabControl1_Selecting(ByVal sender As System.Object, ByVal e As System.Windows.Forms.TabControlCancelEventArgs) Handles TabControl1.Selecting
-        'Comprabando si la grilla tiene la primera columna no visible
-        If dgPagos.Columns("codDesembolso").Visible Then
-            dgPagos.Columns("codDesembolso").Visible = False
-        End If
-        If dgContabilidad.Columns(0).Visible Then
-            dgContabilidad.Columns(0).Visible = False
+
+        If dgDesembolso.RowCount > 0 Then
+
+            'Comprabando si la grilla tiene la primera columna no visible
+            If dgPagos.Columns("codDesembolso").Visible Then
+                dgPagos.Columns("codDesembolso").Visible = False
+            End If
+            If dgContabilidad.Columns(0).Visible Then
+                dgContabilidad.Columns(0).Visible = False
+            End If
+
         End If
     End Sub
 
@@ -1035,6 +1063,29 @@ Public Class SeguimientoOrdenDesembolsoForm
         End If
 
         filtrando()
+    End Sub
+
+    
+    Private Sub btnVer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnVer.Click
+        Me.Cursor = Cursors.WaitCursor
+
+        Dim fechaInicio As New SqlParameter("@fechaInicio", SqlDbType.Date)
+        fechaInicio.Value = dtpInicio.Value
+        Dim fechaFin As New SqlParameter("@fechaFin", SqlDbType.Date)
+        fechaFin.Value = dtpFin.Value
+
+
+        Dim parametros(1) As SqlParameter
+
+        parametros(0) = fechaInicio
+        parametros(1) = fechaFin
+
+        oDataManager.CargarGrilla("PA_SeguimientoDesembolso", parametros, CommandType.StoredProcedure, dgDesembolso, BindingSource0)
+        BindingNavigator1.BindingSource = BindingSource0
+
+        Me.Cursor = Cursors.Default
+
+
     End Sub
 
     

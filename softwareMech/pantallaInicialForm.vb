@@ -342,7 +342,7 @@ Public Class pantallaInicialForm
         opcAlmE.Visible = False 'Entrada Almacen
         opcAlmS.Visible = False 'Salida Almacen
 
-        infT2.Visible = False ' informe de gastos por dia
+        'infT2.Visible = False ' informe de gastos por dia
 
         ToolStripSeparator3.Visible = False
         ToolStripSeparator4.Visible = False

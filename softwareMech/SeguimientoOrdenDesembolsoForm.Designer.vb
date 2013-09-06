@@ -21,9 +21,9 @@ Partial Class SeguimientoOrdenDesembolsoForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SeguimientoOrdenDesembolsoForm))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.gbDesembolso = New System.Windows.Forms.GroupBox
         Me.chkSolicitante = New System.Windows.Forms.CheckBox
         Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
@@ -129,6 +129,11 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Label21 = New System.Windows.Forms.Label
         Me.chkObras = New System.Windows.Forms.CheckBox
         Me.chkProveedor = New System.Windows.Forms.CheckBox
+        Me.btnVer = New System.Windows.Forms.Button
+        Me.Label26 = New System.Windows.Forms.Label
+        Me.dtpInicio = New System.Windows.Forms.DateTimePicker
+        Me.Label29 = New System.Windows.Forms.Label
+        Me.dtpFin = New System.Windows.Forms.DateTimePicker
         Me.gbDesembolso.SuspendLayout()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindingNavigator1.SuspendLayout()
@@ -157,9 +162,9 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.gbDesembolso.Controls.Add(Me.chkSolicitante)
         Me.gbDesembolso.Controls.Add(Me.BindingNavigator1)
         Me.gbDesembolso.Controls.Add(Me.dgDesembolso)
-        Me.gbDesembolso.Location = New System.Drawing.Point(18, 47)
+        Me.gbDesembolso.Location = New System.Drawing.Point(18, 79)
         Me.gbDesembolso.Name = "gbDesembolso"
-        Me.gbDesembolso.Size = New System.Drawing.Size(891, 240)
+        Me.gbDesembolso.Size = New System.Drawing.Size(891, 208)
         Me.gbDesembolso.TabIndex = 3
         Me.gbDesembolso.TabStop = False
         '
@@ -182,21 +187,21 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.BindingNavigator1.DeleteItem = Nothing
         Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.btnImprimir, Me.ToolStripSeparator1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.cbEstadoDesembolso, Me.ToolStripSeparator3, Me.ToolStripLabel2, Me.TSLabelSolicitante, Me.cbSolicitante})
-        Me.BindingNavigator1.Location = New System.Drawing.Point(3, 210)
+        Me.BindingNavigator1.Location = New System.Drawing.Point(3, 180)
         Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
         Me.BindingNavigator1.MoveNextItem = Me.BindingNavigatorMoveNextItem
         Me.BindingNavigator1.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.BindingNavigator1.Name = "BindingNavigator1"
         Me.BindingNavigator1.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BindingNavigator1.Size = New System.Drawing.Size(885, 27)
+        Me.BindingNavigator1.Size = New System.Drawing.Size(885, 25)
         Me.BindingNavigator1.TabIndex = 1
         Me.BindingNavigator1.Text = "BindingNavigator1"
         '
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(37, 24)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(37, 22)
         Me.BindingNavigatorCountItem.Text = "de {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
         '
@@ -206,7 +211,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
         Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(23, 24)
+        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(23, 22)
         Me.BindingNavigatorMoveFirstItem.Text = "Mover primero"
         '
         'BindingNavigatorMovePreviousItem
@@ -215,13 +220,13 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
         Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(23, 24)
+        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(23, 22)
         Me.BindingNavigatorMovePreviousItem.Text = "Mover anterior"
         '
         'BindingNavigatorSeparator
         '
         Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 27)
+        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 25)
         '
         'BindingNavigatorPositionItem
         '
@@ -235,7 +240,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         'BindingNavigatorSeparator1
         '
         Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
-        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 27)
+        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 25)
         '
         'BindingNavigatorMoveNextItem
         '
@@ -243,7 +248,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
         Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(23, 24)
+        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(23, 22)
         Me.BindingNavigatorMoveNextItem.Text = "Mover siguiente"
         '
         'BindingNavigatorMoveLastItem
@@ -252,13 +257,13 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
         Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(23, 24)
+        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(23, 22)
         Me.BindingNavigatorMoveLastItem.Text = "Mover último"
         '
         'BindingNavigatorSeparator2
         '
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
-        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 27)
+        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
         '
         'btnImprimir
         '
@@ -266,66 +271,66 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
         Me.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(138, 24)
+        Me.btnImprimir.Size = New System.Drawing.Size(138, 22)
         Me.btnImprimir.Text = "Imprimir Desembolso"
         Me.btnImprimir.ToolTipText = "Imprimir orden de desembolso"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 27)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(42, 24)
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(42, 22)
         Me.ToolStripLabel1.Text = "Estado"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 27)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
         '
         'cbEstadoDesembolso
         '
         Me.cbEstadoDesembolso.AutoCompleteCustomSource.AddRange(New String() {"TODOS", "PENDIENTE", "TERMINADO", "CERRADO", "ANULADO"})
         Me.cbEstadoDesembolso.Items.AddRange(New Object() {"TODOS", "PENDIENTE", "TERMINADO", "CERRADO", "ANULADO"})
         Me.cbEstadoDesembolso.Name = "cbEstadoDesembolso"
-        Me.cbEstadoDesembolso.Size = New System.Drawing.Size(90, 27)
+        Me.cbEstadoDesembolso.Size = New System.Drawing.Size(90, 25)
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 27)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
         '
         'ToolStripLabel2
         '
         Me.ToolStripLabel2.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
         Me.ToolStripLabel2.Name = "ToolStripLabel2"
-        Me.ToolStripLabel2.Size = New System.Drawing.Size(61, 24)
+        Me.ToolStripLabel2.Size = New System.Drawing.Size(61, 22)
         Me.ToolStripLabel2.Text = "Solicitante"
         '
         'TSLabelSolicitante
         '
         Me.TSLabelSolicitante.Name = "TSLabelSolicitante"
-        Me.TSLabelSolicitante.Size = New System.Drawing.Size(70, 24)
+        Me.TSLabelSolicitante.Size = New System.Drawing.Size(70, 22)
         Me.TSLabelSolicitante.Text = "      Todos    "
         '
         'cbSolicitante
         '
         Me.cbSolicitante.Name = "cbSolicitante"
-        Me.cbSolicitante.Size = New System.Drawing.Size(240, 23)
+        Me.cbSolicitante.Size = New System.Drawing.Size(240, 25)
         Me.cbSolicitante.Visible = False
         '
         'dgDesembolso
         '
         Me.dgDesembolso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgDesembolso.Location = New System.Drawing.Point(0, 6)
+        Me.dgDesembolso.Location = New System.Drawing.Point(0, 11)
         Me.dgDesembolso.Name = "dgDesembolso"
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgDesembolso.RowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgDesembolso.Size = New System.Drawing.Size(887, 203)
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgDesembolso.RowsDefaultCellStyle = DataGridViewCellStyle4
+        Me.dgDesembolso.Size = New System.Drawing.Size(887, 198)
         Me.dgDesembolso.TabIndex = 0
         '
         'TabControl1
@@ -640,8 +645,8 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dgPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgPagos.Location = New System.Drawing.Point(13, 37)
         Me.dgPagos.Name = "dgPagos"
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgPagos.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgPagos.RowsDefaultCellStyle = DataGridViewCellStyle5
         Me.dgPagos.Size = New System.Drawing.Size(845, 132)
         Me.dgPagos.TabIndex = 0
         '
@@ -729,8 +734,8 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dgContabilidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgContabilidad.Location = New System.Drawing.Point(9, 19)
         Me.dgContabilidad.Name = "dgContabilidad"
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgContabilidad.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgContabilidad.RowsDefaultCellStyle = DataGridViewCellStyle6
         Me.dgContabilidad.Size = New System.Drawing.Size(828, 135)
         Me.dgContabilidad.TabIndex = 0
         '
@@ -1056,24 +1061,24 @@ Partial Class SeguimientoOrdenDesembolsoForm
         '
         Me.cbObra.DropDownWidth = 550
         Me.cbObra.FormattingEnabled = True
-        Me.cbObra.Location = New System.Drawing.Point(128, 26)
+        Me.cbObra.Location = New System.Drawing.Point(288, 56)
         Me.cbObra.Name = "cbObra"
-        Me.cbObra.Size = New System.Drawing.Size(401, 21)
+        Me.cbObra.Size = New System.Drawing.Size(354, 21)
         Me.cbObra.TabIndex = 6
         '
         'cbProveedor
         '
         Me.cbProveedor.DropDownWidth = 400
         Me.cbProveedor.FormattingEnabled = True
-        Me.cbProveedor.Location = New System.Drawing.Point(674, 26)
+        Me.cbProveedor.Location = New System.Drawing.Point(319, 29)
         Me.cbProveedor.Name = "cbProveedor"
-        Me.cbProveedor.Size = New System.Drawing.Size(226, 21)
+        Me.cbProveedor.Size = New System.Drawing.Size(173, 21)
         Me.cbProveedor.TabIndex = 6
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(20, 28)
+        Me.Label20.Location = New System.Drawing.Point(180, 58)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(38, 13)
         Me.Label20.TabIndex = 6
@@ -1082,7 +1087,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(535, 28)
+        Me.Label21.Location = New System.Drawing.Point(180, 31)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(69, 13)
         Me.Label21.TabIndex = 6
@@ -1093,7 +1098,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.chkObras.AutoSize = True
         Me.chkObras.Checked = True
         Me.chkObras.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkObras.Location = New System.Drawing.Point(61, 28)
+        Me.chkObras.Location = New System.Drawing.Point(221, 58)
         Me.chkObras.Name = "chkObras"
         Me.chkObras.Size = New System.Drawing.Size(61, 17)
         Me.chkObras.TabIndex = 7
@@ -1105,38 +1110,93 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.chkProveedor.AutoSize = True
         Me.chkProveedor.Checked = True
         Me.chkProveedor.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkProveedor.Location = New System.Drawing.Point(610, 28)
+        Me.chkProveedor.Location = New System.Drawing.Point(255, 31)
         Me.chkProveedor.Name = "chkProveedor"
         Me.chkProveedor.Size = New System.Drawing.Size(61, 17)
         Me.chkProveedor.TabIndex = 7
         Me.chkProveedor.Text = "Todos"
         Me.chkProveedor.UseVisualStyleBackColor = True
         '
+        'btnVer
+        '
+        Me.btnVer.Location = New System.Drawing.Point(834, 24)
+        Me.btnVer.Name = "btnVer"
+        Me.btnVer.Size = New System.Drawing.Size(75, 23)
+        Me.btnVer.TabIndex = 8
+        Me.btnVer.Text = "VER"
+        Me.btnVer.UseVisualStyleBackColor = True
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Location = New System.Drawing.Point(19, 31)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(47, 13)
+        Me.Label26.TabIndex = 11
+        Me.Label26.Text = "Desde:"
+        '
+        'dtpInicio
+        '
+        Me.dtpInicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpInicio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpInicio.Location = New System.Drawing.Point(68, 27)
+        Me.dtpInicio.Name = "dtpInicio"
+        Me.dtpInicio.Size = New System.Drawing.Size(106, 20)
+        Me.dtpInicio.TabIndex = 10
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(18, 57)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(44, 13)
+        Me.Label29.TabIndex = 12
+        Me.Label29.Text = "Hasta:"
+        '
+        'dtpFin
+        '
+        Me.dtpFin.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpFin.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFin.Location = New System.Drawing.Point(68, 53)
+        Me.dtpFin.Name = "dtpFin"
+        Me.dtpFin.Size = New System.Drawing.Size(106, 20)
+        Me.dtpFin.TabIndex = 9
+        '
         'SeguimientoOrdenDesembolsoForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
         Me.ClientSize = New System.Drawing.Size(915, 675)
-        Me.Controls.Add(Me.cbProveedor)
+        Me.Controls.Add(Me.Label26)
+        Me.Controls.Add(Me.dtpInicio)
+        Me.Controls.Add(Me.Label29)
+        Me.Controls.Add(Me.dtpFin)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.Label20)
+        Me.Controls.Add(Me.cbProveedor)
         Me.Controls.Add(Me.cbObra)
-        Me.Controls.Add(Me.Label21)
+        Me.Controls.Add(Me.btnVer)
         Me.Controls.Add(Me.chkObras)
-        Me.Controls.Add(Me.chkProveedor)
         Me.Controls.Add(Me.gbDesembolso)
+        Me.Controls.Add(Me.Label21)
+        Me.Controls.Add(Me.chkProveedor)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "SeguimientoOrdenDesembolsoForm"
-        Me.Controls.SetChildIndex(Me.gbDesembolso, 0)
         Me.Controls.SetChildIndex(Me.chkProveedor, 0)
-        Me.Controls.SetChildIndex(Me.chkObras, 0)
         Me.Controls.SetChildIndex(Me.Label21, 0)
+        Me.Controls.SetChildIndex(Me.gbDesembolso, 0)
+        Me.Controls.SetChildIndex(Me.chkObras, 0)
+        Me.Controls.SetChildIndex(Me.btnVer, 0)
         Me.Controls.SetChildIndex(Me.cbObra, 0)
+        Me.Controls.SetChildIndex(Me.cbProveedor, 0)
         Me.Controls.SetChildIndex(Me.Label20, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
-        Me.Controls.SetChildIndex(Me.cbProveedor, 0)
         Me.Controls.SetChildIndex(Me.lblTitulo, 0)
         Me.Controls.SetChildIndex(Me.lblDerecha, 0)
+        Me.Controls.SetChildIndex(Me.dtpFin, 0)
+        Me.Controls.SetChildIndex(Me.Label29, 0)
+        Me.Controls.SetChildIndex(Me.dtpInicio, 0)
+        Me.Controls.SetChildIndex(Me.Label26, 0)
         Me.gbDesembolso.ResumeLayout(False)
         Me.gbDesembolso.PerformLayout()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1264,5 +1324,10 @@ Partial Class SeguimientoOrdenDesembolsoForm
     Friend WithEvents cbSolicitante As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents chkSolicitante As System.Windows.Forms.CheckBox
     Friend WithEvents TSLabelSolicitante As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents btnVer As System.Windows.Forms.Button
+    Friend WithEvents Label26 As System.Windows.Forms.Label
+    Friend WithEvents dtpInicio As System.Windows.Forms.DateTimePicker
+    Friend WithEvents Label29 As System.Windows.Forms.Label
+    Friend WithEvents dtpFin As System.Windows.Forms.DateTimePicker
 
 End Class

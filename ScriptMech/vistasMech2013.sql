@@ -586,11 +586,11 @@ select TOD.idOP,tod.codigo as codObra,tod.serie,tod.nroDes,tod.fecDes,tod.monto,
 	,(TPE.nombre +' '+ TPE.apellido) as solicitante,tid.codIde  ,TID.ruc, TID.fono,TID.email
 	--,toc.nroOrden as idCompra,toc.nroO as nroCompra     
 	from TOrdenDesembolso TOD 
-	join TMoneda TM on TOD.codMon=TM.codMon 
-	join  TIdentidad TID on TID.codIde=tod.codIde 
-	join TLugarTrabajo TLU on tlu.codigo=TOD.codigo  
+	inner join TMoneda TM on TOD.codMon=TM.codMon 
+	inner join  TIdentidad TID on TID.codIde=tod.codIde 
+	inner join TLugarTrabajo TLU on tlu.codigo=TOD.codigo  
 	inner join TPersDesem TPDE on TPDE.idOP= TOD.idOP 
-	join TPersonal TPE on TPE.codPers = TPDE.codPers  
+	inner join TPersonal TPE on TPE.codPers = TPDE.codPers  
 	--join TDesOrden TDECO on tdeco.idOP = tod.idOP  
 	--join TOrdenCompra TOC on toc.nroOrden =tdeco.nroOrden   
 	where TPDE.tipoA=1	
@@ -603,11 +603,11 @@ as
 	select  TP.idOP as codDesembolso,TP.fecpago,TP.pagoDet,Tp.montoPago,TT.tipoP,Tm.moneda,TM.simbolo,TCBA.nroCue,TBA.banco,
 	TP.nroP,TP.montoD,TCLA.clasif                              
 from TPagoDesembolso TP 
-join TTipoPago TT  on TT.codTipP=TP.codTipP
-join TMoneda TM on TP.codMon=TM.codMon 
-join TCuentaBan TCBA on TCBA.idCue=TP.idCue  
-join TBanco TBA on TCBA.codBan = TBA.codBan 
-join TClasifPago TCLA on tCLA.codCla=TP.codCla  
+inner join TTipoPago TT  on TT.codTipP=TP.codTipP
+inner join TMoneda TM on TP.codMon=TM.codMon 
+inner join TCuentaBan TCBA on TCBA.idCue=TP.idCue  
+inner join TBanco TBA on TCBA.codBan = TBA.codBan 
+inner join TClasifPago TCLA on tCLA.codCla=TP.codCla  
 GO
 
  --vista para mostrar las aprobaciones de la orden de desembolso
