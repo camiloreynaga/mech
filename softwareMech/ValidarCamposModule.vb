@@ -163,4 +163,21 @@ Module ValidarCamposModule
         End If
     End Sub
 
+    ''' <summary>
+    ''' Valida el ingreso de número
+    ''' </summary>
+    ''' <param name="CajaTexto"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Public Sub ValidarNumero(ByVal CajaTexto As Windows.Forms.TextBox, ByVal e As System.Windows.Forms.KeyPressEventArgs)
+        'Obtiendo el separador Decimal (coma o punto)
+        If Char.IsDigit(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+    End Sub
+
 End Module

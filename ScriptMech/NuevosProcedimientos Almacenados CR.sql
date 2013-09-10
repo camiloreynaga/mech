@@ -1,6 +1,6 @@
 -- PAra consultar los seguimientos
 --Pendiente de actualización
-create proc PA_SeguimientoDesembolso
+ create proc PA_SeguimientoDesembolso
 @fechaInicio date,
 @fechaFin date
 as

@@ -21,9 +21,9 @@ Partial Class SeguimientoOrdenDesembolsoForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SeguimientoOrdenDesembolsoForm))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.gbDesembolso = New System.Windows.Forms.GroupBox
         Me.chkSolicitante = New System.Windows.Forms.CheckBox
         Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
@@ -43,7 +43,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.cbEstadoDesembolso = New System.Windows.Forms.ToolStripComboBox
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
         Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel
-        Me.TSLabelSolicitante = New System.Windows.Forms.ToolStripLabel
         Me.cbSolicitante = New System.Windows.Forms.ToolStripComboBox
         Me.dgDesembolso = New System.Windows.Forms.DataGridView
         Me.TabControl1 = New System.Windows.Forms.TabControl
@@ -134,6 +133,9 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dtpInicio = New System.Windows.Forms.DateTimePicker
         Me.Label29 = New System.Windows.Forms.Label
         Me.dtpFin = New System.Windows.Forms.DateTimePicker
+        Me.TSLabelSolicitante = New System.Windows.Forms.ToolStripLabel
+        Me.txtNroDesembolso = New System.Windows.Forms.TextBox
+        Me.Label35 = New System.Windows.Forms.Label
         Me.gbDesembolso.SuspendLayout()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindingNavigator1.SuspendLayout()
@@ -173,7 +175,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.chkSolicitante.AutoSize = True
         Me.chkSolicitante.Checked = True
         Me.chkSolicitante.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkSolicitante.Location = New System.Drawing.Point(563, 217)
+        Me.chkSolicitante.Location = New System.Drawing.Point(563, 184)
         Me.chkSolicitante.Name = "chkSolicitante"
         Me.chkSolicitante.Size = New System.Drawing.Size(61, 17)
         Me.chkSolicitante.TabIndex = 2
@@ -311,12 +313,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.ToolStripLabel2.Size = New System.Drawing.Size(61, 22)
         Me.ToolStripLabel2.Text = "Solicitante"
         '
-        'TSLabelSolicitante
-        '
-        Me.TSLabelSolicitante.Name = "TSLabelSolicitante"
-        Me.TSLabelSolicitante.Size = New System.Drawing.Size(70, 22)
-        Me.TSLabelSolicitante.Text = "      Todos    "
-        '
         'cbSolicitante
         '
         Me.cbSolicitante.Name = "cbSolicitante"
@@ -328,8 +324,8 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dgDesembolso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgDesembolso.Location = New System.Drawing.Point(0, 11)
         Me.dgDesembolso.Name = "dgDesembolso"
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgDesembolso.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgDesembolso.RowsDefaultCellStyle = DataGridViewCellStyle16
         Me.dgDesembolso.Size = New System.Drawing.Size(887, 198)
         Me.dgDesembolso.TabIndex = 0
         '
@@ -645,8 +641,8 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dgPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgPagos.Location = New System.Drawing.Point(13, 37)
         Me.dgPagos.Name = "dgPagos"
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgPagos.RowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle17.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgPagos.RowsDefaultCellStyle = DataGridViewCellStyle17
         Me.dgPagos.Size = New System.Drawing.Size(845, 132)
         Me.dgPagos.TabIndex = 0
         '
@@ -734,8 +730,8 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dgContabilidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgContabilidad.Location = New System.Drawing.Point(9, 19)
         Me.dgContabilidad.Name = "dgContabilidad"
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgContabilidad.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgContabilidad.RowsDefaultCellStyle = DataGridViewCellStyle18
         Me.dgContabilidad.Size = New System.Drawing.Size(828, 135)
         Me.dgContabilidad.TabIndex = 0
         '
@@ -1072,7 +1068,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.cbProveedor.FormattingEnabled = True
         Me.cbProveedor.Location = New System.Drawing.Point(319, 29)
         Me.cbProveedor.Name = "cbProveedor"
-        Me.cbProveedor.Size = New System.Drawing.Size(173, 21)
+        Me.cbProveedor.Size = New System.Drawing.Size(323, 21)
         Me.cbProveedor.TabIndex = 6
         '
         'Label20
@@ -1162,16 +1158,39 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dtpFin.Size = New System.Drawing.Size(106, 20)
         Me.dtpFin.TabIndex = 9
         '
+        'TSLabelSolicitante
+        '
+        Me.TSLabelSolicitante.Name = "TSLabelSolicitante"
+        Me.TSLabelSolicitante.Size = New System.Drawing.Size(70, 22)
+        Me.TSLabelSolicitante.Text = "      Todos    "
+        '
+        'txtNroDesembolso
+        '
+        Me.txtNroDesembolso.Location = New System.Drawing.Point(752, 57)
+        Me.txtNroDesembolso.Name = "txtNroDesembolso"
+        Me.txtNroDesembolso.Size = New System.Drawing.Size(100, 20)
+        Me.txtNroDesembolso.TabIndex = 13
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Location = New System.Drawing.Point(649, 60)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(97, 13)
+        Me.Label35.TabIndex = 6
+        Me.Label35.Text = "N° Desembolso:"
+        '
         'SeguimientoOrdenDesembolsoForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
         Me.ClientSize = New System.Drawing.Size(915, 675)
+        Me.Controls.Add(Me.txtNroDesembolso)
         Me.Controls.Add(Me.Label26)
         Me.Controls.Add(Me.dtpInicio)
         Me.Controls.Add(Me.Label29)
         Me.Controls.Add(Me.dtpFin)
-        Me.Controls.Add(Me.GroupBox2)
+        Me.Controls.Add(Me.Label35)
         Me.Controls.Add(Me.Label20)
         Me.Controls.Add(Me.cbProveedor)
         Me.Controls.Add(Me.cbObra)
@@ -1180,8 +1199,10 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Controls.Add(Me.gbDesembolso)
         Me.Controls.Add(Me.Label21)
         Me.Controls.Add(Me.chkProveedor)
+        Me.Controls.Add(Me.GroupBox2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "SeguimientoOrdenDesembolsoForm"
+        Me.Controls.SetChildIndex(Me.GroupBox2, 0)
         Me.Controls.SetChildIndex(Me.chkProveedor, 0)
         Me.Controls.SetChildIndex(Me.Label21, 0)
         Me.Controls.SetChildIndex(Me.gbDesembolso, 0)
@@ -1190,13 +1211,14 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.Controls.SetChildIndex(Me.cbObra, 0)
         Me.Controls.SetChildIndex(Me.cbProveedor, 0)
         Me.Controls.SetChildIndex(Me.Label20, 0)
-        Me.Controls.SetChildIndex(Me.GroupBox2, 0)
+        Me.Controls.SetChildIndex(Me.Label35, 0)
         Me.Controls.SetChildIndex(Me.lblTitulo, 0)
         Me.Controls.SetChildIndex(Me.lblDerecha, 0)
         Me.Controls.SetChildIndex(Me.dtpFin, 0)
         Me.Controls.SetChildIndex(Me.Label29, 0)
         Me.Controls.SetChildIndex(Me.dtpInicio, 0)
         Me.Controls.SetChildIndex(Me.Label26, 0)
+        Me.Controls.SetChildIndex(Me.txtNroDesembolso, 0)
         Me.gbDesembolso.ResumeLayout(False)
         Me.gbDesembolso.PerformLayout()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1323,11 +1345,13 @@ Partial Class SeguimientoOrdenDesembolsoForm
     Friend WithEvents btnCerrar As System.Windows.Forms.Button
     Friend WithEvents cbSolicitante As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents chkSolicitante As System.Windows.Forms.CheckBox
-    Friend WithEvents TSLabelSolicitante As System.Windows.Forms.ToolStripLabel
     Friend WithEvents btnVer As System.Windows.Forms.Button
     Friend WithEvents Label26 As System.Windows.Forms.Label
     Friend WithEvents dtpInicio As System.Windows.Forms.DateTimePicker
     Friend WithEvents Label29 As System.Windows.Forms.Label
     Friend WithEvents dtpFin As System.Windows.Forms.DateTimePicker
+    Friend WithEvents TSLabelSolicitante As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents txtNroDesembolso As System.Windows.Forms.TextBox
+    Friend WithEvents Label35 As System.Windows.Forms.Label
 
 End Class

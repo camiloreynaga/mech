@@ -61,6 +61,8 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' <remarks></remarks>
     Dim oDataManager As New cDataManager
 
+    Dim vCodDesem As Integer = -1
+
 #End Region
 
 #Region "Métodos"
@@ -401,8 +403,10 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub enlazarText()
-        If dgDesembolso.Rows.Count = 0 Then
+        If dgDesembolso.RowCount = 0 Then
             Exit Sub
+
+           
 
         Else
             'Datos de Generales de Orden desembolso
@@ -547,7 +551,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         Dim aBackColors As Color() = {Color.Green, Color.Yellow, Color.Red}
         Dim aForeColors As Color() = {Color.White, Color.Red, Color.White}
 
-        'Aprobación Gerencia
+        'Aprobación Gerencia probando si 
         If BindingSource3.Count > 1 Then
             If BindingSource3.Item(1)(3) = "GERENCIA" Then
                 txtEstadoGerencia.Text = BindingSource3.Item(1)(4)
@@ -616,9 +620,9 @@ Public Class SeguimientoOrdenDesembolsoForm
 
             End If
 
-            If TypeOf Me.Controls(i) Is TextBox Then 'TEXTBOX
-                CType(Me.Controls(i), TextBox).ReadOnly = True
-            End If
+            'If TypeOf Me.Controls(i) Is TextBox Then 'TEXTBOX
+            '    CType(Me.Controls(i), TextBox).ReadOnly = True
+            'End If
 
             If TypeOf Me.Controls(i) Is GroupBox Then 'TEXTBOX
                 For c As Integer = 0 To Me.Controls(i).Controls.Count - 1
@@ -705,7 +709,8 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub filtrando()
-        If BindingSource4.Position >= 0 And BindingSource5.Position >= 0 Then
+        If cbObra.Items.Count > 0 And cbObra.Items.Count > 0 Then 'BindingSource4.Position >= 0 And BindingSource5.Position >= 0 Then
+
 
 
             BindingSource0.Filter = ""
@@ -735,9 +740,14 @@ Public Class SeguimientoOrdenDesembolsoForm
                 pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
             End If
 
+            If txtNroDesembolso.Text.Length > 0 Then
+                pCriterio = "nroDes=" & txtNroDesembolso.Text.Trim()
+                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+            End If
+
             BindingSource0.Filter = pFiltro
 
-            BindingSource0.Sort = "idOp Desc"
+            'BindingSource0.Sort = "idOp Desc"
         End If
         'Colorea la Grilla
         ColorearGrilla()
@@ -808,8 +818,8 @@ Public Class SeguimientoOrdenDesembolsoForm
 
     Private Sub SeguimientoOrdenDesembolsoForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-        'Dim wait As New waitForm
-        'wait.Show()
+        Dim wait As New waitForm
+        wait.Show()
         Me.Cursor = Cursors.WaitCursor
 
         configurarColorControl()
@@ -823,13 +833,12 @@ Public Class SeguimientoOrdenDesembolsoForm
         oDataManager.CargarCombo("select (nombre +' '+ apellido) as solicitante from Tpersonal where codPers > 1", CommandType.Text, cbSolicitante.ComboBox, "solicitante", "solicitante")
 
 
-
         'DatosIniciales()
 
         ' dgDesembolso.FirstDisplayedScrollingRowIndex = 0
 
-
         'Modifica las columnas de Grilla Desembolso
+
         'ModificandoColumnasDGV()
         'ModificandoColumnasDGVPagos()
         'ModificandoColumnaDGVConta()
@@ -843,8 +852,14 @@ Public Class SeguimientoOrdenDesembolsoForm
         'enlazarText()
         'enlazarTextAprobaciones()
 
-        'wait.Close()
+
         Me.Cursor = Cursors.Default
+
+        'Ejecuta la carga de Datos para el día actual
+        btnVer.PerformClick()
+
+        ' filtrando()
+        wait.Close()
     End Sub
 
 
@@ -852,21 +867,59 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         If dgDesembolso.RowCount > 0 Then
 
+            If vCodDesem <> BindingSource0.Item(BindingSource0.Position)(0) Then
+                'Enlazar los datos de Grilla con los de form
+                enlazarTextPagos()
+
+                Dim queryPagos As String = "Select codDesembolso,fecPago,montoPago,tipoP,moneda,simbolo,nroCue,banco,pagoDet,montoD,nroP,clasif from VPagoDesembolsoSeguimiento where codDesembolso=" & BindingSource0.Item(BindingSource0.Position)(0)
+                '"PA_SeguimientoPagos"
+                oDataManager.CargarGrilla(queryPagos, CommandType.Text, dgPagos, BindingSource1)
+                ModificandoColumnasDGVPagos()
+
+                Dim queryConta As String = "select idOP,fecEnt,nroConfor  from TOrdenDesembolso where idOP =" & BindingSource0.Item(BindingSource0.Position)(0)
+                oDataManager.CargarGrilla(queryConta, CommandType.Text, dgContabilidad, BindingSource2)
+                ModificandoColumnaDGVConta()
 
 
-            enlazarText()
-            'filtrando para que muestre los registros de pagos por orden de desembolso seleccionado
-            '  
-            BindingSource1.Filter = "codDesembolso=" & BindingSource0.Item(BindingSource0.Position)(0)
-            'filtrando para que muestre los registros de contabilidad por orden de desembolso seleccionado
-            BindingSource2.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
-            BindingSource3.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
+                Dim _dg As New DataGridView
+                Dim queryApro As String = "select idOp,nombre,apellido,Area,Estado,ObserDesem,fecFir from VAprobacionesSeguimiento where idOp=" & BindingSource0.Item(BindingSource0.Position)(0)
+                oDataManager.CargarGrilla(queryApro, CommandType.Text, _dg, BindingSource3)
 
-            enlazarTextPagos()
+                enlazarText()
 
-            enlazarTextAprobaciones()
+                'filtrando para que muestre los registros de pagos por orden de desembolso seleccionado
+
+                ' BindingSource1.Filter = "codDesembolso=" & BindingSource0.Item(BindingSource0.Position)(0)
+                'filtrando para que muestre los registros de contabilidad por orden de desembolso seleccionado
+                ' BindingSource2.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
+                'BindingSource3.Filter = "idOP=" & BindingSource0.Item(BindingSource0.Position)(0)
+
+
+                enlazarTextAprobaciones()
+
+                'Actualizando la Varible de control
+                vCodDesem = BindingSource0.Item(BindingSource0.Position)(0)
+
+
+            End If
+
+        Else
+            ' limpiando los text
+            'For i As Integer = 0 To GroupBox2.Controls.Count - 1
+            '    If TypeOf GroupBox2.Controls(i) Is TextBox Then
+            '        CType(GroupBox2.Controls(i), TextBox).Clear()
+            '    End If
+            'Next
+
+            'For i As Integer = 0 To TabControl1.TabPages(0).Controls.Count - 1
+            '    If TypeOf TabControl1.TabPages(0).Controls(i) Is TextBox Then
+            '        CType(TabControl1.TabPages(0).Controls(i), TextBox).Clear()
+            '    End If
+            'Next
 
         End If ''
+
+
 
     End Sub
 
@@ -942,7 +995,7 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub SeguimientoOrdenDesembolsoForm_Shown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Shown
-        ColorearGrilla()
+
     End Sub
 
     Private Sub dgDesembolso_RowPostPaint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewRowPostPaintEventArgs)
@@ -1080,8 +1133,15 @@ Public Class SeguimientoOrdenDesembolsoForm
         parametros(0) = fechaInicio
         parametros(1) = fechaFin
 
-        oDataManager.CargarGrilla("PA_SeguimientoDesembolso", parametros, CommandType.StoredProcedure, dgDesembolso, BindingSource0)
+        Dim consulta As String = "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro, nroConfor, fecEnt, moneda, simbolo, solicitante, ruc, fono, email, codObra, codIde from VOrdenDesembolsoSeguimiento where fecDes between @fechaInicio and @fechaFin "
+        '"PA_SeguimientoDesembolso"
+        oDataManager.CargarGrilla(consulta, parametros, CommandType.Text, dgDesembolso, BindingSource0)
         BindingNavigator1.BindingSource = BindingSource0
+
+        ModificandoColumnasDGV()
+
+        'Dando Color a la Grilla
+        ColorearGrilla()
 
         Me.Cursor = Cursors.Default
 
@@ -1089,4 +1149,11 @@ Public Class SeguimientoOrdenDesembolsoForm
     End Sub
 
     
+    Private Sub txtNroDesembolso_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNroDesembolso.TextChanged
+        filtrando()
+    End Sub
+
+    Private Sub txtNroDesembolso_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtNroDesembolso.KeyPress
+        ValidarNumero(sender, e)
+    End Sub
 End Class
