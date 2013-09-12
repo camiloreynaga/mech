@@ -21,9 +21,9 @@ Partial Class SeguimientoOrdenDesembolsoForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SeguimientoOrdenDesembolsoForm))
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.gbDesembolso = New System.Windows.Forms.GroupBox
         Me.chkSolicitante = New System.Windows.Forms.CheckBox
         Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
@@ -43,6 +43,7 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.cbEstadoDesembolso = New System.Windows.Forms.ToolStripComboBox
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
         Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel
+        Me.TSLabelSolicitante = New System.Windows.Forms.ToolStripLabel
         Me.cbSolicitante = New System.Windows.Forms.ToolStripComboBox
         Me.dgDesembolso = New System.Windows.Forms.DataGridView
         Me.TabControl1 = New System.Windows.Forms.TabControl
@@ -133,7 +134,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dtpInicio = New System.Windows.Forms.DateTimePicker
         Me.Label29 = New System.Windows.Forms.Label
         Me.dtpFin = New System.Windows.Forms.DateTimePicker
-        Me.TSLabelSolicitante = New System.Windows.Forms.ToolStripLabel
         Me.txtNroDesembolso = New System.Windows.Forms.TextBox
         Me.Label35 = New System.Windows.Forms.Label
         Me.gbDesembolso.SuspendLayout()
@@ -313,6 +313,12 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.ToolStripLabel2.Size = New System.Drawing.Size(61, 22)
         Me.ToolStripLabel2.Text = "Solicitante"
         '
+        'TSLabelSolicitante
+        '
+        Me.TSLabelSolicitante.Name = "TSLabelSolicitante"
+        Me.TSLabelSolicitante.Size = New System.Drawing.Size(70, 22)
+        Me.TSLabelSolicitante.Text = "      Todos    "
+        '
         'cbSolicitante
         '
         Me.cbSolicitante.Name = "cbSolicitante"
@@ -324,9 +330,9 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dgDesembolso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgDesembolso.Location = New System.Drawing.Point(0, 11)
         Me.dgDesembolso.Name = "dgDesembolso"
-        DataGridViewCellStyle16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgDesembolso.RowsDefaultCellStyle = DataGridViewCellStyle16
-        Me.dgDesembolso.Size = New System.Drawing.Size(887, 198)
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgDesembolso.RowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgDesembolso.Size = New System.Drawing.Size(887, 166)
         Me.dgDesembolso.TabIndex = 0
         '
         'TabControl1
@@ -641,8 +647,8 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dgPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgPagos.Location = New System.Drawing.Point(13, 37)
         Me.dgPagos.Name = "dgPagos"
-        DataGridViewCellStyle17.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgPagos.RowsDefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgPagos.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgPagos.Size = New System.Drawing.Size(845, 132)
         Me.dgPagos.TabIndex = 0
         '
@@ -730,8 +736,8 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dgContabilidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgContabilidad.Location = New System.Drawing.Point(9, 19)
         Me.dgContabilidad.Name = "dgContabilidad"
-        DataGridViewCellStyle18.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgContabilidad.RowsDefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgContabilidad.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgContabilidad.Size = New System.Drawing.Size(828, 135)
         Me.dgContabilidad.TabIndex = 0
         '
@@ -1157,12 +1163,6 @@ Partial Class SeguimientoOrdenDesembolsoForm
         Me.dtpFin.Name = "dtpFin"
         Me.dtpFin.Size = New System.Drawing.Size(106, 20)
         Me.dtpFin.TabIndex = 9
-        '
-        'TSLabelSolicitante
-        '
-        Me.TSLabelSolicitante.Name = "TSLabelSolicitante"
-        Me.TSLabelSolicitante.Size = New System.Drawing.Size(70, 22)
-        Me.TSLabelSolicitante.Text = "      Todos    "
         '
         'txtNroDesembolso
         '

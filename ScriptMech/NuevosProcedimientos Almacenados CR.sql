@@ -10,7 +10,7 @@ descOtro,nroConfor,fecEnt,moneda,simbolo,solicitante,ruc,fono,email,codObra,codI
 from VOrdenDesembolsoSeguimiento where fecDes between @fechaInicio and @fechaFin 
 go
 
-
+Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro, nroConfor, fecEnt, moneda, simbolo, solicitante, ruc, fono, email, codObra, codIde from VOrdenDesembolsoSeguimiento
 
 --Para recuperar las ordenes de compra
 create proc PA_RecuperarOrdenCompra

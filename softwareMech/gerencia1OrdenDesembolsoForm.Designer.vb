@@ -20,16 +20,21 @@ Partial Class gerencia1OrdenDesembolsoForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(gerencia1OrdenDesembolsoForm))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
+        Me.txtNroDesembolso = New System.Windows.Forms.TextBox
+        Me.Label35 = New System.Windows.Forms.Label
+        Me.chkVis1 = New System.Windows.Forms.CheckBox
+        Me.btnMostrar = New System.Windows.Forms.Button
+        Me.dgTabla1 = New System.Windows.Forms.DataGridView
         Me.txtTotalDolares = New System.Windows.Forms.TextBox
         Me.Label7 = New System.Windows.Forms.Label
         Me.txtTotalSoles = New System.Windows.Forms.TextBox
         Me.Label6 = New System.Windows.Forms.Label
-        Me.dgTabla1 = New System.Windows.Forms.DataGridView
         Me.btnCerrar = New System.Windows.Forms.Button
+        Me.cbProveedor = New System.Windows.Forms.ComboBox
         Me.Navigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton
@@ -40,7 +45,16 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
+        Me.Label20 = New System.Windows.Forms.Label
         Me.Label1 = New System.Windows.Forms.Label
+        Me.dtpInicio = New System.Windows.Forms.DateTimePicker
+        Me.Label21 = New System.Windows.Forms.Label
+        Me.chkProveedor = New System.Windows.Forms.CheckBox
+        Me.cbObra = New System.Windows.Forms.ComboBox
+        Me.dtpFin = New System.Windows.Forms.DateTimePicker
+        Me.chkObras = New System.Windows.Forms.CheckBox
+        Me.lblHasta = New System.Windows.Forms.Label
+        Me.lblDesde = New System.Windows.Forms.Label
         Me.txtReq = New System.Windows.Forms.TextBox
         Me.Label4 = New System.Windows.Forms.Label
         Me.Panel2 = New System.Windows.Forms.Panel
@@ -64,7 +78,6 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.txtLetraTotal = New System.Windows.Forms.TextBox
         Me.dgTabla2 = New System.Windows.Forms.DataGridView
         Me.Label2 = New System.Windows.Forms.Label
-        Me.cbVis1 = New System.Windows.Forms.CheckBox
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Panel1.SuspendLayout()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,19 +100,82 @@ Partial Class gerencia1OrdenDesembolsoForm
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.txtNroDesembolso)
+        Me.Panel1.Controls.Add(Me.Label35)
+        Me.Panel1.Controls.Add(Me.chkVis1)
+        Me.Panel1.Controls.Add(Me.btnMostrar)
         Me.Panel1.Controls.Add(Me.dgTabla1)
-        Me.Panel1.Controls.Add(Me.cbVis1)
         Me.Panel1.Controls.Add(Me.txtTotalDolares)
         Me.Panel1.Controls.Add(Me.Label7)
         Me.Panel1.Controls.Add(Me.txtTotalSoles)
         Me.Panel1.Controls.Add(Me.Label6)
         Me.Panel1.Controls.Add(Me.btnCerrar)
+        Me.Panel1.Controls.Add(Me.cbProveedor)
         Me.Panel1.Controls.Add(Me.Navigator1)
+        Me.Panel1.Controls.Add(Me.Label20)
         Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.dtpInicio)
+        Me.Panel1.Controls.Add(Me.Label21)
+        Me.Panel1.Controls.Add(Me.chkProveedor)
+        Me.Panel1.Controls.Add(Me.cbObra)
+        Me.Panel1.Controls.Add(Me.dtpFin)
+        Me.Panel1.Controls.Add(Me.chkObras)
+        Me.Panel1.Controls.Add(Me.lblHasta)
+        Me.Panel1.Controls.Add(Me.lblDesde)
         Me.Panel1.Location = New System.Drawing.Point(14, 23)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(892, 321)
         Me.Panel1.TabIndex = 3
+        '
+        'txtNroDesembolso
+        '
+        Me.txtNroDesembolso.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNroDesembolso.Location = New System.Drawing.Point(112, 4)
+        Me.txtNroDesembolso.Name = "txtNroDesembolso"
+        Me.txtNroDesembolso.Size = New System.Drawing.Size(100, 20)
+        Me.txtNroDesembolso.TabIndex = 13
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Location = New System.Drawing.Point(9, 6)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(97, 13)
+        Me.Label35.TabIndex = 6
+        Me.Label35.Text = "N° Desembolso:"
+        '
+        'chkVis1
+        '
+        Me.chkVis1.AutoSize = True
+        Me.chkVis1.Location = New System.Drawing.Point(335, 6)
+        Me.chkVis1.Name = "chkVis1"
+        Me.chkVis1.Size = New System.Drawing.Size(131, 17)
+        Me.chkVis1.TabIndex = 334
+        Me.chkVis1.Text = "Visualizar Todos..."
+        Me.ToolTip1.SetToolTip(Me.chkVis1, "Visualizar Aprobados, Pendientes y Observados")
+        Me.chkVis1.UseVisualStyleBackColor = True
+        '
+        'btnMostrar
+        '
+        Me.btnMostrar.Location = New System.Drawing.Point(821, 3)
+        Me.btnMostrar.Name = "btnMostrar"
+        Me.btnMostrar.Size = New System.Drawing.Size(68, 23)
+        Me.btnMostrar.TabIndex = 335
+        Me.btnMostrar.Text = "Mostrar"
+        Me.btnMostrar.UseVisualStyleBackColor = True
+        '
+        'dgTabla1
+        '
+        Me.dgTabla1.AllowUserToAddRows = False
+        Me.dgTabla1.AllowUserToDeleteRows = False
+        Me.dgTabla1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgTabla1.Location = New System.Drawing.Point(6, 52)
+        Me.dgTabla1.Name = "dgTabla1"
+        Me.dgTabla1.ReadOnly = True
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgTabla1.Size = New System.Drawing.Size(883, 237)
+        Me.dgTabla1.TabIndex = 332
         '
         'txtTotalDolares
         '
@@ -135,19 +211,6 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.Label6.TabIndex = 5
         Me.Label6.Text = "Total S/.:"
         '
-        'dgTabla1
-        '
-        Me.dgTabla1.AllowUserToAddRows = False
-        Me.dgTabla1.AllowUserToDeleteRows = False
-        Me.dgTabla1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgTabla1.Location = New System.Drawing.Point(0, 19)
-        Me.dgTabla1.Name = "dgTabla1"
-        Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle3
-        Me.dgTabla1.Size = New System.Drawing.Size(892, 277)
-        Me.dgTabla1.TabIndex = 332
-        '
         'btnCerrar
         '
         Me.btnCerrar.BackColor = System.Drawing.SystemColors.Control
@@ -160,6 +223,16 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.btnCerrar.TabStop = False
         Me.btnCerrar.Text = "Cerrar"
         Me.btnCerrar.UseVisualStyleBackColor = False
+        '
+        'cbProveedor
+        '
+        Me.cbProveedor.DropDownWidth = 300
+        Me.cbProveedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbProveedor.FormattingEnabled = True
+        Me.cbProveedor.Location = New System.Drawing.Point(609, 27)
+        Me.cbProveedor.Name = "cbProveedor"
+        Me.cbProveedor.Size = New System.Drawing.Size(280, 21)
+        Me.cbProveedor.TabIndex = 6
         '
         'Navigator1
         '
@@ -250,14 +323,106 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
         Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
         '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(4, 29)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(38, 13)
+        Me.Label20.TabIndex = 6
+        Me.Label20.Text = "Obra:"
+        '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(1, 3)
+        Me.Label1.Location = New System.Drawing.Point(6, 52)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(148, 13)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Listado de Desembolsos:"
+        '
+        'dtpInicio
+        '
+        Me.dtpInicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpInicio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpInicio.Location = New System.Drawing.Point(546, 4)
+        Me.dtpInicio.Name = "dtpInicio"
+        Me.dtpInicio.Size = New System.Drawing.Size(106, 20)
+        Me.dtpInicio.TabIndex = 3
+        Me.dtpInicio.Visible = False
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(475, 30)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(69, 13)
+        Me.Label21.TabIndex = 6
+        Me.Label21.Text = "Proveedor:"
+        '
+        'chkProveedor
+        '
+        Me.chkProveedor.AutoSize = True
+        Me.chkProveedor.Checked = True
+        Me.chkProveedor.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkProveedor.Location = New System.Drawing.Point(550, 30)
+        Me.chkProveedor.Name = "chkProveedor"
+        Me.chkProveedor.Size = New System.Drawing.Size(61, 17)
+        Me.chkProveedor.TabIndex = 7
+        Me.chkProveedor.Text = "Todos"
+        Me.chkProveedor.UseVisualStyleBackColor = True
+        '
+        'cbObra
+        '
+        Me.cbObra.DropDownWidth = 450
+        Me.cbObra.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbObra.FormattingEnabled = True
+        Me.cbObra.Location = New System.Drawing.Point(112, 27)
+        Me.cbObra.Name = "cbObra"
+        Me.cbObra.Size = New System.Drawing.Size(354, 21)
+        Me.cbObra.TabIndex = 6
+        '
+        'dtpFin
+        '
+        Me.dtpFin.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpFin.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFin.Location = New System.Drawing.Point(702, 4)
+        Me.dtpFin.Name = "dtpFin"
+        Me.dtpFin.Size = New System.Drawing.Size(106, 20)
+        Me.dtpFin.TabIndex = 3
+        Me.dtpFin.Visible = False
+        '
+        'chkObras
+        '
+        Me.chkObras.AutoSize = True
+        Me.chkObras.Checked = True
+        Me.chkObras.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkObras.Location = New System.Drawing.Point(45, 29)
+        Me.chkObras.Name = "chkObras"
+        Me.chkObras.Size = New System.Drawing.Size(61, 17)
+        Me.chkObras.TabIndex = 7
+        Me.chkObras.Text = "Todas"
+        Me.chkObras.UseVisualStyleBackColor = True
+        '
+        'lblHasta
+        '
+        Me.lblHasta.AutoSize = True
+        Me.lblHasta.Location = New System.Drawing.Point(652, 8)
+        Me.lblHasta.Name = "lblHasta"
+        Me.lblHasta.Size = New System.Drawing.Size(44, 13)
+        Me.lblHasta.TabIndex = 4
+        Me.lblHasta.Text = "Hasta:"
+        Me.lblHasta.Visible = False
+        '
+        'lblDesde
+        '
+        Me.lblDesde.AutoSize = True
+        Me.lblDesde.Location = New System.Drawing.Point(497, 8)
+        Me.lblDesde.Name = "lblDesde"
+        Me.lblDesde.Size = New System.Drawing.Size(47, 13)
+        Me.lblDesde.TabIndex = 4
+        Me.lblDesde.Text = "Desde:"
+        Me.lblDesde.Visible = False
         '
         'txtReq
         '
@@ -463,8 +628,8 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.dgTabla2.Location = New System.Drawing.Point(2, 25)
         Me.dgTabla2.Name = "dgTabla2"
         Me.dgTabla2.ReadOnly = True
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgTabla2.Size = New System.Drawing.Size(890, 217)
         Me.dgTabla2.TabIndex = 320
         '
@@ -476,17 +641,6 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.Label2.Size = New System.Drawing.Size(171, 13)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Detalle de Orden de Compra:"
-        '
-        'cbVis1
-        '
-        Me.cbVis1.AutoSize = True
-        Me.cbVis1.Location = New System.Drawing.Point(600, 2)
-        Me.cbVis1.Name = "cbVis1"
-        Me.cbVis1.Size = New System.Drawing.Size(131, 17)
-        Me.cbVis1.TabIndex = 334
-        Me.cbVis1.Text = "Visualizar Todos..."
-        Me.ToolTip1.SetToolTip(Me.cbVis1, "Visualizar Aprobados, Pendientes y Observados")
-        Me.cbVis1.UseVisualStyleBackColor = True
         '
         'gerencia1OrdenDesembolsoForm
         '
@@ -517,7 +671,6 @@ Partial Class gerencia1OrdenDesembolsoForm
 
     End Sub
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Navigator1 As System.Windows.Forms.BindingNavigator
     Friend WithEvents BindingNavigatorCountItem As System.Windows.Forms.ToolStripLabel
     Friend WithEvents BindingNavigatorMoveFirstItem As System.Windows.Forms.ToolStripButton
@@ -557,7 +710,21 @@ Partial Class gerencia1OrdenDesembolsoForm
     Friend WithEvents txtTotalDolares As System.Windows.Forms.TextBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents cbVis1 As System.Windows.Forms.CheckBox
+    Friend WithEvents chkVis1 As System.Windows.Forms.CheckBox
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
+    Friend WithEvents dtpInicio As System.Windows.Forms.DateTimePicker
+    Friend WithEvents dtpFin As System.Windows.Forms.DateTimePicker
+    Friend WithEvents lblHasta As System.Windows.Forms.Label
+    Friend WithEvents lblDesde As System.Windows.Forms.Label
+    Friend WithEvents Label20 As System.Windows.Forms.Label
+    Friend WithEvents cbObra As System.Windows.Forms.ComboBox
+    Friend WithEvents chkObras As System.Windows.Forms.CheckBox
+    Friend WithEvents txtNroDesembolso As System.Windows.Forms.TextBox
+    Friend WithEvents Label35 As System.Windows.Forms.Label
+    Friend WithEvents btnMostrar As System.Windows.Forms.Button
+    Friend WithEvents cbProveedor As System.Windows.Forms.ComboBox
+    Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents chkProveedor As System.Windows.Forms.CheckBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 
 End Class

@@ -2,8 +2,26 @@
 Imports System.Data.SqlClient
 Imports ComponentesSolucion2008
 Public Class gerencia1OrdenDesembolsoForm
+    ''' <summary>
+    ''' Orden de Desembolso
+    ''' </summary>
+    ''' <remarks></remarks>
     Dim BindingSource1 As New BindingSource
+
+    ''' <summary>
+    ''' Detalle Orden Desembolso
+    ''' </summary>
+    ''' <remarks></remarks>
     Dim BindingSource2 As New BindingSource
+
+    ''' <summary>
+    ''' objeto de la clase Datamanager
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim oDataManager As New cDataManager
+
+    Dim vCodDesem As Integer = -1
+
 
     Private Sub gerencia1OrdenDesembolsoForm_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
         Me.Close()
@@ -11,48 +29,71 @@ Public Class gerencia1OrdenDesembolsoForm
 
     Private Sub gerencia1OrdenDesembolsoForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Realizando la conexion con SQL Server - ConexionModule.vb
-        'conexion() 'active esta linea si desea ejecutar el form independientemente RAS
-        'AsignarColoresFormControles()
+        conexion() 'active esta linea si desea ejecutar el form independientemente RAS
+        AsignarColoresFormControles()
         VerificaConexion()
         Dim wait As New waitForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
-        'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select idOP,estApro,fecDes,serie,nro,simbolo,monto,razon,nom,obserDesem,est,nombre,hist,estDesem,codPersDes,estado,codMon,datoReq from VOrdenDesemGerencia1 where estDesem in(0,@est,2)" '0=NULL  1=Aprobado 2=Observado
-        crearDataAdapterTable(daTabla1, sele)
-        daTabla1.SelectCommand.Parameters.Add("@est", SqlDbType.Int, 0).Value = 0
 
-        sele = "select codDetO,cant,unidad,descrip,precio,subTotal,dias,fecOrden,nro,nroOrden,igv,calIGV,codMon,simbolo,idOP,idSol from VOrdenCompraDetalle where idOP=@idOP"
-        crearDataAdapterTable(daDetDoc, sele)
-        daDetDoc.SelectCommand.Parameters.Add("@idOP", SqlDbType.Int, 0).Value = 0
 
+        ''instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
+        'Dim sele As String = "select idOP,estApro,fecDes,serie,nro,simbolo,monto,razon,nom,obserDesem,est,nombre,hist,estDesem,codPersDes,estado,codMon,datoReq,codigo,codIde,nroDes from VOrdenDesemGerencia1 where estDesem in(0,@est,2)" '0=NULL  1=Aprobado 2=Observado
+        'crearDataAdapterTable(daTabla1, sele)
+        'daTabla1.SelectCommand.Parameters.Add("@est", SqlDbType.Int, 0).Value = 0
+
+        'sele = "select codDetO,cant,unidad,descrip,precio,subTotal,dias,fecOrden,nro,nroOrden,igv,calIGV,codMon,simbolo,idOP,idSol from VOrdenCompraDetalle where idOP=@idOP"
+        'crearDataAdapterTable(daDetDoc, sele)
+        'daDetDoc.SelectCommand.Parameters.Add("@idOP", SqlDbType.Int, 0).Value = 0
+
+        'Try
+        'procedimiento para instanciar el dataSet - DatasetAlmacenModule.vb
+        'crearDSAlmacen()
+        ''llenat el dataSet con los dataAdapter
+        'daTabla1.Fill(dsAlmacen, "VOrdenDesemGerencia1")
+        'daDetDoc.Fill(dsAlmacen, "VOrdenCompraDetalle")
+
+        'BindingSource1.DataSource = dsAlmacen
+        'BindingSource1.DataMember = "VOrdenDesemGerencia1"
+        'Navigator1.BindingSource = BindingSource1
+        'dgTabla1.DataSource = BindingSource1
+        'BindingSource1.Sort = "estDesem,fecDes"
+
+        'BindingSource2.DataSource = dsAlmacen
+        'BindingSource2.DataMember = "VOrdenCompraDetalle"
+        'Navigator2.BindingSource = BindingSource2
+        'dgTabla2.DataSource = BindingSource2
+        ''dgTabla2.SelectionMode = DataGridViewSelectionMode.FullRowSelect 'Seleccionar fila completa
+        'BindingSource2.Sort = "descrip"
+
+        'vfVan1 = True
+        'visualizarDet()
+        'vfVan2 = True
+
+        wait.Close()
+        Me.Cursor = Cursors.Default
+        'Catch f As Exception
+        '    wait.Close()
+        '    Me.Cursor = Cursors.Default
+        '    MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+        '    Me.Close()
+        '    Exit Sub
+        'End Try
         Try
-            'procedimiento para instanciar el dataSet - DatasetAlmacenModule.vb
-            crearDSAlmacen()
-            'llenat el dataSet con los dataAdapter
-            daTabla1.Fill(dsAlmacen, "VOrdenDesemGerencia1")
-            daDetDoc.Fill(dsAlmacen, "VOrdenCompraDetalle")
-
-            BindingSource1.DataSource = dsAlmacen
-            BindingSource1.DataMember = "VOrdenDesemGerencia1"
-            Navigator1.BindingSource = BindingSource1
-            dgTabla1.DataSource = BindingSource1
-            BindingSource1.Sort = "estDesem,fecDes"
-
-            BindingSource2.DataSource = dsAlmacen
-            BindingSource2.DataMember = "VOrdenCompraDetalle"
-            Navigator2.BindingSource = BindingSource2
-            dgTabla2.DataSource = BindingSource2
-            'dgTabla2.SelectionMode = DataGridViewSelectionMode.FullRowSelect 'Seleccionar fila completa
-            BindingSource2.Sort = "descrip"
-            ModificarColumnasDGV()
 
             configurarColorControl()
+            'Cargando el combo Obras
+            oDataManager.CargarCombo("PA_LugarTrabajo", CommandType.StoredProcedure, cbObra, "codigo", "nombre")
+            'Cargando el combo de Proveedores
+            oDataManager.CargarCombo("PA_Proveedores", CommandType.StoredProcedure, cbProveedor, "codIde", "razon")
 
-            vfVan1 = True
-            visualizarDet()
-            vfVan2 = True
+            'cargando la grilla Ordenes de Desembolso (maestro)
+            Dim consulta As String = "select idOP,estApro,fecDes,serie,nro,simbolo,monto,razon,nom,obserDesem,est,nombre,hist,estDesem,codPersDes,estado,codMon,datoReq,codigo,codIde,nroDes from VOrdenDesemGerencia1 where estDesem in(0,2)" '0=NULL  1=Aprobado 2=Observado
 
+            oDataManager.CargarGrilla(consulta, CommandType.Text, dgTabla1, BindingSource1)
+
+
+            ModificarColumnasDGV()
 
             txtReq.DataBindings.Add("Text", BindingSource1, "datoReq")
 
@@ -61,14 +102,8 @@ Public Class gerencia1OrdenDesembolsoForm
                 AddContextMenu() 'Agregando menu antiClick
             End If
 
-            wait.Close()
-            Me.Cursor = Cursors.Default
-        Catch f As Exception
-            wait.Close()
-            Me.Cursor = Cursors.Default
-            MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
-            Me.Close()
-            Exit Sub
+        Catch ex As Exception
+
         End Try
     End Sub
 
@@ -78,7 +113,7 @@ Public Class gerencia1OrdenDesembolsoForm
     End Sub
 
     Private Sub AsignarValoresFiltro()
-        If cbVis1.Checked = True Then 'Todos Aprobados, Observados NULL
+        If chkVis1.Checked = True Then 'Todos Aprobados, Observados NULL
             estado = 1
         Else  'solo pendientes=NULL
             estado = 0
@@ -106,8 +141,81 @@ Public Class gerencia1OrdenDesembolsoForm
         End If
     End Sub
 
-    Private Sub cbVis1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbVis1.CheckedChanged
-        visualizarOrd()
+    ''' <summary>
+    ''' Añade criterios a los filtros
+    ''' </summary>
+    ''' <param name="criterio"></param>
+    ''' <param name="filtro"></param>
+    ''' <remarks></remarks>
+    Private Function AddCriterioFiltro(ByVal criterio As String, ByVal filtro As String) As String
+        If filtro.Length > 0 Then
+            filtro &= " and " & criterio
+        Else
+            filtro &= " " & criterio
+        End If
+        Return filtro
+    End Function
+
+    ''' <summary>
+    ''' Filtra Desembolso 
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub filtrando()
+        If cbObra.Items.Count > 0 And cbObra.Items.Count > 0 Then 'BindingSource4.Position >= 0 And BindingSource5.Position >= 0 Then
+
+            BindingSource1.Filter = ""
+            Dim pFiltro As String = BindingSource1.Filter
+            Dim pCriterio As String
+
+            If chkObras.Checked = False Then
+                pCriterio = "codigo='" & cbObra.SelectedValue & "'"
+                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+            End If
+
+            If chkProveedor.Checked = False Then
+                pCriterio = "codIde =" & cbProveedor.SelectedValue
+                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+            End If
+
+            'If chkVis1.Checked Then
+            '    pCriterio = "fecDes >= #" & dtpInicio.Text & "# and fecDes <= #" & dtpFin.Text & "#"
+            '    pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+            'End If
+
+            If txtNroDesembolso.Text.Length > 0 Then
+                pCriterio = "nroDes =" & txtNroDesembolso.Text.Trim()
+                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+            End If
+
+            BindingSource1.Filter = pFiltro
+
+            'BindingSource0.Sort = "idOp Desc"
+        End If
+        'Colorea la Grilla
+        'ColorearGrilla()
+        colorearFila()
+
+    End Sub
+
+
+    Private Sub cbVis1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkVis1.CheckedChanged
+        If chkVis1.Checked Then
+
+            dtpInicio.Visible = True
+            dtpFin.Visible = True
+            lblDesde.Visible = True
+            lblHasta.Visible = True
+        Else
+            dtpInicio.Visible = False
+            dtpFin.Visible = False
+            lblDesde.Visible = False
+            lblHasta.Visible = False
+        End If
+
+        btnMostrar.PerformClick()
+        'visualizarOrd()
+
+
     End Sub
 
     Private Sub calcularTotales()
@@ -239,6 +347,10 @@ Public Class gerencia1OrdenDesembolsoForm
             .Columns("nom").DisplayIndex = 8
             .Columns("obserDesem").DisplayIndex = 9
             .Columns("hist").DisplayIndex = 11
+            .Columns("codIde").Visible = False
+            .Columns("nroDes").Visible = False
+            .Columns("codigo").Visible = False
+
 
 
 
@@ -247,6 +359,10 @@ Public Class gerencia1OrdenDesembolsoForm
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .RowHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
         End With
+       
+    End Sub
+
+    Private Sub ModificarColumnaDetalle()
         With dgTabla2
             'codDetO
             .Columns(0).Visible = False
@@ -309,6 +425,20 @@ Public Class gerencia1OrdenDesembolsoForm
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub configurarColorControl()
+
+        For i As Integer = 0 To Panel1.Controls.Count - 1
+            If TypeOf Panel1.Controls(i) Is Label Then
+                Panel1.Controls(i).ForeColor = ForeColorLabel
+            End If
+
+            If TypeOf Panel1.Controls(i) Is CheckBox Then
+                Panel1.Controls(i).ForeColor = ForeColorLabel
+            End If
+
+
+
+        Next
+
         Me.BackColor = BackColorP
         Me.lblTitulo.BackColor = TituloBackColorP
         Me.lblTitulo.ForeColor = HeaderForeColorP
@@ -322,8 +452,10 @@ Public Class gerencia1OrdenDesembolsoForm
         Label5.ForeColor = ForeColorLabel
         Label6.ForeColor = ForeColorLabel
         Label7.ForeColor = ForeColorLabel
-        cbVis1.ForeColor = ForeColorLabel
+        chkVis1.ForeColor = ForeColorLabel
         btnCerrar.ForeColor = ForeColorButtom
+
+        btnMostrar.ForeColor = ForeColorButtom
     End Sub
 
     Private Sub dgTabla1_CurrentCellChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgTabla1.CurrentCellChanged
@@ -422,7 +554,7 @@ Public Class gerencia1OrdenDesembolsoForm
 
     Private mouseLocation As DataGridViewCellEventArgs
     Private Sub dgTabla1_CellMouseEnter(ByVal sender As Object, ByVal location As DataGridViewCellEventArgs) Handles dgTabla1.CellMouseEnter
-        mouseLocation = location
+        ' mouseLocation = location
     End Sub
 
     Private Function recuperarCodPersDesem(ByVal idOp As Integer, ByVal tipo As Short) As Integer
@@ -786,5 +918,91 @@ Public Class gerencia1OrdenDesembolsoForm
 
     Private Sub dgTabla1_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla1.CellClick
         'dgTabla1.CurrentCell.ColumnIndex
+        If dgTabla1.RowCount > 0 Then
+            
+            If vCodDesem <> BindingSource1.Item(BindingSource1.Position)(0) Then
+                Dim consulta As String = "select codDetO,cant,unidad,descrip,precio,subTotal,dias,fecOrden,nro,nroOrden,igv,calIGV,codMon,simbolo,idOP,idSol from VOrdenCompraDetalle where idOP=" & BindingSource1.Item(BindingSource1.Position)(0)
+
+                oDataManager.CargarGrilla(consulta, CommandType.Text, dgTabla2, BindingSource2)
+                ModificarColumnaDetalle()
+                Navigator2.BindingSource = BindingSource2
+                BindingSource2.Sort = "descrip"
+                vCodDesem = BindingSource1.Item(BindingSource1.Position)(0)
+            End If
+
+        End If
+      
+    End Sub
+
+    Private Sub dtpFin_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dtpInicio.ValueChanged, dtpFin.ValueChanged
+
+    End Sub
+
+    Private Sub cbObra_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbObra.SelectedIndexChanged
+        filtrando()
+    End Sub
+
+    Private Sub chkObras_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkObras.CheckedChanged
+
+
+        If chkObras.Checked Then
+            cbObra.Visible = False
+        Else
+            cbObra.Visible = True
+        End If
+
+        'FiltrarGrillaDesembolso()
+        'FiltrandoPorEstado()}
+        'filtrando()
+
+
+    End Sub
+
+    Private Sub txtNroDesembolso_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtNroDesembolso.KeyPress
+        ValidarNumero(sender, e)
+    End Sub
+
+    Private Sub txtNroDesembolso_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNroDesembolso.TextChanged
+        filtrando()
+    End Sub
+
+    Private Sub cbProveedor_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbProveedor.SelectedIndexChanged
+        filtrando()
+    End Sub
+
+    Private Sub chkProveedor_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkProveedor.CheckedChanged
+
+        If chkProveedor.Checked Then
+            cbProveedor.Visible = False
+        Else
+            cbProveedor.Visible = True
+        End If
+
+        'filtrando()
+
+    End Sub
+
+    Private Sub btnMostrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMostrar.Click
+        Dim consulta As String
+
+        'cargando la grilla Ordenes de Desembolso (maestro)
+        If chkVis1.Checked Then
+            consulta = "SET DATEFORMAT dmy select idOP,estApro,fecDes,serie,nro,simbolo,monto,razon,nom,obserDesem,est,nombre,hist,estDesem,codPersDes,estado,codMon,datoReq,codigo,codIde,nroDes from VOrdenDesemGerencia1 where estDesem in(0,1,2) and  fecDes between '" & dtpInicio.Text & "' and '" & dtpFin.Text & "'"     '0=NULL  1=Aprobado 2=Observado
+
+        Else
+            consulta = "select idOP,estApro,fecDes,serie,nro,simbolo,monto,razon,nom,obserDesem,est,nombre,hist,estDesem,codPersDes,estado,codMon,datoReq,codigo,codIde,nroDes from VOrdenDesemGerencia1 where estDesem in(0,2) " '0=NULL  1=Aprobado 2=Observado
+
+        End If
+
+        oDataManager.CargarGrilla(consulta, CommandType.Text, dgTabla1, BindingSource1)
+
+        ModificarColumnasDGV()
+
+        colorearFila()
+
+        filtrando()
+        Navigator1.BindingSource = BindingSource1
+        BindingSource1.Sort = "estDesem,fecDes"
+
     End Sub
 End Class
