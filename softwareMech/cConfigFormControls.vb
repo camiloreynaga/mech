@@ -100,6 +100,26 @@ Public Class cConfigFormControls
     ''' </summary>
     ''' <param name="grilla">DataGridView </param>
     ''' <param name="columna">Columna a Colorear </param>
+    ''' <param name="columnaCriterio">Columna a Evaluar</param>
+    ''' <param name="criterio">Criterio que debe cumplir para que se coloree </param>
+    ''' <param name="pBackColor">color de fondo</param>
+    ''' <param name="pForeColor">color de texto</param>
+    ''' <remarks></remarks>
+    Public Sub colorearFilasDGV(ByVal grilla As DataGridView, ByVal columna As String, ByVal columnaCriterio As String, ByVal criterio As Object, ByVal pBackColor As Color, ByVal pForeColor As Color)
+        For j As Short = 0 To grilla.Rows.Count - 1
+
+            Dim obj As Object = grilla(columna, j).Value
+            If grilla(columnaCriterio, j).Value = criterio Then 'Aprobado
+                grilla.Rows(j).Cells(columna).Style.BackColor = pBackColor 'Color.YellowGreen
+                grilla.Rows(j).Cells(columna).Style.ForeColor = pForeColor
+            End If
+        Next
+    End Sub
+    ''' <summary>
+    ''' Da color a las filas de un data grid view
+    ''' </summary>
+    ''' <param name="grilla">DataGridView </param>
+    ''' <param name="columna">Columna a Colorear </param>
     ''' <param name="pBackColor">color de fondo</param>
     ''' <param name="pForeColor">color de texto</param>
     ''' <remarks></remarks>

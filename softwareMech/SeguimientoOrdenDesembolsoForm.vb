@@ -684,7 +684,7 @@ Public Class SeguimientoOrdenDesembolsoForm
     Private Sub ColorearGrilla()
 
         oGrilla.colorearFilasDGV(dgDesembolso, "estado_desembolso", "TERMINADO", Color.Green, Color.White)
-        ' oGrilla.colorearFilasDGV(dgDesembolso, "estado_desembolso", "PENDIENTE", Color.Yellow, Color.Red)
+        'oGrilla.colorearFilasDGV(dgDesembolso, "estado_desembolso", "PENDIENTE", Color.Yellow, Color.Red)
 
         oGrilla.colorearFilasDGV(dgDesembolso, "estado_desembolso", "ANULADO", Color.Red, Color.White)
 

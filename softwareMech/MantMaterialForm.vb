@@ -507,7 +507,7 @@ Public Class MantMaterialForm
     Private Function recuperarCount4(ByVal cod As Integer) As Integer
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = "select count(*) from TDetalleGuia where codMat=" & cod
+        cmdCampo.CommandText = "select count(*) from TDetalleGuiaEmp where codMat=" & cod
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function
