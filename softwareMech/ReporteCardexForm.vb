@@ -483,7 +483,7 @@ End Class
 
 
 ''' <summary>
-''' Representa un Dato de ítemd de lista (valor,representación)
+''' Representa un Dato de ítem de lista (valor,representación)
 ''' </summary>
 ''' <remarks></remarks>
 Public Class Dato

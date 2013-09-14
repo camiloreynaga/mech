@@ -795,4 +795,11 @@ Public Class pantallaInicialForm
         oSolCja.Show()
 
     End Sub
+
+    
+    Private Sub infT3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles infT3.Click
+        Dim oInfSotck As New reporteStockForm
+        oInfSotck.MdiParent = Me
+        oInfSotck.Show()
+    End Sub
 End Class
