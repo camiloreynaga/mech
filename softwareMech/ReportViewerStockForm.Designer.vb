@@ -57,6 +57,7 @@ Partial Class ReportViewerStockForm
         Me.Controls.Add(Me.CReportViewer)
         Me.Name = "ReportViewerStockForm"
         Me.Text = "ReportViewerStockForm"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.DataSetAlmacen1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

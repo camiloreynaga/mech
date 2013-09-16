@@ -260,7 +260,7 @@ Public Class ReporteCardexForm
                 .Columns("codmat").Visible = False
                 ' .Columns("codmat").Width = 50
                 'Material
-                .Columns("material").HeaderText = "Insumo"
+                .Columns("material").HeaderText = "Descripción Insumo"
                 .Columns("material").Width = 550
                 'Codigo de Serie
                 .Columns("unidad").HeaderText = "Und"

@@ -377,12 +377,12 @@ Partial Class ReporteCardexForm
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.cbAlmacen)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.btnCerrar)
         Me.Controls.Add(Me.btnVis)
+        Me.Controls.Add(Me.btnCerrar)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "ReporteCardexForm"
-        Me.Controls.SetChildIndex(Me.btnVis, 0)
         Me.Controls.SetChildIndex(Me.btnCerrar, 0)
+        Me.Controls.SetChildIndex(Me.btnVis, 0)
         Me.Controls.SetChildIndex(Me.Label2, 0)
         Me.Controls.SetChildIndex(Me.cbAlmacen, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)

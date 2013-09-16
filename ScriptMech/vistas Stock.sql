@@ -7,3 +7,7 @@ inner join TUnidad TUN on TUN.codUni=TM.codUni
 inner join TTipoMat TTM on TM.codTipM = TTM.codTipM   
 
 where codUbi =1
+
+select idMU,codUbi,material,unidad,tipoM,stock from vStockAlmacen where codUbi = 1
+
+select * from TPersonal 

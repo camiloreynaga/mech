@@ -29,6 +29,15 @@ Public Class reporteStockForm
 
 #Region "Métodos"
 
+    ''' <summary>
+    ''' Establece un estilo de fuente a las columnas de la grila, 
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub FuenteColumnaGrilla()
+        'pone en negrita la columna stock
+        oGrilla.EstiloColumnaDGV(dgInsumos, "stock", New System.Drawing.Font("Microsoft Sans Serif", 8.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte)))
+    End Sub
+
     Private Sub configurarColorControl()
 
         Me.BackColor = BackColorP
@@ -64,10 +73,14 @@ Public Class reporteStockForm
             .Columns("idMU").Visible = False
             .Columns("codUbi").Visible = False
 
-            .Columns("material").HeaderText = "Insumo"
+            .Columns("material").HeaderText = "Descripción Insumo"
             .Columns("material").Width = 570
             .Columns("stock").HeaderText = "Stock"
             .Columns("stock").Width = 70
+            .Columns("stock").DefaultCellStyle.Format = "N2"
+            .Columns("stock").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+
             .Columns("unidad").HeaderText = "Unidad"
             .Columns("unidad").Width = 50
             .Columns("tipoM").HeaderText = "Tipo"
@@ -151,7 +164,7 @@ Public Class reporteStockForm
     Private Sub btnVis_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnVis.Click
 
         ConsultarStock()
-
+        FuenteColumnaGrilla()
     End Sub
 
     Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
@@ -173,5 +186,13 @@ Public Class reporteStockForm
         Dim informe As New ReportViewerStockForm
         informe.vCodUbicacion = cbAlmacen.SelectedValue
         informe.ShowDialog()
+    End Sub
+
+    Private Sub reporteStockForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+        FuenteColumnaGrilla()
+    End Sub
+
+    Private Sub dgInsumos_Sorted1(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgInsumos.Sorted
+        FuenteColumnaGrilla()
     End Sub
 End Class
