@@ -21,7 +21,7 @@ Partial Class reporteStockForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(reporteStockForm))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton
@@ -32,6 +32,7 @@ Partial Class reporteStockForm
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
+        Me.btnImprimir = New System.Windows.Forms.ToolStripButton
         Me.Label1 = New System.Windows.Forms.Label
         Me.cbObras = New System.Windows.Forms.ComboBox
         Me.dgInsumos = New System.Windows.Forms.DataGridView
@@ -39,7 +40,8 @@ Partial Class reporteStockForm
         Me.cbAlmacen = New System.Windows.Forms.ComboBox
         Me.Label2 = New System.Windows.Forms.Label
         Me.btnVis = New ComponentesSolucion2008.BottomSSP(Me.components)
-        Me.btnImprimir = New System.Windows.Forms.ToolStripButton
+        Me.btnCerrar = New System.Windows.Forms.Button
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindingNavigator1.SuspendLayout()
         CType(Me.dgInsumos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,6 +51,7 @@ Partial Class reporteStockForm
         'lblTitulo
         '
         Me.lblTitulo.Size = New System.Drawing.Size(905, 23)
+        Me.lblTitulo.Text = "Reporte Stock por Almacén"
         '
         'lblDerecha
         '
@@ -139,6 +142,16 @@ Partial Class reporteStockForm
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
         Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
         '
+        'btnImprimir
+        '
+        Me.btnImprimir.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
+        Me.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(71, 22)
+        Me.btnImprimir.Text = "Imprimir"
+        Me.btnImprimir.ToolTipText = "Imprimir orden de desembolso"
+        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -162,8 +175,8 @@ Partial Class reporteStockForm
         Me.dgInsumos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgInsumos.Location = New System.Drawing.Point(6, 16)
         Me.dgInsumos.Name = "dgInsumos"
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgInsumos.RowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgInsumos.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.dgInsumos.Size = New System.Drawing.Size(870, 518)
         Me.dgInsumos.TabIndex = 0
         '
@@ -209,19 +222,19 @@ Partial Class reporteStockForm
         Me.btnVis.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnVis.UseVisualStyleBackColor = True
         '
-        'btnImprimir
+        'btnCerrar
         '
-        Me.btnImprimir.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
-        Me.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(71, 22)
-        Me.btnImprimir.Text = "Imprimir"
-        Me.btnImprimir.ToolTipText = "Imprimir orden de desembolso"
+        Me.btnCerrar.Location = New System.Drawing.Point(818, 27)
+        Me.btnCerrar.Name = "btnCerrar"
+        Me.btnCerrar.Size = New System.Drawing.Size(75, 23)
+        Me.btnCerrar.TabIndex = 2
+        Me.btnCerrar.Text = "Cerrar"
+        Me.btnCerrar.UseVisualStyleBackColor = True
         '
         'reporteStockForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
+        Me.CancelButton = Me.btnCerrar
         Me.ClientSize = New System.Drawing.Size(905, 643)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cbObras)
@@ -229,7 +242,10 @@ Partial Class reporteStockForm
         Me.Controls.Add(Me.cbAlmacen)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.btnVis)
+        Me.Controls.Add(Me.btnCerrar)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "reporteStockForm"
+        Me.Controls.SetChildIndex(Me.btnCerrar, 0)
         Me.Controls.SetChildIndex(Me.lblTitulo, 0)
         Me.Controls.SetChildIndex(Me.lblDerecha, 0)
         Me.Controls.SetChildIndex(Me.btnVis, 0)
@@ -266,5 +282,7 @@ Partial Class reporteStockForm
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents btnVis As ComponentesSolucion2008.BottomSSP
     Friend WithEvents btnImprimir As System.Windows.Forms.ToolStripButton
+    Friend WithEvents btnCerrar As System.Windows.Forms.Button
+    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
 
 End Class

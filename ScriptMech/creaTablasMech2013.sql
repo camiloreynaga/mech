@@ -372,6 +372,7 @@ create table TOrdenDesembolso
 	fecEnt varchar(10), --fecha de entrega
 	hist varchar(200),
 	codSerO int default 1,  --Codigo de serie de orden de desembolso
+	vanCaja int default 0,	--vandera pa saber si gue procesado en caja chica 1=Procesado
 	foreign key(codMon) references TMoneda,
 	foreign key(codigo) references TLugarTrabajo,
 	foreign key(codIde) references TIdentidad
@@ -380,11 +381,6 @@ create table TOrdenDesembolso
 --- select * from TOrdenDesembolso
 --MODIFICAR TIPO de DATOS campos a la estructura de nuestra base de datos
 --ALTER TABLE TOrdenDesembolso ALTER COLUMN banco varchar(60)
-
---select * from TOrdenDesembolso
---aumentar campos a la estructura de nuestra base de datos
---ALTER TABLE TOrdenDesembolso ADD codSerO int default 1
---update TOrdenDesembolso set codSerO=1
 
 create table TDesOrden
 (	nroDO int identity(1,1) primary key,
@@ -418,7 +414,6 @@ create table TClasifPago
 	clasif varchar(20)  --Proveedores, Haberes CTS	
 )	
 
---DROP table TPagoDesembolso
 create table TPagoDesembolso
 (	codPagD int identity(1,1) primary key,
 	fecPago date,
@@ -431,12 +426,17 @@ create table TPagoDesembolso
 	montoD decimal(10,2), --monto detraccion
 	idOP int,
 	idCue int default 0,  --cuenta banco  0=sin cuenta
+	vanCaja int default 0,	--vandera pa saber si gue procesado en caja chica 1=Procesado
 	foreign key(codTipP) references TTipoPago,
 	foreign key(codCla) references TClasifPago,
 	foreign key(codMon) references TMoneda,
 	foreign key(idOP) references TOrdenDesembolso
 )
---SELECT * FROM TBanco
+--select * from TPagoDesembolso
+--aumentar campos a la estructura de nuestra base de datos
+--ALTER TABLE TPagoDesembolso ADD vanCaja int default 0
+--update TPagoDesembolso set vanCaja=0
+
 create table TBanco
 (	codBan int identity(1,1) primary key,	
 	banco varchar(40)  --continental BCP
@@ -654,70 +654,95 @@ create table TOrdenGuia
 	foreign key(codGuia) references TGuiaRemision
 )
 -----------------MODULO CAJA CHICA-----------------------
------------------EJECUTAR 24/08/2013------------------
+-----------------EJECUTAR 12/09/2013------------------
 ------------------------------------------------------
 -- DROP table TCajaChica
 create table TCajaChica
 (	codCC int identity primary key,
 	fechaCre date,
-	codMon int, --Moneda a utilizar FK
-	saldo decimal(10,2),
 	codigo varchar(10), --codigo de la Obra FK
 	codPers int, --responsable codigo de la persona responsable
-	estCaja int,  --0=Inactivo  1=Activo
-	foreign key(codMon) references TMoneda,
+	codSerO int, -- Serie de Orden Desembolso para caja por obra
 	foreign key (codigo) references TLugarTrabajo,
-	foreign key (codPers) references TPersonal
+	foreign key (codPers) references TPersonal,
+	foreign key (codSerO) references TSerieOrden
 )
 
-create table TSolicitudCaja
-(	codSC int identity primary key,
-	nroSol int,
-	fechaSol date,
-	codPers int,
+-- DROP table TCajas
+create table TCajas
+(	codCaj int identity primary key,
+	caja varchar(20),  --Caja A  o Caja B
+	codMon int, --Moneda a utilizar FK
+	saldo decimal(10,2),
+	estCaja int,  --0=Inactivo  1=Activo
 	codCC int,
-	estSol int,  --0 abierto 1 cerrado
-	montoSol decimal(10,2),  --solicitado
-	montoRen decimal(10,2),   --rendido
-	foreign key (codPers) references TPersonal,
+	foreign key(codMon) references TMoneda,
 	foreign key (codCC) references TCajaChica
 )
 
-create table TSaldoPers
-(	codSP int identity primary key,
-	salPers decimal(10,2),
+--drop table  TSolicitudCaja
+create table TSolicitudCaja
+(	codSC int identity primary key,
+	fechaSol date,
+	nroSol int,
+	codPers int,  --solicitante
+	estSol int,  --0 pendiente 1 aprobado 2=cerrado  3=anulado
+	salAnt decimal(10,2), --saldo anterior personal
+	montoSol decimal(10,2),  --solicitado
+	imprevisto decimal(10,2), -- monto pedido pa gastos no sabidos con anterioridad
+	montoRen decimal(10,2),   --rendido
+	codObra varchar(10), --codigo de la Obra para donde se gastara
+	codSede varchar(10), --codigo de la Obra de caja chica
+	foreign key (codPers) references TPersonal
+)
+
+--drop table TCajaSol
+create table TCajaSol
+(	idCS int identity primary key,
+	codCaj int,
 	codSC int,
+	montoSal decimal(10,2),  --solicitado
+	imprevSal decimal(10,2), -- monto pedido pa gastos no sabidos con anterioridad
+	foreign key (codCaj) references TCajas,
 	foreign key (codSC) references TSolicitudCaja
 )
 
-create table DetSolCaja
+-- drop table TDetSolCaja
+create table TDetSolCaja
 (	codDetSol int identity primary key,
 	cant1 decimal (8,2), --cant pedida
 	cant2 decimal (8,2), --cant real
-	insumo varchar(100),
+	uniMed varchar(20),
+	insumo varchar(200), -- editable
+	ingreso int, -- 0=pedido normal 1=pedido improvisado
 	prec1 decimal(8,2), --precio proyectado
 	prec2 decimal(8,2), --precio real
-	uniMed varchar(20),
-	obsSol varchar(200),
-	codApro int,
+	obsSol varchar(200), -- obs solicitante
+	codApro int,  --aprobador luis mech
 	estDet int, --0 pendiente, 1 aprobado, 2 observado
-	obsApro varchar(200),
-	codMat int,
+	obsApro varchar(200), --obs aprobador
+	codMat int,  -- 0=si no hereda insumo estructurado
 	codAreaM int,
+	codTipM int,
 	codSC int,
-	estRen int, --0 pendiente  1 OK
+	estRen int, --0 pendiente  1 OK 2 Observado
 	codRen int, --personal revisa rendicion
-	nroDocRen varchar(30) -- Nº fact boleta u otro
-	foreign key(codMat) references TMaterial,
+	obsRen varchar(200), --obs del que revisa
+	codDC int, -- cod detalle doc. de compra factura boleta, etc.
+	nroOtros varchar(30), --nro de otro doc recibo ticket
+	compCheck int, -- 1=factura 2=BV  3=Honorarios 4=otros Recibos ticket 
 	foreign key(codAreaM) references TAreaMat,
+	foreign key(codTipM) references TTipoMat,
 	foreign key (codSC) references TSolicitudCaja
 )
 
+--DROP table TTipoMovCaja
 create table TTipoMovCaja
 (	codTM int identity(1,1) primary key,
 	tipoMov varchar(20),  --ingreso  egreso
 )
---select * from TDiaCaja
+
+--drop table TDiaCaja
 create table TDiaCaja
 (	codDia int identity primary key,
 	fecha date,
@@ -730,24 +755,26 @@ create table TDiaCaja
 	foreign key(codigo) references TLugarTrabajo
 )
 
+-- drop table TMovimientoCaja
 create table TMovimientoCaja
 (	nroMC int identity primary key,
 	codDia int,
 	codTM int,
-	idMU int, --???
 	codigo varchar(10),
-	codCC int,
-	idOP int,
-	codPers int  default 0,  --Solicitante
+	codCaj int,
+	codPagD int,
+	codSC int,  --Solicitante
 	montoEnt decimal(10,2),
 	montoSal decimal(10,2),
+	saldoMov decimal(10,2),
 	codUsu int,  --cajera
 	descrip varchar(200) default '',
 	foreign key(codDia) references TDiaCaja,
 	foreign key(codTM) references TTipoMovCaja,
 	foreign key(codigo) references TLugarTrabajo,
-	foreign key (codCC) references TCajaChica,
-	foreign key(idOP) references TOrdenDesembolso
+	foreign key (codCaj) references TCajas
+	--foreign key(idOP) references TOrdenDesembolso,
+	--foreign key (codSC) references TSolicitudCaja
 )
 
 

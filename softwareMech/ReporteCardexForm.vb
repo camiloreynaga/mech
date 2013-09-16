@@ -260,7 +260,7 @@ Public Class ReporteCardexForm
                 .Columns("codmat").Visible = False
                 ' .Columns("codmat").Width = 50
                 'Material
-                .Columns("material").HeaderText = "Descripción Insumo"
+                .Columns("material").HeaderText = "Insumo"
                 .Columns("material").Width = 550
                 'Codigo de Serie
                 .Columns("unidad").HeaderText = "Und"
@@ -483,7 +483,7 @@ End Class
 
 
 ''' <summary>
-''' Representa un Dato de ítem de lista (valor,representación)
+''' Representa un Dato de ítemd de lista (valor,representación)
 ''' </summary>
 ''' <remarks></remarks>
 Public Class Dato

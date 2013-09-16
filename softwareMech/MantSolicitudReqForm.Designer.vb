@@ -97,7 +97,7 @@ Partial Class MantSolicitudReqForm
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(919, 23)
+        Me.lblTitulo.Size = New System.Drawing.Size(915, 23)
         Me.lblTitulo.Text = "Mantenimiento de Solicitud de Requerimiento de Obra"
         '
         'lblDerecha
@@ -169,7 +169,7 @@ Partial Class MantSolicitudReqForm
         Me.btnAgrega.Size = New System.Drawing.Size(25, 23)
         Me.btnAgrega.TabIndex = 5
         Me.btnAgrega.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.btnAgrega, "Cargar insumos a seleccionar...")
+        Me.ToolTip1.SetToolTip(Me.btnAgrega, "Subir insumo para registro de requerimiento...")
         Me.btnAgrega.UseVisualStyleBackColor = True
         '
         'btnCrear
@@ -203,7 +203,7 @@ Partial Class MantSolicitudReqForm
         Me.btnProcesa.TabStop = False
         Me.btnProcesa.Text = "F5"
         Me.btnProcesa.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolTip1.SetToolTip(Me.btnProcesa, "Cargar insumos a seleccionar...")
+        Me.ToolTip1.SetToolTip(Me.btnProcesa, "Cargar insumos a registrados en Base de Datos...")
         Me.btnProcesa.UseVisualStyleBackColor = False
         '
         'Panel1
@@ -224,7 +224,7 @@ Partial Class MantSolicitudReqForm
         Me.Panel1.Controls.Add(Me.txtNro)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.btnCerrar)
-        Me.Panel1.Location = New System.Drawing.Point(15, 23)
+        Me.Panel1.Location = New System.Drawing.Point(14, 23)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(901, 113)
         Me.Panel1.TabIndex = 4
@@ -509,7 +509,7 @@ Partial Class MantSolicitudReqForm
         Me.dgTabla2.Name = "dgTabla2"
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle3
-        Me.dgTabla2.Size = New System.Drawing.Size(910, 281)
+        Me.dgTabla2.Size = New System.Drawing.Size(900, 281)
         Me.dgTabla2.TabIndex = 14
         '
         'Panel2
@@ -721,7 +721,7 @@ Partial Class MantSolicitudReqForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
-        Me.ClientSize = New System.Drawing.Size(919, 675)
+        Me.ClientSize = New System.Drawing.Size(915, 675)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel1)

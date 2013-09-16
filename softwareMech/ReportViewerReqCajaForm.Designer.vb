@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class ReportViewerStockForm
+Partial Class ReportViewerReqCajaForm
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -22,24 +22,23 @@ Partial Class ReportViewerStockForm
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportViewerStockForm))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportViewerReqCajaForm))
         Me.CReportViewer = New CrystalDecisions.Windows.Forms.CrystalReportViewer
         Me.DataSetAlmacen1 = New softwareMech.DataSetAlmacen
-        Me.VStockAlmacen1TableAdapter1 = New softwareMech.DataSetAlmacenTableAdapters.vStockAlmacen1TableAdapter
-        Me.Button1 = New System.Windows.Forms.Button
+        Me.VDetSolCajaImprimirTableAdapter1 = New softwareMech.DataSetAlmacenTableAdapters.VDetSolCajaImprimirTableAdapter
         CType(Me.DataSetAlmacen1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'CReportViewer
         '
         Me.CReportViewer.ActiveViewIndex = -1
-        Me.CReportViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.CReportViewer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.CReportViewer.Dock = System.Windows.Forms.DockStyle.Fill
         Me.CReportViewer.Location = New System.Drawing.Point(0, 0)
         Me.CReportViewer.Name = "CReportViewer"
         Me.CReportViewer.SelectionFormula = ""
-        Me.CReportViewer.Size = New System.Drawing.Size(469, 392)
-        Me.CReportViewer.TabIndex = 0
+        Me.CReportViewer.Size = New System.Drawing.Size(288, 262)
+        Me.CReportViewer.TabIndex = 2
         Me.CReportViewer.ViewTimeSelectionFormula = ""
         '
         'DataSetAlmacen1
@@ -47,38 +46,30 @@ Partial Class ReportViewerStockForm
         Me.DataSetAlmacen1.DataSetName = "DataSetAlmacen"
         Me.DataSetAlmacen1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
-        'VStockAlmacen1TableAdapter1
+        'VDetSolCajaImprimirTableAdapter1
         '
-        Me.VStockAlmacen1TableAdapter1.ClearBeforeFill = True
+        Me.VDetSolCajaImprimirTableAdapter1.ClearBeforeFill = True
         '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.Transparent
-        Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
-        Me.Button1.Location = New System.Drawing.Point(347, 2)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(53, 25)
-        Me.Button1.TabIndex = 5
-        Me.Button1.Text = "PDF"
-        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button1.UseVisualStyleBackColor = False
-        '
-        'ReportViewerStockForm
+        'ReportViewerReqCajaForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(469, 392)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(288, 262)
         Me.Controls.Add(Me.CReportViewer)
-        Me.Name = "ReportViewerStockForm"
-        Me.Text = "ReportViewerStockForm"
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
+        Me.Name = "ReportViewerReqCajaForm"
+        Me.ShowInTaskbar = False
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "SSP SAC"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.DataSetAlmacen1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents DataSetAlmacen1 As softwareMech.DataSetAlmacen
     Friend WithEvents CReportViewer As CrystalDecisions.Windows.Forms.CrystalReportViewer
-    Friend WithEvents VStockAlmacen1TableAdapter1 As softwareMech.DataSetAlmacenTableAdapters.vStockAlmacen1TableAdapter
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents DataSetAlmacen1 As softwareMech.DataSetAlmacen
+    Friend WithEvents VDetSolCajaImprimirTableAdapter1 As softwareMech.DataSetAlmacenTableAdapters.VDetSolCajaImprimirTableAdapter
 End Class

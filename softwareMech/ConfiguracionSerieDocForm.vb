@@ -271,6 +271,14 @@ Public Class ConfiguracionSerieDocForm
         Return cmdCampo.ExecuteScalar
     End Function
 
+    Private Function recuperarCountCajaChica(ByVal codSer As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select count(*) from TCajaChica where codSerO=" & codSer & " and estCaja=1"  '1=Activo caja chica
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
     Dim vfModificar1 As String = "modificar"
     Dim vfCampo1 As Integer
     Private Sub btnModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnModificar.Click
@@ -299,6 +307,11 @@ Public Class ConfiguracionSerieDocForm
             If lbEstado.Text.Trim() = "Inactivo" Then
                 If recuperarCount(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
                     MessageBox.Show("PROCESO DENEGADO, PRIMERAMENTE QUITE SERIE DE PERSONAL ASIGNADO...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+
+                If recuperarCountCajaChica(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
+                    MessageBox.Show("Proceso denegado, Caja Chica [ACTIVA] con SERIE ...", nomNegocio, Nothing, MessageBoxIcon.Error)
                     Exit Sub
                 End If
             End If
@@ -376,6 +389,14 @@ Public Class ConfiguracionSerieDocForm
         Return cmdCampo.ExecuteScalar
     End Function
 
+    Public Function recuperarCount3(ByVal codSer As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select count(*) from TCajaChica where codSerO=" & codSer
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
     Private Sub btnEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEliminar.Click
         If dgTabla1.Rows.Count = 0 Then
             StatusBarClass.messageBarraEstado("  No existe registro a eliminar...")
@@ -389,6 +410,11 @@ Public Class ConfiguracionSerieDocForm
 
         If recuperarCount2(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
             MessageBox.Show("PROCESO DENEGADO. SERIE TIENE PERSONAL ASIGNADO...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        If recuperarCount3(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
+            MessageBox.Show("PROCESO DENEGADO. SERIE TIENE CAJA CHICA ASIGNADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
 

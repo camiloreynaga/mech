@@ -303,7 +303,7 @@ Public Class MantSolicitudReqForm
             Exit Sub
         End If
 
-        Dim resp As String = MessageBox.Show("Esta seguro de aperturar solicitud de requerimiento Nº " & txtNro.Text, nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Dim resp As String = MessageBox.Show("Esta segúro de aperturar solicitud de requerimiento Nº " & txtNro.Text, nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
             Exit Sub
         End If
@@ -1308,13 +1308,6 @@ Public Class MantSolicitudReqForm
     End Sub
 
     Private Sub ToolStripButton6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton6.Click
-
-        If BindingSource3.Count = 0 Then
-            MessageBox.Show("NO existen registros a eliminar", nomNegocio, Nothing, MessageBoxIcon.Error)
-            Exit Sub
-        End If
-
-
         If BindingSource1.Item(BindingSource1.Position)(7) = 1 Then
             MessageBox.Show("No se puede eliminar requerimiento por estar en el estado de <CERRADO>", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
             Exit Sub

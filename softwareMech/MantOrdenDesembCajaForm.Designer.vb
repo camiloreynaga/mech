@@ -21,14 +21,16 @@ Partial Class MantOrdenDesembCajaForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MantOrdenDesembCajaForm))
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
+        Me.txtNro = New System.Windows.Forms.TextBox
+        Me.btnCancelar = New ComponentesSolucion2008.BottomSSP(Me.components)
+        Me.btnNuevo = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.txtLetraTotal = New System.Windows.Forms.TextBox
         Me.date1 = New System.Windows.Forms.DateTimePicker
         Me.Label1 = New System.Windows.Forms.Label
         Me.btnAnula = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.cbMon = New System.Windows.Forms.ComboBox
-        Me.btnAperturar1 = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.txtTot = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.txtDet = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.btnImprimir = New ComponentesSolucion2008.BottomSSP(Me.components)
@@ -39,38 +41,16 @@ Partial Class MantOrdenDesembCajaForm
         Me.Label4 = New System.Windows.Forms.Label
         Me.txtMon = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.txtSer = New System.Windows.Forms.TextBox
-        Me.txtNro = New System.Windows.Forms.TextBox
         Me.btnCerrar = New System.Windows.Forms.Button
         Me.Label2 = New System.Windows.Forms.Label
         Me.Label3 = New System.Windows.Forms.Label
-        Me.btnAperturar = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel
-        Me.cbObra = New System.Windows.Forms.ComboBox
-        Me.txtBan = New System.Windows.Forms.TextBox
-        Me.txtNroDet = New System.Windows.Forms.TextBox
-        Me.Label15 = New System.Windows.Forms.Label
-        Me.txtNroCta = New System.Windows.Forms.TextBox
-        Me.Label14 = New System.Windows.Forms.Label
-        Me.Label13 = New System.Windows.Forms.Label
-        Me.Label12 = New System.Windows.Forms.Label
-        Me.txtEma = New System.Windows.Forms.TextBox
-        Me.Label11 = New System.Windows.Forms.Label
-        Me.txtFono = New System.Windows.Forms.TextBox
-        Me.Label10 = New System.Windows.Forms.Label
-        Me.txtRuc = New System.Windows.Forms.TextBox
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.cbProv = New System.Windows.Forms.ComboBox
-        Me.Label9 = New System.Windows.Forms.Label
-        Me.Label7 = New System.Windows.Forms.Label
-        Me.Panel3 = New System.Windows.Forms.Panel
-        Me.btnVis = New ComponentesSolucion2008.BottomSSP(Me.components)
-        Me.btnElimina1 = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.txtDato = New System.Windows.Forms.TextBox
         Me.Label18 = New System.Windows.Forms.Label
-        Me.btnOrden = New ComponentesSolucion2008.BottomSSP(Me.components)
-        Me.txtOrden = New System.Windows.Forms.TextBox
-        Me.Label17 = New System.Windows.Forms.Label
-        Me.Label16 = New System.Windows.Forms.Label
+        Me.cbObra = New System.Windows.Forms.ComboBox
+        Me.txtBan = New System.Windows.Forms.TextBox
+        Me.Label14 = New System.Windows.Forms.Label
+        Me.Label7 = New System.Windows.Forms.Label
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Panel6 = New System.Windows.Forms.Panel
         Me.txtObs = New System.Windows.Forms.TextBox
@@ -116,7 +96,6 @@ Partial Class MantOrdenDesembCajaForm
         Me.dgTabla1 = New System.Windows.Forms.DataGridView
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        Me.Panel3.SuspendLayout()
         Me.Panel6.SuspendLayout()
         Me.Panel0.SuspendLayout()
         CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,7 +106,7 @@ Partial Class MantOrdenDesembCajaForm
         'lblTitulo
         '
         Me.lblTitulo.Size = New System.Drawing.Size(915, 23)
-        Me.lblTitulo.Text = "Formulario de Apertura de Orden de Desembolso"
+        Me.lblTitulo.Text = "Formulario de Apertura de Orden de Desembolso Caja Chica"
         '
         'lblDerecha
         '
@@ -136,6 +115,9 @@ Partial Class MantOrdenDesembCajaForm
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.txtNro)
+        Me.Panel1.Controls.Add(Me.btnCancelar)
+        Me.Panel1.Controls.Add(Me.btnNuevo)
         Me.Panel1.Controls.Add(Me.txtLetraTotal)
         Me.Panel1.Controls.Add(Me.date1)
         Me.Panel1.Controls.Add(Me.Label1)
@@ -151,21 +133,63 @@ Partial Class MantOrdenDesembCajaForm
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.txtMon)
         Me.Panel1.Controls.Add(Me.txtSer)
-        Me.Panel1.Controls.Add(Me.txtNro)
         Me.Panel1.Controls.Add(Me.btnCerrar)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Location = New System.Drawing.Point(14, 190)
+        Me.Panel1.Location = New System.Drawing.Point(14, 355)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(892, 64)
+        Me.Panel1.Size = New System.Drawing.Size(892, 83)
         Me.Panel1.TabIndex = 3
+        '
+        'txtNro
+        '
+        Me.txtNro.Location = New System.Drawing.Point(125, 9)
+        Me.txtNro.Name = "txtNro"
+        Me.txtNro.ReadOnly = True
+        Me.txtNro.Size = New System.Drawing.Size(47, 20)
+        Me.txtNro.TabIndex = 311
+        Me.txtNro.TabStop = False
+        Me.txtNro.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'btnCancelar
+        '
+        Me.btnCancelar.BackColor = System.Drawing.SystemColors.Control
+        Me.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnCancelar.Enabled = False
+        Me.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCancelar.Image = CType(resources.GetObject("btnCancelar.Image"), System.Drawing.Image)
+        Me.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnCancelar.Location = New System.Drawing.Point(713, 56)
+        Me.btnCancelar.Name = "btnCancelar"
+        Me.btnCancelar.Size = New System.Drawing.Size(81, 23)
+        Me.btnCancelar.TabIndex = 334
+        Me.btnCancelar.TabStop = False
+        Me.btnCancelar.Text = "Cancelar"
+        Me.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnCancelar.UseVisualStyleBackColor = False
+        '
+        'btnNuevo
+        '
+        Me.btnNuevo.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnNuevo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNuevo.Image = CType(resources.GetObject("btnNuevo.Image"), System.Drawing.Image)
+        Me.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnNuevo.Location = New System.Drawing.Point(626, 31)
+        Me.btnNuevo.Name = "btnNuevo"
+        Me.btnNuevo.Size = New System.Drawing.Size(81, 27)
+        Me.btnNuevo.TabIndex = 4
+        Me.btnNuevo.Text = "Nuevo"
+        Me.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolTip1.SetToolTip(Me.btnNuevo, "Aperturar nueva orden de desembolso sin orden de compra...")
+        Me.btnNuevo.UseVisualStyleBackColor = True
         '
         'txtLetraTotal
         '
         Me.txtLetraTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtLetraTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtLetraTotal.Location = New System.Drawing.Point(25, 32)
+        Me.txtLetraTotal.Location = New System.Drawing.Point(25, 36)
         Me.txtLetraTotal.Name = "txtLetraTotal"
+        Me.txtLetraTotal.ReadOnly = True
         Me.txtLetraTotal.Size = New System.Drawing.Size(578, 20)
         Me.txtLetraTotal.TabIndex = 323
         Me.txtLetraTotal.TabStop = False
@@ -175,7 +199,7 @@ Partial Class MantOrdenDesembCajaForm
         '
         Me.date1.Enabled = False
         Me.date1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.date1.Location = New System.Drawing.Point(101, 33)
+        Me.date1.Location = New System.Drawing.Point(101, 37)
         Me.date1.Name = "date1"
         Me.date1.Size = New System.Drawing.Size(107, 20)
         Me.date1.TabIndex = 312
@@ -183,7 +207,7 @@ Partial Class MantOrdenDesembCajaForm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(22, 10)
+        Me.Label1.Location = New System.Drawing.Point(22, 12)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(40, 13)
         Me.Label1.TabIndex = 332
@@ -207,45 +231,34 @@ Partial Class MantOrdenDesembCajaForm
         'cbMon
         '
         Me.cbMon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbMon.Enabled = False
         Me.cbMon.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbMon.FormattingEnabled = True
         Me.cbMon.IntegralHeight = False
-        Me.cbMon.Location = New System.Drawing.Point(214, 7)
+        Me.cbMon.Location = New System.Drawing.Point(214, 9)
         Me.cbMon.Name = "cbMon"
         Me.cbMon.Size = New System.Drawing.Size(50, 21)
-        Me.cbMon.TabIndex = 330
-        '
-        'btnAperturar1
-        '
-        Me.btnAperturar1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnAperturar1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAperturar1.Image = CType(resources.GetObject("btnAperturar1.Image"), System.Drawing.Image)
-        Me.btnAperturar1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAperturar1.Location = New System.Drawing.Point(370, 112)
-        Me.btnAperturar1.Name = "btnAperturar1"
-        Me.btnAperturar1.Size = New System.Drawing.Size(209, 27)
-        Me.btnAperturar1.TabIndex = 329
-        Me.btnAperturar1.TabStop = False
-        Me.btnAperturar1.Text = "Nuevo con Orden Compra"
-        Me.btnAperturar1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolTip1.SetToolTip(Me.btnAperturar1, "Aperturar nueva orden de desembolso Con orden de compra...")
-        Me.btnAperturar1.UseVisualStyleBackColor = True
+        Me.cbMon.TabIndex = 0
         '
         'txtTot
         '
-        Me.txtTot.Location = New System.Drawing.Point(525, 7)
+        Me.txtTot.Location = New System.Drawing.Point(475, 36)
         Me.txtTot.Name = "txtTot"
+        Me.txtTot.ReadOnly = True
         Me.txtTot.Size = New System.Drawing.Size(78, 20)
-        Me.txtTot.TabIndex = 321
+        Me.txtTot.TabIndex = 3
+        Me.txtTot.TabStop = False
         Me.txtTot.Text = "0.00"
         Me.txtTot.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtDet
         '
-        Me.txtDet.Location = New System.Drawing.Point(402, 7)
+        Me.txtDet.Location = New System.Drawing.Point(352, 36)
         Me.txtDet.Name = "txtDet"
+        Me.txtDet.ReadOnly = True
         Me.txtDet.Size = New System.Drawing.Size(78, 20)
-        Me.txtDet.TabIndex = 319
+        Me.txtDet.TabIndex = 2
+        Me.txtDet.TabStop = False
         Me.txtDet.Text = "0.00"
         Me.txtDet.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -254,7 +267,7 @@ Partial Class MantOrdenDesembCajaForm
         Me.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
         Me.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnImprimir.Location = New System.Drawing.Point(717, 29)
+        Me.btnImprimir.Location = New System.Drawing.Point(800, 54)
         Me.btnImprimir.Name = "btnImprimir"
         Me.btnImprimir.Size = New System.Drawing.Size(77, 25)
         Me.btnImprimir.TabIndex = 327
@@ -284,12 +297,12 @@ Partial Class MantOrdenDesembCajaForm
         Me.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnModificar.Image = CType(resources.GetObject("btnModificar.Image"), System.Drawing.Image)
         Me.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnModificar.Location = New System.Drawing.Point(717, 3)
+        Me.btnModificar.Location = New System.Drawing.Point(711, 4)
         Me.btnModificar.Name = "btnModificar"
-        Me.btnModificar.Size = New System.Drawing.Size(77, 25)
+        Me.btnModificar.Size = New System.Drawing.Size(81, 25)
         Me.btnModificar.TabIndex = 325
         Me.btnModificar.TabStop = False
-        Me.btnModificar.Text = "Guardar"
+        Me.btnModificar.Text = "Modificar"
         Me.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ToolTip1.SetToolTip(Me.btnModificar, "Guardar modificaciones de orden de desembolso...")
         Me.btnModificar.UseVisualStyleBackColor = True
@@ -297,7 +310,7 @@ Partial Class MantOrdenDesembCajaForm
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(488, 10)
+        Me.Label6.Location = New System.Drawing.Point(438, 39)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(40, 13)
         Me.Label6.TabIndex = 322
@@ -306,7 +319,7 @@ Partial Class MantOrdenDesembCajaForm
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(350, 10)
+        Me.Label5.Location = New System.Drawing.Point(300, 39)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(53, 13)
         Me.Label5.TabIndex = 320
@@ -315,7 +328,7 @@ Partial Class MantOrdenDesembCajaForm
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(171, 10)
+        Me.Label4.Location = New System.Drawing.Point(171, 12)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(46, 13)
         Me.Label4.TabIndex = 318
@@ -323,15 +336,16 @@ Partial Class MantOrdenDesembCajaForm
         '
         'txtMon
         '
-        Me.txtMon.Location = New System.Drawing.Point(265, 7)
+        Me.txtMon.Location = New System.Drawing.Point(265, 9)
         Me.txtMon.Name = "txtMon"
+        Me.txtMon.ReadOnly = True
         Me.txtMon.Size = New System.Drawing.Size(78, 20)
-        Me.txtMon.TabIndex = 317
+        Me.txtMon.TabIndex = 1
         Me.txtMon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtSer
         '
-        Me.txtSer.Location = New System.Drawing.Point(66, 7)
+        Me.txtSer.Location = New System.Drawing.Point(66, 9)
         Me.txtSer.Name = "txtSer"
         Me.txtSer.ReadOnly = True
         Me.txtSer.Size = New System.Drawing.Size(39, 20)
@@ -339,22 +353,12 @@ Partial Class MantOrdenDesembCajaForm
         Me.txtSer.TabStop = False
         Me.txtSer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'txtNro
-        '
-        Me.txtNro.Location = New System.Drawing.Point(125, 7)
-        Me.txtNro.Name = "txtNro"
-        Me.txtNro.ReadOnly = True
-        Me.txtNro.Size = New System.Drawing.Size(47, 20)
-        Me.txtNro.TabIndex = 311
-        Me.txtNro.TabStop = False
-        Me.txtNro.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
         'btnCerrar
         '
         Me.btnCerrar.BackColor = System.Drawing.SystemColors.Control
         Me.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCerrar.Location = New System.Drawing.Point(425, 32)
+        Me.btnCerrar.Location = New System.Drawing.Point(425, 36)
         Me.btnCerrar.Name = "btnCerrar"
         Me.btnCerrar.Size = New System.Drawing.Size(44, 21)
         Me.btnCerrar.TabIndex = 313
@@ -365,7 +369,7 @@ Partial Class MantOrdenDesembCajaForm
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(57, 35)
+        Me.Label2.Location = New System.Drawing.Point(57, 34)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(46, 13)
         Me.Label2.TabIndex = 310
@@ -374,309 +378,86 @@ Partial Class MantOrdenDesembCajaForm
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(106, 10)
+        Me.Label3.Location = New System.Drawing.Point(106, 12)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(21, 13)
         Me.Label3.TabIndex = 308
         Me.Label3.Text = "Nº"
         '
-        'btnAperturar
-        '
-        Me.btnAperturar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnAperturar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAperturar.Image = CType(resources.GetObject("btnAperturar.Image"), System.Drawing.Image)
-        Me.btnAperturar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAperturar.Location = New System.Drawing.Point(370, 83)
-        Me.btnAperturar.Name = "btnAperturar"
-        Me.btnAperturar.Size = New System.Drawing.Size(209, 27)
-        Me.btnAperturar.TabIndex = 309
-        Me.btnAperturar.TabStop = False
-        Me.btnAperturar.Text = "Nuevo Sin Orden Compra"
-        Me.btnAperturar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolTip1.SetToolTip(Me.btnAperturar, "Aperturar nueva orden de desembolso sin orden de compra...")
-        Me.btnAperturar.UseVisualStyleBackColor = True
-        '
         'Panel2
         '
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.txtDato)
+        Me.Panel2.Controls.Add(Me.Label18)
         Me.Panel2.Controls.Add(Me.cbObra)
         Me.Panel2.Controls.Add(Me.txtBan)
-        Me.Panel2.Controls.Add(Me.txtNroDet)
-        Me.Panel2.Controls.Add(Me.Label15)
-        Me.Panel2.Controls.Add(Me.txtNroCta)
         Me.Panel2.Controls.Add(Me.Label14)
-        Me.Panel2.Controls.Add(Me.Label13)
-        Me.Panel2.Controls.Add(Me.Label12)
-        Me.Panel2.Controls.Add(Me.txtEma)
-        Me.Panel2.Controls.Add(Me.Label11)
-        Me.Panel2.Controls.Add(Me.txtFono)
-        Me.Panel2.Controls.Add(Me.Label10)
-        Me.Panel2.Controls.Add(Me.txtRuc)
-        Me.Panel2.Controls.Add(Me.Label8)
-        Me.Panel2.Controls.Add(Me.cbProv)
-        Me.Panel2.Controls.Add(Me.Label9)
         Me.Panel2.Controls.Add(Me.Label7)
-        Me.Panel2.Location = New System.Drawing.Point(14, 255)
+        Me.Panel2.Location = New System.Drawing.Point(14, 441)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(892, 179)
+        Me.Panel2.Size = New System.Drawing.Size(892, 91)
         Me.Panel2.TabIndex = 4
+        '
+        'txtDato
+        '
+        Me.txtDato.Location = New System.Drawing.Point(133, 60)
+        Me.txtDato.Name = "txtDato"
+        Me.txtDato.ReadOnly = True
+        Me.txtDato.Size = New System.Drawing.Size(661, 20)
+        Me.txtDato.TabIndex = 332
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(6, 63)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(123, 13)
+        Me.Label18.TabIndex = 331
+        Me.Label18.Text = "Detalle Desembolso:"
         '
         'cbObra
         '
         Me.cbObra.DropDownHeight = 500
         Me.cbObra.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbObra.DropDownWidth = 400
+        Me.cbObra.Enabled = False
         Me.cbObra.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbObra.FormattingEnabled = True
         Me.cbObra.IntegralHeight = False
-        Me.cbObra.Location = New System.Drawing.Point(101, 6)
+        Me.cbObra.Location = New System.Drawing.Point(133, 6)
         Me.cbObra.Name = "cbObra"
         Me.cbObra.Size = New System.Drawing.Size(659, 21)
         Me.cbObra.TabIndex = 287
         '
         'txtBan
         '
-        Me.txtBan.Location = New System.Drawing.Point(304, 153)
+        Me.txtBan.Location = New System.Drawing.Point(133, 34)
         Me.txtBan.Name = "txtBan"
-        Me.txtBan.Size = New System.Drawing.Size(274, 20)
+        Me.txtBan.ReadOnly = True
+        Me.txtBan.Size = New System.Drawing.Size(210, 20)
         Me.txtBan.TabIndex = 323
-        '
-        'txtNroDet
-        '
-        Me.txtNroDet.Location = New System.Drawing.Point(304, 127)
-        Me.txtNroDet.Name = "txtNroDet"
-        Me.txtNroDet.Size = New System.Drawing.Size(274, 20)
-        Me.txtNroDet.TabIndex = 321
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(149, 130)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(135, 13)
-        Me.Label15.TabIndex = 321
-        Me.Label15.Text = "Cta de Detracción BN:"
-        '
-        'txtNroCta
-        '
-        Me.txtNroCta.Location = New System.Drawing.Point(304, 101)
-        Me.txtNroCta.Name = "txtNroCta"
-        Me.txtNroCta.Size = New System.Drawing.Size(274, 20)
-        Me.txtNroCta.TabIndex = 320
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(147, 156)
+        Me.Label14.Location = New System.Drawing.Point(10, 37)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(160, 13)
+        Me.Label14.Size = New System.Drawing.Size(95, 13)
         Me.Label14.TabIndex = 319
-        Me.Label14.Text = "Forma de pago Negociado:"
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(149, 104)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(158, 13)
-        Me.Label13.TabIndex = 317
-        Me.Label13.Text = "Nº Cta Cte/Ahorro: Banco:"
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(6, 104)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(137, 13)
-        Me.Label12.TabIndex = 316
-        Me.Label12.Text = "CUENTA CORRIENTE:"
-        '
-        'txtEma
-        '
-        Me.txtEma.Location = New System.Drawing.Point(249, 61)
-        Me.txtEma.Name = "txtEma"
-        Me.txtEma.ReadOnly = True
-        Me.txtEma.Size = New System.Drawing.Size(294, 20)
-        Me.txtEma.TabIndex = 313
-        Me.txtEma.TabStop = False
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(212, 64)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(41, 13)
-        Me.Label11.TabIndex = 315
-        Me.Label11.Text = "Email:"
-        '
-        'txtFono
-        '
-        Me.txtFono.Location = New System.Drawing.Point(621, 60)
-        Me.txtFono.Name = "txtFono"
-        Me.txtFono.ReadOnly = True
-        Me.txtFono.Size = New System.Drawing.Size(266, 20)
-        Me.txtFono.TabIndex = 312
-        Me.txtFono.TabStop = False
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(560, 63)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(65, 13)
-        Me.Label10.TabIndex = 314
-        Me.Label10.Text = "Fono/Fax:"
-        '
-        'txtRuc
-        '
-        Me.txtRuc.Location = New System.Drawing.Point(101, 60)
-        Me.txtRuc.Name = "txtRuc"
-        Me.txtRuc.ReadOnly = True
-        Me.txtRuc.Size = New System.Drawing.Size(90, 20)
-        Me.txtRuc.TabIndex = 309
-        Me.txtRuc.TabStop = False
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(6, 61)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(41, 13)
-        Me.Label8.TabIndex = 311
-        Me.Label8.Text = "RUC.:"
-        '
-        'cbProv
-        '
-        Me.cbProv.DropDownHeight = 500
-        Me.cbProv.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbProv.DropDownWidth = 400
-        Me.cbProv.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbProv.FormattingEnabled = True
-        Me.cbProv.IntegralHeight = False
-        Me.cbProv.Location = New System.Drawing.Point(101, 33)
-        Me.cbProv.Name = "cbProv"
-        Me.cbProv.Size = New System.Drawing.Size(442, 21)
-        Me.cbProv.TabIndex = 308
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(5, 33)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(69, 13)
-        Me.Label9.TabIndex = 310
-        Me.Label9.Text = "Proveedor:"
+        Me.Label14.Text = "Forma de pago:"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(5, 9)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(98, 13)
+        Me.Label7.Size = New System.Drawing.Size(110, 13)
         Me.Label7.TabIndex = 288
-        Me.Label7.Text = "Obra / Servicio:"
-        '
-        'Panel3
-        '
-        Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel3.Controls.Add(Me.btnVis)
-        Me.Panel3.Controls.Add(Me.btnElimina1)
-        Me.Panel3.Controls.Add(Me.txtDato)
-        Me.Panel3.Controls.Add(Me.Label18)
-        Me.Panel3.Controls.Add(Me.btnOrden)
-        Me.Panel3.Controls.Add(Me.txtOrden)
-        Me.Panel3.Controls.Add(Me.Label17)
-        Me.Panel3.Controls.Add(Me.Label16)
-        Me.Panel3.Location = New System.Drawing.Point(14, 436)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(892, 71)
-        Me.Panel3.TabIndex = 5
-        '
-        'btnVis
-        '
-        Me.btnVis.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnVis.Image = CType(resources.GetObject("btnVis.Image"), System.Drawing.Image)
-        Me.btnVis.Location = New System.Drawing.Point(358, 14)
-        Me.btnVis.Name = "btnVis"
-        Me.btnVis.Size = New System.Drawing.Size(25, 23)
-        Me.btnVis.TabIndex = 332
-        Me.btnVis.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.btnVis, "Visualizar orden de compra de orden de desembolso...")
-        Me.btnVis.UseVisualStyleBackColor = True
-        '
-        'btnElimina1
-        '
-        Me.btnElimina1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnElimina1.Image = CType(resources.GetObject("btnElimina1.Image"), System.Drawing.Image)
-        Me.btnElimina1.Location = New System.Drawing.Point(327, 14)
-        Me.btnElimina1.Name = "btnElimina1"
-        Me.btnElimina1.Size = New System.Drawing.Size(25, 23)
-        Me.btnElimina1.TabIndex = 331
-        Me.btnElimina1.TabStop = False
-        Me.ToolTip1.SetToolTip(Me.btnElimina1, "Quitar orden de compra de orden de desembolso...")
-        Me.btnElimina1.UseVisualStyleBackColor = True
-        '
-        'txtDato
-        '
-        Me.txtDato.Location = New System.Drawing.Point(162, 43)
-        Me.txtDato.Name = "txtDato"
-        Me.txtDato.Size = New System.Drawing.Size(679, 20)
-        Me.txtDato.TabIndex = 330
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(45, 47)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(123, 13)
-        Me.Label18.TabIndex = 329
-        Me.Label18.Text = "Detalle Desembolso:"
-        '
-        'btnOrden
-        '
-        Me.btnOrden.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnOrden.Font = New System.Drawing.Font("Arial Black", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnOrden.ForeColor = System.Drawing.Color.Navy
-        Me.btnOrden.Location = New System.Drawing.Point(296, 15)
-        Me.btnOrden.Name = "btnOrden"
-        Me.btnOrden.Size = New System.Drawing.Size(28, 21)
-        Me.btnOrden.TabIndex = 328
-        Me.btnOrden.TabStop = False
-        Me.btnOrden.Text = "..."
-        Me.ToolTip1.SetToolTip(Me.btnOrden, "Relacionar con Orden de Compra")
-        Me.btnOrden.UseVisualStyleBackColor = True
-        '
-        'txtOrden
-        '
-        Me.txtOrden.Location = New System.Drawing.Point(162, 16)
-        Me.txtOrden.Name = "txtOrden"
-        Me.txtOrden.ReadOnly = True
-        Me.txtOrden.Size = New System.Drawing.Size(132, 20)
-        Me.txtOrden.TabIndex = 321
-        Me.txtOrden.TabStop = False
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(44, 19)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(109, 13)
-        Me.Label17.TabIndex = 320
-        Me.Label17.Text = "Nº Orden Compra:"
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(5, 2)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(216, 13)
-        Me.Label16.TabIndex = 317
-        Me.Label16.Text = "Nº DE REQUERIMIENTO ADJUNTO:"
+        Me.Label7.Text = "Sede / Obra Caja:"
         '
         'Panel6
         '
         Me.Panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel6.Controls.Add(Me.btnAperturar1)
         Me.Panel6.Controls.Add(Me.txtObs)
         Me.Panel6.Controls.Add(Me.txtEst)
         Me.Panel6.Controls.Add(Me.txtGer)
@@ -695,10 +476,9 @@ Partial Class MantOrdenDesembCajaForm
         Me.Panel6.Controls.Add(Me.Label35)
         Me.Panel6.Controls.Add(Me.txtNom1)
         Me.Panel6.Controls.Add(Me.Label32)
-        Me.Panel6.Controls.Add(Me.btnAperturar)
-        Me.Panel6.Location = New System.Drawing.Point(14, 509)
+        Me.Panel6.Location = New System.Drawing.Point(14, 534)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(892, 144)
+        Me.Panel6.Size = New System.Drawing.Size(892, 119)
         Me.Panel6.TabIndex = 8
         '
         'txtObs
@@ -736,14 +516,15 @@ Partial Class MantOrdenDesembCajaForm
         Me.Label19.AutoSize = True
         Me.Label19.Location = New System.Drawing.Point(612, 59)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(62, 13)
+        Me.Label19.Size = New System.Drawing.Size(58, 13)
         Me.Label19.TabIndex = 380
-        Me.Label19.Text = "Gerencia:"
+        Me.Label19.Text = "Aprueba:"
         '
         'txtOtro
         '
         Me.txtOtro.Location = New System.Drawing.Point(104, 90)
         Me.txtOtro.Name = "txtOtro"
+        Me.txtOtro.ReadOnly = True
         Me.txtOtro.Size = New System.Drawing.Size(166, 20)
         Me.txtOtro.TabIndex = 377
         '
@@ -883,7 +664,7 @@ Partial Class MantOrdenDesembCajaForm
         Me.Panel0.Controls.Add(Me.dgTabla1)
         Me.Panel0.Location = New System.Drawing.Point(14, 23)
         Me.Panel0.Name = "Panel0"
-        Me.Panel0.Size = New System.Drawing.Size(892, 165)
+        Me.Panel0.Size = New System.Drawing.Size(892, 330)
         Me.Panel0.TabIndex = 9
         '
         'Navigator1
@@ -894,7 +675,7 @@ Partial Class MantOrdenDesembCajaForm
         Me.Navigator1.DeleteItem = Nothing
         Me.Navigator1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Navigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripTextBox1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator4, Me.ToolStripLabel2, Me.txtTotal, Me.ToolStripSeparator3, Me.ToolStripLabel3, Me.txtTotal1, Me.ToolStripSeparator5, Me.ToolStripLabel4, Me.txtTotal2, Me.ToolStripSeparator6, Me.ToolStripLabel5, Me.txtTotal3})
-        Me.Navigator1.Location = New System.Drawing.Point(0, 140)
+        Me.Navigator1.Location = New System.Drawing.Point(0, 305)
         Me.Navigator1.MoveFirstItem = Me.ToolStripButton1
         Me.Navigator1.MoveLastItem = Me.ToolStripButton4
         Me.Navigator1.MoveNextItem = Me.ToolStripButton3
@@ -1066,12 +847,12 @@ Partial Class MantOrdenDesembCajaForm
         Me.dgTabla1.Location = New System.Drawing.Point(0, 0)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle3
-        Me.dgTabla1.Size = New System.Drawing.Size(892, 140)
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgTabla1.Size = New System.Drawing.Size(892, 305)
         Me.dgTabla1.TabIndex = 329
         '
-        'MantOrdenDesembolsoForm1
+        'MantOrdenDesembCajaForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
@@ -1080,10 +861,8 @@ Partial Class MantOrdenDesembCajaForm
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel0)
         Me.Controls.Add(Me.Panel6)
-        Me.Controls.Add(Me.Panel3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "MantOrdenDesembolsoForm1"
-        Me.Controls.SetChildIndex(Me.Panel3, 0)
+        Me.Name = "MantOrdenDesembCajaForm"
         Me.Controls.SetChildIndex(Me.Panel6, 0)
         Me.Controls.SetChildIndex(Me.Panel0, 0)
         Me.Controls.SetChildIndex(Me.Panel2, 0)
@@ -1094,8 +873,6 @@ Partial Class MantOrdenDesembCajaForm
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        Me.Panel3.ResumeLayout(False)
-        Me.Panel3.PerformLayout()
         Me.Panel6.ResumeLayout(False)
         Me.Panel6.PerformLayout()
         Me.Panel0.ResumeLayout(False)
@@ -1113,7 +890,6 @@ Partial Class MantOrdenDesembCajaForm
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents date1 As System.Windows.Forms.DateTimePicker
-    Friend WithEvents btnAperturar As ComponentesSolucion2008.BottomSSP
     Friend WithEvents txtSer As System.Windows.Forms.TextBox
     Friend WithEvents txtMon As ComponentesSolucion2008.TextBoxSSP
     Friend WithEvents Label4 As System.Windows.Forms.Label
@@ -1128,37 +904,15 @@ Partial Class MantOrdenDesembCajaForm
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents cbObra As System.Windows.Forms.ComboBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents txtRuc As System.Windows.Forms.TextBox
-    Friend WithEvents Label8 As System.Windows.Forms.Label
-    Friend WithEvents cbProv As System.Windows.Forms.ComboBox
-    Friend WithEvents Label9 As System.Windows.Forms.Label
-    Friend WithEvents txtEma As System.Windows.Forms.TextBox
-    Friend WithEvents Label11 As System.Windows.Forms.Label
-    Friend WithEvents txtFono As System.Windows.Forms.TextBox
-    Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents Label13 As System.Windows.Forms.Label
-    Friend WithEvents Label12 As System.Windows.Forms.Label
-    Friend WithEvents txtNroCta As System.Windows.Forms.TextBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents txtBan As System.Windows.Forms.TextBox
-    Friend WithEvents txtNroDet As System.Windows.Forms.TextBox
-    Friend WithEvents Label15 As System.Windows.Forms.Label
-    Friend WithEvents Panel3 As System.Windows.Forms.Panel
-    Friend WithEvents Label16 As System.Windows.Forms.Label
-    Friend WithEvents Label17 As System.Windows.Forms.Label
-    Friend WithEvents txtOrden As System.Windows.Forms.TextBox
-    Friend WithEvents btnOrden As ComponentesSolucion2008.BottomSSP
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
-    Friend WithEvents txtDato As System.Windows.Forms.TextBox
-    Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents Panel6 As System.Windows.Forms.Panel
     Friend WithEvents txtNom1 As System.Windows.Forms.TextBox
     Friend WithEvents Label32 As System.Windows.Forms.Label
     Friend WithEvents txtObs1 As System.Windows.Forms.TextBox
     Friend WithEvents Label35 As System.Windows.Forms.Label
-    Friend WithEvents btnAperturar1 As ComponentesSolucion2008.BottomSSP
     Friend WithEvents cbMon As System.Windows.Forms.ComboBox
-    Friend WithEvents btnElimina1 As ComponentesSolucion2008.BottomSSP
     Friend WithEvents btnAnula As ComponentesSolucion2008.BottomSSP
     Friend WithEvents Label33 As System.Windows.Forms.Label
     Friend WithEvents txtOtro As System.Windows.Forms.TextBox
@@ -1198,6 +952,9 @@ Partial Class MantOrdenDesembCajaForm
     Friend WithEvents txtEst As System.Windows.Forms.TextBox
     Friend WithEvents txtGer As System.Windows.Forms.TextBox
     Friend WithEvents Label19 As System.Windows.Forms.Label
-    Friend WithEvents btnVis As ComponentesSolucion2008.BottomSSP
+    Friend WithEvents txtDato As System.Windows.Forms.TextBox
+    Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents btnNuevo As ComponentesSolucion2008.BottomSSP
+    Friend WithEvents btnCancelar As ComponentesSolucion2008.BottomSSP
 
 End Class

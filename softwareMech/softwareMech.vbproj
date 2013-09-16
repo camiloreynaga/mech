@@ -213,11 +213,17 @@
       <DependentUpon>CrystalReport6.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrystalReport8.vb">
+    <Compile Include="CrystalReport7.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport7.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport81.vb">
       <DependentUpon>CrystalReport8.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="DataSetAlmacen.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -250,12 +256,6 @@
       <DependentUpon>entradaSalidaAlmacen1Form.vb</DependentUpon>
     </Compile>
     <Compile Include="entradaSalidaAlmacen1Form.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MantSolicitudCajaForm.Designer.vb">
-      <DependentUpon>MantSolicitudCajaForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MantSolicitudCajaForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GastosPorDiaForm.Designer.vb">
@@ -472,6 +472,12 @@
     <Compile Include="pantallaInicialForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="procesarIngresoCajaChicaForm.Designer.vb">
+      <DependentUpon>procesarIngresoCajaChicaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="procesarIngresoCajaChicaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="registraComprobantePago.Designer.vb">
       <DependentUpon>registraComprobantePago.vb</DependentUpon>
     </Compile>
@@ -514,7 +520,7 @@
     <Compile Include="ReporteCardexForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="reporteStockForm.Designer.vb">
+    <Compile Include="reporteStockForm.designer.vb">
       <DependentUpon>reporteStockForm.vb</DependentUpon>
     </Compile>
     <Compile Include="reporteStockForm.vb">
@@ -550,16 +556,28 @@
     <Compile Include="ReportViewerOrdenDesembolsoForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReportViewerReqCajaForm.Designer.vb">
+      <DependentUpon>ReportViewerReqCajaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewerReqCajaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReportViewerSolicitudForm.Designer.vb">
       <DependentUpon>ReportViewerSolicitudForm.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportViewerSolicitudForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportViewerStockForm.Designer.vb">
+    <Compile Include="ReportViewerStockForm.designer.vb">
       <DependentUpon>ReportViewerStockForm.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportViewerStockForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="requerimientoCajaPersForm.Designer.vb">
+      <DependentUpon>requerimientoCajaPersForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="requerimientoCajaPersForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="salidaAlmacenGuiaMechForm.designer.vb">
@@ -695,9 +713,13 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport6.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport7.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport7.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport8.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrystalReport8.vb</LastGenOutput>
+      <LastGenOutput>CrystalReport81.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="entradaAlmacenGuiaMechForm.resx">
       <DependentUpon>entradaAlmacenGuiaMechForm.vb</DependentUpon>
@@ -789,9 +811,6 @@
     <EmbeddedResource Include="MantPersonalForm.resx">
       <DependentUpon>MantPersonalForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MantSolicitudCajaForm.resx">
-      <DependentUpon>MantSolicitudCajaForm.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MantSolicitudReqForm.resx">
       <DependentUpon>MantSolicitudReqForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -818,6 +837,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pantallaInicialForm.resx">
       <DependentUpon>pantallaInicialForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="procesarIngresoCajaChicaForm.resx">
+      <DependentUpon>procesarIngresoCajaChicaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="registraComprobantePago.resx">
       <DependentUpon>registraComprobantePago.vb</DependentUpon>
@@ -858,11 +880,17 @@
     <EmbeddedResource Include="ReportViewerOrdenDesembolsoForm.resx">
       <DependentUpon>ReportViewerOrdenDesembolsoForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewerReqCajaForm.resx">
+      <DependentUpon>ReportViewerReqCajaForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerSolicitudForm.resx">
       <DependentUpon>ReportViewerSolicitudForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerStockForm.resx">
       <DependentUpon>ReportViewerStockForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="requerimientoCajaPersForm.resx">
+      <DependentUpon>requerimientoCajaPersForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="salidaAlmacenGuiaMechForm.resx">
       <DependentUpon>salidaAlmacenGuiaMechForm.vb</DependentUpon>
@@ -896,6 +924,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="DataSetAlmacen.xsc">
       <DependentUpon>DataSetAlmacen.xsd</DependentUpon>
     </None>

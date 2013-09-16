@@ -107,13 +107,11 @@ as
 go
 -- PAra consultar los seguimientos
 create proc PA_SeguimientoDesembolso
-@fechaInicio date,
-@fechaFin date
 as
 Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,
 banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,
 descOtro,nroConfor,fecEnt,moneda,simbolo,solicitante,ruc,fono,email,codObra,codIde 
-from VOrdenDesembolsoSeguimiento where fecDes between @fechaInicio and @fechaFin 
+from VOrdenDesembolsoSeguimiento
 go
 
 --Para recuperar las ordenes de compra
@@ -186,8 +184,7 @@ as
 	
 	RETURN  @Identity
 GO
---------EJECUTAR AHORITA-----------------
------------14/08/2013-----------------------
+
 create procedure PA_InsertGuiaRemEmp
 	@tal varchar(5),@nroG int,@fecI date,@codSer int,@codIde int,@est int,@codUbiO int,@codUbiD int,@par varchar(100),@lleg varchar(100),
 	@codET int,@codV int,@codT int,@codMot int,@nroFact varchar(30),@obs varchar(200),@codPers int,@hist varchar(500),
@@ -222,7 +219,11 @@ as
 	RETURN  @Identity
 GO
 
-
+--------EJECUTAR AHORITA-----------------
+-----------14/09/2013-----------------------
+------------------------------------
+-- Ejecuatar en el Server
+-- DROP procedure PA_InsertTCajaChica
 create procedure PA_InsertTCajaChica
 @fechaCre date ,
 @codigo varchar(20),
@@ -235,6 +236,25 @@ as
 	
 	return @Identity
 go
+
+create procedure PA_InsertDetSolCaja
+	@can1 decimal(8,2),@can2 decimal(8,2),@uni varchar(20),@ins varchar(200),@ing int,@pre1 decimal(8,2),@pre2 decimal(8,2),@obsSol varchar(200),@codApro int,
+	@estDet int,@obsApro varchar(200),@codMat int,@codAreaM int,@codTipM int,@codSC int,@estRen int,@codRen int,@obsRen varchar(200),@codDC int,@nroO varchar(30),@comp int,
+	@Identity int output --parametro de salida
+as
+	insert into TDetSolCaja(cant1,cant2,uniMed,insumo,ingreso,prec1,prec2,obsSol,codApro,estDet,obsApro,codMat,codAreaM,codTipM,codSC,estRen,codRen,obsRen,codDC,nroOtros,compCheck) 
+		values(@can1,@can2,@uni,@ins,@ing,@pre1,@pre2,@obsSol,@codApro,@estDet,@obsApro,@codMat,@codAreaM,@codTipM,@codSC,@estRen,@codRen,@obsRen,@codDC,@nroO,@comp)	
+	SET @Identity = @@Identity
+	
+	RETURN  @Identity
+GO
+
+
+
+
+
+
+
 
 
 

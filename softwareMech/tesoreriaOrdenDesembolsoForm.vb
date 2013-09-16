@@ -671,9 +671,27 @@ Public Class tesoreriaOrdenDesembolsoForm
         cmUpdateTable23.Parameters.Add("@nro", SqlDbType.Int, 0).Value = BindingSource1.Item(BindingSource1.Position)(0)
     End Sub
 
+    Private Function recuperarCodPagDCaja(ByVal cod As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select count(*) from TMovimientoCaja where codPagD=" & cod
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
     Private Sub btnEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEliminar.Click
         If dgTabla2.Rows.Count = 0 Then
             StatusBarClass.messageBarraEstado("  No existe registro a eliminar...")
+            Exit Sub
+        End If
+
+        If recuperarCodPagDCaja(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
+            StatusBarClass.messageBarraEstado("  PROCESO DENEGADO, PAGO TIENE ENTRADA EN MOVIMIENTO DE CAJA...")
+            Exit Sub
+        End If
+
+        Dim resp As String = MessageBox.Show("Esta segúro de eliminar Registro de Pago: " & BindingSource2.Item(BindingSource2.Position)(2) & " de " & BindingSource2.Item(BindingSource2.Position)(5) & " " & BindingSource2.Item(BindingSource2.Position)(6) & " Si Elimina no podra deshacer proceso...", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resp <> 6 Then
             Exit Sub
         End If
 

@@ -3,7 +3,6 @@ Imports System.Data.SqlClient
 Imports ComponentesSolucion2008
 Public Class MantOrdenDesembCajaForm
     Dim BindingSource0 As New BindingSource
-    Dim BindingSource1 As New BindingSource
     Dim BindingSource2 As New BindingSource
     Dim BindingSource3 As New BindingSource
     Dim BindingSource4 As New BindingSource
@@ -21,11 +20,9 @@ Public Class MantOrdenDesembCajaForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select codIde,razon,ruc,dir,fono,fax,celRpm,email,repres,fono+'  '+fax as fono1,cuentaBan,cuentaDet from TIdentidad where estado=1 and idTipId=2" ' '2=proveedor
-        crearDataAdapterTable(daTProvee, sele)
-
-        sele = "select distinct codigo,nombre,lugar,color from VLugarTrabajoLogin"
+        Dim sele As String = "select distinct codigo,nombre,lugar,color from VLugarTrabajoLogin where codigo=@cod"
         crearDataAdapterTable(daTUbi, sele)
+        daTUbi.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vSCodigo  'Caja chica por Destino Obra
 
         txtSer.Text = vSSerie
         sele = "select idOP,nroDes,serie,nro,fecDes,simbolo,monto,montoDet,montoDif,banco,nroCta,est,nroDet,datoReq,hist,estado,codigo,codIde,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,codMon,codSerO from VOrdenDesembolso where codSerO=@ser" 'order by nroDes"
@@ -35,7 +32,6 @@ Public Class MantOrdenDesembCajaForm
         sele = "select codMon,moneda,simbolo from TMoneda"
         crearDataAdapterTable(daTMon, sele)
 
-        'sele = "select codPers,codCar,codTipU,nombre,dni,apellido,nom,codPersDes,idOP,estDesem,tipoA,obserDesem from VPersVerificado where idOP=@idOP"
         sele = "select codPersDes,codPers,nom,est,obserDesem,estDesem,tipoA,idOP from VPersVerificado where idOP=@idOP"
         crearDataAdapterTable(daTPers, sele)
         daTPers.SelectCommand.Parameters.Add("@idOP", SqlDbType.Int, 0).Value = 0
@@ -44,7 +40,6 @@ Public Class MantOrdenDesembCajaForm
             'procedimiento para instanciar el dataSet - DatasetAlmacenModule.vb
             crearDSAlmacen()
             'llenat el dataSet con los dataAdapter
-            daTProvee.Fill(dsAlmacen, "TIdentidad")
             daTUbi.Fill(dsAlmacen, "VLugarTrabajoLogin")
             daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
             daTMon.Fill(dsAlmacen, "TMoneda")
@@ -52,13 +47,6 @@ Public Class MantOrdenDesembCajaForm
 
             BindingSource4.DataSource = dsAlmacen
             BindingSource4.DataMember = "VPersVerificado"
-
-            BindingSource1.DataSource = dsAlmacen
-            BindingSource1.DataMember = "TIdentidad"
-            cbProv.DataSource = BindingSource1
-            cbProv.DisplayMember = "razon"
-            cbProv.ValueMember = "codIde"
-            BindingSource1.Sort = "razon"
 
             BindingSource2.DataSource = dsAlmacen
             BindingSource2.DataMember = "VLugarTrabajoLogin"
@@ -99,9 +87,7 @@ Public Class MantOrdenDesembCajaForm
     Private Sub MantOrdenDesembCajaForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         vfVan1 = True   'para selePersDesem() se llama dentro de enlazarText()
         vfVan2 = True
-        leerProvee()
-        'enlazarText()
-
+        enlazarText()
         colorearFila()
         calcularTotales()
     End Sub
@@ -144,22 +130,6 @@ Public Class MantOrdenDesembCajaForm
         Next
     End Sub
 
-    Private Sub cbProv_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbProv.SelectedIndexChanged
-        leerProvee()
-    End Sub
-
-    Private Sub leerProvee()
-        If BindingSource1.Position <> -1 Then
-            If vfVan1 Then
-                txtRuc.Text = BindingSource1.Item(cbProv.SelectedIndex)(2)
-                txtFono.Text = BindingSource1.Item(cbProv.SelectedIndex)(9)
-                txtEma.Text = BindingSource1.Item(cbProv.SelectedIndex)(7)
-                txtNroCta.Text = BindingSource1.Item(cbProv.SelectedIndex)(10)
-                txtNroDet.Text = BindingSource1.Item(cbProv.SelectedIndex)(11)
-            End If
-        End If
-    End Sub
-
     Private Sub ModificarColumnasDGV()
         With dgTabla1
             .Columns(0).Visible = False
@@ -181,19 +151,23 @@ Public Class MantOrdenDesembCajaForm
             .Columns(7).HeaderText = "Detraccion"
             .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(7).DefaultCellStyle.Format = "#,##0.00"
+            .Columns(7).Visible = False
             .Columns(8).Width = 70
             .Columns(8).HeaderText = "Monto_Dif."
             .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(8).DefaultCellStyle.Format = "#,##0.00"
+            .Columns(8).Visible = False
             .Columns(9).HeaderText = "Forma Pago"
-            .Columns(9).Width = 200
+            .Columns(9).Width = 100
             .Columns(10).HeaderText = "Nº Cuenta"
             .Columns(10).Width = 160
+            .Columns(10).Visible = False
             .Columns(11).Width = 75
             .Columns(11).HeaderText = "Estado"
             .Columns(12).HeaderText = "Nº Detracción"
             .Columns(12).Width = 160
-            .Columns(13).Width = 240
+            .Columns(12).Visible = False
+            .Columns(13).Width = 500
             .Columns(13).HeaderText = "Motivo"
             .Columns(14).Width = 800
             .Columns(14).HeaderText = ""
@@ -211,6 +185,7 @@ Public Class MantOrdenDesembCajaForm
             .Columns(26).Visible = False
             .Columns(27).Visible = False
             .Columns(28).Visible = False
+            .Columns(29).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -232,16 +207,7 @@ Public Class MantOrdenDesembCajaForm
         Label5.ForeColor = ForeColorLabel
         Label6.ForeColor = ForeColorLabel
         Label7.ForeColor = ForeColorLabel
-        Label8.ForeColor = ForeColorLabel
-        Label9.ForeColor = ForeColorLabel
-        Label10.ForeColor = ForeColorLabel
-        Label11.ForeColor = ForeColorLabel
-        Label12.ForeColor = ForeColorLabel
-        Label13.ForeColor = ForeColorLabel
         Label14.ForeColor = ForeColorLabel
-        Label15.ForeColor = ForeColorLabel
-        Label16.ForeColor = ForeColorLabel
-        Label17.ForeColor = ForeColorLabel
         Label18.ForeColor = ForeColorLabel
         Label19.ForeColor = ForeColorLabel
         Label32.ForeColor = ForeColorLabel
@@ -254,12 +220,11 @@ Public Class MantOrdenDesembCajaForm
         checkB5.ForeColor = ForeColorLabel
         checkB6.ForeColor = ForeColorLabel
         checkB7.ForeColor = ForeColorLabel
-        btnAperturar.ForeColor = ForeColorButtom
-        btnAperturar1.ForeColor = ForeColorButtom
+        btnNuevo.ForeColor = ForeColorButtom
         btnModificar.ForeColor = ForeColorButtom
         btnElimina.ForeColor = ForeColorButtom
         btnCerrar.ForeColor = ForeColorButtom
-        btnOrden.ForeColor = ForeColorButtom
+        btnCancelar.ForeColor = ForeColorButtom
         btnImprimir.ForeColor = ForeColorButtom
         btnAnula.ForeColor = ForeColorButtom
     End Sub
@@ -282,7 +247,7 @@ Public Class MantOrdenDesembCajaForm
             max = vSIniNroDoc
         End If
         Select Case CInt(max)
-            Case Is < 99
+            Case Is <= 99
                 txtNro.Text = "000" & max
             Case 100 To 999
                 txtNro.Text = "00" & max
@@ -293,14 +258,6 @@ Public Class MantOrdenDesembCajaForm
         End Select
     End Sub
 
-    Private Function recuperarNroOrdenCompra(ByVal idOP As Integer) As String
-        Dim cmdCampo As SqlCommand = New SqlCommand
-        cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = "select mech.FN_ConcaNroOrden1(" & idOP & ")"
-        cmdCampo.Connection = Cn
-        Return cmdCampo.ExecuteScalar
-    End Function
-
     Private Sub dgTabla1_CurrentCellChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgTabla1.CurrentCellChanged
         enlazarText()
     End Sub
@@ -310,6 +267,7 @@ Public Class MantOrdenDesembCajaForm
         If vfVan2 Then
             Me.Cursor = Cursors.WaitCursor
             If BindingSource3.Count = 0 Then
+                Me.Cursor = Cursors.Default
                 'desEnlazarText()
             Else
                 date1.Value = BindingSource3.Item(BindingSource3.Position)(4)
@@ -319,11 +277,7 @@ Public Class MantOrdenDesembCajaForm
                 cbMon.SelectedValue = BindingSource3.Item(BindingSource3.Position)(28)
                 cambiarNroTotalLetra()
                 cbObra.SelectedValue = BindingSource3.Item(BindingSource3.Position)(16)
-                cbProv.SelectedValue = BindingSource3.Item(BindingSource3.Position)(17)
                 txtBan.Text = BindingSource3.Item(BindingSource3.Position)(9)
-                txtNroCta.Text = BindingSource3.Item(BindingSource3.Position)(10)
-                txtNroDet.Text = BindingSource3.Item(BindingSource3.Position)(12)
-                txtOrden.Text = recuperarNroOrdenCompra(BindingSource3.Item(BindingSource3.Position)(0)).Trim()
                 txtDato.Text = BindingSource3.Item(BindingSource3.Position)(13)
 
                 txtOtro.Text = BindingSource3.Item(BindingSource3.Position)(25)
@@ -444,19 +398,6 @@ Public Class MantOrdenDesembCajaForm
         End If
     End Sub
 
-    'Private Sub cbF1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    '    If cbF1.SelectedIndex = 0 Then 'Aprobado
-    '        cbF1.BackColor = Color.FromName(Color.Green.Name)
-    '    End If
-    '    If cbF1.SelectedIndex = 1 Then 'Observado
-    '        cbF1.BackColor = Color.FromName(Color.Yellow.Name)
-    '    End If
-    '    If cbF1.SelectedIndex = 2 Then 'Denegado
-    '        cbF1.BackColor = Color.FromName(Color.Red.Name)
-    '    End If
-    '    btnF1.Focus()
-    'End Sub
-
     Private Sub checkB7_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles checkB7.CheckedChanged
         txtOtro.Focus()
         txtOtro.SelectAll()
@@ -489,127 +430,6 @@ Public Class MantOrdenDesembCajaForm
         cmUpdateTable3.Parameters.Add("@cod", SqlDbType.Int, 0).Value = codPersDes
     End Sub
 
-    Private Sub btnF1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        If BindingSource3.Position = -1 Then
-            StatusBarClass.messageBarraEstado(" No existe Orden de Desembolso a procesar...")
-            Exit Sub
-        End If
-
-        'If cbF1.SelectedIndex = -1 Then
-        '    MessageBox.Show("Seleccione Opción valida...", nomNegocio, Nothing, MessageBoxIcon.Exclamation)
-        '    cbF1.Focus()
-        '    Exit Sub
-        'End If
-
-        Dim codPersDes As Integer = recuperarCodPersDesem(BindingSource3.Item(BindingSource3.Position)(0), 1) '1=Solicitante
-        If codPersDes > 0 Then 'Existe firma
-            If recuperarCodPers(codPersDes) <> vPass Then 'Usurio no es de dirma inicial
-                MessageBox.Show("Proceso Denegado, Usuario no es de la Firma Inicial...", nomNegocio, Nothing, MessageBoxIcon.Exclamation)
-                Exit Sub
-            End If
-        End If
-
-        'Dim resp As String = MessageBox.Show("Esta segúro de seleccionar opción: " & cbF1.Text.Trim() & " para Orden de Desembolso", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        'If resp <> 6 Then
-        '    Exit Sub
-        'End If
-
-        Dim comentario As New CometarioForm
-        comentario.ShowDialog()
-
-        recuperarUltimoNro(vSCodSerO)
-        Dim campo As Integer = CInt(txtNro.Text)
-
-        Dim finalMytrans As Boolean = False
-        Dim wait As New waitForm
-        Me.Cursor = Cursors.WaitCursor
-        wait.Show()
-        'estableciendo una transaccion
-        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
-        Try
-            'StatusBarClass.messageBarraEstado("  PROCESANDO DATOS...")
-            'Me.Refresh()
-            'Dim opcion As Short
-            'If cbF1.SelectedIndex = 0 Then
-            '    opcion = 1 'Aprobado
-            'End If
-            'If cbF1.SelectedIndex = 1 Then
-            '    opcion = 2 'Observado
-            'End If
-            'If cbF1.SelectedIndex = 2 Then
-            '    opcion = 3 'denegado
-            'End If
-
-            If codPersDes = 0 Then 'no existe firma insertar
-                'TPersDesem
-                'comandoInsert2(BindingSource3.Item(BindingSource3.Position)(0), vPass, opcion, 1, vObs, date1.Value.Date)  '1=solicitante
-                'cmInserTable2.Transaction = myTrans
-                'If cmInserTable2.ExecuteNonQuery() < 1 Then
-                '    wait.Close()
-                '    Me.Cursor = Cursors.Default
-                '    myTrans.Rollback()
-                '    MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                '    Me.Close()
-                '    Exit Sub
-                'End If
-            Else 'existe firma actualizar
-                'TPersDesem
-                'comandoUpdate3(opcion, vObs, codPersDes)
-                'cmUpdateTable3.Transaction = myTrans
-                'If cmUpdateTable3.ExecuteNonQuery() < 1 Then
-                '    'deshace la transaccion
-                '    wait.Close()
-                '    Me.Cursor = Cursors.Default
-                '    myTrans.Rollback()
-                '    MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                '    Me.Close()
-                '    Exit Sub
-                'End If
-            End If
-
-            Dim idOP As Integer = BindingSource3.Item(BindingSource3.Position)(0)
-            'confirma la transaccion
-            myTrans.Commit()    'con exito RAS
-
-            StatusBarClass.messageBarraEstado("  LOS DATOS FUERON GUARDADOS CON EXITO...")
-            finalMytrans = True
-            vfVan1 = False   'para selePersDesem() se llama dentro de enlazarText()
-            vfVan2 = False  'Enlazar Text  TRUE en boton cancelar
-
-            'Actualizando el dataTable
-            dsAlmacen.Tables("VOrdenDesembolso").Clear()
-            daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
-
-            recuperarUltimoNro(vSCodSerO)
-
-            'Buscando por nombre de campo y luego pocisionarlo con el indice
-            BindingSource3.Position = BindingSource3.Find("idOP", idOP)
-
-            'Clase definida y con miembros shared en la biblioteca ComponentesRAS
-            StatusBarClass.messageBarraEstado("  Registro fué procesado con exito...")
-
-            vfVan1 = True
-            vfVan2 = True
-            enlazarText()
-
-            wait.Close()
-            Me.Cursor = Cursors.Default
-        Catch f As Exception
-            wait.Close()
-            Me.Cursor = Cursors.Default
-            If finalMytrans Then
-                MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                Me.Close()
-                Exit Sub
-            Else
-                myTrans.Rollback()
-                MessageBox.Show(f.Message & Chr(13) & "NO SE GUARDO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                Me.Close()
-                Exit Sub
-            End If
-        End Try
-    End Sub
-
     Private Function ValidarCampos() As Boolean
         'Todas las funciones estan creadas en el module ValidarCamposModule.vb
         If ValidarCantMayorCero(txtMon.Text) Then
@@ -622,6 +442,11 @@ Public Class MantOrdenDesembCajaForm
         End If
         If ValidaNroMayorOigualCero(txtTot.Text) Then
             txtTot.errorProv()
+            Return True
+        End If
+        If validaCampoVacioMinCaracNoNumer(txtDato.Text.Trim, 3) Then
+            MessageBox.Show("Registre Motivo de Desembolso...", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
+            txtDato.Focus()
             Return True
         End If
         'Todo OK RAS
@@ -656,102 +481,187 @@ Public Class MantOrdenDesembCajaForm
         End If
     End Sub
 
-    Private Sub btnAperturar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAperturar.Click
-        If ValidaFechaMayorXXXX(Now.Date, 2013) Then
-            MessageBox.Show("Ingrese fecha mayor al año 2012", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
-            Exit Sub
+    Private Sub desactivarControles1()
+        Panel0.Enabled = False
+        If vfNuevo1 = "guardar" Then
+            btnModificar.Enabled = False
+            btnModificar.FlatStyle = FlatStyle.Flat
+        Else    'Se presiono <Modificar>
+            btnNuevo.Enabled = False
+            btnNuevo.FlatStyle = FlatStyle.Flat
         End If
+        btnCancelar.Enabled = True
+        btnCancelar.FlatStyle = FlatStyle.Standard
+        btnElimina.Enabled = False
+        btnElimina.FlatStyle = FlatStyle.Flat
+        btnAnula.Enabled = False
+        btnAnula.FlatStyle = FlatStyle.Flat
+        btnImprimir.Enabled = False
+        btnImprimir.FlatStyle = FlatStyle.Flat
+    End Sub
 
-        If ValidarCampos() Then
-            Exit Sub
+    Private Sub activarControles1()
+        Panel0.Enabled = True
+        btnCancelar.Enabled = False
+        btnCancelar.FlatStyle = FlatStyle.Flat
+        btnNuevo.Enabled = True
+        btnNuevo.FlatStyle = FlatStyle.Standard
+        btnModificar.Enabled = True
+        btnModificar.FlatStyle = FlatStyle.Standard
+        btnElimina.Enabled = True
+        btnElimina.FlatStyle = FlatStyle.Standard
+        btnAnula.Enabled = True
+        btnAnula.FlatStyle = FlatStyle.Standard
+        btnImprimir.Enabled = True
+        btnImprimir.FlatStyle = FlatStyle.Standard
+        cbMon.Enabled = False
+        txtMon.ReadOnly = True
+        txtDet.ReadOnly = True
+        txtTot.ReadOnly = True
+        txtBan.ReadOnly = True
+        txtDato.ReadOnly = True
+        txtOtro.ReadOnly = True
+    End Sub
+
+    Private Sub limpiarText1()
+        txtMon.ReadOnly = False
+        txtDet.ReadOnly = False
+        txtTot.ReadOnly = False
+        txtBan.ReadOnly = False
+        txtDato.ReadOnly = False
+        txtOtro.ReadOnly = False
+        cbMon.Enabled = True
+        If vfNuevo1 = "guardar" Then
+            txtMon.Clear()
+            txtDet.Text = "0"
+            txtTot.Text = "0"
+            txtBan.Clear()
+            txtDato.Clear()
+            txtOtro.Clear()
+            txtNom1.Clear()
+            txtEst1.Clear()
+            txtGer.Clear()
+            txtEst.Clear()
         End If
+    End Sub
 
-        Dim resp As String = MessageBox.Show("Esta segúro de aperturar ORDEN de DESEMBOLSO" & Chr(13) & "Serie: " & txtSer.Text & "  Nº " & txtNro.Text.Trim(), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If resp <> 6 Then
-            Exit Sub
-        End If
-
-        recuperarUltimoNro(vSCodSerO)
-        Dim campo As Integer = CInt(txtNro.Text)
-
-        Dim finalMytrans As Boolean = False
-        Dim wait As New waitForm
-        Me.Cursor = Cursors.WaitCursor
-        wait.Show()
-        'estableciendo una transaccion
-        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
-        Try
-            StatusBarClass.messageBarraEstado("  PROCESANDO DATOS...")
-            Me.Refresh()
-
-            'TOrdenDesembolso
-            comandoInsert1()
-            cmInserTable1.Transaction = myTrans
-            If cmInserTable1.ExecuteNonQuery() < 1 Then
-                wait.Close()
-                Me.Cursor = Cursors.Default
-                myTrans.Rollback()
-                MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                Me.Close()
+    Dim vfNuevo1 As String = "nuevo"
+    Dim vfCampo1 As String
+    Private Sub btnNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNuevo.Click
+        If vfNuevo1 = "nuevo" Then
+            vfNuevo1 = "guardar"
+            Me.btnNuevo.Text = "Guardar"
+            desactivarControles1()
+            limpiarText1()
+            txtMon.Focus()
+            StatusBarClass.messageBarraEstado("")
+            Me.AcceptButton = Me.btnNuevo
+        Else
+            If ValidaFechaMayorXXXX(Now.Date, 2013) Then
+                MessageBox.Show("Ingrese fecha mayor al año 2012", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
                 Exit Sub
             End If
-            Dim idOP As Integer = cmInserTable1.Parameters("@Identity").Value
 
-            'TPersDesem
-            comandoInsert2(idOP, vPass, 1, 1, txtObs1.Text.Trim(), date1.Value.Date)  '1=aprobado  1=solicitante
-            cmInserTable2.Transaction = myTrans
-            If cmInserTable2.ExecuteNonQuery() < 1 Then
-                wait.Close()
-                Me.Cursor = Cursors.Default
-                myTrans.Rollback()
-                MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                Me.Close()
+            If ValidarCampos() Then
                 Exit Sub
             End If
 
-            'confirma la transaccion
-            myTrans.Commit()    'con exito RAS
-
-            StatusBarClass.messageBarraEstado("  LOS DATOS FUERON GUARDADOS CON EXITO...")
-            finalMytrans = True
-            vfVan1 = False   'para selePersDesem() se llama dentro de enlazarText()
-            vfVan2 = False  'Enlazar Text  TRUE en boton cancelar
-
-            'Actualizando el dataTable
-            dsAlmacen.Tables("VOrdenDesembolso").Clear()
-            daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
+            Dim resp As String = MessageBox.Show("Esta segúro de aperturar ORDEN de DESEMBOLSO" & Chr(13) & "Serie: " & txtSer.Text & "  Nº " & txtNro.Text.Trim(), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If resp <> 6 Then
+                Exit Sub
+            End If
 
             recuperarUltimoNro(vSCodSerO)
+            Dim campo As Integer = CInt(txtNro.Text)
 
-            'Buscando por nombre de campo y luego pocisionarlo con el indice
-            BindingSource3.Position = BindingSource3.Find("idOP", idOP)
+            Dim finalMytrans As Boolean = False
+            Dim wait As New waitForm
+            Me.Cursor = Cursors.WaitCursor
+            wait.Show()
+            'estableciendo una transaccion
+            Dim myTrans As SqlTransaction = Cn.BeginTransaction()
+            Try
+                StatusBarClass.messageBarraEstado("  PROCESANDO DATOS...")
+                Me.Refresh()
 
-            'Clase definida y con miembros shared en la biblioteca ComponentesRAS
-            StatusBarClass.messageBarraEstado("  Registro fué guardado con exito...")
+                'TOrdenDesembolso
+                comandoInsert1()
+                cmInserTable1.Transaction = myTrans
+                If cmInserTable1.ExecuteNonQuery() < 1 Then
+                    wait.Close()
+                    Me.Cursor = Cursors.Default
+                    myTrans.Rollback()
+                    MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                End If
+                Dim idOP As Integer = cmInserTable1.Parameters("@Identity").Value
 
-            vfVan1 = True
-            vfVan2 = True
-            enlazarText()
+                'TPersDesem
+                comandoInsert2(idOP, vPass, 1, 1, txtObs1.Text.Trim(), date1.Value.Date)  '1=aprobado  1=solicitante
+                cmInserTable2.Transaction = myTrans
+                If cmInserTable2.ExecuteNonQuery() < 1 Then
+                    wait.Close()
+                    Me.Cursor = Cursors.Default
+                    myTrans.Rollback()
+                    MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                End If
 
-            colorearFila()
-            calcularTotales()
+                'confirma la transaccion
+                myTrans.Commit()    'con exito RAS
 
-            wait.Close()
-            Me.Cursor = Cursors.Default
-        Catch f As Exception
-            wait.Close()
-            Me.Cursor = Cursors.Default
-            If finalMytrans Then
-                MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                Me.Close()
-                Exit Sub
-            Else
-                myTrans.Rollback()
-                MessageBox.Show(f.Message & Chr(13) & "NO SE GUARDO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                Me.Close()
-                Exit Sub
-            End If
-        End Try
+                StatusBarClass.messageBarraEstado("  LOS DATOS FUERON GUARDADOS CON EXITO...")
+                finalMytrans = True
+                vfVan1 = False   'para selePersDesem() se llama dentro de enlazarText()
+                vfVan2 = False  'Enlazar Text  TRUE en boton cancelar
+
+                'Actualizando el dataTable
+                dsAlmacen.Tables("VOrdenDesembolso").Clear()
+                daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
+
+                recuperarUltimoNro(vSCodSerO)
+
+                'Buscando por nombre de campo y luego pocisionarlo con el indice
+                BindingSource3.Position = BindingSource3.Find("idOP", idOP)
+
+                vfVan1 = True
+                vfVan2 = True
+                btnCancelar.PerformClick()
+                'Clase definida y con miembros shared en la biblioteca ComponentesRAS
+                StatusBarClass.messageBarraEstado("  Registro fué guardado con exito...")
+
+                wait.Close()
+                Me.Cursor = Cursors.Default
+            Catch f As Exception
+                wait.Close()
+                Me.Cursor = Cursors.Default
+                If finalMytrans Then
+                    MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                Else
+                    myTrans.Rollback()
+                    MessageBox.Show(f.Message & Chr(13) & "NO SE GUARDO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                End If
+            End Try
+        End If
+    End Sub
+
+    Private Sub btnCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelar.Click
+        vfNuevo1 = "nuevo"
+        btnNuevo.Text = "Nuevo"
+        vfModificar = "modificar"
+        btnModificar.Text = "Modificar"
+        activarControles1()
+        enlazarText()
+        colorearFila()
+        calcularTotales()
+        'Clase definida y con miembros shared en la biblioteca ComponentesRAS
+        StatusBarClass.messageBarraEstado("  Proceso cancelado...")
     End Sub
 
     Dim cmInserTable1 As SqlCommand
@@ -769,10 +679,10 @@ Public Class MantOrdenDesembCajaForm
         cmInserTable1.Parameters.Add("@mon2", SqlDbType.Decimal, 0).Value = txtTot.Text
         cmInserTable1.Parameters.Add("@est", SqlDbType.Int, 0).Value = 0   'pendiente
         cmInserTable1.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = cbObra.SelectedValue 'vSCodigo
-        cmInserTable1.Parameters.Add("@codIde", SqlDbType.Int, 0).Value = cbProv.SelectedValue
+        cmInserTable1.Parameters.Add("@codIde", SqlDbType.Int, 0).Value = 1 'por defecto proveedor constructora Mech
         cmInserTable1.Parameters.Add("@ban", SqlDbType.VarChar, 60).Value = txtBan.Text.Trim()
-        cmInserTable1.Parameters.Add("@nroC", SqlDbType.VarChar, 50).Value = txtNroCta.Text.Trim()
-        cmInserTable1.Parameters.Add("@nroDE", SqlDbType.VarChar, 30).Value = txtNroDet.Text.Trim()
+        cmInserTable1.Parameters.Add("@nroC", SqlDbType.VarChar, 50).Value = ""
+        cmInserTable1.Parameters.Add("@nroDE", SqlDbType.VarChar, 30).Value = ""
         cmInserTable1.Parameters.Add("@dato", SqlDbType.VarChar, 200).Value = txtDato.Text.Trim()
 
         If checkB1.Checked Then 'Chekeado = 1
@@ -849,6 +759,7 @@ Public Class MantOrdenDesembCajaForm
         Return cmdCampo.ExecuteScalar
     End Function
 
+    Dim vfModificar As String = "modificar"
     Private Sub btnModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnModificar.Click
         If BindingSource3.Position = -1 Then
             StatusBarClass.messageBarraEstado("  No existe Orden de Desembolso a actualizar...")
@@ -860,112 +771,119 @@ Public Class MantOrdenDesembCajaForm
             Exit Sub
         End If
 
-        'If ValidaFechaMayorXXXX(date1.Value.Date, 2013) Then
-        '    MessageBox.Show("Ingrese fecha mayor al año 2012", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
-        '    date1.Focus()
-        '    Exit Sub
-        'End If
-
         If (recuperarCount1(BindingSource3.Item(BindingSource3.Position)(0)) > 0) Then
             MessageBox.Show("Actualización denegada, Orden de Desembolso tiene registros en Pago Desembolso...", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
 
-        If ValidarCampos() Then
-            Exit Sub
-        End If
-
-        Dim opAprobo As Short
-        If recuperarModi(BindingSource3.Item(BindingSource3.Position)(0)) > 0 Then 'Ya se aprobo por gerencia
-            opAprobo = 1  'Ya se aprobo
-        Else 'NO se aprobo por gerencia, modificar todo
-            opAprobo = 0  'NO se aprobo
-        End If
-
-        Dim resp As String = MessageBox.Show("Esta segúro de GUARDAR MODIFICACIONES en Orden de Desembolso" & Chr(13) & "Serie: " & BindingSource3.Item(BindingSource3.Position)(2) & "  Nº " & BindingSource3.Item(BindingSource3.Position)(3), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If resp <> 6 Then
-            Exit Sub
-        End If
-
-        Me.Refresh()
-        Dim finalMytrans As Boolean = False
-        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
-        Dim wait As New waitForm
-        wait.Show()
-        Me.Cursor = Cursors.WaitCursor
-        Try
-            StatusBarClass.messageBarraEstado("  ESPERE POR FAVOR, GUARDANDO INFORMACION....")
-            Dim idOP As Integer = BindingSource3.Item(BindingSource3.Position)(0)
-
-            If opAprobo = 0 Then  'NO se aprobo por gerencia, hacer todas las modificaciones
-                'TOrdenDesembolso
-                comandoUpdate1()
-                cmUpdateTable1.Transaction = myTrans
-                If cmUpdateTable1.ExecuteNonQuery() < 1 Then
-                    'deshace la transaccion
-                    wait.Close()
-                    Me.Cursor = Cursors.Default
-                    myTrans.Rollback()
-                    MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                    Me.Close()
-                End If
-            Else   'SE aprobo por gerencia solo hacer modificaciones parciales
-                'TOrdenDesembolso
-                comandoUpdate11()
-                cmUpdateTable11.Transaction = myTrans
-                If cmUpdateTable11.ExecuteNonQuery() < 1 Then
-                    'deshace la transaccion
-                    wait.Close()
-                    Me.Cursor = Cursors.Default
-                    myTrans.Rollback()
-                    MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                    Me.Close()
-                End If
+        If vfModificar = "modificar" Then
+            If dgTabla1.Rows.Count = 0 Then
+                StatusBarClass.messageBarraEstado("  No existe registro a modificar...")
+                Exit Sub
             End If
-
-            'confirma la transaccion
-            myTrans.Commit()    'con exito RAS
-            finalMytrans = True
-            StatusBarClass.messageBarraEstado("  LOS DATOS FUERON ACTUALIZADOS CON EXITO...")
-            vfVan1 = False   'para selePersDesem() se llama dentro de enlazarText()
-            vfVan2 = False  'Enlazar Text  TRUE en boton cancelar
-
-            'Actualizando el dataTable
-            dsAlmacen.Tables("VOrdenDesembolso").Clear()
-            daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
-
-            recuperarUltimoNro(vSCodSerO)
-
-            'Buscando por nombre de campo y luego pocisionarlo con el indice
-            BindingSource3.Position = BindingSource3.Find("idOP", idOP)
-
-            'Clase definida y con miembros shared en la biblioteca ComponentesRAS
-            StatusBarClass.messageBarraEstado("  Registro fué guardado con exito...")
-
-            vfVan1 = True
-            vfVan2 = True
+            vfModificar = "actualizar"
+            btnModificar.Text = "Actualizar"
+            desactivarControles1()
+            limpiarText1()
             enlazarText()
-
-            colorearFila()
-            calcularTotales()
-            'Clase definida y con miembros shared en la biblioteca ComponentesRAS
-            StatusBarClass.messageBarraEstado("  Registro fué actualizado con exito...")
-            wait.Close()
-            Me.Cursor = Cursors.Default
-        Catch f As Exception
-            wait.Close()
-            Me.Cursor = Cursors.Default
-            If finalMytrans Then
-                MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                Me.Close()
-                Exit Sub
-            Else
-                myTrans.Rollback()
-                MessageBox.Show(f.Message & Chr(13) & "NO SE ACTUALIZO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                Me.Close()
+            txtMon.Focus()
+            StatusBarClass.messageBarraEstado("")
+            Me.AcceptButton = Me.btnModificar
+        Else    'Actualizar
+            If ValidarCampos() Then
                 Exit Sub
             End If
-        End Try
+
+            Dim opAprobo As Short
+            If recuperarModi(BindingSource3.Item(BindingSource3.Position)(0)) > 0 Then 'Ya se aprobo por gerencia
+                opAprobo = 1  'Ya se aprobo
+            Else 'NO se aprobo por gerencia, modificar todo
+                opAprobo = 0  'NO se aprobo
+            End If
+
+            Dim resp As String = MessageBox.Show("Esta segúro de GUARDAR MODIFICACIONES en Orden de Desembolso" & Chr(13) & "Serie: " & BindingSource3.Item(BindingSource3.Position)(2) & "  Nº " & BindingSource3.Item(BindingSource3.Position)(3), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If resp <> 6 Then
+                Exit Sub
+            End If
+
+            Me.Refresh()
+            Dim finalMytrans As Boolean = False
+            Dim myTrans As SqlTransaction = Cn.BeginTransaction()
+            Dim wait As New waitForm
+            wait.Show()
+            Me.Cursor = Cursors.WaitCursor
+            Try
+                StatusBarClass.messageBarraEstado("  ESPERE POR FAVOR, GUARDANDO INFORMACION....")
+                Dim idOP As Integer = BindingSource3.Item(BindingSource3.Position)(0)
+
+                If opAprobo = 0 Then  'NO se aprobo por gerencia, hacer todas las modificaciones
+                    'TOrdenDesembolso
+                    comandoUpdate1()
+                    cmUpdateTable1.Transaction = myTrans
+                    If cmUpdateTable1.ExecuteNonQuery() < 1 Then
+                        'deshace la transaccion
+                        wait.Close()
+                        Me.Cursor = Cursors.Default
+                        myTrans.Rollback()
+                        MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                        Me.Close()
+                    End If
+                Else   'SE aprobo por gerencia solo hacer modificaciones parciales
+                    'TOrdenDesembolso
+                    comandoUpdate11()
+                    cmUpdateTable11.Transaction = myTrans
+                    If cmUpdateTable11.ExecuteNonQuery() < 1 Then
+                        'deshace la transaccion
+                        wait.Close()
+                        Me.Cursor = Cursors.Default
+                        myTrans.Rollback()
+                        MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                        Me.Close()
+                    End If
+                End If
+
+                'confirma la transaccion
+                myTrans.Commit()    'con exito RAS
+                finalMytrans = True
+                StatusBarClass.messageBarraEstado("  LOS DATOS FUERON ACTUALIZADOS CON EXITO...")
+                vfVan1 = False   'para selePersDesem() se llama dentro de enlazarText()
+                vfVan2 = False  'Enlazar Text  TRUE en boton cancelar
+
+                'Actualizando el dataTable
+                dsAlmacen.Tables("VOrdenDesembolso").Clear()
+                daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
+
+                recuperarUltimoNro(vSCodSerO)
+
+                'Buscando por nombre de campo y luego pocisionarlo con el indice
+                BindingSource3.Position = BindingSource3.Find("idOP", idOP)
+
+                'Clase definida y con miembros shared en la biblioteca ComponentesRAS
+                StatusBarClass.messageBarraEstado("  Registro fué guardado con exito...")
+
+                vfVan1 = True
+                vfVan2 = True
+                btnCancelar.PerformClick()
+
+                'Clase definida y con miembros shared en la biblioteca ComponentesRAS
+                StatusBarClass.messageBarraEstado("  Registro fué actualizado con exito...")
+                wait.Close()
+                Me.Cursor = Cursors.Default
+            Catch f As Exception
+                wait.Close()
+                Me.Cursor = Cursors.Default
+                If finalMytrans Then
+                    MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                Else
+                    myTrans.Rollback()
+                    MessageBox.Show(f.Message & Chr(13) & "NO SE ACTUALIZO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                End If
+            End Try
+        End If
     End Sub
 
     Dim cmUpdateTable1 As SqlCommand
@@ -980,10 +898,10 @@ Public Class MantOrdenDesembCajaForm
         cmUpdateTable1.Parameters.Add("@mon1", SqlDbType.Decimal, 0).Value = txtDet.Text
         cmUpdateTable1.Parameters.Add("@mon2", SqlDbType.Decimal, 0).Value = txtTot.Text
         cmUpdateTable1.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = cbObra.SelectedValue 'vSCodigo
-        cmUpdateTable1.Parameters.Add("@codIde", SqlDbType.Int, 0).Value = cbProv.SelectedValue
+        cmUpdateTable1.Parameters.Add("@codIde", SqlDbType.Int, 0).Value = 1 'Provvedor Mech x defecto
         cmUpdateTable1.Parameters.Add("@ban", SqlDbType.VarChar, 60).Value = txtBan.Text.Trim()
-        cmUpdateTable1.Parameters.Add("@nroC", SqlDbType.VarChar, 50).Value = txtNroCta.Text.Trim()
-        cmUpdateTable1.Parameters.Add("@nroDE", SqlDbType.VarChar, 30).Value = txtNroDet.Text.Trim()
+        cmUpdateTable1.Parameters.Add("@nroC", SqlDbType.VarChar, 50).Value = ""
+        cmUpdateTable1.Parameters.Add("@nroDE", SqlDbType.VarChar, 30).Value = ""
         cmUpdateTable1.Parameters.Add("@dato", SqlDbType.VarChar, 200).Value = txtDato.Text.Trim()
 
         If checkB1.Checked Then 'Chekeado = 1
@@ -1039,8 +957,8 @@ Public Class MantOrdenDesembCajaForm
         cmUpdateTable11.CommandText = "update TOrdenDesembolso set banco=@ban,nroCta=@nroC,nroDet=@nroDE,datoReq=@dato,factCheck=@fact,bolCheck=@bol,guiaCheck=@guia,vouCheck=@vou,vouDCheck=@vouD,reciCheck=@reci,otroCheck=@otro,descOtro=@des,hist=@hist where idOP=@idOP"
         cmUpdateTable11.Connection = Cn
         cmUpdateTable11.Parameters.Add("@ban", SqlDbType.VarChar, 60).Value = txtBan.Text.Trim()
-        cmUpdateTable11.Parameters.Add("@nroC", SqlDbType.VarChar, 50).Value = txtNroCta.Text.Trim()
-        cmUpdateTable11.Parameters.Add("@nroDE", SqlDbType.VarChar, 30).Value = txtNroDet.Text.Trim()
+        cmUpdateTable11.Parameters.Add("@nroC", SqlDbType.VarChar, 50).Value = ""
+        cmUpdateTable11.Parameters.Add("@nroDE", SqlDbType.VarChar, 30).Value = ""
         cmUpdateTable11.Parameters.Add("@dato", SqlDbType.VarChar, 200).Value = txtDato.Text.Trim()
 
         If checkB1.Checked Then 'Chekeado = 1
@@ -1087,32 +1005,6 @@ Public Class MantOrdenDesembCajaForm
         cmUpdateTable11.Parameters.Add("@des", SqlDbType.VarChar, 60).Value = txtOtro.Text.Trim()
         cmUpdateTable11.Parameters.Add("@hist", SqlDbType.VarChar, 200).Value = BindingSource3.Item(BindingSource3.Position)(14) & "  Modifico " & Now.Date & " " & vPass & "-" & vSUsuario
         cmUpdateTable11.Parameters.Add("@idOP", SqlDbType.Int, 0).Value = BindingSource3.Item(BindingSource3.Position)(0)
-    End Sub
-
-    Private Sub btnOrden_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOrden.Click
-        If BindingSource3.Position = -1 Then
-            StatusBarClass.messageBarraEstado(" No existe Orden de Desembolso a procesar...")
-            Exit Sub
-        End If
-
-        If txtOrden.Text.Trim() <> "" Then
-            MessageBox.Show("Proceso denegado, Orden de Desembolso ya esta RELACIONADO...", nomNegocio, Nothing, MessageBoxIcon.Error)
-            Exit Sub
-        End If
-
-        vCod1 = BindingSource3.Item(BindingSource3.Position)(2) & " - " & BindingSource3.Item(BindingSource3.Position)(3)
-        vNroOrden = BindingSource3.Item(BindingSource3.Position)(0) 'idOP para retorno
-        vCod2 = "0"  'retornar el NROORDEN
-        vCod3 = txtOrden.Text.Trim() 'pa comparar si ya tiene orden de compra ya anexado
-
-        Dim jala As New jalarOrdenCompraForm
-        jala.ShowDialog()
-
-        If CInt(vCod2) > 0 Then
-            txtOrden.Text = recuperarNroOrden(BindingSource3.Item(BindingSource3.Position)(0))
-        Else
-
-        End If
     End Sub
 
     Private Function recuperarNroOrden(ByVal idOP As Integer) As String
@@ -1268,138 +1160,6 @@ Public Class MantOrdenDesembCajaForm
         cmDeleteTable3.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource3.Item(BindingSource3.Position)(0)
     End Sub
 
-    Private Sub btnAperturar1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAperturar1.Click
-        vCod2 = "0"  'retornar el NROORDEN
-
-        Dim jala As New jalarOrdenCompra1Form
-        jala.ShowDialog()
-
-        If CInt(vCod2) = 0 Then 'se cancelo
-            'MsgBox("SE CANCELO")
-            Exit Sub
-        Else
-        End If
-
-        Dim wait As New waitForm
-        Me.Cursor = Cursors.WaitCursor
-        wait.Show()
-        Try
-            StatusBarClass.messageBarraEstado("  PROCESANDO DATOS...")
-
-            vfVan1 = False   'para selePersDesem() se llama dentro de enlazarText()
-            vfVan2 = False  'Enlazar Text  TRUE en boton cancelar
-
-            'Actualizando el dataTable
-            dsAlmacen.Tables("VOrdenDesembolso").Clear()
-            daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
-
-            recuperarUltimoNro(vSCodSerO)
-
-            'Buscando por nombre de campo y luego pocisionarlo con el indice
-            BindingSource3.MoveLast()
-
-            'Clase definida y con miembros shared en la biblioteca ComponentesRAS
-            StatusBarClass.messageBarraEstado("  Registro fué guardado con exito...")
-
-            vfVan1 = True
-            vfVan2 = True
-            enlazarText()
-
-            If CInt(vCod2) > 0 Then
-                txtOrden.Text = recuperarNroOrden(BindingSource3.Item(BindingSource3.Position)(0))
-            Else
-            End If
-
-            colorearFila()
-            calcularTotales()
-            wait.Close()
-            Me.Cursor = Cursors.Default
-        Catch f As Exception
-            wait.Close()
-            Me.Cursor = Cursors.Default
-            MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
-            Me.Close()
-            Exit Sub
-        End Try
-    End Sub
-
-    Private Sub btnElimina1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnElimina1.Click
-        If BindingSource3.Position = -1 Then
-            StatusBarClass.messageBarraEstado("  No existe registro a quitar...")
-            Exit Sub
-        End If
-
-        If txtOrden.Text.Trim() = "" Then
-            MessageBox.Show("No Existe Orden de Compra enlazada a ORDEN DE DESEMBOLSO...", nomNegocio, Nothing, MessageBoxIcon.Error)
-            Exit Sub
-        End If
-
-        If recuperarModi(BindingSource3.Item(BindingSource3.Position)(0)) > 0 Then 'Ya se aprobo por gerencia
-            MessageBox.Show("No se puede QUITAR Orden de Compra por que ya se [APROBO] por Gerencia", nomNegocio, Nothing, MessageBoxIcon.Stop)
-            Exit Sub
-        End If
-
-        Dim resp As String = MessageBox.Show("Esta segúro de quitar orden de compra Nº " & txtOrden.Text.Trim() & " a orden de desembolso Nº " & BindingSource3.Item(BindingSource3.Position)(3), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If resp <> 6 Then
-            Exit Sub
-        End If
-
-        Dim finalMytrans As Boolean = False
-        'creando una instancia de transaccion 
-        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
-        Dim wait As New waitForm
-        wait.Show()
-        Me.Cursor = Cursors.WaitCursor
-        Try
-
-            StatusBarClass.messageBarraEstado("  ELIMINANDO REGISTROS...")
-            Dim idOP As Integer = BindingSource3.Item(BindingSource3.Position)(0)
-            'Tabla TDesOrden
-            comandoDelete2()
-            cmDeleteTable2.Transaction = myTrans
-            cmDeleteTable2.ExecuteNonQuery()
-
-            Me.Refresh()
-
-            'confirma la transaccion
-            myTrans.Commit()
-            StatusBarClass.messageBarraEstado("  REGISTRO FUE ELIMINADO CON EXITO...")
-            finalMytrans = True
-            vfVan1 = False   'para selePersDesem() se llama dentro de enlazarText()
-            vfVan2 = False  'Enlazar Text  TRUE en boton cancelar
-
-            'Actualizando el dataTable
-            dsAlmacen.Tables("VOrdenDesembolso").Clear()
-            daTabla1.Fill(dsAlmacen, "VOrdenDesembolso")
-
-            recuperarUltimoNro(vSCodSerO)
-
-            'Buscando por nombre de campo y luego pocisionarlo con el indice
-            BindingSource3.Position = BindingSource3.Find("idOP", idOP)
-
-            vfVan1 = True
-            vfVan2 = True
-            enlazarText()
-
-            'Clase definida y con miembros shared en la biblioteca ComponentesRAS
-            StatusBarClass.messageBarraEstado("  Registro fué quitado con exito...")
-
-            wait.Close()
-            Me.Cursor = Cursors.Default
-        Catch f As Exception
-            wait.Close()
-            Me.Cursor = Cursors.Default
-            If finalMytrans Then
-                MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Information)
-                Me.Close()
-            Else
-                'deshace la transaccion
-                myTrans.Rollback()
-                MessageBox.Show("Tipo de exception: " & f.Message & Chr(13) & "NO SE ELIMINO EL REGISTRO SELECCIONADO...", nomNegocio, Nothing, MessageBoxIcon.Information)
-            End If
-        End Try
-    End Sub
-
     Private Sub btnAnula_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAnula.Click
         If BindingSource3.Position = -1 Then
             StatusBarClass.messageBarraEstado("  No existe Orden de Desembolso a ANULAR...")
@@ -1518,7 +1278,7 @@ Public Class MantOrdenDesembCajaForm
 
         vCodDoc = BindingSource3.Item(BindingSource3.Position)(0)
         vParam1 = txtLetraTotal.Text.Trim()
-        vParam2 = txtOrden.Text.Trim()
+        vParam2 = "" 'txtOrden.Text.Trim()
 
         Dim informe As New ReportViewerOrdenDesembolsoForm
         informe.ShowDialog()
@@ -1580,16 +1340,7 @@ Public Class MantOrdenDesembCajaForm
         Return cmdCampo.ExecuteScalar
     End Function
 
-    Private Sub btnVis_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnVis.Click
-        If txtOrden.Text.Trim() = "" Then
-            MessageBox.Show("Proceso denegado, Orden de Desembolso No tiene relación con Orden de Compra", nomNegocio, Nothing, MessageBoxIcon.Error)
-            Exit Sub
-        End If
+    Private Sub dgTabla1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla1.CellContentClick
 
-        'vCod1 = BindingSource3.Item(BindingSource3.Position)(2) & " - " & BindingSource3.Item(BindingSource3.Position)(3)
-        vNroOrden = recuperarNroOrden1(BindingSource3.Item(BindingSource3.Position)(0)) 'idOP 
-
-        Dim jala As New jalarOrdenCompra2Form
-        jala.ShowDialog()
     End Sub
 End Class

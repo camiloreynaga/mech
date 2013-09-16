@@ -561,6 +561,38 @@ Public Class pantallaInicialForm
         Return cmdCampo.ExecuteScalar
     End Function
 
+    Private Function recuperarCodSerCaja(ByVal codigo As String) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select isnull(max(codSerO),0) from VCajaSerie where codigo='" & codigo & "'"
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
+    Private Function recuperarSerieCaja(ByVal codigo As String) As String
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select max(serie) from VCajaSerie where codigo='" & codigo & "'"
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
+    Private Function recuperarIniNroCaja(ByVal codigo As String) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select max(iniNroDoc) from VCajaSerie where codigo='" & codigo & "'"
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
+    Private Function recuperarCodPersCaja(ByVal codigo As String) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select max(codPers) from VCajaSerie where codigo='" & codigo & "'"
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
     Private Sub opcOrdDes1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDesApertura.Click
         vSCodSerO = recuperarCodSerO(vPass)
         If vSCodSerO = 0 Then
@@ -771,12 +803,6 @@ Public Class pantallaInicialForm
         frmGastDia.Show()
     End Sub
 
-    Private Sub opcCaja1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja1.Click
-        Dim mant As New MantCajaChicaForm
-        mant.MdiParent = Me
-        mant.Show()
-    End Sub
-
     Private Sub opcCaja2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja2.Click
         Dim dia As New AperturaDiaCajaForm
         dia.MdiParent = Me
@@ -789,14 +815,76 @@ Public Class pantallaInicialForm
         dia.Show()
     End Sub
 
-    Private Sub SolicitudCajaChicaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SolicitudCajaChicaToolStripMenuItem.Click
-        Dim oSolCja As New MantSolicitudCajaForm
-        oSolCja.MdiParent = Me
-        oSolCja.Show()
-
+    Private Sub opcCaja4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja4.Click
+        Dim mant As New MantCajaChicaForm
+        mant.MdiParent = Me
+        mant.Show()
     End Sub
 
-    
+    Private Sub opcCaja1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja1.Click
+        vSCodSerO = recuperarCodSerCaja(vSCodigo)
+        If vSCodSerO = 0 Then
+            MessageBox.Show("Proceso denegado, Esta Sede / Obra NO tiene asignado Serie de Orden de Desembolso Caja...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        vSSerie = recuperarSerieCaja(vSCodigo)
+        vSIniNroDoc = recuperarIniNroCaja(vSCodigo)
+
+        If recuperarCodPersCaja(vSCodigo) <> vPass Then
+            MessageBox.Show("Proceso denegado, usuario no es Administrador de Caja Chica...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        Dim mant As New MantOrdenDesembCajaForm
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
+
+    Private Sub opcCaja5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja5.Click
+        If vSCodDia = 0 Then
+            MessageBox.Show("ACCESO DENEGADO, DIA SESION CAJA NO FUE APERTURADO...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        Dim codDiaAux As Integer = recuperarCodDia(1, vSCodigo) 'estado=1  Abierto
+        If vSCodDia <> codDiaAux Then
+            If codDiaAux = 0 Then
+                MessageBox.Show("PROCESO DENEGADO, FUE CERRADO DIA SESION...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                End
+                Exit Sub
+            Else
+                MessageBox.Show("PROCESO DENEGADO, FUE APERTURADO OTRO DIA SESION...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                End
+                Exit Sub
+            End If
+        End If
+
+        vSCodSerO = recuperarCodSerCaja(vSCodigo)
+        If vSCodSerO = 0 Then
+            MessageBox.Show("Proceso denegado, Esta Sede / Obra NO tiene asignado Serie de Orden de Desembolso Caja...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        vSSerie = recuperarSerieCaja(vSCodigo)
+        vSIniNroDoc = recuperarIniNroCaja(vSCodigo)
+
+        If recuperarCodPersCaja(vSCodigo) <> vPass Then
+            MessageBox.Show("Proceso denegado, usuario no es Administrador de Caja Chica...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        Dim mant As New procesarIngresoCajaChicaForm
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
+
+    Private Sub opcCaja6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja6.Click
+        Dim mant As New requerimientoCajaPersForm
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
+
     Private Sub infT3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles infT3.Click
         Dim oInfSotck As New reporteStockForm
         oInfSotck.MdiParent = Me

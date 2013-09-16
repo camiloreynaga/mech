@@ -282,7 +282,7 @@ Public Class MantOrdenDesembolsoForm1
             max = vSIniNroDoc
         End If
         Select Case CInt(max)
-            Case Is < 99
+            Case Is <= 99
                 txtNro.Text = "000" & max
             Case 100 To 999
                 txtNro.Text = "00" & max

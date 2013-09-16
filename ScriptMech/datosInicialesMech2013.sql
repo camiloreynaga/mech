@@ -123,3 +123,13 @@ GO
 --*****************************************************
 insert TTipoTransac (tipo) values ('SALIDA PERS') --4
 GO
+
+--*****************************************************
+--------------------EJECUTAR 12/09/2013----------------------
+--*****************************************************
+insert TTipoMovCaja(tipoMov) values ('INGRESO')--1
+insert TTipoMovCaja(tipoMov) values ('EGRESO')--2
+GO
+--select * from TTipoMovCaja
+-- update TTipoMovCaja set tipoMov='INGRESO' where codTM=1
+-- update TTipoMovCaja set tipoMov='EGRESO' where codTM=2

@@ -1,6 +1,7 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
 Imports ComponentesSolucion2008
+Imports CrystalDecisions.Shared
 
 
 Public Class reporteStockForm
@@ -24,6 +25,10 @@ Public Class reporteStockForm
     ''' <remarks></remarks>
     Dim oDataManager As New cDataManager
 
+    'Variables temporales de Obra y almacén
+
+    Dim _Obra As String
+    Dim _Almacen As String
 
 #End Region
 
@@ -94,15 +99,24 @@ Public Class reporteStockForm
 
     End Sub
 
-
-    Private Sub ConsultarStock()
+    ''' <summary>
+    ''' consulta el stock para una obra almacén
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Function ConsultarStock() As Integer
         Dim consulta As String = "select idMU,codUbi,material,stock,unidad,tipoM from vStockAlmacen where codUbi=" & cbAlmacen.SelectedValue
-        oDataManager.CargarGrilla(consulta, CommandType.Text, dgInsumos, BindingSource0)
+        Dim nroFilas As Integer = oDataManager.CargarGrilla(consulta, CommandType.Text, dgInsumos, BindingSource0)
 
         BindingNavigator1.BindingSource = BindingSource0
 
         ModificarColumnasDGV()
-    End Sub
+
+        'Obteniendo datos de obra y almacén
+        _Obra = cbObras.Text
+        _Almacen = cbAlmacen.Text
+
+        Return nroFilas
+    End Function
 
 #End Region
 
@@ -143,7 +157,7 @@ Public Class reporteStockForm
 
 
 
-        ConsultarStock()
+        ' ConsultarStock()
 
         wait.Close()
     End Sub
@@ -156,6 +170,9 @@ Public Class reporteStockForm
                 Dim consulta As String = "select codUbi,ubicacion,codigo from TUbicacion where codigo ='" & cod & "'"
                 oDataManager.CargarCombo(consulta, CommandType.Text, cbAlmacen, "codUbi", "ubicacion")
             End If
+
+
+
         Catch ex As Exception
         End Try
 
@@ -163,8 +180,23 @@ Public Class reporteStockForm
 
     Private Sub btnVis_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnVis.Click
 
-        ConsultarStock()
-        FuenteColumnaGrilla()
+        Try
+
+            If TypeOf cbAlmacen.SelectedValue Is String Then
+
+                ConsultarStock()
+                FuenteColumnaGrilla()
+
+            Else
+                BindingSource0.DataSource = ""
+
+            End If
+
+        Catch ex As Exception
+
+        End Try
+
+
     End Sub
 
     Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
@@ -172,6 +204,36 @@ Public Class reporteStockForm
             StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Datos...")
             Exit Sub
         End If
+
+
+        ''Creando las variables para parametros.
+        Dim parameters As New ParameterFields
+
+        Dim pObra As ParameterField = New ParameterField
+        Dim pAlmacen As ParameterField = New ParameterField
+
+        Dim valorObra As New ParameterDiscreteValue
+
+        Dim valorAlmacen As New ParameterDiscreteValue
+
+        '---------
+        'Definiendo los nombres de los parametros
+
+        pObra.Name = "pObra"
+        pAlmacen.Name = "pAlmacen"
+
+        'Asignando los valores de los parametros
+        valorObra.Value = _Obra 'cbObras.SelectedText
+        valorAlmacen.Value = _Almacen 'cbAlmacen.Text
+
+        pObra.CurrentValues.Add(valorObra)
+        pAlmacen.CurrentValues.Add(valorAlmacen)
+
+        'Cargando los parametros y enviando a Crystal Reports
+
+        parameters.Add(pObra)
+        parameters.Add(pAlmacen)
+
 
 
 
@@ -184,6 +246,9 @@ Public Class reporteStockForm
         'End If
 
         Dim informe As New ReportViewerStockForm
+
+        informe.CReportViewer.ParameterFieldInfo = parameters
+
         informe.vCodUbicacion = cbAlmacen.SelectedValue
         informe.ShowDialog()
     End Sub
@@ -194,5 +259,29 @@ Public Class reporteStockForm
 
     Private Sub dgInsumos_Sorted1(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgInsumos.Sorted
         FuenteColumnaGrilla()
+    End Sub
+
+    Private Sub cbAlmacen_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbAlmacen.SelectedIndexChanged
+        'btnVis.PerformClick()
+        Try
+
+            If TypeOf cbAlmacen.SelectedValue Is String Then
+
+                ConsultarStock()
+                FuenteColumnaGrilla()
+
+            Else
+                BindingSource0.DataSource = ""
+
+            End If
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub btnCerrar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
+        Me.Close()
     End Sub
 End Class

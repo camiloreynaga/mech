@@ -37,9 +37,13 @@ Public Class GastosPorDiaForm
         'dgPagos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         Try
 
-           
+            'If dgReporte.Columns("banco").Visible = True Then
+            '    dgReporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None
+            'Else
+            '    dgReporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            'End If
 
-            If dgReporte.Columns("nroCue").Visible = True Or dgReporte.Columns("nombre").Visible = True Then
+            If dgReporte.Columns("nroCue").Visible = True Then
                 dgReporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None
             Else
                 dgReporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
@@ -223,8 +227,6 @@ Public Class GastosPorDiaForm
         'enlanzando con el binding navigator
         BindingNavigator1.BindingSource = bindingSource0
 
-        Me.Cursor = Cursors.WaitCursor
-
 
         filtrando()
         ModificandoColumnasDGV()
@@ -242,7 +244,7 @@ Public Class GastosPorDiaForm
         txtTotalDetraccion.Text = Format(CDbl(txtTotalDetraccion.Text), "0,0.00")
         txtDetraccionDolares.Text = Format(CDbl(txtDetraccionDolares.Text), "0,0.00")
 
-        Me.Cursor = Cursors.Default
+
     End Sub
 
     Private Sub GastosPorDiaForm_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Leave
