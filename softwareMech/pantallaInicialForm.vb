@@ -52,6 +52,12 @@ Public Class pantallaInicialForm
             Me.Text = "Cod.Lug=> " & vSCodigo & "   Lugar / Obra => " & vSNomSuc & "     " & vSTipoUsu & ": " & vSUsuario & "  " & vSIdDia
         End If
 
+
+        'Accesos a Caja Chica
+
+        AccesoCajaChica()
+
+
         'If vSCodTipoUsu = 1 Or vSCodTipoUsu = 2 Then
         If vSCodTipoUsu = 1 Then    '1=tipo administrador Sistema
             TSMenu.Visible = True
@@ -109,6 +115,8 @@ Public Class pantallaInicialForm
         End If
         'End If
 
+
+
         'Cambiando el formato de fecha
         dateFormat()
         bienvenida.Close()
@@ -126,6 +134,37 @@ Public Class pantallaInicialForm
             opcOrdDesRegPagos.PerformClick()  'Aprueba por defecto su pantalla tesoreriaOrdenDesembolsoForm.vb  Yoel
         End If
     End Sub
+
+    Private Sub AccesoCajaChica()
+
+        opcCaja4.Visible = False 'Mantenimiento de cajas
+
+        opcCaja6.Visible = True ' registro de requerimiento de caja
+
+        'Consulta si el Usuario tiene acceso a Caja Chica
+
+        'Caja Chica
+        Dim oDataManager As New cDataManager
+
+        If oDataManager.consultarTabla("select COUNT(*)  from tcajaChica where codPers =" & vPass, CommandType.Text) > 0 Then
+            opcCaja1.Visible = True 'apertura orden de desembolso
+            opcCaja2.Visible = True 'Abrir fecha de caja
+            opcCaja3.Visible = True 'modificar fecha de caja
+            opcCaja5.Visible = True 'ingreso de dinero con Ord. Desembolso
+
+            ToolStripSeparator22.Visible = True
+        Else
+            opcCaja1.Visible = False 'apertura orden de desembolso
+            opcCaja2.Visible = False 'Abrir fecha de caja
+            opcCaja3.Visible = False 'modificar fecha de caja
+            opcCaja5.Visible = False 'ingreso de dinero con Ord. Desembolso
+
+            ToolStripSeparator22.Visible = False
+        End If
+
+
+    End Sub
+
 
     Private Sub PermisosAlmacenero()
         PermisosResidente()
@@ -191,7 +230,7 @@ Public Class pantallaInicialForm
         opcOrdDesembolso.Visible = False ' Orden de Desembolso
         opcDocCompra.Visible = False ' Documento de Compra
 
-        opcCaja.Visible = False 'Caja Chica
+        ' opcCaja.Visible = False 'Caja Chica
 
         opcGuiaRem.Visible = False ' Guia de Remision
         opcPersonal.Visible = False ' Personal
@@ -212,7 +251,7 @@ Public Class pantallaInicialForm
         ToolStripSeparator7.Visible = False
         ToolStripSeparator8.Visible = False
 
-        ToolStripSeparator16.Visible = False
+        'ToolStripSeparator16.Visible = False
         ToolStripSeparator12.Visible = False
         ToolStripSeparator17.Visible = False
 
@@ -237,7 +276,7 @@ Public Class pantallaInicialForm
         opcCotizacion.Visible = False
         opcOrdenCompra.Visible = False
         opcDocCompra.Visible = False
-        opcCaja.Visible = False 'Caja Chica
+        'opcCaja.Visible = False 'Caja Chica
 
         opcOrdDesAprobacion.Visible = False
         opcOrdDesConta.Visible = False
@@ -262,7 +301,7 @@ Public Class pantallaInicialForm
         ToolStripSeparator8.Visible = False
         ToolStripSeparator10.Visible = False
 
-        ToolStripSeparator16.Visible = False
+        'ToolStripSeparator16.Visible = False
         ToolStripSeparator12.Visible = False
         ToolStripSeparator17.Visible = False
 
@@ -284,7 +323,7 @@ Public Class pantallaInicialForm
         opcOrdDesModPago.Visible = False
         opcOrdDesCtasBco.Visible = False
 
-        opcCaja.Visible = False 'Caja Chica
+        'opcCaja.Visible = False 'Caja Chica
 
         opcConfSerieGuia.Visible = False 'Mantenimienro de Serie Guia de remision por persona
 
@@ -298,7 +337,7 @@ Public Class pantallaInicialForm
 
         ToolStripSeparator9.Visible = False
 
-        ToolStripSeparator16.Visible = False
+        'ToolStripSeparator16.Visible = False
 
         'Separadores sub menú Configuración
         ToolStripSeparator13.Visible = False
@@ -324,7 +363,7 @@ Public Class pantallaInicialForm
 
         opcDocCompra.Visible = False
 
-        opcCaja.Visible = False 'Caja Chica
+        'opcCaja.Visible = False 'Caja Chica
         opcGuiaRem.Visible = True ' Guia de remision
 
         opcPersonal.Visible = False
@@ -344,13 +383,17 @@ Public Class pantallaInicialForm
 
         'infT2.Visible = False ' informe de gastos por dia
 
+        ToolStripSeparator9.Visible = True
+
+        ToolStripSeparator20.Visible = False
+
         ToolStripSeparator3.Visible = False
         ToolStripSeparator4.Visible = False
         ToolStripSeparator7.Visible = False
         ToolStripSeparator8.Visible = False
         ToolStripSeparator9.Visible = False
 
-        ToolStripSeparator6.Visible = False
+
         ToolStripSeparator17.Visible = False
 
 
@@ -369,6 +412,8 @@ Public Class pantallaInicialForm
         opcOrdDesRegPagos.Visible = False
         opcOrdDesConta.Visible = False
 
+        'Administración de caja chica
+        opcCaja4.Visible = True 'Mantenimiento de cajas
 
     End Sub
 
@@ -412,6 +457,11 @@ Public Class pantallaInicialForm
         opcOrdDesModPago.Visible = False
         opcOrdDesRegPagos.Visible = False
 
+        'Opciones
+
+        
+
+
         infT2.Visible = False ' informe de gastos por dia
         ToolStripSeparator16.Visible = True  'Linea encima de caja Chica
         opcCaja.Visible = True ' Menu Caja Chica
@@ -423,7 +473,8 @@ Public Class pantallaInicialForm
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub PermisosAdmSistema()
-
+        'Administración de caja chica
+        opcCaja4.Visible = True 'Mantenimiento de cajas
     End Sub
 
     Private Sub DesactivarMenuSudAdm()
