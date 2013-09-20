@@ -7,6 +7,7 @@ Public Class requerimientoCajaPersForm
     Dim BindingSource2 As New BindingSource
     Dim BindingSource3 As New BindingSource
     Dim BindingSource4 As New BindingSource
+    Dim BindingSource5 As New BindingSource
 
     Private Sub requerimientoCajaPersForm_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
         Me.Close()
@@ -34,9 +35,12 @@ Public Class requerimientoCajaPersForm
         Dim sele As String = "select distinct codigo,nombre,lugar,color from VLugarTrabajoLogin"
         crearDataAdapterTable(daTUbi, sele)
 
-        sele = "select codSC,nroSol,nro,fechaSol,codPers,nom,estSol,est,salAnt,montoSol,imprevisto,codObra,codSede from VSolicitudCaja where codSede=@cod and codPers=@codP"
+        sele = "select codigo,lugar,codCC,codSerO from VCajasLugar"
+        crearDataAdapterTable(daVObra, sele)
+
+        sele = "select codSC,nroSol,nro,fechaSol,codPers,nom,estSol,est,salAnt,montoSol,imprevisto,codObra,codSede from VSolicitudCaja where codPers=@codP"
         crearDataAdapterTable(daTabla1, sele)
-        daTabla1.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vSCodigo
+        'daTabla1.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vSCodigo
         daTabla1.SelectCommand.Parameters.Add("@codP", SqlDbType.Int, 0).Value = vPass
 
         sele = "select codTipM,tipoM from TTipoMat"
@@ -48,7 +52,7 @@ Public Class requerimientoCajaPersForm
         sele = "select codUni,unidad from TUnidad where codUni>1 order by unidad"  '1=""
         crearDataAdapterTable(daTUni, sele)
 
-        sele = "select codDetSol,cant1,uniMed,insumo,prec1,totPar,comp,areaM,tipoM,obsSol,estApro,nom,obsApro,codApro,codMat,codAreaM,codTipM,codSC,codDC,nroOtros,compCheck,estDet from VDetSolCaja where codSC=@cod"
+        sele = "select codDetSol,cant1,uniMed,insumo,prec1,totPar,comp,areaM,estApro,obsSol,tipoM,nom,obsApro,codApro,codMat,codAreaM,codTipM,codSC,codDC,nroOtros,compCheck,estDet from VDetSolCaja where codSC=@cod"
         crearDataAdapterTable(daDetDoc, sele)
         daDetDoc.SelectCommand.Parameters.Add("@cod", SqlDbType.Int, 0).Value = 0
 
@@ -57,6 +61,7 @@ Public Class requerimientoCajaPersForm
             crearDSAlmacen()
             'llenat el dataSet con los dataAdapter
             daTUbi.Fill(dsAlmacen, "VLugarTrabajoLogin")
+            daVObra.Fill(dsAlmacen, "VCajasLugar")
             daTabla1.Fill(dsAlmacen, "VSolicitudCaja")
             daTTipo.Fill(dsAlmacen, "TTipoMat")
             daTArea.Fill(dsAlmacen, "TAreaMat")
@@ -75,6 +80,12 @@ Public Class requerimientoCajaPersForm
             cbObra.DataSource = BindingSource2
             cbObra.DisplayMember = "nombre"
             cbObra.ValueMember = "codigo"
+
+            BindingSource5.DataSource = dsAlmacen
+            BindingSource5.DataMember = "VCajasLugar"
+            cbSede.DataSource = BindingSource5
+            cbSede.DisplayMember = "lugar"
+            cbSede.ValueMember = "codigo"
 
             cbTipo.DataSource = dsAlmacen
             cbTipo.DisplayMember = "TTipoMat.tipoM"
@@ -128,6 +139,7 @@ Public Class requerimientoCajaPersForm
             txtTotIns.Text = txtTotal.Text
             date1.Value = BindingSource1.Item(lbSol.SelectedIndex)(3)
             cbObra.SelectedValue = BindingSource1.Item(lbSol.SelectedIndex)(11)
+            cbSede.SelectedValue = BindingSource1.Item(lbSol.SelectedIndex)(12)
             'txtTotIns.Text = BindingSource1.Item(lbSol.SelectedIndex)(9)
             txtImpre.Text = BindingSource1.Item(lbSol.SelectedIndex)(10)
             txtSalAnt.Text = BindingSource1.Item(lbSol.SelectedIndex)(8)
@@ -136,6 +148,7 @@ Public Class requerimientoCajaPersForm
 
             If BindingSource1.Item(BindingSource1.Position)(6) = 1 Then 'aprobado
                 txtEst.BackColor = Color.Green
+                txtEst.ForeColor = Color.White
             End If
         End If
     End Sub
@@ -163,13 +176,13 @@ Public Class requerimientoCajaPersForm
 
     Private Sub colorearFila()
         For j As Short = 0 To BindingSource3.Count - 1
-            If BindingSource3.Item(j)(21) = 2 Then 'Aprobado
-                dgTabla2.Rows(j).Cells(10).Style.BackColor = Color.Green 'Color.YellowGreen
-                dgTabla2.Rows(j).Cells(10).Style.ForeColor = Color.White
+            If BindingSource3.Item(j)(21) = 1 Then 'Aprobado
+                dgTabla2.Rows(j).Cells(8).Style.BackColor = Color.Green 'Color.YellowGreen
+                dgTabla2.Rows(j).Cells(8).Style.ForeColor = Color.White
             End If
             If BindingSource3.Item(j)(21) = 2 Then 'Observado
-                dgTabla2.Rows(j).Cells(10).Style.BackColor = Color.Yellow
-                dgTabla2.Rows(j).Cells(10).Style.ForeColor = Color.Red
+                dgTabla2.Rows(j).Cells(8).Style.BackColor = Color.Yellow
+                dgTabla2.Rows(j).Cells(8).Style.ForeColor = Color.Red
             End If
         Next
     End Sub
@@ -186,9 +199,38 @@ Public Class requerimientoCajaPersForm
     Private Sub sumTotal()
         If BindingSource3.Position = -1 Then
             txtTotal.Text = "0.00"
+            txtTotFac.Text = "0.00"
+            txtTotBol.Text = "0.00"
+            txtTotHon.Text = "0.00"
+            txtTotOtr.Text = "0.00"
             Exit Sub
         End If
+
         txtTotal.Text = Format((dsAlmacen.Tables("VDetSolCaja").Compute("Sum(totPar)", Nothing)), "0,0.00")
+
+        If BindingSource3.Find("compCheck", 1) <> -1 Then 'Factura
+            txtTotFac.Text = Format((dsAlmacen.Tables("VDetSolCaja").Compute("Sum(totPar)", "compCheck=1")), "0,0.00")
+        Else
+            txtTotFac.Text = "0.00"
+        End If
+
+        If BindingSource3.Find("compCheck", 2) <> -1 Then 'Factura
+            txtTotBol.Text = Format((dsAlmacen.Tables("VDetSolCaja").Compute("Sum(totPar)", "compCheck=2")), "0,0.00")
+        Else
+            txtTotBol.Text = "0.00"
+        End If
+
+        If BindingSource3.Find("compCheck", 3) <> -1 Then 'Factura
+            txtTotHon.Text = Format((dsAlmacen.Tables("VDetSolCaja").Compute("Sum(totPar)", "compCheck=3")), "0,0.00")
+        Else
+            txtTotHon.Text = "0.00"
+        End If
+
+        If BindingSource3.Find("compCheck", 4) <> -1 Then 'Factura
+            txtTotOtr.Text = Format((dsAlmacen.Tables("VDetSolCaja").Compute("Sum(totPar)", "compCheck=4")), "0,0.00")
+        Else
+            txtTotOtr.Text = "0.00"
+        End If
     End Sub
 
     Private Sub ModificarColumnasDGV()
@@ -215,13 +257,13 @@ Public Class requerimientoCajaPersForm
             .Columns(7).HeaderText = "Area_Insumo"
             .Columns(7).Width = 100
             .Columns(7).ReadOnly = True 'NO editable
-            .Columns(8).HeaderText = "Tipo_Insumo"
-            .Columns(8).Width = 100
+            .Columns(8).HeaderText = "Estado"
+            .Columns(8).Width = 75
             .Columns(8).ReadOnly = True 'NO editable
             .Columns(9).Width = 200
             .Columns(9).HeaderText = "Observacion solicitante"
-            .Columns(10).HeaderText = "Estado"
-            .Columns(10).Width = 75
+            .Columns(10).HeaderText = "Tipo_Insumo"
+            .Columns(10).Width = 100
             .Columns(10).ReadOnly = True 'NO editable
             .Columns(11).Width = 100
             .Columns(11).HeaderText = "Verificador"
@@ -268,6 +310,11 @@ Public Class requerimientoCajaPersForm
         Label14.ForeColor = ForeColorLabel
         Label15.ForeColor = ForeColorLabel
         Label16.ForeColor = ForeColorLabel
+        Label17.ForeColor = ForeColorLabel
+        Label18.ForeColor = ForeColorLabel
+        Label19.ForeColor = ForeColorLabel
+        Label20.ForeColor = ForeColorLabel
+        Label21.ForeColor = ForeColorLabel
         lblMon1.ForeColor = ForeColorLabel
         lblMon2.ForeColor = ForeColorLabel
         lblMon3.ForeColor = ForeColorLabel
@@ -344,6 +391,7 @@ Public Class requerimientoCajaPersForm
         btnImprimir.FlatStyle = FlatStyle.Standard
         date1.Enabled = False
         cbObra.Enabled = False
+        cbSede.Enabled = False
         txtEst.ReadOnly = False
         txtImpre.ReadOnly = True
     End Sub
@@ -353,6 +401,7 @@ Public Class requerimientoCajaPersForm
         txtImpre.ReadOnly = False
         date1.Enabled = True
         cbObra.Enabled = True
+        cbSede.Enabled = True
         If vfNuevo1 = "guardar" Then
             date1.Value = Now.Date
             txtEst.Clear()
@@ -430,7 +479,7 @@ Public Class requerimientoCajaPersForm
                 StatusBarClass.messageBarraEstado("  PROCESANDO DATOS...")
                 Me.Refresh()
 
-                Dim codSC As Integer = recuperarCodSC(vPass, vSCodigo, myTrans)
+                Dim codSC As Integer = recuperarCodSC(vPass, cbSede.SelectedValue, myTrans)
                 Dim salAnt As Decimal
                 If codSC = 0 Then 'Primer requerimiento de esta persona
                     salAnt = 0
@@ -508,7 +557,7 @@ Public Class requerimientoCajaPersForm
         cmInserTable1.Parameters.Add("@imp", SqlDbType.Decimal, 0).Value = txtImpre.Text
         cmInserTable1.Parameters.Add("@monR", SqlDbType.Decimal, 0).Value = 0
         cmInserTable1.Parameters.Add("@codO", SqlDbType.VarChar, 10).Value = cbObra.SelectedValue
-        cmInserTable1.Parameters.Add("@codS", SqlDbType.VarChar, 10).Value = vSCodigo
+        cmInserTable1.Parameters.Add("@codS", SqlDbType.VarChar, 10).Value = cbSede.SelectedValue
     End Sub
 
     Private Sub btnCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelar.Click
@@ -527,6 +576,11 @@ Public Class requerimientoCajaPersForm
     Private Sub btnModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnModificar.Click
         If BindingSource1.Position = -1 Then
             StatusBarClass.messageBarraEstado("  No existe Orden de Desembolso a actualizar...")
+            Exit Sub
+        End If
+
+        If BindingSource1.Item(BindingSource1.Position)(6) = 1 Then
+            MessageBox.Show("No se puede actualizar SOLICITUD de requerimientos" & Chr(13) & "por estar <APROBADO>", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
             Exit Sub
         End If
 
@@ -614,12 +668,13 @@ Public Class requerimientoCajaPersForm
     Private Sub comandoUpdate1()
         cmUpdateTable1 = New SqlCommand
         cmUpdateTable1.CommandType = CommandType.Text
-        cmUpdateTable1.CommandText = "update TSolicitudCaja set fechaSol=@fec,montoSol=@monto,imprevisto=@imp,codObra=@codO where codSC=@cod"
+        cmUpdateTable1.CommandText = "update TSolicitudCaja set fechaSol=@fec,montoSol=@monto,imprevisto=@imp,codObra=@codO,codSede=@codS where codSC=@cod"
         cmUpdateTable1.Connection = Cn
         cmUpdateTable1.Parameters.Add("@fec", SqlDbType.Date).Value = date1.Value.Date
         cmUpdateTable1.Parameters.Add("@monto", SqlDbType.Decimal, 0).Value = txtTotIns.Text
         cmUpdateTable1.Parameters.Add("@imp", SqlDbType.Decimal, 0).Value = txtImpre.Text
-        cmUpdateTable1.Parameters.Add("@codO", SqlDbType.VarChar, 10).Value = cbObra.SelectedValue 'vSCodigo
+        cmUpdateTable1.Parameters.Add("@codO", SqlDbType.VarChar, 10).Value = cbObra.SelectedValue
+        cmUpdateTable1.Parameters.Add("@codS", SqlDbType.VarChar, 10).Value = cbSede.SelectedValue 'vSCodigo
         cmUpdateTable1.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource1.Item(BindingSource1.Position)(0)
     End Sub
 
@@ -833,6 +888,23 @@ Public Class requerimientoCajaPersForm
             End If
             Dim codDetSol As Integer = cmInserTable2.Parameters("@Identity").Value
 
+            'TSolicitudCaja
+            comandoUpdate3(0) '0=PENDIENTE
+            cmUpdateTable3.Transaction = myTrans
+            If cmUpdateTable3.ExecuteNonQuery() < 1 Then
+                wait.Close()
+                Me.Cursor = Cursors.Default
+                'deshace la transaccion
+                myTrans.Rollback()
+                MessageBox.Show("ERROR DE CONCURRENCIA, VUELVA A EJECUTAR LA INTERFAZ." & Chr(13) & "No se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Information)
+                Me.Close()
+                Exit Sub
+            End If
+            txtEst.BackColor = Color.White
+            txtEst.ForeColor = Color.Black
+            BindingSource1.Item(BindingSource1.Position)(6) = 0
+            txtEst.Text = "PENDIENTE"
+
             'confirma la transaccion
             myTrans.Commit()    'con exito RAS
 
@@ -882,6 +954,16 @@ Public Class requerimientoCajaPersForm
                 Exit Sub
             End If
         End Try
+    End Sub
+
+    Dim cmUpdateTable3 As SqlCommand
+    Private Sub comandoUpdate3(ByVal est As Short)
+        cmUpdateTable3 = New SqlCommand
+        cmUpdateTable3.CommandType = CommandType.Text
+        cmUpdateTable3.CommandText = "update TSolicitudCaja set estSol=@est where codSC=@cod"
+        cmUpdateTable3.Connection = Cn
+        cmUpdateTable3.Parameters.Add("@est", SqlDbType.Int, 0).Value = est
+        cmUpdateTable3.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource1.Item(BindingSource1.Position)(0)
     End Sub
 
     Dim cmInserTable2 As SqlCommand
@@ -1065,6 +1147,11 @@ Public Class requerimientoCajaPersForm
     End Sub
 
     Private Sub ToolStripButton5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton5.Click
+        If BindingSource3.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  No Existe Insumo a Eliminar...")
+            Exit Sub
+        End If
+
         If BindingSource3.Item(BindingSource3.Position)(21) = 1 Then '1=Aprobado 0=Pendiente 2=Observado
             MessageBox.Show("Proceso denegado, por estar en el estado de [APROBADO]", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
@@ -1264,4 +1351,111 @@ Public Class requerimientoCajaPersForm
         informe.ShowDialog()
     End Sub
 
+    Private Sub btnCrear_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCrear.Click
+        Dim crea As New crearMaterialForm
+        crea.ShowDialog()
+    End Sub
+
+    Private Function recuperarCountCodSC(ByVal cod As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select count(*) from TDetSolCaja where codSC=" & cod
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
+    Private Function recuperarEstado(ByVal cod As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select estSol from TSolicitudCaja where codSC=" & cod
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
+    Private Sub btnAnula_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAnula.Click
+        If BindingSource1.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  No Existe Solicitud a Anular...")
+            Exit Sub
+        End If
+
+        If recuperarCountCodSC(BindingSource1.Item(BindingSource1.Position)(0)) = 0 Then
+            MessageBox.Show("PROCESO DENEGADO, Solicitud Caja Nº " & BindingSource1.Item(BindingSource1.Position)(2) & " NO tiene registros en Detalle Solicitud", nomNegocio, Nothing, MessageBoxIcon.Stop)
+            Exit Sub
+        End If
+
+        If recuperarEstado(BindingSource1.Item(BindingSource1.Position)(0)) = 2 Then '2=Cerrado
+            MessageBox.Show("Proceso Denegado, Solicitud ya se Proceso en EGRESO de dinero...", nomNegocio, Nothing, MessageBoxIcon.Stop)
+            Exit Sub
+        End If
+
+        Dim resp As String = MessageBox.Show("Esta segúro de ANULAR Solicitud" & Chr(13) & " Nº " & BindingSource1.Item(BindingSource1.Position)(2), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resp <> 6 Then
+            Exit Sub
+        End If
+
+        Me.Refresh()
+        Dim finalMytrans As Boolean = False
+        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
+        Dim wait As New waitForm
+        wait.Show()
+        Me.Cursor = Cursors.WaitCursor
+        Try
+            StatusBarClass.messageBarraEstado("  ESPERE PROCESANDO INFORMACION....")
+
+            'TSolicitudCaja
+            comandoUpdate13(3) '3=Anulado
+            cmUpdateTable13.Transaction = myTrans
+            If cmUpdateTable13.ExecuteNonQuery() < 1 Then
+                'deshace la transaccion
+                wait.Close()
+                Me.Cursor = Cursors.Default
+                myTrans.Rollback()
+                MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+
+            'confirma la transaccion
+            myTrans.Commit()    'con exito RAS
+            finalMytrans = True
+            StatusBarClass.messageBarraEstado("  LOS DATOS FUERON ACTUALIZADOS CON EXITO...")
+
+            dsAlmacen.Tables("VSolicitudCaja").Clear()
+            daTabla1.Fill(dsAlmacen, "VSolicitudCaja")
+
+            recuperarUltimoNro()
+
+            vfVAn1 = True
+            visualizarDet()
+            leerMontos()
+
+            'Clase definida y con miembros shared en la biblioteca ComponentesRAS
+            StatusBarClass.messageBarraEstado("  Registro fué anulado con exito...")
+            wait.Close()
+            Me.Cursor = Cursors.Default
+        Catch f As Exception
+            wait.Close()
+            Me.Cursor = Cursors.Default
+            If finalMytrans Then
+                MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            Else
+                myTrans.Rollback()
+                MessageBox.Show(f.Message & Chr(13) & "NO SE ACTUALIZO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+        End Try
+    End Sub
+
+    Dim cmUpdateTable13 As SqlCommand
+    Private Sub comandoUpdate13(ByVal estado As Integer)
+        cmUpdateTable13 = New SqlCommand
+        cmUpdateTable13.CommandType = CommandType.Text
+        cmUpdateTable13.CommandText = "update TSolicitudCaja set estSol=@est where codSC=@cod"
+        cmUpdateTable13.Connection = Cn
+        cmUpdateTable13.Parameters.Add("@est", SqlDbType.Int, 0).Value = estado '3 = anulado
+        cmUpdateTable13.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource1.Item(BindingSource1.Position)(0)
+    End Sub
 End Class

@@ -98,6 +98,9 @@ Public Class GastosPorDiaForm
                 .Columns("codBan").Visible = False
                 .Columns("codMon").Visible = False
                 .Columns("idCue").Visible = False
+                .Columns("concepto").HeaderText = "Concepto"
+                .Columns("concepto").Width = 250
+
             End With
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -221,7 +224,7 @@ Public Class GastosPorDiaForm
 
     Private Sub btnMostrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMostrar.Click
         'SET DATEFORMAT dmy  da formato dd/mm/yyyy para las fechas
-        Dim sele As String = "SET DATEFORMAT dmy select fecPago,nroOperacion,ruc,razon,simbolo,montoPago,montoD,banco,nroCue,(serie +'-'+cast(nroDes as varchar)) nroDes,codBan,codMon,idCue,codigo,nombre from VGastosPorDia where fecPago between '" & dtpInicio.Text & "' and '" & dtpFin.Text & "'"
+        Dim sele As String = "SET DATEFORMAT dmy select fecPago,nroOperacion,ruc,razon,simbolo,montoPago,montoD,banco,nroCue,(serie +'-'+cast(nroDes as varchar)) nroDes,codBan,codMon,idCue,codigo,nombre,concepto from VGastosPorDia where fecPago between '" & dtpInicio.Text & "' and '" & dtpFin.Text & "'"
         oDataManager.CargarGrilla(sele, CommandType.Text, dgReporte, bindingSource0)
 
         'enlanzando con el binding navigator
@@ -341,5 +344,22 @@ Public Class GastosPorDiaForm
         Else
             cbObra.Visible = True
         End If
+    End Sub
+
+    Private Sub btnImpres_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImpres.Click
+
+        If bindingSource0.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Datos...")
+            Exit Sub
+        End If
+
+        Dim informe As New ReportViewerGastosDiaForm
+
+        informe.fecIni = Me.dtpInicio.Text
+        informe.fecFin = Me.dtpFin.Text
+
+        informe.ShowDialog()
+
+
     End Sub
 End Class

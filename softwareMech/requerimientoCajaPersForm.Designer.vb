@@ -21,9 +21,16 @@ Partial Class requerimientoCajaPersForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(requerimientoCajaPersForm))
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
+        Me.cbObra = New System.Windows.Forms.ComboBox
+        Me.cbSede = New System.Windows.Forms.ComboBox
+        Me.Label21 = New System.Windows.Forms.Label
+        Me.txtTotOtr = New System.Windows.Forms.TextBox
+        Me.txtTotHon = New System.Windows.Forms.TextBox
+        Me.txtTotBol = New System.Windows.Forms.TextBox
+        Me.txtTotFac = New System.Windows.Forms.TextBox
         Me.Label20 = New System.Windows.Forms.Label
         Me.Label19 = New System.Windows.Forms.Label
         Me.Label18 = New System.Windows.Forms.Label
@@ -49,7 +56,6 @@ Partial Class requerimientoCajaPersForm
         Me.lblMon2 = New System.Windows.Forms.Label
         Me.Label4 = New System.Windows.Forms.Label
         Me.lblMon1 = New System.Windows.Forms.Label
-        Me.cbObra = New System.Windows.Forms.ComboBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.date1 = New System.Windows.Forms.DateTimePicker
         Me.Label2 = New System.Windows.Forms.Label
@@ -109,10 +115,6 @@ Partial Class requerimientoCajaPersForm
         Me.txtNota = New System.Windows.Forms.TextBox
         Me.dgTabla1 = New System.Windows.Forms.DataGridView
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.TextBox1 = New System.Windows.Forms.TextBox
-        Me.TextBox2 = New System.Windows.Forms.TextBox
-        Me.TextBox3 = New System.Windows.Forms.TextBox
-        Me.TextBox4 = New System.Windows.Forms.TextBox
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.Navigator2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -136,10 +138,13 @@ Partial Class requerimientoCajaPersForm
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.TextBox4)
-        Me.Panel1.Controls.Add(Me.TextBox3)
-        Me.Panel1.Controls.Add(Me.TextBox2)
-        Me.Panel1.Controls.Add(Me.TextBox1)
+        Me.Panel1.Controls.Add(Me.cbObra)
+        Me.Panel1.Controls.Add(Me.cbSede)
+        Me.Panel1.Controls.Add(Me.Label21)
+        Me.Panel1.Controls.Add(Me.txtTotOtr)
+        Me.Panel1.Controls.Add(Me.txtTotHon)
+        Me.Panel1.Controls.Add(Me.txtTotBol)
+        Me.Panel1.Controls.Add(Me.txtTotFac)
         Me.Panel1.Controls.Add(Me.Label20)
         Me.Panel1.Controls.Add(Me.Label19)
         Me.Panel1.Controls.Add(Me.Label18)
@@ -165,7 +170,6 @@ Partial Class requerimientoCajaPersForm
         Me.Panel1.Controls.Add(Me.lblMon2)
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.lblMon1)
-        Me.Panel1.Controls.Add(Me.cbObra)
         Me.Panel1.Controls.Add(Me.Label3)
         Me.Panel1.Controls.Add(Me.date1)
         Me.Panel1.Controls.Add(Me.Label2)
@@ -174,13 +178,90 @@ Partial Class requerimientoCajaPersForm
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Location = New System.Drawing.Point(14, 23)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(890, 126)
+        Me.Panel1.Size = New System.Drawing.Size(890, 139)
         Me.Panel1.TabIndex = 0
+        '
+        'cbObra
+        '
+        Me.cbObra.DropDownHeight = 500
+        Me.cbObra.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbObra.DropDownWidth = 600
+        Me.cbObra.Enabled = False
+        Me.cbObra.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbObra.FormattingEnabled = True
+        Me.cbObra.IntegralHeight = False
+        Me.cbObra.Location = New System.Drawing.Point(409, 30)
+        Me.cbObra.Name = "cbObra"
+        Me.cbObra.Size = New System.Drawing.Size(465, 21)
+        Me.cbObra.TabIndex = 4
+        '
+        'cbSede
+        '
+        Me.cbSede.DropDownHeight = 500
+        Me.cbSede.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbSede.DropDownWidth = 600
+        Me.cbSede.Enabled = False
+        Me.cbSede.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbSede.FormattingEnabled = True
+        Me.cbSede.IntegralHeight = False
+        Me.cbSede.Location = New System.Drawing.Point(409, 4)
+        Me.cbSede.Name = "cbSede"
+        Me.cbSede.Size = New System.Drawing.Size(465, 21)
+        Me.cbSede.TabIndex = 3
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(297, 6)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(110, 13)
+        Me.Label21.TabIndex = 350
+        Me.Label21.Text = "Requerimiento de:"
+        '
+        'txtTotOtr
+        '
+        Me.txtTotOtr.Location = New System.Drawing.Point(651, 113)
+        Me.txtTotOtr.Name = "txtTotOtr"
+        Me.txtTotOtr.ReadOnly = True
+        Me.txtTotOtr.Size = New System.Drawing.Size(66, 20)
+        Me.txtTotOtr.TabIndex = 349
+        Me.txtTotOtr.TabStop = False
+        Me.txtTotOtr.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTotHon
+        '
+        Me.txtTotHon.Location = New System.Drawing.Point(651, 92)
+        Me.txtTotHon.Name = "txtTotHon"
+        Me.txtTotHon.ReadOnly = True
+        Me.txtTotHon.Size = New System.Drawing.Size(66, 20)
+        Me.txtTotHon.TabIndex = 348
+        Me.txtTotHon.TabStop = False
+        Me.txtTotHon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTotBol
+        '
+        Me.txtTotBol.Location = New System.Drawing.Point(470, 114)
+        Me.txtTotBol.Name = "txtTotBol"
+        Me.txtTotBol.ReadOnly = True
+        Me.txtTotBol.Size = New System.Drawing.Size(66, 20)
+        Me.txtTotBol.TabIndex = 347
+        Me.txtTotBol.TabStop = False
+        Me.txtTotBol.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTotFac
+        '
+        Me.txtTotFac.Location = New System.Drawing.Point(469, 93)
+        Me.txtTotFac.Name = "txtTotFac"
+        Me.txtTotFac.ReadOnly = True
+        Me.txtTotFac.Size = New System.Drawing.Size(66, 20)
+        Me.txtTotFac.TabIndex = 346
+        Me.txtTotFac.TabStop = False
+        Me.txtTotFac.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(693, 100)
+        Me.Label20.Location = New System.Drawing.Point(542, 115)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(112, 13)
         Me.Label20.TabIndex = 345
@@ -189,7 +270,7 @@ Partial Class requerimientoCajaPersForm
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(693, 80)
+        Me.Label19.Location = New System.Drawing.Point(542, 95)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(111, 13)
         Me.Label19.TabIndex = 344
@@ -198,7 +279,7 @@ Partial Class requerimientoCajaPersForm
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(693, 59)
+        Me.Label18.Location = New System.Drawing.Point(361, 117)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(110, 13)
         Me.Label18.TabIndex = 343
@@ -207,7 +288,7 @@ Partial Class requerimientoCajaPersForm
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(692, 39)
+        Me.Label17.Location = New System.Drawing.Point(360, 97)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(109, 13)
         Me.Label17.TabIndex = 342
@@ -215,7 +296,7 @@ Partial Class requerimientoCajaPersForm
         '
         'txtEst
         '
-        Me.txtEst.Location = New System.Drawing.Point(88, 39)
+        Me.txtEst.Location = New System.Drawing.Point(126, 25)
         Me.txtEst.Name = "txtEst"
         Me.txtEst.Size = New System.Drawing.Size(78, 20)
         Me.txtEst.TabIndex = 4
@@ -232,7 +313,7 @@ Partial Class requerimientoCajaPersForm
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(85, 26)
+        Me.Label8.Location = New System.Drawing.Point(79, 26)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(50, 13)
         Me.Label8.TabIndex = 341
@@ -246,7 +327,7 @@ Partial Class requerimientoCajaPersForm
         Me.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancelar.Image = CType(resources.GetObject("btnCancelar.Image"), System.Drawing.Image)
         Me.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCancelar.Location = New System.Drawing.Point(511, 88)
+        Me.btnCancelar.Location = New System.Drawing.Point(725, 83)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(81, 23)
         Me.btnCancelar.TabIndex = 11
@@ -260,7 +341,7 @@ Partial Class requerimientoCajaPersForm
         Me.btnNuevo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnNuevo.Image = CType(resources.GetObject("btnNuevo.Image"), System.Drawing.Image)
         Me.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnNuevo.Location = New System.Drawing.Point(424, 63)
+        Me.btnNuevo.Location = New System.Drawing.Point(725, 55)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(81, 27)
         Me.btnNuevo.TabIndex = 9
@@ -273,7 +354,7 @@ Partial Class requerimientoCajaPersForm
         Me.btnAnula.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAnula.Image = CType(resources.GetObject("btnAnula.Image"), System.Drawing.Image)
         Me.btnAnula.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAnula.Location = New System.Drawing.Point(598, 35)
+        Me.btnAnula.Location = New System.Drawing.Point(808, 106)
         Me.btnAnula.Name = "btnAnula"
         Me.btnAnula.Size = New System.Drawing.Size(77, 25)
         Me.btnAnula.TabIndex = 12
@@ -286,9 +367,9 @@ Partial Class requerimientoCajaPersForm
         Me.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
         Me.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnImprimir.Location = New System.Drawing.Point(598, 86)
+        Me.btnImprimir.Location = New System.Drawing.Point(725, 107)
         Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(77, 25)
+        Me.btnImprimir.Size = New System.Drawing.Size(81, 25)
         Me.btnImprimir.TabIndex = 14
         Me.btnImprimir.Text = "Imprimir"
         Me.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -299,7 +380,7 @@ Partial Class requerimientoCajaPersForm
         Me.btnElimina.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnElimina.Image = CType(resources.GetObject("btnElimina.Image"), System.Drawing.Image)
         Me.btnElimina.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnElimina.Location = New System.Drawing.Point(598, 60)
+        Me.btnElimina.Location = New System.Drawing.Point(808, 81)
         Me.btnElimina.Name = "btnElimina"
         Me.btnElimina.Size = New System.Drawing.Size(77, 25)
         Me.btnElimina.TabIndex = 13
@@ -312,9 +393,9 @@ Partial Class requerimientoCajaPersForm
         Me.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnModificar.Image = CType(resources.GetObject("btnModificar.Image"), System.Drawing.Image)
         Me.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnModificar.Location = New System.Drawing.Point(509, 36)
+        Me.btnModificar.Location = New System.Drawing.Point(808, 56)
         Me.btnModificar.Name = "btnModificar"
-        Me.btnModificar.Size = New System.Drawing.Size(81, 25)
+        Me.btnModificar.Size = New System.Drawing.Size(77, 25)
         Me.btnModificar.TabIndex = 10
         Me.btnModificar.Text = "Modificar"
         Me.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -322,7 +403,7 @@ Partial Class requerimientoCajaPersForm
         '
         'txtImpre
         '
-        Me.txtImpre.Location = New System.Drawing.Point(287, 53)
+        Me.txtImpre.Location = New System.Drawing.Point(265, 70)
         Me.txtImpre.Name = "txtImpre"
         Me.txtImpre.ReadOnly = True
         Me.txtImpre.Size = New System.Drawing.Size(66, 20)
@@ -331,17 +412,20 @@ Partial Class requerimientoCajaPersForm
         '
         'txtTotReq
         '
-        Me.txtTotReq.Location = New System.Drawing.Point(287, 99)
+        Me.txtTotReq.BackColor = System.Drawing.Color.Navy
+        Me.txtTotReq.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTotReq.ForeColor = System.Drawing.Color.White
+        Me.txtTotReq.Location = New System.Drawing.Point(261, 114)
         Me.txtTotReq.Name = "txtTotReq"
         Me.txtTotReq.ReadOnly = True
-        Me.txtTotReq.Size = New System.Drawing.Size(66, 20)
+        Me.txtTotReq.Size = New System.Drawing.Size(76, 22)
         Me.txtTotReq.TabIndex = 8
         Me.txtTotReq.TabStop = False
         Me.txtTotReq.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtSalAnt
         '
-        Me.txtSalAnt.Location = New System.Drawing.Point(287, 76)
+        Me.txtSalAnt.Location = New System.Drawing.Point(265, 92)
         Me.txtSalAnt.Name = "txtSalAnt"
         Me.txtSalAnt.ReadOnly = True
         Me.txtSalAnt.Size = New System.Drawing.Size(66, 20)
@@ -351,7 +435,7 @@ Partial Class requerimientoCajaPersForm
         '
         'txtTotIns
         '
-        Me.txtTotIns.Location = New System.Drawing.Point(287, 30)
+        Me.txtTotIns.Location = New System.Drawing.Point(265, 48)
         Me.txtTotIns.Name = "txtTotIns"
         Me.txtTotIns.ReadOnly = True
         Me.txtTotIns.Size = New System.Drawing.Size(66, 20)
@@ -362,16 +446,17 @@ Partial Class requerimientoCajaPersForm
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(176, 101)
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(147, 114)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(85, 13)
+        Me.Label7.Size = New System.Drawing.Size(94, 15)
         Me.Label7.TabIndex = 295
         Me.Label7.Text = "Total Requer."
         '
         'lblMon4
         '
         Me.lblMon4.AutoSize = True
-        Me.lblMon4.Location = New System.Drawing.Point(261, 101)
+        Me.lblMon4.Location = New System.Drawing.Point(239, 118)
         Me.lblMon4.Name = "lblMon4"
         Me.lblMon4.Size = New System.Drawing.Size(25, 13)
         Me.lblMon4.TabIndex = 296
@@ -380,7 +465,7 @@ Partial Class requerimientoCajaPersForm
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(176, 79)
+        Me.Label6.Location = New System.Drawing.Point(149, 95)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(87, 13)
         Me.Label6.TabIndex = 293
@@ -389,7 +474,7 @@ Partial Class requerimientoCajaPersForm
         'lblMon3
         '
         Me.lblMon3.AutoSize = True
-        Me.lblMon3.Location = New System.Drawing.Point(261, 79)
+        Me.lblMon3.Location = New System.Drawing.Point(239, 95)
         Me.lblMon3.Name = "lblMon3"
         Me.lblMon3.Size = New System.Drawing.Size(25, 13)
         Me.lblMon3.TabIndex = 294
@@ -398,7 +483,7 @@ Partial Class requerimientoCajaPersForm
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(176, 57)
+        Me.Label5.Location = New System.Drawing.Point(150, 74)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(71, 13)
         Me.Label5.TabIndex = 291
@@ -407,7 +492,7 @@ Partial Class requerimientoCajaPersForm
         'lblMon2
         '
         Me.lblMon2.AutoSize = True
-        Me.lblMon2.Location = New System.Drawing.Point(261, 57)
+        Me.lblMon2.Location = New System.Drawing.Point(239, 74)
         Me.lblMon2.Name = "lblMon2"
         Me.lblMon2.Size = New System.Drawing.Size(25, 13)
         Me.lblMon2.TabIndex = 292
@@ -416,7 +501,7 @@ Partial Class requerimientoCajaPersForm
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(176, 33)
+        Me.Label4.Location = New System.Drawing.Point(149, 51)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(86, 13)
         Me.Label4.TabIndex = 289
@@ -425,34 +510,20 @@ Partial Class requerimientoCajaPersForm
         'lblMon1
         '
         Me.lblMon1.AutoSize = True
-        Me.lblMon1.Location = New System.Drawing.Point(261, 33)
+        Me.lblMon1.Location = New System.Drawing.Point(239, 51)
         Me.lblMon1.Name = "lblMon1"
         Me.lblMon1.Size = New System.Drawing.Size(25, 13)
         Me.lblMon1.TabIndex = 290
         Me.lblMon1.Text = "S/."
         '
-        'cbObra
-        '
-        Me.cbObra.DropDownHeight = 500
-        Me.cbObra.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbObra.DropDownWidth = 600
-        Me.cbObra.Enabled = False
-        Me.cbObra.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbObra.FormattingEnabled = True
-        Me.cbObra.IntegralHeight = False
-        Me.cbObra.Location = New System.Drawing.Point(278, 3)
-        Me.cbObra.Name = "cbObra"
-        Me.cbObra.Size = New System.Drawing.Size(476, 21)
-        Me.cbObra.TabIndex = 3
-        '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(238, 6)
+        Me.Label3.Location = New System.Drawing.Point(331, 34)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(38, 13)
+        Me.Label3.Size = New System.Drawing.Size(81, 13)
         Me.Label3.TabIndex = 288
-        Me.Label3.Text = "Obra:"
+        Me.Label3.Text = "Obra Gastos:"
         '
         'date1
         '
@@ -487,7 +558,7 @@ Partial Class requerimientoCajaPersForm
         Me.btnCerrar.BackColor = System.Drawing.SystemColors.Control
         Me.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCerrar.Location = New System.Drawing.Point(624, 3)
+        Me.btnCerrar.Location = New System.Drawing.Point(626, 29)
         Me.btnCerrar.Name = "btnCerrar"
         Me.btnCerrar.Size = New System.Drawing.Size(44, 21)
         Me.btnCerrar.TabIndex = 278
@@ -508,9 +579,9 @@ Partial Class requerimientoCajaPersForm
         '
         Me.Panel3.Controls.Add(Me.Navigator2)
         Me.Panel3.Controls.Add(Me.dgTabla2)
-        Me.Panel3.Location = New System.Drawing.Point(14, 150)
+        Me.Panel3.Location = New System.Drawing.Point(14, 163)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(890, 272)
+        Me.Panel3.Size = New System.Drawing.Size(890, 258)
         Me.Panel3.TabIndex = 1
         '
         'Navigator2
@@ -522,7 +593,7 @@ Partial Class requerimientoCajaPersForm
         Me.Navigator2.DeleteItem = Nothing
         Me.Navigator2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Navigator2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripTextBox1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator3, Me.TSModificar, Me.ToolStripSeparator7, Me.ToolStripTextBox2, Me.ToolStripSeparator4, Me.ToolStripLabel2, Me.ToolStripButton5, Me.ToolStripSeparator5, Me.txtTotal, Me.ToolStripSeparator6})
-        Me.Navigator2.Location = New System.Drawing.Point(0, 247)
+        Me.Navigator2.Location = New System.Drawing.Point(0, 233)
         Me.Navigator2.MoveFirstItem = Me.ToolStripButton1
         Me.Navigator2.MoveLastItem = Me.ToolStripButton4
         Me.Navigator2.MoveNextItem = Me.ToolStripButton3
@@ -671,11 +742,11 @@ Partial Class requerimientoCajaPersForm
         Me.dgTabla2.AllowUserToAddRows = False
         Me.dgTabla2.AllowUserToDeleteRows = False
         Me.dgTabla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgTabla2.Location = New System.Drawing.Point(1, -1)
+        Me.dgTabla2.Location = New System.Drawing.Point(1, 0)
         Me.dgTabla2.Name = "dgTabla2"
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle5
-        Me.dgTabla2.Size = New System.Drawing.Size(888, 248)
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgTabla2.Size = New System.Drawing.Size(888, 232)
         Me.dgTabla2.TabIndex = 15
         '
         'Panel4
@@ -1004,51 +1075,11 @@ Partial Class requerimientoCajaPersForm
         Me.dgTabla1.Location = New System.Drawing.Point(0, 79)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgTabla1.Size = New System.Drawing.Size(888, 124)
         Me.dgTabla1.TabIndex = 7
         Me.dgTabla1.TabStop = False
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(801, 35)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(66, 20)
-        Me.TextBox1.TabIndex = 346
-        Me.TextBox1.TabStop = False
-        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(802, 56)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(66, 20)
-        Me.TextBox2.TabIndex = 347
-        Me.TextBox2.TabStop = False
-        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Location = New System.Drawing.Point(802, 77)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(66, 20)
-        Me.TextBox3.TabIndex = 348
-        Me.TextBox3.TabStop = False
-        Me.TextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TextBox4
-        '
-        Me.TextBox4.Location = New System.Drawing.Point(802, 98)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.ReadOnly = True
-        Me.TextBox4.Size = New System.Drawing.Size(66, 20)
-        Me.TextBox4.TabIndex = 349
-        Me.TextBox4.TabStop = False
-        Me.TextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'requerimientoCajaPersForm
         '
@@ -1168,9 +1199,11 @@ Partial Class requerimientoCajaPersForm
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents Label20 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Friend WithEvents txtTotFac As System.Windows.Forms.TextBox
+    Friend WithEvents txtTotOtr As System.Windows.Forms.TextBox
+    Friend WithEvents txtTotHon As System.Windows.Forms.TextBox
+    Friend WithEvents txtTotBol As System.Windows.Forms.TextBox
+    Friend WithEvents cbSede As System.Windows.Forms.ComboBox
+    Friend WithEvents Label21 As System.Windows.Forms.Label
 
 End Class

@@ -100,6 +100,7 @@ Partial Class pantallaInicialForm
         Me.infT = New System.Windows.Forms.ToolStripDropDownButton
         Me.infT1 = New System.Windows.Forms.ToolStripMenuItem
         Me.infT2 = New System.Windows.Forms.ToolStripMenuItem
+        Me.infT3 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator
         Me.opcPersonal = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcPers1 = New System.Windows.Forms.ToolStripMenuItem
@@ -124,7 +125,7 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.infT3 = New System.Windows.Forms.ToolStripMenuItem
+        Me.opcCaja7 = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -461,7 +462,7 @@ Partial Class pantallaInicialForm
         '
         'opcCaja
         '
-        Me.opcCaja.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcCaja1, Me.opcCaja5, Me.ToolStripSeparator21, Me.opcCaja6, Me.ToolStripSeparator23, Me.opcCaja2, Me.opcCaja3, Me.ToolStripSeparator22, Me.opcCaja4})
+        Me.opcCaja.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcCaja1, Me.opcCaja5, Me.ToolStripSeparator21, Me.opcCaja6, Me.opcCaja7, Me.ToolStripSeparator23, Me.opcCaja2, Me.opcCaja3, Me.ToolStripSeparator22, Me.opcCaja4})
         Me.opcCaja.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.opcCaja.Image = CType(resources.GetObject("opcCaja.Image"), System.Drawing.Image)
         Me.opcCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -477,7 +478,7 @@ Partial Class pantallaInicialForm
         Me.opcCaja1.ForeColor = System.Drawing.Color.Navy
         Me.opcCaja1.Image = CType(resources.GetObject("opcCaja1.Image"), System.Drawing.Image)
         Me.opcCaja1.Name = "opcCaja1"
-        Me.opcCaja1.Size = New System.Drawing.Size(261, 22)
+        Me.opcCaja1.Size = New System.Drawing.Size(249, 22)
         Me.opcCaja1.Text = "Aperturar Orden Desembolso"
         Me.opcCaja1.ToolTipText = "Registro de orden de desembolso para ingreso a caja chica..."
         '
@@ -487,14 +488,14 @@ Partial Class pantallaInicialForm
         Me.opcCaja5.ForeColor = System.Drawing.Color.Navy
         Me.opcCaja5.Image = CType(resources.GetObject("opcCaja5.Image"), System.Drawing.Image)
         Me.opcCaja5.Name = "opcCaja5"
-        Me.opcCaja5.Size = New System.Drawing.Size(261, 22)
-        Me.opcCaja5.Text = "Ingreso Dinero Caja con Orden..."
+        Me.opcCaja5.Size = New System.Drawing.Size(249, 22)
+        Me.opcCaja5.Text = "Ingreso Dinero Caja con Orden"
         Me.opcCaja5.ToolTipText = "Procesar Ingreso de dinero a caja chica con Orden de desembolso..."
         '
         'ToolStripSeparator21
         '
         Me.ToolStripSeparator21.Name = "ToolStripSeparator21"
-        Me.ToolStripSeparator21.Size = New System.Drawing.Size(258, 6)
+        Me.ToolStripSeparator21.Size = New System.Drawing.Size(246, 6)
         '
         'opcCaja6
         '
@@ -502,14 +503,14 @@ Partial Class pantallaInicialForm
         Me.opcCaja6.ForeColor = System.Drawing.Color.Navy
         Me.opcCaja6.Image = CType(resources.GetObject("opcCaja6.Image"), System.Drawing.Image)
         Me.opcCaja6.Name = "opcCaja6"
-        Me.opcCaja6.Size = New System.Drawing.Size(261, 22)
+        Me.opcCaja6.Size = New System.Drawing.Size(249, 22)
         Me.opcCaja6.Text = "Registrar Requerimiento Caja"
         Me.opcCaja6.ToolTipText = "Registrar Requerimiento de insumos para caja chica..."
         '
         'ToolStripSeparator23
         '
         Me.ToolStripSeparator23.Name = "ToolStripSeparator23"
-        Me.ToolStripSeparator23.Size = New System.Drawing.Size(258, 6)
+        Me.ToolStripSeparator23.Size = New System.Drawing.Size(246, 6)
         '
         'opcCaja2
         '
@@ -517,7 +518,7 @@ Partial Class pantallaInicialForm
         Me.opcCaja2.ForeColor = System.Drawing.Color.Navy
         Me.opcCaja2.Image = CType(resources.GetObject("opcCaja2.Image"), System.Drawing.Image)
         Me.opcCaja2.Name = "opcCaja2"
-        Me.opcCaja2.Size = New System.Drawing.Size(261, 22)
+        Me.opcCaja2.Size = New System.Drawing.Size(249, 22)
         Me.opcCaja2.Text = "Abrir Fecha Dia Caja Chica"
         Me.opcCaja2.ToolTipText = "Cada dia se tiene que abrir un fecha para utilizar caja chica"
         '
@@ -526,14 +527,14 @@ Partial Class pantallaInicialForm
         Me.opcCaja3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.opcCaja3.ForeColor = System.Drawing.Color.Navy
         Me.opcCaja3.Name = "opcCaja3"
-        Me.opcCaja3.Size = New System.Drawing.Size(261, 22)
+        Me.opcCaja3.Size = New System.Drawing.Size(249, 22)
         Me.opcCaja3.Text = "Modificar Dia Caja Chica"
         Me.opcCaja3.ToolTipText = "Solo utilizar esta opción si se confundio en abrir una fecha de dia erronea"
         '
         'ToolStripSeparator22
         '
         Me.ToolStripSeparator22.Name = "ToolStripSeparator22"
-        Me.ToolStripSeparator22.Size = New System.Drawing.Size(258, 6)
+        Me.ToolStripSeparator22.Size = New System.Drawing.Size(246, 6)
         '
         'opcCaja4
         '
@@ -541,7 +542,7 @@ Partial Class pantallaInicialForm
         Me.opcCaja4.ForeColor = System.Drawing.Color.Navy
         Me.opcCaja4.Image = CType(resources.GetObject("opcCaja4.Image"), System.Drawing.Image)
         Me.opcCaja4.Name = "opcCaja4"
-        Me.opcCaja4.Size = New System.Drawing.Size(261, 22)
+        Me.opcCaja4.Size = New System.Drawing.Size(249, 22)
         Me.opcCaja4.Text = "Aperturar Caja Nueva "
         Me.opcCaja4.ToolTipText = "Abrir caja chica nueva por sede u obra..."
         '
@@ -777,6 +778,15 @@ Partial Class pantallaInicialForm
         Me.infT2.Size = New System.Drawing.Size(158, 22)
         Me.infT2.Text = "Gastos por Dia"
         '
+        'infT3
+        '
+        Me.infT3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.infT3.ForeColor = System.Drawing.Color.Navy
+        Me.infT3.Image = CType(resources.GetObject("infT3.Image"), System.Drawing.Image)
+        Me.infT3.Name = "infT3"
+        Me.infT3.Size = New System.Drawing.Size(158, 22)
+        Me.infT3.Text = "Stock "
+        '
         'ToolStripSeparator8
         '
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
@@ -982,14 +992,15 @@ Partial Class pantallaInicialForm
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'infT3
+        'opcCaja7
         '
-        Me.infT3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.infT3.ForeColor = System.Drawing.Color.Navy
-        Me.infT3.Image = CType(resources.GetObject("infT3.Image"), System.Drawing.Image)
-        Me.infT3.Name = "infT3"
-        Me.infT3.Size = New System.Drawing.Size(158, 22)
-        Me.infT3.Text = "Stock "
+        Me.opcCaja7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcCaja7.ForeColor = System.Drawing.Color.Navy
+        Me.opcCaja7.Image = CType(resources.GetObject("opcCaja7.Image"), System.Drawing.Image)
+        Me.opcCaja7.Name = "opcCaja7"
+        Me.opcCaja7.Size = New System.Drawing.Size(249, 22)
+        Me.opcCaja7.Text = "Aprobar Requerimientos Caja"
+        Me.opcCaja7.ToolTipText = "Aprobar u Observar Requerimiento de insumos de usuario..."
         '
         'pantallaInicialForm
         '
@@ -1117,4 +1128,5 @@ Partial Class pantallaInicialForm
     Friend WithEvents ToolStripSeparator23 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents opcCaja6 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents infT3 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcCaja7 As System.Windows.Forms.ToolStripMenuItem
 End Class

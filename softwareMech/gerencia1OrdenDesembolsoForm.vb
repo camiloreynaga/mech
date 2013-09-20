@@ -2,33 +2,8 @@
 Imports System.Data.SqlClient
 Imports ComponentesSolucion2008
 Public Class gerencia1OrdenDesembolsoForm
-    ''' <summary>
-    ''' Orden de Desembolso
-    ''' </summary>
-    ''' <remarks></remarks>
     Dim BindingSource1 As New BindingSource
-
-    ''' <summary>
-    ''' Detalle Orden Desembolso
-    ''' </summary>
-    ''' <remarks></remarks>
     Dim BindingSource2 As New BindingSource
-
-    ''' <summary>
-    ''' objeto de la clase Datamanager
-    ''' </summary>
-    ''' <remarks></remarks>
-    Dim oDataManager As New cDataManager
-
-    Dim oGrilla As New cConfigFormControls
-
-    ''' <summary>
-    ''' Variable auxiliar para el control de consultas de detalle de desembolso
-    ''' </summary>
-    ''' <remarks></remarks>
-    Dim vCodDesem As Integer = -1
-
-
 
     Private Sub gerencia1OrdenDesembolsoForm_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
         Me.Close()
@@ -36,111 +11,101 @@ Public Class gerencia1OrdenDesembolsoForm
 
     Private Sub gerencia1OrdenDesembolsoForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Realizando la conexion con SQL Server - ConexionModule.vb
-        conexion() 'active esta linea si desea ejecutar el form independientemente RAS
-        AsignarColoresFormControles()
+        'conexion() 'active esta linea si desea ejecutar el form independientemente RAS
+        'AsignarColoresFormControles()
         VerificaConexion()
         Dim wait As New waitForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
+        'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
+        'Dim sele As String = "select idOP,estApro,fecDes,serie,nro,simbolo,monto,razon,nom,obserDesem,est,nombre,hist,estDesem,codPersDes,estado,codMon,datoReq from VOrdenDesemGerencia1 where estDesem in(0,@est,2)" 
+        Dim sele As String = "select idOP,estApro,fecDes,serie,nro,simbolo,monto,razon,nom,obserDesem,est,nombre,hist,estDesem,codPersDes,estado,codMon,datoReq from VOrdenDesemGerencia1 where estDesem in(@est1,@est,@est2) or serie=@ser" '0=NULL  1=Aprobado 2=Observado
+        crearDataAdapterTable(daTabla1, sele)
+        daTabla1.SelectCommand.Parameters.Add("@est", SqlDbType.Int, 0).Value = 0
+        daTabla1.SelectCommand.Parameters.Add("@est1", SqlDbType.Int, 0).Value = 0 'NULL Pendiente
+        daTabla1.SelectCommand.Parameters.Add("@est2", SqlDbType.Int, 0).Value = 2 'Observado
+        daTabla1.SelectCommand.Parameters.Add("@ser", SqlDbType.VarChar).Value = 100 'serie texto
 
+        sele = "select codDetO,cant,unidad,descrip,precio,subTotal,dias,fecOrden,nro,nroOrden,igv,calIGV,codMon,simbolo,idOP,idSol from VOrdenCompraDetalle where idOP=@idOP"
+        crearDataAdapterTable(daDetDoc, sele)
+        daDetDoc.SelectCommand.Parameters.Add("@idOP", SqlDbType.Int, 0).Value = 0
 
-        ''instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        'Dim sele As String = "select idOP,estApro,fecDes,serie,nro,simbolo,monto,razon,nom,obserDesem,est,nombre,hist,estDesem,codPersDes,estado,codMon,datoReq,codigo,codIde,nroDes from VOrdenDesemGerencia1 where estDesem in(0,@est,2)" '0=NULL  1=Aprobado 2=Observado
-        'crearDataAdapterTable(daTabla1, sele)
-        'daTabla1.SelectCommand.Parameters.Add("@est", SqlDbType.Int, 0).Value = 0
+        sele = "select codSerO,serie from TSerieOrden where estado=1 order by serie"
+        crearDataAdapterTable(daTabla5, sele)
 
-        'sele = "select codDetO,cant,unidad,descrip,precio,subTotal,dias,fecOrden,nro,nroOrden,igv,calIGV,codMon,simbolo,idOP,idSol from VOrdenCompraDetalle where idOP=@idOP"
-        'crearDataAdapterTable(daDetDoc, sele)
-        'daDetDoc.SelectCommand.Parameters.Add("@idOP", SqlDbType.Int, 0).Value = 0
-
-        'Try
-        'procedimiento para instanciar el dataSet - DatasetAlmacenModule.vb
-        'crearDSAlmacen()
-        ''llenat el dataSet con los dataAdapter
-        'daTabla1.Fill(dsAlmacen, "VOrdenDesemGerencia1")
-        'daDetDoc.Fill(dsAlmacen, "VOrdenCompraDetalle")
-
-        'BindingSource1.DataSource = dsAlmacen
-        'BindingSource1.DataMember = "VOrdenDesemGerencia1"
-        'Navigator1.BindingSource = BindingSource1
-        'dgTabla1.DataSource = BindingSource1
-        'BindingSource1.Sort = "estDesem,fecDes"
-
-        'BindingSource2.DataSource = dsAlmacen
-        'BindingSource2.DataMember = "VOrdenCompraDetalle"
-        'Navigator2.BindingSource = BindingSource2
-        'dgTabla2.DataSource = BindingSource2
-        ''dgTabla2.SelectionMode = DataGridViewSelectionMode.FullRowSelect 'Seleccionar fila completa
-        'BindingSource2.Sort = "descrip"
-
-        'vfVan1 = True
-        'visualizarDet()
-        'vfVan2 = True
-
-        
-        'Catch f As Exception
-        '    wait.Close()
-        '    Me.Cursor = Cursors.Default
-        '    MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
-        '    Me.Close()
-        '    Exit Sub
-        'End Try
         Try
+            'procedimiento para instanciar el dataSet - DatasetAlmacenModule.vb
+            crearDSAlmacen()
+            'llenat el dataSet con los dataAdapter
+            daTabla1.Fill(dsAlmacen, "VOrdenDesemGerencia1")
+            daDetDoc.Fill(dsAlmacen, "VOrdenCompraDetalle")
+            daTabla5.Fill(dsAlmacen, "TSerieOrden")
 
-            configurarColorControl()
-            'Cargando el combo Obras
-            oDataManager.CargarCombo("PA_LugarTrabajo", CommandType.StoredProcedure, cbObra, "codigo", "nombre")
-            'Cargando el combo de Proveedores
-            oDataManager.CargarCombo("PA_Proveedores", CommandType.StoredProcedure, cbProveedor, "codIde", "razon")
+            BindingSource1.DataSource = dsAlmacen
+            BindingSource1.DataMember = "VOrdenDesemGerencia1"
+            Navigator1.BindingSource = BindingSource1
+            dgTabla1.DataSource = BindingSource1
+            BindingSource1.Sort = "estDesem,fecDes"
 
-            'cargando la grilla Ordenes de Desembolso (maestro)
-            Dim consulta As String = "select idOP,estApro,fecDes,serie,nro,simbolo,monto,razon,nom,obserDesem,est,nombre,hist,estDesem,codPersDes,estado,codMon,datoReq,codigo,codIde,nroDes from VOrdenDesemGerencia1 where estDesem in(0,2)" '0=NULL  1=Aprobado 2=Observado
-
-            oDataManager.CargarGrilla(consulta, CommandType.Text, dgTabla1, BindingSource1)
-
+            BindingSource2.DataSource = dsAlmacen
+            BindingSource2.DataMember = "VOrdenCompraDetalle"
+            Navigator2.BindingSource = BindingSource2
+            dgTabla2.DataSource = BindingSource2
+            'dgTabla2.SelectionMode = DataGridViewSelectionMode.FullRowSelect 'Seleccionar fila completa
+            BindingSource2.Sort = "descrip"
             ModificarColumnasDGV()
 
-            txtReq.DataBindings.Add("Text", BindingSource1, "datoReq")
+            cbSerie.DataSource = dsAlmacen
+            cbSerie.DisplayMember = "TSerieOrden.serie"
+            cbSerie.ValueMember = "codSerO"
 
+            configurarColorControl()
+
+            vfVan1 = True
+            visualizarDet()
+            vfVan2 = True
+
+            txtReq.DataBindings.Add("Text", BindingSource1, "datoReq")
 
             If vSCodTipoUsu = 2 Then  '1=administrador de sistema 2=gerencia general 
                 'Solo administrador puede realizar este proceso
                 AddContextMenu() 'Agregando menu antiClick
             End If
 
-            calcularTotales()
-
-        Catch ex As Exception
-
-        Finally
             wait.Close()
             Me.Cursor = Cursors.Default
+        Catch f As Exception
+            wait.Close()
+            Me.Cursor = Cursors.Default
+            MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Me.Close()
+            Exit Sub
         End Try
     End Sub
 
     Private Sub gerencia1OrdenDesembolsoForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         colorearFila()
         calcularTotales()
-    End Sub
 
-    Private Sub AsignarValoresFiltro()
-        If chkVis1.Checked = True Then 'Todos Aprobados, Observados NULL
-            estado = 1
-        Else  'solo pendientes=NULL
-            estado = 0
-        End If
+        rb3.Checked = True 'filtro pendientes
     End Sub
 
     Dim estado As Integer
+    Dim estado1 As Integer
+    Dim estado2 As Integer
+    Dim estado3 As String
     Dim vfVan2 As Boolean = False
     Private Sub visualizarOrd()
         If vfVan2 Then
             vfVan1 = False
-            AsignarValoresFiltro()
+            'AsignarValoresFiltro()
 
             Me.Cursor = Cursors.WaitCursor
             dsAlmacen.Tables("VOrdenDesemGerencia1").Clear()
             daTabla1.SelectCommand.Parameters("@est").Value = estado
+            daTabla1.SelectCommand.Parameters("@est1").Value = estado1 'NULL Pendiente
+            daTabla1.SelectCommand.Parameters("@est2").Value = estado2 'Observado
+            daTabla1.SelectCommand.Parameters("@ser").Value = estado3 'serie
             daTabla1.Fill(dsAlmacen, "VOrdenDesemGerencia1")
 
             colorearFila()
@@ -152,26 +117,51 @@ Public Class gerencia1OrdenDesembolsoForm
         End If
     End Sub
 
-    ''' <summary>
-    ''' Añade criterios a los filtros
-    ''' </summary>
-    ''' <param name="criterio"></param>
-    ''' <param name="filtro"></param>
-    ''' <remarks></remarks>
-    Private Function AddCriterioFiltro(ByVal criterio As String, ByVal filtro As String) As String
-        If filtro.Length > 0 Then
-            filtro &= " and " & criterio
-        Else
-            filtro &= " " & criterio
-        End If
-        Return filtro
-    End Function
+    Private Sub rb1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rb1.CheckedChanged, rb2.CheckedChanged, rb3.CheckedChanged
+        If rb3.Checked Then 'Pendientes
+            cbSerie.Visible = False
+            btnF1.Visible = False
 
-#Region "Métodos"
-    ''' <summary>
-    ''' Muestras los totales calculados 
-    ''' </summary>
-    ''' <remarks></remarks>
+            'If cbVis1.Checked = True Then 'Todos Aprobados, Observados NULL
+            '    estado = 1
+            'Else  'solo pendientes=NULL
+            estado = 0
+            estado1 = 0
+            estado2 = 2
+            estado3 = "100"
+
+            visualizarOrd()
+        End If
+        If rb1.Checked Then 'Todos
+            cbSerie.Visible = False
+            btnF1.Visible = False
+
+            estado = 1
+            estado1 = 0
+            estado2 = 2
+            estado3 = "100"
+
+            visualizarOrd()
+        End If
+
+        If rb2.Checked Then 'por serie
+            cbSerie.Visible = True
+            btnF1.Visible = True
+
+            dsAlmacen.Tables("VOrdenDesemGerencia1").Clear()
+            dsAlmacen.Tables("VOrdenCompraDetalle").Clear()
+        End If
+    End Sub
+
+    Private Sub btnF1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnF1.Click
+        estado = 10
+        estado1 = 10
+        estado2 = 10
+        estado3 = cbSerie.Text.Trim()  'Por numero de serie de orden de desembolso
+
+        visualizarOrd()
+    End Sub
+
     Private Sub calcularTotales()
         If BindingSource1.Position = -1 Then
             txtTotalSoles.Text = "0.00"
@@ -182,11 +172,9 @@ Public Class gerencia1OrdenDesembolsoForm
             'txtTotalSoles.Text = Format(dsAlmacen.Tables("VOrdenDesemGerencia1").Compute("Sum(monto)", "codMon=30"), "0,0.00")
             'txtTotalDolares.Text = Format(dsAlmacen.Tables("VOrdenDesemGerencia1").Compute("Sum(monto)", "codMon=35"), "0,0.00")
 
-            'txtTotalSoles.Text = dsAlmacen.Tables("VOrdenDesemGerencia1").Compute("Sum(monto)", "codMon=30").ToString()
-            'txtTotalDolares.Text = dsAlmacen.Tables("VOrdenDesemGerencia1").Compute("Sum(monto)", "codMon=35").ToString()
+            txtTotalSoles.Text = dsAlmacen.Tables("VOrdenDesemGerencia1").Compute("Sum(monto)", "codMon=30").ToString()
+            txtTotalDolares.Text = dsAlmacen.Tables("VOrdenDesemGerencia1").Compute("Sum(monto)", "codMon=35").ToString()
 
-            txtTotalSoles.Text = oGrilla.SumarColumnaGrilla(dgTabla1, "monto", "codMon", "30").ToString()
-            txtTotalDolares.Text = oGrilla.SumarColumnaGrilla(dgTabla1, "monto", "codMon", "35").ToString()
             If txtTotalSoles.Text.Trim() = "" Then
                 txtTotalSoles.Text = "0.00"
             Else
@@ -200,143 +188,25 @@ Public Class gerencia1OrdenDesembolsoForm
         Catch f As Exception
             Exit Sub
         End Try
-
     End Sub
-    ''' <summary>
-    ''' Da colora a la Grilla de Desembolsos
-    ''' </summary>
-    ''' <remarks></remarks>
+
     Private Sub colorearFila()
-
-        oGrilla.colorearFilasDGV(dgTabla1, "estApro", "estDesem", 1, Color.Green, Color.White)
-        oGrilla.colorearFilasDGV(dgTabla1, "estApro", "estDesem", 2, Color.Yellow, Color.Red)
-        oGrilla.colorearFilasDGV(dgTabla1, "estApro", "estDesem", 3, Color.Red, Color.White)
-
-        oGrilla.EstiloColumnaDGV(dgTabla1, "monto", New System.Drawing.Font("Microsoft Sans Serif", 8.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte)))
-
-        'For j As Short = 0 To BindingSource1.Count - 1
-        '    If BindingSource1.Item(j)(13) = 1 Then 'Aprobado
-        '        dgTabla1.Rows(j).Cells(1).Style.BackColor = Color.Green 'Color.YellowGreen
-        '        dgTabla1.Rows(j).Cells(1).Style.ForeColor = Color.White
-        '    End If
-        '    If BindingSource1.Item(j)(13) = 2 Then 'Observado
-        '        dgTabla1.Rows(j).Cells(1).Style.BackColor = Color.Yellow
-        '        dgTabla1.Rows(j).Cells(1).Style.ForeColor = Color.Red
-        '    End If
-        '    If BindingSource1.Item(j)(13) = 3 Then 'Rechazado
-        '        dgTabla1.Rows(j).Cells(1).Style.BackColor = Color.Red
-        '        dgTabla1.Rows(j).Cells(1).Style.ForeColor = Color.White
-        '    End If
-        '    dgTabla1.Rows(j).Cells(6).Style.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        'Next
-    End Sub
-
-    ''' <summary>
-    ''' Filtra Desembolso 
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private Sub filtrando()
-        If cbObra.Items.Count > 0 And cbObra.Items.Count > 0 Then 'BindingSource4.Position >= 0 And BindingSource5.Position >= 0 Then
-
-            BindingSource1.Filter = ""
-            Dim pFiltro As String = BindingSource1.Filter
-            Dim pCriterio As String
-
-            If chkObras.Checked = False Then
-                pCriterio = "codigo='" & cbObra.SelectedValue & "'"
-                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+        For j As Short = 0 To BindingSource1.Count - 1
+            If BindingSource1.Item(j)(13) = 1 Then 'Aprobado
+                dgTabla1.Rows(j).Cells(1).Style.BackColor = Color.Green 'Color.YellowGreen
+                dgTabla1.Rows(j).Cells(1).Style.ForeColor = Color.White
             End If
-
-            If chkProveedor.Checked = False Then
-                pCriterio = "codIde =" & cbProveedor.SelectedValue
-                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+            If BindingSource1.Item(j)(13) = 2 Then 'Observado
+                dgTabla1.Rows(j).Cells(1).Style.BackColor = Color.Yellow
+                dgTabla1.Rows(j).Cells(1).Style.ForeColor = Color.Red
             End If
-
-            'If chkVis1.Checked Then
-            '    pCriterio = "fecDes >= #" & dtpInicio.Text & "# and fecDes <= #" & dtpFin.Text & "#"
-            '    pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
-            'End If
-
-            If txtNroDesembolso.Text.Length > 0 Then
-                pCriterio = "nroDes =" & txtNroDesembolso.Text.Trim()
-                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+            If BindingSource1.Item(j)(13) = 3 Then 'Rechazado
+                dgTabla1.Rows(j).Cells(1).Style.BackColor = Color.Red
+                dgTabla1.Rows(j).Cells(1).Style.ForeColor = Color.White
             End If
-
-            BindingSource1.Filter = pFiltro
-
-            'BindingSource0.Sort = "idOp Desc"
-        End If
-       
-
-        'calcula los totales
-        calcularTotales()
-
-        'Actualizando datos en detalle
-        If dgTabla1.RowCount = 0 Then
-            dgTabla2.DataSource = ""
-            calcularSubTotal()
-        End If
-
-        
-
+            dgTabla1.Rows(j).Cells(6).Style.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Next
     End Sub
-    ''' <summary>
-    ''' consulta los desembolos a la BD 
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private Sub ConsultarDesembolsos()
-        Dim consulta As String
-
-        'cargando la grilla Ordenes de Desembolso (maestro)
-        If chkVis1.Checked Then
-            consulta = "SET DATEFORMAT dmy select idOP,estApro,fecDes,serie,nro,simbolo,monto,razon,nom,obserDesem,est,nombre,hist,estDesem,codPersDes,estado,codMon,datoReq,codigo,codIde,nroDes from VOrdenDesemGerencia1 where estDesem in(0,1,2) and  fecDes between '" & dtpInicio.Text & "' and '" & dtpFin.Text & "'"     '0=NULL  1=Aprobado 2=Observado
-        Else
-            consulta = "select idOP,estApro,fecDes,serie,nro,simbolo,monto,razon,nom,obserDesem,est,nombre,hist,estDesem,codPersDes,estado,codMon,datoReq,codigo,codIde,nroDes from VOrdenDesemGerencia1 where estDesem in(0,2) " '0=NULL  1=Aprobado 2=Observado
-        End If
-
-        oDataManager.CargarGrilla(consulta, CommandType.Text, dgTabla1, BindingSource1)
-
-        ModificarColumnasDGV()
-
-        'filtra la grila
-        'Implicitamente Da color y Calcula los Totales y Subtotales
-        filtrando()
-        'Colorea la Grilla
-        colorearFila()
-
-        Navigator1.BindingSource = BindingSource1
-        BindingSource1.Sort = "estDesem,fecDes"
-
-
-
-    End Sub
-
-#End Region
-
-    Private Sub cbVis1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkVis1.CheckedChanged
-        If chkVis1.Checked Then
-
-            dtpInicio.Visible = True
-            dtpFin.Visible = True
-            lblDesde.Visible = True
-            lblHasta.Visible = True
-        Else
-            dtpInicio.Visible = False
-            dtpFin.Visible = False
-            lblDesde.Visible = False
-            lblHasta.Visible = False
-        End If
-
-        btnMostrar.PerformClick()
-        'visualizarOrd()
-
-
-        'Colorea la Grilla
-        colorearFila()
-
-    End Sub
-
-    
 
     ''' <summary>
     ''' customiza la Grilla
@@ -421,10 +291,6 @@ Public Class gerencia1OrdenDesembolsoForm
             .Columns("nom").DisplayIndex = 8
             .Columns("obserDesem").DisplayIndex = 9
             .Columns("hist").DisplayIndex = 11
-            .Columns("codIde").Visible = False
-            .Columns("nroDes").Visible = False
-            .Columns("codigo").Visible = False
-
 
 
 
@@ -433,10 +299,6 @@ Public Class gerencia1OrdenDesembolsoForm
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .RowHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
         End With
-       
-    End Sub
-
-    Private Sub ModificarColumnaDetalle()
         With dgTabla2
             'codDetO
             .Columns(0).Visible = False
@@ -499,20 +361,6 @@ Public Class gerencia1OrdenDesembolsoForm
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub configurarColorControl()
-
-        For i As Integer = 0 To Panel1.Controls.Count - 1
-            If TypeOf Panel1.Controls(i) Is Label Then
-                Panel1.Controls(i).ForeColor = ForeColorLabel
-            End If
-
-            If TypeOf Panel1.Controls(i) Is CheckBox Then
-                Panel1.Controls(i).ForeColor = ForeColorLabel
-            End If
-
-
-
-        Next
-
         Me.BackColor = BackColorP
         Me.lblTitulo.BackColor = TituloBackColorP
         Me.lblTitulo.ForeColor = HeaderForeColorP
@@ -526,17 +374,12 @@ Public Class gerencia1OrdenDesembolsoForm
         Label5.ForeColor = ForeColorLabel
         Label6.ForeColor = ForeColorLabel
         Label7.ForeColor = ForeColorLabel
-        chkVis1.ForeColor = ForeColorLabel
+        GroupBox1.ForeColor = ForeColorLabel
         btnCerrar.ForeColor = ForeColorButtom
-
-        btnMostrar.ForeColor = ForeColorButtom
     End Sub
 
     Private Sub dgTabla1_CurrentCellChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgTabla1.CurrentCellChanged
-        'visualizarDet()
-        If dgTabla1.RowCount = 0 Then
-            dgTabla2.DataSource = ""
-        End If
+        visualizarDet()
     End Sub
 
     Dim vfVan1 As Boolean = False
@@ -582,11 +425,11 @@ Public Class gerencia1OrdenDesembolsoForm
         vfIGV = BindingSource2.Item(BindingSource2.Position)(10)
 
         If BindingSource2.Item(BindingSource2.Position)(11) = 1 Then  'tipo 1
-            txtTotal.Text = Format((oGrilla.SumarColumnaGrilla(dgTabla2, "subTotal")), "0,0.00") 'Format((dsAlmacen.Tables("VOrdenCompraDetalle").Compute("Sum(subTotal)", Nothing)), "0,0.00")
+            txtTotal.Text = Format((dsAlmacen.Tables("VOrdenCompraDetalle").Compute("Sum(subTotal)", Nothing)), "0,0.00")
             txtIGV.Text = Format(((txtTotal.Text * vfIGV) / (100 + vfIGV)), "0,0.00")
             txtSub.Text = Format((txtTotal.Text - txtIGV.Text), "0,0.00")
         Else  'Tipo 2
-            txtSub.Text = Format((oGrilla.SumarColumnaGrilla(dgTabla2, "subTotal")), "0,0.00") 'Format((dsAlmacen.Tables("VOrdenCompraDetalle").Compute("Sum(subTotal)", Nothing)), "0,0.00")
+            txtSub.Text = Format((dsAlmacen.Tables("VOrdenCompraDetalle").Compute("Sum(subTotal)", Nothing)), "0,0.00")
             txtIGV.Text = Format((txtSub.Text * vfIGV) / 100, "0,0.00")
             txtTotal.Text = Format((CDbl(txtSub.Text) + CDbl(txtIGV.Text)), "0,0.00")
         End If
@@ -631,7 +474,7 @@ Public Class gerencia1OrdenDesembolsoForm
 
     Private mouseLocation As DataGridViewCellEventArgs
     Private Sub dgTabla1_CellMouseEnter(ByVal sender As Object, ByVal location As DataGridViewCellEventArgs) Handles dgTabla1.CellMouseEnter
-        ' mouseLocation = location
+        mouseLocation = location
     End Sub
 
     Private Function recuperarCodPersDesem(ByVal idOp As Integer, ByVal tipo As Short) As Integer
@@ -721,29 +564,25 @@ Public Class gerencia1OrdenDesembolsoForm
 
             'confirma la transaccion
             myTrans.Commit()    'con exito RAS
-            StatusBarClass.messageBarraEstado("  LOS DATOS FUERON PROCESADOS CON ÉXITO...")
+            StatusBarClass.messageBarraEstado("  LOS DATOS FUERON PROCESADOS CON EXITO...")
             finalMytrans = True
 
-            'vfVan1 = False
+            vfVan1 = False
 
-            ''Actualizando el dataTable
-            'dsAlmacen.Tables("VOrdenDesemGerencia1").Clear()
-            'daTabla1.Fill(dsAlmacen, "VOrdenDesemGerencia1")
+            'Actualizando el dataTable
+            dsAlmacen.Tables("VOrdenDesemGerencia1").Clear()
+            daTabla1.Fill(dsAlmacen, "VOrdenDesemGerencia1")
 
-            ''Buscando por nombre de campo y luego pocisionarlo con el indice
-            'BindingSource1.Position = BindingSource1.Find("idOP", idOP)
+            'Buscando por nombre de campo y luego pocisionarlo con el indice
+            BindingSource1.Position = BindingSource1.Find("idOP", idOP)
 
-            ''Clase definida y con miembros shared en la biblioteca ComponentesRAS
-            'StatusBarClass.messageBarraEstado("  Registro fue guardado con éxito...")
+            'Clase definida y con miembros shared en la biblioteca ComponentesRAS
+            StatusBarClass.messageBarraEstado("  Registro fué guardado con exito...")
 
-            'vfVan1 = True
-            'visualizarDet()
-            'colorearFila()
-            'calcularTotales()
-
-            'Refrescando la información de la grilla Desembolsos
-            ConsultarDesembolsos()
+            vfVan1 = True
+            visualizarDet()
             colorearFila()
+            calcularTotales()
 
             StatusBarClass.messageBarraEstado("  DESEMBOLSO FUE APROBADO CON EXITO...")
             wait.Close()
@@ -858,26 +697,22 @@ Public Class gerencia1OrdenDesembolsoForm
             StatusBarClass.messageBarraEstado("  LOS DATOS FUERON PROCESADOS CON EXITO...")
             finalMytrans = True
 
-            'vfVan1 = False
+            vfVan1 = False
 
-            ''Actualizando el dataTable
-            'dsAlmacen.Tables("VOrdenDesemGerencia1").Clear()
-            'daTabla1.Fill(dsAlmacen, "VOrdenDesemGerencia1")
+            'Actualizando el dataTable
+            dsAlmacen.Tables("VOrdenDesemGerencia1").Clear()
+            daTabla1.Fill(dsAlmacen, "VOrdenDesemGerencia1")
 
-            ''Buscando por nombre de campo y luego pocisionarlo con el indice
-            'BindingSource1.Position = BindingSource1.Find("idOP", idOP)
+            'Buscando por nombre de campo y luego pocisionarlo con el indice
+            BindingSource1.Position = BindingSource1.Find("idOP", idOP)
 
-            ''Clase definida y con miembros shared en la biblioteca ComponentesRAS
-            'StatusBarClass.messageBarraEstado("  Registro fué guardado con exito...")
+            'Clase definida y con miembros shared en la biblioteca ComponentesRAS
+            StatusBarClass.messageBarraEstado("  Registro fué guardado con exito...")
 
-            'vfVan1 = True
-            'visualizarDet()
-            'colorearFila()
-            'calcularTotales()
-
-            'Refrescando la información de la grilla Desembolsos
-            ConsultarDesembolsos()
+            vfVan1 = True
+            visualizarDet()
             colorearFila()
+            calcularTotales()
 
             StatusBarClass.messageBarraEstado("  DESEMBOLSO FUE APROBADO CON EXITO...")
             wait.Close()
@@ -967,26 +802,22 @@ Public Class gerencia1OrdenDesembolsoForm
             StatusBarClass.messageBarraEstado("  LOS DATOS FUERON PROCESADOS CON EXITO...")
             finalMytrans = True
 
-            'vfVan1 = False
+            vfVan1 = False
 
-            ''Actualizando el dataTable
-            'dsAlmacen.Tables("VOrdenDesemGerencia1").Clear()
-            'daTabla1.Fill(dsAlmacen, "VOrdenDesemGerencia1")
+            'Actualizando el dataTable
+            dsAlmacen.Tables("VOrdenDesemGerencia1").Clear()
+            daTabla1.Fill(dsAlmacen, "VOrdenDesemGerencia1")
 
-            ''Buscando por nombre de campo y luego pocisionarlo con el indice
-            'BindingSource1.Position = BindingSource1.Find("idOP", idOP)
+            'Buscando por nombre de campo y luego pocisionarlo con el indice
+            BindingSource1.Position = BindingSource1.Find("idOP", idOP)
 
-            ''Clase definida y con miembros shared en la biblioteca ComponentesRAS
-            'StatusBarClass.messageBarraEstado("  Registro fué guardado con exito...")
+            'Clase definida y con miembros shared en la biblioteca ComponentesRAS
+            StatusBarClass.messageBarraEstado("  Registro fué guardado con exito...")
 
-            'vfVan1 = True
-            'visualizarDet()
-            'colorearFila()
-            'calcularTotales()
-
-            'Refrescando la información de la grilla Desembolsos
-            ConsultarDesembolsos()
+            vfVan1 = True
+            visualizarDet()
             colorearFila()
+            calcularTotales()
 
             StatusBarClass.messageBarraEstado("  DESEMBOLSO FUE APROBADO CON EXITO...")
             wait.Close()
@@ -1005,94 +836,33 @@ Public Class gerencia1OrdenDesembolsoForm
         End Try
     End Sub
 
-    Private Sub dgTabla1_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla1.CellClick, dgTabla1.CellEnter
-        'dgTabla1.CurrentCell.ColumnIndex
-        If dgTabla1.RowCount > 0 Then
+    Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
 
-            If vCodDesem <> BindingSource1.Item(BindingSource1.Position)(0) Then
-                Dim consulta As String = "select codDetO,cant,unidad,descrip,precio,subTotal,dias,fecOrden,nro,nroOrden,igv,calIGV,codMon,simbolo,idOP,idSol from VOrdenCompraDetalle where idOP=" & BindingSource1.Item(BindingSource1.Position)(0)
-
-                oDataManager.CargarGrilla(consulta, CommandType.Text, dgTabla2, BindingSource2)
-                ModificarColumnaDetalle()
-                Navigator2.BindingSource = BindingSource2
-                BindingSource2.Sort = "descrip"
-                vCodDesem = BindingSource1.Item(BindingSource1.Position)(0)
-
-
-            End If
-
-            'calcunado subtotal
-            calcularSubTotal()
+        If BindingSource1.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Datos...")
+            Exit Sub
         End If
 
 
-
-    End Sub
-
-    Private Sub dtpFin_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dtpInicio.ValueChanged, dtpFin.ValueChanged
-
-    End Sub
-
-    Private Sub cbObra_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbObra.SelectedIndexChanged
-        filtrando()
-        'Colorea la Grilla
-        colorearFila()
-    End Sub
-
-    Private Sub chkObras_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkObras.CheckedChanged
-
-
-        If chkObras.Checked Then
-            cbObra.Visible = False
-        Else
-            cbObra.Visible = True
+        Dim informe As New ReportViewerAprobacionDesembolsoForm
+        'check en todos
+        If rb1.Checked Then
+            informe.todos = True
+            informe.serie = "100"
         End If
-
-        'FiltrarGrillaDesembolso()
-        'FiltrandoPorEstado()}
-        filtrando()
-        'Colorea la Grilla
-        colorearFila()
-
-    End Sub
-
-    Private Sub txtNroDesembolso_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtNroDesembolso.KeyPress
-        ValidarNumero(sender, e)
-    End Sub
-
-    Private Sub txtNroDesembolso_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNroDesembolso.TextChanged
-        filtrando()
-        'Colorea la Grilla
-        colorearFila()
-    End Sub
-
-    Private Sub cbProveedor_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbProveedor.SelectedIndexChanged
-        filtrando()
-        'Colorea la Grilla
-        colorearFila()
-    End Sub
-
-    Private Sub chkProveedor_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkProveedor.CheckedChanged
-
-        If chkProveedor.Checked Then
-            cbProveedor.Visible = False
-        Else
-            cbProveedor.Visible = True
+        'check por Serie
+        If rb2.Checked Then
+            informe.todos = True
+            informe.serie = cbSerie.Text
         End If
-
-        filtrando()
-        'Colorea la Grilla
-        colorearFila()
-    End Sub
-
-    Private Sub btnMostrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMostrar.Click
-
-        ConsultarDesembolsos()
-
-    End Sub
+        'check pendientes
+        '        If rb3.Checked Then
 
 
-    Private Sub dgTabla1_Sorted(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgTabla1.Sorted
-        colorearFila()
+        '       End If
+
+        informe.ShowDialog()
+
+
     End Sub
 End Class

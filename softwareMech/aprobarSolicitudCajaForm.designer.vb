@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class gerencia1OrdenDesembolsoForm
+Partial Class aprobarSolicitudCajaForm
     Inherits ComponentesSolucion2008.plantillaForm1
 
     'Form invalida a Dispose para limpiar la lista de componentes.
@@ -20,22 +20,12 @@ Partial Class gerencia1OrdenDesembolsoForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(gerencia1OrdenDesembolsoForm))
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(aprobarSolicitudCajaForm))
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
-        Me.btnF1 = New ComponentesSolucion2008.BottomSSP(Me.components)
-        Me.cbSerie = New System.Windows.Forms.ComboBox
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.rb3 = New System.Windows.Forms.RadioButton
-        Me.rb2 = New System.Windows.Forms.RadioButton
-        Me.rb1 = New System.Windows.Forms.RadioButton
+        Me.Panel2 = New System.Windows.Forms.Panel
         Me.dgTabla1 = New System.Windows.Forms.DataGridView
-        Me.txtTotalDolares = New System.Windows.Forms.TextBox
-        Me.Label7 = New System.Windows.Forms.Label
-        Me.txtTotalSoles = New System.Windows.Forms.TextBox
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.btnCerrar = New System.Windows.Forms.Button
         Me.Navigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton
@@ -46,10 +36,10 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.txtReq = New System.Windows.Forms.TextBox
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.Panel2 = New System.Windows.Forms.Panel
+        Me.btnAprobar = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator
+        Me.btnCerrar = New System.Windows.Forms.Button
+        Me.Panel3 = New System.Windows.Forms.Panel
         Me.Navigator2 = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton
@@ -60,24 +50,17 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
-        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripTextBox
+        Me.ToolStripTextBox2 = New System.Windows.Forms.ToolStripTextBox
+        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator
         Me.txtTotal = New System.Windows.Forms.ToolStripTextBox
-        Me.lblTotal = New System.Windows.Forms.ToolStripLabel
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.txtIGV = New System.Windows.Forms.TextBox
-        Me.txtSub = New System.Windows.Forms.TextBox
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.txtLetraTotal = New System.Windows.Forms.TextBox
+        Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel
         Me.dgTabla2 = New System.Windows.Forms.DataGridView
-        Me.Label2 = New System.Windows.Forms.Label
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.btnImprimir = New System.Windows.Forms.ToolStripButton
-        Me.Panel1.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Navigator1.SuspendLayout()
-        Me.Panel2.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         CType(Me.Navigator2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Navigator2.SuspendLayout()
         CType(Me.dgTabla2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,7 +69,7 @@ Partial Class gerencia1OrdenDesembolsoForm
         'lblTitulo
         '
         Me.lblTitulo.Size = New System.Drawing.Size(915, 23)
-        Me.lblTitulo.Text = "Formulario de Aprobación de Gerencia de Orden de Desembolso"
+        Me.lblTitulo.Text = "Verificar Solicitud de Requerimiento de Caja Chica"
         '
         'lblDerecha
         '
@@ -94,161 +77,45 @@ Partial Class gerencia1OrdenDesembolsoForm
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.btnF1)
-        Me.Panel1.Controls.Add(Me.cbSerie)
-        Me.Panel1.Controls.Add(Me.GroupBox1)
-        Me.Panel1.Controls.Add(Me.dgTabla1)
-        Me.Panel1.Controls.Add(Me.txtTotalDolares)
-        Me.Panel1.Controls.Add(Me.Label7)
-        Me.Panel1.Controls.Add(Me.txtTotalSoles)
-        Me.Panel1.Controls.Add(Me.Label6)
-        Me.Panel1.Controls.Add(Me.btnCerrar)
-        Me.Panel1.Controls.Add(Me.Navigator1)
-        Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Location = New System.Drawing.Point(14, 23)
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Location = New System.Drawing.Point(14, 602)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(892, 321)
+        Me.Panel1.Size = New System.Drawing.Size(901, 51)
         Me.Panel1.TabIndex = 3
         '
-        'btnF1
+        'Panel2
         '
-        Me.btnF1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnF1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnF1.Image = CType(resources.GetObject("btnF1.Image"), System.Drawing.Image)
-        Me.btnF1.Location = New System.Drawing.Point(520, 7)
-        Me.btnF1.Name = "btnF1"
-        Me.btnF1.Size = New System.Drawing.Size(27, 24)
-        Me.btnF1.TabIndex = 373
-        Me.btnF1.TabStop = False
-        Me.btnF1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnF1.UseVisualStyleBackColor = True
-        Me.btnF1.Visible = False
-        '
-        'cbSerie
-        '
-        Me.cbSerie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbSerie.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbSerie.FormattingEnabled = True
-        Me.cbSerie.Location = New System.Drawing.Point(450, 9)
-        Me.cbSerie.Name = "cbSerie"
-        Me.cbSerie.Size = New System.Drawing.Size(66, 21)
-        Me.cbSerie.TabIndex = 372
-        Me.cbSerie.Visible = False
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.rb3)
-        Me.GroupBox1.Controls.Add(Me.rb2)
-        Me.GroupBox1.Controls.Add(Me.rb1)
-        Me.GroupBox1.Location = New System.Drawing.Point(196, 1)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(251, 30)
-        Me.GroupBox1.TabIndex = 371
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Filtro"
-        '
-        'rb3
-        '
-        Me.rb3.AutoSize = True
-        Me.rb3.Location = New System.Drawing.Point(8, 11)
-        Me.rb3.Name = "rb3"
-        Me.rb3.Size = New System.Drawing.Size(88, 17)
-        Me.rb3.TabIndex = 2
-        Me.rb3.TabStop = True
-        Me.rb3.Text = "Pendientes"
-        Me.rb3.UseVisualStyleBackColor = True
-        '
-        'rb2
-        '
-        Me.rb2.AutoSize = True
-        Me.rb2.Location = New System.Drawing.Point(167, 10)
-        Me.rb2.Name = "rb2"
-        Me.rb2.Size = New System.Drawing.Size(77, 17)
-        Me.rb2.TabIndex = 1
-        Me.rb2.TabStop = True
-        Me.rb2.Text = "Por Serie"
-        Me.rb2.UseVisualStyleBackColor = True
-        '
-        'rb1
-        '
-        Me.rb1.AutoSize = True
-        Me.rb1.Location = New System.Drawing.Point(101, 10)
-        Me.rb1.Name = "rb1"
-        Me.rb1.Size = New System.Drawing.Size(60, 17)
-        Me.rb1.TabIndex = 0
-        Me.rb1.TabStop = True
-        Me.rb1.Text = "Todos"
-        Me.rb1.UseVisualStyleBackColor = True
+        Me.Panel2.Controls.Add(Me.dgTabla1)
+        Me.Panel2.Controls.Add(Me.Navigator1)
+        Me.Panel2.Controls.Add(Me.btnCerrar)
+        Me.Panel2.Location = New System.Drawing.Point(14, 23)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(901, 192)
+        Me.Panel2.TabIndex = 4
         '
         'dgTabla1
         '
         Me.dgTabla1.AllowUserToAddRows = False
         Me.dgTabla1.AllowUserToDeleteRows = False
         Me.dgTabla1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgTabla1.Location = New System.Drawing.Point(0, 34)
+        Me.dgTabla1.Location = New System.Drawing.Point(1, 0)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle5
-        Me.dgTabla1.Size = New System.Drawing.Size(892, 262)
-        Me.dgTabla1.TabIndex = 332
-        '
-        'txtTotalDolares
-        '
-        Me.txtTotalDolares.Location = New System.Drawing.Point(557, 300)
-        Me.txtTotalDolares.Name = "txtTotalDolares"
-        Me.txtTotalDolares.Size = New System.Drawing.Size(120, 20)
-        Me.txtTotalDolares.TabIndex = 333
-        Me.txtTotalDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(474, 302)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(77, 13)
-        Me.Label7.TabIndex = 5
-        Me.Label7.Text = "Total $USD:"
-        '
-        'txtTotalSoles
-        '
-        Me.txtTotalSoles.Location = New System.Drawing.Point(348, 299)
-        Me.txtTotalSoles.Name = "txtTotalSoles"
-        Me.txtTotalSoles.Size = New System.Drawing.Size(120, 20)
-        Me.txtTotalSoles.TabIndex = 333
-        Me.txtTotalSoles.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(280, 303)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(62, 13)
-        Me.Label6.TabIndex = 5
-        Me.Label6.Text = "Total S/.:"
-        '
-        'btnCerrar
-        '
-        Me.btnCerrar.BackColor = System.Drawing.SystemColors.Control
-        Me.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCerrar.Location = New System.Drawing.Point(424, 150)
-        Me.btnCerrar.Name = "btnCerrar"
-        Me.btnCerrar.Size = New System.Drawing.Size(44, 21)
-        Me.btnCerrar.TabIndex = 331
-        Me.btnCerrar.TabStop = False
-        Me.btnCerrar.Text = "Cerrar"
-        Me.btnCerrar.UseVisualStyleBackColor = False
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle3
+        Me.dgTabla1.Size = New System.Drawing.Size(900, 167)
+        Me.dgTabla1.TabIndex = 12
         '
         'Navigator1
         '
         Me.Navigator1.AddNewItem = Nothing
         Me.Navigator1.BackColor = System.Drawing.SystemColors.Control
         Me.Navigator1.CountItem = Me.BindingNavigatorCountItem
+        Me.Navigator1.CountItemFormat = "de {0} Solicitudes"
         Me.Navigator1.DeleteItem = Nothing
         Me.Navigator1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Navigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.btnImprimir, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
-        Me.Navigator1.Location = New System.Drawing.Point(0, 296)
+        Me.Navigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.btnAprobar, Me.ToolStripSeparator4})
+        Me.Navigator1.Location = New System.Drawing.Point(0, 167)
         Me.Navigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.Navigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
         Me.Navigator1.MoveNextItem = Me.BindingNavigatorMoveNextItem
@@ -256,15 +123,15 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.Navigator1.Name = "Navigator1"
         Me.Navigator1.PositionItem = Me.BindingNavigatorPositionItem
         Me.Navigator1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.Navigator1.Size = New System.Drawing.Size(892, 25)
-        Me.Navigator1.TabIndex = 330
+        Me.Navigator1.Size = New System.Drawing.Size(901, 25)
+        Me.Navigator1.TabIndex = 11
         Me.Navigator1.Text = "BindingNavigator1"
         '
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(37, 22)
-        Me.BindingNavigatorCountItem.Text = "de {0}"
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(97, 22)
+        Me.BindingNavigatorCountItem.Text = "de {0} Solicitudes"
         Me.BindingNavigatorCountItem.ToolTipText = "Número total de elementos"
         '
         'BindingNavigatorMoveFirstItem
@@ -329,58 +196,54 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
         Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
         '
-        'Label1
+        'btnAprobar
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(3, 20)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(148, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Listado de Desembolsos:"
+        Me.btnAprobar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.btnAprobar.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAprobar.ForeColor = System.Drawing.Color.Maroon
+        Me.btnAprobar.Image = CType(resources.GetObject("btnAprobar.Image"), System.Drawing.Image)
+        Me.btnAprobar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnAprobar.Name = "btnAprobar"
+        Me.btnAprobar.Size = New System.Drawing.Size(210, 22)
+        Me.btnAprobar.Text = "Aprobar Todos los Insumos..."
+        Me.btnAprobar.ToolTipText = "Aprobar Todos los Insumos de requerimientos de caja chica"
         '
-        'txtReq
+        'ToolStripSeparator4
         '
-        Me.txtReq.Location = New System.Drawing.Point(288, 3)
-        Me.txtReq.Name = "txtReq"
-        Me.txtReq.Size = New System.Drawing.Size(592, 20)
-        Me.txtReq.TabIndex = 6
+        Me.ToolStripSeparator4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
         '
-        'Label4
+        'btnCerrar
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(201, 6)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(92, 13)
-        Me.Label4.TabIndex = 5
-        Me.Label4.Text = "Requerimiento:"
+        Me.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnCerrar.Location = New System.Drawing.Point(314, 53)
+        Me.btnCerrar.Name = "btnCerrar"
+        Me.btnCerrar.Size = New System.Drawing.Size(75, 23)
+        Me.btnCerrar.TabIndex = 10
+        Me.btnCerrar.Text = "Cerrar"
+        Me.btnCerrar.UseVisualStyleBackColor = True
         '
-        'Panel2
+        'Panel3
         '
-        Me.Panel2.Controls.Add(Me.txtReq)
-        Me.Panel2.Controls.Add(Me.Navigator2)
-        Me.Panel2.Controls.Add(Me.Label4)
-        Me.Panel2.Controls.Add(Me.Label3)
-        Me.Panel2.Controls.Add(Me.txtIGV)
-        Me.Panel2.Controls.Add(Me.txtSub)
-        Me.Panel2.Controls.Add(Me.Label5)
-        Me.Panel2.Controls.Add(Me.txtLetraTotal)
-        Me.Panel2.Controls.Add(Me.dgTabla2)
-        Me.Panel2.Controls.Add(Me.Label2)
-        Me.Panel2.Location = New System.Drawing.Point(14, 345)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(892, 308)
-        Me.Panel2.TabIndex = 4
+        Me.Panel3.Controls.Add(Me.Navigator2)
+        Me.Panel3.Controls.Add(Me.dgTabla2)
+        Me.Panel3.Location = New System.Drawing.Point(14, 216)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(901, 437)
+        Me.Panel3.TabIndex = 5
         '
         'Navigator2
         '
         Me.Navigator2.AddNewItem = Nothing
         Me.Navigator2.BackColor = System.Drawing.SystemColors.Control
         Me.Navigator2.CountItem = Me.ToolStripLabel1
-        Me.Navigator2.CountItemFormat = "de {0} insumos"
+        Me.Navigator2.CountItemFormat = "de {0} requerimientos de Caja"
         Me.Navigator2.DeleteItem = Nothing
         Me.Navigator2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Navigator2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripTextBox1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator3, Me.ToolStripSeparator6, Me.txtTotal, Me.lblTotal})
-        Me.Navigator2.Location = New System.Drawing.Point(0, 283)
+        Me.Navigator2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripTextBox1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator3, Me.ToolStripTextBox2, Me.ToolStripSeparator6, Me.txtTotal, Me.ToolStripLabel2})
+        Me.Navigator2.Location = New System.Drawing.Point(0, 412)
         Me.Navigator2.MoveFirstItem = Me.ToolStripButton1
         Me.Navigator2.MoveLastItem = Me.ToolStripButton4
         Me.Navigator2.MoveNextItem = Me.ToolStripButton3
@@ -388,15 +251,15 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.Navigator2.Name = "Navigator2"
         Me.Navigator2.PositionItem = Me.ToolStripTextBox1
         Me.Navigator2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.Navigator2.Size = New System.Drawing.Size(892, 25)
-        Me.Navigator2.TabIndex = 326
+        Me.Navigator2.Size = New System.Drawing.Size(901, 25)
+        Me.Navigator2.TabIndex = 11
         Me.Navigator2.Text = "BindingNavigator1"
         '
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(85, 22)
-        Me.ToolStripLabel1.Text = "de {0} insumos"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(162, 22)
+        Me.ToolStripLabel1.Text = "de {0} requerimientos de Caja"
         Me.ToolStripLabel1.ToolTipText = "Número total de elementos"
         '
         'ToolStripButton1
@@ -461,13 +324,19 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
         '
+        'ToolStripTextBox2
+        '
+        Me.ToolStripTextBox2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ToolStripTextBox2.Enabled = False
+        Me.ToolStripTextBox2.Name = "ToolStripTextBox2"
+        Me.ToolStripTextBox2.Size = New System.Drawing.Size(280, 25)
+        '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.ToolStripSeparator6.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.ToolStripSeparator6.Enabled = False
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(172, 25)
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(6, 25)
         '
         'txtTotal
         '
@@ -477,118 +346,50 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.txtTotal.Size = New System.Drawing.Size(80, 25)
         Me.txtTotal.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'lblTotal
+        'ToolStripLabel2
         '
-        Me.lblTotal.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.lblTotal.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotal.Name = "lblTotal"
-        Me.lblTotal.Size = New System.Drawing.Size(62, 22)
-        Me.lblTotal.Text = "TOTAL S/."
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(590, 268)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(40, 13)
-        Me.Label3.TabIndex = 325
-        Me.Label3.Text = "I.G.V."
-        '
-        'txtIGV
-        '
-        Me.txtIGV.Location = New System.Drawing.Point(636, 263)
-        Me.txtIGV.Name = "txtIGV"
-        Me.txtIGV.ReadOnly = True
-        Me.txtIGV.Size = New System.Drawing.Size(79, 20)
-        Me.txtIGV.TabIndex = 323
-        Me.txtIGV.TabStop = False
-        Me.txtIGV.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txtSub
-        '
-        Me.txtSub.Location = New System.Drawing.Point(636, 242)
-        Me.txtSub.Name = "txtSub"
-        Me.txtSub.ReadOnly = True
-        Me.txtSub.Size = New System.Drawing.Size(79, 20)
-        Me.txtSub.TabIndex = 322
-        Me.txtSub.TabStop = False
-        Me.txtSub.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(555, 247)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(76, 13)
-        Me.Label5.TabIndex = 321
-        Me.Label5.Text = "SUB TOTAL"
-        '
-        'txtLetraTotal
-        '
-        Me.txtLetraTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtLetraTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtLetraTotal.Location = New System.Drawing.Point(2, 257)
-        Me.txtLetraTotal.Name = "txtLetraTotal"
-        Me.txtLetraTotal.Size = New System.Drawing.Size(554, 20)
-        Me.txtLetraTotal.TabIndex = 324
-        Me.txtLetraTotal.TabStop = False
-        Me.txtLetraTotal.Text = "SON:"
+        Me.ToolStripLabel2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripLabel2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripLabel2.Name = "ToolStripLabel2"
+        Me.ToolStripLabel2.Size = New System.Drawing.Size(47, 22)
+        Me.ToolStripLabel2.Text = "TOTAL:"
         '
         'dgTabla2
         '
         Me.dgTabla2.AllowUserToAddRows = False
         Me.dgTabla2.AllowUserToDeleteRows = False
         Me.dgTabla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgTabla2.Location = New System.Drawing.Point(2, 25)
+        Me.dgTabla2.Location = New System.Drawing.Point(1, 0)
         Me.dgTabla2.Name = "dgTabla2"
         Me.dgTabla2.ReadOnly = True
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle6
-        Me.dgTabla2.Size = New System.Drawing.Size(890, 217)
-        Me.dgTabla2.TabIndex = 320
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle4
+        Me.dgTabla2.Size = New System.Drawing.Size(900, 412)
+        Me.dgTabla2.TabIndex = 12
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 9)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(171, 13)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Detalle de Orden de Compra:"
-        '
-        'btnImprimir
-        '
-        Me.btnImprimir.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
-        Me.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(71, 22)
-        Me.btnImprimir.Text = "Imprimir"
-        Me.btnImprimir.ToolTipText = "Imprimir orden de desembolso"
-        '
-        'gerencia1OrdenDesembolsoForm
+        'aprobarSolicitudCajaForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
         Me.ClientSize = New System.Drawing.Size(915, 675)
-        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "gerencia1OrdenDesembolsoForm"
-        Me.Controls.SetChildIndex(Me.Panel1, 0)
+        Me.Name = "aprobarSolicitudCajaForm"
         Me.Controls.SetChildIndex(Me.Panel2, 0)
+        Me.Controls.SetChildIndex(Me.Panel1, 0)
         Me.Controls.SetChildIndex(Me.lblTitulo, 0)
         Me.Controls.SetChildIndex(Me.lblDerecha, 0)
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.Controls.SetChildIndex(Me.Panel3, 0)
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Navigator1.ResumeLayout(False)
         Me.Navigator1.PerformLayout()
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
         CType(Me.Navigator2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Navigator2.ResumeLayout(False)
         Me.Navigator2.PerformLayout()
@@ -597,7 +398,8 @@ Partial Class gerencia1OrdenDesembolsoForm
 
     End Sub
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents btnCerrar As System.Windows.Forms.Button
     Friend WithEvents Navigator1 As System.Windows.Forms.BindingNavigator
     Friend WithEvents BindingNavigatorCountItem As System.Windows.Forms.ToolStripLabel
     Friend WithEvents BindingNavigatorMoveFirstItem As System.Windows.Forms.ToolStripButton
@@ -608,13 +410,8 @@ Partial Class gerencia1OrdenDesembolsoForm
     Friend WithEvents BindingNavigatorMoveNextItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorMoveLastItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents Panel2 As System.Windows.Forms.Panel
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents txtIGV As System.Windows.Forms.TextBox
-    Friend WithEvents txtSub As System.Windows.Forms.TextBox
-    Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents txtLetraTotal As System.Windows.Forms.TextBox
+    Friend WithEvents dgTabla1 As System.Windows.Forms.DataGridView
+    Friend WithEvents Panel3 As System.Windows.Forms.Panel
     Friend WithEvents dgTabla2 As System.Windows.Forms.DataGridView
     Friend WithEvents Navigator2 As System.Windows.Forms.BindingNavigator
     Friend WithEvents ToolStripLabel1 As System.Windows.Forms.ToolStripLabel
@@ -626,24 +423,12 @@ Partial Class gerencia1OrdenDesembolsoForm
     Friend WithEvents ToolStripButton3 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripButton4 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripTextBox
-    Friend WithEvents txtTotal As System.Windows.Forms.ToolStripTextBox
-    Friend WithEvents lblTotal As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents txtReq As System.Windows.Forms.TextBox
-    Friend WithEvents btnCerrar As System.Windows.Forms.Button
-    Friend WithEvents dgTabla1 As System.Windows.Forms.DataGridView
-    Friend WithEvents txtTotalSoles As System.Windows.Forms.TextBox
-    Friend WithEvents txtTotalDolares As System.Windows.Forms.TextBox
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
-    Friend WithEvents btnF1 As ComponentesSolucion2008.BottomSSP
-    Friend WithEvents cbSerie As System.Windows.Forms.ComboBox
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents rb3 As System.Windows.Forms.RadioButton
-    Friend WithEvents rb2 As System.Windows.Forms.RadioButton
-    Friend WithEvents rb1 As System.Windows.Forms.RadioButton
-    Friend WithEvents btnImprimir As System.Windows.Forms.ToolStripButton
+    Friend WithEvents txtTotal As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents ToolStripLabel2 As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents ToolStripTextBox2 As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents btnAprobar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
 
 End Class

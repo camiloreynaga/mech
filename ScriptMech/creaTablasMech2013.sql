@@ -469,10 +469,6 @@ create table TSeriePers
 	foreign key(codSerO) references TSerieOrden
 )
 
------------------MODULO ALMACEN-----------------------
------------------EJECUTAR 22/07/2013------------------
-------------------------------------------------------
-
 create table TMatUbi
 (	idMU int identity primary key,
 	codMat int,

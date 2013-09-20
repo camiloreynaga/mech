@@ -941,4 +941,10 @@ Public Class pantallaInicialForm
         oInfSotck.MdiParent = Me
         oInfSotck.Show()
     End Sub
+
+    Private Sub opcCaja7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja7.Click
+        Dim mant As New aprobarSolicitudCajaForm
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
 End Class

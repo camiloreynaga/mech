@@ -662,8 +662,6 @@ as
 	where TU.estado=1  --1=Activo
 GO
 
-
-
 create view VTransporte
 as
 	select TE.codET,TE.nombre as razon,TE.ruc,TV.codVeh,TV.marcaNro,TV.nroConst,TT.codT,TT.nombre,TT.DNI,TT.nroLic
@@ -923,7 +921,7 @@ GO
 ---------------------------------------
 -------EJECUTAR 14/09/2013-------------
 ---------------------------------------
---DROP view VCajaSerie
+
 create view VCajaSerie
 as
 	select distinct TC.codCC,TC.codPers,TS.codSerO,TS.serie,TS.iniNroDoc,TS.estado,TC.codigo 
@@ -997,7 +995,7 @@ GO
 create view VSolicitudCaja
 as
 	select TS.codSC,TS.fechaSol,TS.nroSol,'nro'=case when TS.nroSol<100 then '00'+ltrim(str(TS.nroSol)) when TS.nroSol>=100 and TS.nroSol<1000 then '0'+ltrim(str(TS.nroSol)) else '0'+ltrim(str(TS.nroSol)) end,
-	TP.codPers,TP.nombre+' '+TP.apellido as nom,TS.estSol,'est'=case when estSol=0 then 'PENDIENTE' when estSol=1 then 'Aprobado' when estSol=2 then 'Cerrado' else 'Anulado' end,
+	TP.codPers,TP.nombre+' '+TP.apellido as nom,TS.estSol,'est'=case when estSol=0 then 'PENDIENTE' when estSol=1 then 'APROBADO' when estSol=2 then 'CERRADO' else 'ANULADO' end,
 	TS.salAnt,TS.montoSol,TS.imprevisto,TS.montoRen,TS.codObra,TS.codSede
 	from TSolicitudCaja TS join TPersonal TP on TS.codPers=TP.codPers
 	where TS.estSol in (0,1) --0=Pendiente 1=aprobado
@@ -1010,7 +1008,8 @@ as
 	TD.codSC,TD.estRen,TD.codRen,TD.obsRen,TD.codDC,TD.nroOtros,TD.compCheck,'comp'=case when compCheck=1 then 'FACTURA' when compCheck=2 then 'BOLETA' when compCheck=3 then 'HONORARIOS' else 'OTROS' end
 	from TDetSolCaja TD left join TPersonal TP1 on TD.codApro=TP1.codPers
 	join TAreaMat TA on TD.codAreaM=TA.codAreaM
-	join TTipoMat TT on TD.codTipM=TT.codTipM	
+	join TTipoMat TT on TD.codTipM=TT.codTipM
+	where ingreso=0   --Ingreso Normal  1=Ingreso improvisado	
 GO
 
 create view VDetSolCajaImprimir  
@@ -1029,7 +1028,6 @@ as
 	join TTipoMat TT on TD.codTipM=TT.codTipM	
 GO
 
---vista para reporte de stock
 create view vStockAlmacen 
 as
 select TMU.idMU,tmu.codUbi,TMU.stock,TM.codMat,TM.material,TUN.unidad,TTM.tipoM       
@@ -1037,12 +1035,37 @@ from TMatUbi TMU
 inner join TMaterial TM on TM.codMat = TMU.codMat  
 inner join TUnidad TUN on TUN.codUni=TM.codUni 
 inner join TTipoMat TTM on TM.codTipM = TTM.codTipM 
+GO
+---------------------------------------
+-------EJECUTAR 20/09/2013-------------
+---------------------------------------
+
+create View VSolCajaApro
+as	
+	select TS.codSC,TS.nroSol,TS.fechaSol,'est'=case when TS.estSol=0 then 'PENDIENTE' when TS.estSol=1 then 'APROBADO' when TS.estSol=2 then 'CERRADO' else 'ANULADO' end,  --3=anulado
+	'nro'=case when TS.nroSol<100 then '00'+ltrim(str(TS.nroSol)) when TS.nroSol>=100 and TS.nroSol<1000 then '0'+ltrim(str(TS.nroSol)) else '0'+ltrim(str(TS.nroSol)) end,
+	TS.estSol,TP.codPers,TP.nombre+' '+TP.apellido as nomSoli,TS.codObra,TL1.nombre as nomObra,TS.codSede,TL2.nombre as nomSede,
+	TS.salAnt,TS.montoSol,TS.imprevisto,TS.montoRen,TS.montoSol+TS.imprevisto-TS.salAnt as totPar
+	from TSolicitudCaja TS join TLugarTrabajo TL1 on TS.codObra=TL1.codigo
+	join TLugarTrabajo TL2 on TS.codSede=TL2.codigo
+	join TPersonal TP on TS.codPers=TP.codPers
+	where TS.estSol in (0,1)  -- 0=Pendiente 1=Aprobado
+GO
+
+create View VCajasLugar
+as
+	select distinct TCC.codCC,TCC.codSerO,TL.codigo,'CAJA CHICA - ' + TL.nombre as lugar,TCC.codPers
+	from TCajaChica TCC join TCajas TC on TCC.codCC=TC.codCC
+	join TLugarTrabajo TL on TCC.codigo=TL.codigo
+	where TC.estCaja=1  --a=activo
+GO
+
+select codSC,nro,fechaSol,nomSoli,montoSol,imprevisto,salAnt,totPar,est,nomObra,nomSede,estSol,codObra,codSede,codPers from VSolCajaApro where codSede=@cod
+
+select codDetSol,cant1,uniMed,insumo,prec1,totPar,comp,areaM,estApro,obsSol,tipoM,nom,obsApro,codApro,codMat,codAreaM,codTipM,codSC,codDC,nroOtros,compCheck,estDet from VDetSolCaja where codSC=@cod 
+			0		1	  2		3	  4		  5	    6	 7	   8	  9		10	   11	12		13		14		15		16		17	  18	19			20	   21   
 
 select codDetSol,codSC,nomSede,nomObra,nomSol,fechaSol,nro,montoSol,imprevisto,salAnt,cant1,uniMed,insumo,prec1,totPar,comp,obsSol,estApro,obsApro,areaM,tipoM,ingre,codAreaM,codTipM,codMat,compCheck,estSol,ingreso from VDetSolCajaImprimir where codSC=2 and ingreso=0 order by codAreaM,codDetSol
-
-select isnull(sum(totPar),0) from VDetSolCajaImprimir where codSC=2 and ingreso=0 and compCheck=3
-select codDetSol,cant1,uniMed,insumo,prec1,totPar,comp,areaM,tipoM,obsSol,estApro,nom,obsApro,codApro,codMat,codAreaM,codTipM,codSC,codDC,nroOtros,compCheck,estDet from VDetSolCaja where codSC=@cod 
-			0		1	  2		3	  4		  5	    6	 7	   8	  9		10	   11	12		13		14		15		16		17	  18	19			20	   21
 
 select codSC,nroSol,nro,fechaSol,codPers,nom,estSol,est,salAnt,montoSol,imprevisto,codObra,codSede from VSolicitudCaja where codSede=@cod and codPers=@codP
 		0		1	 2		3		4	  5		6	 7	   8	  9			10		  11		12
@@ -1053,7 +1076,7 @@ select codPagD,nro,fecPago,simbolo,montoPago,vCaja,tipoP,nroP,datoReq,nomGer,nom
 select nroMC,movimiento,fecha,nroOrd,simbolo,montoEnt,nroSol,simbolo,montoSal,saldoMov,tipoP,nroP,nomPers,descrip,nombre,nomCaja,codDia,codTM,codigo,codCC,idOP,codUsu,codMon,codSC,codPers,codPagD,codCaj from VMovimientoCaja where codDia=@codDia and codCaj=@codCC
 		0		1		  2		3		4		5		6		7		8		9		10	  11	12		13		14		15	  16	 17		18	  19	20	 21		22		23	  24	  25	 26			
 
-
+select estSol from TSolicitudCaja where codSC=3
 																																												
 	
 select nroNota,tipo,fecha,material,cantEnt,preUniEnt,cantSal,preUniSal,saldo,unidad,nroGuia,nroDoc,veri,almObra,nomObraDes,obs,nomRecibe,provee,ruc,usuario,codMat,idMU,codUbi,codigo,codGuia,codDoc,codTrans,codPers,codSal,vanET,codUbiDes,ubicacion,nombre,codUsu from VKardex1 where codMat=@codMat and codUbi=@codUbi
@@ -1068,9 +1091,8 @@ select * from TOrdenDesembolso where vanCaja>0
 select * from TEntradaSalida
 select * from TPersonal
 
-select * from TDetSolCaja
-update TUbicacion set estado=1
-select hist,codGuiaE from TGuiaRemEmp
+select count(*) from TDetSolCaja where codSC=4 and estDet<>1
+
 
 
 select isnull(max(codSC),0) as codSC from TSolicitudCaja where codPers=1 and codSede='00-00'
