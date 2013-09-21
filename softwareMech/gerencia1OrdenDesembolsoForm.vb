@@ -865,4 +865,30 @@ Public Class gerencia1OrdenDesembolsoForm
 
 
     End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+
+        Dim ds As New DataSetInformesCr
+
+        Dim filas As Integer = dgTabla1.RowCount
+
+        For i As Integer = 0 To filas - 1
+            ds.Tables(2).Rows.Add(New Object() _
+                                  {dgTabla1(0, i).Value.ToString(), _
+                                   dgTabla1(1, i).Value.ToString(), _
+                                   dgTabla1(2, i).Value.ToString(), _
+                                   dgTabla1(3, i).Value.ToString(), _
+                                   dgTabla1(4, i).Value.ToString(), _
+                                   dgTabla1(5, i).Value.ToString(), _
+                                   dgTabla1(6, i).Value.ToString(), _
+                                   dgTabla1(7, i).Value.ToString(), _
+                                   dgTabla1(8, i).Value.ToString(), _
+                                   dgTabla1(9, i).Value.ToString()})
+        Next
+
+        'ReportDocument()
+    End Sub
+
+
+
 End Class

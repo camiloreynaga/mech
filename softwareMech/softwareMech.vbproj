@@ -177,6 +177,12 @@
     <Compile Include="crearMaterialForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CRpAprobacion.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRpAprobacion.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CRpAprobacionDesembolso.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -187,12 +193,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CrystalReport10.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CrystalReport10.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReport2.vb">
@@ -724,6 +724,10 @@
     <EmbeddedResource Include="crearMaterialForm.resx">
       <DependentUpon>crearMaterialForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CRpAprobacion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRpAprobacion.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CRpAprobacionDesembolso.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRpAprobacionDesembolso.vb</LastGenOutput>
@@ -731,10 +735,6 @@
     <EmbeddedResource Include="CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReport10.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrystalReport10.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

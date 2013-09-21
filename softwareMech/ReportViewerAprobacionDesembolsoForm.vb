@@ -18,7 +18,7 @@ Public Class ReportViewerAprobacionDesembolsoForm
     Private Sub ReportViewerAprobacionDesembolsoForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.Cursor = Cursors.WaitCursor
 
-        Dim reporte As New CrystalReport10
+        Dim reporte As New CRpAprobacionDesembolso
         'Haciendo Conexion
         VerificaConexion()
 
@@ -26,15 +26,15 @@ Public Class ReportViewerAprobacionDesembolsoForm
         wait.Show()
 
         VOrdenDesemGerencia1TableAdapter1.Connection = Cn
-        DataSetAlmacen1.Clear()
+        DataSetInformesCr1.Clear()
         If todos = False Then
-            VOrdenDesemGerencia1TableAdapter1.Fill(DataSetAlmacen1.Tables("VOrdenDesemGerencia1"), 0, 0, 2) ', "100")
+            VOrdenDesemGerencia1TableAdapter1.Fill(DataSetInformesCr1.Tables("VOrdenDesemGerencia1"), 0, 0, 2) ', "100")
         Else
-            VOrdenDesemGerencia1TableAdapter1.Fill(DataSetAlmacen1.Tables("VOrdenDesemGerencia1"), 0, 1, 2) ', serie)
+            VOrdenDesemGerencia1TableAdapter1.Fill(DataSetInformesCr1.Tables("VOrdenDesemGerencia1"), 0, 1, 2) ', serie)
 
         End If
 
-        reporte.SetDataSource(DataSetAlmacen1)
+        reporte.SetDataSource(DataSetInformesCr1)
 
         ' CReportViewer1.DisplayGroupTree = False
         CReportViewer1.ReportSource = reporte

@@ -21,8 +21,8 @@ Partial Class gerencia1OrdenDesembolsoForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(gerencia1OrdenDesembolsoForm))
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.btnF1 = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.cbSerie = New System.Windows.Forms.ComboBox
@@ -44,6 +44,7 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.BindingNavigatorPositionItem = New System.Windows.Forms.ToolStripTextBox
         Me.BindingNavigatorSeparator1 = New System.Windows.Forms.ToolStripSeparator
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton
+        Me.btnImprimir = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
         Me.Label1 = New System.Windows.Forms.Label
@@ -71,7 +72,8 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.dgTabla2 = New System.Windows.Forms.DataGridView
         Me.Label2 = New System.Windows.Forms.Label
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.btnImprimir = New System.Windows.Forms.ToolStripButton
+        Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer
+        Me.Button1 = New System.Windows.Forms.Button
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,6 +96,7 @@ Partial Class gerencia1OrdenDesembolsoForm
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.btnF1)
         Me.Panel1.Controls.Add(Me.cbSerie)
         Me.Panel1.Controls.Add(Me.GroupBox1)
@@ -188,8 +191,8 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.dgTabla1.Location = New System.Drawing.Point(0, 34)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgTabla1.Size = New System.Drawing.Size(892, 262)
         Me.dgTabla1.TabIndex = 332
         '
@@ -315,6 +318,16 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(23, 22)
         Me.BindingNavigatorMoveNextItem.Text = "Mover siguiente"
         '
+        'btnImprimir
+        '
+        Me.btnImprimir.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
+        Me.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(71, 22)
+        Me.btnImprimir.Text = "Imprimir"
+        Me.btnImprimir.ToolTipText = "Imprimir orden de desembolso"
+        '
         'BindingNavigatorMoveLastItem
         '
         Me.BindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -356,6 +369,7 @@ Partial Class gerencia1OrdenDesembolsoForm
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.CrystalReportViewer1)
         Me.Panel2.Controls.Add(Me.txtReq)
         Me.Panel2.Controls.Add(Me.Navigator2)
         Me.Panel2.Controls.Add(Me.Label4)
@@ -542,8 +556,8 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.dgTabla2.Location = New System.Drawing.Point(2, 25)
         Me.dgTabla2.Name = "dgTabla2"
         Me.dgTabla2.ReadOnly = True
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgTabla2.Size = New System.Drawing.Size(890, 217)
         Me.dgTabla2.TabIndex = 320
         '
@@ -556,15 +570,25 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Detalle de Orden de Compra:"
         '
-        'btnImprimir
+        'CrystalReportViewer1
         '
-        Me.btnImprimir.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
-        Me.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(71, 22)
-        Me.btnImprimir.Text = "Imprimir"
-        Me.btnImprimir.ToolTipText = "Imprimir orden de desembolso"
+        Me.CrystalReportViewer1.ActiveViewIndex = -1
+        Me.CrystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.CrystalReportViewer1.Location = New System.Drawing.Point(0, 42)
+        Me.CrystalReportViewer1.Name = "CrystalReportViewer1"
+        Me.CrystalReportViewer1.SelectionFormula = ""
+        Me.CrystalReportViewer1.Size = New System.Drawing.Size(889, 168)
+        Me.CrystalReportViewer1.TabIndex = 374
+        Me.CrystalReportViewer1.ViewTimeSelectionFormula = ""
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(575, 7)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 374
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'gerencia1OrdenDesembolsoForm
         '
@@ -645,5 +669,7 @@ Partial Class gerencia1OrdenDesembolsoForm
     Friend WithEvents rb2 As System.Windows.Forms.RadioButton
     Friend WithEvents rb1 As System.Windows.Forms.RadioButton
     Friend WithEvents btnImprimir As System.Windows.Forms.ToolStripButton
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents CrystalReportViewer1 As CrystalDecisions.Windows.Forms.CrystalReportViewer
 
 End Class

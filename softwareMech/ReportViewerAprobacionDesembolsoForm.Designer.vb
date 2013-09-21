@@ -23,10 +23,8 @@ Partial Class ReportViewerAprobacionDesembolsoForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.CReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer
-        Me.VOrdenDesemGerencia1TableAdapter1 = New softwareMech.DataSetAlmacenTableAdapters.VOrdenDesemGerencia1TableAdapter
-        Me.DataSetAlmacen1 = New softwareMech.DataSetAlmacen
         Me.DataSetInformesCr1 = New softwareMech.DataSetInformesCr
-        CType(Me.DataSetAlmacen1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.VOrdenDesemGerencia1TableAdapter1 = New softwareMech.DataSetInformesCrTableAdapters.VOrdenDesemGerencia1TableAdapter
         CType(Me.DataSetInformesCr1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -42,19 +40,14 @@ Partial Class ReportViewerAprobacionDesembolsoForm
         Me.CReportViewer1.TabIndex = 0
         Me.CReportViewer1.ViewTimeSelectionFormula = ""
         '
-        'VOrdenDesemGerencia1TableAdapter1
-        '
-        Me.VOrdenDesemGerencia1TableAdapter1.ClearBeforeFill = True
-        '
-        'DataSetAlmacen1
-        '
-        Me.DataSetAlmacen1.DataSetName = "DataSetAlmacen"
-        Me.DataSetAlmacen1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'DataSetInformesCr1
         '
         Me.DataSetInformesCr1.DataSetName = "DataSetInformesCr"
         Me.DataSetInformesCr1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'VOrdenDesemGerencia1TableAdapter1
+        '
+        Me.VOrdenDesemGerencia1TableAdapter1.ClearBeforeFill = True
         '
         'ReportViewerAprobacionDesembolsoForm
         '
@@ -64,13 +57,12 @@ Partial Class ReportViewerAprobacionDesembolsoForm
         Me.Controls.Add(Me.CReportViewer1)
         Me.Name = "ReportViewerAprobacionDesembolsoForm"
         Me.Text = "ReportViewerAprobacionDesembolsoForm"
-        CType(Me.DataSetAlmacen1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.DataSetInformesCr1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents CReportViewer1 As CrystalDecisions.Windows.Forms.CrystalReportViewer
-    Friend WithEvents VOrdenDesemGerencia1TableAdapter1 As softwareMech.DataSetAlmacenTableAdapters.VOrdenDesemGerencia1TableAdapter
-    Friend WithEvents DataSetAlmacen1 As softwareMech.DataSetAlmacen
     Friend WithEvents DataSetInformesCr1 As softwareMech.DataSetInformesCr
+    Friend WithEvents VOrdenDesemGerencia1TableAdapter1 As softwareMech.DataSetInformesCrTableAdapters.VOrdenDesemGerencia1TableAdapter
 End Class
