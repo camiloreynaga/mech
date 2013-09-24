@@ -189,7 +189,7 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub ModificandoColumnaDGVConta()
-        oGrilla.ConfigGrilla(dgContabilidad)
+        'oGrilla.ConfigGrilla(dgContabilidad)
         dgContabilidad.ReadOnly = True
         dgContabilidad.AllowUserToAddRows = False
         dgContabilidad.AllowUserToDeleteRows = False
@@ -212,7 +212,7 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub ModificandoColumnasDGVPagos()
-        oGrilla.ConfigGrilla(dgPagos)
+        'oGrilla.ConfigGrilla(dgPagos)
         dgPagos.ReadOnly = True
         dgPagos.AllowUserToAddRows = False
         dgPagos.AllowUserToDeleteRows = False
@@ -290,7 +290,7 @@ Public Class SeguimientoOrdenDesembolsoForm
     ''' <remarks></remarks>
     Private Sub ModificandoColumnasDGV()
 
-        oGrilla.ConfigGrilla(dgDesembolso)
+        'oGrilla.ConfigGrilla(dgDesembolso)
         dgDesembolso.ReadOnly = True
         dgDesembolso.AllowUserToAddRows = False
         dgDesembolso.AllowUserToDeleteRows = False

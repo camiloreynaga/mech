@@ -171,23 +171,17 @@
     <Compile Include="contaOrdenDesembolsoForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CrAprobacionDesembolso.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrAprobacionDesembolso.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="crearMaterialForm.Designer.vb">
       <DependentUpon>crearMaterialForm.vb</DependentUpon>
     </Compile>
     <Compile Include="crearMaterialForm.vb">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CRpAprobacion.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CRpAprobacion.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CRpAprobacionDesembolso.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CRpAprobacionDesembolso.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReport1.vb">
       <AutoGen>True</AutoGen>
@@ -236,12 +230,6 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="CrystalReport9.vb">
-      <SubType>Component</SubType>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CrystalReport9.rpt</DependentUpon>
     </Compile>
     <Compile Include="DataSetAlmacen.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -495,6 +483,12 @@
     <Compile Include="pantallaInicialForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="procesarEgresoCajaChicaForm.designer.vb">
+      <DependentUpon>procesarEgresoCajaChicaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="procesarEgresoCajaChicaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="procesarIngresoCajaChicaForm.Designer.vb">
       <DependentUpon>procesarIngresoCajaChicaForm.vb</DependentUpon>
     </Compile>
@@ -549,22 +543,16 @@
     <Compile Include="reporteStockForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportViewerAprobacionDesembolsoForm.Designer.vb">
-      <DependentUpon>ReportViewerAprobacionDesembolsoForm.vb</DependentUpon>
+    <Compile Include="ReportViewerAprobacionDesembolso.Designer.vb">
+      <DependentUpon>ReportViewerAprobacionDesembolso.vb</DependentUpon>
     </Compile>
-    <Compile Include="ReportViewerAprobacionDesembolsoForm.vb">
+    <Compile Include="ReportViewerAprobacionDesembolso.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReportViewerCotizacionForm.Designer.vb">
       <DependentUpon>ReportViewerCotizacionForm.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportViewerCotizacionForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ReportViewerGastosDiaForm.Designer.vb">
-      <DependentUpon>ReportViewerGastosDiaForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="ReportViewerGastosDiaForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReportViewerGuiaRemEForm.Designer.vb">
@@ -721,16 +709,12 @@
     <EmbeddedResource Include="contaOrdenDesembolsoForm.resx">
       <DependentUpon>contaOrdenDesembolsoForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrAprobacionDesembolso.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrAprobacionDesembolso.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="crearMaterialForm.resx">
       <DependentUpon>crearMaterialForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CRpAprobacion.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CRpAprobacion.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CRpAprobacionDesembolso.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CRpAprobacionDesembolso.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -763,10 +747,6 @@
     <EmbeddedResource Include="CrystalReport8.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport81.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReport9.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrystalReport9.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="entradaAlmacenGuiaMechForm.resx">
       <DependentUpon>entradaAlmacenGuiaMechForm.vb</DependentUpon>
@@ -885,6 +865,9 @@
     <EmbeddedResource Include="pantallaInicialForm.resx">
       <DependentUpon>pantallaInicialForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="procesarEgresoCajaChicaForm.resx">
+      <DependentUpon>procesarEgresoCajaChicaForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="procesarIngresoCajaChicaForm.resx">
       <DependentUpon>procesarIngresoCajaChicaForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -912,14 +895,11 @@
     <EmbeddedResource Include="reporteStockForm.resx">
       <DependentUpon>reporteStockForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportViewerAprobacionDesembolsoForm.resx">
-      <DependentUpon>ReportViewerAprobacionDesembolsoForm.vb</DependentUpon>
+    <EmbeddedResource Include="ReportViewerAprobacionDesembolso.resx">
+      <DependentUpon>ReportViewerAprobacionDesembolso.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerCotizacionForm.resx">
       <DependentUpon>ReportViewerCotizacionForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReportViewerGastosDiaForm.resx">
-      <DependentUpon>ReportViewerGastosDiaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerGuiaRemEForm.resx">
       <DependentUpon>ReportViewerGuiaRemEForm.vb</DependentUpon>
@@ -993,9 +973,9 @@
       <DependentUpon>DataSetInformesCr.xsd</DependentUpon>
     </None>
     <None Include="DataSetInformesCr.xsd">
-      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DataSetInformesCr.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="DataSetInformesCr.xss">
       <DependentUpon>DataSetInformesCr.xsd</DependentUpon>

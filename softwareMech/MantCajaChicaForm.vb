@@ -740,13 +740,21 @@ Public Class MantCajaChicaForm
 
     End Function
 
+    ''' <summary>
+    ''' Consulta la cantidad de movimiento para está caja (detalle) en especifico
+    ''' </summary>
+    ''' <param name="cod">codigo de caja</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Private Function consultaMovimientoCaja(ByVal cod As Integer) As Integer
 
-        Dim consulta As String = "select count(*) from TMovimientoCaja where codSC=" & cod
-
+        Dim consulta As String = "select count(*) from TMovimientoCaja where codCaj=" & cod
+        
         Return CInt(oDataManager.consultarTabla(consulta, CommandType.Text))
 
     End Function
+
+    
 
 #End Region
 
@@ -926,15 +934,30 @@ Public Class MantCajaChicaForm
                 End If
             End If
             'consultando movimientos de caja
-            If BindingSource5.Position = -1 Then
-                vMovimientos = 0
+            Dim i As Integer = BindingSource5.Count
+
+            If i > 1 Then
+                For j As Integer = 0 To i - 1
+
+                    vMovimientos = consultaMovimientoCaja(BindingSource5.Item(j)(0))
+                    If vMovimientos > 0 Then
+                        Exit For
+                    End If
+                Next
+
             Else
                 vMovimientos = consultaMovimientoCaja(BindingSource5.Item(BindingSource5.Position)(0))
             End If
 
 
+            'evaluando la cantidad de cajas
+            If BindingSource5.Position = -1 Then
+                vMovimientos = 0
+            End If
+
+
             If vMovimientos > 0 Then
-                MessageBox.Show("Sólo se actualizará los datos de responsable y estado", nomNegocio, Nothing, MessageBoxIcon.Information)
+                MessageBox.Show("Sólo se actualizará los datos de responsable", nomNegocio, Nothing, MessageBoxIcon.Information)
 
             End If
 
@@ -1234,10 +1257,13 @@ Public Class MantCajaChicaForm
             End If
 
             'consultando movimientos de caja
+
+            
+
             vMovimientos = consultaMovimientoCaja(BindingSource5.Item(BindingSource5.Position)(0))
 
             If vMovimientos > 0 Then
-                MessageBox.Show("Sólo se actualizará la descripción de caja", nomNegocio, Nothing, MessageBoxIcon.Information)
+                MessageBox.Show("Sólo se actualizará la descripción de caja y estado", nomNegocio, Nothing, MessageBoxIcon.Information)
 
             End If
 

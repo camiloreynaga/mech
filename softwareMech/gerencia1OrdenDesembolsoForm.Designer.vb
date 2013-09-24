@@ -44,7 +44,6 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.BindingNavigatorPositionItem = New System.Windows.Forms.ToolStripTextBox
         Me.BindingNavigatorSeparator1 = New System.Windows.Forms.ToolStripSeparator
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton
-        Me.btnImprimir = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
         Me.Label1 = New System.Windows.Forms.Label
@@ -72,8 +71,7 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.dgTabla2 = New System.Windows.Forms.DataGridView
         Me.Label2 = New System.Windows.Forms.Label
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer
-        Me.Button1 = New System.Windows.Forms.Button
+        Me.btnImprimir = New System.Windows.Forms.ToolStripButton
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,7 +94,6 @@ Partial Class gerencia1OrdenDesembolsoForm
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.btnF1)
         Me.Panel1.Controls.Add(Me.cbSerie)
         Me.Panel1.Controls.Add(Me.GroupBox1)
@@ -198,7 +195,7 @@ Partial Class gerencia1OrdenDesembolsoForm
         '
         'txtTotalDolares
         '
-        Me.txtTotalDolares.Location = New System.Drawing.Point(557, 300)
+        Me.txtTotalDolares.Location = New System.Drawing.Point(596, 299)
         Me.txtTotalDolares.Name = "txtTotalDolares"
         Me.txtTotalDolares.Size = New System.Drawing.Size(120, 20)
         Me.txtTotalDolares.TabIndex = 333
@@ -207,7 +204,7 @@ Partial Class gerencia1OrdenDesembolsoForm
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(474, 302)
+        Me.Label7.Location = New System.Drawing.Point(513, 301)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(77, 13)
         Me.Label7.TabIndex = 5
@@ -215,7 +212,7 @@ Partial Class gerencia1OrdenDesembolsoForm
         '
         'txtTotalSoles
         '
-        Me.txtTotalSoles.Location = New System.Drawing.Point(348, 299)
+        Me.txtTotalSoles.Location = New System.Drawing.Point(377, 298)
         Me.txtTotalSoles.Name = "txtTotalSoles"
         Me.txtTotalSoles.Size = New System.Drawing.Size(120, 20)
         Me.txtTotalSoles.TabIndex = 333
@@ -224,7 +221,7 @@ Partial Class gerencia1OrdenDesembolsoForm
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(280, 303)
+        Me.Label6.Location = New System.Drawing.Point(309, 301)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(62, 13)
         Me.Label6.TabIndex = 5
@@ -250,7 +247,7 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.Navigator1.CountItem = Me.BindingNavigatorCountItem
         Me.Navigator1.DeleteItem = Nothing
         Me.Navigator1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Navigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.btnImprimir, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
+        Me.Navigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.btnImprimir})
         Me.Navigator1.Location = New System.Drawing.Point(0, 296)
         Me.Navigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.Navigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -318,16 +315,6 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(23, 22)
         Me.BindingNavigatorMoveNextItem.Text = "Mover siguiente"
         '
-        'btnImprimir
-        '
-        Me.btnImprimir.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
-        Me.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(71, 22)
-        Me.btnImprimir.Text = "Imprimir"
-        Me.btnImprimir.ToolTipText = "Imprimir orden de desembolso"
-        '
         'BindingNavigatorMoveLastItem
         '
         Me.BindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -369,7 +356,6 @@ Partial Class gerencia1OrdenDesembolsoForm
         '
         'Panel2
         '
-        Me.Panel2.Controls.Add(Me.CrystalReportViewer1)
         Me.Panel2.Controls.Add(Me.txtReq)
         Me.Panel2.Controls.Add(Me.Navigator2)
         Me.Panel2.Controls.Add(Me.Label4)
@@ -570,25 +556,15 @@ Partial Class gerencia1OrdenDesembolsoForm
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Detalle de Orden de Compra:"
         '
-        'CrystalReportViewer1
+        'btnImprimir
         '
-        Me.CrystalReportViewer1.ActiveViewIndex = -1
-        Me.CrystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.CrystalReportViewer1.Location = New System.Drawing.Point(0, 42)
-        Me.CrystalReportViewer1.Name = "CrystalReportViewer1"
-        Me.CrystalReportViewer1.SelectionFormula = ""
-        Me.CrystalReportViewer1.Size = New System.Drawing.Size(889, 168)
-        Me.CrystalReportViewer1.TabIndex = 374
-        Me.CrystalReportViewer1.ViewTimeSelectionFormula = ""
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(575, 7)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 374
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnImprimir.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
+        Me.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(71, 22)
+        Me.btnImprimir.Text = "Imprimir"
+        Me.btnImprimir.ToolTipText = "Imprimir orden de desembolso"
         '
         'gerencia1OrdenDesembolsoForm
         '
@@ -669,7 +645,5 @@ Partial Class gerencia1OrdenDesembolsoForm
     Friend WithEvents rb2 As System.Windows.Forms.RadioButton
     Friend WithEvents rb1 As System.Windows.Forms.RadioButton
     Friend WithEvents btnImprimir As System.Windows.Forms.ToolStripButton
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents CrystalReportViewer1 As CrystalDecisions.Windows.Forms.CrystalReportViewer
 
 End Class

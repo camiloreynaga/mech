@@ -586,6 +586,13 @@ Public Class aprobarSolicitudCajaForm
             Exit Sub
         End If
 
+        If vSCodTipoUsu = 1 Or vSCodTipoUsu = 2 Or vSCodTipoUsu = 3 Then  '1=administrador de sistema 2=gerencia general 3=gerencia de construcciones
+            'Solo administrador puede realizar este proceso
+        Else
+            MessageBox.Show("Proceso Denegado, Solo Administradores pueden [APROBAR]", nomNegocio, Nothing, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
         Dim resp As String = MessageBox.Show("Esta segúro de APROBAR TODOS LOS INSUMOS", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
             Exit Sub

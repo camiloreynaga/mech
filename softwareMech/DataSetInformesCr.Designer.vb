@@ -30,7 +30,7 @@ Partial Public Class DataSetInformesCr
     
     Private tableVGastosPorDia As VGastosPorDiaDataTable
     
-    Private tableDataTable1 As DataTable1DataTable
+    Private tableDatosAprobacionDesem As DatosAprobacionDesemDataTable
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -65,8 +65,8 @@ Partial Public Class DataSetInformesCr
             If (Not (ds.Tables("VGastosPorDia")) Is Nothing) Then
                 MyBase.Tables.Add(New VGastosPorDiaDataTable(ds.Tables("VGastosPorDia")))
             End If
-            If (Not (ds.Tables("DataTable1")) Is Nothing) Then
-                MyBase.Tables.Add(New DataTable1DataTable(ds.Tables("DataTable1")))
+            If (Not (ds.Tables("DatosAprobacionDesem")) Is Nothing) Then
+                MyBase.Tables.Add(New DatosAprobacionDesemDataTable(ds.Tables("DatosAprobacionDesem")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -106,9 +106,9 @@ Partial Public Class DataSetInformesCr
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property DataTable1() As DataTable1DataTable
+    Public ReadOnly Property DatosAprobacionDesem() As DatosAprobacionDesemDataTable
         Get
-            Return Me.tableDataTable1
+            Return Me.tableDatosAprobacionDesem
         End Get
     End Property
     
@@ -177,8 +177,8 @@ Partial Public Class DataSetInformesCr
             If (Not (ds.Tables("VGastosPorDia")) Is Nothing) Then
                 MyBase.Tables.Add(New VGastosPorDiaDataTable(ds.Tables("VGastosPorDia")))
             End If
-            If (Not (ds.Tables("DataTable1")) Is Nothing) Then
-                MyBase.Tables.Add(New DataTable1DataTable(ds.Tables("DataTable1")))
+            If (Not (ds.Tables("DatosAprobacionDesem")) Is Nothing) Then
+                MyBase.Tables.Add(New DatosAprobacionDesemDataTable(ds.Tables("DatosAprobacionDesem")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -221,10 +221,10 @@ Partial Public Class DataSetInformesCr
                 Me.tableVGastosPorDia.InitVars
             End If
         End If
-        Me.tableDataTable1 = CType(MyBase.Tables("DataTable1"),DataTable1DataTable)
+        Me.tableDatosAprobacionDesem = CType(MyBase.Tables("DatosAprobacionDesem"),DatosAprobacionDesemDataTable)
         If (initTable = true) Then
-            If (Not (Me.tableDataTable1) Is Nothing) Then
-                Me.tableDataTable1.InitVars
+            If (Not (Me.tableDatosAprobacionDesem) Is Nothing) Then
+                Me.tableDatosAprobacionDesem.InitVars
             End If
         End If
     End Sub
@@ -240,8 +240,8 @@ Partial Public Class DataSetInformesCr
         MyBase.Tables.Add(Me.tableVOrdenDesemGerencia1)
         Me.tableVGastosPorDia = New VGastosPorDiaDataTable
         MyBase.Tables.Add(Me.tableVGastosPorDia)
-        Me.tableDataTable1 = New DataTable1DataTable
-        MyBase.Tables.Add(Me.tableDataTable1)
+        Me.tableDatosAprobacionDesem = New DatosAprobacionDesemDataTable
+        MyBase.Tables.Add(Me.tableDatosAprobacionDesem)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -255,7 +255,7 @@ Partial Public Class DataSetInformesCr
     End Function
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-    Private Function ShouldSerializeDataTable1() As Boolean
+    Private Function ShouldSerializeDatosAprobacionDesem() As Boolean
         Return false
     End Function
     
@@ -319,7 +319,7 @@ Partial Public Class DataSetInformesCr
     
     Public Delegate Sub VGastosPorDiaRowChangeEventHandler(ByVal sender As Object, ByVal e As VGastosPorDiaRowChangeEvent)
     
-    Public Delegate Sub DataTable1RowChangeEventHandler(ByVal sender As Object, ByVal e As DataTable1RowChangeEvent)
+    Public Delegate Sub DatosAprobacionDesemRowChangeEventHandler(ByVal sender As Object, ByVal e As DatosAprobacionDesemRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -1234,8 +1234,8 @@ Partial Public Class DataSetInformesCr
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0"),  _
      Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class DataTable1DataTable
-        Inherits Global.System.Data.TypedTableBase(Of DataTable1Row)
+    Partial Public Class DatosAprobacionDesemDataTable
+        Inherits Global.System.Data.TypedTableBase(Of DatosAprobacionDesemRow)
         
         Private columnestApro As Global.System.Data.DataColumn
         
@@ -1259,12 +1259,16 @@ Partial Public Class DataSetInformesCr
         
         Private columnnombre As Global.System.Data.DataColumn
         
-        Private columnDataColumn3 As Global.System.Data.DataColumn
+        Private columnestDesem As Global.System.Data.DataColumn
+        
+        Private columnestado As Global.System.Data.DataColumn
+        
+        Private columncodMon As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub New()
             MyBase.New
-            Me.TableName = "DataTable1"
+            Me.TableName = "DatosAprobacionDesem"
             Me.BeginInit
             Me.InitClass
             Me.EndInit
@@ -1371,9 +1375,23 @@ Partial Public Class DataSetInformesCr
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property DataColumn3Column() As Global.System.Data.DataColumn
+        Public ReadOnly Property estDesemColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnDataColumn3
+                Return Me.columnestDesem
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property estadoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnestado
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codMonColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodMon
             End Get
         End Property
         
@@ -1386,44 +1404,44 @@ Partial Public Class DataSetInformesCr
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As DataTable1Row
+        Public Default ReadOnly Property Item(ByVal index As Integer) As DatosAprobacionDesemRow
             Get
-                Return CType(Me.Rows(index),DataTable1Row)
+                Return CType(Me.Rows(index),DatosAprobacionDesemRow)
             End Get
         End Property
         
-        Public Event DataTable1RowChanging As DataTable1RowChangeEventHandler
+        Public Event DatosAprobacionDesemRowChanging As DatosAprobacionDesemRowChangeEventHandler
         
-        Public Event DataTable1RowChanged As DataTable1RowChangeEventHandler
+        Public Event DatosAprobacionDesemRowChanged As DatosAprobacionDesemRowChangeEventHandler
         
-        Public Event DataTable1RowDeleting As DataTable1RowChangeEventHandler
+        Public Event DatosAprobacionDesemRowDeleting As DatosAprobacionDesemRowChangeEventHandler
         
-        Public Event DataTable1RowDeleted As DataTable1RowChangeEventHandler
+        Public Event DatosAprobacionDesemRowDeleted As DatosAprobacionDesemRowChangeEventHandler
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Overloads Sub AddDataTable1Row(ByVal row As DataTable1Row)
+        Public Overloads Sub AddDatosAprobacionDesemRow(ByVal row As DatosAprobacionDesemRow)
             Me.Rows.Add(row)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Overloads Function AddDataTable1Row(ByVal estApro As String, ByVal fecDes As String, ByVal serie As String, ByVal nro As String, ByVal simbolo As String, ByVal monto As String, ByVal razon As String, ByVal nom As String, ByVal obserDesem As String, ByVal est As String, ByVal nombre As String, ByVal DataColumn3 As String) As DataTable1Row
-            Dim rowDataTable1Row As DataTable1Row = CType(Me.NewRow,DataTable1Row)
-            Dim columnValuesArray() As Object = New Object() {estApro, fecDes, serie, nro, simbolo, monto, razon, nom, obserDesem, est, nombre, DataColumn3}
-            rowDataTable1Row.ItemArray = columnValuesArray
-            Me.Rows.Add(rowDataTable1Row)
-            Return rowDataTable1Row
+        Public Overloads Function AddDatosAprobacionDesemRow(ByVal estApro As String, ByVal fecDes As String, ByVal serie As String, ByVal nro As String, ByVal simbolo As String, ByVal monto As Decimal, ByVal razon As String, ByVal nom As String, ByVal obserDesem As String, ByVal est As String, ByVal nombre As String, ByVal estDesem As String, ByVal estado As String, ByVal codMon As String) As DatosAprobacionDesemRow
+            Dim rowDatosAprobacionDesemRow As DatosAprobacionDesemRow = CType(Me.NewRow,DatosAprobacionDesemRow)
+            Dim columnValuesArray() As Object = New Object() {estApro, fecDes, serie, nro, simbolo, monto, razon, nom, obserDesem, est, nombre, estDesem, estado, codMon}
+            rowDatosAprobacionDesemRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowDatosAprobacionDesemRow)
+            Return rowDatosAprobacionDesemRow
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As DataTable1DataTable = CType(MyBase.Clone,DataTable1DataTable)
+            Dim cln As DatosAprobacionDesemDataTable = CType(MyBase.Clone,DatosAprobacionDesemDataTable)
             cln.InitVars
             Return cln
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New DataTable1DataTable
+            Return New DatosAprobacionDesemDataTable
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -1439,7 +1457,9 @@ Partial Public Class DataSetInformesCr
             Me.columnobserDesem = MyBase.Columns("obserDesem")
             Me.columnest = MyBase.Columns("est")
             Me.columnnombre = MyBase.Columns("nombre")
-            Me.columnDataColumn3 = MyBase.Columns("DataColumn3")
+            Me.columnestDesem = MyBase.Columns("estDesem")
+            Me.columnestado = MyBase.Columns("estado")
+            Me.columncodMon = MyBase.Columns("codMon")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -1454,7 +1474,7 @@ Partial Public Class DataSetInformesCr
             MyBase.Columns.Add(Me.columnnro)
             Me.columnsimbolo = New Global.System.Data.DataColumn("simbolo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnsimbolo)
-            Me.columnmonto = New Global.System.Data.DataColumn("monto", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnmonto = New Global.System.Data.DataColumn("monto", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnmonto)
             Me.columnrazon = New Global.System.Data.DataColumn("razon", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnrazon)
@@ -1466,59 +1486,63 @@ Partial Public Class DataSetInformesCr
             MyBase.Columns.Add(Me.columnest)
             Me.columnnombre = New Global.System.Data.DataColumn("nombre", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnnombre)
-            Me.columnDataColumn3 = New Global.System.Data.DataColumn("DataColumn3", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDataColumn3)
+            Me.columnestDesem = New Global.System.Data.DataColumn("estDesem", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnestDesem)
+            Me.columnestado = New Global.System.Data.DataColumn("estado", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnestado)
+            Me.columncodMon = New Global.System.Data.DataColumn("codMon", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodMon)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function NewDataTable1Row() As DataTable1Row
-            Return CType(Me.NewRow,DataTable1Row)
+        Public Function NewDatosAprobacionDesemRow() As DatosAprobacionDesemRow
+            Return CType(Me.NewRow,DatosAprobacionDesemRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New DataTable1Row(builder)
+            Return New DatosAprobacionDesemRow(builder)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(DataTable1Row)
+            Return GetType(DatosAprobacionDesemRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me.DataTable1RowChangedEvent) Is Nothing) Then
-                RaiseEvent DataTable1RowChanged(Me, New DataTable1RowChangeEvent(CType(e.Row,DataTable1Row), e.Action))
+            If (Not (Me.DatosAprobacionDesemRowChangedEvent) Is Nothing) Then
+                RaiseEvent DatosAprobacionDesemRowChanged(Me, New DatosAprobacionDesemRowChangeEvent(CType(e.Row,DatosAprobacionDesemRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me.DataTable1RowChangingEvent) Is Nothing) Then
-                RaiseEvent DataTable1RowChanging(Me, New DataTable1RowChangeEvent(CType(e.Row,DataTable1Row), e.Action))
+            If (Not (Me.DatosAprobacionDesemRowChangingEvent) Is Nothing) Then
+                RaiseEvent DatosAprobacionDesemRowChanging(Me, New DatosAprobacionDesemRowChangeEvent(CType(e.Row,DatosAprobacionDesemRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me.DataTable1RowDeletedEvent) Is Nothing) Then
-                RaiseEvent DataTable1RowDeleted(Me, New DataTable1RowChangeEvent(CType(e.Row,DataTable1Row), e.Action))
+            If (Not (Me.DatosAprobacionDesemRowDeletedEvent) Is Nothing) Then
+                RaiseEvent DatosAprobacionDesemRowDeleted(Me, New DatosAprobacionDesemRowChangeEvent(CType(e.Row,DatosAprobacionDesemRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me.DataTable1RowDeletingEvent) Is Nothing) Then
-                RaiseEvent DataTable1RowDeleting(Me, New DataTable1RowChangeEvent(CType(e.Row,DataTable1Row), e.Action))
+            If (Not (Me.DatosAprobacionDesemRowDeletingEvent) Is Nothing) Then
+                RaiseEvent DatosAprobacionDesemRowDeleting(Me, New DatosAprobacionDesemRowChangeEvent(CType(e.Row,DatosAprobacionDesemRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub RemoveDataTable1Row(ByVal row As DataTable1Row)
+        Public Sub RemoveDatosAprobacionDesemRow(ByVal row As DatosAprobacionDesemRow)
             Me.Rows.Remove(row)
         End Sub
         
@@ -1544,7 +1568,7 @@ Partial Public Class DataSetInformesCr
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "DataTable1DataTable"
+            attribute2.FixedValue = "DatosAprobacionDesemDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -2372,28 +2396,28 @@ Partial Public Class DataSetInformesCr
     '''Represents strongly named DataRow class.
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
-    Partial Public Class DataTable1Row
+    Partial Public Class DatosAprobacionDesemRow
         Inherits Global.System.Data.DataRow
         
-        Private tableDataTable1 As DataTable1DataTable
+        Private tableDatosAprobacionDesem As DatosAprobacionDesemDataTable
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tableDataTable1 = CType(Me.Table,DataTable1DataTable)
+            Me.tableDatosAprobacionDesem = CType(Me.Table,DatosAprobacionDesemDataTable)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Property estApro() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableDataTable1.estAproColumn),String)
+                    Return CType(Me(Me.tableDatosAprobacionDesem.estAproColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'estApro' de la tabla 'DataTable1' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'estApro' de la tabla 'DatosAprobacionDesem' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDataTable1.estAproColumn) = value
+                Me(Me.tableDatosAprobacionDesem.estAproColumn) = value
             End Set
         End Property
         
@@ -2401,13 +2425,13 @@ Partial Public Class DataSetInformesCr
         Public Property fecDes() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableDataTable1.fecDesColumn),String)
+                    Return CType(Me(Me.tableDatosAprobacionDesem.fecDesColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fecDes' de la tabla 'DataTable1' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fecDes' de la tabla 'DatosAprobacionDesem' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDataTable1.fecDesColumn) = value
+                Me(Me.tableDatosAprobacionDesem.fecDesColumn) = value
             End Set
         End Property
         
@@ -2415,13 +2439,13 @@ Partial Public Class DataSetInformesCr
         Public Property serie() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableDataTable1.serieColumn),String)
+                    Return CType(Me(Me.tableDatosAprobacionDesem.serieColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'serie' de la tabla 'DataTable1' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'serie' de la tabla 'DatosAprobacionDesem' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDataTable1.serieColumn) = value
+                Me(Me.tableDatosAprobacionDesem.serieColumn) = value
             End Set
         End Property
         
@@ -2429,13 +2453,13 @@ Partial Public Class DataSetInformesCr
         Public Property nro() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableDataTable1.nroColumn),String)
+                    Return CType(Me(Me.tableDatosAprobacionDesem.nroColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nro' de la tabla 'DataTable1' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nro' de la tabla 'DatosAprobacionDesem' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDataTable1.nroColumn) = value
+                Me(Me.tableDatosAprobacionDesem.nroColumn) = value
             End Set
         End Property
         
@@ -2443,27 +2467,27 @@ Partial Public Class DataSetInformesCr
         Public Property simbolo() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableDataTable1.simboloColumn),String)
+                    Return CType(Me(Me.tableDatosAprobacionDesem.simboloColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'simbolo' de la tabla 'DataTable1' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'simbolo' de la tabla 'DatosAprobacionDesem' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDataTable1.simboloColumn) = value
+                Me(Me.tableDatosAprobacionDesem.simboloColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property monto() As String
+        Public Property monto() As Decimal
             Get
                 Try 
-                    Return CType(Me(Me.tableDataTable1.montoColumn),String)
+                    Return CType(Me(Me.tableDatosAprobacionDesem.montoColumn),Decimal)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'monto' de la tabla 'DataTable1' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'monto' de la tabla 'DatosAprobacionDesem' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDataTable1.montoColumn) = value
+                Me(Me.tableDatosAprobacionDesem.montoColumn) = value
             End Set
         End Property
         
@@ -2471,13 +2495,13 @@ Partial Public Class DataSetInformesCr
         Public Property razon() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableDataTable1.razonColumn),String)
+                    Return CType(Me(Me.tableDatosAprobacionDesem.razonColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'razon' de la tabla 'DataTable1' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'razon' de la tabla 'DatosAprobacionDesem' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDataTable1.razonColumn) = value
+                Me(Me.tableDatosAprobacionDesem.razonColumn) = value
             End Set
         End Property
         
@@ -2485,13 +2509,13 @@ Partial Public Class DataSetInformesCr
         Public Property nom() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableDataTable1.nomColumn),String)
+                    Return CType(Me(Me.tableDatosAprobacionDesem.nomColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nom' de la tabla 'DataTable1' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nom' de la tabla 'DatosAprobacionDesem' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDataTable1.nomColumn) = value
+                Me(Me.tableDatosAprobacionDesem.nomColumn) = value
             End Set
         End Property
         
@@ -2499,13 +2523,14 @@ Partial Public Class DataSetInformesCr
         Public Property obserDesem() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableDataTable1.obserDesemColumn),String)
+                    Return CType(Me(Me.tableDatosAprobacionDesem.obserDesemColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'obserDesem' de la tabla 'DataTable1' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'obserDesem' de la tabla 'DatosAprobacionDesem' es DBNull."& _ 
+                            "", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDataTable1.obserDesemColumn) = value
+                Me(Me.tableDatosAprobacionDesem.obserDesemColumn) = value
             End Set
         End Property
         
@@ -2513,13 +2538,13 @@ Partial Public Class DataSetInformesCr
         Public Property est() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableDataTable1.estColumn),String)
+                    Return CType(Me(Me.tableDatosAprobacionDesem.estColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'est' de la tabla 'DataTable1' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'est' de la tabla 'DatosAprobacionDesem' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDataTable1.estColumn) = value
+                Me(Me.tableDatosAprobacionDesem.estColumn) = value
             End Set
         End Property
         
@@ -2527,148 +2552,196 @@ Partial Public Class DataSetInformesCr
         Public Property nombre() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableDataTable1.nombreColumn),String)
+                    Return CType(Me(Me.tableDatosAprobacionDesem.nombreColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nombre' de la tabla 'DataTable1' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nombre' de la tabla 'DatosAprobacionDesem' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDataTable1.nombreColumn) = value
+                Me(Me.tableDatosAprobacionDesem.nombreColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property DataColumn3() As String
+        Public Property estDesem() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableDataTable1.DataColumn3Column),String)
+                    Return CType(Me(Me.tableDatosAprobacionDesem.estDesemColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'DataColumn3' de la tabla 'DataTable1' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'estDesem' de la tabla 'DatosAprobacionDesem' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDataTable1.DataColumn3Column) = value
+                Me(Me.tableDatosAprobacionDesem.estDesemColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property estado() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosAprobacionDesem.estadoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'estado' de la tabla 'DatosAprobacionDesem' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosAprobacionDesem.estadoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codMon() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosAprobacionDesem.codMonColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'codMon' de la tabla 'DatosAprobacionDesem' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosAprobacionDesem.codMonColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsestAproNull() As Boolean
-            Return Me.IsNull(Me.tableDataTable1.estAproColumn)
+            Return Me.IsNull(Me.tableDatosAprobacionDesem.estAproColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetestAproNull()
-            Me(Me.tableDataTable1.estAproColumn) = Global.System.Convert.DBNull
+            Me(Me.tableDatosAprobacionDesem.estAproColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsfecDesNull() As Boolean
-            Return Me.IsNull(Me.tableDataTable1.fecDesColumn)
+            Return Me.IsNull(Me.tableDatosAprobacionDesem.fecDesColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetfecDesNull()
-            Me(Me.tableDataTable1.fecDesColumn) = Global.System.Convert.DBNull
+            Me(Me.tableDatosAprobacionDesem.fecDesColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsserieNull() As Boolean
-            Return Me.IsNull(Me.tableDataTable1.serieColumn)
+            Return Me.IsNull(Me.tableDatosAprobacionDesem.serieColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetserieNull()
-            Me(Me.tableDataTable1.serieColumn) = Global.System.Convert.DBNull
+            Me(Me.tableDatosAprobacionDesem.serieColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsnroNull() As Boolean
-            Return Me.IsNull(Me.tableDataTable1.nroColumn)
+            Return Me.IsNull(Me.tableDatosAprobacionDesem.nroColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetnroNull()
-            Me(Me.tableDataTable1.nroColumn) = Global.System.Convert.DBNull
+            Me(Me.tableDatosAprobacionDesem.nroColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IssimboloNull() As Boolean
-            Return Me.IsNull(Me.tableDataTable1.simboloColumn)
+            Return Me.IsNull(Me.tableDatosAprobacionDesem.simboloColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetsimboloNull()
-            Me(Me.tableDataTable1.simboloColumn) = Global.System.Convert.DBNull
+            Me(Me.tableDatosAprobacionDesem.simboloColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsmontoNull() As Boolean
-            Return Me.IsNull(Me.tableDataTable1.montoColumn)
+            Return Me.IsNull(Me.tableDatosAprobacionDesem.montoColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetmontoNull()
-            Me(Me.tableDataTable1.montoColumn) = Global.System.Convert.DBNull
+            Me(Me.tableDatosAprobacionDesem.montoColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsrazonNull() As Boolean
-            Return Me.IsNull(Me.tableDataTable1.razonColumn)
+            Return Me.IsNull(Me.tableDatosAprobacionDesem.razonColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetrazonNull()
-            Me(Me.tableDataTable1.razonColumn) = Global.System.Convert.DBNull
+            Me(Me.tableDatosAprobacionDesem.razonColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsnomNull() As Boolean
-            Return Me.IsNull(Me.tableDataTable1.nomColumn)
+            Return Me.IsNull(Me.tableDatosAprobacionDesem.nomColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetnomNull()
-            Me(Me.tableDataTable1.nomColumn) = Global.System.Convert.DBNull
+            Me(Me.tableDatosAprobacionDesem.nomColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsobserDesemNull() As Boolean
-            Return Me.IsNull(Me.tableDataTable1.obserDesemColumn)
+            Return Me.IsNull(Me.tableDatosAprobacionDesem.obserDesemColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetobserDesemNull()
-            Me(Me.tableDataTable1.obserDesemColumn) = Global.System.Convert.DBNull
+            Me(Me.tableDatosAprobacionDesem.obserDesemColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsestNull() As Boolean
-            Return Me.IsNull(Me.tableDataTable1.estColumn)
+            Return Me.IsNull(Me.tableDatosAprobacionDesem.estColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetestNull()
-            Me(Me.tableDataTable1.estColumn) = Global.System.Convert.DBNull
+            Me(Me.tableDatosAprobacionDesem.estColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsnombreNull() As Boolean
-            Return Me.IsNull(Me.tableDataTable1.nombreColumn)
+            Return Me.IsNull(Me.tableDatosAprobacionDesem.nombreColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetnombreNull()
-            Me(Me.tableDataTable1.nombreColumn) = Global.System.Convert.DBNull
+            Me(Me.tableDatosAprobacionDesem.nombreColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Function IsDataColumn3Null() As Boolean
-            Return Me.IsNull(Me.tableDataTable1.DataColumn3Column)
+        Public Function IsestDesemNull() As Boolean
+            Return Me.IsNull(Me.tableDatosAprobacionDesem.estDesemColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub SetDataColumn3Null()
-            Me(Me.tableDataTable1.DataColumn3Column) = Global.System.Convert.DBNull
+        Public Sub SetestDesemNull()
+            Me(Me.tableDatosAprobacionDesem.estDesemColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsestadoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosAprobacionDesem.estadoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetestadoNull()
+            Me(Me.tableDatosAprobacionDesem.estadoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscodMonNull() As Boolean
+            Return Me.IsNull(Me.tableDatosAprobacionDesem.codMonColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcodMonNull()
+            Me(Me.tableDatosAprobacionDesem.codMonColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -2742,22 +2815,22 @@ Partial Public Class DataSetInformesCr
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
-    Public Class DataTable1RowChangeEvent
+    Public Class DatosAprobacionDesemRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As DataTable1Row
+        Private eventRow As DatosAprobacionDesemRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Sub New(ByVal row As DataTable1Row, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As DatosAprobacionDesemRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property Row() As DataTable1Row
+        Public ReadOnly Property Row() As DatosAprobacionDesemRow
             Get
                 Return Me.eventRow
             End Get

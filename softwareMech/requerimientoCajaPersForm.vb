@@ -441,8 +441,22 @@ Public Class requerimientoCajaPersForm
         Return cmdCampo.ExecuteScalar
     End Function
 
+    Private Function recuperarExiste(ByVal codPers As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select COUNT(*) from TSolicitudCaja where estSol in(0,1) and codPers=" & codPers
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
     Dim vfNuevo1 As String = "nuevo"
     Private Sub btnNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNuevo.Click
+
+        If recuperarExiste(vPass) > 0 Then
+            MessageBox.Show("Proceso Denegado, tiene una Solicitud Pendiente que todabia no se Proceso EGRESO de dinero...", nomNegocio, Nothing, MessageBoxIcon.Stop)
+            Exit Sub
+        End If
+
         If vfNuevo1 = "nuevo" Then
             vfNuevo1 = "guardar"
             Me.btnNuevo.Text = "Guardar"

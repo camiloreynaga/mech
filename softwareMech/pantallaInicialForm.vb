@@ -947,4 +947,42 @@ Public Class pantallaInicialForm
         mant.MdiParent = Me
         mant.Show()
     End Sub
+
+    Private Sub opcCaja8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja8.Click
+        If vSCodDia = 0 Then
+            MessageBox.Show("ACCESO DENEGADO, DIA SESION CAJA NO FUE APERTURADO...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        Dim codDiaAux As Integer = recuperarCodDia(1, vSCodigo) 'estado=1  Abierto
+        If vSCodDia <> codDiaAux Then
+            If codDiaAux = 0 Then
+                MessageBox.Show("PROCESO DENEGADO, FUE CERRADO DIA SESION...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                End
+                Exit Sub
+            Else
+                MessageBox.Show("PROCESO DENEGADO, FUE APERTURADO OTRO DIA SESION...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                End
+                Exit Sub
+            End If
+        End If
+
+        vSCodSerO = recuperarCodSerCaja(vSCodigo)
+        If vSCodSerO = 0 Then
+            MessageBox.Show("Proceso denegado, Esta Sede / Obra NO tiene asignado Serie de Orden de Desembolso Caja...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        vSSerie = recuperarSerieCaja(vSCodigo)
+        vSIniNroDoc = recuperarIniNroCaja(vSCodigo)
+
+        If recuperarCodPersCaja(vSCodigo) <> vPass Then
+            MessageBox.Show("Proceso denegado, usuario no es Administrador de Caja Chica...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        Dim mant As New procesarEgresoCajaChicaForm
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
 End Class

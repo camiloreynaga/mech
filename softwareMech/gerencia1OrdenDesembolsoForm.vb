@@ -839,56 +839,51 @@ Public Class gerencia1OrdenDesembolsoForm
     Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
 
         If BindingSource1.Position = -1 Then
-            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Datos...")
+            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Orden de Compra...")
             Exit Sub
         End If
 
+        Dim datos As DataSetInformesCr = CargarDatos()
 
-        Dim informe As New ReportViewerAprobacionDesembolsoForm
-        'check en todos
-        If rb1.Checked Then
-            informe.todos = True
-            informe.serie = "100"
-        End If
-        'check por Serie
-        If rb2.Checked Then
-            informe.todos = True
-            informe.serie = cbSerie.Text
-        End If
-        'check pendientes
-        '        If rb3.Checked Then
+        Dim frm As New ReportViewerAprobacionDesembolso(datos)
+        frm.ShowDialog()
 
-
-        '       End If
-
-        informe.ShowDialog()
 
 
     End Sub
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-
+    Private Function CargarDatos() As DataSetInformesCr
         Dim ds As New DataSetInformesCr
 
-        Dim filas As Integer = dgTabla1.RowCount
+        For Each row As DataGridViewRow In dgTabla1.Rows
 
-        For i As Integer = 0 To filas - 1
-            ds.Tables(2).Rows.Add(New Object() _
-                                  {dgTabla1(0, i).Value.ToString(), _
-                                   dgTabla1(1, i).Value.ToString(), _
-                                   dgTabla1(2, i).Value.ToString(), _
-                                   dgTabla1(3, i).Value.ToString(), _
-                                   dgTabla1(4, i).Value.ToString(), _
-                                   dgTabla1(5, i).Value.ToString(), _
-                                   dgTabla1(6, i).Value.ToString(), _
-                                   dgTabla1(7, i).Value.ToString(), _
-                                   dgTabla1(8, i).Value.ToString(), _
-                                   dgTabla1(9, i).Value.ToString()})
+            Dim rowInf As DataSetInformesCr.DatosAprobacionDesemRow = ds.DatosAprobacionDesem.NewDatosAprobacionDesemRow
+            rowInf.fecDes = CDate(row.Cells("fecDes").Value)
+            rowInf.simbolo = CStr(row.Cells("simbolo").Value)
+            rowInf.monto = CDbl(row.Cells("monto").Value)
+            rowInf.nombre = CStr(row.Cells("nombre").Value)
+            rowInf.razon = CStr(row.Cells("razon").Value)
+            rowInf.nro = CStr(row.Cells("nro").Value)
+            If IsDBNull(row.Cells("nom").Value) Then
+                rowInf.nom = ""
+            Else
+                rowInf.nom = CStr(row.Cells("nom").Value)
+            End If
+
+            rowInf.serie = CStr(row.Cells("serie").Value)
+            If IsDBNull(row.Cells("estApro").Value) Then
+                rowInf.estApro = "PENDIENTE"
+            Else
+                rowInf.estApro = CStr(row.Cells("estApro").Value)
+            End If
+
+
+            ds.DatosAprobacionDesem.AddDatosAprobacionDesemRow(rowInf)
+
         Next
 
-        'ReportDocument()
-    End Sub
+        Return ds
 
-
+    End Function
 
 End Class

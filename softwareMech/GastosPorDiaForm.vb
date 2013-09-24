@@ -43,11 +43,11 @@ Public Class GastosPorDiaForm
             '    dgReporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             'End If
 
-            If dgReporte.Columns("nroCue").Visible = True Then
-                dgReporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None
-            Else
-                dgReporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-            End If
+            'If dgReporte.Columns("nroCue").Visible = True Then
+            '    dgReporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None
+            'Else
+            '    dgReporte.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            'End If
 
             With dgReporte
                 'codigo material
@@ -73,7 +73,7 @@ Public Class GastosPorDiaForm
                 .Columns("banco").Width = 70
 
                 .Columns("nroCue").HeaderText = "N°_Cuenta"
-                .Columns("nroCue").Width = 130
+                .Columns("nroCue").Width = 140
 
                 .Columns("simbolo").HeaderText = ""
                 .Columns("simbolo").Width = 30
@@ -91,7 +91,7 @@ Public Class GastosPorDiaForm
                 .Columns("codigo").Visible = False
 
                 .Columns("nombre").HeaderText = "Obra/Lugar"
-                .Columns("nombre").Width = 250
+                .Columns("nombre").Width = 300
 
 
 
@@ -99,8 +99,7 @@ Public Class GastosPorDiaForm
                 .Columns("codMon").Visible = False
                 .Columns("idCue").Visible = False
                 .Columns("concepto").HeaderText = "Concepto"
-                .Columns("concepto").Width = 250
-
+                .Columns("concepto").Width = 350
             End With
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -344,22 +343,5 @@ Public Class GastosPorDiaForm
         Else
             cbObra.Visible = True
         End If
-    End Sub
-
-    Private Sub btnImpres_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImpres.Click
-
-        If bindingSource0.Position = -1 Then
-            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Datos...")
-            Exit Sub
-        End If
-
-        Dim informe As New ReportViewerGastosDiaForm
-
-        informe.fecIni = Me.dtpInicio.Text
-        informe.fecFin = Me.dtpFin.Text
-
-        informe.ShowDialog()
-
-
     End Sub
 End Class

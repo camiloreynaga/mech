@@ -58,7 +58,6 @@ Partial Class GastosPorDiaForm
         Me.lblObra = New System.Windows.Forms.Label
         Me.cbObra = New System.Windows.Forms.ComboBox
         Me.chkObra = New System.Windows.Forms.CheckBox
-        Me.btnImpres = New System.Windows.Forms.ToolStripButton
         Me.GroupBox1.SuspendLayout()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindingNavigator1.SuspendLayout()
@@ -128,7 +127,7 @@ Partial Class GastosPorDiaForm
         Me.BindingNavigator1.CountItem = Me.BindingNavigatorCountItem
         Me.BindingNavigator1.DeleteItem = Nothing
         Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.btnImpres})
+        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
         Me.BindingNavigator1.Location = New System.Drawing.Point(3, 523)
         Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -212,7 +211,7 @@ Partial Class GastosPorDiaForm
         Me.dgReporte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgReporte.Location = New System.Drawing.Point(3, 16)
         Me.dgReporte.Name = "dgReporte"
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.1!)
         Me.dgReporte.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgReporte.Size = New System.Drawing.Size(921, 504)
         Me.dgReporte.TabIndex = 0
@@ -400,16 +399,6 @@ Partial Class GastosPorDiaForm
         Me.chkObra.Text = "Todos"
         Me.chkObra.UseVisualStyleBackColor = True
         '
-        'btnImpres
-        '
-        Me.btnImpres.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.btnImpres.Image = CType(resources.GetObject("btnImpres.Image"), System.Drawing.Image)
-        Me.btnImpres.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnImpres.Name = "btnImpres"
-        Me.btnImpres.Size = New System.Drawing.Size(71, 22)
-        Me.btnImpres.Text = "Imprimir"
-        Me.btnImpres.ToolTipText = "Imprimir orden de desembolso"
-        '
         'GastosPorDiaForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
@@ -511,6 +500,5 @@ Partial Class GastosPorDiaForm
     Friend WithEvents lblObra As System.Windows.Forms.Label
     Friend WithEvents cbObra As System.Windows.Forms.ComboBox
     Friend WithEvents chkObra As System.Windows.Forms.CheckBox
-    Friend WithEvents btnImpres As System.Windows.Forms.ToolStripButton
 
 End Class
