@@ -183,6 +183,19 @@
     <Compile Include="crearMaterialForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="cReporting.vb" />
+    <Compile Include="CrGastosDia.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrGastosDia.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrKardex.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrKardex.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrystalReport1.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -243,6 +256,9 @@
     <Compile Include="DataSetInformesCr.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetInformesCr.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetInformesCr.vb">
       <DependentUpon>DataSetInformesCr.xsd</DependentUpon>
     </Compile>
     <Compile Include="entradaAlmacenGuiaMechForm.designer.vb">
@@ -555,6 +571,12 @@
     <Compile Include="ReportViewerCotizacionForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReportViewerGastosDia.Designer.vb">
+      <DependentUpon>ReportViewerGastosDia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewerGastosDia.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReportViewerGuiaRemEForm.Designer.vb">
       <DependentUpon>ReportViewerGuiaRemEForm.vb</DependentUpon>
     </Compile>
@@ -715,6 +737,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="crearMaterialForm.resx">
       <DependentUpon>crearMaterialForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrGastosDia.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrGastosDia.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrKardex.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrKardex.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -900,6 +930,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerCotizacionForm.resx">
       <DependentUpon>ReportViewerCotizacionForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewerGastosDia.resx">
+      <DependentUpon>ReportViewerGastosDia.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerGuiaRemEForm.resx">
       <DependentUpon>ReportViewerGuiaRemEForm.vb</DependentUpon>

@@ -32,6 +32,10 @@ Partial Public Class DataSetInformesCr
     
     Private tableDatosAprobacionDesem As DatosAprobacionDesemDataTable
     
+    Private tableDatosKardex As DatosKardexDataTable
+    
+    Private tableDatosGastosDia As DatosGastosDiaDataTable
+    
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -67,6 +71,12 @@ Partial Public Class DataSetInformesCr
             End If
             If (Not (ds.Tables("DatosAprobacionDesem")) Is Nothing) Then
                 MyBase.Tables.Add(New DatosAprobacionDesemDataTable(ds.Tables("DatosAprobacionDesem")))
+            End If
+            If (Not (ds.Tables("DatosKardex")) Is Nothing) Then
+                MyBase.Tables.Add(New DatosKardexDataTable(ds.Tables("DatosKardex")))
+            End If
+            If (Not (ds.Tables("DatosGastosDia")) Is Nothing) Then
+                MyBase.Tables.Add(New DatosGastosDiaDataTable(ds.Tables("DatosGastosDia")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -109,6 +119,24 @@ Partial Public Class DataSetInformesCr
     Public ReadOnly Property DatosAprobacionDesem() As DatosAprobacionDesemDataTable
         Get
             Return Me.tableDatosAprobacionDesem
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property DatosKardex() As DatosKardexDataTable
+        Get
+            Return Me.tableDatosKardex
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property DatosGastosDia() As DatosGastosDiaDataTable
+        Get
+            Return Me.tableDatosGastosDia
         End Get
     End Property
     
@@ -180,6 +208,12 @@ Partial Public Class DataSetInformesCr
             If (Not (ds.Tables("DatosAprobacionDesem")) Is Nothing) Then
                 MyBase.Tables.Add(New DatosAprobacionDesemDataTable(ds.Tables("DatosAprobacionDesem")))
             End If
+            If (Not (ds.Tables("DatosKardex")) Is Nothing) Then
+                MyBase.Tables.Add(New DatosKardexDataTable(ds.Tables("DatosKardex")))
+            End If
+            If (Not (ds.Tables("DatosGastosDia")) Is Nothing) Then
+                MyBase.Tables.Add(New DatosGastosDiaDataTable(ds.Tables("DatosGastosDia")))
+            End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
             Me.Namespace = ds.Namespace
@@ -227,6 +261,18 @@ Partial Public Class DataSetInformesCr
                 Me.tableDatosAprobacionDesem.InitVars
             End If
         End If
+        Me.tableDatosKardex = CType(MyBase.Tables("DatosKardex"),DatosKardexDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableDatosKardex) Is Nothing) Then
+                Me.tableDatosKardex.InitVars
+            End If
+        End If
+        Me.tableDatosGastosDia = CType(MyBase.Tables("DatosGastosDia"),DatosGastosDiaDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableDatosGastosDia) Is Nothing) Then
+                Me.tableDatosGastosDia.InitVars
+            End If
+        End If
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -242,6 +288,10 @@ Partial Public Class DataSetInformesCr
         MyBase.Tables.Add(Me.tableVGastosPorDia)
         Me.tableDatosAprobacionDesem = New DatosAprobacionDesemDataTable
         MyBase.Tables.Add(Me.tableDatosAprobacionDesem)
+        Me.tableDatosKardex = New DatosKardexDataTable
+        MyBase.Tables.Add(Me.tableDatosKardex)
+        Me.tableDatosGastosDia = New DatosGastosDiaDataTable
+        MyBase.Tables.Add(Me.tableDatosGastosDia)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -256,6 +306,16 @@ Partial Public Class DataSetInformesCr
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
     Private Function ShouldSerializeDatosAprobacionDesem() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+    Private Function ShouldSerializeDatosKardex() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+    Private Function ShouldSerializeDatosGastosDia() As Boolean
         Return false
     End Function
     
@@ -320,6 +380,10 @@ Partial Public Class DataSetInformesCr
     Public Delegate Sub VGastosPorDiaRowChangeEventHandler(ByVal sender As Object, ByVal e As VGastosPorDiaRowChangeEvent)
     
     Public Delegate Sub DatosAprobacionDesemRowChangeEventHandler(ByVal sender As Object, ByVal e As DatosAprobacionDesemRowChangeEvent)
+    
+    Public Delegate Sub DatosKardexRowChangeEventHandler(ByVal sender As Object, ByVal e As DatosKardexRowChangeEvent)
+    
+    Public Delegate Sub DatosGastosDiaRowChangeEventHandler(ByVal sender As Object, ByVal e As DatosGastosDiaRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -1613,6 +1677,1088 @@ Partial Public Class DataSetInformesCr
     End Class
     
     '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0"),  _
+     Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class DatosKardexDataTable
+        Inherits Global.System.Data.TypedTableBase(Of DatosKardexRow)
+        
+        Private columnnroNota As Global.System.Data.DataColumn
+        
+        Private columntipo As Global.System.Data.DataColumn
+        
+        Private columnfecha As Global.System.Data.DataColumn
+        
+        Private columnmaterial As Global.System.Data.DataColumn
+        
+        Private columncantEnt As Global.System.Data.DataColumn
+        
+        Private columnpreUniEnt As Global.System.Data.DataColumn
+        
+        Private columncantSal As Global.System.Data.DataColumn
+        
+        Private columnpreUniSal As Global.System.Data.DataColumn
+        
+        Private columnsaldo As Global.System.Data.DataColumn
+        
+        Private columnunidad As Global.System.Data.DataColumn
+        
+        Private columnnroGuia As Global.System.Data.DataColumn
+        
+        Private columnnroDoc As Global.System.Data.DataColumn
+        
+        Private columnveri As Global.System.Data.DataColumn
+        
+        Private columnalmObra As Global.System.Data.DataColumn
+        
+        Private columnnomObraDes As Global.System.Data.DataColumn
+        
+        Private columnobs As Global.System.Data.DataColumn
+        
+        Private columnnomRecibe As Global.System.Data.DataColumn
+        
+        Private columnprovee As Global.System.Data.DataColumn
+        
+        Private columnruc As Global.System.Data.DataColumn
+        
+        Private columnusuario As Global.System.Data.DataColumn
+        
+        Private columncodMat As Global.System.Data.DataColumn
+        
+        Private columnidMU As Global.System.Data.DataColumn
+        
+        Private columncodUbi As Global.System.Data.DataColumn
+        
+        Private columncodigo As Global.System.Data.DataColumn
+        
+        Private columncodGuia As Global.System.Data.DataColumn
+        
+        Private columncodDoc As Global.System.Data.DataColumn
+        
+        Private columncodTrans As Global.System.Data.DataColumn
+        
+        Private columncodPers As Global.System.Data.DataColumn
+        
+        Private columncodSal As Global.System.Data.DataColumn
+        
+        Private columnvanET As Global.System.Data.DataColumn
+        
+        Private columncodUbiDes As Global.System.Data.DataColumn
+        
+        Private columnubicacion As Global.System.Data.DataColumn
+        
+        Private columnnombre As Global.System.Data.DataColumn
+        
+        Private columncodUsu As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "DatosKardex"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nroNotaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnroNota
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property tipoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columntipo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property fechaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnfecha
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property materialColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnmaterial
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property cantEntColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncantEnt
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property preUniEntColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnpreUniEnt
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property cantSalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncantSal
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property preUniSalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnpreUniSal
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property saldoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsaldo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property unidadColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnunidad
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nroGuiaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnroGuia
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nroDocColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnroDoc
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property veriColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnveri
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property almObraColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnalmObra
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nomObraDesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnomObraDes
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property obsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnobs
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nomRecibeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnomRecibe
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property proveeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnprovee
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property rucColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnruc
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property usuarioColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnusuario
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codMatColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodMat
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property idMUColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnidMU
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codUbiColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodUbi
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codigoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodigo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codGuiaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodGuia
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codDocColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodDoc
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codTransColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodTrans
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codPersColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodPers
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codSalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodSal
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property vanETColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnvanET
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codUbiDesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodUbiDes
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property ubicacionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnubicacion
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nombreColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnombre
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codUsuColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodUsu
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As DatosKardexRow
+            Get
+                Return CType(Me.Rows(index),DatosKardexRow)
+            End Get
+        End Property
+        
+        Public Event DatosKardexRowChanging As DatosKardexRowChangeEventHandler
+        
+        Public Event DatosKardexRowChanged As DatosKardexRowChangeEventHandler
+        
+        Public Event DatosKardexRowDeleting As DatosKardexRowChangeEventHandler
+        
+        Public Event DatosKardexRowDeleted As DatosKardexRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Overloads Sub AddDatosKardexRow(ByVal row As DatosKardexRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Overloads Function AddDatosKardexRow( _
+                    ByVal nroNota As Integer,  _
+                    ByVal tipo As String,  _
+                    ByVal fecha As Date,  _
+                    ByVal material As String,  _
+                    ByVal cantEnt As Decimal,  _
+                    ByVal preUniEnt As Decimal,  _
+                    ByVal cantSal As Decimal,  _
+                    ByVal preUniSal As Decimal,  _
+                    ByVal saldo As Decimal,  _
+                    ByVal unidad As String,  _
+                    ByVal nroGuia As String,  _
+                    ByVal nroDoc As String,  _
+                    ByVal veri As String,  _
+                    ByVal almObra As String,  _
+                    ByVal nomObraDes As String,  _
+                    ByVal obs As String,  _
+                    ByVal nomRecibe As String,  _
+                    ByVal provee As String,  _
+                    ByVal ruc As String,  _
+                    ByVal usuario As String,  _
+                    ByVal codMat As Integer,  _
+                    ByVal idMU As Integer,  _
+                    ByVal codUbi As Integer,  _
+                    ByVal codigo As String,  _
+                    ByVal codGuia As Integer,  _
+                    ByVal codDoc As Integer,  _
+                    ByVal codTrans As Integer,  _
+                    ByVal codPers As Integer,  _
+                    ByVal codSal As Integer,  _
+                    ByVal vanET As Integer,  _
+                    ByVal codUbiDes As Integer,  _
+                    ByVal ubicacion As String,  _
+                    ByVal nombre As String,  _
+                    ByVal codUsu As Integer) As DatosKardexRow
+            Dim rowDatosKardexRow As DatosKardexRow = CType(Me.NewRow,DatosKardexRow)
+            Dim columnValuesArray() As Object = New Object() {nroNota, tipo, fecha, material, cantEnt, preUniEnt, cantSal, preUniSal, saldo, unidad, nroGuia, nroDoc, veri, almObra, nomObraDes, obs, nomRecibe, provee, ruc, usuario, codMat, idMU, codUbi, codigo, codGuia, codDoc, codTrans, codPers, codSal, vanET, codUbiDes, ubicacion, nombre, codUsu}
+            rowDatosKardexRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowDatosKardexRow)
+            Return rowDatosKardexRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As DatosKardexDataTable = CType(MyBase.Clone,DatosKardexDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New DatosKardexDataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Sub InitVars()
+            Me.columnnroNota = MyBase.Columns("nroNota")
+            Me.columntipo = MyBase.Columns("tipo")
+            Me.columnfecha = MyBase.Columns("fecha")
+            Me.columnmaterial = MyBase.Columns("material")
+            Me.columncantEnt = MyBase.Columns("cantEnt")
+            Me.columnpreUniEnt = MyBase.Columns("preUniEnt")
+            Me.columncantSal = MyBase.Columns("cantSal")
+            Me.columnpreUniSal = MyBase.Columns("preUniSal")
+            Me.columnsaldo = MyBase.Columns("saldo")
+            Me.columnunidad = MyBase.Columns("unidad")
+            Me.columnnroGuia = MyBase.Columns("nroGuia")
+            Me.columnnroDoc = MyBase.Columns("nroDoc")
+            Me.columnveri = MyBase.Columns("veri")
+            Me.columnalmObra = MyBase.Columns("almObra")
+            Me.columnnomObraDes = MyBase.Columns("nomObraDes")
+            Me.columnobs = MyBase.Columns("obs")
+            Me.columnnomRecibe = MyBase.Columns("nomRecibe")
+            Me.columnprovee = MyBase.Columns("provee")
+            Me.columnruc = MyBase.Columns("ruc")
+            Me.columnusuario = MyBase.Columns("usuario")
+            Me.columncodMat = MyBase.Columns("codMat")
+            Me.columnidMU = MyBase.Columns("idMU")
+            Me.columncodUbi = MyBase.Columns("codUbi")
+            Me.columncodigo = MyBase.Columns("codigo")
+            Me.columncodGuia = MyBase.Columns("codGuia")
+            Me.columncodDoc = MyBase.Columns("codDoc")
+            Me.columncodTrans = MyBase.Columns("codTrans")
+            Me.columncodPers = MyBase.Columns("codPers")
+            Me.columncodSal = MyBase.Columns("codSal")
+            Me.columnvanET = MyBase.Columns("vanET")
+            Me.columncodUbiDes = MyBase.Columns("codUbiDes")
+            Me.columnubicacion = MyBase.Columns("ubicacion")
+            Me.columnnombre = MyBase.Columns("nombre")
+            Me.columncodUsu = MyBase.Columns("codUsu")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Private Sub InitClass()
+            Me.columnnroNota = New Global.System.Data.DataColumn("nroNota", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnroNota)
+            Me.columntipo = New Global.System.Data.DataColumn("tipo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columntipo)
+            Me.columnfecha = New Global.System.Data.DataColumn("fecha", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnfecha)
+            Me.columnmaterial = New Global.System.Data.DataColumn("material", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnmaterial)
+            Me.columncantEnt = New Global.System.Data.DataColumn("cantEnt", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncantEnt)
+            Me.columnpreUniEnt = New Global.System.Data.DataColumn("preUniEnt", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnpreUniEnt)
+            Me.columncantSal = New Global.System.Data.DataColumn("cantSal", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncantSal)
+            Me.columnpreUniSal = New Global.System.Data.DataColumn("preUniSal", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnpreUniSal)
+            Me.columnsaldo = New Global.System.Data.DataColumn("saldo", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsaldo)
+            Me.columnunidad = New Global.System.Data.DataColumn("unidad", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnunidad)
+            Me.columnnroGuia = New Global.System.Data.DataColumn("nroGuia", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnroGuia)
+            Me.columnnroDoc = New Global.System.Data.DataColumn("nroDoc", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnroDoc)
+            Me.columnveri = New Global.System.Data.DataColumn("veri", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnveri)
+            Me.columnalmObra = New Global.System.Data.DataColumn("almObra", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnalmObra)
+            Me.columnnomObraDes = New Global.System.Data.DataColumn("nomObraDes", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnomObraDes)
+            Me.columnobs = New Global.System.Data.DataColumn("obs", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnobs)
+            Me.columnnomRecibe = New Global.System.Data.DataColumn("nomRecibe", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnomRecibe)
+            Me.columnprovee = New Global.System.Data.DataColumn("provee", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnprovee)
+            Me.columnruc = New Global.System.Data.DataColumn("ruc", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnruc)
+            Me.columnusuario = New Global.System.Data.DataColumn("usuario", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnusuario)
+            Me.columncodMat = New Global.System.Data.DataColumn("codMat", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodMat)
+            Me.columnidMU = New Global.System.Data.DataColumn("idMU", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnidMU)
+            Me.columncodUbi = New Global.System.Data.DataColumn("codUbi", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodUbi)
+            Me.columncodigo = New Global.System.Data.DataColumn("codigo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodigo)
+            Me.columncodGuia = New Global.System.Data.DataColumn("codGuia", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodGuia)
+            Me.columncodDoc = New Global.System.Data.DataColumn("codDoc", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodDoc)
+            Me.columncodTrans = New Global.System.Data.DataColumn("codTrans", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodTrans)
+            Me.columncodPers = New Global.System.Data.DataColumn("codPers", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodPers)
+            Me.columncodSal = New Global.System.Data.DataColumn("codSal", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodSal)
+            Me.columnvanET = New Global.System.Data.DataColumn("vanET", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnvanET)
+            Me.columncodUbiDes = New Global.System.Data.DataColumn("codUbiDes", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodUbiDes)
+            Me.columnubicacion = New Global.System.Data.DataColumn("ubicacion", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnubicacion)
+            Me.columnnombre = New Global.System.Data.DataColumn("nombre", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnombre)
+            Me.columncodUsu = New Global.System.Data.DataColumn("codUsu", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodUsu)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function NewDatosKardexRow() As DatosKardexRow
+            Return CType(Me.NewRow,DatosKardexRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New DatosKardexRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(DatosKardexRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.DatosKardexRowChangedEvent) Is Nothing) Then
+                RaiseEvent DatosKardexRowChanged(Me, New DatosKardexRowChangeEvent(CType(e.Row,DatosKardexRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.DatosKardexRowChangingEvent) Is Nothing) Then
+                RaiseEvent DatosKardexRowChanging(Me, New DatosKardexRowChangeEvent(CType(e.Row,DatosKardexRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.DatosKardexRowDeletedEvent) Is Nothing) Then
+                RaiseEvent DatosKardexRowDeleted(Me, New DatosKardexRowChangeEvent(CType(e.Row,DatosKardexRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.DatosKardexRowDeletingEvent) Is Nothing) Then
+                RaiseEvent DatosKardexRowDeleting(Me, New DatosKardexRowChangeEvent(CType(e.Row,DatosKardexRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub RemoveDatosKardexRow(ByVal row As DatosKardexRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence
+            Dim ds As DataSetInformesCr = New DataSetInformesCr
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "DatosKardexDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0"),  _
+     Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class DatosGastosDiaDataTable
+        Inherits Global.System.Data.TypedTableBase(Of DatosGastosDiaRow)
+        
+        Private columnfecPago As Global.System.Data.DataColumn
+        
+        Private columnnroOperacion As Global.System.Data.DataColumn
+        
+        Private columnruc As Global.System.Data.DataColumn
+        
+        Private columnrazon As Global.System.Data.DataColumn
+        
+        Private columnsimbolo As Global.System.Data.DataColumn
+        
+        Private columnmontoPago As Global.System.Data.DataColumn
+        
+        Private columnmontoD As Global.System.Data.DataColumn
+        
+        Private columnbanco As Global.System.Data.DataColumn
+        
+        Private columnnroCue As Global.System.Data.DataColumn
+        
+        Private columnnroDes As Global.System.Data.DataColumn
+        
+        Private columncodBan As Global.System.Data.DataColumn
+        
+        Private columncodMon As Global.System.Data.DataColumn
+        
+        Private columnidCue As Global.System.Data.DataColumn
+        
+        Private columncodigo As Global.System.Data.DataColumn
+        
+        Private columnnombre As Global.System.Data.DataColumn
+        
+        Private columnconcepto As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "DatosGastosDia"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property fecPagoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnfecPago
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nroOperacionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnroOperacion
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property rucColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnruc
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property razonColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnrazon
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property simboloColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsimbolo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property montoPagoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnmontoPago
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property montoDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnmontoD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property bancoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnbanco
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nroCueColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnroCue
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nroDesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnroDes
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codBanColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodBan
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codMonColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodMon
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property idCueColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnidCue
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codigoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodigo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nombreColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnombre
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property conceptoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnconcepto
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As DatosGastosDiaRow
+            Get
+                Return CType(Me.Rows(index),DatosGastosDiaRow)
+            End Get
+        End Property
+        
+        Public Event DatosGastosDiaRowChanging As DatosGastosDiaRowChangeEventHandler
+        
+        Public Event DatosGastosDiaRowChanged As DatosGastosDiaRowChangeEventHandler
+        
+        Public Event DatosGastosDiaRowDeleting As DatosGastosDiaRowChangeEventHandler
+        
+        Public Event DatosGastosDiaRowDeleted As DatosGastosDiaRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Overloads Sub AddDatosGastosDiaRow(ByVal row As DatosGastosDiaRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Overloads Function AddDatosGastosDiaRow( _
+                    ByVal fecPago As Date,  _
+                    ByVal nroOperacion As String,  _
+                    ByVal ruc As String,  _
+                    ByVal razon As String,  _
+                    ByVal simbolo As String,  _
+                    ByVal montoPago As Decimal,  _
+                    ByVal montoD As Decimal,  _
+                    ByVal banco As String,  _
+                    ByVal nroCue As String,  _
+                    ByVal nroDes As String,  _
+                    ByVal codBan As Integer,  _
+                    ByVal codMon As Integer,  _
+                    ByVal idCue As Integer,  _
+                    ByVal codigo As String,  _
+                    ByVal nombre As String,  _
+                    ByVal concepto As String) As DatosGastosDiaRow
+            Dim rowDatosGastosDiaRow As DatosGastosDiaRow = CType(Me.NewRow,DatosGastosDiaRow)
+            Dim columnValuesArray() As Object = New Object() {fecPago, nroOperacion, ruc, razon, simbolo, montoPago, montoD, banco, nroCue, nroDes, codBan, codMon, idCue, codigo, nombre, concepto}
+            rowDatosGastosDiaRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowDatosGastosDiaRow)
+            Return rowDatosGastosDiaRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As DatosGastosDiaDataTable = CType(MyBase.Clone,DatosGastosDiaDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New DatosGastosDiaDataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Sub InitVars()
+            Me.columnfecPago = MyBase.Columns("fecPago")
+            Me.columnnroOperacion = MyBase.Columns("nroOperacion")
+            Me.columnruc = MyBase.Columns("ruc")
+            Me.columnrazon = MyBase.Columns("razon")
+            Me.columnsimbolo = MyBase.Columns("simbolo")
+            Me.columnmontoPago = MyBase.Columns("montoPago")
+            Me.columnmontoD = MyBase.Columns("montoD")
+            Me.columnbanco = MyBase.Columns("banco")
+            Me.columnnroCue = MyBase.Columns("nroCue")
+            Me.columnnroDes = MyBase.Columns("nroDes")
+            Me.columncodBan = MyBase.Columns("codBan")
+            Me.columncodMon = MyBase.Columns("codMon")
+            Me.columnidCue = MyBase.Columns("idCue")
+            Me.columncodigo = MyBase.Columns("codigo")
+            Me.columnnombre = MyBase.Columns("nombre")
+            Me.columnconcepto = MyBase.Columns("concepto")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Private Sub InitClass()
+            Me.columnfecPago = New Global.System.Data.DataColumn("fecPago", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnfecPago)
+            Me.columnnroOperacion = New Global.System.Data.DataColumn("nroOperacion", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnroOperacion)
+            Me.columnruc = New Global.System.Data.DataColumn("ruc", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnruc)
+            Me.columnrazon = New Global.System.Data.DataColumn("razon", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnrazon)
+            Me.columnsimbolo = New Global.System.Data.DataColumn("simbolo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsimbolo)
+            Me.columnmontoPago = New Global.System.Data.DataColumn("montoPago", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnmontoPago)
+            Me.columnmontoD = New Global.System.Data.DataColumn("montoD", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnmontoD)
+            Me.columnbanco = New Global.System.Data.DataColumn("banco", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnbanco)
+            Me.columnnroCue = New Global.System.Data.DataColumn("nroCue", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnroCue)
+            Me.columnnroDes = New Global.System.Data.DataColumn("nroDes", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnroDes)
+            Me.columncodBan = New Global.System.Data.DataColumn("codBan", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodBan)
+            Me.columncodMon = New Global.System.Data.DataColumn("codMon", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodMon)
+            Me.columnidCue = New Global.System.Data.DataColumn("idCue", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnidCue)
+            Me.columncodigo = New Global.System.Data.DataColumn("codigo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodigo)
+            Me.columnnombre = New Global.System.Data.DataColumn("nombre", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnombre)
+            Me.columnconcepto = New Global.System.Data.DataColumn("concepto", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnconcepto)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function NewDatosGastosDiaRow() As DatosGastosDiaRow
+            Return CType(Me.NewRow,DatosGastosDiaRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New DatosGastosDiaRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(DatosGastosDiaRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.DatosGastosDiaRowChangedEvent) Is Nothing) Then
+                RaiseEvent DatosGastosDiaRowChanged(Me, New DatosGastosDiaRowChangeEvent(CType(e.Row,DatosGastosDiaRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.DatosGastosDiaRowChangingEvent) Is Nothing) Then
+                RaiseEvent DatosGastosDiaRowChanging(Me, New DatosGastosDiaRowChangeEvent(CType(e.Row,DatosGastosDiaRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.DatosGastosDiaRowDeletedEvent) Is Nothing) Then
+                RaiseEvent DatosGastosDiaRowDeleted(Me, New DatosGastosDiaRowChangeEvent(CType(e.Row,DatosGastosDiaRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.DatosGastosDiaRowDeletingEvent) Is Nothing) Then
+                RaiseEvent DatosGastosDiaRowDeleting(Me, New DatosGastosDiaRowChangeEvent(CType(e.Row,DatosGastosDiaRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub RemoveDatosGastosDiaRow(ByVal row As DatosGastosDiaRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence
+            Dim ds As DataSetInformesCr = New DataSetInformesCr
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "DatosGastosDiaDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
@@ -2746,6 +3892,1238 @@ Partial Public Class DataSetInformesCr
     End Class
     
     '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
+    Partial Public Class DatosKardexRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableDatosKardex As DatosKardexDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableDatosKardex = CType(Me.Table,DatosKardexDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nroNota() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.nroNotaColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nroNota' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.nroNotaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property tipo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.tipoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'tipo' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.tipoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property fecha() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.fechaColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fecha' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.fechaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property material() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.materialColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'material' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.materialColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property cantEnt() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.cantEntColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'cantEnt' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.cantEntColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property preUniEnt() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.preUniEntColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'preUniEnt' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.preUniEntColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property cantSal() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.cantSalColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'cantSal' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.cantSalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property preUniSal() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.preUniSalColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'preUniSal' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.preUniSalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property saldo() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.saldoColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'saldo' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.saldoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property unidad() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.unidadColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'unidad' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.unidadColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nroGuia() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.nroGuiaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nroGuia' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.nroGuiaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nroDoc() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.nroDocColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nroDoc' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.nroDocColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property veri() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.veriColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'veri' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.veriColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property almObra() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.almObraColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'almObra' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.almObraColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nomObraDes() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.nomObraDesColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nomObraDes' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.nomObraDesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property obs() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.obsColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'obs' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.obsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nomRecibe() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.nomRecibeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nomRecibe' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.nomRecibeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property provee() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.proveeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'provee' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.proveeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property ruc() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.rucColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'ruc' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.rucColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property usuario() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.usuarioColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'usuario' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.usuarioColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codMat() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.codMatColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'codMat' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.codMatColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property idMU() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.idMUColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'idMU' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.idMUColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codUbi() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.codUbiColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'codUbi' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.codUbiColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codigo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.codigoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'codigo' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.codigoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codGuia() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.codGuiaColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'codGuia' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.codGuiaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codDoc() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.codDocColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'codDoc' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.codDocColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codTrans() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.codTransColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'codTrans' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.codTransColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codPers() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.codPersColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'codPers' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.codPersColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codSal() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.codSalColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'codSal' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.codSalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property vanET() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.vanETColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'vanET' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.vanETColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codUbiDes() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.codUbiDesColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'codUbiDes' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.codUbiDesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property ubicacion() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.ubicacionColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'ubicacion' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.ubicacionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nombre() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.nombreColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nombre' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.nombreColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codUsu() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosKardex.codUsuColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'codUsu' de la tabla 'DatosKardex' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosKardex.codUsuColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnroNotaNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.nroNotaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnroNotaNull()
+            Me(Me.tableDatosKardex.nroNotaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IstipoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.tipoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SettipoNull()
+            Me(Me.tableDatosKardex.tipoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsfechaNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.fechaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetfechaNull()
+            Me(Me.tableDatosKardex.fechaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsmaterialNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.materialColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetmaterialNull()
+            Me(Me.tableDatosKardex.materialColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscantEntNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.cantEntColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcantEntNull()
+            Me(Me.tableDatosKardex.cantEntColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IspreUniEntNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.preUniEntColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetpreUniEntNull()
+            Me(Me.tableDatosKardex.preUniEntColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscantSalNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.cantSalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcantSalNull()
+            Me(Me.tableDatosKardex.cantSalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IspreUniSalNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.preUniSalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetpreUniSalNull()
+            Me(Me.tableDatosKardex.preUniSalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IssaldoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.saldoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetsaldoNull()
+            Me(Me.tableDatosKardex.saldoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsunidadNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.unidadColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetunidadNull()
+            Me(Me.tableDatosKardex.unidadColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnroGuiaNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.nroGuiaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnroGuiaNull()
+            Me(Me.tableDatosKardex.nroGuiaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnroDocNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.nroDocColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnroDocNull()
+            Me(Me.tableDatosKardex.nroDocColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsveriNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.veriColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetveriNull()
+            Me(Me.tableDatosKardex.veriColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsalmObraNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.almObraColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetalmObraNull()
+            Me(Me.tableDatosKardex.almObraColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnomObraDesNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.nomObraDesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnomObraDesNull()
+            Me(Me.tableDatosKardex.nomObraDesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsobsNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.obsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetobsNull()
+            Me(Me.tableDatosKardex.obsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnomRecibeNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.nomRecibeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnomRecibeNull()
+            Me(Me.tableDatosKardex.nomRecibeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsproveeNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.proveeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetproveeNull()
+            Me(Me.tableDatosKardex.proveeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsrucNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.rucColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetrucNull()
+            Me(Me.tableDatosKardex.rucColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsusuarioNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.usuarioColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetusuarioNull()
+            Me(Me.tableDatosKardex.usuarioColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscodMatNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.codMatColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcodMatNull()
+            Me(Me.tableDatosKardex.codMatColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsidMUNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.idMUColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetidMUNull()
+            Me(Me.tableDatosKardex.idMUColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscodUbiNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.codUbiColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcodUbiNull()
+            Me(Me.tableDatosKardex.codUbiColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscodigoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.codigoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcodigoNull()
+            Me(Me.tableDatosKardex.codigoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscodGuiaNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.codGuiaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcodGuiaNull()
+            Me(Me.tableDatosKardex.codGuiaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscodDocNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.codDocColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcodDocNull()
+            Me(Me.tableDatosKardex.codDocColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscodTransNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.codTransColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcodTransNull()
+            Me(Me.tableDatosKardex.codTransColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscodPersNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.codPersColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcodPersNull()
+            Me(Me.tableDatosKardex.codPersColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscodSalNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.codSalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcodSalNull()
+            Me(Me.tableDatosKardex.codSalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsvanETNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.vanETColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetvanETNull()
+            Me(Me.tableDatosKardex.vanETColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscodUbiDesNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.codUbiDesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcodUbiDesNull()
+            Me(Me.tableDatosKardex.codUbiDesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsubicacionNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.ubicacionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetubicacionNull()
+            Me(Me.tableDatosKardex.ubicacionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnombreNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.nombreColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnombreNull()
+            Me(Me.tableDatosKardex.nombreColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscodUsuNull() As Boolean
+            Return Me.IsNull(Me.tableDatosKardex.codUsuColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcodUsuNull()
+            Me(Me.tableDatosKardex.codUsuColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
+    Partial Public Class DatosGastosDiaRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableDatosGastosDia As DatosGastosDiaDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableDatosGastosDia = CType(Me.Table,DatosGastosDiaDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property fecPago() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.fecPagoColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fecPago' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.fecPagoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nroOperacion() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.nroOperacionColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nroOperacion' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.nroOperacionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property ruc() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.rucColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'ruc' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.rucColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property razon() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.razonColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'razon' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.razonColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property simbolo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.simboloColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'simbolo' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.simboloColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property montoPago() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.montoPagoColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'montoPago' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.montoPagoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property montoD() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.montoDColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'montoD' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.montoDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property banco() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.bancoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'banco' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.bancoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nroCue() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.nroCueColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nroCue' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.nroCueColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nroDes() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.nroDesColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nroDes' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.nroDesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codBan() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.codBanColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'codBan' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.codBanColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codMon() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.codMonColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'codMon' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.codMonColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property idCue() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.idCueColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'idCue' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.idCueColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codigo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.codigoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'codigo' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.codigoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nombre() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.nombreColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nombre' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.nombreColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property concepto() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.conceptoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'concepto' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.conceptoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsfecPagoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.fecPagoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetfecPagoNull()
+            Me(Me.tableDatosGastosDia.fecPagoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnroOperacionNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.nroOperacionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnroOperacionNull()
+            Me(Me.tableDatosGastosDia.nroOperacionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsrucNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.rucColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetrucNull()
+            Me(Me.tableDatosGastosDia.rucColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsrazonNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.razonColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetrazonNull()
+            Me(Me.tableDatosGastosDia.razonColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IssimboloNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.simboloColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetsimboloNull()
+            Me(Me.tableDatosGastosDia.simboloColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsmontoPagoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.montoPagoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetmontoPagoNull()
+            Me(Me.tableDatosGastosDia.montoPagoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsmontoDNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.montoDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetmontoDNull()
+            Me(Me.tableDatosGastosDia.montoDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsbancoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.bancoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetbancoNull()
+            Me(Me.tableDatosGastosDia.bancoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnroCueNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.nroCueColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnroCueNull()
+            Me(Me.tableDatosGastosDia.nroCueColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnroDesNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.nroDesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnroDesNull()
+            Me(Me.tableDatosGastosDia.nroDesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscodBanNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.codBanColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcodBanNull()
+            Me(Me.tableDatosGastosDia.codBanColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscodMonNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.codMonColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcodMonNull()
+            Me(Me.tableDatosGastosDia.codMonColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsidCueNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.idCueColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetidCueNull()
+            Me(Me.tableDatosGastosDia.idCueColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscodigoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.codigoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcodigoNull()
+            Me(Me.tableDatosGastosDia.codigoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnombreNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.nombreColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnombreNull()
+            Me(Me.tableDatosGastosDia.nombreColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsconceptoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.conceptoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetconceptoNull()
+            Me(Me.tableDatosGastosDia.conceptoColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
@@ -2831,6 +5209,72 @@ Partial Public Class DataSetInformesCr
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public ReadOnly Property Row() As DatosAprobacionDesemRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
+    Public Class DatosKardexRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As DatosKardexRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub New(ByVal row As DatosKardexRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property Row() As DatosKardexRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
+    Public Class DatosGastosDiaRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As DatosGastosDiaRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub New(ByVal row As DatosGastosDiaRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property Row() As DatosGastosDiaRow
             Get
                 Return Me.eventRow
             End Get

@@ -851,7 +851,11 @@ Public Class gerencia1OrdenDesembolsoForm
 
 
     End Sub
-
+    ''' <summary>
+    ''' Carga los datos de la grilla a un datatable de un dataset
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Private Function CargarDatos() As DataSetInformesCr
         Dim ds As New DataSetInformesCr
 

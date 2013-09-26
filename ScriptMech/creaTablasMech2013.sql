@@ -130,11 +130,12 @@ create table TMaterial
 --ALTER TABLE TMaterial ADD hist varchar(500) default ''
 --update TMaterial set hist=''
 
--- TIPOS DE DOCUMENTOS DE COMPRA (FACTURA/BOLETA)
 create table TTipoDocCompra
 (	codTipDC int identity(1,1) primary key,	
 	tipoDC varchar(20)  --Factura, Boleta...Nota Compra	
-)	
+)
+--select * from TTipoDocCompra	
+
 --FORMA DE PAGO DISPONIBLES PARA COMPRAS
 create table TFormaPago
 (	codPag int identity(1,1) primary key,	
@@ -150,41 +151,7 @@ create table TMoneda
 	moneda varchar(20), --Nuevos Soles - Dolares Americanos
 	simbolo varchar(10),
 )	
--- DROP table TDocCompra
-create table TDocCompra
-(	codDocC int identity(1,1) primary key,
-	serie varchar(5),
-	nroDoc int,
-	fecDoc date,
-	fecCan varchar(10),
-	codTipDC int,
-	estado int,	--0=abierto,1=cerrado,2=anulado
-	codIde int,
-	codPag int,
-	igv decimal(6,2),
-	calIGV int,  --0=Boleta otros  1=Tipo IGV 2=TipoIGV
-	codMon int,
-	camD decimal(5,2),
-	obs varchar(100),
-	hist varchar(500), --quien creo/modifico/anulo y en que fecha
-	foreign key(codTipDC) references TTipoDocCompra,
-	foreign key(codIde) references TIdentidad,
-	foreign key(codPag) references TFormaPago,
-	foreign key(codMon) references TMoneda
-)
--- REGISTRO DE DETALLE DEL DOCUMENTO DE COMPRA
---DROP table TDetalleCompra
-create table TDetalleCompra
-(	codDC int identity(1,1) primary key,
-	cant decimal(8,2),
-	unidad varchar(20),
-	material varchar(100),
-	preUni decimal(8,2),
-	codDocC int,
-	codMat int,
-	foreign key(codDocC) references TDocCompra,
-	foreign key(codMat) references TMaterial
-)
+
 --select * from TSolicitud
 --DROP table TSolicitud
 create table TSolicitud
@@ -372,7 +339,7 @@ create table TOrdenDesembolso
 	fecEnt varchar(10), --fecha de entrega
 	hist varchar(200),
 	codSerO int default 1,  --Codigo de serie de orden de desembolso
-	vanCaja int default 0,	--vandera pa saber si gue procesado en caja chica 1=Procesado
+	vanCaja int default 0,	--OBSOLETO YA NO SIRVE vandera pa saber si gue procesado en caja chica 1=Procesado
 	foreign key(codMon) references TMoneda,
 	foreign key(codigo) references TLugarTrabajo,
 	foreign key(codIde) references TIdentidad
@@ -409,7 +376,7 @@ create table TTipoPago
 	nro varchar(10)
 )	
 
-create table TClasifPago
+create table TClasifPago  --QUEDA OBSOLETO
 (	codCla int identity(1,1) primary key,	
 	clasif varchar(20)  --Proveedores, Haberes CTS	
 )	
@@ -427,6 +394,9 @@ create table TPagoDesembolso
 	idOP int,
 	idCue int default 0,  --cuenta banco  0=sin cuenta
 	vanCaja int default 0,	--vandera pa saber si gue procesado en caja chica 1=Procesado
+	codTipCla int default 1, --Varios=1
+	vanEgreso int default 0, --0=Egreso 1=NO egreso
+	idSesM int int default 1, -- mes improvisado pa todos los ingresos anteriores
 	foreign key(codTipP) references TTipoPago,
 	foreign key(codCla) references TClasifPago,
 	foreign key(codMon) references TMoneda,
@@ -434,23 +404,32 @@ create table TPagoDesembolso
 )
 --select * from TPagoDesembolso
 --aumentar campos a la estructura de nuestra base de datos
---ALTER TABLE TPagoDesembolso ADD vanCaja int default 0
---update TPagoDesembolso set vanCaja=0
+--ALTER TABLE TPagoDesembolso ADD codTipCla int default 1
+--ALTER TABLE TPagoDesembolso ADD vanEgreso int default 0
+--ALTER TABLE TPagoDesembolso ADD idSesM int default 1
+--update TPagoDesembolso set codTipCla=1
+--update TPagoDesembolso set vanEgreso=0
+--update TPagoDesembolso set idSesM=1
 
 create table TBanco
 (	codBan int identity(1,1) primary key,	
 	banco varchar(40)  --continental BCP
 )
---SELECT * FROM TCuentaBan
+
 create table TCuentaBan
 (	idCue int identity(1,1) primary key,
 	nroCue varchar(60),
 	codMon int,
 	codBan int,
 	estado int,			--1=activo   0=inactivo	
+	saldoBan decimal(12,2) default 0,
 	foreign key(codMon) references TMoneda,
 	foreign key(codBan) references TBanco
 )
+--select * from TCuentaBan
+--aumentar campos a la estructura de nuestra base de datos
+--ALTER TABLE TCuentaBan ADD saldoBan decimal(12,2) default 0
+--update TCuentaBan set saldoBan=0
 
 --SELECT * FROM TSerieOrden
 create table TSerieOrden
@@ -649,9 +628,7 @@ create table TOrdenGuia
 	foreign key(nroOrden) references TOrdenCompra,
 	foreign key(codGuia) references TGuiaRemision
 )
------------------MODULO CAJA CHICA-----------------------
------------------EJECUTAR 12/09/2013------------------
-------------------------------------------------------
+
 -- DROP table TCajaChica
 create table TCajaChica
 (	codCC int identity primary key,
@@ -690,17 +667,6 @@ create table TSolicitudCaja
 	codObra varchar(10), --codigo de la Obra para donde se gastara
 	codSede varchar(10), --codigo de la Obra de caja chica
 	foreign key (codPers) references TPersonal
-)
-
---drop table TCajaSol
-create table TCajaSol
-(	idCS int identity primary key,
-	codCaj int,
-	codSC int,
-	montoSal decimal(10,2),  --solicitado
-	imprevSal decimal(10,2), -- monto pedido pa gastos no sabidos con anterioridad
-	foreign key (codCaj) references TCajas,
-	foreign key (codSC) references TSolicitudCaja
 )
 
 -- drop table TDetSolCaja
@@ -773,49 +739,102 @@ create table TMovimientoCaja
 	--foreign key (codSC) references TSolicitudCaja
 )
 
-
-
-
-
---*****************************************************
---------------------FIN DE SCRIPT----------------------
---*****************************************************
---DOCUMENTACION DE ESTADO EN TABLAS
+-------MODULO INGRESOS EGRESOS(DESEMBOLSOS) MECH------
+-----------------EJECUTAR 23/09/2013------------------
 ------------------------------------------------------
--- TIdentidad 
---*************************
---ESTADO: 0=INACTIVO 1=ACTIVO
+create table TMes
+(	idMes int identity primary key,
+	mes varchar(20)  --  Setiembre
+)
 
---TLugarTrabajo
---*************************
---ESTADO: 1=EJECUCION 2=PARALIZADO 3=CULMINADO
+create table TSesionMes
+(	idSesM int identity primary key,
+	idMes int,
+	ano int,	--2013
+	estado int, --1=abierto  2=cerrado
+	codigo varchar(10),	--codigo de de lugar
+	foreign key(idMes) references TMes,
+	foreign key(codigo) references TlugarTrabajo
+)
 
---TLUGAR ESTADO: 0=ABIERTO 1=CERRADO
+-- DROP table TDocCompra
+create table TDocCompra
+(	codDocC int identity(1,1) primary key,
+	serie varchar(5),
+	nroDoc int,
+	fecDoc date,
+	fecCan varchar(10),
+	idSesM int,
+	codTipDC int,
+	estado int,	--0=abierto,1=cerrado,2=anulado
+	codIde int,
+	codPag int,
+	igv decimal(6,2),
+	calIGV int,  --0=Boleta otros  1=Tipo IGV 2=TipoIGV
+	codMon int,
+	camD decimal(5,2),
+	obs varchar(200),
+	hist varchar(500), --quien creo/modifico/anulo y en que fecha
+	codTipCla int,     --0=No es ingreso de dinero a MECH
+	foreign key(codTipDC) references TTipoDocCompra,
+	foreign key(codIde) references TIdentidad,
+	foreign key(codPag) references TFormaPago,
+	foreign key(codMon) references TMoneda,
+	foreign key(idSesM) references TSesionMes
+)
 
---TCotizacion
---*************************
---TGrupoCot
--- ESTADO: 0=ABIERTO 1=CERRADO
+--DROP table TDetalleCompra
+create table TDetalleCompra
+(	codDC int identity(1,1) primary key,
+	cant decimal(8,2),
+	unidad varchar(20),
+	detalle varchar(100),
+	preUni decimal(12,2),
+	codDocC int,
+	codMat int,  -- 0=si no hereda insumo estructurado
+	foreign key(codDocC) references TDocCompra,
+	--foreign key(codMat) references TMaterial
+)
 
---TDetalleCot
---*************************
---ESTADO 0=PENDIENTE 1=APROBADO 2 RECHAZADO
+create table TTipoMovimiento
+(	idTM int identity(1,1) primary key,
+	tipoMov varchar(20),  --ingreso=Factura  egreso=desembolso
+)
 
---TOrdenCompra
---*************************
---ESTADO: 0=ABIERTO 1=TERMINADO 2=CERRADO 3=ANULADO
+create table TClasificacion
+(	codCla int identity(1,1) primary key,	
+	clasificacion varchar(30),  --Obras, Sueldos, Cajas Chica, Activos
+	idTM int,
+	foreign key(idTM) references TTipoMovimiento	
+)	
 
---TOrdenDesembolso
---*************************
---ESTADO: 0=PENDIENTE 1=TERMINADO 2=CERRADO 3=ANULADO
+create table TTipoClasif
+(	codTipCla int identity(1,1) primary key,	
+	tipoClasif varchar(30),  --Sueldos, CTS, IGV
+	estado int,	--0=Inactivo  1=Activo
+	codCla int,
+	foreign key(codCla) references TClasificacion
+)	
 
+create table TMovimientoMech
+(	idMov int identity primary key,
+	fecDoc date,
+	idSesM int,
+	idTM int,
+	codigo varchar(10),
+	idCue int, --cuenta banco donde esta el saldo
+	codPagD int, --Desembolso para egreso
+	codDocC int,  --Ingreso Doc. (Factura)
+	montoIng decimal(12,2),
+	montoEgr decimal(12,2),
+	saldoMov decimal(12,2),
+	codPers int,  --pers procesa
+	descrip varchar(200) default '',
+	foreign key(idSesM) references TSesionMes,
+	foreign key(idTM) references TTipoMovimiento,
+	foreign key(codigo) references TLugarTrabajo,
+	foreign key (idCue) references TCuentaBan,
+	foreign key(codPers) references TPersonal,
+)
 
---TSolicitud
---**************************
---Estado: 0=Abierto 1=Cerrado, controla si la solicitud se le pueden registrar insumos.
---EstDet: 0=Abierto 1=Cerrado, controla si la solicitud para a ser historica o si aún tiene ítems pendientes de compra.
-
--- TSerieOrden 
---*************************
---ESTADO: 0=INACTIVO 1=ACTIVO
 

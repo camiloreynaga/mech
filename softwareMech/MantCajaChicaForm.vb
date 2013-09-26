@@ -1131,9 +1131,17 @@ Public Class MantCajaChicaForm
 
     Private Sub RbInactivo_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RbInactivo.CheckedChanged
         If RbInactivo.Checked = True Then
-            If BindingSource5.Item(BindingSource5.Position)(5) > 0 Then
+            'If BindingSource5.Item(BindingSource5.Position)(5) > 0 Then
 
-                StatusBarClass.messageBarraEstado("  PROCESO DENEGADO... EXISTE SALDO MAYOR A CERO...")
+            Dim codCaja As Integer = BindingSource5.Item(BindingSource5.Position)(0)
+            Dim consulta As String = "select count(*)  from  tsolicitudCaja where codSC in (select codSC  from TMovimientoCaja where codCaj=" & codCaja & " and codTM=2) and estSol =2"
+            'oDataManager.consultarTabla(consulta, CommandType.Text)
+
+            If CInt(oDataManager.consultarTabla(consulta, CommandType.Text)) > 0 Then
+
+                MessageBox.Show("PROCESO DENEGADO, EXISTEN RENDICIONES DE CAJA PENDIENTES", nomNegocio, Nothing, MessageBoxIcon.Information)
+
+                'StatusBarClass.messageBarraEstado("  PROCESO DENEGADO... EXISTE SALDO MAYOR A CERO...")
                 RbActivo.Checked = True
                 Exit Sub
             End If

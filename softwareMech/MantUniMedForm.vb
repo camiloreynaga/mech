@@ -198,10 +198,10 @@ Public Class MantUniMedForm
             Exit Sub
         End If
 
-        If recuperarCount2(lbTabla1.SelectedValue) > 0 Then
-            StatusBarClass.messageBarraEstado(" Proceso denegado, unidad de medida tiene materiales derivados...")
-            Exit Sub
-        End If
+        'If recuperarCount2(lbTabla1.SelectedValue) > 0 Then
+        '    StatusBarClass.messageBarraEstado(" Proceso denegado, unidad de medida tiene materiales derivados...")
+        '    Exit Sub
+        'End If
 
         Dim resp As Integer = MessageBox.Show("Esta segúro de eliminar registro?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp = 6 Then

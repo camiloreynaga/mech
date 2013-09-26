@@ -344,4 +344,51 @@ Public Class GastosPorDiaForm
             cbObra.Visible = True
         End If
     End Sub
+
+    Private Sub btnImp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImp.Click
+        If bindingSource0.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Orden de Compra...")
+            Exit Sub
+        End If
+
+        Dim datos As DataSetInformesCr = CargarDatos()
+
+        Dim frm As New ReportViewerGastosDia(datos)
+        frm.ShowDialog()
+    End Sub
+
+
+    ''' <summary>
+    ''' Carga los datos de la grilla a un datatable de un dataset
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function CargarDatos() As DataSetInformesCr
+        Dim ds As New DataSetInformesCr
+
+        For Each row As DataGridViewRow In dgReporte.Rows
+
+            Dim rowInf As DataSetInformesCr.DatosGastosDiaRow = ds.DatosGastosDia.NewDatosGastosDiaRow
+            rowInf.fecPago = CDate(row.Cells("fecPago").Value)
+            rowInf.nroOperacion = CStr(row.Cells("nroOperacion").Value)
+            rowInf.ruc = CStr(row.Cells("ruc").Value)
+            rowInf.razon = CStr(row.Cells("razon").Value)
+            rowInf.simbolo = CStr(row.Cells("simbolo").Value)
+            rowInf.montoPago = CDbl(row.Cells("montoPago").Value)
+            rowInf.montoD = CDbl(row.Cells("montoD").Value)
+            rowInf.nroDes = CStr(row.Cells("nroDes").Value)
+            If IsDBNull(row.Cells("concepto").Value) Then
+                rowInf.concepto = ""
+            Else
+                rowInf.concepto = CStr(row.Cells("concepto").Value)
+            End If
+
+            ds.DatosGastosDia.AddDatosGastosDiaRow(rowInf)
+
+        Next
+
+        Return ds
+
+    End Function
+
 End Class

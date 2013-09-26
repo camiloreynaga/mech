@@ -66,6 +66,7 @@ Partial Class pantallaInicialForm
         Me.opcCaja = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcCaja1 = New System.Windows.Forms.ToolStripMenuItem
         Me.opcCaja5 = New System.Windows.Forms.ToolStripMenuItem
+        Me.opcCaja8 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator21 = New System.Windows.Forms.ToolStripSeparator
         Me.opcCaja6 = New System.Windows.Forms.ToolStripMenuItem
         Me.opcCaja7 = New System.Windows.Forms.ToolStripMenuItem
@@ -126,7 +127,6 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.opcCaja8 = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -492,6 +492,16 @@ Partial Class pantallaInicialForm
         Me.opcCaja5.Size = New System.Drawing.Size(249, 22)
         Me.opcCaja5.Text = "Ingreso Dinero Caja con Orden"
         Me.opcCaja5.ToolTipText = "Procesar Ingreso de dinero a caja chica con Orden de desembolso..."
+        '
+        'opcCaja8
+        '
+        Me.opcCaja8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcCaja8.ForeColor = System.Drawing.Color.Navy
+        Me.opcCaja8.Image = CType(resources.GetObject("opcCaja8.Image"), System.Drawing.Image)
+        Me.opcCaja8.Name = "opcCaja8"
+        Me.opcCaja8.Size = New System.Drawing.Size(249, 22)
+        Me.opcCaja8.Text = "Egreso Dinero Caja Solicitante"
+        Me.opcCaja8.ToolTipText = "Procesar Egreso de dinero de caja chica con solicitud de personal..."
         '
         'ToolStripSeparator21
         '
@@ -1002,16 +1012,6 @@ Partial Class pantallaInicialForm
         Me.ToolStripStatusLabel1.Text = "Soluciones Software Perú S.A.C. - Copyright (c)  2005 - 2013 SSP SAC - Cusco Perú" & _
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'opcCaja8
-        '
-        Me.opcCaja8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcCaja8.ForeColor = System.Drawing.Color.Navy
-        Me.opcCaja8.Image = CType(resources.GetObject("opcCaja8.Image"), System.Drawing.Image)
-        Me.opcCaja8.Name = "opcCaja8"
-        Me.opcCaja8.Size = New System.Drawing.Size(249, 22)
-        Me.opcCaja8.Text = "Egreso Dinero Caja Solicitante"
-        Me.opcCaja8.ToolTipText = "Procesar Egreso de dinero de caja chica con solicitud de personal..."
         '
         'pantallaInicialForm
         '

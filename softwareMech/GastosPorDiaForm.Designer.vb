@@ -58,6 +58,7 @@ Partial Class GastosPorDiaForm
         Me.lblObra = New System.Windows.Forms.Label
         Me.cbObra = New System.Windows.Forms.ComboBox
         Me.chkObra = New System.Windows.Forms.CheckBox
+        Me.btnImp = New System.Windows.Forms.ToolStripButton
         Me.GroupBox1.SuspendLayout()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindingNavigator1.SuspendLayout()
@@ -127,7 +128,7 @@ Partial Class GastosPorDiaForm
         Me.BindingNavigator1.CountItem = Me.BindingNavigatorCountItem
         Me.BindingNavigator1.DeleteItem = Nothing
         Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
+        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.btnImp})
         Me.BindingNavigator1.Location = New System.Drawing.Point(3, 523)
         Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -399,6 +400,16 @@ Partial Class GastosPorDiaForm
         Me.chkObra.Text = "Todos"
         Me.chkObra.UseVisualStyleBackColor = True
         '
+        'btnImp
+        '
+        Me.btnImp.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.btnImp.Image = CType(resources.GetObject("btnImp.Image"), System.Drawing.Image)
+        Me.btnImp.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnImp.Name = "btnImp"
+        Me.btnImp.Size = New System.Drawing.Size(71, 22)
+        Me.btnImp.Text = "Imprimir"
+        Me.btnImp.ToolTipText = "Imprimir orden de desembolso"
+        '
         'GastosPorDiaForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
@@ -500,5 +511,6 @@ Partial Class GastosPorDiaForm
     Friend WithEvents lblObra As System.Windows.Forms.Label
     Friend WithEvents cbObra As System.Windows.Forms.ComboBox
     Friend WithEvents chkObra As System.Windows.Forms.CheckBox
+    Friend WithEvents btnImp As System.Windows.Forms.ToolStripButton
 
 End Class

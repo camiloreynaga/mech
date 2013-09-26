@@ -297,66 +297,66 @@ Public Class ReporteCardexForm
         dgCardex.AllowUserToAddRows = False
         dgCardex.AllowUserToDeleteRows = False
         With dgCardex
-            .Columns(0).Visible = False
-            .Columns(1).HeaderText = "Transac."
-            .Columns(1).Width = 70
-            .Columns(2).HeaderText = "Fecha"
-            .Columns(2).Width = 70
-            .Columns(3).HeaderText = "Descripción Insumo"
-            .Columns(3).Width = 340
-            .Columns(3).Visible = False
-            .Columns(4).Width = 60
-            .Columns(4).HeaderText = "CantEnt"
-            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            .Columns(5).Width = 50
-            .Columns(5).HeaderText = "Ent.S/."
-            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            .Columns(6).Width = 60
-            .Columns(6).HeaderText = "CantSal"
-            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            .Columns(7).Width = 50
-            .Columns(7).HeaderText = "Sal.S/."
-            .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            .Columns(8).Width = 65
-            .Columns(8).HeaderText = "Saldo"
-            .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            .Columns(9).Width = 40
-            .Columns(9).HeaderText = "Unid."
-            .Columns(10).Width = 80
-            .Columns(10).HeaderText = "NºGuia"
-            .Columns(11).Width = 60
-            .Columns(11).HeaderText = "NºFact"
-            .Columns(12).Width = 60
-            .Columns(12).HeaderText = "Salida"
-            .Columns(12).Visible = False
-            .Columns(13).HeaderText = "Recepción"
-            .Columns(13).Width = 110
-            .Columns(14).HeaderText = "Recepción Obra/Sede"
-            .Columns(14).Width = 300
-            .Columns(15).Width = 400
-            .Columns(15).HeaderText = "Nota"
-            .Columns(16).Width = 130
-            .Columns(16).HeaderText = "Personal_Recibe"
-            .Columns(17).Width = 240
-            .Columns(17).HeaderText = "Proveedor"
-            .Columns(18).Width = 75
-            .Columns(18).HeaderText = "Ruc"
-            .Columns(19).Width = 130
-            .Columns(19).HeaderText = "Usuario"
-            .Columns(20).Visible = False
-            .Columns(21).Visible = False
-            .Columns(22).Visible = False
-            .Columns(23).Visible = False
-            .Columns(24).Visible = False
-            .Columns(25).Visible = False
-            .Columns(26).Visible = False
-            .Columns(27).Visible = False
-            .Columns(28).Visible = False
-            .Columns(29).Visible = False
-            .Columns(30).Visible = False
-            .Columns(31).Visible = False
-            .Columns(32).Visible = False
-            .Columns(33).Visible = False
+            .Columns("nroNota").Visible = False
+            .Columns("tipo").HeaderText = "Transac."
+            .Columns("tipo").Width = 70
+            .Columns("fecha").HeaderText = "Fecha"
+            .Columns("fecha").Width = 70
+            .Columns("material").HeaderText = "Descripción Insumo"
+            .Columns("material").Width = 340
+            .Columns("material").Visible = False
+            .Columns("cantEnt").Width = 60
+            .Columns("cantEnt").HeaderText = "CantEnt"
+            .Columns("cantEnt").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns("preUniEnt").Width = 50
+            .Columns("preUniEnt").HeaderText = "Ent.S/."
+            .Columns("preUniEnt").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns("cantSal").Width = 60
+            .Columns("cantSal").HeaderText = "CantSal"
+            .Columns("cantSal").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns("preUniSal").Width = 50
+            .Columns("preUniSal").HeaderText = "Sal.S/."
+            .Columns("preUniSal").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns("saldo").Width = 65
+            .Columns("saldo").HeaderText = "Saldo"
+            .Columns("saldo").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns("unidad").Width = 40
+            .Columns("unidad").HeaderText = "Unid."
+            .Columns("nroGuia").Width = 80
+            .Columns("nroGuia").HeaderText = "NºGuia"
+            .Columns("nroDoc").Width = 60
+            .Columns("nroDoc").HeaderText = "NºFact"
+            .Columns("veri").Width = 60
+            .Columns("veri").HeaderText = "Salida"
+            .Columns("veri").Visible = False
+            .Columns("almObra").HeaderText = "Recepción"
+            .Columns("almObra").Width = 110
+            .Columns("nomObraDes").HeaderText = "Recepción Obra/Sede"
+            .Columns("nomObraDes").Width = 300
+            .Columns("Obs").Width = 400
+            .Columns("Obs").HeaderText = "Nota"
+            .Columns("nomRecibe").Width = 130
+            .Columns("nomRecibe").HeaderText = "Personal_Recibe"
+            .Columns("provee").Width = 240
+            .Columns("provee").HeaderText = "Proveedor"
+            .Columns("ruc").Width = 75
+            .Columns("ruc").HeaderText = "Ruc"
+            .Columns("usuario").Width = 130
+            .Columns("usuario").HeaderText = "Usuario"
+            .Columns("codMat").Visible = False
+            .Columns("idMU").Visible = False
+            .Columns("codUbi").Visible = False
+            .Columns("codigo").Visible = False
+            .Columns("codGuia").Visible = False
+            .Columns("codDoc").Visible = False
+            .Columns("codTrans").Visible = False
+            .Columns("codPers").Visible = False
+            .Columns("codSal").Visible = False
+            .Columns("vanET").Visible = False
+            .Columns("codUbiDes").Visible = False
+            .Columns("ubicacion").Visible = False
+            .Columns("nombre").Visible = False
+            .Columns("codUsu").Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -477,6 +477,23 @@ Public Class ReporteCardexForm
 
     Private Sub dgInsumos_CurrentCellChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgInsumos.CurrentCellChanged
         dgCardex.DataSource = ""
+    End Sub
+
+    Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
+        If BindingSource1.Position = -1 Then
+
+            Exit Sub
+
+        End If
+
+
+        vCodProd = BindingSource1.Item(BindingSource1.Position)(20)
+        vCodUbi = BindingSource1.Item(BindingSource1.Position)(22)
+        'vParam1 = "Nº " & BindingSource6.Item(BindingSource6.Position)(2) & "-MECH-" & CDate(BindingSource6.Item(BindingSource6.Position)(4)).Year
+
+        Dim informe As New ReportViewerKardex1Form
+        informe.ShowDialog()
+
     End Sub
 End Class
 

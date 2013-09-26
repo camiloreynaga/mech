@@ -55,6 +55,7 @@ Partial Class ReporteCardexForm
         Me.txtInsumo = New System.Windows.Forms.TextBox
         Me.btnVis = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnCerrar = New System.Windows.Forms.Button
+        Me.btnImprimir = New System.Windows.Forms.ToolStripButton
         CType(Me.dgCardex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.BindingNavigator2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,7 +138,7 @@ Partial Class ReporteCardexForm
         Me.BindingNavigator2.CountItem = Me.BindingNavigatorCountItem1
         Me.BindingNavigator2.DeleteItem = Nothing
         Me.BindingNavigator2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BindingNavigator2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem1, Me.BindingNavigatorMovePreviousItem1, Me.BindingNavigatorSeparator3, Me.BindingNavigatorPositionItem1, Me.BindingNavigatorCountItem1, Me.BindingNavigatorSeparator4, Me.BindingNavigatorMoveNextItem1, Me.BindingNavigatorMoveLastItem1, Me.BindingNavigatorSeparator5})
+        Me.BindingNavigator2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem1, Me.BindingNavigatorMovePreviousItem1, Me.BindingNavigatorSeparator3, Me.BindingNavigatorPositionItem1, Me.BindingNavigatorCountItem1, Me.BindingNavigatorSeparator4, Me.BindingNavigatorMoveNextItem1, Me.BindingNavigatorMoveLastItem1, Me.BindingNavigatorSeparator5, Me.btnImprimir})
         Me.BindingNavigator2.Location = New System.Drawing.Point(3, 319)
         Me.BindingNavigator2.MoveFirstItem = Me.BindingNavigatorMoveFirstItem1
         Me.BindingNavigator2.MoveLastItem = Me.BindingNavigatorMoveLastItem1
@@ -363,6 +364,16 @@ Partial Class ReporteCardexForm
         Me.btnCerrar.Text = "Cerrar"
         Me.btnCerrar.UseVisualStyleBackColor = True
         '
+        'btnImprimir
+        '
+        Me.btnImprimir.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
+        Me.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(71, 22)
+        Me.btnImprimir.Text = "Imprimir"
+        Me.btnImprimir.ToolTipText = "Imprimir orden de desembolso"
+        '
         'ReporteCardexForm
         '
         Me.AcceptButton = Me.btnVis
@@ -441,5 +452,6 @@ Partial Class ReporteCardexForm
     Friend WithEvents BindingNavigatorMoveNextItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorMoveLastItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorSeparator2 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents btnImprimir As System.Windows.Forms.ToolStripButton
 
 End Class
