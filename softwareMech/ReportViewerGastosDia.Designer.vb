@@ -22,7 +22,9 @@ Partial Class ReportViewerGastosDia
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportViewerGastosDia))
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer
+        Me.Button1 = New System.Windows.Forms.Button
         Me.SuspendLayout()
         '
         'CrystalReportViewer1
@@ -33,20 +35,35 @@ Partial Class ReportViewerGastosDia
         Me.CrystalReportViewer1.Location = New System.Drawing.Point(0, 0)
         Me.CrystalReportViewer1.Name = "CrystalReportViewer1"
         Me.CrystalReportViewer1.SelectionFormula = ""
-        Me.CrystalReportViewer1.Size = New System.Drawing.Size(341, 293)
+        Me.CrystalReportViewer1.Size = New System.Drawing.Size(461, 384)
         Me.CrystalReportViewer1.TabIndex = 0
         Me.CrystalReportViewer1.ViewTimeSelectionFormula = ""
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
+        Me.Button1.Location = New System.Drawing.Point(350, 3)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(53, 25)
+        Me.Button1.TabIndex = 5
+        Me.Button1.Text = "PDF"
+        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'ReportViewerGastosDia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(341, 293)
+        Me.ClientSize = New System.Drawing.Size(461, 384)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.CrystalReportViewer1)
         Me.Name = "ReportViewerGastosDia"
         Me.Text = "ReportViewerGastosDia"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents CrystalReportViewer1 As CrystalDecisions.Windows.Forms.CrystalReportViewer
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

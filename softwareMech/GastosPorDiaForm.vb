@@ -1,6 +1,7 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
 Imports ComponentesSolucion2008
+Imports CrystalDecisions.Shared
 
 Public Class GastosPorDiaForm
 
@@ -21,6 +22,13 @@ Public Class GastosPorDiaForm
     ''' </summary>
     ''' <remarks></remarks>
     Dim oGrilla As New cConfigFormControls
+
+    'variable temporales para fecha de inicio y fin
+
+    Dim _fechaIni As String
+    Dim _fechaFin As String
+
+
 
 #Region "métodos"
 
@@ -136,7 +144,6 @@ Public Class GastosPorDiaForm
         Next
 
         btnCerrar.ForeColor = ForeColorButtom
-        btnImprimir.ForeColor = ForeColorButtom
         btnMostrar.ForeColor = ForeColorButtom
 
     End Sub
@@ -246,6 +253,10 @@ Public Class GastosPorDiaForm
         txtTotalDetraccion.Text = Format(CDbl(txtTotalDetraccion.Text), "0,0.00")
         txtDetraccionDolares.Text = Format(CDbl(txtDetraccionDolares.Text), "0,0.00")
 
+        'asignando valores de fecha
+        _fechaIni = dtpInicio.Text
+        _fechaFin = dtpFin.Text
+
 
     End Sub
 
@@ -258,26 +269,7 @@ Public Class GastosPorDiaForm
         Me.Close()
     End Sub
 
-    Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
-
-        If bindingSource0.Position = -1 Then
-            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Orden de Compra...")
-            Exit Sub
-        End If
-
-        'vParam1 = dtpInicio.Text
-        'vParam2 = dtpFin.Text
-        'If String.IsNullOrEmpty(txtOrdCompra.Text) = False Then
-        '    vParam2 = txtOrdCompra.Text.Trim() 'recuperarNroOrdenCompra()
-        'Else
-        '    vParam2 = ""
-        'End If
-
-        'Dim informe As New ReportViewerGastoPorDiaForm
-
-        'informe.ShowDialog()
-
-    End Sub
+   
 
     Private Sub cbBanco_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbBanco.SelectedIndexChanged
         Try
@@ -351,9 +343,39 @@ Public Class GastosPorDiaForm
             Exit Sub
         End If
 
+        'Creando las variables para lo parametros
+        Dim parameters As New ParameterFields
+
+        Dim pFechaIni As ParameterField = New ParameterField
+        Dim pFechaFin As ParameterField = New ParameterField
+
+        Dim valorFechaIni As New ParameterDiscreteValue
+
+        Dim valorFechaFin As New ParameterDiscreteValue
+
+        '-- 
+        'Definiendo los nombres
+        pFechaIni.Name = "pFechaIni"
+        pFechaFin.Name = "pFechaFin"
+
+        '---
+        'Definiendo los nombres de los parametros
+
+        valorFechaIni.Value = _fechaIni
+        valorFechaFin.Value = _fechaFin
+
+        pFechaIni.CurrentValues.Add(valorFechaIni)
+        pFechaFin.CurrentValues.Add(valorFechaFin)
+
+        parameters.Add(pFechaIni)
+        parameters.Add(pFechaFin)
+
         Dim datos As DataSetInformesCr = CargarDatos()
 
         Dim frm As New ReportViewerGastosDia(datos)
+
+        frm.CrystalReportViewer1.ParameterFieldInfo = parameters
+
         frm.ShowDialog()
     End Sub
 
@@ -381,6 +403,24 @@ Public Class GastosPorDiaForm
                 rowInf.concepto = ""
             Else
                 rowInf.concepto = CStr(row.Cells("concepto").Value)
+            End If
+            'banco
+            If IsDBNull(row.Cells("banco").Value) Then
+                rowInf.banco = ""
+            Else
+                rowInf.banco = CStr(row.Cells("banco").Value)
+            End If
+            'nroCuenta
+            If IsDBNull(row.Cells("nroCue").Value) Then
+                rowInf.nroCue = ""
+            Else
+                rowInf.nroCue = CStr(row.Cells("nroCue").Value)
+            End If
+            'obra
+            If IsDBNull(row.Cells("nombre").Value) Then
+                rowInf.nombre = ""
+            Else
+                rowInf.nombre = CStr(row.Cells("nombre").Value)
             End If
 
             ds.DatosGastosDia.AddDatosGastosDiaRow(rowInf)

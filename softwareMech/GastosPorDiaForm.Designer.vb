@@ -37,9 +37,9 @@ Partial Class GastosPorDiaForm
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
+        Me.btnImp = New System.Windows.Forms.ToolStripButton
         Me.dgReporte = New System.Windows.Forms.DataGridView
         Me.btnCerrar = New System.Windows.Forms.Button
-        Me.btnImprimir = New System.Windows.Forms.Button
         Me.btnMostrar = New System.Windows.Forms.Button
         Me.txtTotalDolares = New System.Windows.Forms.TextBox
         Me.Label7 = New System.Windows.Forms.Label
@@ -58,7 +58,6 @@ Partial Class GastosPorDiaForm
         Me.lblObra = New System.Windows.Forms.Label
         Me.cbObra = New System.Windows.Forms.ComboBox
         Me.chkObra = New System.Windows.Forms.CheckBox
-        Me.btnImp = New System.Windows.Forms.ToolStripButton
         Me.GroupBox1.SuspendLayout()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindingNavigator1.SuspendLayout()
@@ -115,7 +114,6 @@ Partial Class GastosPorDiaForm
         Me.GroupBox1.Controls.Add(Me.BindingNavigator1)
         Me.GroupBox1.Controls.Add(Me.dgReporte)
         Me.GroupBox1.Controls.Add(Me.btnCerrar)
-        Me.GroupBox1.Controls.Add(Me.btnImprimir)
         Me.GroupBox1.Location = New System.Drawing.Point(20, 75)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(930, 551)
@@ -207,6 +205,16 @@ Partial Class GastosPorDiaForm
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
         Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
         '
+        'btnImp
+        '
+        Me.btnImp.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.btnImp.Image = CType(resources.GetObject("btnImp.Image"), System.Drawing.Image)
+        Me.btnImp.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnImp.Name = "btnImp"
+        Me.btnImp.Size = New System.Drawing.Size(71, 22)
+        Me.btnImp.Text = "Imprimir"
+        Me.btnImp.ToolTipText = "Imprimir orden de desembolso"
+        '
         'dgReporte
         '
         Me.dgReporte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -220,21 +228,12 @@ Partial Class GastosPorDiaForm
         'btnCerrar
         '
         Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCerrar.Location = New System.Drawing.Point(236, 545)
+        Me.btnCerrar.Location = New System.Drawing.Point(497, 555)
         Me.btnCerrar.Name = "btnCerrar"
-        Me.btnCerrar.Size = New System.Drawing.Size(75, 23)
+        Me.btnCerrar.Size = New System.Drawing.Size(75, 15)
         Me.btnCerrar.TabIndex = 339
         Me.btnCerrar.Text = "Cerrar"
         Me.btnCerrar.UseVisualStyleBackColor = True
-        '
-        'btnImprimir
-        '
-        Me.btnImprimir.Location = New System.Drawing.Point(317, 546)
-        Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(82, 22)
-        Me.btnImprimir.TabIndex = 6
-        Me.btnImprimir.Text = "Imprimir"
-        Me.btnImprimir.UseVisualStyleBackColor = True
         '
         'btnMostrar
         '
@@ -400,16 +399,6 @@ Partial Class GastosPorDiaForm
         Me.chkObra.Text = "Todos"
         Me.chkObra.UseVisualStyleBackColor = True
         '
-        'btnImp
-        '
-        Me.btnImp.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.btnImp.Image = CType(resources.GetObject("btnImp.Image"), System.Drawing.Image)
-        Me.btnImp.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnImp.Name = "btnImp"
-        Me.btnImp.Size = New System.Drawing.Size(71, 22)
-        Me.btnImp.Text = "Imprimir"
-        Me.btnImp.ToolTipText = "Imprimir orden de desembolso"
-        '
         'GastosPorDiaForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
@@ -486,7 +475,6 @@ Partial Class GastosPorDiaForm
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents txtTotalSoles As System.Windows.Forms.TextBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents btnImprimir As System.Windows.Forms.Button
     Friend WithEvents cbBanco As System.Windows.Forms.ComboBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents btnCerrar As System.Windows.Forms.Button
