@@ -150,7 +150,10 @@ Public Class MantCuentas
 
     End Sub
 
-
+    ''' <summary>
+    ''' configura el color de los controles del form
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub ConfigurarColorControl()
 
         Me.BackColor = BackColorP
@@ -372,7 +375,7 @@ Public Class MantCuentas
         End If
 
         If BindingSource1.Find("banco", txtBanco.Text.Trim()) > 0 Then
-            MessageBox.Show("Ya existe Banco: " & txtBanco.Text.Trim() & Chr(13) & "Cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
+            MessageBox.Show("Ya existe Banco: " & txtBanco.Text.Trim() & Chr(13) & "cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
             txtBanco.Focus()
             txtBanco.SelectAll()
             retorna = False
@@ -626,7 +629,7 @@ Public Class MantCuentas
                     'Ubicando el nuebo ítem en la grilla
                     BindingSource1.Position = BindingSource1.Find("banco", txtBanco.Text.Trim())
                     '
-                    StatusBarClass.messageBarraEstado("  Registro fué actualizado con exito...")
+                    StatusBarClass.messageBarraEstado("  Registro fue actualizado con éxito...")
 
 
 
@@ -761,7 +764,7 @@ Public Class MantCuentas
                 
 
                 BindingSource2.Position = BindingSource2.Find("nroCue", txtCuenta.Text.Trim())
-                StatusBarClass.messageBarraEstado("  Registro fue agregado con exito...")
+                StatusBarClass.messageBarraEstado("  Registro fue agregado con éxito...")
 
             Catch f As Exception
                 If finalMyTrans Then
@@ -829,7 +832,7 @@ Public Class MantCuentas
             daTabla1.Fill(dsAlmacen, "TCuentaBancaria")
 
             BindingSource2.Position = BindingSource2.Find("nroCue", txtCuenta.Text.Trim())
-            StatusBarClass.messageBarraEstado("  Registro fué actualizado con exito...")
+            StatusBarClass.messageBarraEstado("  Registro fue actualizado con éxito...")
 
         Catch f As Exception
             If finalMyTrans Then

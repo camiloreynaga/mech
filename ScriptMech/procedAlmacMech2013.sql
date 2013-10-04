@@ -236,14 +236,14 @@ as
 	
 	return @Identity
 go
-
+--DROP procedure PA_InsertDetSolCaja
 create procedure PA_InsertDetSolCaja
 	@can1 decimal(8,2),@can2 decimal(8,2),@uni varchar(20),@ins varchar(200),@ing int,@pre1 decimal(8,2),@pre2 decimal(8,2),@obsSol varchar(200),@codApro int,
-	@estDet int,@obsApro varchar(200),@codMat int,@codAreaM int,@codTipM int,@codSC int,@estRen int,@codRen int,@obsRen varchar(200),@codDC int,@nroO varchar(30),@comp int,
+	@estDet int,@obsApro varchar(200),@codMat int,@codAreaM int,@codTipM int,@codSC int,@estRen int,@codRen int,@obsRen varchar(200),@codDC int,@nroO varchar(30),@comp int,@fec varchar(10),@comp1 int,
 	@Identity int output --parametro de salida
 as
-	insert into TDetSolCaja(cant1,cant2,uniMed,insumo,ingreso,prec1,prec2,obsSol,codApro,estDet,obsApro,codMat,codAreaM,codTipM,codSC,estRen,codRen,obsRen,codDC,nroOtros,compCheck) 
-		values(@can1,@can2,@uni,@ins,@ing,@pre1,@pre2,@obsSol,@codApro,@estDet,@obsApro,@codMat,@codAreaM,@codTipM,@codSC,@estRen,@codRen,@obsRen,@codDC,@nroO,@comp)	
+	insert into TDetSolCaja(cant1,cant2,uniMed,insumo,ingreso,prec1,prec2,obsSol,codApro,estDet,obsApro,codMat,codAreaM,codTipM,codSC,estRen,codRen,obsRen,codDC,nroOtros,compCheck,fecha,compRen) 
+		values(@can1,@can2,@uni,@ins,@ing,@pre1,@pre2,@obsSol,@codApro,@estDet,@obsApro,@codMat,@codAreaM,@codTipM,@codSC,@estRen,@codRen,@obsRen,@codDC,@nroO,@comp,@fec,@comp1)	
 	SET @Identity = @@Identity
 	
 	RETURN  @Identity

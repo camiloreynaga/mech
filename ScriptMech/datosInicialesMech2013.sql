@@ -118,12 +118,15 @@ GO
 --UPDATE TTipoTransac SET TIPO='SALIDA' WHERE CODTRANS=2
 --UPDATE TTipoTransac SET TIPO='INGRESO' WHERE CODTRANS=1
 
---*****************************************************
---------------------EJECUTAR 12/09/2013----------------------
---*****************************************************
 insert TTipoMovCaja(tipoMov) values ('INGRESO')--1
 insert TTipoMovCaja(tipoMov) values ('EGRESO')--2
 GO
 --select * from TTipoMovCaja
--- update TTipoMovCaja set tipoMov='INGRESO' where codTM=1
--- update TTipoMovCaja set tipoMov='EGRESO' where codTM=2
+
+--*****************************************************
+--------------------EJECUTAR 04/10/2013----------------------
+--*****************************************************
+insert TTipoMovimiento(tipoMov) values ('EGRESO')--1
+insert TTipoMovimiento(tipoMov) values ('INGRESO')--2
+GO
+--select * from TTipoMovimiento

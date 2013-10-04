@@ -167,7 +167,7 @@ Public Class procesarIngresoCajaChicaForm
         With dgTabla2
             .Columns(0).Visible = False
             .Columns(1).HeaderText = "Movimiento"
-            .Columns(1).Width = 135
+            .Columns(1).Width = 140
             .Columns(2).HeaderText = "Fecha"
             .Columns(2).Width = 70
             .Columns(3).HeaderText = "NºDes"
@@ -179,7 +179,8 @@ Public Class procesarIngresoCajaChicaForm
             .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(5).DefaultCellStyle.Format = "#,##0.00"
             .Columns(6).HeaderText = "NºSol"
-            .Columns(6).Width = 60
+            .Columns(6).Width = 50
+            .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns(7).HeaderText = ""
             .Columns(7).Width = 25
             .Columns(8).Width = 80

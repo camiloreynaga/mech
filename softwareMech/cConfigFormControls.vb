@@ -42,6 +42,29 @@ Public Class cConfigFormControls
 
 
     End Sub
+    ''' <summary>
+    ''' Configurar color de controles seleccionados
+    ''' </summary>
+    ''' <param name="pControl">Nombre de Control Ej. Label</param>
+    ''' <param name="contenedor">Nombre de contenedor panel</param>
+    ''' <param name="pColor">Color</param>
+    ''' <remarks></remarks>
+    Public Sub configurarColorControlPanel(ByVal pControl As String, ByVal contenedor As Panel, ByVal pColor As Color)
+
+        For index As Integer = 0 To contenedor.Controls.Count - 1
+
+
+            Dim tipo As String = contenedor.Controls(index).GetType().ToString()
+            If contenedor.Controls(index).GetType().ToString() = "System.Windows.Forms." & pControl Then
+
+                contenedor.Controls(index).ForeColor = pColor
+
+            End If
+        Next
+
+
+
+    End Sub
 
     ''' <summary>
     ''' Da formato numerico Ej 1,200.00

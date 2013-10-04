@@ -137,9 +137,8 @@ Public Class pantallaInicialForm
 
     Private Sub AccesoCajaChica()
 
-        opcCaja4.Visible = False 'Mantenimiento de cajas
-
-        opcCaja6.Visible = True ' registro de requerimiento de caja
+        'opcCaja4.Visible = False 'Mantenimiento de cajas
+        'opcCaja6.Visible = True ' registro de requerimiento de caja
 
         'Consulta si el Usuario tiene acceso a Caja Chica
 
@@ -151,14 +150,19 @@ Public Class pantallaInicialForm
             opcCaja2.Visible = True 'Abrir fecha de caja
             opcCaja3.Visible = True 'modificar fecha de caja
             opcCaja5.Visible = True 'ingreso de dinero con Ord. Desembolso
+            opcCaja8.Visible = True 'Egreso Dinero Caja Solicitante
+            opcCaja10.Visible = True 'Aprobar rendicion de cuentas
 
+            ToolStripSeparator21.Visible = True
             ToolStripSeparator22.Visible = True
         Else
             opcCaja1.Visible = False 'apertura orden de desembolso
             opcCaja2.Visible = False 'Abrir fecha de caja
             opcCaja3.Visible = False 'modificar fecha de caja
             opcCaja5.Visible = False 'ingreso de dinero con Ord. Desembolso
-
+            opcCaja8.Visible = False  'Egreso Dinero Caja Solicitante
+            opcCaja10.Visible = False  'Aprobar rendicion de cuentas
+            ToolStripSeparator21.Visible = False
             ToolStripSeparator22.Visible = False
         End If
 
@@ -414,6 +418,7 @@ Public Class pantallaInicialForm
 
         'Administración de caja chica
         opcCaja4.Visible = True 'Mantenimiento de cajas
+        opcCaja7.Visible = True 'Parobar requerimiento
 
     End Sub
 
@@ -474,6 +479,8 @@ Public Class pantallaInicialForm
     ''' <remarks></remarks>
     Private Sub PermisosAdmSistema()
         'Administración de caja chica
+
+        opcCaja7.Visible = True 'Aprobar requerimiento cajas
         opcCaja4.Visible = True 'Mantenimiento de cajas
     End Sub
 
@@ -854,18 +861,6 @@ Public Class pantallaInicialForm
         frmGastDia.Show()
     End Sub
 
-    Private Sub opcCaja2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja2.Click
-        Dim dia As New AperturaDiaCajaForm
-        dia.MdiParent = Me
-        dia.Show()
-    End Sub
-
-    Private Sub opcCaja3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja3.Click
-        Dim dia As New modificarDiaCajaForm
-        dia.MdiParent = Me
-        dia.Show()
-    End Sub
-
     Private Sub opcCaja4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja4.Click
         Dim mant As New MantCajaChicaForm
         mant.MdiParent = Me
@@ -984,5 +979,30 @@ Public Class pantallaInicialForm
         Dim mant As New procesarEgresoCajaChicaForm
         mant.MdiParent = Me
         mant.Show()
+    End Sub
+
+    Private Sub opcCaja2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja2.Click
+        Dim dia As New AperturaDiaCajaForm
+        dia.MdiParent = Me
+        dia.Show()
+    End Sub
+
+    Private Sub opcCaja3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja3.Click
+        Dim dia As New modificarDiaCajaForm
+        dia.MdiParent = Me
+        dia.Show()
+    End Sub
+
+    Private Sub opcCaja9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja9.Click
+        Dim mant As New rendicionCuentaCajaForm
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
+
+    Private Sub ClasificacionToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ClasificacionToolStripMenuItem.Click
+        Dim frmClas As New MantClasificacionEgresosForm
+        frmClas.MdiParent = Me
+        frmClas.Show()
+
     End Sub
 End Class

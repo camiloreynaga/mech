@@ -18,6 +18,21 @@
     <OptionStrict>Off</OptionStrict>
     <OptionInfer>On</OptionInfer>
     <ApplicationIcon>SSP1.ico</ApplicationIcon>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -183,17 +198,10 @@
     <Compile Include="crearMaterialForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="cReporting.vb" />
     <Compile Include="CrGastosDia.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CrGastosDia.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CrKardex.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CrKardex.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReport1.vb">
@@ -256,9 +264,6 @@
     <Compile Include="DataSetInformesCr.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetInformesCr.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSetInformesCr.vb">
       <DependentUpon>DataSetInformesCr.xsd</DependentUpon>
     </Compile>
     <Compile Include="entradaAlmacenGuiaMechForm.designer.vb">
@@ -345,6 +350,12 @@
     <Compile Include="jalarSolicitud1Form.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="jalarSolicitud2Form.designer.vb">
+      <DependentUpon>jalarSolicitud2Form.vb</DependentUpon>
+    </Compile>
+    <Compile Include="jalarSolicitud2Form.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="jalarSolicitudForm.designer.vb">
       <DependentUpon>jalarSolicitudForm.vb</DependentUpon>
     </Compile>
@@ -373,6 +384,12 @@
       <DependentUpon>MantCargoForm.vb</DependentUpon>
     </Compile>
     <Compile Include="MantCargoForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantClasificacionEgresosForm.Designer.vb">
+      <DependentUpon>MantClasificacionEgresosForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantClasificacionEgresosForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MantCuentas.Designer.vb">
@@ -545,6 +562,12 @@
       <DependentUpon>registraOrdenCompraForm.vb</DependentUpon>
     </Compile>
     <Compile Include="registraOrdenCompraForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rendicionCuentaCajaForm.Designer.vb">
+      <DependentUpon>rendicionCuentaCajaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="rendicionCuentaCajaForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReporteCardexForm.Designer.vb">
@@ -742,10 +765,6 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrGastosDia.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrKardex.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrKardex.vb</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.vb</LastGenOutput>
@@ -820,6 +839,9 @@
     <EmbeddedResource Include="jalarSolicitud1Form.resx">
       <DependentUpon>jalarSolicitud1Form.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="jalarSolicitud2Form.resx">
+      <DependentUpon>jalarSolicitud2Form.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="jalarSolicitudForm.resx">
       <DependentUpon>jalarSolicitudForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -834,6 +856,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MantCargoForm.resx">
       <DependentUpon>MantCargoForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantClasificacionEgresosForm.resx">
+      <DependentUpon>MantClasificacionEgresosForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MantCuentas.resx">
       <DependentUpon>MantCuentas.vb</DependentUpon>
@@ -918,6 +943,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="registraOrdenCompraForm.resx">
       <DependentUpon>registraOrdenCompraForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rendicionCuentaCajaForm.resx">
+      <DependentUpon>rendicionCuentaCajaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReporteCardexForm.resx">
       <DependentUpon>ReporteCardexForm.vb</DependentUpon>
@@ -1028,6 +1056,28 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -393,7 +393,7 @@ create table TPagoDesembolso
 	montoD decimal(10,2), --monto detraccion
 	idOP int,
 	idCue int default 0,  --cuenta banco  0=sin cuenta
-	vanCaja int default 0,	--vandera pa saber si gue procesado en caja chica 1=Procesado
+	vanCaja int default 0,	--vandera pa saber si gue procesado en caja chica 1=Procesado 2=Cerrado
 	codTipCla int default 1, --Varios=1
 	vanEgreso int default 0, --0=Egreso 1=NO egreso
 	idSesM int int default 1, -- mes improvisado pa todos los ingresos anteriores
@@ -691,12 +691,20 @@ create table TDetSolCaja
 	codRen int, --personal revisa rendicion
 	obsRen varchar(200), --obs del que revisa
 	codDC int, -- cod detalle doc. de compra factura boleta, etc.
-	nroOtros varchar(30), --nro de otro doc recibo ticket
+	nroOtros varchar(30), --nro de doc rendicion
 	compCheck int, -- 1=factura 2=BV  3=Honorarios 4=otros Recibos ticket 
+	fecha varchar(10) default '', -- temporal fecha Doc. Rendicion
+	compRen int default 0, --1=factura 2=BV  3=Honorarios 4=otros Recibos ticket RENDICION
 	foreign key(codAreaM) references TAreaMat,
 	foreign key(codTipM) references TTipoMat,
 	foreign key (codSC) references TSolicitudCaja
 )
+
+--select * from TDetSolCaja
+--aumentar campos a la estructura de nuestra base de datos
+--ALTER TABLE TDetSolCaja ADD fecha varchar(10) default ''
+--ALTER TABLE TDetSolCaja ADD compRen int default 0
+--update TDetSolCaja set fecha='', compRen=0
 
 --DROP table TTipoMovCaja
 create table TTipoMovCaja
@@ -740,7 +748,7 @@ create table TMovimientoCaja
 )
 
 -------MODULO INGRESOS EGRESOS(DESEMBOLSOS) MECH------
------------------EJECUTAR 23/09/2013------------------
+-----------------EJECUTAR 04/10/2013------------------
 ------------------------------------------------------
 create table TMes
 (	idMes int identity primary key,

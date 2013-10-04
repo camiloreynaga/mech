@@ -866,6 +866,7 @@ Public Class salidaAlmacenMechForm
 
         vCodProd = BindingSource4.Item(BindingSource4.Position)(17)
         vCodUbi = BindingSource4.Item(BindingSource4.Position)(19)
+        'vParam1 = "Nº " & BindingSource6.Item(BindingSource6.Position)(2) & "-MECH-" & CDate(BindingSource6.Item(BindingSource6.Position)(4)).Year
 
         Dim informe As New ReportViewerKardex1Form
         informe.ShowDialog()

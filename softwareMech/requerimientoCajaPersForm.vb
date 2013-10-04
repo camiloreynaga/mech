@@ -150,6 +150,10 @@ Public Class requerimientoCajaPersForm
                 txtEst.BackColor = Color.Green
                 txtEst.ForeColor = Color.White
             End If
+            If BindingSource1.Item(BindingSource1.Position)(6) = 2 Then 'Procesado
+                txtEst.BackColor = Color.Red
+                txtEst.ForeColor = Color.White
+            End If
         End If
     End Sub
 
@@ -325,6 +329,9 @@ Public Class requerimientoCajaPersForm
         btnNuevo.ForeColor = ForeColorButtom
         btnAnula.ForeColor = ForeColorButtom
         btnCancelar.ForeColor = ForeColorButtom
+        btnSol.ForeColor = ForeColorButtom
+        btnProcesa.ForeColor = ForeColorButtom
+        btnCrear.ForeColor = ForeColorButtom
         btnImprimir.ForeColor = ForeColorButtom
     End Sub
 
@@ -350,7 +357,8 @@ Public Class requerimientoCajaPersForm
     End Sub
 
     Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
-        'dgTabla1.Dispose()
+        dgTabla1.Dispose()
+        dgTabla2.Dispose()
         Me.Close()
     End Sub
 
@@ -598,6 +606,17 @@ Public Class requerimientoCajaPersForm
             Exit Sub
         End If
 
+        If BindingSource1.Item(BindingSource1.Position)(6) = 2 Then
+            MessageBox.Show("No se puede actualizar SOLICITUD de requerimientos" & Chr(13) & "por estar <PROCESADO>", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
+            Exit Sub
+        End If
+
+        If recuperarEstado(BindingSource1.Item(BindingSource1.Position)(0)) = 2 Then '2=pROCESADO egreso caja
+            MessageBox.Show("Proceso Denegado, Solicitud ya se Proceso en EGRESO de dinero...", nomNegocio, Nothing, MessageBoxIcon.Stop)
+            Me.Close()
+            Exit Sub
+        End If
+
         If vfModificar = "modificar" Then
             vfModificar = "actualizar"
             btnModificar.Text = "Actualizar"
@@ -824,7 +843,13 @@ Public Class requerimientoCajaPersForm
         End If
 
         If BindingSource1.Item(BindingSource1.Position)(6) > 1 Then
-            MessageBox.Show("Proceso denegado, en agregar requerimiento por estar en el estado de <APROBADO>", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
+            MessageBox.Show("Proceso denegado, en agregar requerimiento por NO estar en el estado de <APROBADO>", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
+            Exit Sub
+        End If
+
+        If recuperarEstado(BindingSource1.Item(BindingSource1.Position)(0)) = 2 Then '2=pROCESADO egreso caja
+            MessageBox.Show("Proceso Denegado, Solicitud ya se Proceso en EGRESO de dinero...", nomNegocio, Nothing, MessageBoxIcon.Stop)
+            Me.Close()
             Exit Sub
         End If
 
@@ -842,7 +867,7 @@ Public Class requerimientoCajaPersForm
 
         If vfOpc = 2 Then 'Insumo estructurado
             If BindingSource3.Find("codMat", BindingSource4.Item(BindingSource4.Position)(0)) >= 0 Then
-                MessageBox.Show("Ya exíste requerimiento: " & BindingSource3.Item(BindingSource3.Position)(3), nomNegocio, Nothing, MessageBoxIcon.Information)
+                MessageBox.Show("Ya exíste requerimiento: " & BindingSource4.Item(BindingSource4.Position)(1), nomNegocio, Nothing, MessageBoxIcon.Information)
                 txtBuscar.Focus()
                 txtBuscar.SelectAll()
                 Exit Sub
@@ -987,12 +1012,12 @@ Public Class requerimientoCajaPersForm
         cmInserTable2.CommandText = "PA_InsertDetSolCaja"
         cmInserTable2.Connection = Cn
         cmInserTable2.Parameters.Add("@can1", SqlDbType.Decimal, 0).Value = cant
-        cmInserTable2.Parameters.Add("@can2", SqlDbType.Decimal, 0).Value = 0 'precio real
+        cmInserTable2.Parameters.Add("@can2", SqlDbType.Decimal, 0).Value = cant
         cmInserTable2.Parameters.Add("@uni", SqlDbType.VarChar, 20).Value = uni
         cmInserTable2.Parameters.Add("@ins", SqlDbType.VarChar, 200).Value = insumo
         cmInserTable2.Parameters.Add("@ing", SqlDbType.Int, 0).Value = 0 '0=normal, 1=improvisado
         cmInserTable2.Parameters.Add("@pre1", SqlDbType.Decimal, 0).Value = precio
-        cmInserTable2.Parameters.Add("@pre2", SqlDbType.Decimal, 0).Value = 0
+        cmInserTable2.Parameters.Add("@pre2", SqlDbType.Decimal, 0).Value = precio
         cmInserTable2.Parameters.Add("@obsSol", SqlDbType.VarChar, 200).Value = txtNota.Text
         cmInserTable2.Parameters.Add("@codApro", SqlDbType.Int, 0).Value = 0 'No se aprobo todabia
         cmInserTable2.Parameters.Add("@estDet", SqlDbType.Int, 0).Value = 0 'pendiente
@@ -1007,6 +1032,8 @@ Public Class requerimientoCajaPersForm
         cmInserTable2.Parameters.Add("@codDC", SqlDbType.Int, 0).Value = 0
         cmInserTable2.Parameters.Add("@nroO", SqlDbType.VarChar, 30).Value = ""
         cmInserTable2.Parameters.Add("@comp", SqlDbType.Int, 0).Value = compro
+        cmInserTable2.Parameters.Add("@fec", SqlDbType.VarChar, 10).Value = ""
+        cmInserTable2.Parameters.Add("@comp1", SqlDbType.Int, 0).Value = compro
         'configurando direction output = parametro de solo salida
         cmInserTable2.Parameters.Add("@Identity", SqlDbType.Int, 0)
         cmInserTable2.Parameters("@Identity").Direction = ParameterDirection.Output
@@ -1160,6 +1187,14 @@ Public Class requerimientoCajaPersForm
         End If
     End Sub
 
+    Private Function recuperarEstDet(ByVal cod As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select estDet from TDetSolCaja where codDetSol=" & cod
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
     Private Sub ToolStripButton5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton5.Click
         If BindingSource3.Position = -1 Then
             StatusBarClass.messageBarraEstado("  No Existe Insumo a Eliminar...")
@@ -1168,6 +1203,12 @@ Public Class requerimientoCajaPersForm
 
         If BindingSource3.Item(BindingSource3.Position)(21) = 1 Then '1=Aprobado 0=Pendiente 2=Observado
             MessageBox.Show("Proceso denegado, por estar en el estado de [APROBADO]", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        If recuperarEstDet(BindingSource3.Item(BindingSource3.Position)(0)) = 1 Then '1=Aprobado
+            MessageBox.Show("Proceso denegado, por estar en el estado de [APROBADO]", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Me.Close()
             Exit Sub
         End If
 
@@ -1246,6 +1287,15 @@ Public Class requerimientoCajaPersForm
         cmDeleteTable12.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource3.Item(BindingSource3.Position)(0)
     End Sub
 
+    Private Function recuperarEstDet1(ByVal cod As Integer, ByVal myTrans As SqlTransaction) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select estDet from TDetSolCaja where codDetSol=" & cod
+        cmdCampo.Connection = Cn
+        cmdCampo.Transaction = myTrans
+        Return cmdCampo.ExecuteScalar
+    End Function
+
     Private Sub TSModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSModificar.Click
         If BindingSource1.Item(BindingSource1.Position)(6) = 1 Then
             MessageBox.Show("No se puede actualizar requerimientos por estar en el estado de <APROBADO>", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
@@ -1259,14 +1309,23 @@ Public Class requerimientoCajaPersForm
 
         Dim vCom As Boolean = False
         For j As Short = 0 To BindingSource3.Count - 1
-            If BindingSource3.Item(j)(21) = 0 Or BindingSource3.Item(j)(21) = 2 Then '0=pendiente 2=observado
+            If recuperarEstDet(BindingSource3.Item(j)(0)) = 0 Or recuperarEstDet(BindingSource3.Item(j)(0)) = 2 Then '0=pendiente 2=observado
                 vCom = True
                 Exit For
             End If
         Next
 
+        'Dim vCom As Boolean = False
+        'For j As Short = 0 To BindingSource3.Count - 1
+        '    If BindingSource3.Item(j)(21) = 0 Or BindingSource3.Item(j)(21) = 2 Then '0=pendiente 2=observado
+        '        vCom = True
+        '        Exit For
+        '    End If
+        'Next
+
         If vCom = False Then
             MessageBox.Show("Proceso denegado en actualizar modificaciones, por estar en el estado de [APROBADO]", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Me.Close()
             Exit Sub
         End If
 
@@ -1286,7 +1345,7 @@ Public Class requerimientoCajaPersForm
             StatusBarClass.messageBarraEstado("  ESPERE POR FAVOR, ACTUALIZANDO INFORMACION....")
 
             For j As Short = 0 To BindingSource3.Count - 1
-                If BindingSource3.Item(j)(21) = 0 Or BindingSource3.Item(j)(21) = 2 Then '0=pendiente  2=Observado
+                If recuperarEstDet1(BindingSource3.Item(j)(0), myTrans) = 0 Or recuperarEstDet1(BindingSource3.Item(j)(0), myTrans) = 2 Then '0=pendiente  2=Observado
                     'actualizando TDetalleSol
                     comandoUpdate15(BindingSource3.Item(j)(3).ToString().Trim(), BindingSource3.Item(j)(1), BindingSource3.Item(j)(4), BindingSource3.Item(j)(9).ToString().Trim(), BindingSource3.Item(j)(0))
                     cmdUpdateTable15.Transaction = myTrans
@@ -1344,11 +1403,13 @@ Public Class requerimientoCajaPersForm
     Private Sub comandoUpdate15(ByVal insumo As String, ByVal can As Decimal, ByVal pre As Decimal, ByVal obs As String, ByVal codDetS As Integer)
         cmdUpdateTable15 = New SqlCommand
         cmdUpdateTable15.CommandType = CommandType.Text
-        cmdUpdateTable15.CommandText = "update TDetSolCaja set insumo=@ins,cant1=@can,prec1=@pre,obsSol=@obs where codDetSol=@cod"
+        cmdUpdateTable15.CommandText = "update TDetSolCaja set insumo=@ins,cant1=@can,cant2=@can2,prec1=@pre,prec2=@pre2,obsSol=@obs where codDetSol=@cod"
         cmdUpdateTable15.Connection = Cn
         cmdUpdateTable15.Parameters.Add("@ins", SqlDbType.VarChar, 200).Value = insumo
         cmdUpdateTable15.Parameters.Add("@can", SqlDbType.Decimal, 0).Value = can
+        cmdUpdateTable15.Parameters.Add("@can2", SqlDbType.Decimal, 0).Value = can
         cmdUpdateTable15.Parameters.Add("@pre", SqlDbType.Decimal, 0).Value = pre
+        cmdUpdateTable15.Parameters.Add("@pre2", SqlDbType.Decimal, 0).Value = pre
         cmdUpdateTable15.Parameters.Add("@obs", SqlDbType.VarChar, 200).Value = obs
         cmdUpdateTable15.Parameters.Add("@cod", SqlDbType.Int, 0).Value = codDetS
     End Sub
@@ -1399,6 +1460,7 @@ Public Class requerimientoCajaPersForm
 
         If recuperarEstado(BindingSource1.Item(BindingSource1.Position)(0)) = 2 Then '2=Cerrado
             MessageBox.Show("Proceso Denegado, Solicitud ya se Proceso en EGRESO de dinero...", nomNegocio, Nothing, MessageBoxIcon.Stop)
+            Me.Close()
             Exit Sub
         End If
 
@@ -1471,5 +1533,137 @@ Public Class requerimientoCajaPersForm
         cmUpdateTable13.Connection = Cn
         cmUpdateTable13.Parameters.Add("@est", SqlDbType.Int, 0).Value = estado '3 = anulado
         cmUpdateTable13.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource1.Item(BindingSource1.Position)(0)
+    End Sub
+
+    Private Sub btnSol_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSol.Click
+        If BindingSource1.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe requerimiento de caja...")
+            Exit Sub
+        End If
+
+        vCod3 = BindingSource1.Item(BindingSource1.Position)(11) 'Codigo de obra
+        vCod1 = lbSol.Text.Trim()
+        vNroOrden = lbSol.SelectedValue
+        vCod2 = "0"  'retornar el idSol de solicitud
+
+        Dim jala As New jalarSolicitud2Form
+        jala.ShowDialog()
+
+        visualizarDet()
+        leerMontos()
+
+        'If CInt(vCod2) > 0 Then 'con solicitud
+        '    txtNroSol.Text = recuperarIdSol(vCod2)
+        'Else
+
+        'End If
+    End Sub
+
+    Private Function recuperarIdSol(ByVal idSol As Integer) As String
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select case when nroS<100 then '000'+ltrim(str(nroS)) when nroS>=100 and nroS<1000 then '00'+ltrim(str(nroS)) else '0'+ltrim(str(nroS)) end + ' - ' + ltrim(str(year(fecSol))) from TSolicitud where idSol=" & idSol
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
+    Private Sub btnMod_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMod.Click
+        If BindingSource1.Item(BindingSource1.Position)(6) = 1 Then
+            MessageBox.Show("No se puede actualizar requerimientos por estar en el estado de <APROBADO>", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
+            Exit Sub
+        End If
+
+        If BindingSource3.Count = 0 Then
+            StatusBarClass.messageBarraEstado("  NO EXISTE REGISTRO A PROCESAR...")
+            Exit Sub
+        End If
+
+        Dim vCom As Boolean = False
+        If BindingSource3.Item(BindingSource3.Position)(21) = 0 Or BindingSource3.Item(BindingSource3.Position)(21) = 2 Then '0=pendiente 2=observado
+            vCom = True
+        End If
+
+        If vCom = False Then
+            MessageBox.Show("Proceso denegado en actualizar modificaciones, por estar en el estado de [APROBADO]", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+
+        Dim resp As Short = MessageBox.Show("Esta segúro de cambiar comprobante: " & BindingSource3.Item(BindingSource3.Position)(6) & " por: " & cbCompro.Text, nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resp <> 6 Then
+            Exit Sub
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+        Me.Refresh()
+        Dim finalMytrans As Boolean = False
+        Dim myTrans As SqlTransaction = Cn.BeginTransaction()
+        Dim wait As New waitForm
+        wait.Show()
+        Try
+            StatusBarClass.messageBarraEstado("  ESPERE POR FAVOR, ACTUALIZANDO INFORMACION....")
+
+            Dim compro As Short
+            If cbCompro.SelectedIndex = 0 Then 'factura
+                compro = 1
+            End If
+            If cbCompro.SelectedIndex = 1 Then 'boleta
+                compro = 2
+            End If
+            If cbCompro.SelectedIndex = 2 Then 'honorarios
+                compro = 3
+            End If
+            If cbCompro.SelectedIndex = 3 Then 'otros
+                compro = 4
+            End If
+
+            'actualizando TDetalleSol
+            comandoUpdate16(compro, BindingSource3.Item(BindingSource3.Position)(0))
+            cmdUpdateTable16.Transaction = myTrans
+            If cmdUpdateTable16.ExecuteNonQuery() < 1 Then
+                wait.Close()
+                Me.Cursor = Cursors.Default
+                'deshace la transaccion
+                myTrans.Rollback()
+                MessageBox.Show("ERROR DE CONCURRENCIA, VUELVA A EJECUTAR LA INTERFAZ." & Chr(13) & "No se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+
+            'confirma la transaccion
+            myTrans.Commit()    'con exito RAS
+            finalMytrans = True
+            StatusBarClass.messageBarraEstado("  LOS DATOS FUERON ACTUALIZADOS CON EXITO...")
+
+            visualizarDet()
+            leerMontos()
+
+            StatusBarClass.messageBarraEstado("  Registros fué actualizado con exito...")
+            wait.Close()
+            Me.Cursor = Cursors.Default
+        Catch f As Exception
+            wait.Close()
+            Me.Cursor = Cursors.Default
+            If finalMytrans Then
+                MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            Else
+                myTrans.Rollback()
+                MessageBox.Show(f.Message & Chr(13) & "NO SE ACTUALIZO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+        End Try
+    End Sub
+
+    Dim cmdUpdateTable16 As SqlCommand
+    Private Sub comandoUpdate16(ByVal compCheck As Integer, ByVal codDetS As Integer)
+        cmdUpdateTable16 = New SqlCommand
+        cmdUpdateTable16.CommandType = CommandType.Text
+        cmdUpdateTable16.CommandText = "update TDetSolCaja set compCheck=@comp,compRen=@comp1 where codDetSol=@cod"
+        cmdUpdateTable16.Connection = Cn
+        cmdUpdateTable16.Parameters.Add("@comp", SqlDbType.Int, 0).Value = compCheck
+        cmdUpdateTable16.Parameters.Add("@comp1", SqlDbType.Int, 0).Value = compCheck
+        cmdUpdateTable16.Parameters.Add("@cod", SqlDbType.Int, 0).Value = codDetS
     End Sub
 End Class

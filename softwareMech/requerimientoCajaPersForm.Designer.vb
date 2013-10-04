@@ -84,6 +84,8 @@ Partial Class requerimientoCajaPersForm
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator
         Me.dgTabla2 = New System.Windows.Forms.DataGridView
         Me.Panel4 = New System.Windows.Forms.Panel
+        Me.btnMod = New ComponentesSolucion2008.BottomSSP(Me.components)
+        Me.btnSol = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Label16 = New System.Windows.Forms.Label
         Me.cbCompro = New System.Windows.Forms.ComboBox
         Me.Label15 = New System.Windows.Forms.Label
@@ -298,7 +300,7 @@ Partial Class requerimientoCajaPersForm
         '
         Me.txtEst.Location = New System.Drawing.Point(126, 25)
         Me.txtEst.Name = "txtEst"
-        Me.txtEst.Size = New System.Drawing.Size(78, 20)
+        Me.txtEst.Size = New System.Drawing.Size(86, 20)
         Me.txtEst.TabIndex = 4
         Me.txtEst.TabStop = False
         '
@@ -746,12 +748,14 @@ Partial Class requerimientoCajaPersForm
         Me.dgTabla2.Name = "dgTabla2"
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgTabla2.Size = New System.Drawing.Size(888, 232)
+        Me.dgTabla2.Size = New System.Drawing.Size(889, 232)
         Me.dgTabla2.TabIndex = 15
         '
         'Panel4
         '
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel4.Controls.Add(Me.btnMod)
+        Me.Panel4.Controls.Add(Me.btnSol)
         Me.Panel4.Controls.Add(Me.Label16)
         Me.Panel4.Controls.Add(Me.cbCompro)
         Me.Panel4.Controls.Add(Me.Label15)
@@ -777,6 +781,33 @@ Partial Class requerimientoCajaPersForm
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(890, 230)
         Me.Panel4.TabIndex = 2
+        '
+        'btnMod
+        '
+        Me.btnMod.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnMod.Image = CType(resources.GetObject("btnMod.Image"), System.Drawing.Image)
+        Me.btnMod.Location = New System.Drawing.Point(656, 13)
+        Me.btnMod.Name = "btnMod"
+        Me.btnMod.Size = New System.Drawing.Size(25, 23)
+        Me.btnMod.TabIndex = 328
+        Me.btnMod.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.btnMod, "Modificar comprobante de compra a rendir cuentas...")
+        Me.btnMod.UseVisualStyleBackColor = True
+        '
+        'btnSol
+        '
+        Me.btnSol.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnSol.Image = CType(resources.GetObject("btnSol.Image"), System.Drawing.Image)
+        Me.btnSol.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnSol.Location = New System.Drawing.Point(25, 50)
+        Me.btnSol.Name = "btnSol"
+        Me.btnSol.Size = New System.Drawing.Size(130, 23)
+        Me.btnSol.TabIndex = 327
+        Me.btnSol.TabStop = False
+        Me.btnSol.Text = "Requer. de Obra"
+        Me.btnSol.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolTip1.SetToolTip(Me.btnSol, "Seleccionar Solicitud de requerimiento de obra...")
+        Me.btnSol.UseVisualStyleBackColor = True
         '
         'Label16
         '
@@ -1205,5 +1236,7 @@ Partial Class requerimientoCajaPersForm
     Friend WithEvents txtTotBol As System.Windows.Forms.TextBox
     Friend WithEvents cbSede As System.Windows.Forms.ComboBox
     Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents btnSol As ComponentesSolucion2008.BottomSSP
+    Friend WithEvents btnMod As ComponentesSolucion2008.BottomSSP
 
 End Class

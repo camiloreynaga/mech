@@ -65,15 +65,15 @@ Public Class procesarEgresoCajaChicaForm
             Navigator2.BindingSource = BindingSource3
             dgTabla2.DataSource = BindingSource3
             BindingSource3.Sort = "nroMC"
-            ModificarColumnasDGV()
 
             BindingSource4.DataSource = dsAlmacen
             BindingSource4.DataMember = "VDetSolCaja"
+            Navigator3.BindingSource = BindingSource4
+            dgTabla3.DataSource = BindingSource4
             BindingSource4.Sort = "codAreaM,codDetSol"
+            ModificarColumnasDGV()
 
             configurarColorControl()
-
-            BindingSource1.MoveLast()
 
             lblMon1.DataBindings.Add("Text", BindingSource2, "simbolo")
             lblMon2.DataBindings.Add("Text", BindingSource2, "simbolo")
@@ -97,6 +97,7 @@ Public Class procesarEgresoCajaChicaForm
         leerMontos()
 
         txtFec.Text = vSFecCaja
+        panelAux.Visible = False  'ocultando el datagrid de detalle de requrimientos
     End Sub
 
     Private Function recuperarSumMontoSal(ByVal codSC As Integer) As Double
@@ -150,18 +151,34 @@ Public Class procesarEgresoCajaChicaForm
         dsAlmacen.Tables("VDetSolCaja").Clear()
         daDetDoc.SelectCommand.Parameters("@cod").Value = lbSol.SelectedValue 'BindingSource1.Item(BindingSource1.Position)(0)
         daDetDoc.Fill(dsAlmacen, "VDetSolCaja")
-        'colorearFila()
+        colorearFila()
         Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub colorearFila()
+        For j As Short = 0 To BindingSource4.Count - 1
+            If BindingSource4.Item(j)(21) = 1 Then 'Aprobado
+                dgTabla3.Rows(j).Cells(8).Style.BackColor = Color.Green 'Color.YellowGreen
+                dgTabla3.Rows(j).Cells(8).Style.ForeColor = Color.White
+            End If
+            If BindingSource4.Item(j)(21) = 2 Then 'Observado
+                dgTabla3.Rows(j).Cells(8).Style.BackColor = Color.Yellow
+                dgTabla3.Rows(j).Cells(8).Style.ForeColor = Color.Red
+            End If
+        Next
     End Sub
 
     Private Sub sumTotal()
         If BindingSource4.Position = -1 Then
+            txtTotal.Text = "0.00"
             txtTotFac.Text = "0.00"
             txtTotBol.Text = "0.00"
             txtTotHon.Text = "0.00"
             txtTotOtr.Text = "0.00"
             Exit Sub
         End If
+
+        txtTotal.Text = Format((dsAlmacen.Tables("VDetSolCaja").Compute("Sum(totPar)", Nothing)), "0,0.00")
 
         If BindingSource4.Find("compCheck", 1) <> -1 Then 'Factura
             txtTotFac.Text = Format((dsAlmacen.Tables("VDetSolCaja").Compute("Sum(totPar)", "compCheck=1")), "0,0.00")
@@ -244,6 +261,60 @@ Public Class procesarEgresoCajaChicaForm
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .RowHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
         End With
+        With dgTabla3
+            .Columns(0).Visible = False
+            .Columns(1).Width = 45
+            .Columns(1).HeaderText = "Cant."
+            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(1).ReadOnly = True 'NO editable
+            .Columns(2).Width = 45
+            .Columns(2).HeaderText = "Unid."
+            .Columns(2).ReadOnly = True 'NO editable
+            .Columns(3).HeaderText = "Descripción Insumo"
+            .Columns(3).Width = 340
+            .Columns(3).ReadOnly = True 'NO editable
+            .Columns(4).Width = 60
+            .Columns(4).HeaderText = "PrecUni"
+            .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(4).ReadOnly = True 'NO editable
+            .Columns(5).Width = 70
+            .Columns(5).HeaderText = "TotParcial"
+            .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(5).ReadOnly = True 'NO editable
+            .Columns(6).HeaderText = "Comprob."
+            .Columns(6).Width = 70
+            .Columns(6).ReadOnly = True 'NO editable
+            .Columns(7).HeaderText = "Area_Insumo"
+            .Columns(7).Width = 100
+            .Columns(7).ReadOnly = True 'NO editable
+            .Columns(8).HeaderText = "Estado"
+            .Columns(8).Width = 75
+            .Columns(8).ReadOnly = True 'NO editable
+            .Columns(9).Width = 200
+            .Columns(9).HeaderText = "Observacion solicitante"
+            .Columns(10).HeaderText = "Tipo_Insumo"
+            .Columns(10).Width = 100
+            .Columns(10).ReadOnly = True 'NO editable
+            .Columns(11).Width = 100
+            .Columns(11).HeaderText = "Verificador"
+            .Columns(11).ReadOnly = True 'NO editable
+            .Columns(12).Width = 300
+            .Columns(12).HeaderText = "Observacion verificador"
+            .Columns(12).ReadOnly = True 'NO editable
+            .Columns(13).Visible = False
+            .Columns(14).Visible = False
+            .Columns(15).Visible = False
+            .Columns(16).Visible = False
+            .Columns(17).Visible = False
+            .Columns(18).Visible = False
+            .Columns(19).Visible = False
+            .Columns(20).Visible = False
+            .Columns(21).Visible = False
+            .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
+            .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
+            .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
+            .RowHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
+        End With
     End Sub
 
     Private Sub configurarColorControl()
@@ -282,6 +353,7 @@ Public Class procesarEgresoCajaChicaForm
         lblMon4.ForeColor = ForeColorLabel
         btnPro.ForeColor = ForeColorButtom
         btnVis.ForeColor = ForeColorButtom
+        btnVerDet.ForeColor = ForeColorButtom
         btnCerrar.ForeColor = ForeColorButtom
     End Sub
 
@@ -340,7 +412,9 @@ Public Class procesarEgresoCajaChicaForm
         '1=Aprobado  2=Procesado egreso acaj
         If estSol <> 1 Then  '1=Aprobado 
             If estSol <> 2 Then '2=Procesado egreso acaj
-
+                MessageBox.Show("Proceso denegado, se abortara...", nomNegocio, Nothing, MessageBoxIcon.Information)
+                Me.Close()
+                Exit Sub
             End If
         End If
 
@@ -377,6 +451,8 @@ Public Class procesarEgresoCajaChicaForm
         If resp <> 6 Then
             Exit Sub
         End If
+
+        panelAux.Visible = False  'ocultando el datagrid de detalle de requrimientos
 
         If CDbl(txtMon.Text) > recuperarSaldo1(cbCaja.SelectedValue) Then
             MessageBox.Show("No exíste saldo suficiente", nomNegocio, Nothing, MessageBoxIcon.Error)
@@ -545,6 +621,8 @@ Public Class procesarEgresoCajaChicaForm
             Exit Sub
         End If
 
+        panelAux.Visible = False  'ocultando el datagrid de detalle de requrimientos
+
         Me.Cursor = Cursors.WaitCursor
         dsAlmacen.Tables("VMovimientoCaja").Clear()
         daVKardex.SelectCommand.Parameters("@codDia").Value = vSCodDia
@@ -636,6 +714,8 @@ Public Class procesarEgresoCajaChicaForm
         If resp <> 6 Then
             Exit Sub
         End If
+
+        panelAux.Visible = False  'ocultando el datagrid de detalle de requrimientos
 
         nroMC = recuperarNroMC(BindingSource2.Item(BindingSource2.Position)(0))  'codCaj
         If BindingSource3.Item(BindingSource3.Position)(0) <> nroMC Then
@@ -761,5 +841,13 @@ Public Class procesarEgresoCajaChicaForm
 
     Private Sub cbCaja_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCaja.SelectedIndexChanged
         dsAlmacen.Tables("VMovimientoCaja").Clear()
+    End Sub
+
+    Private Sub btnVerDet_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnVerDet.Click
+        panelAux.Visible = True
+    End Sub
+
+    Private Sub ToolStripButton9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton9.Click
+        panelAux.Visible = False  'ocultando el datagrid de detalle de requrimientos
     End Sub
 End Class

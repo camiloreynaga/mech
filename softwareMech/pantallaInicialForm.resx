@@ -552,33 +552,47 @@
   <data name="opcCaja8.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAABfSURBVDhPtZJBCgAgCAR7uk/zZ8VWSnjSlYIOgTMt6hi/
+        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAABfSURBVDhPtZJBCgAgCAR7uk/zZ8VWSnjSlYIOgTMt6hi/
         jqpO2g2YFhhMCV64LIhw5i0ip0+Z4lgDeAs6sCVAjPL1BHfWZQE+9R50JHHZYhJqGV8JJQBkElpgkpYg
         BS+4c+lT280+LwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="opcCaja6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="opcCaja2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr4AAA6+AepCscAAAAB6SURBVDhPzZJRDoAwCEM5OjfHIU4ZA7pPSTCZhu61QvTH
-        kgFVNeQVESr7ES5FisHxWr8YVVtBwAZ9IZGE4BtnZkjRWlABZAVamDydFSiCctCUncga4kkOrQDKwP/j
-        9+pkK9E62BqPx9In3m/8bFjFAklKsd0aKebZ01x4VkpJgGViNgAAAABJRU5ErkJggg==
+        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAABsSURBVDhP7ZFdCsAwCIN7dI/mzbpFGpbK6FzfBhOKFszn
+        X2u/vdlAP5P1lbUhcvcOox+wgGTy9IfgTgwYIRM5Jy8qXwAksU1WzD63rx3EGGYWEHiNdX6FsKhuEgDd
+        CePwT+LKSbbPWIF/OecAuu/LceRW2k8AAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="opcCaja7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="opcCaja10.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAABASURBVDhPY2AYQPCfErtBmsk2YChqbmhogDl7kPsbmzNJ
         djq6BrKiDNkQsgwApVCSnY4tWZNtO7JhZMc70RkNACiHJ1uNOQzaAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="opcCaja2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="opcCaja6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAACZSURBVDhPlZIBDsAgCAN5Ok/zZ0zIYBUhUxIS4+ZRCkRF
-        CJFoVt+O7u4APCtpfqFnzJ+iK0DGGEu+sDPl/tgVMLNoAiSUTZM2j6yy/pweBkRmFNBQtwBQhZ4xOsgG
-        8EcZ4EqyPy0AqzsseWNt/AJwvBXAIJWJ2Er2ptzkPIVTDxCGszdlOboWuo2z+edR3mzpouK2etVarPED
-        rQhFTRu2t78AAAAASUVORK5CYII=
+        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAAB6SURBVDhPzZJRDoAwCEM5OjfHIU4ZA7pPSTCZhu61QvTH
+        kgFVNeQVESr7ES5FisHxWr8YVVtBwAZ9IZGE4BtnZkjRWlABZAVamDydFSiCctCUncga4kkOrQDKwP/j
+        9+pkK9E62BqPx9In3m/8bFjFAklKsd0aKebZ01x4VkpJgGViNgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="opcCaja9.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsAAAA7AAWrWiQkAAACESURBVDhPzZNhDoAgCIW9/6m4GclDFGYWWT9ia7LG+8BH
+        lfJhcGXJsx3MDMC/IFsTQWTXqUkKYkVSj3gCkeom6PoryDTREuBxbTuotYa2b/+iX8UE7hRjQviVe+EA
+        qxlMRPOZMHd0O4FktqOdoxFhmruvFlKB6EpjnprAG7jIX/03MPsAip8Km6/aiUsAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="opcCaja7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAABASURBVDhPY2AYQPCfErtBmsk2YChqbmhogDl7kPsbmzNJ
+        djq6BrKiDNkQsgwApVCSnY4tWZNtO7JhZMc70RkNACiHJ1uNOQzaAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="opcCaja4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

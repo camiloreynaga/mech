@@ -6,7 +6,7 @@ Module ConexionModule
     Public Sub conexion()
         Cn = New SqlConnection
         'Cn.ConnectionString = "Data Source=sv32.dbsqlserver.com,8888;Initial Catalog=BD_ConstrucMech;User Id=mech;password=mechcusco2013;Connection Timeout=59"
-        Cn.ConnectionString = "Data Source=.;Initial Catalog=BD_ConstrucMech;User Id=mech;password=mechcusco2013;Connection Timeout=59"
+        Cn.ConnectionString = "Data Source=192.168.1.45;Initial Catalog=BD_ConstrucMech;User Id=mech;password=mechcusco2013;Connection Timeout=59"
         Cn.Open()
     End Sub
 
@@ -20,3 +20,4 @@ Module ConexionModule
         End If
     End Sub
 End Module
+
