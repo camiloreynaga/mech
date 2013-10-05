@@ -43,6 +43,7 @@ Public Class pantallaInicialForm
         'Funciones recuperarTipoUsu... creado en el modulo varFuncPublicasModule
         vSTipoUsu = recuperarTipoUsu(vPass)          'Administrador almacen
         vSCodDia = recuperarCodDia(1, vSCodigo) 'estado=1  Abierto CAJA CHICA Dia
+        vSCodMes = recuperarCodMes(1, vSCodigo) 'estado=1  Abierto
 
         If vSCodDia = 0 Then
             Me.Text = "Cod.Lug=> " & vSCodigo & "   Lugar / Obra => " & vSNomSuc & "     " & vSTipoUsu & ": " & vSUsuario
@@ -155,6 +156,10 @@ Public Class pantallaInicialForm
 
             ToolStripSeparator21.Visible = True
             ToolStripSeparator22.Visible = True
+
+            ''Acceso a Ordenes de Desembolso
+            opcOrdDesApertura.Visible = False
+
         Else
             opcCaja1.Visible = False 'apertura orden de desembolso
             opcCaja2.Visible = False 'Abrir fecha de caja
@@ -247,6 +252,15 @@ Public Class pantallaInicialForm
         opcAlmS.Visible = False 'Salida Almacen
         infT2.Visible = False ' informe de gastos por dia
 
+
+        'mostrando apertura periodo mes
+        opcOrdDesAperturaMes.Visible = False
+
+        'mostrando clasificación egresos
+        opcClasifEgreso.Visible = False
+        'Linea separadora periodo mes / clasificación egresos
+        ToolStripSeparator23.Visible = False
+
         ToolStripSeparator5.Visible = False
         ToolStripSeparator1.Visible = False
         ToolStripSeparator3.Visible = False
@@ -295,6 +309,12 @@ Public Class pantallaInicialForm
         opcAlmE.Visible = False 'Entrada Almacen
         opcAlmS.Visible = False 'Salida Almacen
 
+        'mostrando apertura periodo mes
+        opcOrdDesAperturaMes.Visible = True
+        'mostrando clasificación egresos
+        opcClasifEgreso.Visible = True
+        'Linea separadora periodo mes / clasificación egresos
+        ToolStripSeparator23.Visible = True
 
         'separadores
         'ToolStripSeparator1.Visible = False
@@ -339,9 +359,25 @@ Public Class pantallaInicialForm
 
         infT2.Visible = False ' informe de gastos por dia
 
+
+        'mostrando apertura periodo mes
+        opcOrdDesAperturaMes.Visible = False
+
+        'mostrando clasificación egresos
+        opcClasifEgreso.Visible = False
+        'Linea separadora periodo mes / clasificación egresos
+        ToolStripSeparator23.Visible = False
+
+
         ToolStripSeparator9.Visible = False
 
+
+
+
         'ToolStripSeparator16.Visible = False
+
+
+
 
         'Separadores sub menú Configuración
         ToolStripSeparator13.Visible = False
@@ -387,6 +423,14 @@ Public Class pantallaInicialForm
 
         'infT2.Visible = False ' informe de gastos por dia
 
+        'mostrando apertura periodo mes
+        opcOrdDesAperturaMes.Visible = False
+
+        'mostrando clasificación egresos
+        opcClasifEgreso.Visible = False
+        'Linea separadora periodo mes / clasificación egresos
+        ToolStripSeparator23.Visible = False
+
         ToolStripSeparator9.Visible = True
 
         ToolStripSeparator20.Visible = False
@@ -420,6 +464,13 @@ Public Class pantallaInicialForm
         opcCaja4.Visible = True 'Mantenimiento de cajas
         opcCaja7.Visible = True 'Parobar requerimiento
 
+        'mostrando apertura periodo mes
+        opcOrdDesAperturaMes.Visible = True
+        'mostrando clasificación egresos
+        opcClasifEgreso.Visible = True
+        'Linea separadora periodo mes / clasificación egresos
+        ToolStripSeparator23.Visible = True
+
     End Sub
 
     Private Sub PermisosContabilidad()
@@ -445,6 +496,13 @@ Public Class pantallaInicialForm
 
         infT2.Visible = False ' informe de gastos por dia
 
+        'mostrando apertura periodo mes
+        opcOrdDesAperturaMes.Visible = True
+        'mostrando clasificación egresos
+        opcClasifEgreso.Visible = True
+        'Linea separadora periodo mes / clasificación egresos
+        ToolStripSeparator23.Visible = True
+
         'separadores
         'ToolStripSeparator1.Visible = False
         ToolStripSeparator3.Visible = False
@@ -463,6 +521,13 @@ Public Class pantallaInicialForm
         opcOrdDesRegPagos.Visible = False
 
         'Opciones
+        'mostrando apertura periodo mes
+        opcOrdDesAperturaMes.Visible = False
+
+        'mostrando clasificación egresos
+        opcClasifEgreso.Visible = False
+        'Linea separadora periodo mes / clasificación egresos
+        ToolStripSeparator23.Visible = False
 
         
 
@@ -482,6 +547,14 @@ Public Class pantallaInicialForm
 
         opcCaja7.Visible = True 'Aprobar requerimiento cajas
         opcCaja4.Visible = True 'Mantenimiento de cajas
+
+        'mostrando apertura periodo mes
+        opcOrdDesAperturaMes.Visible = True
+        'mostrando clasificación egresos
+        opcClasifEgreso.Visible = True
+        'Linea separadora periodo mes / clasificación egresos
+        ToolStripSeparator23.Visible = True
+
     End Sub
 
     Private Sub DesactivarMenuSudAdm()
@@ -661,7 +734,7 @@ Public Class pantallaInicialForm
         vSSerie = recuperarSerie(vPass)
         vSIniNroDoc = recuperarIniNro(vPass)
 
-        Dim mant As New MantOrdenDesembolsoForm1
+        Dim mant As New MantOrdenDesembolsoForm2
         mant.MdiParent = Me
         mant.Show()
     End Sub
@@ -697,7 +770,25 @@ Public Class pantallaInicialForm
     End Sub
 
     Private Sub opcOrdDes3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDesRegPagos.Click
-        Dim mant As New tesoreriaOrdenDesembolsoForm
+        If vSCodMes = 0 Then
+            MessageBox.Show("ACCESO DENEGADO, MES NO FUE APERTURADO...", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        Dim codMesAux As Integer = recuperarCodMes(1, vSCodigo) 'estado=1  Abierto
+        If vSCodMes <> codMesAux Then
+            If codMesAux = 0 Then
+                MessageBox.Show("PROCESO DENEGADO, FUE CERRADO MES...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                End
+                Exit Sub
+            Else
+                MessageBox.Show("PROCESO DENEGADO, FUE APERTURADO OTRO MES...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                End
+                Exit Sub
+            End If
+        End If
+
+        Dim mant As New tesoreriaOrdenDesembolso1Form
         mant.MdiParent = Me
         mant.Show()
     End Sub
@@ -999,10 +1090,15 @@ Public Class pantallaInicialForm
         mant.Show()
     End Sub
 
-    Private Sub ClasificacionToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ClasificacionToolStripMenuItem.Click
-        Dim frmClas As New MantClasificacionEgresosForm
-        frmClas.MdiParent = Me
-        frmClas.Show()
+    Private Sub opcOrdDesAperturaMes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDesAperturaMes.Click
+        Dim mant As New MantSesionMesForm
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
 
+    Private Sub opcClasifEgreso_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcClasifEgreso.Click
+        Dim mant As New MantClasificacionEgresosForm
+        mant.MdiParent = Me
+        mant.Show()
     End Sub
 End Class

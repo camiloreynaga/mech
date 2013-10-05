@@ -62,6 +62,9 @@ Partial Class pantallaInicialForm
         Me.ToolStripSeparator6_2 = New System.Windows.Forms.ToolStripSeparator
         Me.opcOrdDesModPago = New System.Windows.Forms.ToolStripMenuItem
         Me.opcOrdDesCtasBco = New System.Windows.Forms.ToolStripMenuItem
+        Me.opcClasifEgreso = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripSeparator23 = New System.Windows.Forms.ToolStripSeparator
+        Me.opcOrdDesAperturaMes = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator16 = New System.Windows.Forms.ToolStripSeparator
         Me.opcCaja = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcCaja1 = New System.Windows.Forms.ToolStripMenuItem
@@ -128,7 +131,6 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.ClasificacionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -372,7 +374,7 @@ Partial Class pantallaInicialForm
         '
         'opcOrdDesembolso
         '
-        Me.opcOrdDesembolso.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrdDesApertura, Me.opcOrdDesAprobacion, Me.opcOrdDesRegPagos, Me.opcOrdDesConta, Me.ToolStripSeparator6_1, Me.opcOrdDesSeguimiento, Me.ToolStripSeparator6_2, Me.opcOrdDesModPago, Me.opcOrdDesCtasBco})
+        Me.opcOrdDesembolso.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrdDesApertura, Me.opcOrdDesAprobacion, Me.opcOrdDesRegPagos, Me.opcOrdDesConta, Me.ToolStripSeparator6_1, Me.opcOrdDesSeguimiento, Me.ToolStripSeparator6_2, Me.opcOrdDesModPago, Me.opcOrdDesCtasBco, Me.opcClasifEgreso, Me.ToolStripSeparator23, Me.opcOrdDesAperturaMes})
         Me.opcOrdDesembolso.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.opcOrdDesembolso.Image = CType(resources.GetObject("opcOrdDesembolso.Image"), System.Drawing.Image)
         Me.opcOrdDesembolso.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -457,6 +459,31 @@ Partial Class pantallaInicialForm
         Me.opcOrdDesCtasBco.Name = "opcOrdDesCtasBco"
         Me.opcOrdDesCtasBco.Size = New System.Drawing.Size(271, 22)
         Me.opcOrdDesCtasBco.Text = "Mant. Cuentas Bancarias"
+        '
+        'opcClasifEgreso
+        '
+        Me.opcClasifEgreso.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcClasifEgreso.ForeColor = System.Drawing.Color.Navy
+        Me.opcClasifEgreso.Image = CType(resources.GetObject("opcClasifEgreso.Image"), System.Drawing.Image)
+        Me.opcClasifEgreso.Name = "opcClasifEgreso"
+        Me.opcClasifEgreso.Size = New System.Drawing.Size(271, 22)
+        Me.opcClasifEgreso.Text = "Mant. Clasificación Egresos"
+        Me.opcClasifEgreso.ToolTipText = "Mantenimiento de clasificación y sub clasificación de Egresos"
+        '
+        'ToolStripSeparator23
+        '
+        Me.ToolStripSeparator23.Name = "ToolStripSeparator23"
+        Me.ToolStripSeparator23.Size = New System.Drawing.Size(268, 6)
+        '
+        'opcOrdDesAperturaMes
+        '
+        Me.opcOrdDesAperturaMes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcOrdDesAperturaMes.ForeColor = System.Drawing.Color.Navy
+        Me.opcOrdDesAperturaMes.Image = CType(resources.GetObject("opcOrdDesAperturaMes.Image"), System.Drawing.Image)
+        Me.opcOrdDesAperturaMes.Name = "opcOrdDesAperturaMes"
+        Me.opcOrdDesAperturaMes.Size = New System.Drawing.Size(271, 22)
+        Me.opcOrdDesAperturaMes.Text = "Aperturar Periodo Mes..."
+        Me.opcOrdDesAperturaMes.ToolTipText = "Aperturar Mes - Cerrar Mes "
         '
         'ToolStripSeparator16
         '
@@ -874,7 +901,7 @@ Partial Class pantallaInicialForm
         '
         'opcConfigurar
         '
-        Me.opcConfigurar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcConfObra, Me.ToolStripSeparator13, Me.opcConfSerieDesem, Me.opcConfSeriePersonal, Me.ToolStripSeparator10_1, Me.opcConfSerieGuia, Me.ToolStripSeparator14, Me.opcConfColorPantalla, Me.opcConfCambiarContra, Me.ToolStripSeparator10_2, Me.opcConfBkBD, Me.ClasificacionToolStripMenuItem})
+        Me.opcConfigurar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcConfObra, Me.ToolStripSeparator13, Me.opcConfSerieDesem, Me.opcConfSeriePersonal, Me.ToolStripSeparator10_1, Me.opcConfSerieGuia, Me.ToolStripSeparator14, Me.opcConfColorPantalla, Me.opcConfCambiarContra, Me.ToolStripSeparator10_2, Me.opcConfBkBD})
         Me.opcConfigurar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.opcConfigurar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.opcConfigurar.Image = CType(resources.GetObject("opcConfigurar.Image"), System.Drawing.Image)
@@ -1032,12 +1059,6 @@ Partial Class pantallaInicialForm
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'ClasificacionToolStripMenuItem
-        '
-        Me.ClasificacionToolStripMenuItem.Name = "ClasificacionToolStripMenuItem"
-        Me.ClasificacionToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
-        Me.ClasificacionToolStripMenuItem.Text = "Clasificacion"
-        '
         'pantallaInicialForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1167,5 +1188,7 @@ Partial Class pantallaInicialForm
     Friend WithEvents ToolStripSeparator22 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents opcCaja9 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents opcCaja10 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ClasificacionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator23 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents opcOrdDesAperturaMes As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents opcClasifEgreso As System.Windows.Forms.ToolStripMenuItem
 End Class

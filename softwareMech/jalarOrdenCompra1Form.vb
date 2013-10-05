@@ -15,7 +15,8 @@ Public Class jalarOrdenCompra1Form
         Dim wait As New waitForm
         wait.Show()
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select nroOrden,nroO,nro,fecOrden,razon,ruc,cuentaBan,nroSol,moneda,obra,obsFac,estado,codigo,idSol,codMon,simbolo,igv,calIGV,codIde,cuentaDet,forma from VOrdenTodoCad"
+        'Dim sele As String = "select nroOrden,nroO,nro,fecOrden,razon,ruc,cuentaBan,nroSol,moneda,obra,obsFac,estado,codigo,idSol,codMon,simbolo,igv,calIGV,codIde,cuentaDet,forma from VOrdenTodoCad"
+        Dim sele As String = "select nroOrden,nroO,nro,fecOrden,razon,ruc,cuentaBan,'' as nroSol,moneda,obra,obsFac,estado,codigo,idSol,codMon,simbolo,igv,calIGV,codIde,cuentaDet,forma from VOrdenNoEnlazada"
         crearDataAdapterTable(dTable4, sele)
         'dTable4.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vCod3  'codigo obra
 
@@ -388,6 +389,7 @@ Public Class jalarOrdenCompra1Form
         cmInserTable2.Parameters.Add("@fec", SqlDbType.VarChar, 10).Value = ""
         cmInserTable2.Parameters.Add("@hist", SqlDbType.VarChar, 200).Value = "Aperturo " & Now.Date & " " & vPass & "-" & vSUsuario
         cmInserTable2.Parameters.Add("@codSerO", SqlDbType.Int, 0).Value = vSCodSerO
+        cmInserTable2.Parameters.Add("@van", SqlDbType.Int, 0).Value = 1 'cbSubClas.SelectedValue 1=en blanco
         'configurando direction output = parametro de solo salida
         cmInserTable2.Parameters.Add("@Identity", SqlDbType.Int, 0)
         cmInserTable2.Parameters("@Identity").Direction = ParameterDirection.Output

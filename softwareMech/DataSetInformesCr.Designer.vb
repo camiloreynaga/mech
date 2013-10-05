@@ -36,6 +36,8 @@ Partial Public Class DataSetInformesCr
     
     Private tableDatosGastosDia As DatosGastosDiaDataTable
     
+    Private tableDatosSeguimientoDesem As DatosSeguimientoDesemDataTable
+    
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -77,6 +79,9 @@ Partial Public Class DataSetInformesCr
             End If
             If (Not (ds.Tables("DatosGastosDia")) Is Nothing) Then
                 MyBase.Tables.Add(New DatosGastosDiaDataTable(ds.Tables("DatosGastosDia")))
+            End If
+            If (Not (ds.Tables("DatosSeguimientoDesem")) Is Nothing) Then
+                MyBase.Tables.Add(New DatosSeguimientoDesemDataTable(ds.Tables("DatosSeguimientoDesem")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -137,6 +142,15 @@ Partial Public Class DataSetInformesCr
     Public ReadOnly Property DatosGastosDia() As DatosGastosDiaDataTable
         Get
             Return Me.tableDatosGastosDia
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property DatosSeguimientoDesem() As DatosSeguimientoDesemDataTable
+        Get
+            Return Me.tableDatosSeguimientoDesem
         End Get
     End Property
     
@@ -214,6 +228,9 @@ Partial Public Class DataSetInformesCr
             If (Not (ds.Tables("DatosGastosDia")) Is Nothing) Then
                 MyBase.Tables.Add(New DatosGastosDiaDataTable(ds.Tables("DatosGastosDia")))
             End If
+            If (Not (ds.Tables("DatosSeguimientoDesem")) Is Nothing) Then
+                MyBase.Tables.Add(New DatosSeguimientoDesemDataTable(ds.Tables("DatosSeguimientoDesem")))
+            End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
             Me.Namespace = ds.Namespace
@@ -273,6 +290,12 @@ Partial Public Class DataSetInformesCr
                 Me.tableDatosGastosDia.InitVars
             End If
         End If
+        Me.tableDatosSeguimientoDesem = CType(MyBase.Tables("DatosSeguimientoDesem"),DatosSeguimientoDesemDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableDatosSeguimientoDesem) Is Nothing) Then
+                Me.tableDatosSeguimientoDesem.InitVars
+            End If
+        End If
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -292,6 +315,8 @@ Partial Public Class DataSetInformesCr
         MyBase.Tables.Add(Me.tableDatosKardex)
         Me.tableDatosGastosDia = New DatosGastosDiaDataTable
         MyBase.Tables.Add(Me.tableDatosGastosDia)
+        Me.tableDatosSeguimientoDesem = New DatosSeguimientoDesemDataTable
+        MyBase.Tables.Add(Me.tableDatosSeguimientoDesem)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -316,6 +341,11 @@ Partial Public Class DataSetInformesCr
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
     Private Function ShouldSerializeDatosGastosDia() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+    Private Function ShouldSerializeDatosSeguimientoDesem() As Boolean
         Return false
     End Function
     
@@ -384,6 +414,8 @@ Partial Public Class DataSetInformesCr
     Public Delegate Sub DatosKardexRowChangeEventHandler(ByVal sender As Object, ByVal e As DatosKardexRowChangeEvent)
     
     Public Delegate Sub DatosGastosDiaRowChangeEventHandler(ByVal sender As Object, ByVal e As DatosGastosDiaRowChangeEvent)
+    
+    Public Delegate Sub DatosSeguimientoDesemRowChangeEventHandler(ByVal sender As Object, ByVal e As DatosSeguimientoDesemRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -2715,6 +2747,408 @@ Partial Public Class DataSetInformesCr
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
             attribute2.Name = "tableTypeName"
             attribute2.FixedValue = "DatosGastosDiaDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0"),  _
+     Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class DatosSeguimientoDesemDataTable
+        Inherits Global.System.Data.TypedTableBase(Of DatosSeguimientoDesemRow)
+        
+        Private columnestApro As Global.System.Data.DataColumn
+        
+        Private columnfecDes As Global.System.Data.DataColumn
+        
+        Private columnserie As Global.System.Data.DataColumn
+        
+        Private columnnroDes As Global.System.Data.DataColumn
+        
+        Private columnsimbolo As Global.System.Data.DataColumn
+        
+        Private columnestado_desembolso As Global.System.Data.DataColumn
+        
+        Private columnmonto As Global.System.Data.DataColumn
+        
+        Private columndetraccion As Global.System.Data.DataColumn
+        
+        Private columnobra As Global.System.Data.DataColumn
+        
+        Private columnproveedor As Global.System.Data.DataColumn
+        
+        Private columnbanco As Global.System.Data.DataColumn
+        
+        Private columnnroCta As Global.System.Data.DataColumn
+        
+        Private columnsolicitante As Global.System.Data.DataColumn
+        
+        Private columnruc As Global.System.Data.DataColumn
+        
+        Private columnestado As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "DatosSeguimientoDesem"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property estAproColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnestApro
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property fecDesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnfecDes
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property serieColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnserie
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nroDesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnroDes
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property simboloColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsimbolo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property estado_desembolsoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnestado_desembolso
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property montoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnmonto
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property detraccionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columndetraccion
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property obraColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnobra
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property proveedorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnproveedor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property bancoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnbanco
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nroCtaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnroCta
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property solicitanteColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsolicitante
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property rucColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnruc
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property estadoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnestado
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As DatosSeguimientoDesemRow
+            Get
+                Return CType(Me.Rows(index),DatosSeguimientoDesemRow)
+            End Get
+        End Property
+        
+        Public Event DatosSeguimientoDesemRowChanging As DatosSeguimientoDesemRowChangeEventHandler
+        
+        Public Event DatosSeguimientoDesemRowChanged As DatosSeguimientoDesemRowChangeEventHandler
+        
+        Public Event DatosSeguimientoDesemRowDeleting As DatosSeguimientoDesemRowChangeEventHandler
+        
+        Public Event DatosSeguimientoDesemRowDeleted As DatosSeguimientoDesemRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Overloads Sub AddDatosSeguimientoDesemRow(ByVal row As DatosSeguimientoDesemRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Overloads Function AddDatosSeguimientoDesemRow(ByVal estApro As String, ByVal fecDes As Date, ByVal serie As String, ByVal nroDes As String, ByVal simbolo As String, ByVal estado_desembolso As String, ByVal monto As Decimal, ByVal detraccion As Decimal, ByVal obra As String, ByVal proveedor As String, ByVal banco As String, ByVal nroCta As String, ByVal solicitante As String, ByVal ruc As String, ByVal estado As String) As DatosSeguimientoDesemRow
+            Dim rowDatosSeguimientoDesemRow As DatosSeguimientoDesemRow = CType(Me.NewRow,DatosSeguimientoDesemRow)
+            Dim columnValuesArray() As Object = New Object() {estApro, fecDes, serie, nroDes, simbolo, estado_desembolso, monto, detraccion, obra, proveedor, banco, nroCta, solicitante, ruc, estado}
+            rowDatosSeguimientoDesemRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowDatosSeguimientoDesemRow)
+            Return rowDatosSeguimientoDesemRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As DatosSeguimientoDesemDataTable = CType(MyBase.Clone,DatosSeguimientoDesemDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New DatosSeguimientoDesemDataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Sub InitVars()
+            Me.columnestApro = MyBase.Columns("estApro")
+            Me.columnfecDes = MyBase.Columns("fecDes")
+            Me.columnserie = MyBase.Columns("serie")
+            Me.columnnroDes = MyBase.Columns("nroDes")
+            Me.columnsimbolo = MyBase.Columns("simbolo")
+            Me.columnestado_desembolso = MyBase.Columns("estado_desembolso")
+            Me.columnmonto = MyBase.Columns("monto")
+            Me.columndetraccion = MyBase.Columns("detraccion")
+            Me.columnobra = MyBase.Columns("obra")
+            Me.columnproveedor = MyBase.Columns("proveedor")
+            Me.columnbanco = MyBase.Columns("banco")
+            Me.columnnroCta = MyBase.Columns("nroCta")
+            Me.columnsolicitante = MyBase.Columns("solicitante")
+            Me.columnruc = MyBase.Columns("ruc")
+            Me.columnestado = MyBase.Columns("estado")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Private Sub InitClass()
+            Me.columnestApro = New Global.System.Data.DataColumn("estApro", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnestApro)
+            Me.columnfecDes = New Global.System.Data.DataColumn("fecDes", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnfecDes)
+            Me.columnserie = New Global.System.Data.DataColumn("serie", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnserie)
+            Me.columnnroDes = New Global.System.Data.DataColumn("nroDes", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnroDes)
+            Me.columnsimbolo = New Global.System.Data.DataColumn("simbolo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsimbolo)
+            Me.columnestado_desembolso = New Global.System.Data.DataColumn("estado_desembolso", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnestado_desembolso)
+            Me.columnmonto = New Global.System.Data.DataColumn("monto", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnmonto)
+            Me.columndetraccion = New Global.System.Data.DataColumn("detraccion", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columndetraccion)
+            Me.columnobra = New Global.System.Data.DataColumn("obra", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnobra)
+            Me.columnproveedor = New Global.System.Data.DataColumn("proveedor", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnproveedor)
+            Me.columnbanco = New Global.System.Data.DataColumn("banco", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnbanco)
+            Me.columnnroCta = New Global.System.Data.DataColumn("nroCta", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnroCta)
+            Me.columnsolicitante = New Global.System.Data.DataColumn("solicitante", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsolicitante)
+            Me.columnruc = New Global.System.Data.DataColumn("ruc", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnruc)
+            Me.columnestado = New Global.System.Data.DataColumn("estado", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnestado)
+            Me.columnobra.Caption = "razon"
+            Me.columnproveedor.Caption = "nom"
+            Me.columnbanco.Caption = "obserDesem"
+            Me.columnnroCta.Caption = "est"
+            Me.columnsolicitante.Caption = "nombre"
+            Me.columnruc.Caption = "estDesem"
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function NewDatosSeguimientoDesemRow() As DatosSeguimientoDesemRow
+            Return CType(Me.NewRow,DatosSeguimientoDesemRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New DatosSeguimientoDesemRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(DatosSeguimientoDesemRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.DatosSeguimientoDesemRowChangedEvent) Is Nothing) Then
+                RaiseEvent DatosSeguimientoDesemRowChanged(Me, New DatosSeguimientoDesemRowChangeEvent(CType(e.Row,DatosSeguimientoDesemRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.DatosSeguimientoDesemRowChangingEvent) Is Nothing) Then
+                RaiseEvent DatosSeguimientoDesemRowChanging(Me, New DatosSeguimientoDesemRowChangeEvent(CType(e.Row,DatosSeguimientoDesemRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.DatosSeguimientoDesemRowDeletedEvent) Is Nothing) Then
+                RaiseEvent DatosSeguimientoDesemRowDeleted(Me, New DatosSeguimientoDesemRowChangeEvent(CType(e.Row,DatosSeguimientoDesemRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.DatosSeguimientoDesemRowDeletingEvent) Is Nothing) Then
+                RaiseEvent DatosSeguimientoDesemRowDeleting(Me, New DatosSeguimientoDesemRowChangeEvent(CType(e.Row,DatosSeguimientoDesemRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub RemoveDatosSeguimientoDesemRow(ByVal row As DatosSeguimientoDesemRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence
+            Dim ds As DataSetInformesCr = New DataSetInformesCr
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "DatosSeguimientoDesemDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -5124,6 +5558,386 @@ Partial Public Class DataSetInformesCr
     End Class
     
     '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
+    Partial Public Class DatosSeguimientoDesemRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableDatosSeguimientoDesem As DatosSeguimientoDesemDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableDatosSeguimientoDesem = CType(Me.Table,DatosSeguimientoDesemDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property estApro() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.estAproColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'estApro' de la tabla 'DatosSeguimientoDesem' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.estAproColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property fecDes() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.fecDesColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fecDes' de la tabla 'DatosSeguimientoDesem' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.fecDesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property serie() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.serieColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'serie' de la tabla 'DatosSeguimientoDesem' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.serieColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nroDes() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.nroDesColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nroDes' de la tabla 'DatosSeguimientoDesem' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.nroDesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property simbolo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.simboloColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'simbolo' de la tabla 'DatosSeguimientoDesem' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.simboloColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property estado_desembolso() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.estado_desembolsoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'estado_desembolso' de la tabla 'DatosSeguimientoDesem' es"& _ 
+                            " DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.estado_desembolsoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property monto() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.montoColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'monto' de la tabla 'DatosSeguimientoDesem' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.montoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property detraccion() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.detraccionColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'detraccion' de la tabla 'DatosSeguimientoDesem' es DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.detraccionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property obra() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.obraColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'obra' de la tabla 'DatosSeguimientoDesem' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.obraColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property proveedor() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.proveedorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'proveedor' de la tabla 'DatosSeguimientoDesem' es DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.proveedorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property banco() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.bancoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'banco' de la tabla 'DatosSeguimientoDesem' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.bancoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nroCta() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.nroCtaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nroCta' de la tabla 'DatosSeguimientoDesem' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.nroCtaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property solicitante() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.solicitanteColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'solicitante' de la tabla 'DatosSeguimientoDesem' es DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.solicitanteColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property ruc() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.rucColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'ruc' de la tabla 'DatosSeguimientoDesem' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.rucColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property estado() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.estadoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'estado' de la tabla 'DatosSeguimientoDesem' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.estadoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsestAproNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.estAproColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetestAproNull()
+            Me(Me.tableDatosSeguimientoDesem.estAproColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsfecDesNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.fecDesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetfecDesNull()
+            Me(Me.tableDatosSeguimientoDesem.fecDesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsserieNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.serieColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetserieNull()
+            Me(Me.tableDatosSeguimientoDesem.serieColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnroDesNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.nroDesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnroDesNull()
+            Me(Me.tableDatosSeguimientoDesem.nroDesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IssimboloNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.simboloColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetsimboloNull()
+            Me(Me.tableDatosSeguimientoDesem.simboloColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function Isestado_desembolsoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.estado_desembolsoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub Setestado_desembolsoNull()
+            Me(Me.tableDatosSeguimientoDesem.estado_desembolsoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsmontoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.montoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetmontoNull()
+            Me(Me.tableDatosSeguimientoDesem.montoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsdetraccionNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.detraccionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetdetraccionNull()
+            Me(Me.tableDatosSeguimientoDesem.detraccionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsobraNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.obraColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetobraNull()
+            Me(Me.tableDatosSeguimientoDesem.obraColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsproveedorNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.proveedorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetproveedorNull()
+            Me(Me.tableDatosSeguimientoDesem.proveedorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsbancoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.bancoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetbancoNull()
+            Me(Me.tableDatosSeguimientoDesem.bancoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnroCtaNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.nroCtaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnroCtaNull()
+            Me(Me.tableDatosSeguimientoDesem.nroCtaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IssolicitanteNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.solicitanteColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetsolicitanteNull()
+            Me(Me.tableDatosSeguimientoDesem.solicitanteColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsrucNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.rucColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetrucNull()
+            Me(Me.tableDatosSeguimientoDesem.rucColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsestadoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.estadoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetestadoNull()
+            Me(Me.tableDatosSeguimientoDesem.estadoColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
@@ -5275,6 +6089,39 @@ Partial Public Class DataSetInformesCr
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public ReadOnly Property Row() As DatosGastosDiaRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
+    Public Class DatosSeguimientoDesemRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As DatosSeguimientoDesemRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub New(ByVal row As DatosSeguimientoDesemRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property Row() As DatosSeguimientoDesemRow
             Get
                 Return Me.eventRow
             End Get

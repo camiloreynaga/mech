@@ -34,6 +34,7 @@ Module DatasetAlmacenModule
     Public daTMon As SqlDataAdapter
     Public daVSerie As SqlDataAdapter
     Public daVStock As SqlDataAdapter
+    Public daTSesion As SqlDataAdapter
 
     'RESERVADO PARA DataTable() asno cututu esto solo utilizar en form secundarios
     Public dTable1 As SqlDataAdapter

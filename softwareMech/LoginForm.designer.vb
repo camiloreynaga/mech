@@ -95,7 +95,7 @@ Partial Class LoginForm
         Me.txtUsu.Name = "txtUsu"
         Me.txtUsu.Size = New System.Drawing.Size(220, 20)
         Me.txtUsu.TabIndex = 1
-        Me.txtUsu.Text = "sistema"
+        Me.txtUsu.Text = "yoel"
         '
         'txtCon
         '
@@ -105,6 +105,7 @@ Partial Class LoginForm
         Me.txtCon.PasswordChar = Global.Microsoft.VisualBasic.ChrW(120)
         Me.txtCon.Size = New System.Drawing.Size(220, 20)
         Me.txtCon.TabIndex = 2
+        Me.txtCon.Text = "mech2013"
         '
         'OK
         '

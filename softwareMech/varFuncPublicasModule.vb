@@ -43,6 +43,7 @@ Module varFuncPublicasModule
     Public vSCodDia As Integer    'Variable de sistema no cambiar su valor
     Public vSIdDia As String    'Variable de sistema no cambiar su valor
     Public vSFecCaja As String 'Variable de sistema no cambiar su valor
+    Public vSCodMes As Integer    'Variable de sistema no cambiar su valor
     Public vSSerie As String
     Public vSIniNroDoc As Integer
 
@@ -175,6 +176,14 @@ Module varFuncPublicasModule
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
         cmdCampo.CommandText = "select convert(varchar(10),fecha,103) as sesion from TDiaCaja where estado=" & estado & " and codigo='" & codSuc & "'"
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+    'LITO
+    Public Function recuperarCodMes(ByVal estado As Short, ByVal codSuc As String) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select isnull(max(idSesM),0) from TSesionMes where estado=" & estado & " and codigo='" & codSuc & "'"
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function

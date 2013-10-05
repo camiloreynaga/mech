@@ -995,7 +995,6 @@ Public Class MantSolicitudReqForm
             Exit Sub
         End If
 
-
         Dim resp As Short = MessageBox.Show("ESTA SEGURO DE GUARDAR MODIFICACIONES?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
             Exit Sub
@@ -1012,17 +1011,19 @@ Public Class MantSolicitudReqForm
 
             For j As Short = 0 To BindingSource3.Count - 1
                 If BindingSource3.Item(j)(13) = 1 Or BindingSource3.Item(j)(13) = 3 Then '1=pendiente  3=Observado
-                    'actualizando TDetalleSol
-                    comandoUpdate15(BindingSource3.Item(j)(1).ToString().Trim(), BindingSource3.Item(j)(3), BindingSource3.Item(j)(9).ToString().Trim(), BindingSource3.Item(j)(0))
-                    cmdUpdateTable15.Transaction = myTrans
-                    If cmdUpdateTable15.ExecuteNonQuery() < 1 Then
-                        wait.Close()
-                        Me.Cursor = Cursors.Default
-                        'deshace la transaccion
-                        myTrans.Rollback()
-                        MessageBox.Show("ERROR DE CONCURRENCIA, VUELVA A EJECUTAR LA INTERFAZ." & Chr(13) & "No se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                        Me.Close()
-                        Exit Sub
+                    If BindingSource3.Item(j)(15) = vPass Then
+                        'actualizando TDetalleSol
+                        comandoUpdate15(BindingSource3.Item(j)(1).ToString().Trim(), BindingSource3.Item(j)(3), BindingSource3.Item(j)(9).ToString().Trim(), BindingSource3.Item(j)(0))
+                        cmdUpdateTable15.Transaction = myTrans
+                        If cmdUpdateTable15.ExecuteNonQuery() < 1 Then
+                            wait.Close()
+                            Me.Cursor = Cursors.Default
+                            'deshace la transaccion
+                            myTrans.Rollback()
+                            MessageBox.Show("ERROR DE CONCURRENCIA, VUELVA A EJECUTAR LA INTERFAZ." & Chr(13) & "No se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                            Me.Close()
+                            Exit Sub
+                        End If
                     End If
                 End If
             Next
