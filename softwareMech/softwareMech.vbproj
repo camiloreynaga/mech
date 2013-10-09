@@ -636,6 +636,12 @@
     <Compile Include="ReportViewerReqCajaForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReportViewerSeguimientoDesem.Designer.vb">
+      <DependentUpon>ReportViewerSeguimientoDesem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewerSeguimientoDesem.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReportViewerSolicitudForm.Designer.vb">
       <DependentUpon>ReportViewerSolicitudForm.vb</DependentUpon>
     </Compile>
@@ -998,6 +1004,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerReqCajaForm.resx">
       <DependentUpon>ReportViewerReqCajaForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewerSeguimientoDesem.resx">
+      <DependentUpon>ReportViewerSeguimientoDesem.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerSolicitudForm.resx">
       <DependentUpon>ReportViewerSolicitudForm.vb</DependentUpon>

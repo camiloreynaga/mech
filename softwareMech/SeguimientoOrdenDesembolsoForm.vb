@@ -1,6 +1,7 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
 Imports ComponentesSolucion2008
+Imports CrystalDecisions.Shared
 
 
 Public Class SeguimientoOrdenDesembolsoForm
@@ -62,6 +63,11 @@ Public Class SeguimientoOrdenDesembolsoForm
     Dim oDataManager As New cDataManager
 
     Dim vCodDesem As Integer = -1
+
+    'variable temporales para fecha de inicio y fin
+
+    Dim _fechaIni As String
+    Dim _fechaFin As String
 
 #End Region
 
@@ -1133,6 +1139,11 @@ Public Class SeguimientoOrdenDesembolsoForm
         parametros(0) = fechaInicio
         parametros(1) = fechaFin
 
+        'obteniendo la fecha para reportes
+        _fechaIni = dtpInicio.Text
+        _fechaFin = dtpFin.Text
+
+
         Dim consulta As String = "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro, nroConfor, fecEnt, moneda, simbolo, solicitante, ruc, fono, email, codObra, codIde from VOrdenDesembolsoSeguimiento where fecDes between @fechaInicio and @fechaFin "
         '"PA_SeguimientoDesembolso"
         oDataManager.CargarGrilla(consulta, parametros, CommandType.Text, dgDesembolso, BindingSource0)
@@ -1156,4 +1167,101 @@ Public Class SeguimientoOrdenDesembolsoForm
     Private Sub txtNroDesembolso_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtNroDesembolso.KeyPress
         ValidarNumero(sender, e)
     End Sub
+
+
+    Private Sub btnImprimirGrilla_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimirGrilla.Click
+        If dgDesembolso.RowCount = 0 Then
+            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Orden de Compra...")
+            Exit Sub
+        End If
+
+        'creando variables para parametros
+        Dim parameters As New ParameterFields
+
+        Dim pFechaIni As New ParameterField
+        Dim pFechaFin As New ParameterField
+
+        Dim valorFechaIni As New ParameterDiscreteValue
+        Dim valorFechaFin As New ParameterDiscreteValue
+
+        'definiendo los nombres de la variables para el reporte
+        pFechaIni.Name = "pFechaFin"
+        pFechaFin.Name = "pFechaIni"
+
+        '----------
+        'Definiendo los nombres de los parametros.
+
+        valorFechaIni.Value = _fechaIni
+        valorFechaFin.Value = _fechaFin
+
+        pFechaIni.CurrentValues.Add(valorFechaIni)
+        pFechaFin.CurrentValues.Add(valorFechaFin)
+
+        parameters.Add(pFechaIni)
+        parameters.Add(pFechaFin)
+
+
+
+        Dim datos As DataSetInformesCr = CargarDatos()
+
+        Dim frm As New ReportViewerSeguimientoDesem(datos)
+
+        frm.CrystalReportViewer1.ParameterFieldInfo = parameters
+
+        frm.WindowState = FormWindowState.Maximized
+        frm.ShowDialog()
+
+    End Sub
+
+    Private Function CargarDatos() As DataSetInformesCr
+        Dim ds As New DataSetInformesCr
+
+        For Each row As DataGridViewRow In dgDesembolso.Rows
+            Dim rowInf As DataSetInformesCr.DatosSeguimientoDesemRow = ds.DatosSeguimientoDesem.NewDatosSeguimientoDesemRow
+            rowInf.fecDes = CDate(row.Cells("fecDes").Value)
+            rowInf.nroDes = CStr(row.Cells("nroDes").Value)
+            rowInf.estado = CStr(row.Cells("estado_desembolso").Value)
+            rowInf.simbolo = CStr(row.Cells("simbolo").Value)
+            rowInf.monto = CDec(row.Cells("monto").Value)
+            rowInf.detraccion = CDec(row.Cells("montoDet").Value)
+            rowInf.proveedor = CStr(row.Cells("proveedor").Value)
+            rowInf.obra = CStr(row.Cells("obra").Value)
+            rowInf.solicitante = CStr(row.Cells("solicitante").Value)
+            rowInf.serie = CStr(row.Cells("serie").Value)
+            rowInf.motivo = CStr(row.Cells("datoReq").Value)
+
+            'ingresando los valroes de estado
+            Dim _dg As New DataGridView
+            Dim queryApro As String = "select idOp,nombre,apellido,Area,Estado,ObserDesem,fecFir from VAprobacionesSeguimiento where idOp=" & row.Cells("idOP").Value 'BindingSource0.Item(BindingSource0.Position)(0)
+            oDataManager.CargarGrilla(queryApro, CommandType.Text, _dg, BindingSource3)
+
+            'Aprobación Gerencia
+            If BindingSource3.Count > 1 Then
+                rowInf.estadoGerencia = BindingSource3.Item(1)(4)
+            Else
+                rowInf.estadoGerencia = ""
+            End If
+
+            If BindingSource3.Count > 2 Then
+                'Aprobación Tesoreria
+                rowInf.estadoTesoreria = BindingSource3.Item(2)(4)
+            Else
+                rowInf.estadoTesoreria = ""
+            End If
+
+            If BindingSource3.Count > 3 Then
+                'Aprobación Contabilidad
+                rowInf.estadoContabilidad = BindingSource3.Item(3)(4)
+            Else
+                rowInf.estadoContabilidad = ""
+            End If
+
+            ds.DatosSeguimientoDesem.AddDatosSeguimientoDesemRow(rowInf)
+
+        Next
+
+        Return ds
+
+    End Function
+
 End Class

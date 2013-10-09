@@ -2829,6 +2829,14 @@ Partial Public Class DataSetInformesCr
         
         Private columnestado As Global.System.Data.DataColumn
         
+        Private columnestadoGerencia As Global.System.Data.DataColumn
+        
+        Private columnestadoTesoreria As Global.System.Data.DataColumn
+        
+        Private columnestadoContabilidad As Global.System.Data.DataColumn
+        
+        Private columnmotivo As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub New()
             MyBase.New
@@ -2966,6 +2974,34 @@ Partial Public Class DataSetInformesCr
             End Get
         End Property
         
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property estadoGerenciaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnestadoGerencia
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property estadoTesoreriaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnestadoTesoreria
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property estadoContabilidadColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnestadoContabilidad
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property motivoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnmotivo
+            End Get
+        End Property
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2995,9 +3031,28 @@ Partial Public Class DataSetInformesCr
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Overloads Function AddDatosSeguimientoDesemRow(ByVal estApro As String, ByVal fecDes As Date, ByVal serie As String, ByVal nroDes As String, ByVal simbolo As String, ByVal estado_desembolso As String, ByVal monto As Decimal, ByVal detraccion As Decimal, ByVal obra As String, ByVal proveedor As String, ByVal banco As String, ByVal nroCta As String, ByVal solicitante As String, ByVal ruc As String, ByVal estado As String) As DatosSeguimientoDesemRow
+        Public Overloads Function AddDatosSeguimientoDesemRow( _
+                    ByVal estApro As String,  _
+                    ByVal fecDes As Date,  _
+                    ByVal serie As String,  _
+                    ByVal nroDes As String,  _
+                    ByVal simbolo As String,  _
+                    ByVal estado_desembolso As String,  _
+                    ByVal monto As Decimal,  _
+                    ByVal detraccion As Decimal,  _
+                    ByVal obra As String,  _
+                    ByVal proveedor As String,  _
+                    ByVal banco As String,  _
+                    ByVal nroCta As String,  _
+                    ByVal solicitante As String,  _
+                    ByVal ruc As String,  _
+                    ByVal estado As String,  _
+                    ByVal estadoGerencia As String,  _
+                    ByVal estadoTesoreria As String,  _
+                    ByVal estadoContabilidad As String,  _
+                    ByVal motivo As String) As DatosSeguimientoDesemRow
             Dim rowDatosSeguimientoDesemRow As DatosSeguimientoDesemRow = CType(Me.NewRow,DatosSeguimientoDesemRow)
-            Dim columnValuesArray() As Object = New Object() {estApro, fecDes, serie, nroDes, simbolo, estado_desembolso, monto, detraccion, obra, proveedor, banco, nroCta, solicitante, ruc, estado}
+            Dim columnValuesArray() As Object = New Object() {estApro, fecDes, serie, nroDes, simbolo, estado_desembolso, monto, detraccion, obra, proveedor, banco, nroCta, solicitante, ruc, estado, estadoGerencia, estadoTesoreria, estadoContabilidad, motivo}
             rowDatosSeguimientoDesemRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowDatosSeguimientoDesemRow)
             Return rowDatosSeguimientoDesemRow
@@ -3032,6 +3087,10 @@ Partial Public Class DataSetInformesCr
             Me.columnsolicitante = MyBase.Columns("solicitante")
             Me.columnruc = MyBase.Columns("ruc")
             Me.columnestado = MyBase.Columns("estado")
+            Me.columnestadoGerencia = MyBase.Columns("estadoGerencia")
+            Me.columnestadoTesoreria = MyBase.Columns("estadoTesoreria")
+            Me.columnestadoContabilidad = MyBase.Columns("estadoContabilidad")
+            Me.columnmotivo = MyBase.Columns("motivo")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -3066,6 +3125,14 @@ Partial Public Class DataSetInformesCr
             MyBase.Columns.Add(Me.columnruc)
             Me.columnestado = New Global.System.Data.DataColumn("estado", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnestado)
+            Me.columnestadoGerencia = New Global.System.Data.DataColumn("estadoGerencia", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnestadoGerencia)
+            Me.columnestadoTesoreria = New Global.System.Data.DataColumn("estadoTesoreria", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnestadoTesoreria)
+            Me.columnestadoContabilidad = New Global.System.Data.DataColumn("estadoContabilidad", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnestadoContabilidad)
+            Me.columnmotivo = New Global.System.Data.DataColumn("motivo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnmotivo)
             Me.columnobra.Caption = "razon"
             Me.columnproveedor.Caption = "nom"
             Me.columnbanco.Caption = "obserDesem"
@@ -5787,6 +5854,65 @@ Partial Public Class DataSetInformesCr
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property estadoGerencia() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.estadoGerenciaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'estadoGerencia' de la tabla 'DatosSeguimientoDesem' es DB"& _ 
+                            "Null.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.estadoGerenciaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property estadoTesoreria() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.estadoTesoreriaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'estadoTesoreria' de la tabla 'DatosSeguimientoDesem' es D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.estadoTesoreriaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property estadoContabilidad() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.estadoContabilidadColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'estadoContabilidad' de la tabla 'DatosSeguimientoDesem' e"& _ 
+                            "s DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.estadoContabilidadColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property motivo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosSeguimientoDesem.motivoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'motivo' de la tabla 'DatosSeguimientoDesem' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosSeguimientoDesem.motivoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsestAproNull() As Boolean
             Return Me.IsNull(Me.tableDatosSeguimientoDesem.estAproColumn)
         End Function
@@ -5934,6 +6060,46 @@ Partial Public Class DataSetInformesCr
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetestadoNull()
             Me(Me.tableDatosSeguimientoDesem.estadoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsestadoGerenciaNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.estadoGerenciaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetestadoGerenciaNull()
+            Me(Me.tableDatosSeguimientoDesem.estadoGerenciaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsestadoTesoreriaNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.estadoTesoreriaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetestadoTesoreriaNull()
+            Me(Me.tableDatosSeguimientoDesem.estadoTesoreriaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsestadoContabilidadNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.estadoContabilidadColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetestadoContabilidadNull()
+            Me(Me.tableDatosSeguimientoDesem.estadoContabilidadColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsmotivoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosSeguimientoDesem.motivoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetmotivoNull()
+            Me(Me.tableDatosSeguimientoDesem.motivoColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
