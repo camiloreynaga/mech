@@ -196,6 +196,43 @@ Public Class cConfigFormControls
         End Try
         Return total
     End Function
+
+    Public Function SumarColumnaGrillaArray(ByVal Dgv As DataGridView, ByVal columnaSuma As String, ByVal columnaCondicion() As String, ByVal condicion() As String) As Double
+        Dim total As Double = 0.0
+        Dim verifica As Boolean = True
+
+        If columnaCondicion.Count() = condicion.Count() Then
+
+            Try
+                'recorriendo la grilla
+                For i As Integer = 0 To Dgv.RowCount - 1
+                    'recorriendo el arreglo de condicionales
+                    For j As Integer = 0 To columnaCondicion.Count - 1
+                        'evaluando la condición
+                        If Dgv.Item(columnaCondicion(j), i).Value.ToString = condicion(j) Then
+                            verifica = True
+                        Else
+                            verifica = False
+                            'sale del for de condicional
+                            Exit For
+                        End If
+                    Next
+
+                    'Revisando si cumple la condición
+                    If verifica = True Then
+                        total = total + CDbl(Dgv.Item(columnaSuma, i).Value)
+                    End If
+                    'Reestableciendo la verificación 
+                    verifica = True
+
+                Next
+            Catch ex As Exception
+        End Try
+        End If
+
+        Return total
+    End Function
+
     ''' <summary>
     ''' Suma una Columna de DataGridView
     ''' </summary>

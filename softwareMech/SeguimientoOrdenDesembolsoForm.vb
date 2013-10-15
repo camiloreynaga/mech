@@ -130,7 +130,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         crearDataAdapterTableProcedure(daTabla5, sele)
         'daTabla1.SelectCommand.Parameters.Add("@idDesembolso", SqlDbType.Int).Value = 0
 
-        sele = "select (nombre +' '+ apellido) as solicitante from Tpersonal where codPers > 1"
+        sele = "select (nombre +' '+ apellido) as solicitante from Tpersonal where codPers > 1 order by solicitante asc"
         crearDataAdapterTable(daTabla6, sele)
 
         Try
@@ -832,11 +832,13 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         'Cargando el combo Obras
         oDataManager.CargarCombo("PA_LugarTrabajo", CommandType.StoredProcedure, cbObra, "codigo", "nombre")
+        'Ordenando de forma alfabetica
+
         'Cargando el combo de Proveedores
         oDataManager.CargarCombo("PA_Proveedores", CommandType.StoredProcedure, cbProveedor, "codIde", "razon")
 
         'Cargando el combo Solicitante
-        oDataManager.CargarCombo("select (nombre +' '+ apellido) as solicitante from Tpersonal where codPers > 1", CommandType.Text, cbSolicitante.ComboBox, "solicitante", "solicitante")
+        oDataManager.CargarCombo("select (nombre +' '+ apellido) as solicitante from Tpersonal where codPers > 1 order by solicitante asc", CommandType.Text, cbSolicitante.ComboBox, "solicitante", "solicitante")
 
 
         'DatosIniciales()

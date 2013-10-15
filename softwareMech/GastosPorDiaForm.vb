@@ -108,6 +108,9 @@ Public Class GastosPorDiaForm
                 .Columns("idCue").Visible = False
                 .Columns("concepto").HeaderText = "Concepto"
                 .Columns("concepto").Width = 350
+                .Columns("vanEgreso").Visible = False
+                .Columns("tipoClasif").HeaderText = "Clasificación"
+                .Columns("tipoClasif").Width = "100"
             End With
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -230,7 +233,7 @@ Public Class GastosPorDiaForm
 
     Private Sub btnMostrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMostrar.Click
         'SET DATEFORMAT dmy  da formato dd/mm/yyyy para las fechas
-        Dim sele As String = "SET DATEFORMAT dmy select fecPago,nroOperacion,ruc,razon,simbolo,montoPago,montoD,banco,nroCue,(serie +'-'+cast(nroDes as varchar)) nroDes,codBan,codMon,idCue,codigo,nombre,concepto from VGastosPorDia where fecPago between '" & dtpInicio.Text & "' and '" & dtpFin.Text & "'"
+        Dim sele As String = "SET DATEFORMAT dmy select fecPago,nroOperacion,ruc,razon,simbolo,montoPago,montoD,banco,nroCue,(serie +'-'+cast(nroDes as varchar)) nroDes,codBan,codMon,idCue,codigo,nombre,concepto,tipoClasif,vanEgreso from VGastosPorDia where vanEgreso=0 and fecPago between '" & dtpInicio.Text & "' and '" & dtpFin.Text & "'"
         oDataManager.CargarGrilla(sele, CommandType.Text, dgReporte, bindingSource0)
 
         'enlanzando con el binding navigator
@@ -239,9 +242,25 @@ Public Class GastosPorDiaForm
 
         filtrando()
         ModificandoColumnasDGV()
-        'Sumando MontoPago
+        'condicionales para Suma MontoPago S/.
+        Dim _condSumSoles() As String = {"30", "0"}
+        Dim _coluSumSoles() As String = {"codMon", "vanEgreso"}
+
+        'condicionales para Suma Monto pPago US$
+
+        Dim _coluSumDolares() As String = {"codMon", "vanEgreso"}
+        Dim _condSumDolares() As String = {"35", "0"}
+
+
+        'txtTotalSoles.Text = oGrilla.SumarColumnaGrillaArray(dgReporte, "montoPago", _coluSumSoles, _condSumSoles)
+        'txtTotalDolares.Text = oGrilla.SumarColumnaGrillaArray(dgReporte, "montoPago", _coluSumDolares, _condSumDolares)
+
+
+
         txtTotalSoles.Text = oGrilla.SumarColumnaGrilla(dgReporte, "montoPago", "codMon", "30") ' oTabla.Compute("Sum(montoPago)", "codMon=30").ToString()
         txtTotalDolares.Text = oGrilla.SumarColumnaGrilla(dgReporte, "montoPago", "codMon", "35") 'oTabla.Compute("Sum(montoPago)", "codMon=35").ToString()
+
+
 
         txtTotalSoles.Text = Format(CDbl(txtTotalSoles.Text), "0,0.00")
         txtTotalDolares.Text = Format(CDbl(txtTotalDolares.Text), "0,0.00")
@@ -421,6 +440,18 @@ Public Class GastosPorDiaForm
                 rowInf.nombre = ""
             Else
                 rowInf.nombre = CStr(row.Cells("nombre").Value)
+            End If
+
+            If IsDBNull(row.Cells("tipoClasif").Value) Then
+                rowInf.codTipCla = ""
+            Else
+                rowInf.codTipCla = CStr(row.Cells("tipoClasif").Value)
+            End If
+
+            If IsDBNull(row.Cells("vanEgreso").Value) Then
+                rowInf.vanEgreso = ""
+            Else
+                rowInf.vanEgreso = CInt(row.Cells("vanEgreso").Value)
             End If
 
             ds.DatosGastosDia.AddDatosGastosDiaRow(rowInf)

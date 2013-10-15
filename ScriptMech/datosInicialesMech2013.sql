@@ -123,10 +123,32 @@ insert TTipoMovCaja(tipoMov) values ('EGRESO')--2
 GO
 --select * from TTipoMovCaja
 
+
 --*****************************************************
---------------------EJECUTAR 04/10/2013----------------------
+--------------------EJECUTAR 09/10/2013----------------------
 --*****************************************************
 insert TTipoMovimiento(tipoMov) values ('EGRESO')--1
 insert TTipoMovimiento(tipoMov) values ('INGRESO')--2
 GO
 --select * from TTipoMovimiento
+insert TClasificacion(clasificacion,idTM) values ('',1)--1
+GO
+--select * from TClasificacion
+insert TTipoClasif(tipoClasif,estado,codCla) values ('',1,1)--1
+GO
+--select * from TTipoClasif
+
+insert into TMes(mes) values('ENERO') --1
+insert into TMes(mes) values('FEBRERO') --2
+insert into TMes(mes) values('MARZO') --3
+insert into TMes(mes) values('ABRIL') --4
+insert into TMes(mes) values('MAYO') --5
+insert into TMes(mes) values('JUNIO') --6
+insert into TMes(mes) values('JULIO') --7
+insert into TMes(mes) values('AGOSTO') --8
+insert into TMes(mes) values('SETIEMBRE') --9
+insert into TMes(mes) values('OCTUBRE') --10
+insert into TMes(mes) values('NOVIEMBRE') --11
+insert into TMes(mes) values('DICIEMBRE') --12
+GO
+--select * from TMes

@@ -41,6 +41,7 @@ Public Class cDataManager
         combo.ValueMember = "Id"
         combo.DisplayMember = "Desc"
 
+
         dataR.Close()
 
     End Sub

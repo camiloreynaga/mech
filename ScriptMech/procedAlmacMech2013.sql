@@ -68,32 +68,6 @@ as
 	RETURN  @Identity
 GO
 
---inserta un registro en la tabala OrdenDesembolso. 
---DROP procedure PA_InsertOrdenDesembolso
-create procedure PA_InsertOrdenDesembolso
-	@ser varchar(5),@nroD int,@fecD date,@codMon int,@mon decimal(10,2),@mon1 decimal(8,2),@mon2 decimal(10,2),@est int,@cod varchar(10),@codIde int,
-	@ban varchar(60),@nroC varchar(50),@nroDE varchar(30),@dato varchar(100),@fact int,@bol int,@guia int,@vou int,
-	@vouD int,@reci int,@otro int,@des varchar(60),@nroCF varchar(30),@fec varchar(10),@hist varchar(200),@codSerO int,
-	@Identity int output
-as
-	insert into TOrdenDesembolso(serie,nroDes,fecDes,codMon,monto,montoDet,montoDif,estado,codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,hist,codSerO)
-		values (@ser,@nroD,@fecD,@codMon,@mon,@mon1,@mon2,@est,@cod,@codIde,@ban,@nroC,@nroDE,@dato,@fact,@bol,@guia,@vou,@vouD,@reci,@otro,@des,@nroCF,@fec,@hist,@codSerO)
-
-	 SET @Identity=@@IDENTITY 
-	 Return @Identity
-GO
-
-create procedure PA_InsertTPagoDesembolso
-	@fec date,@codT int,@nro varchar(20),@pago varchar(100),@codC int,@codM int,@monto decimal(10,2),@montoD decimal(10,2),@idOP int,@idC int,
-	@Identity int output --parametro de salida
-as
-	insert into TPagoDesembolso(fecPago,codTipP,nroP,pagoDet,codCla,codMon,montoPago,montoD,idOP,idCue) 
-		values(@fec,@codT,@nro,@pago,@codC,@codM,@monto,@montoD,@idOP,@idC)	
-	SET @Identity = @@Identity
-	
-	RETURN  @Identity
-GO
-
 create procedure PA_InsertOrdenCompra
 	@nroO int,@fecO date, @codIde int, @codPers int,@codPag int, @igv decimal(6,2),@calIGV int,@codMon int,
 	@atiendeCom varchar(50),@cel varchar(50),@plazoEnt varchar(40),@transfe varchar(100),@nroProf varchar(40),@obsFac varchar(200), @estado int,
@@ -143,14 +117,14 @@ from VAprobacionesSeguimiento
 go
 
 --PAra consultar los lugares de trabajo
-create proc PA_LugarTrabajo
+create procedure PA_LugarTrabajo
 as
-Select codigo,nombre from tLugarTrabajo
+Select codigo,nombre from tLugarTrabajo order by nombre asc
 go
 --Para consultar los proveedores
-create proc PA_Proveedores
+create procedure PA_Proveedores
 as
-Select codIde,razon from TIdentidad where idTipId=2
+Select codIde,razon from TIdentidad where idTipId=2 order by razon asc
 go
 
 create procedure PA_InsertTMatUbi
@@ -219,10 +193,6 @@ as
 	RETURN  @Identity
 GO
 
---------EJECUTAR AHORITA-----------------
------------14/09/2013-----------------------
-------------------------------------
--- Ejecuatar en el Server
 -- DROP procedure PA_InsertTCajaChica
 create procedure PA_InsertTCajaChica
 @fechaCre date ,
@@ -249,6 +219,37 @@ as
 	RETURN  @Identity
 GO
 
+--------EJECUTAR AHORITA-----------------
+-----------09/10/2013-----------------------
+------------------------------------
+-- Ejecuatar en el Server
+
+--DROP procedure PA_InsertOrdenDesembolso
+create procedure PA_InsertOrdenDesembolso
+	@ser varchar(5),@nroD int,@fecD date,@codMon int,@mon decimal(10,2),@mon1 decimal(8,2),@mon2 decimal(10,2),@est int,@cod varchar(10),@codIde int,
+	@ban varchar(60),@nroC varchar(50),@nroDE varchar(30),@dato varchar(100),@fact int,@bol int,@guia int,@vou int,
+	@vouD int,@reci int,@otro int,@des varchar(60),@nroCF varchar(30),@fec varchar(10),@hist varchar(200),@codSerO int,@van int,
+	@Identity int output
+as
+	insert into TOrdenDesembolso(serie,nroDes,fecDes,codMon,monto,montoDet,montoDif,estado,codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,hist,codSerO,vanCaja)
+		values (@ser,@nroD,@fecD,@codMon,@mon,@mon1,@mon2,@est,@cod,@codIde,@ban,@nroC,@nroDE,@dato,@fact,@bol,@guia,@vou,@vouD,@reci,@otro,@des,@nroCF,@fec,@hist,@codSerO,@van)
+
+	 SET @Identity=@@IDENTITY 
+	 Return @Identity
+GO
+
+--DROP procedure PA_InsertTPagoDesembolso
+create procedure PA_InsertTPagoDesembolso
+	@fec date,@codT int,@nro varchar(20),@pago varchar(100),@codC int,@codM int,@monto decimal(10,2),@montoD decimal(10,2),@idOP int,@idC int,
+	@codTC int,@vanE int,@idS int,
+	@Identity int output --parametro de salida
+as
+	insert into TPagoDesembolso(fecPago,codTipP,nroP,pagoDet,codCla,codMon,montoPago,montoD,idOP,idCue,codTipCla,vanEgreso,idSesM) 
+		values(@fec,@codT,@nro,@pago,@codC,@codM,@monto,@montoD,@idOP,@idC,@codTC,@vanE,@idS)	
+	SET @Identity = @@Identity
+	
+	RETURN  @Identity
+GO
 
 
 

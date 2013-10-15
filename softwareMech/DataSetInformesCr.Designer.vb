@@ -2407,6 +2407,10 @@ Partial Public Class DataSetInformesCr
         
         Private columnconcepto As Global.System.Data.DataColumn
         
+        Private columncodTipCla As Global.System.Data.DataColumn
+        
+        Private columnvanEgreso As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub New()
             MyBase.New
@@ -2551,6 +2555,20 @@ Partial Public Class DataSetInformesCr
             End Get
         End Property
         
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property codTipClaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncodTipCla
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property vanEgresoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnvanEgreso
+            End Get
+        End Property
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2596,9 +2614,11 @@ Partial Public Class DataSetInformesCr
                     ByVal idCue As Integer,  _
                     ByVal codigo As String,  _
                     ByVal nombre As String,  _
-                    ByVal concepto As String) As DatosGastosDiaRow
+                    ByVal concepto As String,  _
+                    ByVal codTipCla As String,  _
+                    ByVal vanEgreso As Integer) As DatosGastosDiaRow
             Dim rowDatosGastosDiaRow As DatosGastosDiaRow = CType(Me.NewRow,DatosGastosDiaRow)
-            Dim columnValuesArray() As Object = New Object() {fecPago, nroOperacion, ruc, razon, simbolo, montoPago, montoD, banco, nroCue, nroDes, codBan, codMon, idCue, codigo, nombre, concepto}
+            Dim columnValuesArray() As Object = New Object() {fecPago, nroOperacion, ruc, razon, simbolo, montoPago, montoD, banco, nroCue, nroDes, codBan, codMon, idCue, codigo, nombre, concepto, codTipCla, vanEgreso}
             rowDatosGastosDiaRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowDatosGastosDiaRow)
             Return rowDatosGastosDiaRow
@@ -2634,6 +2654,8 @@ Partial Public Class DataSetInformesCr
             Me.columncodigo = MyBase.Columns("codigo")
             Me.columnnombre = MyBase.Columns("nombre")
             Me.columnconcepto = MyBase.Columns("concepto")
+            Me.columncodTipCla = MyBase.Columns("codTipCla")
+            Me.columnvanEgreso = MyBase.Columns("vanEgreso")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -2670,6 +2692,10 @@ Partial Public Class DataSetInformesCr
             MyBase.Columns.Add(Me.columnnombre)
             Me.columnconcepto = New Global.System.Data.DataColumn("concepto", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnconcepto)
+            Me.columncodTipCla = New Global.System.Data.DataColumn("codTipCla", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncodTipCla)
+            Me.columnvanEgreso = New Global.System.Data.DataColumn("vanEgreso", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnvanEgreso)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -5464,6 +5490,34 @@ Partial Public Class DataSetInformesCr
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property codTipCla() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.codTipClaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'codTipCla' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.codTipClaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property vanEgreso() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosGastosDia.vanEgresoColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'vanEgreso' de la tabla 'DatosGastosDia' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosGastosDia.vanEgresoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Function IsfecPagoNull() As Boolean
             Return Me.IsNull(Me.tableDatosGastosDia.fecPagoColumn)
         End Function
@@ -5621,6 +5675,26 @@ Partial Public Class DataSetInformesCr
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Sub SetconceptoNull()
             Me(Me.tableDatosGastosDia.conceptoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IscodTipClaNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.codTipClaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetcodTipClaNull()
+            Me(Me.tableDatosGastosDia.codTipClaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsvanEgresoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosGastosDia.vanEgresoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetvanEgresoNull()
+            Me(Me.tableDatosGastosDia.vanEgresoColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

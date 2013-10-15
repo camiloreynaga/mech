@@ -91,6 +91,4 @@ Public Class ReportViewerGastosDia
         Return vFileName
 
     End Function
-
-    
 End Class

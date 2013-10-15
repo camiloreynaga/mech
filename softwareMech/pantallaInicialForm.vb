@@ -1101,4 +1101,10 @@ Public Class pantallaInicialForm
         mant.MdiParent = Me
         mant.Show()
     End Sub
+
+    Private Sub opcCaja10_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja10.Click
+        Dim mant As New aprobarCuentaCajaForm
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
 End Class

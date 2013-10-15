@@ -427,15 +427,6 @@ as
 	where TD.tipoA=1  --1=Solicitante
 GO
 
-create view VPagoDesemTesoreria
-as
-	select TT.codTipP,TT.tipoP,TT.nro,TP.codPagD,TP.fecPago,TP.nroP,TP.pagoDet,TM.codMon,TM.moneda,TM.simbolo,
-	TP.montoPago,TP.montoD,TP.idOP,TP.idCue,TC.codCla,TC.clasif 
-	from TTipoPago TT join TPagoDesembolso TP on TT.codTipP=TP.codTipP
-	join TMoneda TM on TP.codMon=TM.codMon
-	join TClasifPago TC on TP.codCla=TC.codCla
-GO
-
 create view VTSerie
 as
 	select TUS.codSP,TS.serie,TS.iniNroDoc,TS.descrip,TUS.codPers,TS.codSerO 
@@ -640,19 +631,6 @@ create view VPersDesemSolic
 as
 	select TP.codPers,TP.nombre+' '+TP.apellido as nom,TP.dni,TPD.codPersDes,TPD.estDesem,TPD.tipoA,TPD.obserDesem,TPD.idOP
 	from TPersDesem TPD join TPersonal TP on TPD.codPers=TP.codPers where tipoA=1 -- 1=firma solicitante
-GO
---DROP view VOrdenDesemTesoreria
-create view VOrdenDesemTesoreria  
-as	
-	select TOD.idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,TOD.estado,'est'=case when TOD.estado=0 then 'PENDIENTE' when TOD.estado=1 then 'TERMINADO' when TOD.estado=2 then 'CERRADO' else 'ANULADO' end,TOD.codSerO, 
-	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,TP1.codPers as codPersSol,TP1.nom as nomSol,
-	banco,nroCta,nroDet,datoReq,hist,TL.codigo,TL.nombre,TI.codIde,TI.razon,TI.ruc,TP.codPers,TP.nom,TP.dni,isnull(TP.codPersDes,0) as codPersDes,isnull(TP.estDesem,0) as estDesem,TP.obserDesem,isnull(TP.estApro,'') as estApro
-	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon 
-	join TLugarTrabajo TL on TOD.codigo=TL.codigo
-	join TIdentidad TI on TOD.codIde=TI.codIde
-	join VPersDesemTesoreria TP on TOD.idOP=TP.idOP --2=gerencia
-	join VPersDesemSolic TP1 on TOD.idOP=TP1.idOP
-	where TOD.estado=0 --0=pendiente 1=terminado
 GO
 
 create view VLugarObraAlmacen  
@@ -895,7 +873,8 @@ go
 create view VGastosPorDia
 as
 SELECT TPD.fecPago, TPD.nroP AS nroOperacion, TPD.pagoDet AS concepto, TTP.tipoP, TMO.simbolo,TMO.codMon, TPD.montoPago, TPD.montoD, TOD.serie, TOD.nroDes, 
-TBCO.banco, TBCO.codBan, TCU.nroCue,TCU.idCue, TID.ruc, TID.razon,TOD.codigo, TL.nombre  
+TBCO.banco, TBCO.codBan, TCU.nroCue,TCU.idCue, TID.ruc, TID.razon,TOD.codigo, TL.nombre, TPD.codTipCla, TPD.vanEgreso, 
+                      TCLA.tipoClasif  
 FROM mech.TPagoDesembolso AS TPD 
 INNER JOIN mech.TCuentaBan AS TCU ON TCU.idCue = TPD.idCue
 INNER JOIN mech.TBanco AS TBCO ON TBCO.codBan = TCU.codBan
@@ -904,7 +883,11 @@ INNER JOIN mech.TOrdenDesembolso AS TOD ON TOD.idOP = TPD.idOP
 INNER JOIN mech.TIdentidad AS TID ON TID.codIde = TOD.codIde
 INNER JOIN mech.TTipoPago AS TTP ON TTP.codTipP = TPD.codTipP
 INNER JOIN mech.TLugarTrabajo TL ON TL.codigo = TOD.codigo  
+INNER JOIN mech.TTipoClasif AS TCLA ON TCLA.codTipCla = TPD.codTipCla
 go
+
+
+
 
 create view VPersDesemCajaGer
 as
@@ -917,10 +900,6 @@ as
 	select TP.codPers,TP.nombre+' '+TP.apellido as nom,TPD.codPersDes,TPD.idOP
 	from TPersDesem TPD join TPersonal TP on TPD.codPers=TP.codPers where estDesem=1 and TPD.tipoA=1 --1=solicitante
 GO
-
----------------------------------------
--------EJECUTAR 14/09/2013-------------
----------------------------------------
 
 create view VCajaSerie
 as
@@ -1061,7 +1040,7 @@ as
 	where TS.estSol in (1,2)  -- 1=Aprobado 2=Procesado caja egreso 3=anulado 4=OK Rendido
 GO
 
-create view VSolicitudCajaCuenta  
+create view VSolicitudCajaCuenta  --utilizado en 2 interfaces no modificar
 as	
 	select TS.codSC,TS.nroSol,TS.fechaSol,'est'=case when TS.estSol=0 then 'PENDIENTE' when TS.estSol=1 then 'APROBADO' when TS.estSol=2 then 'PROCESADO' when TS.estSol=3 then 'ANULADO' else 'OK RENDIDO' end,  --4=ok
 	'nro'=case when TS.nroSol<100 then '00'+ltrim(str(TS.nroSol)) when TS.nroSol>=100 and TS.nroSol<1000 then '0'+ltrim(str(TS.nroSol)) else '0'+ltrim(str(TS.nroSol)) end,
@@ -1084,9 +1063,6 @@ as
 	join TAreaMat TA on TD.codAreaM=TA.codAreaM
 	join TTipoMat TT on TD.codTipM=TT.codTipM
 GO
----------------------------------------
--------EJECUTAR 30/09/2013-------------
----------------------------------------
 --DROP view VSolicitudCaja
 create view VSolicitudCaja
 as
@@ -1097,13 +1073,102 @@ as
 	where TS.estSol in (0,1,2) --0=Pendiente 1=aprobado 2=Procesado Egreso caja
 GO
 
-select isNull(max(codApro),1) from TDetSolCaja where codSC=1
+create view VSesionMes --Instanciado en varias interfaces
+as	
+	select TS.idSesM,TM.mes,TS.ano,'estado'=case when TS.estado=1 then 'Abierto' when TS.estado=2 then  'Pendiente' else 'Cerrado' end,TM.idMes,TS.estado as estado1,TS.codigo
+	from TMes TM join TSesionMes TS on TM.idMes=TS.idMes
+GO
 
-select codSC,nro,fechaSol,nomSoli,montoSol,imprevisto,salAnt,totPar,est,nomObra,nomSede,estSol,codObra,codSede,codPers from VSolicitudCajaCuenta where codPers=15
-select codDetSol,tipoM,cant1,insumo,prec1,totPar,comp,fecha,comp1,nroOtros,cant2,prec2,totReal,estRen1,nom,obsRen,ingre,areaM,codRen,codMat,codAreaM,codTipM,codSC,codDC,compCheck,estRen,compRen,ingreso,obsSol from VDetSolCajaCuenta where (codSC=1 and codTipM=2) or (codSC=1000)
+create view VOrdenDesembolso1  
+as	
+	select idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,estado,'est'=case when estado=0 then 'PENDIENTE' when estado=1 then 'TERMINADO' when estado=2 then 'CERRADO' else 'ANULADO' end, 
+	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,
+	codigo,codIde,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,hist,codSerO,TOD.vanCaja
+	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon 
+	where estado=0 --0=pendiente 1=terminado
+GO
+
+create view VSubClasificacionEgreso
+as
+	select TC.codCla,TC.clasificacion,TC.idTM,TT.codTipCla,TT.tipoClasif,TT.estado
+	from TClasificacion TC join TTipoClasif TT on TC.codCla=TT.codCla	
+	where TC.idTM=1 and TT.estado=1  --1=Egreso 1=activo
+GO
+
+create view VMesAbierto 
+as	
+	select TS.idSesM,TM.mes,TS.ano,TM.idMes,TS.estado,TS.codigo
+	from TMes TM join TSesionMes TS on TM.idMes=TS.idMes
+	where TS.estado in (1,2)  ---1=abierto  2=pendiente 3=cerrado
+GO
+
+--DROP view VOrdenDesemTesoreria
+create view VOrdenDesemTesoreria  
+as	
+	select TOD.idOP,serie,nroDes,fecDes,monto,montoDet,montoDif,TOD.estado,'est'=case when TOD.estado=0 then 'PENDIENTE' when TOD.estado=1 then 'TERMINADO' when TOD.estado=2 then 'CERRADO' else 'ANULADO' end,TOD.codSerO,TOD.vanCaja, 
+	'nro'=case when nroDes<100 then '000'+ltrim(str(nroDes)) when nroDes>=100 and nroDes<1000 then '00'+ltrim(str(nroDes)) else '0'+ltrim(str(nroDes)) end,TM.codMon,TM.moneda,TM.simbolo,TP1.codPers as codPersSol,TP1.nom as nomSol,
+	banco,nroCta,nroDet,datoReq,hist,TL.codigo,TL.nombre,TI.codIde,TI.razon,TI.ruc,TP.codPers,TP.nom,TP.dni,isnull(TP.codPersDes,0) as codPersDes,isnull(TP.estDesem,0) as estDesem,TP.obserDesem,isnull(TP.estApro,'') as estApro
+	from TOrdenDesembolso TOD join TMoneda TM on TOD.codMon=TM.codMon 
+	join TLugarTrabajo TL on TOD.codigo=TL.codigo
+	join TIdentidad TI on TOD.codIde=TI.codIde
+	join VPersDesemTesoreria TP on TOD.idOP=TP.idOP --2=gerencia
+	join VPersDesemSolic TP1 on TOD.idOP=TP1.idOP
+	where TOD.estado=0 --0=pendiente 1=terminado
+GO
+--DROP view VPagoDesemTesoreria
+create view VPagoDesemTesoreria
+as
+	select TT.codTipP,TT.tipoP,TT.nro,TP.codPagD,TP.fecPago,TP.nroP,TP.pagoDet,TM.codMon,TM.moneda,TM.simbolo,TCB.nroCue,TB.codBan,TB.banco,TTC.tipoClasif as clasif,
+	TP.montoPago,TP.montoD,TP.idOP,TP.idCue,TP.codTipCla,TTC.tipoClasif,TC.codCla,TC.clasificacion,TC.idTM,TP.idSesM,TS.ano,TME.idMes,TME.mes,TME.mes+' - '+ltrim(str(TS.ano)) as mesano,
+	'egreso'=case when TP.vanEgreso=0 then 'EGRESO' else 'NO EGRESO' end, TP.vanEgreso 
+	from TTipoPago TT join TPagoDesembolso TP on TT.codTipP=TP.codTipP
+	join TMoneda TM on TP.codMon=TM.codMon
+	join TCuentaBan TCB on TP.idCue=TCB.idCue
+	join TBanco TB on TCB.codBan=TB.codBan
+	join TTipoClasif TTC on TP.codTipCla=TTC.codTipCla
+	join TClasificacion TC on TTC.codCla=TC.codCla
+	join TSesionMes TS on TP.idSesM=TS.idSesM
+	join TMes TME on TS.idMes=TME.idMes
+GO
+
+create view VDiaCaja
+AS
+	select distinct TDS.codDia,TDS.fecha,TDS.estado,TDS.codigo 
+	from TDiaCaja TDS join TMovimientoCaja TES on TDS.codDia=TES.codDia
+GO
+
+---------------------------------------
+-------EJECUTAR 11/10/2013-------------
+---------------------------------------
+create View VSolCajaTodo
+as	
+	select TS.codSC,TS.nroSol,TS.fechaSol,'est'=case when TS.estSol=0 then 'PENDIENTE' when TS.estSol=1 then 'APROBADO' when TS.estSol=2 then 'PROCESADO' when TS.estSol=3 then 'ANULADO' else 'OK RENDIDO' end,  --4=ok
+	'nro'=case when TS.nroSol<100 then '00'+ltrim(str(TS.nroSol)) when TS.nroSol>=100 and TS.nroSol<1000 then '0'+ltrim(str(TS.nroSol)) else '0'+ltrim(str(TS.nroSol)) end,
+	TS.estSol,TP.codPers,TP.nombre+' '+TP.apellido as nomSoli,TS.codObra,TL1.nombre as nomObra,TS.codSede,TS.salAct,
+	TS.salAnt,TS.montoSol,TS.imprevisto,TS.montoRen,TS.montoSol+TS.imprevisto-TS.salAnt as totPar
+	from TSolicitudCaja TS join TLugarTrabajo TL1 on TS.codObra=TL1.codigo
+	join TPersonal TP on TS.codPers=TP.codPers
+GO
+
+select distinct codPers,nomSoli from VSolCajaTodo TPersonal order by nomSoli
+select distinct codObra,nomObra from VSolCajaTodo TObra
+select codSC,nro,fechaSol,nomSoli,montoSol,imprevisto,salAnt,totPar,montoRen,salAct,est,nomObra,estSol,codObra,codSede,codPers from VSolCajaTodo where codPers=19 or codObra='ras' or codSC>9999
+
+select nroMC,movimiento,fecha,nroOrd,simbolo,montoEnt,nroSol,simbolo,montoSal,saldoMov,tipoP,nroP,nomPers,descrip,nombre,nomCaja,codDia,codTM,codigo,codCC,idOP,codUsu,codMon,codSC,codPers,codPagD,codCaj from VMovimientoCaja where codDia>=@codDia1 and codDia<=@codDia2 and codCaj=@codCC
+select nroMC,movimiento,fecha,nroOrd,simbolo,montoEnt,nroSol,simbolo,montoSal,saldoMov,tipoP,nroP,nomPers,descrip,nombre,nomCaja,codDia,codTM,codigo,codCC,idOP,codUsu,codMon,codSC,codPers,codPagD,codCaj from VMovimientoCaja where codDia>=2 and codDia<=2 and codCaj=1
+		0		1		  2		3		4		5		6		7		8		9		10	  11	12		13		14		15	  16	 17		18	  19	20	 21		22		23	  24	  25	 26			
+
+
+select codSC,nro,fechaSol,nomSoli,montoSol,imprevisto,salAnt,totPar,est,nomObra,nomSede,estSol,codObra,codSede,codPers from VSolicitudCajaCuenta
+select codDetSol,tipoM,insumo,cant1,prec1,totPar,comp,fecha,comp1,nroOtros,cant2,prec2,totReal,estRen1,nom,obsRen,ingre,areaM,codRen,codMat,codAreaM,codTipM,codSC,codDC,compCheck,estRen,compRen,ingreso,obsSol from VDetSolCajaCuenta where (codSC=@cod1 and codTipM=@codT) or (codSC=@cod2)
 			0		1	  2		3	  4		5	  6		7	   8	  9		10	   11	 12		13		14	 15	   16	  17	18	   19	    20	    21     22    23	     24	     25	    26      27      28
-			
-		select SUM(totReal) from VDetSolCajaCuenta where codSC=1
+
+
+select idOP,nroDes,serie,nro,fecDes,simbolo,monto,montoDet,montoDif,banco,nroCta,est,nroDet,datoReq,hist,estado,codigo,codIde,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,codMon,codSerO,vanCaja from VOrdenDesembolso1 where codSerO=@ser
+
+select distinct codCla,clasificacion,idTM from VSubClasificacionEgreso TClasificacion
+select codTipCla,tipoClasif,codCla from VSubClasificacionEgreso TTipoClasif
+
 
 select codSC,nro,fechaSol,nomSoli,montoSol,imprevisto,salAnt,totPar,est,nomObra,nomSede,estSol,codObra,codSede,codPers from VSolCajaApro where codSede=@cod
 
@@ -1118,8 +1183,6 @@ select codSC,nroSol,nro,fechaSol,codPers,nom,estSol,est,salAnt,montoSol,imprevis
 select codPagD,nro,fecPago,simbolo,montoPago,vCaja,tipoP,nroP,datoReq,nomGer,nomSol,vanCaja,estado,idOP,codMon,codSerO,codPersGer,codPersSol,codTipP,nroDes from VOrdenDesembCajaIngreso where codSerO=@ser
 			0	1	  2		  3			4      5	 6	  7		 8		9		10	   11	  12	13	  14	  15		16			17		18     19
 
-select nroMC,movimiento,fecha,nroOrd,simbolo,montoEnt,nroSol,simbolo,montoSal,saldoMov,tipoP,nroP,nomPers,descrip,nombre,nomCaja,codDia,codTM,codigo,codCC,idOP,codUsu,codMon,codSC,codPers,codPagD,codCaj from VMovimientoCaja where codDia=@codDia and codCaj=@codCC
-		0		1		  2		3		4		5		6		7		8		9		10	  11	12		13		14		15	  16	 17		18	  19	20	 21		22		23	  24	  25	 26			
 
 select idSol,nroS,nro,fecSol,nroSoliConca,nombres,obs,est,lugar,codigo,codPers,estado from VSolTodoCad1 where codigo=@cod
 select codDetS,prioridad,cant,unidad,descrip,areaM,estSol,nombres,obs1,nombres1,obs2,idSol,codMat,codPers,codTipM,codAreaM,codEstS from VDetSol where codEstS=2 and idSol=@idS
@@ -1128,8 +1191,8 @@ select codDetS,prioridad,cant,unidad,descrip,areaM,estSol,nombres,obs1,nombres1,
 select COUNT(*) from TMovimientoCaja where codSC=3
 select isnull(sum(montoSal),0) from TMovimientoCaja where codSC=3
 select * from TOrdenDesembolso where vanCaja>0
-select * from TPersonal
-select * from TSolicitudCaja
+select * from TTipoUsu
+select * from TMovimientoCaja
 
 --update TPagoDesembolso set vanCaja=1
 select * from TPagoDesembolso where vanCaja=0
@@ -1138,4 +1201,16 @@ update TDetSolCaja set cant2=cant1,prec2=prec1,compRen=compCheck
 select CAST(sum((cant1*prec1)) as decimal(8,2)) from TDetSolCaja where codSC=4
 
 
+select isnull(max(codCla),0) from TTipoClasif where estado=1 and codTipCla=0
+
+select * from TSolicitudCaja
+select isnull(MAX(codSC),0) from TSolicitudCaja where estSol=2 and codPers=15 and codSC<>6 
+select isnull(max(codSC),0) from TSolicitudCaja where estSol=4 and codPers=19 and codSede='00-00'
+Select * from TDetSolCaja
+update TSolicitudCaja set salAnt=-133, imprevisto=0 where codSC=5
+
+select codSC,nro,fechaSol,nomSoli,montoSol,imprevisto,salAnt,totPar,est,nomObra,nomSede,estSol,codObra,codSede,codPers from VSolicitudCajaCuenta where codPers=@codPers
+
+select * from TMes
+select * from TPersonal
 

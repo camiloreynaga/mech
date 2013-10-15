@@ -98,6 +98,12 @@
     <Compile Include="aperturaSolicitudForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="aprobarCuentaCajaForm.Designer.vb">
+      <DependentUpon>aprobarCuentaCajaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="aprobarCuentaCajaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="aprobarSolicitudCajaForm.designer.vb">
       <DependentUpon>aprobarSolicitudCajaForm.vb</DependentUpon>
     </Compile>
@@ -255,9 +261,6 @@
     <Compile Include="DataSetInformesCr.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetInformesCr.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSetInformesCr.vb">
       <DependentUpon>DataSetInformesCr.xsd</DependentUpon>
     </Compile>
     <Compile Include="entradaAlmacenGuiaMechForm.designer.vb">
@@ -576,6 +579,12 @@
     <Compile Include="rendicionCuentaCajaForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="reporteAprobacionDesembolso.Designer.vb">
+      <DependentUpon>reporteAprobacionDesembolso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="reporteAprobacionDesembolso.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReporteCardexForm.Designer.vb">
       <DependentUpon>ReporteCardexForm.vb</DependentUpon>
     </Compile>
@@ -738,6 +747,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="aperturaSolicitudForm.resx">
       <DependentUpon>aperturaSolicitudForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="aprobarCuentaCajaForm.resx">
+      <DependentUpon>aprobarCuentaCajaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="aprobarSolicitudCajaForm.resx">
       <DependentUpon>aprobarSolicitudCajaForm.vb</DependentUpon>
@@ -974,6 +986,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="rendicionCuentaCajaForm.resx">
       <DependentUpon>rendicionCuentaCajaForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reporteAprobacionDesembolso.resx">
+      <DependentUpon>reporteAprobacionDesembolso.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReporteCardexForm.resx">
       <DependentUpon>ReporteCardexForm.vb</DependentUpon>

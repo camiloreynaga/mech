@@ -101,6 +101,7 @@ Public Class rendicionCuentaCajaForm
             configurarColorControl()
             cbCompro1.SelectedIndex = 0
             cbCompro.SelectedIndex = 0
+            cbVis.Checked = True
 
             wait.Close()
             Me.Cursor = Cursors.Default
@@ -132,7 +133,7 @@ Public Class rendicionCuentaCajaForm
             txtTotReq.Text = Format(BindingSource1.Item(lbSol.SelectedIndex)(7), "0,0.00")
 
             txtTotEgr.Text = Format(recuperarTotReal(lbSol.SelectedValue), "0,0.00")
-            txtSalAct.Text = Format(txtTotReq.Text - txtTotEgr.Text, "0,0.00")
+            txtSalAct.Text = Format((txtTotReq.Text - txtTotEgr.Text) + txtSalAnt.Text, "0,0.00")
         End If
     End Sub
 
@@ -1228,5 +1229,9 @@ Public Class rendicionCuentaCajaForm
         cmDeleteTable12.CommandText = "delete from TDetSolCaja where codDetSol=@cod"
         cmDeleteTable12.Connection = Cn
         cmDeleteTable12.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource3.Item(BindingSource3.Position)(0)
+    End Sub
+
+    Private Sub Label9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label9.Click
+
     End Sub
 End Class

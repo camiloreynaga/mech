@@ -666,8 +666,14 @@ create table TSolicitudCaja
 	montoRen decimal(10,2),   --rendido
 	codObra varchar(10), --codigo de la Obra para donde se gastara
 	codSede varchar(10), --codigo de la Obra de caja chica
+	salAct decimal(10,2) default 0, --saldo ACTUAL personal
 	foreign key (codPers) references TPersonal
 )
+
+--select * from TSolicitudCaja
+--aumentar campos a la estructura de nuestra base de datos
+--ALTER TABLE TSolicitudCaja ADD salAct decimal(10,2) default 0
+--update TSolicitudCaja set salAct=0
 
 -- drop table TDetSolCaja
 create table TDetSolCaja
@@ -748,7 +754,7 @@ create table TMovimientoCaja
 )
 
 -------MODULO INGRESOS EGRESOS(DESEMBOLSOS) MECH------
------------------EJECUTAR 04/10/2013------------------
+-----------------EJECUTAR 09/10/2013------------------
 ------------------------------------------------------
 create table TMes
 (	idMes int identity primary key,
@@ -763,45 +769,6 @@ create table TSesionMes
 	codigo varchar(10),	--codigo de de lugar
 	foreign key(idMes) references TMes,
 	foreign key(codigo) references TlugarTrabajo
-)
-
--- DROP table TDocCompra
-create table TDocCompra
-(	codDocC int identity(1,1) primary key,
-	serie varchar(5),
-	nroDoc int,
-	fecDoc date,
-	fecCan varchar(10),
-	idSesM int,
-	codTipDC int,
-	estado int,	--0=abierto,1=cerrado,2=anulado
-	codIde int,
-	codPag int,
-	igv decimal(6,2),
-	calIGV int,  --0=Boleta otros  1=Tipo IGV 2=TipoIGV
-	codMon int,
-	camD decimal(5,2),
-	obs varchar(200),
-	hist varchar(500), --quien creo/modifico/anulo y en que fecha
-	codTipCla int,     --0=No es ingreso de dinero a MECH
-	foreign key(codTipDC) references TTipoDocCompra,
-	foreign key(codIde) references TIdentidad,
-	foreign key(codPag) references TFormaPago,
-	foreign key(codMon) references TMoneda,
-	foreign key(idSesM) references TSesionMes
-)
-
---DROP table TDetalleCompra
-create table TDetalleCompra
-(	codDC int identity(1,1) primary key,
-	cant decimal(8,2),
-	unidad varchar(20),
-	detalle varchar(100),
-	preUni decimal(12,2),
-	codDocC int,
-	codMat int,  -- 0=si no hereda insumo estructurado
-	foreign key(codDocC) references TDocCompra,
-	--foreign key(codMat) references TMaterial
 )
 
 create table TTipoMovimiento
@@ -845,4 +812,45 @@ create table TMovimientoMech
 	foreign key(codPers) references TPersonal,
 )
 
+-------MODULO INGRESOS EGRESOS(DESEMBOLSOS) MECH------
+-----------------EJECUTAR 14/10/2013------------------
+------------------------------------------------------
 
+-- DROP table TDocCompra
+create table TDocCompra
+(	codDocC int identity(1,1) primary key,
+	serie varchar(5),
+	nroDoc int,
+	fecDoc date,
+	fecCan varchar(10),
+	idSesM int,
+	codTipDC int,
+	estado int,	--0=abierto,1=cerrado,2=anulado
+	codIde int,
+	codPag int,
+	igv decimal(6,2),
+	calIGV int,  --0=Boleta otros  1=Tipo IGV 2=TipoIGV
+	codMon int,
+	camD decimal(5,2),
+	obs varchar(200),
+	hist varchar(500), --quien creo/modifico/anulo y en que fecha
+	codTipCla int,     --0=No es ingreso de dinero a MECH
+	foreign key(codTipDC) references TTipoDocCompra,
+	foreign key(codIde) references TIdentidad,
+	foreign key(codPag) references TFormaPago,
+	foreign key(codMon) references TMoneda,
+	foreign key(idSesM) references TSesionMes
+)
+
+--DROP table TDetalleCompra
+create table TDetalleCompra
+(	codDC int identity(1,1) primary key,
+	cant decimal(8,2),
+	unidad varchar(20),
+	detalle varchar(100),
+	preUni decimal(12,2),
+	codDocC int,
+	codMat int,  -- 0=si no hereda insumo estructurado
+	foreign key(codDocC) references TDocCompra,
+	--foreign key(codMat) references TMaterial
+)
