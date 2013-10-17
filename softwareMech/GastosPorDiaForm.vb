@@ -362,32 +362,70 @@ Public Class GastosPorDiaForm
             Exit Sub
         End If
 
-        'Creando las variables para lo parametros
+        'Creando las variables para los parametros
         Dim parameters As New ParameterFields
 
         Dim pFechaIni As ParameterField = New ParameterField
         Dim pFechaFin As ParameterField = New ParameterField
 
-        Dim valorFechaIni As New ParameterDiscreteValue
+        'Parametros para resultados 
+        Dim pTotalSoles As ParameterField = New ParameterField
+        Dim pTotalSolesDetraccion As ParameterField = New ParameterField
 
+        Dim pTotalDolares As ParameterField = New ParameterField
+        Dim pTotalDolaresDetraccion As ParameterField = New ParameterField
+
+        '
+        Dim valorFechaIni As New ParameterDiscreteValue
         Dim valorFechaFin As New ParameterDiscreteValue
 
         '-- 
+        Dim valorTotalSoles As New ParameterDiscreteValue
+        Dim valorTotalSolesDetraccion As New ParameterDiscreteValue
+
+        Dim valorTotalDolares As New ParameterDiscreteValue
+        Dim valorTotalDolaresDetraccion As New ParameterDiscreteValue
+
+
         'Definiendo los nombres
         pFechaIni.Name = "pFechaIni"
         pFechaFin.Name = "pFechaFin"
 
+        pTotalSoles.Name = "pTotalSoles"
+        pTotalSolesDetraccion.Name = "pTotalSolesDetraccion"
+
+        pTotalDolares.Name = "pTotalDolares"
+        pTotalDolaresDetraccion.Name = "pTotalDolaresDetraccion"
         '---
         'Definiendo los nombres de los parametros
 
         valorFechaIni.Value = _fechaIni
         valorFechaFin.Value = _fechaFin
 
+        valorTotalSoles.Value = CDbl(txtTotalSoles.Text)
+        valorTotalSolesDetraccion.Value = CDbl(txtTotalDetraccion.Text)
+
+        valorTotalDolares.Value = CDbl(txtTotalDolares.Text)
+        valorTotalDolaresDetraccion.Value = CDbl(txtDetraccionDolares.Text)
+
         pFechaIni.CurrentValues.Add(valorFechaIni)
         pFechaFin.CurrentValues.Add(valorFechaFin)
 
+        pTotalSoles.CurrentValues.Add(valorTotalSoles)
+        pTotalSolesDetraccion.CurrentValues.Add(valorTotalSolesDetraccion)
+
+        pTotalDolares.CurrentValues.Add(valorTotalDolares)
+        pTotalDolaresDetraccion.CurrentValues.Add(valorTotalDolaresDetraccion)
+
+
         parameters.Add(pFechaIni)
         parameters.Add(pFechaFin)
+
+        parameters.Add(pTotalSoles)
+        parameters.Add(pTotalSolesDetraccion)
+
+        parameters.Add(pTotalDolares)
+        parameters.Add(pTotalDolaresDetraccion)
 
         Dim datos As DataSetInformesCr = CargarDatos()
 
