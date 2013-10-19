@@ -1107,4 +1107,11 @@ Public Class pantallaInicialForm
         mant.MdiParent = Me
         mant.Show()
     End Sub
+
+    Private Sub PagosPendienteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PagosPendienteToolStripMenuItem.Click
+        Dim frm As New reporteAprobacionDesembolso
+        frm.MdiParent = Me
+        frm.Show()
+
+    End Sub
 End Class

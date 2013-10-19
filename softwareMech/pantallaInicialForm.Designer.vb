@@ -131,6 +131,7 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.PagosPendienteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -818,7 +819,7 @@ Partial Class pantallaInicialForm
         '
         'infT
         '
-        Me.infT.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.infT1, Me.infT2, Me.infT3})
+        Me.infT.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.infT1, Me.infT2, Me.infT3, Me.PagosPendienteToolStripMenuItem})
         Me.infT.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.infT.Image = CType(resources.GetObject("infT.Image"), System.Drawing.Image)
         Me.infT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1059,6 +1060,12 @@ Partial Class pantallaInicialForm
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'PagosPendienteToolStripMenuItem
+        '
+        Me.PagosPendienteToolStripMenuItem.Name = "PagosPendienteToolStripMenuItem"
+        Me.PagosPendienteToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+        Me.PagosPendienteToolStripMenuItem.Text = "Pagos pendiente"
+        '
         'pantallaInicialForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1191,4 +1198,5 @@ Partial Class pantallaInicialForm
     Friend WithEvents ToolStripSeparator23 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents opcOrdDesAperturaMes As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents opcClasifEgreso As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PagosPendienteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

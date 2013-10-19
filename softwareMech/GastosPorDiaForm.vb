@@ -306,9 +306,6 @@ Public Class GastosPorDiaForm
         Catch ex As Exception
 
         End Try
-
-
-
     End Sub
 
     Private Sub chkBanco_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkBanco.CheckedChanged
