@@ -355,7 +355,7 @@ Public Class GastosPorDiaForm
 
     Private Sub btnImp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImp.Click
         If bindingSource0.Position = -1 Then
-            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe Orden de Compra...")
+            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe datos...")
             Exit Sub
         End If
 

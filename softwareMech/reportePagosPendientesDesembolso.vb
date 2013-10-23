@@ -5,7 +5,7 @@ Imports CrystalDecisions.Shared
 
 
 
-Public Class reporteAprobacionDesembolso
+Public Class reportePagosPendientesDesembolso
 
     ''' <summary>
     ''' instancia de objeto DataManager
@@ -67,14 +67,27 @@ Public Class reporteAprobacionDesembolso
                 .Columns("pagoDetraccion").Visible = False  'HeaderText = "Pago Detracción"
                 '.Columns("pagoDetraccion").Width = 75
                 .Columns("diferenciaDetra").Visible = False 'HeaderText = "Pendiente Detracción"
+
+                .Columns("proveedor").HeaderText = "Proveedor"
+                .Columns("proveedor").Width = 150
+                .Columns("proveedor").DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 6.25)
+
                 .Columns("simbolo").HeaderText = ""
                 .Columns("simbolo").Width = 30
+
                 .Columns("obra").HeaderText = "Obra"
                 .Columns("obra").Width = 250
+                .Columns("obra").DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 7.25)
+
+
                 .Columns("datoReq").HeaderText = "concepto"
                 .Columns("datoReq").Width = 220
+                .Columns("datoReq").DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 6.0)
+
                 .Columns("solicitante").HeaderText = "Solicitante"
-                .Columns("solicitante").Width = 220
+                .Columns("solicitante").Width = 150
+                .Columns("datoReq").DefaultCellStyle.Font = New Font("Microsoft Sans Serif", 6.5)
+                .Columns("codIde").Visible = False
 
             End With
 
@@ -159,11 +172,18 @@ Public Class reporteAprobacionDesembolso
         oDataManager.CargarCombo("PA_Proveedores", CommandType.StoredProcedure, cbProveedor, "codIde", "razon")
         configurarColorControl()
 
+        Me.AcceptButton = btnVer
+
     End Sub
 
     Private Sub btnVer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnVer.Click
 
-        Dim sele As String = "select fecDes,idOP,serie,nroDes,simbolo,monto,montoPagado,diferencia,montoDet,pagoDetraccion,diferenciaDetra,obra,datoReq,solicitante,proveedor,codIde from vseguimientoDesembolsoPagos where firmaTesoreria is null and firmaGerencia =2"
+        Dim wait As New waitForm
+        wait.Show()
+        Me.Cursor = Cursors.WaitCursor
+
+
+        Dim sele As String = "select fecDes,idOP,serie,nroDes,simbolo,monto,montoPagado,diferencia,montoDet,pagoDetraccion,diferenciaDetra,proveedor,datoReq,obra,solicitante,codIde from vseguimientoDesembolsoPagos where firmaTesoreria is null and firmaGerencia =2"
         oDataManager.CargarGrilla(sele, CommandType.Text, DgDesembolsos, bindingSource)
         'enlazando con el navigator
         BindingNavigator1.BindingSource = bindingSource
@@ -171,7 +191,13 @@ Public Class reporteAprobacionDesembolso
 
         ModificandoColumnaDGV()
 
+        txtPendienteDolares.Text = (oGrilla.SumarColumnaGrilla(DgDesembolsos, "diferencia", "simbolo", "US$")).ToString()
+        txtPendienteSoles.Text = (oGrilla.SumarColumnaGrilla(DgDesembolsos, "diferencia", "simbolo", "S/.")).ToString()
 
+
+
+        Me.Cursor = Cursors.Default
+        wait.Close()
     End Sub
 
 
@@ -182,4 +208,43 @@ Public Class reporteAprobacionDesembolso
             cbProveedor.Visible = True
         End If
     End Sub
+
+    Private Sub btnSalir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSalir.Click
+        Me.Close()
+    End Sub
+
+    Private Sub btnImp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImp.Click
+        If bindingSource.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe datos...")
+            Exit Sub
+        End If
+        Dim datos As DataSetInformesCr = CargarDatos()
+        Dim frm As New ReportViewerPagosPendientesDesem(datos)
+
+        frm.ShowDialog()
+
+    End Sub
+
+    Private Function CargarDatos() As DataSetInformesCr
+        Dim ds As New DataSetInformesCr
+
+        For Each row As DataGridViewRow In DgDesembolsos.Rows
+
+            Dim rowInf As DataSetInformesCr.DatosPagosPendientesDesemRow = ds.DatosPagosPendientesDesem.NewDatosPagosPendientesDesemRow
+            rowInf.fecDes = CDate(row.Cells("fecDes").Value)
+            rowInf.serie = CStr(row.Cells("serie").Value)
+            rowInf.nroDes = CStr(row.Cells("nroDes").Value)
+            rowInf.monto = CDbl(row.Cells("monto").Value)
+            rowInf.montoPagado = CDbl(row.Cells("montoPagado").Value)
+            rowInf.diferencia = CDbl(row.Cells("diferencia").Value)
+            rowInf.proveedor = CStr(row.Cells("proveedor").Value)
+            rowInf.obra = CStr(row.Cells("obra").Value)
+            rowInf.simbolo = CStr(row.Cells("simbolo").Value)
+            rowInf.datoReq = CStr(row.Cells("datoReq").Value)
+
+            ds.DatosPagosPendientesDesem.AddDatosPagosPendientesDesemRow(rowInf)
+        Next
+
+        Return ds
+    End Function
 End Class

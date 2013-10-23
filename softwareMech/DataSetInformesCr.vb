@@ -13,10 +13,6 @@
 
     Partial Class DatosGastosDiaDataTable
 
-
-
-
-
     End Class
 
     Partial Class DatosKardexDataTable
