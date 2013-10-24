@@ -6,6 +6,20 @@ Imports ComponentesSolucion2008
 Public Class MantCuentas
 
 #Region "variables"
+
+    ''' <summary>
+    ''' Instancia de objeto para ConfigControls 
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim oGrillas As New cConfigFormControls
+
+    ''' <summary>
+    ''' Instancia de objeto para DataManager
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim oDataManager As New cDataManager
+
+
     ''' <summary>
     ''' banco
     ''' </summary>
@@ -16,6 +30,14 @@ Public Class MantCuentas
     ''' </summary>
     ''' <remarks></remarks>
     Dim BindingSource2 As New BindingSource
+
+    ''' <summary>
+    ''' Medio de pago
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim BindingSource3 As New BindingSource
+
+
     ''' <summary>
     ''' instancia de clase para config grilla
     ''' </summary>
@@ -35,6 +57,14 @@ Public Class MantCuentas
     Dim cmInsertTableCta As SqlCommand
 
     ''' <summary>
+    ''' command Insert para Medio de pago
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim cmInsertTableMedio As SqlCommand
+
+
+
+    ''' <summary>
     ''' comand update para banco
     ''' </summary>
     ''' <remarks></remarks>
@@ -47,6 +77,13 @@ Public Class MantCuentas
     Dim cmUpdateTableCta As SqlCommand
 
     ''' <summary>
+    ''' command update para medio de pago
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim cmUpdateTableMedio As SqlCommand
+
+
+    ''' <summary>
     ''' comand Delete para Banco
     ''' </summary>
     ''' <remarks></remarks>
@@ -57,6 +94,13 @@ Public Class MantCuentas
     ''' </summary>
     ''' <remarks></remarks>
     Dim cmDeleteTableCta As SqlCommand
+
+    ''' <summary>
+    ''' command delete para medio de pago
+    ''' </summary>
+    ''' <remarks></remarks>
+    Dim cmDeleteTableMedio As SqlCommand
+
 
 #End Region
 
@@ -103,10 +147,10 @@ Public Class MantCuentas
         Dim wait As New waitForm
         wait.Show()
         'obteniendo los datos de cuetna banco
-        Dim sele As String = "Select idCue,nroCue,TM.moneda,TC.codMon,codBan,case when estado=0 then 'Inactivo' else 'Activo'end estado, estado as codEstado from TcuentaBan as TC INNER JOIN TMoneda as TM on TC.codMon=TM.codMon where codBan>1"
+        Dim sele As String = "Select idCue,nroCue,TM.moneda,TC.codMon,codBan,case when estado=0 then 'Inactivo' else 'Activo'end estado, estado as codEstado from TcuentaBan as TC INNER JOIN TMoneda as TM on TC.codMon=TM.codMon " 'where codBan>1
         crearDataAdapterTable(daTabla1, sele)
         'Obteniendo los datos de Banco
-        sele = "select codBan,banco from tBanco where codBan>1"
+        sele = "select codBan,banco from tBanco " 'where codBan>1
 
         crearDataAdapterTable(daTabla2, sele)
         'Obteniendo los datos de moneda
@@ -269,6 +313,14 @@ Public Class MantCuentas
         End If
     End Sub
 
+    Private Sub enlazarTextMedio()
+
+        'If BindingSour Then
+
+
+    End Sub
+
+
     ''' <summary>
     ''' inserta un registro en tbanco
     ''' </summary>
@@ -298,6 +350,18 @@ Public Class MantCuentas
         cmInsertTableCta.Parameters.Add("@codMon", SqlDbType.Int).Value = moneda
         cmInsertTableCta.Parameters.Add("@codBan", SqlDbType.Int).Value = banco
     End Sub
+
+
+    Private Sub comandoInsertMedio(ByVal medio As String)
+        cmInsertTableMedio = New SqlCommand
+        cmInsertTableMedio.CommandType = CommandType.Text
+        cmInsertTableMedio.CommandText = "insert TMedioPago (medioP,idCue) values (@medio,@idCue)"
+        cmInsertTableMedio.Connection = Cn
+        cmInsertTableMedio.Parameters.Add("@medio", SqlDbType.VarChar, 60).Value = medio
+        cmInsertTableMedio.Parameters.Add("@idCue", SqlDbType.Int).Value = BindingSource2.Item(BindingSource2.Position)(0)
+
+    End Sub
+
     ''' <summary>
     ''' actualiza datos de tBanco
     ''' </summary>
@@ -368,7 +432,7 @@ Public Class MantCuentas
     Private Function ValidarBco() As Boolean
         Dim retorna As Boolean = True
         If validaCampoVacioMinCaracNoNumer(txtBanco.Text().Trim, 3) Then
-            MessageBox.Show("Ingreso un nombre valido, mínimo tres caracteres: ", nomNegocio, Nothing, MessageBoxIcon.Information)
+            MessageBox.Show("Ingrese un nombre valido, mínimo tres caracteres: ", nomNegocio, Nothing, MessageBoxIcon.Information)
             txtBanco.Focus()
             txtBanco.SelectAll()
             retorna = False
@@ -388,7 +452,7 @@ Public Class MantCuentas
         Dim retorna As Boolean = True
 
         If validaCampoVacio(txtCuenta.Text.Trim()) Then
-            MessageBox.Show("Ingreso un número de cuenta valido: ", nomNegocio, Nothing, MessageBoxIcon.Information)
+            MessageBox.Show("Ingrese un número de cuenta valido: ", nomNegocio, Nothing, MessageBoxIcon.Information)
             txtCuenta.Focus()
             txtCuenta.SelectAll()
             retorna = False
@@ -401,9 +465,27 @@ Public Class MantCuentas
         End If
 
         Return retorna
-
-
     End Function
+
+    Private Function ValidarMedio() As Boolean
+        Dim retorna As Boolean = True
+
+        If validaCampoVacio(txtMedioPago.Text.Trim()) Then
+            MessageBox.Show("Ingrese un medio de pago valido: ", nomNegocio, Nothing, MessageBoxIcon.Information)
+            txtCuenta.Focus()
+            txtCuenta.SelectAll()
+            retorna = False
+        End If
+
+        If BindingSource3.Find("medioP", txtMedioPago.Text.Trim()) > 0 Then
+            MessageBox.Show("Ya existe el medio de pago: " & txtMedioPago.Text.Trim() & Chr(13) & "Cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
+            txtMedioPago.Focus()
+            txtMedioPago.SelectAll()
+            retorna = False
+        End If
+        Return retorna
+    End Function
+
 
     ''' <summary>
     ''' obtiene la cantidad de pagos relacionada con una cuenta
@@ -415,7 +497,7 @@ Public Class MantCuentas
 
         Dim cmdComando As SqlCommand = New SqlCommand
         cmdComando.CommandType = CommandType.Text
-        cmdComando.CommandText = "SELECT count(codPagD) from TPagoDesembolso where idCue =" & cod
+        cmdComando.CommandText = "SELECT count(*) from TPagoDesembolso where idCue =" & cod
         cmdComando.Connection = Cn
         Return cmdComando.ExecuteScalar
 
@@ -426,7 +508,7 @@ Public Class MantCuentas
 
         Dim cmdComando As SqlCommand = New SqlCommand
         cmdComando.CommandType = CommandType.Text
-        cmdComando.CommandText = "SELECT count(idCue) from TCuentaBan where codBan =" & cod
+        cmdComando.CommandText = "SELECT count(*) from TCuentaBan where codBan =" & cod
         cmdComando.Connection = Cn
         Return cmdComando.ExecuteScalar
 
@@ -449,19 +531,13 @@ Public Class MantCuentas
 
     Private Sub MantCuentas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-
-
         cConfigGrilla.ConfigGrilla(dgBancos)
         cConfigGrilla.ConfigGrilla(dgCuentas)
         DatosIniciales()
         ModificarColumnasDGV()
 
-
-
         'configuracion de botones
         ConfigurarColorControl()
-
-
 
         btnNuevoBco.Enabled = True
         btnModificarBco.Enabled = False
@@ -474,7 +550,6 @@ Public Class MantCuentas
         btnNuevoCta.Enabled = False
         lsEstado.Enabled = False
 
-
         Try
             'dgCuentas.Rows.Clear()
 
@@ -484,11 +559,6 @@ Public Class MantCuentas
             MessageBox.Show(ex.Message)
 
         End Try
-
-
-
-
-
     End Sub
 
 
@@ -496,9 +566,7 @@ Public Class MantCuentas
 
     Private Sub dgBancos_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgBancos.CellClick
 
-
         enlazarTextBanco()
-
 
         btnModificarBco.Enabled = True
         btnEliminarBco.Enabled = True
@@ -511,12 +579,7 @@ Public Class MantCuentas
         txtCuenta.Focus()
 
         If dgBancos.CurrentRow.Selected = False Then
-
-
-
-
         End If
-
 
     End Sub
 
@@ -526,6 +589,10 @@ Public Class MantCuentas
         btnModificarCta.Enabled = True
         btnEliminarCta.Enabled = True
         lsEstado.Enabled = True
+
+        'Mostrar medios de pago por cuenta
+        Dim consulta As String = "Select codMP,medioP,nroM,idCue from TMedioPago Where idCue=" & BindingSource2.Item(BindingSource2.Position)(0)
+        oDataManager.CargarGrilla(consulta, CommandType.Text, dgMedios, BindingSource3)
 
     End Sub
 
@@ -724,7 +791,7 @@ Public Class MantCuentas
 
         End If
 
-        
+
 
     End Sub
 
@@ -761,7 +828,7 @@ Public Class MantCuentas
                 dsAlmacen.Tables("TCuentaBancaria").Clear()
                 daTabla1.Fill(dsAlmacen, "TCuentaBancaria")
 
-                
+
 
                 BindingSource2.Position = BindingSource2.Find("nroCue", txtCuenta.Text.Trim())
                 StatusBarClass.messageBarraEstado("  Registro fue agregado con éxito...")
@@ -862,7 +929,7 @@ Public Class MantCuentas
             Exit Sub
         End If
 
-        
+
         'Validando las Cuentas relacionadas con pagos
         If recuperarPagos(dgCuentas.Rows(BindingSource2.Position).Cells("idCue").Value) > 0 Then
             StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... CUENTA TIENE PAGOS ASIGNADOS...")
@@ -923,7 +990,7 @@ Public Class MantCuentas
         End If
 
 
-        
+
 
     End Sub
 
@@ -939,6 +1006,105 @@ Public Class MantCuentas
 
     Private Sub dgCuentas_DataBindingComplete(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewBindingCompleteEventArgs) Handles dgCuentas.DataBindingComplete
         DirectCast(sender, DataGridView).ClearSelection()
+
+    End Sub
+
+    Private Sub btnNuevoMedio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNuevoMedio.Click
+
+        If ValidarMedio() = False Then
+
+        Else
+
+            Dim finalMyTrans As Boolean = False
+            Dim myTrans As SqlTransaction = Cn.BeginTransaction
+            Dim wait As New waitForm
+            wait.Show()
+
+            Try
+
+                StatusBarClass.messageBarraEstado(" GUARDANDO DATOS...")
+                Me.Refresh()
+
+                Dim _medioTemp As String = txtMedioPago.Text.Trim
+                ' comando insertar medio
+                comandoInsertMedio(txtMedioPago.Text.Trim())
+                cmInsertTableMedio.Transaction = myTrans
+
+                If cmInsertTableMedio.ExecuteNonQuery() < 1 Then
+                    myTrans.Rollback()
+                    MessageBox.Show("Ocurrio un error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                End If
+
+                myTrans.Commit()
+                StatusBarClass.messageBarraEstado(" LOS DATOS FUERON GUARDADOS CON ÉXITO...")
+                finalMyTrans = True
+
+                'Actualizando la grilla
+                Dim consulta As String = "Select codMP,medioP,nroM,idCue from TMedioPago Where idCue=" & BindingSource2.Item(BindingSource2.Position)(0)
+                oDataManager.CargarGrilla(consulta, CommandType.Text, dgMedios, BindingSource3)
+
+                BindingSource3.Position = BindingSource3.Find("medioP", _medioTemp)
+
+
+                StatusBarClass.messageBarraEstado("  Registro fué agregado con exito...")
+
+            Catch f As Exception
+                If finalMyTrans Then
+                    MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTÁ SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                Else
+                    myTrans.Rollback()
+                    MessageBox.Show(f.Message & Chr(13) & "NO SE GUARDO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Me.Close()
+                    Exit Sub
+                End If
+
+
+            Finally
+                wait.Close()
+
+            End Try
+
+        End If
+
+    End Sub
+
+    Private Sub btnModificarMedio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnModificarMedio.Click
+        Dim _medioTemp As String = BindingSource3.Item(BindingSource3.Position)(1)
+
+        If _medioTemp.ToUpper() <> txtMedioPago.Text.Trim().ToUpper() Then
+            If ValidarMedio() = False Then
+                Exit Sub
+            End If
+
+        Else
+            Me.Refresh()
+
+            Dim FinalMyTrans As Boolean = False
+
+            Dim myTrans As SqlTransaction = Cn.BeginTransaction
+
+            Dim wait As New waitForm
+
+            wait.Show()
+
+            Try
+
+
+
+            Catch ex As Exception
+            Finally
+                wait.Close()
+
+            End Try
+
+        End If
+    End Sub
+
+    Private Sub btnEliminarMedio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEliminarMedio.Click
 
     End Sub
 End Class

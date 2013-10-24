@@ -42,20 +42,29 @@ Partial Class MantCuentas
         Me.Label6 = New System.Windows.Forms.Label
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.Panel2 = New System.Windows.Forms.Panel
+        Me.Panel3 = New System.Windows.Forms.Panel
+        Me.dgMedios = New System.Windows.Forms.DataGridView
+        Me.Label7 = New System.Windows.Forms.Label
+        Me.txtMedioPago = New System.Windows.Forms.TextBox
+        Me.btnNuevoMedio = New ComponentesSolucion2008.BottomSSP(Me.components)
+        Me.btnModificarMedio = New ComponentesSolucion2008.BottomSSP(Me.components)
+        Me.btnEliminarMedio = New ComponentesSolucion2008.BottomSSP(Me.components)
         CType(Me.dgBancos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgCuentas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        Me.Panel3.SuspendLayout()
+        CType(Me.dgMedios, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(835, 23)
+        Me.lblTitulo.Size = New System.Drawing.Size(1000, 23)
         Me.lblTitulo.Text = "Mantenimientos de Cuentas"
         '
         'lblDerecha
         '
-        Me.lblDerecha.Size = New System.Drawing.Size(14, 235)
+        Me.lblDerecha.Size = New System.Drawing.Size(14, 375)
         '
         'cboMoneda
         '
@@ -70,7 +79,7 @@ Partial Class MantCuentas
         Me.btnCerrar.BackColor = System.Drawing.SystemColors.Control
         Me.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCerrar.Location = New System.Drawing.Point(747, 177)
+        Me.btnCerrar.Location = New System.Drawing.Point(611, 23)
         Me.btnCerrar.Name = "btnCerrar"
         Me.btnCerrar.Size = New System.Drawing.Size(84, 23)
         Me.btnCerrar.TabIndex = 5
@@ -124,7 +133,7 @@ Partial Class MantCuentas
         Me.dgBancos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgBancos.Location = New System.Drawing.Point(3, 96)
         Me.dgBancos.Name = "dgBancos"
-        Me.dgBancos.Size = New System.Drawing.Size(264, 121)
+        Me.dgBancos.Size = New System.Drawing.Size(264, 263)
         Me.dgBancos.TabIndex = 30
         '
         'txtBanco
@@ -166,7 +175,7 @@ Partial Class MantCuentas
         Me.dgCuentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgCuentas.Location = New System.Drawing.Point(6, 65)
         Me.dgCuentas.Name = "dgCuentas"
-        Me.dgCuentas.Size = New System.Drawing.Size(435, 152)
+        Me.dgCuentas.Size = New System.Drawing.Size(599, 79)
         Me.dgCuentas.TabIndex = 30
         '
         'txtCuenta
@@ -191,7 +200,7 @@ Partial Class MantCuentas
         Me.btnNuevoCta.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnNuevoCta.Image = CType(resources.GetObject("btnNuevoCta.Image"), System.Drawing.Image)
         Me.btnNuevoCta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnNuevoCta.Location = New System.Drawing.Point(747, 91)
+        Me.btnNuevoCta.Location = New System.Drawing.Point(341, 39)
         Me.btnNuevoCta.Name = "btnNuevoCta"
         Me.btnNuevoCta.Size = New System.Drawing.Size(84, 23)
         Me.btnNuevoCta.TabIndex = 2
@@ -205,7 +214,7 @@ Partial Class MantCuentas
         Me.btnModificarCta.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnModificarCta.Image = CType(resources.GetObject("btnModificarCta.Image"), System.Drawing.Image)
         Me.btnModificarCta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnModificarCta.Location = New System.Drawing.Point(747, 119)
+        Me.btnModificarCta.Location = New System.Drawing.Point(431, 39)
         Me.btnModificarCta.Name = "btnModificarCta"
         Me.btnModificarCta.Size = New System.Drawing.Size(84, 23)
         Me.btnModificarCta.TabIndex = 3
@@ -219,7 +228,7 @@ Partial Class MantCuentas
         Me.btnEliminarCta.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnEliminarCta.Image = CType(resources.GetObject("btnEliminarCta.Image"), System.Drawing.Image)
         Me.btnEliminarCta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnEliminarCta.Location = New System.Drawing.Point(747, 148)
+        Me.btnEliminarCta.Location = New System.Drawing.Point(521, 39)
         Me.btnEliminarCta.Name = "btnEliminarCta"
         Me.btnEliminarCta.Size = New System.Drawing.Size(84, 23)
         Me.btnEliminarCta.TabIndex = 4
@@ -231,7 +240,7 @@ Partial Class MantCuentas
         '
         Me.lsEstado.FormattingEnabled = True
         Me.lsEstado.Items.AddRange(New Object() {"Activo", "Inactivo"})
-        Me.lsEstado.Location = New System.Drawing.Point(329, 18)
+        Me.lsEstado.Location = New System.Drawing.Point(382, 5)
         Me.lsEstado.Name = "lsEstado"
         Me.lsEstado.Size = New System.Drawing.Size(69, 30)
         Me.lsEstado.TabIndex = 3
@@ -265,7 +274,7 @@ Partial Class MantCuentas
         Me.Panel1.Controls.Add(Me.btnNuevoBco)
         Me.Panel1.Location = New System.Drawing.Point(17, 23)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(275, 230)
+        Me.Panel1.Size = New System.Drawing.Size(275, 362)
         Me.Panel1.TabIndex = 0
         '
         'Panel2
@@ -273,34 +282,111 @@ Partial Class MantCuentas
         Me.Panel2.Controls.Add(Me.lsEstado)
         Me.Panel2.Controls.Add(Me.Label6)
         Me.Panel2.Controls.Add(Me.Label5)
+        Me.Panel2.Controls.Add(Me.btnNuevoCta)
         Me.Panel2.Controls.Add(Me.Label3)
         Me.Panel2.Controls.Add(Me.Label4)
+        Me.Panel2.Controls.Add(Me.btnModificarCta)
         Me.Panel2.Controls.Add(Me.txtCuenta)
+        Me.Panel2.Controls.Add(Me.btnEliminarCta)
         Me.Panel2.Controls.Add(Me.dgCuentas)
         Me.Panel2.Controls.Add(Me.cboMoneda)
         Me.Panel2.Location = New System.Drawing.Point(296, 26)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(445, 226)
+        Me.Panel2.Size = New System.Drawing.Size(701, 148)
         Me.Panel2.TabIndex = 1
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.dgMedios)
+        Me.Panel3.Controls.Add(Me.Label7)
+        Me.Panel3.Controls.Add(Me.txtMedioPago)
+        Me.Panel3.Controls.Add(Me.btnNuevoMedio)
+        Me.Panel3.Controls.Add(Me.btnModificarMedio)
+        Me.Panel3.Controls.Add(Me.btnEliminarMedio)
+        Me.Panel3.Controls.Add(Me.btnCerrar)
+        Me.Panel3.Location = New System.Drawing.Point(296, 180)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(701, 205)
+        Me.Panel3.TabIndex = 3
+        '
+        'dgMedios
+        '
+        Me.dgMedios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgMedios.Location = New System.Drawing.Point(6, 51)
+        Me.dgMedios.Name = "dgMedios"
+        Me.dgMedios.Size = New System.Drawing.Size(599, 150)
+        Me.dgMedios.TabIndex = 5
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(3, 9)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(95, 13)
+        Me.Label7.TabIndex = 1
+        Me.Label7.Text = "Medio de pago:"
+        '
+        'txtMedioPago
+        '
+        Me.txtMedioPago.Location = New System.Drawing.Point(6, 25)
+        Me.txtMedioPago.Name = "txtMedioPago"
+        Me.txtMedioPago.Size = New System.Drawing.Size(329, 20)
+        Me.txtMedioPago.TabIndex = 0
+        '
+        'btnNuevoMedio
+        '
+        Me.btnNuevoMedio.BackColor = System.Drawing.SystemColors.Control
+        Me.btnNuevoMedio.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnNuevoMedio.Image = CType(resources.GetObject("btnNuevoMedio.Image"), System.Drawing.Image)
+        Me.btnNuevoMedio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnNuevoMedio.Location = New System.Drawing.Point(341, 23)
+        Me.btnNuevoMedio.Name = "btnNuevoMedio"
+        Me.btnNuevoMedio.Size = New System.Drawing.Size(84, 23)
+        Me.btnNuevoMedio.TabIndex = 2
+        Me.btnNuevoMedio.Text = "Guardar"
+        Me.btnNuevoMedio.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnNuevoMedio.UseVisualStyleBackColor = False
+        '
+        'btnModificarMedio
+        '
+        Me.btnModificarMedio.BackColor = System.Drawing.SystemColors.Control
+        Me.btnModificarMedio.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnModificarMedio.Image = CType(resources.GetObject("btnModificarMedio.Image"), System.Drawing.Image)
+        Me.btnModificarMedio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnModificarMedio.Location = New System.Drawing.Point(431, 23)
+        Me.btnModificarMedio.Name = "btnModificarMedio"
+        Me.btnModificarMedio.Size = New System.Drawing.Size(84, 23)
+        Me.btnModificarMedio.TabIndex = 3
+        Me.btnModificarMedio.Text = "Actualizar"
+        Me.btnModificarMedio.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnModificarMedio.UseVisualStyleBackColor = False
+        '
+        'btnEliminarMedio
+        '
+        Me.btnEliminarMedio.BackColor = System.Drawing.SystemColors.Control
+        Me.btnEliminarMedio.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnEliminarMedio.Image = CType(resources.GetObject("btnEliminarMedio.Image"), System.Drawing.Image)
+        Me.btnEliminarMedio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnEliminarMedio.Location = New System.Drawing.Point(521, 23)
+        Me.btnEliminarMedio.Name = "btnEliminarMedio"
+        Me.btnEliminarMedio.Size = New System.Drawing.Size(84, 23)
+        Me.btnEliminarMedio.TabIndex = 4
+        Me.btnEliminarMedio.Text = "Eliminar"
+        Me.btnEliminarMedio.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnEliminarMedio.UseVisualStyleBackColor = False
         '
         'MantCuentas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
-        Me.ClientSize = New System.Drawing.Size(835, 280)
-        Me.Controls.Add(Me.Panel2)
+        Me.ClientSize = New System.Drawing.Size(1000, 420)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.btnNuevoCta)
-        Me.Controls.Add(Me.btnModificarCta)
-        Me.Controls.Add(Me.btnEliminarCta)
-        Me.Controls.Add(Me.btnCerrar)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel3)
         Me.Name = "MantCuentas"
-        Me.Controls.SetChildIndex(Me.btnCerrar, 0)
-        Me.Controls.SetChildIndex(Me.btnEliminarCta, 0)
-        Me.Controls.SetChildIndex(Me.btnModificarCta, 0)
-        Me.Controls.SetChildIndex(Me.btnNuevoCta, 0)
-        Me.Controls.SetChildIndex(Me.Panel1, 0)
+        Me.Controls.SetChildIndex(Me.Panel3, 0)
         Me.Controls.SetChildIndex(Me.Panel2, 0)
+        Me.Controls.SetChildIndex(Me.Panel1, 0)
         Me.Controls.SetChildIndex(Me.lblTitulo, 0)
         Me.Controls.SetChildIndex(Me.lblDerecha, 0)
         CType(Me.dgBancos, System.ComponentModel.ISupportInitialize).EndInit()
@@ -309,6 +395,9 @@ Partial Class MantCuentas
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
+        CType(Me.dgMedios, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -333,5 +422,12 @@ Partial Class MantCuentas
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents Panel3 As System.Windows.Forms.Panel
+    Friend WithEvents txtMedioPago As System.Windows.Forms.TextBox
+    Friend WithEvents dgMedios As System.Windows.Forms.DataGridView
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents btnNuevoMedio As ComponentesSolucion2008.BottomSSP
+    Friend WithEvents btnModificarMedio As ComponentesSolucion2008.BottomSSP
+    Friend WithEvents btnEliminarMedio As ComponentesSolucion2008.BottomSSP
 
 End Class

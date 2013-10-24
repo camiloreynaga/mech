@@ -75,6 +75,8 @@ Public Class cDataManager
             oTabla.Load(dataR, LoadOption.OverwriteChanges)
 
             dataView = oTabla.DefaultView
+
+
             'While dataR.Read()
             '    grilla.Rows.Add(dataR.GetInt32(0), dataR.GetString(1), dataR.GetString(2), dataR.GetDecimal(3), dataR.GetString(4), dataR.GetString(5))
             'End While
