@@ -59,7 +59,7 @@ Partial Class MantCuentas
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(1000, 23)
+        Me.lblTitulo.Size = New System.Drawing.Size(910, 23)
         Me.lblTitulo.Text = "Mantenimientos de Cuentas"
         '
         'lblDerecha
@@ -79,7 +79,7 @@ Partial Class MantCuentas
         Me.btnCerrar.BackColor = System.Drawing.SystemColors.Control
         Me.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCerrar.Location = New System.Drawing.Point(611, 23)
+        Me.btnCerrar.Location = New System.Drawing.Point(183, 68)
         Me.btnCerrar.Name = "btnCerrar"
         Me.btnCerrar.Size = New System.Drawing.Size(84, 23)
         Me.btnCerrar.TabIndex = 5
@@ -267,6 +267,7 @@ Partial Class MantCuentas
         '
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.btnCerrar)
         Me.Panel1.Controls.Add(Me.txtBanco)
         Me.Panel1.Controls.Add(Me.dgBancos)
         Me.Panel1.Controls.Add(Me.btnEliminarBco)
@@ -292,7 +293,7 @@ Partial Class MantCuentas
         Me.Panel2.Controls.Add(Me.cboMoneda)
         Me.Panel2.Location = New System.Drawing.Point(296, 26)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(701, 148)
+        Me.Panel2.Size = New System.Drawing.Size(611, 148)
         Me.Panel2.TabIndex = 1
         '
         'Panel3
@@ -303,10 +304,9 @@ Partial Class MantCuentas
         Me.Panel3.Controls.Add(Me.btnNuevoMedio)
         Me.Panel3.Controls.Add(Me.btnModificarMedio)
         Me.Panel3.Controls.Add(Me.btnEliminarMedio)
-        Me.Panel3.Controls.Add(Me.btnCerrar)
         Me.Panel3.Location = New System.Drawing.Point(296, 180)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(701, 205)
+        Me.Panel3.Size = New System.Drawing.Size(611, 205)
         Me.Panel3.TabIndex = 3
         '
         'dgMedios
@@ -379,7 +379,7 @@ Partial Class MantCuentas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
-        Me.ClientSize = New System.Drawing.Size(1000, 420)
+        Me.ClientSize = New System.Drawing.Size(910, 420)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel3)
