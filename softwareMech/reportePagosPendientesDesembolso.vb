@@ -169,10 +169,20 @@ Public Class reportePagosPendientesDesembolso
     End Sub
 
     Private Sub reporteAprobacionDesembolso_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        'creando un wait form y estableciendo el cursor en wait
+        Dim wait As New waitForm
+        wait.Show()
+        Me.Cursor = Cursors.WaitCursor
+
+
         oDataManager.CargarCombo("PA_Proveedores", CommandType.StoredProcedure, cbProveedor, "codIde", "razon")
         configurarColorControl()
 
         Me.AcceptButton = btnVer
+
+        wait.Close()
+        Me.Cursor = Cursors.Default
+
 
     End Sub
 
@@ -182,8 +192,7 @@ Public Class reportePagosPendientesDesembolso
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
 
-
-        Dim sele As String = "select fecDes,idOP,serie,nroDes,simbolo,monto,montoPagado,diferencia,montoDet,pagoDetraccion,diferenciaDetra,proveedor,datoReq,obra,solicitante,codIde from vseguimientoDesembolsoPagos where firmaTesoreria is null and firmaGerencia =2"
+        Dim sele As String = "select fecDes,idOP,serie,nroDes,simbolo,monto,montoPagado,diferencia,montoDet,pagoDetraccion,diferenciaDetra,proveedor,datoReq,obra,solicitante,codIde from vseguimientoDesembolsoPagos where firmaTesoreria is null and firmaGerencia =2 and estado_gere=1 "
         oDataManager.CargarGrilla(sele, CommandType.Text, DgDesembolsos, bindingSource)
         'enlazando con el navigator
         BindingNavigator1.BindingSource = bindingSource
@@ -191,9 +200,14 @@ Public Class reportePagosPendientesDesembolso
 
         ModificandoColumnaDGV()
 
+        'mostrando la suma de os importes en la grilla
         txtPendienteDolares.Text = (oGrilla.SumarColumnaGrilla(DgDesembolsos, "diferencia", "simbolo", "US$")).ToString()
         txtPendienteSoles.Text = (oGrilla.SumarColumnaGrilla(DgDesembolsos, "diferencia", "simbolo", "S/.")).ToString()
 
+        'dando formato a la grilla
+
+        txtPendienteSoles.Text = Format(CDbl(txtPendienteSoles.Text), "0,0.00")
+        txtPendienteDolares.Text = Format(CDbl(txtPendienteDolares.Text), "0,0.00")
 
 
         Me.Cursor = Cursors.Default
@@ -214,12 +228,22 @@ Public Class reportePagosPendientesDesembolso
     End Sub
 
     Private Sub btnImp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImp.Click
+        'creando un wait form y estableciendo el cursor en wait
+        Dim wait As New waitForm
+        wait.Show()
+        Me.Cursor = Cursors.WaitCursor
+
+
         If bindingSource.Position = -1 Then
             StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe datos...")
             Exit Sub
         End If
         Dim datos As DataSetInformesCr = CargarDatos()
         Dim frm As New ReportViewerPagosPendientesDesem(datos)
+
+        'cerrando wait y reestableciendo cursor
+        wait.Close()
+        Me.Cursor = Cursors.Default
 
         frm.ShowDialog()
 

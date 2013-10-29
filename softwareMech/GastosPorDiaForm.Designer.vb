@@ -21,7 +21,7 @@ Partial Class GastosPorDiaForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GastosPorDiaForm))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.dtpInicio = New System.Windows.Forms.DateTimePicker
         Me.dtpFin = New System.Windows.Forms.DateTimePicker
         Me.Label1 = New System.Windows.Forms.Label
@@ -220,8 +220,8 @@ Partial Class GastosPorDiaForm
         Me.dgReporte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgReporte.Location = New System.Drawing.Point(3, 16)
         Me.dgReporte.Name = "dgReporte"
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.1!)
-        Me.dgReporte.RowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.1!)
+        Me.dgReporte.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.dgReporte.Size = New System.Drawing.Size(921, 504)
         Me.dgReporte.TabIndex = 0
         '
@@ -280,6 +280,9 @@ Partial Class GastosPorDiaForm
         '
         'cbBanco
         '
+        Me.cbBanco.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbBanco.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cbBanco.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbBanco.FormattingEnabled = True
         Me.cbBanco.Location = New System.Drawing.Point(451, 30)
         Me.cbBanco.Name = "cbBanco"
@@ -352,6 +355,9 @@ Partial Class GastosPorDiaForm
         '
         'cbCuenta
         '
+        Me.cbCuenta.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbCuenta.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cbCuenta.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbCuenta.FormattingEnabled = True
         Me.cbCuenta.Location = New System.Drawing.Point(677, 31)
         Me.cbCuenta.Name = "cbCuenta"
@@ -381,6 +387,9 @@ Partial Class GastosPorDiaForm
         '
         'cbObra
         '
+        Me.cbObra.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbObra.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cbObra.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbObra.FormattingEnabled = True
         Me.cbObra.Location = New System.Drawing.Point(451, 56)
         Me.cbObra.Name = "cbObra"
@@ -425,12 +434,12 @@ Partial Class GastosPorDiaForm
         Me.Controls.Add(Me.btnMostrar)
         Me.Controls.Add(Me.lblObra)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.dtpFin)
+        Me.Controls.Add(Me.Label2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "GastosPorDiaForm"
-        Me.Controls.SetChildIndex(Me.dtpFin, 0)
         Me.Controls.SetChildIndex(Me.Label2, 0)
+        Me.Controls.SetChildIndex(Me.dtpFin, 0)
         Me.Controls.SetChildIndex(Me.Label3, 0)
         Me.Controls.SetChildIndex(Me.lblObra, 0)
         Me.Controls.SetChildIndex(Me.btnMostrar, 0)

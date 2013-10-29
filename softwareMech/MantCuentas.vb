@@ -1236,6 +1236,14 @@ Public Class MantCuentas
 
         End If
 
+        Dim consulta2 As String = "Select count(*) from tpagodesembolso where codMP=" & BindingSource3.Item(BindingSource3.Position)(0)
+        If oDataManager.consultarTabla(consulta2, CommandType.Text) > 0 Then
+            StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... CUENTA TIENE PAGOS ASIGNADOS...")
+            Exit Sub
+        End If
+
+        
+
         Dim resultado As DialogResult = MessageBox.Show("Está seguro de eliminar esté registro?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If resultado = Windows.Forms.DialogResult.Yes Then
@@ -1296,6 +1304,28 @@ Public Class MantCuentas
         'Panel3.Enabled=
         btnModificarMedio.Enabled = True
         btnEliminarMedio.Enabled = True
+
+    End Sub
+
+    Private Sub lsEstado_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lsEstado.SelectedIndexChanged
+        If lsEstado.SelectedIndex = 0 Then
+
+        Else
+            'validando si existen desembolsos relacionados
+            Dim consulta3 As String = "select COUNT(*) from TPagoDesembolso TPD join VDesembolsosPendFirmaTesoreria VDP on VDP.idOP = TPD.idOP and idCue=" & BindingSource2.Item(BindingSource2.Position)(0)
+            If oDataManager.consultarTabla(consulta3, CommandType.Text) > 0 Then
+                lsEstado.SelectedIndex = 0
+                StatusBarClass.messageBarraEstado("  ACCESO DENEGADO... CUENTA RELACIONADA CON DESEMBOLSOS PENDIENTES DE CIERRE...")
+                Exit Sub
+            Else
+                StatusBarClass.messageBarraEstado("  ")
+
+            End If
+        End If
+
+
+
+
 
     End Sub
 End Class

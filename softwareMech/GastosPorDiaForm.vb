@@ -71,8 +71,9 @@ Public Class GastosPorDiaForm
                 .Columns("nroOperacion").HeaderText = "N°"
                 .Columns("nroOperacion").Width = 50
 
-                .Columns("ruc").HeaderText = "RUC"
-                .Columns("ruc").Width = 75
+                .Columns("ruc").Visible = False
+                '.Columns("ruc").HeaderText = "RUC"
+                '.Columns("ruc").Width = 75
 
                 .Columns("razon").HeaderText = "Razon Social"
                 .Columns("razon").Width = 300
@@ -110,6 +111,7 @@ Public Class GastosPorDiaForm
                 .Columns("concepto").Width = 350
                 .Columns("vanEgreso").Visible = False
                 .Columns("tipoClasif").HeaderText = "Clasificación"
+                .Columns("tipoClasif").DisplayIndex = 2
                 .Columns("tipoClasif").Width = "100"
             End With
         Catch ex As Exception
@@ -222,6 +224,13 @@ Public Class GastosPorDiaForm
 #End Region
 
     Private Sub GastosPorDiaForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        'creando un form de espera
+        Dim wait As New waitForm
+        wait.Show()
+        Me.Cursor = Cursors.WaitCursor
+
+
+        Me.AcceptButton = btnMostrar
 
         configurarColorControl()
 
@@ -229,9 +238,19 @@ Public Class GastosPorDiaForm
 
         oDataManager.CargarCombo("PA_LugarTrabajo", CommandType.StoredProcedure, cbObra, "codigo", "nombre")
 
+        'cerranod el form wait y reestableciendo cursor
+        wait.Close()
+        Me.Cursor = Cursors.Default
+
     End Sub
 
     Private Sub btnMostrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMostrar.Click
+        'creando un form de espera y estableciendo el cursor en espera
+        Dim wait As New waitForm
+        wait.Show()
+        Me.Cursor = Cursors.WaitCursor
+
+
         'SET DATEFORMAT dmy  da formato dd/mm/yyyy para las fechas
         Dim sele As String = "SET DATEFORMAT dmy select fecPago,nroOperacion,ruc,razon,simbolo,montoPago,montoD,banco,nroCue,(serie +'-'+cast(nroDes as varchar)) nroDes,codBan,codMon,idCue,codigo,nombre,concepto,tipoClasif,vanEgreso from VGastosPorDia where vanEgreso=0 and fecPago between '" & dtpInicio.Text & "' and '" & dtpFin.Text & "'"
         oDataManager.CargarGrilla(sele, CommandType.Text, dgReporte, bindingSource0)
@@ -276,6 +295,10 @@ Public Class GastosPorDiaForm
         _fechaIni = dtpInicio.Text
         _fechaFin = dtpFin.Text
 
+
+        'Cerrando el form de espera y reestableciendo el cursor
+        wait.Close()
+        Me.Cursor = Cursors.Default
 
     End Sub
 
@@ -354,6 +377,12 @@ Public Class GastosPorDiaForm
     End Sub
 
     Private Sub btnImp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImp.Click
+        'creando un form de espera y estableciendo el cursor en espera
+        Dim wait As New waitForm
+        wait.Show()
+        Me.Cursor = Cursors.WaitCursor
+
+
         If bindingSource0.Position = -1 Then
             StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe datos...")
             Exit Sub
@@ -430,7 +459,12 @@ Public Class GastosPorDiaForm
 
         frm.CrystalReportViewer1.ParameterFieldInfo = parameters
 
+        'Cerrando el form de espera y reestableciendo el cursor
+        wait.Close()
+        Me.Cursor = Cursors.Default
+
         frm.ShowDialog()
+
     End Sub
 
 

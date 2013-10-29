@@ -14,7 +14,7 @@ select codPers,idOP,tipoA from TPersDesem where tipoa =1
 -- obteniendo las Id de las ordenes de desembolso aprobadas por gerencia
 create view vDesembolsosFirmaGerencia
 as
-select codPers,idOP,tipoA from TPersDesem where tipoA =2 
+select codPers,idOP,tipoA,estDesem from TPersDesem where tipoA =2 
 
 -- obteniendo las Id de las ordenes de desembolso pagadas por Tesoreria
 create view vDesembolsosFirmaTesoreria
@@ -25,18 +25,17 @@ select codPers,idOP,tipoA from TPersDesem where tipoa =3
 -- obteniendo las Id de las ordenes de desembolso entregadas a contabilidad
 create view vDesembolsosFirmaContabilidad
 as
-select codPers,idOP,tipoA from TPersDesem where tipoa =4
+select codPers,idOP,tipoA,estDesem  from TPersDesem where tipoa =4
  
 
 -- vista para ver las firmas de cada área
 create view vDesembolsosFirma
 as
-select VFS.idOP, VFS.tipoA firmaSolicitante,VFG.tipoA firmaGerencia ,VFT.tipoA firmaTesoreria,VFC.tipoA firmaContabilidad    
+select VFS.idOP, VFS.tipoA firmaSolicitante,VFG.estDesem estado_Gere,VFG.tipoA firmaGerencia ,VFT.tipoA firmaTesoreria,VFC.estDesem estado_Conta, VFC.tipoA firmaContabilidad    
 from vDesembolsoFirmaSolicitante VFS
 left join  vDesembolsosFirmaGerencia VFG on  VFS.idOP=VFG.idOP
 left join vDesembolsosFirmaTesoreria VFT on VFS.idOP=VFT.idOP 
 left join vDesembolsosFirmaContabilidad VFC on VFS.idOP=VFC.idOP    
-
 
 --obteniendo la suma de pagos para las ordenes de desembolso
 create view vPagosDesembolso
@@ -56,7 +55,7 @@ create view vSeguimientoDesembolsoPagos
 as
 select VOD.fecDes, VOD.idOP, VOD.serie, VOD.nroDes,VOD.monto,isnull(VPD.montoPago,0.0)montoPagado,(VOD.monto - isnull(VPD.montoPago,0.0) ) diferencia 
 ,VOD.montoDet,isnull(VPDE.montoD,0.0) pagoDetraccion,(VOD.montoDet - isnull(VPDE.montoD,0.0)) diferenciaDetra,VOD.simbolo,
-VOD.obra,VOD.datoReq,Vod.solicitante,vof.firmaSolicitante ,VOF.firmaGerencia,VOF.firmaTesoreria,VOF.firmaContabilidad ,VOD.proveedor,VOD.codIde,
+VOD.obra,VOD.datoReq,Vod.solicitante,vof.estado_gere,vof.firmaSolicitante ,VOF.firmaGerencia,VOF.firmaTesoreria,VOF.firmaContabilidad ,VOD.proveedor,VOD.codIde,
 VOD.codObra 
           
 from Vordendesembolsoseguimiento VOD   
@@ -66,7 +65,10 @@ left join vPagoDetraccionDesembolso VPDE on VPDE.idOP = VOD.idOP
 --Condicional para pagos pendientes 
 --where firmaTesoreria is null and firmaGerencia =2
 -- condicional para facturas pendientes
-where firmaContabilidad is null 
+--where firmaContabilidad is null --verifica si contabilidad 
+--and VOF.estado_Gere=1
+
+select fecDes,idOP,serie,nroDes,simbolo,monto,montoPagado,diferencia,montoDet,pagoDetraccion,diferenciaDetra,proveedor,datoReq,obra,solicitante,codIde from vseguimientoDesembolsoPagos where firmaTesoreria is null and firmaGerencia =2 and estado_gere=1
 
 select fecDes,idOP,serie,nroDes,monto,montoPagado,diferencia,montoDet,pagoDetraccion,diferenciaDetra,simbolo,obra,datoReq,solicitante from vseguimientoDesembolsoPagos where 
 
