@@ -819,7 +819,7 @@ Public Class pantallaInicialForm
     End Sub
 
     Private Sub opcOrdDes6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDesSeguimiento.Click
-        Dim ODesem As New SeguimientoOrdenDesembolsoForm
+        Dim ODesem As New SeguimientoOrdenDesembolsoForm2
         ODesem.MdiParent = Me
         ODesem.Show()
     End Sub

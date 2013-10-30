@@ -107,6 +107,7 @@ Partial Class pantallaInicialForm
         Me.infT1 = New System.Windows.Forms.ToolStripMenuItem
         Me.infT2 = New System.Windows.Forms.ToolStripMenuItem
         Me.infT3 = New System.Windows.Forms.ToolStripMenuItem
+        Me.PagosPendienteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator
         Me.opcPersonal = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcPers1 = New System.Windows.Forms.ToolStripMenuItem
@@ -131,7 +132,6 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.PagosPendienteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -855,6 +855,12 @@ Partial Class pantallaInicialForm
         Me.infT3.Size = New System.Drawing.Size(158, 22)
         Me.infT3.Text = "Stock "
         '
+        'PagosPendienteToolStripMenuItem
+        '
+        Me.PagosPendienteToolStripMenuItem.Name = "PagosPendienteToolStripMenuItem"
+        Me.PagosPendienteToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+        Me.PagosPendienteToolStripMenuItem.Text = "Pagos pendiente"
+        '
         'ToolStripSeparator8
         '
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
@@ -1059,12 +1065,6 @@ Partial Class pantallaInicialForm
         Me.ToolStripStatusLabel1.Text = "Soluciones Software Perú S.A.C. - Copyright (c)  2005 - 2013 SSP SAC - Cusco Perú" & _
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'PagosPendienteToolStripMenuItem
-        '
-        Me.PagosPendienteToolStripMenuItem.Name = "PagosPendienteToolStripMenuItem"
-        Me.PagosPendienteToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
-        Me.PagosPendienteToolStripMenuItem.Text = "Pagos pendiente"
         '
         'pantallaInicialForm
         '

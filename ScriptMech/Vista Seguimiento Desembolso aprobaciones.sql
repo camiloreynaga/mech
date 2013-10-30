@@ -19,7 +19,8 @@ select codPers,idOP,tipoA,estDesem from TPersDesem where tipoA =2
 -- obteniendo las Id de las ordenes de desembolso pagadas por Tesoreria
 create view vDesembolsosFirmaTesoreria
 as
-select codPers,idOP,tipoA from TPersDesem where tipoa =3 
+select codPers,idOP,tipoA,estDesem from TPersDesem where tipoa =3 
+
 --order by idOP asc  
 
 -- obteniendo las Id de las ordenes de desembolso entregadas a contabilidad
@@ -31,7 +32,7 @@ select codPers,idOP,tipoA,estDesem  from TPersDesem where tipoa =4
 -- vista para ver las firmas de cada área
 create view vDesembolsosFirma
 as
-select VFS.idOP, VFS.tipoA firmaSolicitante,VFG.estDesem estado_Gere,VFG.tipoA firmaGerencia ,VFT.tipoA firmaTesoreria,VFC.estDesem estado_Conta, VFC.tipoA firmaContabilidad    
+select VFS.idOP, VFS.tipoA firmaSolicitante,VFG.estDesem estado_Gere,VFG.tipoA firmaGerencia ,VFT.estDesem estado_Teso, VFT.tipoA firmaTesoreria,VFC.estDesem estado_Conta, VFC.tipoA firmaContabilidad    
 from vDesembolsoFirmaSolicitante VFS
 left join  vDesembolsosFirmaGerencia VFG on  VFS.idOP=VFG.idOP
 left join vDesembolsosFirmaTesoreria VFT on VFS.idOP=VFT.idOP 

@@ -4,7 +4,7 @@ Imports ComponentesSolucion2008
 Imports CrystalDecisions.Shared
 
 
-Public Class SeguimientoOrdenDesembolsoForm
+Public Class SeguimientoOrdenDesembolsoForm2
 
 #Region "Variables"
     ''' <summary>
@@ -176,9 +176,7 @@ Public Class SeguimientoOrdenDesembolsoForm
             BindignSource6.DataSource = dsAlmacen
             BindignSource6.DataMember = "TSolicitante"
             BindignSource6.Sort = "solicitante ASC"
-            cbSolicitante.ComboBox.DataSource = BindignSource6
-            cbSolicitante.ComboBox.DisplayMember = "solicitante"
-            cbSolicitante.ComboBox.ValueMember = "solicitante"
+            
 
         Catch f As Exception
             MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
@@ -390,6 +388,14 @@ Public Class SeguimientoOrdenDesembolsoForm
             .Columns("fono").Visible = False
             'Dirección de email
             .Columns("email").Visible = False
+            .Columns("firmaSolicitante").Visible = False
+            .Columns("estado_Gere").Visible = False
+            .Columns("estado_Teso").Visible = False
+            .Columns("firmaGerencia").Visible = False
+            .Columns("firmaTesoreria").Visible = False
+            .Columns("estado_Conta").Visible = False
+            .Columns("firmaContabilidad").Visible = False
+
         End With
     End Sub
 
@@ -412,7 +418,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         If dgDesembolso.RowCount = 0 Then
             Exit Sub
 
-           
+
 
         Else
             'Datos de Generales de Orden desembolso
@@ -635,6 +641,11 @@ Public Class SeguimientoOrdenDesembolsoForm
                     If TypeOf Me.Controls(i).Controls(c) Is TextBox Then 'TEXTBOX
                         CType(Me.Controls(i).Controls(c), TextBox).ReadOnly = True
                     End If
+
+                    If TypeOf Me.Controls(i).Controls(c) Is RadioButton Then
+                        Me.Controls(i).Controls(c).ForeColor = ForeColorLabel
+                    End If
+
                 Next
             End If
         Next
@@ -677,7 +688,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         oGrilla.configurarColorControl("Label", GroupBox2, ForeColorLabel)
 
         '
-        chkSolicitante.BackColor = Color.White
+        'chkSolicitante.BackColor = Color.White
 
 
     End Sub
@@ -717,43 +728,41 @@ Public Class SeguimientoOrdenDesembolsoForm
     Private Sub filtrando()
         If cbObra.Items.Count > 0 And cbObra.Items.Count > 0 Then 'BindingSource4.Position >= 0 And BindingSource5.Position >= 0 Then
 
-
-
             BindingSource0.Filter = ""
             Dim pFiltro As String = BindingSource0.Filter
             Dim pCriterio As String
-
+            'Filtro para Obra
             If chkObras.Checked = False Then
                 pCriterio = "codObra='" & cbObra.SelectedValue & "'"
                 pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
             End If
 
-            If chkProveedor.Checked = False Then
-                pCriterio = "codIde =" & cbProveedor.SelectedValue
-                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
-            End If
+            'If chkProveedor.Checked = False Then
+            '    pCriterio = "codIde =" & cbProveedor.SelectedValue
+            '    pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+            'End If
 
-            If cbEstadoDesembolso.Text = "TODOS" Or cbEstadoDesembolso.Text = "" Then
-                ' AddCriterioFiltro(pCriterio, pFiltro)
+            'If cbEstadoDesembolso.Text = "TODOS" Or cbEstadoDesembolso.Text = "" Then
+            ' AddCriterioFiltro(pCriterio, pFiltro)
 
-            Else
-                pCriterio = "estado_desembolso='" & cbEstadoDesembolso.Text.Trim() & "'"
-                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
-            End If
+            'Else
+            '    pCriterio = "estado_desembolso='" & cbEstadoDesembolso.Text.Trim() & "'"
+            '    pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+            'End If
 
-            If chkSolicitante.Checked = False Then
-                pCriterio = "solicitante = '" & cbSolicitante.Text.Trim() & "'"
-                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
-            End If
+            'If chkSolicitante.Checked = False Then
+            '    pCriterio = "solicitante = '" & cbSolicitante.Text.Trim() & "'"
+            '    pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+            'End If
 
-            If txtNroDesembolso.Text.Length > 0 Then
-                pCriterio = "nroDes=" & txtNroDesembolso.Text.Trim()
-                pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
-            End If
+            'If txtNroDesembolso.Text.Length > 0 Then
+            '    pCriterio = "nroDes=" & txtNroDesembolso.Text.Trim()
+            '    pFiltro = AddCriterioFiltro(pCriterio, pFiltro)
+            'End If
 
             BindingSource0.Filter = pFiltro
 
-            'BindingSource0.Sort = "idOp Desc"
+            BindingSource0.Sort = "NroDes Desc"
         End If
         'Colorea la Grilla
         ColorearGrilla()
@@ -828,6 +837,9 @@ Public Class SeguimientoOrdenDesembolsoForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
 
+        Me.AcceptButton = btnVer
+
+
         configurarColorControl()
 
         'Cargando el combo Obras
@@ -837,8 +849,10 @@ Public Class SeguimientoOrdenDesembolsoForm
         'Cargando el combo de Proveedores
         oDataManager.CargarCombo("PA_Proveedores", CommandType.StoredProcedure, cbProveedor, "codIde", "razon")
 
+        oDataManager.CargarCombo("select codSerO,serie from TSerieOrden where estado=1 order by serie", CommandType.Text, cbSerie, "serie", "serie")
+
         'Cargando el combo Solicitante
-        oDataManager.CargarCombo("select (nombre +' '+ apellido) as solicitante from Tpersonal where codPers > 1 order by solicitante asc", CommandType.Text, cbSolicitante.ComboBox, "solicitante", "solicitante")
+        'oDataManager.CargarCombo("select (nombre +' '+ apellido) as solicitante from Tpersonal where codPers > 1 order by solicitante asc", CommandType.Text, cbSolicitante.ComboBox, "solicitante", "solicitante")
 
 
         'DatosIniciales()
@@ -864,7 +878,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         Me.Cursor = Cursors.Default
 
         'Ejecuta la carga de Datos para el día actual
-        btnVer.PerformClick()
+        'btnVer.PerformClick()
 
         ' filtrando()
         wait.Close()
@@ -942,7 +956,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         Finally
             Me.Cursor = Cursors.Default
         End Try
-       
+
     End Sub
 
 
@@ -1006,13 +1020,6 @@ Public Class SeguimientoOrdenDesembolsoForm
 
     End Sub
 
-    Private Sub dgDesembolso_RowPostPaint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewRowPostPaintEventArgs)
-        'If dgDesembolso.SortedColumn.Index > 0 Then
-
-        'End If
-
-    End Sub
-
     Private Sub chkObras_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkObras.CheckedChanged
 
         If chkObras.Checked Then
@@ -1021,22 +1028,21 @@ Public Class SeguimientoOrdenDesembolsoForm
             cbObra.Visible = True
         End If
 
-        'FiltrarGrillaDesembolso()
-        'FiltrandoPorEstado()}
-        filtrando()
+
+        ' filtrando()
 
     End Sub
 
-    Private Sub chkProveedor_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkProveedor.CheckedChanged
-        If chkProveedor.Checked Then
-            cbProveedor.Visible = False
-        Else
-            cbProveedor.Visible = True
-        End If
+    Private Sub chkProveedor_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        'If chkProveedor.Checked Then
+        '    cbProveedor.Visible = False
+        'Else
+        '    cbProveedor.Visible = True
+        'End If
 
         'FiltrarGrillaDesembolso()
         'FiltrandoPorEstado()
-        filtrando()
+        ' filtrando()
 
     End Sub
 
@@ -1044,20 +1050,17 @@ Public Class SeguimientoOrdenDesembolsoForm
 
         'FiltrarGrillaDesembolso()
         'FiltrandoPorEstado()
-        filtrando()
+        ' filtrando()
 
     End Sub
 
     Private Sub cbProveedor_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbProveedor.SelectedIndexChanged
         'FiltrarGrillaDesembolso()
         'FiltrandoPorEstado()
-        filtrando()
+        ' filtrando()
     End Sub
 
-    Private Sub cbEstadoDesembolso_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbEstadoDesembolso.SelectedIndexChanged
-        'FiltrandoPorEstado()
-        filtrando()
-    End Sub
+   
 
     Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
         If BindingSource0.Position = -1 Then
@@ -1078,9 +1081,7 @@ Public Class SeguimientoOrdenDesembolsoForm
     End Sub
 
 
-    Private Sub txtBuscarSolicitante_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        filtrando()
-    End Sub
+  
 
     Private Sub btnOrdCompra_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOrdCompra.Click
         If txtOrdCompra.Text.Trim() = "" Then
@@ -1107,26 +1108,7 @@ Public Class SeguimientoOrdenDesembolsoForm
         ColorearGrilla()
     End Sub
 
-   
-   
-    Private Sub cbSolicitante_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSolicitante.SelectedIndexChanged
-        filtrando()
 
-    End Sub
-
-    Private Sub chkSolicitante_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSolicitante.CheckedChanged
-        If chkSolicitante.Checked Then
-            cbSolicitante.Visible = False
-            TSLabelSolicitante.Visible = False
-        Else
-            cbSolicitante.Visible = True
-            TSLabelSolicitante.Visible = True
-        End If
-
-        filtrando()
-    End Sub
-
-    
     Private Sub btnVer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnVer.Click
         Dim wait As New waitForm
         wait.Show()
@@ -1148,9 +1130,27 @@ Public Class SeguimientoOrdenDesembolsoForm
         _fechaFin = dtpFin.Text
 
 
-        Dim consulta As String = "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro, nroConfor, fecEnt, moneda, simbolo, solicitante, ruc, fono, email, codObra, codIde,firmaSolicitante,estado_Gere,estado_Teso,firmaGerencia,firmaTesoreria,estado_Conta,firmaContabilidad from VOrdenDesembolsoSeguimiento_2 where fecDes between @fechaInicio and @fechaFin "
+        Dim consulta As String = "Select idOP,serie,nroDes,nro,fecDes,estado_desembolso,hist,monto,montoDet,montoDif,obra,proveedor,banco,nroCta,nroDet,datoReq,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro, nroConfor, fecEnt, moneda, simbolo, solicitante, ruc, fono, email, codObra, codIde,firmaSolicitante,estado_Gere,estado_Teso,firmaGerencia,firmaTesoreria,estado_Conta,firmaContabilidad from VOrdenDesembolsoSeguimiento_2 " 'where fecDes between @fechaInicio and @fechaFin "
+
+
+
+        If rdoObra.Checked = True Then
+            consulta += " where fecDes between @fechaInicio and @fechaFin "
+            oDataManager.CargarGrilla(consulta, parametros, CommandType.Text, dgDesembolso, BindingSource0)
+        End If
+
+        If rdoProveedor.Checked = True Then
+            consulta += " WHERE codIde =" & cbProveedor.SelectedValue
+            oDataManager.CargarGrilla(consulta, CommandType.Text, dgDesembolso, BindingSource0)
+        End If
+
+        If rdoSerie.Checked = True Then
+            consulta += " WHERE serie =" & cbSerie.SelectedValue
+            oDataManager.CargarGrilla(consulta, CommandType.Text, dgDesembolso, BindingSource0)
+        End If
+
         '"PA_SeguimientoDesembolso"
-        oDataManager.CargarGrilla(consulta, parametros, CommandType.Text, dgDesembolso, BindingSource0)
+
         BindingNavigator1.BindingSource = BindingSource0
 
         ModificandoColumnasDGV()
@@ -1158,20 +1158,14 @@ Public Class SeguimientoOrdenDesembolsoForm
         'Dando Color a la Grilla
         ColorearGrilla()
 
+
+        'filtrando 
+        filtrando()
+
         wait.Close()
         Me.Cursor = Cursors.Default
 
     End Sub
-
-    
-    Private Sub txtNroDesembolso_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNroDesembolso.TextChanged
-        filtrando()
-    End Sub
-
-    Private Sub txtNroDesembolso_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtNroDesembolso.KeyPress
-        ValidarNumero(sender, e)
-    End Sub
-
 
     Private Sub btnImprimirGrilla_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimirGrilla.Click
         If dgDesembolso.RowCount = 0 Then
@@ -1277,4 +1271,77 @@ Public Class SeguimientoOrdenDesembolsoForm
 
     End Function
 
+    
+    Private Sub rdoObra_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rdoObra.CheckedChanged, rdoSerie.CheckedChanged, rdoProveedor.CheckedChanged
+        'configurando opciones a filtrar
+        If rdoObra.Checked = True Then
+            'cbObra.Visible = True
+
+            chkObras.Visible = True
+            lblDesde.Visible = True
+            lblHasta.Visible = True
+            lblObra.Visible = True
+
+            dtpInicio.Visible = True
+            dtpFin.Visible = True
+
+            'Poniendo los otros controles invisibles
+            'controles Proveedor invisible
+            lblProveedor.Visible = False
+            'chkProveedor.Checked = True
+            cbProveedor.Visible = False
+
+            'controles Serie invisible
+            lblSerie.Visible = False
+            cbSerie.Visible = False
+
+
+        End If
+
+        If rdoProveedor.Checked = True Then
+
+            lblProveedor.Visible = True
+            cbProveedor.Visible = True
+
+            'Controles Obras invisible
+            chkObras.Checked = True
+            chkObras.Visible = False
+            lblDesde.Visible = False
+            lblHasta.Visible = False
+            lblObra.Visible = False
+
+            dtpInicio.Visible = False
+            dtpFin.Visible = False
+
+            'controles Serie invisible
+            lblSerie.Visible = False
+            cbSerie.Visible = False
+
+        End If
+
+        If rdoSerie.Checked = True Then
+            'controles Serie invisible
+            lblSerie.Visible = True
+            cbSerie.Visible = True
+
+            '
+            lblProveedor.Visible = False
+            cbProveedor.Visible = False
+            'Controles Obras invisible
+            chkObras.Checked = True
+            chkObras.Visible = False
+            lblDesde.Visible = False
+            lblHasta.Visible = False
+            lblObra.Visible = False
+
+            dtpInicio.Visible = False
+            dtpFin.Visible = False
+        End If
+
+        'limpiando grilla
+        dgDesembolso.DataSource = ""
+        dgPagos.DataSource = ""
+        dgContabilidad.DataSource = ""
+
+    End Sub
 End Class

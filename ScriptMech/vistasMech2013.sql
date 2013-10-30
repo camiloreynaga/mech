@@ -566,7 +566,7 @@ as
 GO
 
 --Nueva Vista para Seguimiento de Desembolso
-create view VOrdenDesembolsoSeguimiento
+create view VOrdenDesembolsoSeguimiento_2
 as
 select TOD.idOP,tod.codigo as codObra,tod.serie,tod.nroDes,tod.fecDes,tod.monto,tod.montoDet,tod.montoDif,
 'estado_desembolso'=case when TOD.estado=0 then 'PENDIENTE' when TOD.estado=1 then 'TERMINADO' when TOD.estado=2 then 'CERRADO' else 'ANULADO' end, 
@@ -575,6 +575,11 @@ select TOD.idOP,tod.codigo as codObra,tod.serie,tod.nroDes,tod.fecDes,tod.monto,
 	TLU.nombre as 'obra',Tid.razon as 'proveedor',tod.banco,tod.nroCta,tod.nroDet,tod.datoReq,tod.factCheck,tod.bolCheck,tod.guiaCheck,
 	tod.vouCheck,tod.vouDCheck,tod.reciCheck,tod.otroCheck,tod.descOtro,tod.nroConfor,tod.fecEnt,tod.hist
 	,(TPE.nombre +' '+ TPE.apellido) as solicitante,tid.codIde  ,TID.ruc, TID.fono,TID.email
+	--
+	,VDF.firmaSolicitante,'estado_Gere'=case when VDF.estado_Gere=1 THEN 'APROBADO' WHEN VDF.estado_Gere=2 THEN 'OBSERVADO' WHEN VDF.estado_Gere=3 THEN 'RECHAZADO' ELSE ' ' END
+	,'estado_Teso'= case WHEN VDF.estado_Teso=1 THEN 'APROBADO' WHEN VDF.estado_Teso=2 THEN 'OBSERVADO' WHEN VDF.estado_Teso=3 THEN 'RECHAZADO' ELSE ' ' END,VDF.firmaGerencia,
+	VDF.firmaTesoreria,'estado_Conta'=CASE WHEN VDF.estado_Conta=1 THEN 'APROBADO' WHEN VDF.estado_Conta=2 THEN 'OBSERVADO' WHEN VDF.estado_Conta=3 THEN 'RECHAZADO' ELSE ' ' END
+	,VDF.firmaContabilidad
 	--,toc.nroOrden as idCompra,toc.nroO as nroCompra     
 	from TOrdenDesembolso TOD 
 	join TMoneda TM on TOD.codMon=TM.codMon 
@@ -583,9 +588,13 @@ select TOD.idOP,tod.codigo as codObra,tod.serie,tod.nroDes,tod.fecDes,tod.monto,
 	inner join TPersDesem TPDE on TPDE.idOP= TOD.idOP 
 	join TPersonal TPE on TPE.codPers = TPDE.codPers  
 	--join TDesOrden TDECO on tdeco.idOP = tod.idOP  
-	--join TOrdenCompra TOC on toc.nroOrden =tdeco.nroOrden   
+	--join TOrdenCompra TOC on toc.nroOrden =tdeco.nroOrden
+	join vDesembolsosFirma VDF on VDF.idOP= TOD.idOP   
 	where TPDE.tipoA=1	
 GO
+
+select * from VOrdenDesembolsoSeguimiento
+select * from vDesembolsosFirma
 
 -- Nueva Vista para Seguimeinto de Desembolso
 --Pago de desembolsos
