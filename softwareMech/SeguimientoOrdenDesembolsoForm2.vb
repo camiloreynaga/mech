@@ -49,6 +49,7 @@ Public Class SeguimientoOrdenDesembolsoForm2
     ''' <remarks></remarks>
     Dim BindignSource6 As New BindingSource
 
+    Dim BindingSource7 As New BindingSource
 
     ''' <summary>
     ''' Instancia de objeto para Customizar grilla
@@ -554,6 +555,15 @@ Public Class SeguimientoOrdenDesembolsoForm2
 
 
     End Sub
+    ''' <summary>
+    ''' Enlaza los textos de clasificación y subclasficación
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub enlazarTextClasificacion()
+        txtClasificacion.Text = BindingSource7.Item(0)(0)
+        txtSubClasif.Text = BindingSource7.Item(0)(1)
+
+    End Sub
 
     Private Sub enlazarTextAprobaciones()
         'Dim nro As Integer = BindingSource0.Item(BindingSource0.Position)(0)
@@ -909,6 +919,14 @@ Public Class SeguimientoOrdenDesembolsoForm2
 
                 enlazarText()
 
+
+                'Consultando clasificaciones
+                Dim _dg2 As New DataGridView
+
+                Dim queryClasi As String = "select Clasificacion,tipoClasif from vSubClasifiDesembolso where idOp=" & BindingSource0.Item(BindingSource0.Position)(0)
+                oDataManager.CargarGrilla(queryClasi, CommandType.Text, _dg2, BindingSource7)
+
+
                 'filtrando para que muestre los registros de pagos por orden de desembolso seleccionado
 
                 ' BindingSource1.Filter = "codDesembolso=" & BindingSource0.Item(BindingSource0.Position)(0)
@@ -918,6 +936,8 @@ Public Class SeguimientoOrdenDesembolsoForm2
 
 
                 enlazarTextAprobaciones()
+
+                enlazarTextClasificacion()
 
                 'Actualizando la Varible de control
                 vCodDesem = BindingSource0.Item(BindingSource0.Position)(0)

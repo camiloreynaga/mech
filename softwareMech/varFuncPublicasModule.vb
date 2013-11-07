@@ -46,6 +46,8 @@ Module varFuncPublicasModule
     Public vSCodMes As Integer    'Variable de sistema no cambiar su valor
     Public vSSerie As String
     Public vSIniNroDoc As Integer
+    Public vSCodTipClaCajaA As Integer = 10  'codigo definido de codTipCla
+    Public vSCodTipClaCajaB As Integer = 11  'codigo definido de codTipCla
 
     Public vNroOrden As Integer
     Public vSerie As String

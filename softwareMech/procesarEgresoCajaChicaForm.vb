@@ -710,6 +710,11 @@ Public Class procesarEgresoCajaChicaForm
             Exit Sub
         End If
 
+        If recuperarEstSol(BindingSource3.Item(BindingSource3.Position)(23)) = 4 Then
+            MessageBox.Show("Proceso denegado, Movimiento Ya Fue Rendido Cuenta por Solicitante", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
         Dim resp As String = MessageBox.Show("Está segúro de DESHACER: " & BindingSource3.Item(BindingSource3.Position)(1) & Chr(13) & " por el monto de " & BindingSource3.Item(BindingSource3.Position)(7) & " " & BindingSource3.Item(BindingSource3.Position)(8), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
             Exit Sub

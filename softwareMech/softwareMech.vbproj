@@ -116,6 +116,12 @@
     <Compile Include="AprobaSolicitudReqForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AsignarSerieChequeCuentaForm.designer.vb">
+      <DependentUpon>AsignarSerieChequeCuentaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AsignarSerieChequeCuentaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AsignarSerieOrdenPersForm.designer.vb">
       <DependentUpon>AsignarSerieOrdenPersForm.vb</DependentUpon>
     </Compile>
@@ -157,6 +163,12 @@
       <DependentUpon>configuracionColorForm.vb</DependentUpon>
     </Compile>
     <Compile Include="configuracionColorForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfiguracionSerieChequeForm.designer.vb">
+      <DependentUpon>ConfiguracionSerieChequeForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ConfiguracionSerieChequeForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ConfiguracionSerieDocForm.Designer.vb">
@@ -213,6 +225,12 @@
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReport10.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport10.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrystalReport2.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -255,6 +273,12 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="CrystalReport9.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport9.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DataSetAlmacen.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -267,9 +291,6 @@
     <Compile Include="DataSetInformesCr.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetInformesCr.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSetInformesCr.vb">
       <DependentUpon>DataSetInformesCr.xsd</DependentUpon>
     </Compile>
     <Compile Include="entradaAlmacenGuiaMechForm.designer.vb">
@@ -320,10 +341,22 @@
     <Compile Include="InformeCotizacionForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="InformeMovCajaChicaForm.Designer.vb">
+      <DependentUpon>InformeMovCajaChicaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InformeMovCajaChicaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InformeOrdenCompraForm.Designer.vb">
       <DependentUpon>InformeOrdenCompraForm.vb</DependentUpon>
     </Compile>
     <Compile Include="InformeOrdenCompraForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="informeSolicitudCajaForm.Designer.vb">
+      <DependentUpon>informeSolicitudCajaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="informeSolicitudCajaForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="jalarCotizacionForm.Designer.vb">
@@ -564,6 +597,12 @@
     <Compile Include="registraCotizacionForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="registraDocVentaEmpForm.Designer.vb">
+      <DependentUpon>registraDocVentaEmpForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="registraDocVentaEmpForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="registraGuiaRemEmpForm.Designer.vb">
       <DependentUpon>registraGuiaRemEmpForm.vb</DependentUpon>
     </Compile>
@@ -588,16 +627,16 @@
     <Compile Include="rendicionCuentaCajaForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="reportePagosPendientesDesembolso.Designer.vb">
-      <DependentUpon>reportePagosPendientesDesembolso.vb</DependentUpon>
-    </Compile>
-    <Compile Include="reportePagosPendientesDesembolso.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="ReporteCardexForm.Designer.vb">
       <DependentUpon>ReporteCardexForm.vb</DependentUpon>
     </Compile>
     <Compile Include="ReporteCardexForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reportePagosPendientesDesembolso.Designer.vb">
+      <DependentUpon>reportePagosPendientesDesembolso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="reportePagosPendientesDesembolso.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="reporteStockForm.designer.vb">
@@ -610,6 +649,12 @@
       <DependentUpon>ReportViewerAprobacionDesembolso.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportViewerAprobacionDesembolso.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportViewerCajaCuentaForm.Designer.vb">
+      <DependentUpon>ReportViewerCajaCuentaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewerCajaCuentaForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReportViewerCotizacionForm.Designer.vb">
@@ -628,6 +673,12 @@
       <DependentUpon>ReportViewerGuiaRemEForm.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportViewerGuiaRemEForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportViewerInf1CajaForm.Designer.vb">
+      <DependentUpon>ReportViewerInf1CajaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewerInf1CajaForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReportViewerKardex1Form.Designer.vb">
@@ -720,7 +771,7 @@
     <Compile Include="SeguimientoOrdenDesembolsoForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SeguimientoOrdenDesembolsoForm2.designer.vb">
+    <Compile Include="SeguimientoOrdenDesembolsoForm2.Designer.vb">
       <DependentUpon>SeguimientoOrdenDesembolsoForm2.vb</DependentUpon>
     </Compile>
     <Compile Include="SeguimientoOrdenDesembolsoForm2.vb">
@@ -742,6 +793,12 @@
       <DependentUpon>tesoreriaOrdenDesembolso1Form.vb</DependentUpon>
     </Compile>
     <Compile Include="tesoreriaOrdenDesembolso1Form.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="tesoreriaOrdenDesembolso2Form.designer.vb">
+      <DependentUpon>tesoreriaOrdenDesembolso2Form.vb</DependentUpon>
+    </Compile>
+    <Compile Include="tesoreriaOrdenDesembolso2Form.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="tesoreriaOrdenDesembolsoForm.designer.vb">
@@ -778,6 +835,9 @@
     <EmbeddedResource Include="AprobaSolicitudReqForm.resx">
       <DependentUpon>AprobaSolicitudReqForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AsignarSerieChequeCuentaForm.resx">
+      <DependentUpon>AsignarSerieChequeCuentaForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AsignarSerieOrdenPersForm.resx">
       <DependentUpon>AsignarSerieOrdenPersForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -795,6 +855,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="configuracionColorForm.resx">
       <DependentUpon>configuracionColorForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfiguracionSerieChequeForm.resx">
+      <DependentUpon>ConfiguracionSerieChequeForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConfiguracionSerieDocForm.resx">
       <DependentUpon>ConfiguracionSerieDocForm.vb</DependentUpon>
@@ -828,6 +891,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport10.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport10.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport2.vb</LastGenOutput>
@@ -856,6 +923,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport81.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport9.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport9.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="entradaAlmacenGuiaMechForm.resx">
       <DependentUpon>entradaAlmacenGuiaMechForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -880,8 +951,14 @@
     <EmbeddedResource Include="InformeCotizacionForm.resx">
       <DependentUpon>InformeCotizacionForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InformeMovCajaChicaForm.resx">
+      <DependentUpon>InformeMovCajaChicaForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InformeOrdenCompraForm.resx">
       <DependentUpon>InformeOrdenCompraForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="informeSolicitudCajaForm.resx">
+      <DependentUpon>informeSolicitudCajaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="jalarCotizacionForm.resx">
       <DependentUpon>jalarCotizacionForm.vb</DependentUpon>
@@ -1000,6 +1077,9 @@
     <EmbeddedResource Include="registraCotizacionForm.resx">
       <DependentUpon>registraCotizacionForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="registraDocVentaEmpForm.resx">
+      <DependentUpon>registraDocVentaEmpForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="registraGuiaRemEmpForm.resx">
       <DependentUpon>registraGuiaRemEmpForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -1012,17 +1092,20 @@
     <EmbeddedResource Include="rendicionCuentaCajaForm.resx">
       <DependentUpon>rendicionCuentaCajaForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="reportePagosPendientesDesembolso.resx">
-      <DependentUpon>reportePagosPendientesDesembolso.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ReporteCardexForm.resx">
       <DependentUpon>ReporteCardexForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reportePagosPendientesDesembolso.resx">
+      <DependentUpon>reportePagosPendientesDesembolso.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="reporteStockForm.resx">
       <DependentUpon>reporteStockForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerAprobacionDesembolso.resx">
       <DependentUpon>ReportViewerAprobacionDesembolso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewerCajaCuentaForm.resx">
+      <DependentUpon>ReportViewerCajaCuentaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerCotizacionForm.resx">
       <DependentUpon>ReportViewerCotizacionForm.vb</DependentUpon>
@@ -1032,6 +1115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerGuiaRemEForm.resx">
       <DependentUpon>ReportViewerGuiaRemEForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewerInf1CajaForm.resx">
+      <DependentUpon>ReportViewerInf1CajaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerKardex1Form.resx">
       <DependentUpon>ReportViewerKardex1Form.vb</DependentUpon>
@@ -1089,6 +1175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="tesoreriaOrdenDesembolso1Form.resx">
       <DependentUpon>tesoreriaOrdenDesembolso1Form.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tesoreriaOrdenDesembolso2Form.resx">
+      <DependentUpon>tesoreriaOrdenDesembolso2Form.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="tesoreriaOrdenDesembolsoForm.resx">
       <DependentUpon>tesoreriaOrdenDesembolsoForm.vb</DependentUpon>

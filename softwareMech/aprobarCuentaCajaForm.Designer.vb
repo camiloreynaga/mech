@@ -52,7 +52,7 @@ Partial Class aprobarCuentaCajaForm
         Me.cbTip1 = New System.Windows.Forms.ComboBox
         Me.Label11 = New System.Windows.Forms.Label
         Me.cbVis = New System.Windows.Forms.CheckBox
-        Me.Navigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
+        Me.Navigator2 = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton
@@ -79,8 +79,8 @@ Partial Class aprobarCuentaCajaForm
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Navigator1.SuspendLayout()
+        CType(Me.Navigator2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Navigator2.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitulo
@@ -333,7 +333,7 @@ Partial Class aprobarCuentaCajaForm
         Me.Panel3.Controls.Add(Me.cbTip1)
         Me.Panel3.Controls.Add(Me.Label11)
         Me.Panel3.Controls.Add(Me.cbVis)
-        Me.Panel3.Controls.Add(Me.Navigator1)
+        Me.Panel3.Controls.Add(Me.Navigator2)
         Me.Panel3.Location = New System.Drawing.Point(13, 101)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(1046, 522)
@@ -413,26 +413,26 @@ Partial Class aprobarCuentaCajaForm
         Me.cbVis.Text = "Visualizar Insumos de todos los Tipos de Material"
         Me.cbVis.UseVisualStyleBackColor = True
         '
-        'Navigator1
+        'Navigator2
         '
-        Me.Navigator1.AddNewItem = Nothing
-        Me.Navigator1.BackColor = System.Drawing.SystemColors.Control
-        Me.Navigator1.CountItem = Me.ToolStripLabel1
-        Me.Navigator1.CountItemFormat = "de {0} "
-        Me.Navigator1.DeleteItem = Nothing
-        Me.Navigator1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Navigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripTextBox1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator3, Me.TSModificar, Me.ToolStripLabel2, Me.txtTotal, Me.ToolStripTextBox2, Me.ToolStripLabel7, Me.txtTotal1})
-        Me.Navigator1.Location = New System.Drawing.Point(0, 497)
-        Me.Navigator1.MoveFirstItem = Me.ToolStripButton1
-        Me.Navigator1.MoveLastItem = Me.ToolStripButton4
-        Me.Navigator1.MoveNextItem = Me.ToolStripButton3
-        Me.Navigator1.MovePreviousItem = Me.ToolStripButton2
-        Me.Navigator1.Name = "Navigator1"
-        Me.Navigator1.PositionItem = Me.ToolStripTextBox1
-        Me.Navigator1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.Navigator1.Size = New System.Drawing.Size(1046, 25)
-        Me.Navigator1.TabIndex = 301
-        Me.Navigator1.Text = "BindingNavigator1"
+        Me.Navigator2.AddNewItem = Nothing
+        Me.Navigator2.BackColor = System.Drawing.SystemColors.Control
+        Me.Navigator2.CountItem = Me.ToolStripLabel1
+        Me.Navigator2.CountItemFormat = "de {0} "
+        Me.Navigator2.DeleteItem = Nothing
+        Me.Navigator2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Navigator2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripTextBox1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator3, Me.TSModificar, Me.ToolStripLabel2, Me.txtTotal, Me.ToolStripTextBox2, Me.ToolStripLabel7, Me.txtTotal1})
+        Me.Navigator2.Location = New System.Drawing.Point(0, 497)
+        Me.Navigator2.MoveFirstItem = Me.ToolStripButton1
+        Me.Navigator2.MoveLastItem = Me.ToolStripButton4
+        Me.Navigator2.MoveNextItem = Me.ToolStripButton3
+        Me.Navigator2.MovePreviousItem = Me.ToolStripButton2
+        Me.Navigator2.Name = "Navigator2"
+        Me.Navigator2.PositionItem = Me.ToolStripTextBox1
+        Me.Navigator2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
+        Me.Navigator2.Size = New System.Drawing.Size(1046, 25)
+        Me.Navigator2.TabIndex = 301
+        Me.Navigator2.Text = "BindingNavigator1"
         '
         'ToolStripLabel1
         '
@@ -658,9 +658,9 @@ Partial Class aprobarCuentaCajaForm
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         CType(Me.dgTabla1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Navigator1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Navigator1.ResumeLayout(False)
-        Me.Navigator1.PerformLayout()
+        CType(Me.Navigator2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Navigator2.ResumeLayout(False)
+        Me.Navigator2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -688,7 +688,7 @@ Partial Class aprobarCuentaCajaForm
     Friend WithEvents btnCerrar As System.Windows.Forms.Button
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
-    Friend WithEvents Navigator1 As System.Windows.Forms.BindingNavigator
+    Friend WithEvents Navigator2 As System.Windows.Forms.BindingNavigator
     Friend WithEvents ToolStripLabel1 As System.Windows.Forms.ToolStripLabel
     Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripButton2 As System.Windows.Forms.ToolStripButton

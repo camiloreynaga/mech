@@ -102,6 +102,7 @@ Partial Class rendicionCuentaCajaForm
         Me.btnProcesa = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.btnCrear = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Panel4 = New System.Windows.Forms.Panel
+        Me.btnImprimir = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Label18 = New System.Windows.Forms.Label
         Me.cbCompro = New System.Windows.Forms.ComboBox
         Me.Label19 = New System.Windows.Forms.Label
@@ -871,6 +872,7 @@ Partial Class rendicionCuentaCajaForm
         'Panel4
         '
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel4.Controls.Add(Me.btnImprimir)
         Me.Panel4.Controls.Add(Me.btnMod)
         Me.Panel4.Controls.Add(Me.Label18)
         Me.Panel4.Controls.Add(Me.cbCompro)
@@ -896,6 +898,19 @@ Partial Class rendicionCuentaCajaForm
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(1046, 163)
         Me.Panel4.TabIndex = 3
+        '
+        'btnImprimir
+        '
+        Me.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
+        Me.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnImprimir.Location = New System.Drawing.Point(958, 12)
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(75, 25)
+        Me.btnImprimir.TabIndex = 335
+        Me.btnImprimir.Text = "Imprimir"
+        Me.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnImprimir.UseVisualStyleBackColor = True
         '
         'Label18
         '
@@ -1192,5 +1207,6 @@ Partial Class rendicionCuentaCajaForm
     Friend WithEvents btnCrear As ComponentesSolucion2008.BottomSSP
     Friend WithEvents txtNota1 As System.Windows.Forms.TextBox
     Friend WithEvents dgTabla1 As System.Windows.Forms.DataGridView
+    Friend WithEvents btnImprimir As ComponentesSolucion2008.BottomSSP
 
 End Class

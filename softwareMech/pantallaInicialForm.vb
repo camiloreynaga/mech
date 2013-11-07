@@ -237,7 +237,7 @@ Public Class pantallaInicialForm
         opcCotizacion.Visible = False 'Cotizacion
         opcOrdenCompra.Visible = False ' Orde de compra
         opcOrdDesembolso.Visible = False ' Orden de Desembolso
-        opcDocCompra.Visible = False ' Documento de Compra
+        opcIng.Visible = False ' Documento de Compra
 
         ' opcCaja.Visible = False 'Caja Chica
 
@@ -293,7 +293,7 @@ Public Class pantallaInicialForm
 
         opcCotizacion.Visible = False
         opcOrdenCompra.Visible = False
-        opcDocCompra.Visible = False
+        opcIng.Visible = False
         'opcCaja.Visible = False 'Caja Chica
 
         opcOrdDesAprobacion.Visible = False
@@ -401,7 +401,7 @@ Public Class pantallaInicialForm
         opcOrdDesModPago.Visible = False
         opcOrdDesCtasBco.Visible = False
 
-        opcDocCompra.Visible = False
+        opcIng.Visible = False
 
         'opcCaja.Visible = False 'Caja Chica
         opcGuiaRem.Visible = True ' Guia de remision
@@ -487,7 +487,7 @@ Public Class pantallaInicialForm
         opcOrdDesAprobacion.Visible = False
         opcOrdDesRegPagos.Visible = False
 
-        opcDocCompra.Visible = False
+        opcIng.Visible = False
         opcGuiaRem.Visible = False
         opcPersonal.Visible = False
         opcConfObra.Visible = False
@@ -828,7 +828,6 @@ Public Class pantallaInicialForm
         Dim Cta As New MantCuentas
         Cta.MdiParent = Me
         Cta.Show()
-
     End Sub
 
     Private Sub opcOrdDes5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDesConta.Click
@@ -1108,10 +1107,44 @@ Public Class pantallaInicialForm
         mant.Show()
     End Sub
 
-    Private Sub PagosPendienteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PagosPendienteToolStripMenuItem.Click
+    Private Sub opcCaja11_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCaja11.Click
+        Dim inf As New InformeMovCajaChicaForm
+        inf.MdiParent = Me
+        inf.Show()
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem1.Click
+        Dim inf As New informeSolicitudCajaForm
+        inf.MdiParent = Me
+        inf.Show()
+    End Sub
+
+    Private Sub opcConfSerieCheque_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConfSerieCheque.Click
+        Dim mant As New ConfiguracionSerieChequeForm
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
+
+    Private Sub opcConfSerieCuenta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcConfSerieCuenta.Click
+        Dim mant As New AsignarSerieChequeCuentaForm
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
+
+    Private Sub infT4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles infT4.Click
         Dim frm As New reportePagosPendientesDesembolso
         frm.MdiParent = Me
         frm.Show()
+    End Sub
 
+    Private Sub opcIng1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcIng1.Click
+        If recuperarSerieGuiaRemEmp(70) = 0 Then  '70=Factura
+            MessageBox.Show("Acceso denegado, el administrador no le asigno serie de FACTURA", nomNegocio, Nothing, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        Dim doc As New registraDocVentaEmpForm
+        doc.MdiParent = Me
+        doc.Show()
     End Sub
 End Class

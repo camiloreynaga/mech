@@ -56,7 +56,7 @@ Public Class MantSolicitudReqForm
             lbSol.DataSource = BindingSource1
             lbSol.DisplayMember = "nro"
             lbSol.ValueMember = "idSol"
-            BindingSource1.Sort = "nroS"
+            'BindingSource1.Sort = "nroS"
 
             BindingSource0.DataSource = dsAlmacen
             BindingSource0.DataMember = "TAreaMat"
@@ -298,10 +298,10 @@ Public Class MantSolicitudReqForm
             End If
         End If
 
-        If ValidaFechaMayorXXXX(date1.Value.Date, 2013) Then
-            MessageBox.Show("Ingrese fecha mayor al año 2012", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
-            Exit Sub
-        End If
+        'If ValidaFechaMayorXXXX(date1.Value.Date, 2013) Then
+        '    MessageBox.Show("Ingrese fecha mayor al año 2012", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
+        '    Exit Sub
+        'End If
 
         Dim resp As String = MessageBox.Show("Esta segúro de aperturar solicitud de requerimiento Nº " & txtNro.Text, nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
@@ -385,7 +385,7 @@ Public Class MantSolicitudReqForm
         cmInserTable.CommandText = "insert into TSolicitud(nroS,fecSol,codPers,codigo,estado,obs) values(@nro,@fec,@codP,@cod,0,@obs)"
         cmInserTable.Connection = Cn
         cmInserTable.Parameters.Add("@nro", SqlDbType.Int, 0).Value = txtNro.Text.Trim()
-        cmInserTable.Parameters.Add("@fec", SqlDbType.Date).Value = date1.Value.Date
+        cmInserTable.Parameters.Add("@fec", SqlDbType.Date).Value = Now.Date 'date1.Value.Date
         cmInserTable.Parameters.Add("@codP", SqlDbType.Int, 0).Value = vPass
         cmInserTable.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vSCodigo
         cmInserTable.Parameters.Add("@obs", SqlDbType.VarChar, 200).Value = txtObs.Text.Trim()
@@ -508,6 +508,15 @@ Public Class MantSolicitudReqForm
         Return cmdCampo.ExecuteScalar
     End Function
 
+    Private Function recuperarIdSol(ByVal codigo As String, ByVal myTrans As SqlTransaction) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select isnull(max(idSol),0) from TSolicitud where codigo='" & codigo & "'"
+        cmdCampo.Connection = Cn
+        cmdCampo.Transaction = myTrans
+        Return cmdCampo.ExecuteScalar
+    End Function
+
     Private Sub btnElimina_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnElimina.Click
         If BindingSource1.Position = -1 Then
             StatusBarClass.messageBarraEstado("  No existe registro a eliminar...")
@@ -552,6 +561,14 @@ Public Class MantSolicitudReqForm
                 Exit Sub
             End If
 
+            Dim idSol As Integer = recuperarIdSol(vSCodigo, myTrans)
+            If idSol > 0 Then
+                'TSolicitud  cambiando a abierto=0 
+                comandoUpdate15(idSol)
+                cmUpdateTable15.Transaction = myTrans
+                cmUpdateTable15.ExecuteNonQuery()
+            End If
+
             Me.Refresh()
 
             'confirma la transaccion
@@ -586,6 +603,14 @@ Public Class MantSolicitudReqForm
                 MessageBox.Show("Tipo de exception: " & f.Message & Chr(13) & "NO SE ELIMINO EL REGISTRO SELECCIONADO...", nomNegocio, Nothing, MessageBoxIcon.Information)
             End If
         End Try
+    End Sub
+
+    Dim cmUpdateTable15 As SqlCommand
+    Private Sub comandoUpdate15(ByVal idSol As Integer)
+        cmUpdateTable15 = New SqlCommand
+        cmUpdateTable15.CommandType = CommandType.Text
+        cmUpdateTable15.CommandText = "update TSolicitud set estado=0 where idSol=" & idSol
+        cmUpdateTable15.Connection = Cn
     End Sub
 
     Dim cmDeleteTable1 As SqlCommand
@@ -1192,6 +1217,15 @@ Public Class MantSolicitudReqForm
         Return False
     End Function
 
+    Private Function recuperarCountDetSol(ByVal cod As Integer, ByVal myTrans As SqlTransaction) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select count(*) from TDetalleSol where idSol=" & cod
+        cmdCampo.Connection = Cn
+        cmdCampo.Transaction = myTrans
+        Return cmdCampo.ExecuteScalar
+    End Function
+
     Private Sub btnAgrega_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgrega.Click
         If dgTabla1.Rows.Count = 0 Then
             StatusBarClass.messageBarraEstado("  Seleccione Insumo a agregar...")
@@ -1228,6 +1262,19 @@ Public Class MantSolicitudReqForm
             StatusBarClass.messageBarraEstado("  GUARDANDO DATOS...")
             Me.Refresh()
 
+            'Dim campo As String = txtNro.Text
+
+            'Dim vfVan3 As Boolean = False
+            'If (recuperarCountDetSol(BindingSource1.Item(BindingSource1.Position)(0), myTrans) = 0) Then
+            '    MsgBox("  CERRANDO ANTERIOR SOLICITUD...")
+            '    'TSolicitud  cambiando abierto=0 a cerrado=1
+            '    comandoUpdate14()
+            '    cmUpdateTable14.Transaction = myTrans
+            '    cmUpdateTable14.ExecuteNonQuery()
+
+            '    vfVan3 = True
+            'End If
+
             'TDetalleSol
             comandoInsert19()
             cmInserTable19.Transaction = myTrans
@@ -1247,8 +1294,27 @@ Public Class MantSolicitudReqForm
             StatusBarClass.messageBarraEstado("  LOS DATOS FUERON GUARDADOS CON EXITO...")
             finalMytrans = True
 
+            'If vfVan3 = False Then
             'Actualizando el dataSet 
             visualizarDet()
+            'Else
+            'MsgBox("  CERRADO ANTERIOR SOLICITUD...")
+            'vfVan1 = False
+            'vfVan2 = False
+
+            ''Actualizando el dataTable
+            'dsAlmacen.Tables("VSolAper").Clear()
+            'daTabla1.Fill(dsAlmacen, "VSolAper")
+
+            ''Buscando por nombre de campo y luego pocisionarlo con el indice
+            'BindingSource1.Position = BindingSource1.Find("nroS", campo)
+
+            'vfVan1 = True
+            'vfVan2 = True
+            'enlazarText()
+            'visualizarDet()
+            'recuperarUltimoNro(vSCodigo)
+            'End If
 
             'Buscando por nombre de campo y luego pocisionarlo con el indice
             BindingSource3.Position = BindingSource3.Find("codDetS", codDetS)
@@ -1275,6 +1341,14 @@ Public Class MantSolicitudReqForm
                 Exit Sub
             End If
         End Try
+    End Sub
+
+    Dim cmUpdateTable14 As SqlCommand
+    Private Sub comandoUpdate14()
+        cmUpdateTable14 = New SqlCommand
+        cmUpdateTable14.CommandType = CommandType.Text
+        cmUpdateTable14.CommandText = "update TSolicitud set estado=1 where estado=0 and codigo='" & vSCodigo & "' and idSol<>" & BindingSource1.Item(BindingSource1.Position)(0)
+        cmUpdateTable14.Connection = Cn
     End Sub
 
     Dim cmInserTable19 As SqlCommand

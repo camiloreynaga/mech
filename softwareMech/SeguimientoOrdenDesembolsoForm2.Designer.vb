@@ -132,6 +132,10 @@ Partial Class SeguimientoOrdenDesembolsoForm2
         Me.rdoProveedor = New System.Windows.Forms.RadioButton
         Me.cbSerie = New System.Windows.Forms.ComboBox
         Me.lblSerie = New System.Windows.Forms.Label
+        Me.txtClasificacion = New System.Windows.Forms.TextBox
+        Me.Label20 = New System.Windows.Forms.Label
+        Me.Label21 = New System.Windows.Forms.Label
+        Me.txtSubClasif = New System.Windows.Forms.TextBox
         Me.gbDesembolso.SuspendLayout()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindingNavigator1.SuspendLayout()
@@ -289,6 +293,8 @@ Partial Class SeguimientoOrdenDesembolsoForm2
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.txtSubClasif)
+        Me.TabPage1.Controls.Add(Me.txtClasificacion)
         Me.TabPage1.Controls.Add(Me.chkOtros)
         Me.TabPage1.Controls.Add(Me.chkReciboEgreso)
         Me.TabPage1.Controls.Add(Me.chkVoucherDetraccion)
@@ -306,6 +312,8 @@ Partial Class SeguimientoOrdenDesembolsoForm2
         Me.TabPage1.Controls.Add(Me.Label31)
         Me.TabPage1.Controls.Add(Me.txtEmailProv)
         Me.TabPage1.Controls.Add(Me.txtCuentaDetraccion)
+        Me.TabPage1.Controls.Add(Me.Label21)
+        Me.TabPage1.Controls.Add(Me.Label20)
         Me.TabPage1.Controls.Add(Me.Label10)
         Me.TabPage1.Controls.Add(Me.txtCuentaBco)
         Me.TabPage1.Controls.Add(Me.txtMotivoDesem)
@@ -556,14 +564,14 @@ Partial Class SeguimientoOrdenDesembolsoForm2
         '
         Me.txtObra.Location = New System.Drawing.Point(125, 32)
         Me.txtObra.Name = "txtObra"
-        Me.txtObra.Size = New System.Drawing.Size(729, 20)
+        Me.txtObra.Size = New System.Drawing.Size(748, 20)
         Me.txtObra.TabIndex = 3
         '
         'txtRuc
         '
         Me.txtRuc.Location = New System.Drawing.Point(666, 58)
         Me.txtRuc.Name = "txtRuc"
-        Me.txtRuc.Size = New System.Drawing.Size(188, 20)
+        Me.txtRuc.Size = New System.Drawing.Size(207, 20)
         Me.txtRuc.TabIndex = 3
         '
         'TabPage2
@@ -1176,6 +1184,38 @@ Partial Class SeguimientoOrdenDesembolsoForm2
         Me.lblSerie.TabIndex = 6
         Me.lblSerie.Text = "Serie:"
         '
+        'txtClasificacion
+        '
+        Me.txtClasificacion.Location = New System.Drawing.Point(716, 84)
+        Me.txtClasificacion.Name = "txtClasificacion"
+        Me.txtClasificacion.Size = New System.Drawing.Size(157, 20)
+        Me.txtClasificacion.TabIndex = 33
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(627, 87)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(83, 13)
+        Me.Label20.TabIndex = 6
+        Me.Label20.Text = "Clasificación:"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(627, 111)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(67, 13)
+        Me.Label21.TabIndex = 6
+        Me.Label21.Text = "Subclasif.:"
+        '
+        'txtSubClasif
+        '
+        Me.txtSubClasif.Location = New System.Drawing.Point(716, 108)
+        Me.txtSubClasif.Name = "txtSubClasif"
+        Me.txtSubClasif.Size = New System.Drawing.Size(157, 20)
+        Me.txtSubClasif.TabIndex = 33
+        '
         'SeguimientoOrdenDesembolsoForm2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
@@ -1199,6 +1239,7 @@ Partial Class SeguimientoOrdenDesembolsoForm2
         Me.Controls.Add(Me.lblDesde)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "SeguimientoOrdenDesembolsoForm2"
+        Me.Text = "jkl"
         Me.Controls.SetChildIndex(Me.lblDesde, 0)
         Me.Controls.SetChildIndex(Me.dtpInicio, 0)
         Me.Controls.SetChildIndex(Me.lblProveedor, 0)
@@ -1349,5 +1390,9 @@ Partial Class SeguimientoOrdenDesembolsoForm2
     Friend WithEvents rdoProveedor As System.Windows.Forms.RadioButton
     Friend WithEvents cbSerie As System.Windows.Forms.ComboBox
     Friend WithEvents lblSerie As System.Windows.Forms.Label
+    Friend WithEvents txtSubClasif As System.Windows.Forms.TextBox
+    Friend WithEvents txtClasificacion As System.Windows.Forms.TextBox
+    Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents Label20 As System.Windows.Forms.Label
 
 End Class

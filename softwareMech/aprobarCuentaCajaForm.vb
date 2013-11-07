@@ -50,7 +50,7 @@ Public Class aprobarCuentaCajaForm
 
             BindingSource2.DataSource = dsAlmacen
             BindingSource2.DataMember = "VDetSolCajaCuenta"
-            Navigator1.BindingSource = BindingSource2
+            Navigator2.BindingSource = BindingSource2
             dgTabla1.DataSource = BindingSource2
             'dgTabla1.SelectionMode = DataGridViewSelectionMode.FullRowSelect 'Seleccionar fila completa
             BindingSource2.Sort = "codTipM,codDetSol"

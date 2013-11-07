@@ -25,9 +25,10 @@ Public Class MantOrdenDesembCajaForm
         daTUbi.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vSCodigo  'Caja chica por Destino Obra
 
         txtSer.Text = vSSerie
-        sele = "select idOP,nroDes,serie,nro,fecDes,simbolo,monto,montoDet,montoDif,banco,nroCta,est,nroDet,datoReq,hist,estado,codigo,codIde,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,codMon,codSerO from VOrdenDesembolso where codSerO=@ser" 'order by nroDes"
+        sele = "select idOP,nroDes,serie,nro,fecDes,simbolo,monto,montoDet,montoDif,banco,nroCta,est,nroDet,datoReq,hist,estado,codigo,codIde,factCheck,bolCheck,guiaCheck,vouCheck,vouDCheck,reciCheck,otroCheck,descOtro,nroConfor,fecEnt,codMon,codSerO,vanCaja from VOrdenDesembolso where codSerO=@ser and vanCaja=@van" 'order by nroDes"
         crearDataAdapterTable(daTabla1, sele)
         daTabla1.SelectCommand.Parameters.Add("@ser", SqlDbType.Int, 0).Value = vSCodSerO
+        daTabla1.SelectCommand.Parameters.Add("@van", SqlDbType.Int, 0).Value = vSCodTipClaCajaA   'codTipCla=11 Caja Chica B
 
         sele = "select codMon,moneda,simbolo from TMoneda"
         crearDataAdapterTable(daTMon, sele)
@@ -186,6 +187,7 @@ Public Class MantOrdenDesembCajaForm
             .Columns(27).Visible = False
             .Columns(28).Visible = False
             .Columns(29).Visible = False
+            .Columns(30).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -732,7 +734,7 @@ Public Class MantOrdenDesembCajaForm
         cmInserTable1.Parameters.Add("@fec", SqlDbType.VarChar, 10).Value = "" 'txtFec.Text.Trim()
         cmInserTable1.Parameters.Add("@hist", SqlDbType.VarChar, 200).Value = "Aperturo " & Now.Date & " " & vPass & "-" & vSUsuario
         cmInserTable1.Parameters.Add("@codSerO", SqlDbType.Int, 0).Value = vSCodSerO
-        cmInserTable1.Parameters.Add("@van", SqlDbType.Int, 0).Value = 1 ' por defectocbSubClas.SelectedValue
+        cmInserTable1.Parameters.Add("@van", SqlDbType.Int, 0).Value = vSCodTipClaCajaA ' 11 codTipCla Caja A
         'configurando direction output = parametro de solo salida
         cmInserTable1.Parameters.Add("@Identity", SqlDbType.Int, 0)
         cmInserTable1.Parameters("@Identity").Direction = ParameterDirection.Output
@@ -948,7 +950,7 @@ Public Class MantOrdenDesembCajaForm
         End If
         cmUpdateTable1.Parameters.Add("@des", SqlDbType.VarChar, 60).Value = txtOtro.Text.Trim()
         cmUpdateTable1.Parameters.Add("@hist", SqlDbType.VarChar, 200).Value = BindingSource3.Item(BindingSource3.Position)(14) & "  Modifico " & Now.Date & " " & vPass & "-" & vSUsuario
-        cmUpdateTable1.Parameters.Add("@van", SqlDbType.Int, 0).Value = 1 'cbSubClas.SelectedValue
+        cmUpdateTable1.Parameters.Add("@van", SqlDbType.Int, 0).Value = vSCodTipClaCajaA
         cmUpdateTable1.Parameters.Add("@idOP", SqlDbType.Int, 0).Value = BindingSource3.Item(BindingSource3.Position)(0)
     End Sub
 
@@ -1006,7 +1008,7 @@ Public Class MantOrdenDesembCajaForm
         End If
         cmUpdateTable11.Parameters.Add("@des", SqlDbType.VarChar, 60).Value = txtOtro.Text.Trim()
         cmUpdateTable11.Parameters.Add("@hist", SqlDbType.VarChar, 200).Value = BindingSource3.Item(BindingSource3.Position)(14) & "  Modifico " & Now.Date & " " & vPass & "-" & vSUsuario
-        cmUpdateTable11.Parameters.Add("@van", SqlDbType.Int, 0).Value = 1 'cbSubClas.SelectedValue
+        cmUpdateTable11.Parameters.Add("@van", SqlDbType.Int, 0).Value = vSCodTipClaCajaA
         cmUpdateTable11.Parameters.Add("@idOP", SqlDbType.Int, 0).Value = BindingSource3.Item(BindingSource3.Position)(0)
     End Sub
 
@@ -1342,8 +1344,4 @@ Public Class MantOrdenDesembCajaForm
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function
-
-    Private Sub dgTabla1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla1.CellContentClick
-
-    End Sub
 End Class

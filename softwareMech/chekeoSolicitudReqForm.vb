@@ -19,11 +19,11 @@ Public Class chekeoSolicitudReqForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select idSol,nro,fecSol,nroCotiConca,est,nombres,obs,lugar,estDet,codigo,codPers from VSolAperAprobado where codigo=@cod"
+        Dim sele As String = "select idSol,nro,fecSol,nroCotiConca,est,nombres,obs,lugar,estDet,codigo,codPers from VSolAperAprobado1 where codigo=@cod"
         crearDataAdapterTable(daTabla1, sele)
         daTabla1.SelectCommand.Parameters.Add("@cod", SqlDbType.VarChar, 10).Value = vSCodigo
 
-        sele = "select codDetS,cant,unidad,descrip,estRec,areaM,nombres1,obs3,nombres,obs1,idSol,codEstS,codAreaM,estRecep,codPers,codPersR from VDetSolAprobado where idSol=@idS and (codAreaM=@codA or codAreaM>@nro)" 'areaM,descrip
+        sele = "select codDetS,cant,unidad,descrip,estRec,estSol,nombres1,obs3,nombres,obs1,idSol,codEstS,codAreaM,estRecep,codPers,codPersR,areaM from VDetSolAprobado1 where idSol=@idS and (codAreaM=@codA or codAreaM>@nro)" 'areaM,descrip
         crearDataAdapterTable(daDetDoc, sele)
         daDetDoc.SelectCommand.Parameters.Add("@idS", SqlDbType.Int, 0).Value = 0
         daDetDoc.SelectCommand.Parameters.Add("@codA", SqlDbType.Int, 0).Value = 0
@@ -36,12 +36,12 @@ Public Class chekeoSolicitudReqForm
             'procedimiento para instanciar el dataSet - DatasetAlmacenModule.vb
             crearDSAlmacen()
             'llenat el dataSet con los dataAdapter
-            daTabla1.Fill(dsAlmacen, "VSolAperAprobado")
-            daDetDoc.Fill(dsAlmacen, "VDetSolAprobado")
+            daTabla1.Fill(dsAlmacen, "VSolAperAprobado1")
+            daDetDoc.Fill(dsAlmacen, "VDetSolAprobado1")
             daTabla2.Fill(dsAlmacen, "TAreaMat")
 
             BindingSource1.DataSource = dsAlmacen
-            BindingSource1.DataMember = "VSolAperAprobado"
+            BindingSource1.DataMember = "VSolAperAprobado1"
             Navigator1.BindingSource = BindingSource1
             dgTabla1.DataSource = BindingSource1
             BindingSource1.Sort = "idSol"
@@ -53,7 +53,7 @@ Public Class chekeoSolicitudReqForm
             cbArea.ValueMember = "codAreaM"
 
             BindingSource3.DataSource = dsAlmacen
-            BindingSource3.DataMember = "VDetSolAprobado"
+            BindingSource3.DataMember = "VDetSolAprobado1"
             Navigator2.BindingSource = BindingSource3
             dgTabla2.DataSource = BindingSource3
             'dgTabla2.SelectionMode = DataGridViewSelectionMode.FullRowSelect 'Seleccionar fila completa
@@ -96,6 +96,19 @@ Public Class chekeoSolicitudReqForm
                 dgTabla2.Rows(j).Cells(4).Style.BackColor = Color.Red
                 dgTabla2.Rows(j).Cells(4).Style.ForeColor = Color.White
             End If
+
+            If BindingSource3.Item(j)(11) = 2 Then 'Aprobado
+                dgTabla2.Rows(j).Cells(5).Style.BackColor = Color.Green 'Color.YellowGreen
+                dgTabla2.Rows(j).Cells(5).Style.ForeColor = Color.White
+            End If
+            If BindingSource3.Item(j)(11) = 3 Then 'Observado
+                dgTabla2.Rows(j).Cells(5).Style.BackColor = Color.Yellow
+                dgTabla2.Rows(j).Cells(5).Style.ForeColor = Color.Red
+            End If
+            If BindingSource3.Item(j)(11) = 4 Then 'Rechazado
+                dgTabla2.Rows(j).Cells(5).Style.BackColor = Color.Red
+                dgTabla2.Rows(j).Cells(5).Style.ForeColor = Color.White
+            End If
         Next
     End Sub
 
@@ -137,8 +150,8 @@ Public Class chekeoSolicitudReqForm
             .Columns(3).Width = 340
             .Columns(4).HeaderText = "Recibido"
             .Columns(4).Width = 75
-            .Columns(5).HeaderText = "Area_Insumo"
-            .Columns(5).Width = 100
+            .Columns(5).HeaderText = "Estado"
+            .Columns(5).Width = 75
             .Columns(6).Width = 100
             .Columns(6).HeaderText = "Recepcionista"
             .Columns(7).Width = 450
@@ -191,11 +204,11 @@ Public Class chekeoSolicitudReqForm
                 Exit Sub
             End If
             Me.Cursor = Cursors.WaitCursor
-            dsAlmacen.Tables("VDetSolAprobado").Clear()
+            dsAlmacen.Tables("VDetSolAprobado1").Clear()
             daDetDoc.SelectCommand.Parameters("@idS").Value = BindingSource1.Item(BindingSource1.Position)(0)
             daDetDoc.SelectCommand.Parameters("@codA").Value = cbArea.SelectedValue
             daDetDoc.SelectCommand.Parameters("@nro").Value = vfNro '100
-            daDetDoc.Fill(dsAlmacen, "VDetSolAprobado")
+            daDetDoc.Fill(dsAlmacen, "VDetSolAprobado1")
             colorearFila()
             Me.Cursor = Cursors.Default
         End If
@@ -528,8 +541,8 @@ Public Class chekeoSolicitudReqForm
             vfVan2 = False
 
             'Actualizando el dataTable
-            dsAlmacen.Tables("VSolAperAprobado").Clear()
-            daTabla1.Fill(dsAlmacen, "VSolAperAprobado")
+            dsAlmacen.Tables("VSolAperAprobado1").Clear()
+            daTabla1.Fill(dsAlmacen, "VSolAperAprobado1")
 
             BindingSource1.Position = BindingSource1.Find("idSol", campo)
             vfVan2 = True  'Filtrar Detalle Solicitud

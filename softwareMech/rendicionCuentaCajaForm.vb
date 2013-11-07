@@ -395,6 +395,7 @@ Public Class rendicionCuentaCajaForm
         btnAnula.ForeColor = ForeColorButtom
         btnProcesa.ForeColor = ForeColorButtom
         btnCrear.ForeColor = ForeColorButtom
+        btnImprimir.ForeColor = ForeColorButtom
         btnCerrar.ForeColor = ForeColorButtom
     End Sub
 
@@ -1231,7 +1232,15 @@ Public Class rendicionCuentaCajaForm
         cmDeleteTable12.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource3.Item(BindingSource3.Position)(0)
     End Sub
 
-    Private Sub Label9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label9.Click
+    Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
+        If BindingSource1.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  No existe Solicitud a imprimir...")
+            Exit Sub
+        End If
 
+        vCodDoc = BindingSource1.Item(BindingSource1.Position)(0)
+        'vParam1 = BindingSource6.Item(BindingSource6.Position)(18) & "-MECH-" & CDate(BindingSource6.Item(BindingSource6.Position)(4)).Year
+        Dim informe As New ReportViewerCajaCuentaForm
+        informe.ShowDialog()
     End Sub
 End Class

@@ -339,7 +339,7 @@ create table TOrdenDesembolso
 	fecEnt varchar(10), --fecha de entrega
 	hist varchar(200),
 	codSerO int default 1,  --Codigo de serie de orden de desembolso
-	vanCaja int default 0,	--OBSOLETO YA NO SIRVE vandera pa saber si gue procesado en caja chica 1=Procesado
+	vanCaja int default 0,	--codTipCla   proyectado ... real en TPagoDesembolso
 	foreign key(codMon) references TMoneda,
 	foreign key(codigo) references TLugarTrabajo,
 	foreign key(codIde) references TIdentidad
@@ -397,6 +397,8 @@ create table TPagoDesembolso
 	codTipCla int default 1, --Varios=1
 	vanEgreso int default 0, --0=Egreso 1=NO egreso
 	idSesM int int default 1, -- mes improvisado pa todos los ingresos anteriores
+	fecMov varchar(10) default '', --fecha desemvolso fisico
+	codMP int default 0, --No definido medio pago=0
 	foreign key(codTipP) references TTipoPago,
 	foreign key(codCla) references TClasifPago,
 	foreign key(codMon) references TMoneda,
@@ -404,12 +406,11 @@ create table TPagoDesembolso
 )
 --select * from TPagoDesembolso
 --aumentar campos a la estructura de nuestra base de datos
---ALTER TABLE TPagoDesembolso ADD codTipCla int default 1
---ALTER TABLE TPagoDesembolso ADD vanEgreso int default 0
---ALTER TABLE TPagoDesembolso ADD idSesM int default 1
---update TPagoDesembolso set codTipCla=1
---update TPagoDesembolso set vanEgreso=0
---update TPagoDesembolso set idSesM=1
+--ALTER TABLE TPagoDesembolso ADD fecMov varchar(10) default ''
+--ALTER TABLE TPagoDesembolso ADD codMP int default 0
+--update TPagoDesembolso set fecMov=''
+--update TPagoDesembolso set codMP=0
+
 
 create table TBanco
 (	codBan int identity(1,1) primary key,	
@@ -672,8 +673,8 @@ create table TSolicitudCaja
 
 --select * from TSolicitudCaja
 --aumentar campos a la estructura de nuestra base de datos
---ALTER TABLE TSolicitudCaja ADD salAct decimal(10,2) default 0
---update TSolicitudCaja set salAct=0
+--ALTER TABLE TSolicitudCaja ADD cierre int default 0
+--update TSolicitudCaja set cierre=0
 
 -- drop table TDetSolCaja
 create table TDetSolCaja
@@ -812,45 +813,71 @@ create table TMovimientoMech
 	foreign key(codPers) references TPersonal,
 )
 
--------MODULO INGRESOS EGRESOS(DESEMBOLSOS) MECH------
------------------EJECUTAR 14/10/2013------------------
+-------MODULO SEGUIMIENTO REQUERIMIENTO OBRA------
+-----------------EJECUTAR 09/11/2013------------------
 ------------------------------------------------------
 
+create table TSegRequerObra
+(	codSRO int identity(1,1) primary key,
+	codDetS int,	-- TDetalleSol linea de insumo de TSolicitud
+	codDetO int,	-- TDetalleOrden linea de insumo de TOrdenCompra
+)
+
+create table TSeriePago
+(	codSerP int identity primary key, 
+	serie varchar(10) default '001',
+	iniNroDoc int,
+	descrip varchar(40),
+	estado int 	--1=Activo 0=Inactivo
+)
+
+create table TMedioPago
+(	codMP int identity(1,1) primary key,	
+	medioP varchar(60),  --Tranferencia, cheque, efectivo	
+	nroM varchar(10),
+	idCue int,
+	foreign key(idCue) references TCuentaBan
+)	
+
+
+create table TSerieCheque
+(	codSC int identity primary key,
+	codMP int,	
+	codSerP int,
+	foreign key(codMP) references TMedioPago,
+	foreign key(codSerP) references TSeriePago
+)
+
 -- DROP table TDocCompra
-create table TDocCompra
-(	codDocC int identity(1,1) primary key,
+create table TDocVenta
+(	codDocV int identity(1,1) primary key,
 	serie varchar(5),
 	nroDoc int,
 	fecDoc date,
 	fecCan varchar(10),
 	idSesM int,
-	codTipDC int,
+	codSerS int,
+	codIde int,		--CLIENTE
 	estado int,	--0=abierto,1=cerrado,2=anulado
-	codIde int,
-	codPag int,
 	igv decimal(6,2),
 	calIGV int,  --0=Boleta otros  1=Tipo IGV 2=TipoIGV
 	codMon int,
 	camD decimal(5,2),
 	obs varchar(200),
 	hist varchar(500), --quien creo/modifico/anulo y en que fecha
-	codTipCla int,     --0=No es ingreso de dinero a MECH
-	foreign key(codTipDC) references TTipoDocCompra,
+	foreign key(idSesM) references TSesionMes,
+	foreign key(codSerS) references TSerieSede,
 	foreign key(codIde) references TIdentidad,
-	foreign key(codPag) references TFormaPago,
-	foreign key(codMon) references TMoneda,
-	foreign key(idSesM) references TSesionMes
+	foreign key(codMon) references TMoneda
 )
 
 --DROP table TDetalleCompra
-create table TDetalleCompra
-(	codDC int identity(1,1) primary key,
+create table TDetalleVenta
+(	codDV int identity(1,1) primary key,
 	cant decimal(8,2),
 	unidad varchar(20),
-	detalle varchar(100),
+	detalle varchar(300),
 	preUni decimal(12,2),
-	codDocC int,
-	codMat int,  -- 0=si no hereda insumo estructurado
-	foreign key(codDocC) references TDocCompra,
-	--foreign key(codMat) references TMaterial
+	codDocV int,
+	foreign key(codDocV) references TDocVenta
 )

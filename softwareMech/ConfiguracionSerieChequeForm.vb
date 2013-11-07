@@ -1,15 +1,14 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
 Imports ComponentesSolucion2008
-Public Class ConfiguracionSerieEmpForm
-    Dim BindingSource1 As New BindingSource
+Public Class ConfiguracionSerieChequeForm
     Dim BindingSource2 As New BindingSource
 
-    Private Sub ConfiguracionSerieEmpForm_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
+    Private Sub ConfiguracionSerieChequeForm_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
         Me.Close()
     End Sub
 
-    Private Sub ConfiguracionSerieEmpForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub ConfiguracionSerieChequeForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Realizando la conexion con SQL Server - ConexionModule.vb
         'conexion() 'active esta linea si desea ejecutar el form independientemente RAS
         'AsignarColoresFormControles()
@@ -17,35 +16,23 @@ Public Class ConfiguracionSerieEmpForm
         Dim wait As New waitForm
         wait.Show()
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select codTipDE,tipoDE,estado from TTipoDocEmp where estado=1"
-        crearDataAdapterTable(daTabla1, sele)
-
-        sele = "select codSerS,serie,iniNroDoc,finNroDoc,'est'=case when estado=1 then 'Activo' else 'INACTIVO' end,descrip,codTipDE,estado from TSerieSede  where codSerS>=2 order by serie"   '1=guia remision prove 2=Factura Proveedor
+        Dim sele As String = "select codSerP,serie,iniNroDoc,'est'=case when estado=1 then 'Activo' else 'INACTIVO' end,descrip,estado from TSeriePago order by serie"
         crearDataAdapterTable(daTabla2, sele)
 
         Try
             'procedimiento para instanciar el dataSet - DatasetRestaurantModule.vb
             crearDSAlmacen()
             'llenat el dataSet con los dataAdapter
-            daTabla1.Fill(dsAlmacen, "TTipoDocEmp")
-            daTabla2.Fill(dsAlmacen, "TSerieSede")
+            daTabla2.Fill(dsAlmacen, "TSeriePago")
 
-            AgregarRelacion()
-
-            BindingSource1.DataSource = dsAlmacen
-            BindingSource1.DataMember = "TTipoDocEmp"
-            lbTabla.DataSource = BindingSource1
-            lbTabla.DisplayMember = "tipoDE"
-            lbTabla.ValueMember = "codTipDE"
-
-            BindingSource2.DataSource = BindingSource1
-            BindingSource2.DataMember = "Relacion1"
+            BindingSource2.DataSource = dsAlmacen
+            BindingSource2.DataMember = "TSeriePago"
             Navigator1.BindingSource = BindingSource2
             dgTabla1.DataSource = BindingSource2
             ModificarColumnasDGV()
 
             configurarColorControl()
-            txtCod.DataBindings.Add("Text", BindingSource2, "codSerS")
+            'txtCod.DataBindings.Add("Text", BindingSource2, "codSer")
 
             wait.Close()
         Catch f As Exception
@@ -53,12 +40,6 @@ Public Class ConfiguracionSerieEmpForm
             MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End Try
-    End Sub
-
-    Private Sub AgregarRelacion()
-        'agregando una relacion entre la tablaS
-        Dim relation1 As New DataRelation("Relacion1", dsAlmacen.Tables("TTipoDocEmp").Columns("codTipDE"), dsAlmacen.Tables("TSerieSede").Columns("codTipDE"))
-        dsAlmacen.Relations.Add(relation1)
     End Sub
 
     Private Sub ModificarColumnasDGV()
@@ -70,15 +51,11 @@ Public Class ConfiguracionSerieEmpForm
             .Columns(2).HeaderText = "Nºdoc_inic."
             .Columns(2).Width = 80
             .Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns(3).HeaderText = "Nºdoc_final"
-            .Columns(3).Width = 80
-            .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns(4).Width = 70
-            .Columns(4).HeaderText = "Estado"
-            .Columns(5).Width = 180
-            .Columns(5).HeaderText = "Descripción"
-            .Columns(6).Visible = False
-            .Columns(7).Visible = False
+            .Columns(3).Width = 60
+            .Columns(3).HeaderText = "Estado"
+            .Columns(4).Width = 186
+            .Columns(4).HeaderText = "Descripción"
+            .Columns(5).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -93,11 +70,9 @@ Public Class ConfiguracionSerieEmpForm
         Me.lblDerecha.BackColor = TituloBackColorP
         Me.lblDerecha.ForeColor = HeaderForeColorP
         Me.Text = nomNegocio
-        Label1.ForeColor = ForeColorLabel
         Label2.ForeColor = ForeColorLabel
         Label3.ForeColor = ForeColorLabel
         Label4.ForeColor = ForeColorLabel
-        Label5.ForeColor = ForeColorLabel
         Label6.ForeColor = ForeColorLabel
         Label7.ForeColor = ForeColorLabel
         btnNuevo.ForeColor = ForeColorButtom
@@ -111,23 +86,21 @@ Public Class ConfiguracionSerieEmpForm
         If BindingSource2.Count = 0 Then
             txtSerie.Text = ""
             txtNroDoc1.Text = ""
-            txtNroDoc2.Text = ""
             txtDes.Text = ""
             lbEstado.SelectedIndex = 0
             Exit Sub
         End If
         txtSerie.Text = BindingSource2.Item(BindingSource2.Position)(1)
         txtNroDoc1.Text = BindingSource2.Item(BindingSource2.Position)(2)
-        txtNroDoc2.Text = BindingSource2.Item(BindingSource2.Position)(3)
-        txtDes.Text = BindingSource2.Item(BindingSource2.Position)(5)
-        If BindingSource2.Item(BindingSource2.Position)(7) = 1 Then  'Activo
+        txtDes.Text = BindingSource2.Item(BindingSource2.Position)(4)
+        If BindingSource2.Item(BindingSource2.Position)(5) = 1 Then  'Activo
             lbEstado.SelectedIndex = 0
         Else
             lbEstado.SelectedIndex = 1
         End If
     End Sub
 
-    Private Sub txtCod_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtCod.TextChanged
+    Private Sub dgTabla1_CurrentCellChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgTabla1.CurrentCellChanged
         enlazarText()
     End Sub
 
@@ -165,7 +138,6 @@ Public Class ConfiguracionSerieEmpForm
     Private Sub activarText()
         txtSerie.ReadOnly = False
         txtNroDoc1.ReadOnly = False
-        txtNroDoc2.ReadOnly = False
         txtDes.ReadOnly = False
         If vfNuevo1 = "guardar" Then
             'cbUnidad.Enabled = True
@@ -177,7 +149,6 @@ Public Class ConfiguracionSerieEmpForm
     Private Sub desActivarText()
         txtSerie.ReadOnly = True
         txtNroDoc1.ReadOnly = True
-        txtNroDoc2.ReadOnly = True
         txtDes.ReadOnly = True
         lbEstado.Enabled = False
     End Sub
@@ -185,7 +156,6 @@ Public Class ConfiguracionSerieEmpForm
     Private Sub limpiarText()
         txtSerie.Clear()
         txtNroDoc1.Clear()
-        txtNroDoc2.Clear()
         txtDes.Clear()
     End Sub
 
@@ -199,10 +169,6 @@ Public Class ConfiguracionSerieEmpForm
             txtNroDoc1.errorProv()
             Return True
         End If
-        If ValidarCantMayorCero(txtNroDoc2.Text.Trim) Then
-            txtNroDoc2.errorProv()
-            Return True
-        End If
         'Todo OK
         Return False
     End Function
@@ -213,7 +179,6 @@ Public Class ConfiguracionSerieEmpForm
             vfNuevo1 = "guardar"
             Me.btnNuevo.Text = "Guardar"
             desactivarControles1()
-            txtCod.DataBindings.Clear()
             activarText()
             limpiarText()
             txtSerie.Focus()
@@ -221,11 +186,6 @@ Public Class ConfiguracionSerieEmpForm
             Me.AcceptButton = Me.btnNuevo
         Else   ' guardar
             If ValidarCampos() Then
-                Exit Sub
-            End If
-
-            If CInt(txtNroDoc1.Text) >= CInt(txtNroDoc2.Text) Then
-                MessageBox.Show("Nº " & txtNroDoc2.Text.Trim() & " TIENE QUE SER MAYOR A Nº " & txtNroDoc1.Text.Trim(), nomNegocio, Nothing, MessageBoxIcon.Error)
                 Exit Sub
             End If
 
@@ -238,7 +198,7 @@ Public Class ConfiguracionSerieEmpForm
                 StatusBarClass.messageBarraEstado("  GUARDANDO DATOS...")
                 Me.Refresh()
 
-                'TSerieSede
+                'TSeriePago
                 comandoInsert()
                 cmInserTable.Transaction = myTrans
                 If cmInserTable.ExecuteNonQuery() < 1 Then
@@ -258,12 +218,12 @@ Public Class ConfiguracionSerieEmpForm
                 finalMytrans = True
 
                 'Actualizando el dataSet 
-                dsAlmacen.Tables("TSerieSede").Clear()
-                daTabla2.Fill(dsAlmacen, "TSerieSede")
+                dsAlmacen.Tables("TSeriePago").Clear()
+                daTabla2.Fill(dsAlmacen, "TSeriePago")
 
                 Me.btnCancelar.PerformClick()
 
-                BindingSource2.MoveLast()
+                BindingSource2.Position = BindingSource2.Count - 1
                 'Clase definida y con miembros shared en la biblioteca ComponentesRAS
                 StatusBarClass.messageBarraEstado("  Registro fué guardado con exito...")
                 wait.Close()
@@ -276,7 +236,7 @@ Public Class ConfiguracionSerieEmpForm
                     Me.Close()
                 Else
                     myTrans.Rollback()
-                    MessageBox.Show("tipoDE de exception: " & f.Message & Chr(13) & "NO SE GUARDO LA INFORMACION PROCESADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    MessageBox.Show("Tipo de exception: " & f.Message & Chr(13) & "NO SE GUARDO LA INFORMACION PROCESADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
                     Me.Close()
                 End If
             End Try
@@ -289,17 +249,32 @@ Public Class ConfiguracionSerieEmpForm
         vfModificar1 = "modificar"
         Me.btnModificar.Text = "Modificar"
         activarControles1()
-        txtCod.DataBindings.Add("Text", BindingSource2, "codSerS")
         desActivarText()
         'Clase definida y con miembros shared en la biblioteca ComponentesRAS
         StatusBarClass.messageBarraEstado("  Proceso cancelado...")
         enlazarText()
     End Sub
 
-    Private Function recuperarCount(ByVal codTipo As Integer) As Integer
+    Private Function recuperarCount(ByVal codSer As Integer) As Integer
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = "select count(*) from TSerieSede where estado=1 and codTipDE=" & codTipo
+        cmdCampo.CommandText = "select count(*) from TSerieCheque where codSerP=" & codSer
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
+    Private Function recuperarCountSerie(ByVal codSer As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select COUNT(*) from TOrdenDesembolso where codSerP=" & codSer
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
+    Private Function recuperarCountCajaChica(ByVal codSer As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select count(*) from TCajaChica where codSerP=" & codSer & " and estCaja=1"  '1=Activo caja chica
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function
@@ -311,12 +286,17 @@ Public Class ConfiguracionSerieEmpForm
             StatusBarClass.messageBarraEstado("  No existe registro a modificar...")
             Exit Sub
         End If
+
+        'If recuperarCountSerie(BindingSource2.Item(BindingSource2.Position)(0)) > 10 Then  'si hay mas de 10 ordenes ya procesadas con esta serie el sistema ya no dejara modificar la serie
+        '    MessageBox.Show("Proceso denegado, ya hay mas de 10 ordenes de desembolso procesadas...", nomNegocio, Nothing, MessageBoxIcon.Error)
+        '    Exit Sub
+        'End If
+
         If vfModificar1 = "modificar" Then
             enlazarText()
             vfModificar1 = "actualizar"
             btnModificar.Text = "Actualizar"
             desactivarControles1()
-            txtCod.DataBindings.Clear()
             activarText()
             txtSerie.Focus()
             StatusBarClass.messageBarraEstado("")
@@ -326,21 +306,19 @@ Public Class ConfiguracionSerieEmpForm
                 Exit Sub
             End If
 
-            'If BindingSource2.Item(BindingSource2.Position)(7) = 0 Then  'Inactivo
-            '    If lbEstado.Text.Trim() = "Activo" Then
-            '        If recuperarCount(lbTabla.SelectedValue) > 0 Then
-            '            MessageBox.Show("PROCESO DENEGADO, Desactive series que estan en estado [Activo]" & Chr(13) & "Solo puede estar activo una serie..", nomNegocio, Nothing, MessageBoxIcon.Error)
-            '            Exit Sub
-            '        End If
-            '    End If
-            'End If
+            If lbEstado.Text.Trim() = "Inactivo" Then
+                If recuperarCount(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
+                    MessageBox.Show("PROCESO DENEGADO, PRIMERAMENTE QUITE SERIE DE CHEQUE ASIGNADO...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
 
-            If CInt(txtNroDoc1.Text) >= CInt(txtNroDoc2.Text) Then
-                MessageBox.Show("Nº " & txtNroDoc2.Text.Trim() & " TIENE QUE SER MAYOR A Nº " & txtNroDoc1.Text.Trim(), nomNegocio, Nothing, MessageBoxIcon.Error)
-                Exit Sub
+                'If recuperarCountCajaChica(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
+                '    MessageBox.Show("Proceso denegado, Caja Chica [ACTIVA] con SERIE ...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                '    Exit Sub
+                'End If
             End If
 
-            Dim resp As String = MessageBox.Show("Esta segúro de modificar documento...?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            Dim resp As String = MessageBox.Show("Esta segúro de modificar serie...", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If resp <> 6 Then
                 txtSerie.Focus()
                 Exit Sub
@@ -353,7 +331,7 @@ Public Class ConfiguracionSerieEmpForm
             wait.Show()
             Try
                 StatusBarClass.messageBarraEstado("  ESPERE POR FAVOR, ACTUALIZANDO INFORMACION....")
-                'TSerieSede
+                'TSeriePago
                 comandoUpdate()
                 cmUpdateTable.Transaction = myTrans
                 If cmUpdateTable.ExecuteNonQuery() < 1 Then
@@ -373,12 +351,12 @@ Public Class ConfiguracionSerieEmpForm
                 StatusBarClass.messageBarraEstado("  LOS DATOS FUERON ACTUALIZADOS CON EXITO...")
 
                 'Actualizando el dataSet 
-                dsAlmacen.Tables("TSerieSede").Clear()
-                daTabla2.Fill(dsAlmacen, "TSerieSede")
+                dsAlmacen.Tables("TSeriePago").Clear()
+                daTabla2.Fill(dsAlmacen, "TSeriePago")
 
                 Me.btnCancelar.PerformClick()
                 'Buscando por nombre de campo y luego pocisionarlo con el indice
-                Dim j As Short = BindingSource2.Find("codSerS", vfCampo1)
+                Dim j As Short = BindingSource2.Find("codSerP", vfCampo1)
                 BindingSource2.Position = j
                 'Clase definida y con miembros shared en la biblioteca ComponentesRAS
                 StatusBarClass.messageBarraEstado("  Registro fué actualizado con exito...")
@@ -397,10 +375,26 @@ Public Class ConfiguracionSerieEmpForm
         End If
     End Sub
 
-    Public Function recuperarCount1(ByVal codSerS As Integer) As Integer
+    Public Function recuperarCount1(ByVal codSer As Integer) As Integer
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = "select count(*) from TGuiaRemEmp where codSerS=" & codSerS
+        cmdCampo.CommandText = "select count(*) from TOrdenDesembolso where codSerP=" & codSer
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
+    Public Function recuperarCount2(ByVal codSer As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select count(*) from TSerieCheque where codSerP=" & codSer
+        cmdCampo.Connection = Cn
+        Return cmdCampo.ExecuteScalar
+    End Function
+
+    Public Function recuperarCount3(ByVal codSer As Integer) As Integer
+        Dim cmdCampo As SqlCommand = New SqlCommand
+        cmdCampo.CommandType = CommandType.Text
+        cmdCampo.CommandText = "select count(*) from TCajaChica where codSerP=" & codSer
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function
@@ -411,10 +405,20 @@ Public Class ConfiguracionSerieEmpForm
             Exit Sub
         End If
 
-        If recuperarCount1(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
-            MessageBox.Show("Proceso denegado, Serie tiene Guias de Remision ya procesadas...", nomNegocio, Nothing, MessageBoxIcon.Error)
+        'If recuperarCount1(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
+        '    MessageBox.Show("PROCESO DENEGADO. SERIE TIENE ORDENES YA PROCESADAS...", nomNegocio, Nothing, MessageBoxIcon.Error)
+        '    Exit Sub
+        'End If
+
+        If recuperarCount2(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
+            MessageBox.Show("PROCESO DENEGADO. SERIE TIENE CHEQUE ASIGNADO...", nomNegocio, Nothing, MessageBoxIcon.Error)
             Exit Sub
         End If
+
+        'If recuperarCount3(BindingSource2.Item(BindingSource2.Position)(0)) > 0 Then
+        '    MessageBox.Show("PROCESO DENEGADO. SERIE TIENE CAJA CHICA ASIGNADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+        '    Exit Sub
+        'End If
 
         Dim resp As String = MessageBox.Show("Está segúro de eliminar registro?", nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
@@ -428,7 +432,7 @@ Public Class ConfiguracionSerieEmpForm
         wait.Show()
         Try
             StatusBarClass.messageBarraEstado("  ELIMINANDO REGISTROS...")
-            'Tabla TSerieSede
+            'Tabla TSeriePago
             comandoDelete()
             cmDeleteTable.Transaction = myTrans
             If cmDeleteTable.ExecuteNonQuery() < 1 Then
@@ -447,8 +451,8 @@ Public Class ConfiguracionSerieEmpForm
             finalMytrans = True
 
             'Actualizando el dataSet 
-            dsAlmacen.Tables("TSerieSede").Clear()
-            daTabla2.Fill(dsAlmacen, "TSerieSede")
+            dsAlmacen.Tables("TSeriePago").Clear()
+            daTabla2.Fill(dsAlmacen, "TSeriePago")
 
             enlazarText()
             'Clase definida y con miembros shared en la biblioteca ComponentesRAS
@@ -462,7 +466,7 @@ Public Class ConfiguracionSerieEmpForm
             Else
                 'deshace la transaccion
                 myTrans.Rollback()
-                MessageBox.Show("tipoDE de exception: " & f.Message & Chr(13) & "NO SE ELIMINO EL REGISTRO SELECCIONADO...", nomNegocio, Nothing, MessageBoxIcon.Information)
+                MessageBox.Show("Tipo de exception: " & f.Message & Chr(13) & "NO SE ELIMINO EL REGISTRO SELECCIONADO...", nomNegocio, Nothing, MessageBoxIcon.Information)
             End If
         End Try
     End Sub
@@ -472,25 +476,22 @@ Public Class ConfiguracionSerieEmpForm
     Private Sub comandoInsert()
         cmInserTable = New SqlCommand
         cmInserTable.CommandType = CommandType.Text
-        cmInserTable.CommandText = "insert into TSerieSede(serie,iniNroDoc,finNroDoc,descrip,estado,codTipDE) values(@ser,@ini,@fin,@des,@est,@codT)"
+        cmInserTable.CommandText = "insert into TSeriePago(serie,iniNroDoc,descrip,estado) values(@ser,@ini,@des,@est)"
         cmInserTable.Connection = Cn
         cmInserTable.Parameters.Add("@ser", SqlDbType.VarChar, 10).Value = txtSerie.Text.Trim()
         cmInserTable.Parameters.Add("@ini", SqlDbType.Int, 0).Value = txtNroDoc1.Text.Trim()
-        cmInserTable.Parameters.Add("@fin", SqlDbType.Int, 0).Value = txtNroDoc2.Text.Trim()
         cmInserTable.Parameters.Add("@des", SqlDbType.VarChar, 40).Value = txtDes.Text.Trim()
-        cmInserTable.Parameters.Add("@est", SqlDbType.Int, 0).Value = 0 '"Inactivo"
-        cmInserTable.Parameters.Add("@codT", SqlDbType.Int, 0).Value = lbTabla.SelectedValue
+        cmInserTable.Parameters.Add("@est", SqlDbType.Int, 0).Value = 1 '"Activo"
     End Sub
 
     Dim cmUpdateTable As SqlCommand
     Private Sub comandoUpdate()
         cmUpdateTable = New SqlCommand
         cmUpdateTable.CommandType = CommandType.Text
-        cmUpdateTable.CommandText = "update TSerieSede set serie=@var,iniNroDoc=@var1,finNroDoc=@var2,descrip=@var3,estado=@var4 where codSerS=@cod"
+        cmUpdateTable.CommandText = "update TSeriePago set serie=@var,iniNroDoc=@var1,descrip=@var3,estado=@var4 where codSerP=@cod"
         cmUpdateTable.Connection = Cn
         cmUpdateTable.Parameters.Add("@var", SqlDbType.VarChar, 10).Value = txtSerie.Text.Trim()
         cmUpdateTable.Parameters.Add("@var1", SqlDbType.Int, 0).Value = txtNroDoc1.Text.Trim()
-        cmUpdateTable.Parameters.Add("@var2", SqlDbType.Int, 0).Value = txtNroDoc2.Text.Trim()
         cmUpdateTable.Parameters.Add("@var3", SqlDbType.VarChar, 40).Value = txtDes.Text.Trim()
         If lbEstado.SelectedIndex = 0 Then 'Activo
             cmUpdateTable.Parameters.Add("@var4", SqlDbType.Int, 0).Value = 1
@@ -503,7 +504,7 @@ Public Class ConfiguracionSerieEmpForm
     Private Sub comandoDelete()
         cmDeleteTable = New SqlCommand
         cmDeleteTable.CommandType = CommandType.Text
-        cmDeleteTable.CommandText = "delete from TSerieSede where codSerS=@cod"
+        cmDeleteTable.CommandText = "delete from TSeriePago where codSerP=@cod"
         cmDeleteTable.Connection = Cn
         cmDeleteTable.Parameters.Add("@cod", SqlDbType.Int, 0).Value = BindingSource2.Item(BindingSource2.Position)(0)
     End Sub
@@ -513,17 +514,7 @@ Public Class ConfiguracionSerieEmpForm
         Me.Close()
     End Sub
 
-    Private Sub txtNroDoc1_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtNroDoc1.KeyPress, txtNroDoc2.KeyPress
-        If e.KeyChar.IsDigit(e.KeyChar) Then
-            e.Handled = False
-        ElseIf e.KeyChar.IsControl(e.KeyChar) Then
-            e.Handled = False
-        Else
-            e.Handled = True
-        End If
-    End Sub
-
-    Private Sub txtSerie_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtSerie.KeyPress
+    Private Sub txtNroDoc1_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtNroDoc1.KeyPress, txtSerie.KeyPress
         If e.KeyChar.IsDigit(e.KeyChar) Then
             e.Handled = False
         ElseIf e.KeyChar.IsControl(e.KeyChar) Then

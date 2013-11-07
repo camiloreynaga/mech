@@ -404,15 +404,15 @@ Public Class requerimientoCajaPersForm
         txtImpre.ReadOnly = True
     End Sub
 
-    Private Function recuperarCodSC1(ByVal est As Integer, ByVal codPers As Integer, ByVal codSede As String) As Integer
+    Private Function recuperarCodSC1(ByVal est As Integer, ByVal codPers As Integer, ByVal codSede As String, ByVal codObra As String) As Integer
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = "select isnull(max(codSC),0) from TSolicitudCaja where estSol=" & est & " and codPers=" & codPers & " and codSede='" & codSede & "'"
+        cmdCampo.CommandText = "select isnull(max(codSC),0) from TSolicitudCaja where estSol=" & est & " and codPers=" & codPers & " and codSede='" & codSede & "'" & " and codObra='" & codObra & "'"
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function
 
-    Private Function recuperarSalAnt1(ByVal codSC As Integer) As Integer
+    Private Function recuperarSalAnt1(ByVal codSC As Integer) As Double
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
         cmdCampo.CommandText = "select salAct from TSolicitudCaja where codSC=" & codSC
@@ -425,19 +425,25 @@ Public Class requerimientoCajaPersForm
         txtImpre.ReadOnly = False
         date1.Enabled = True
         cbObra.Enabled = True
-        cbSede.Enabled = True
+        'cbSede.Enabled = True
         If vfNuevo1 = "guardar" Then
             date1.Value = Now.Date
             txtEst.Clear()
             txtTotIns.Text = "0"
             txtImpre.Text = "0"
-            Dim codSC As Integer = recuperarCodSC1(4, vPass, cbSede.SelectedValue) '4=Ok rendido
-            If codSC = 0 Then 'Primer requerimiento de esta persona
-                txtSalAnt.Text = "0.00"
-            Else
-                txtSalAnt.Text = Format(recuperarSalAnt1(codSC), "0,0.00")
-            End If
+            txtSalAnt.Text = "0.00"
+            'Dim codSC As Integer = recuperarCodSC1(4, vPass, cbSede.SelectedValue, cbObra.SelectedValue) '4=Ok rendido
+            'If codSC = 0 Then 'Primer requerimiento de esta persona
+            '    txtSalAnt.Text = "0.00"
+            'Else
+            '    txtSalAnt.Text = Format(recuperarSalAnt1(codSC), "0,0.00")
+            'End If
             txtTotReq.Text = "0"
+
+            txtTotFac.Text = "0"
+            txtTotHon.Text = "0"
+            txtTotBol.Text = "0"
+            txtTotOtr.Text = "0"
         End If
     End Sub
 
@@ -452,16 +458,16 @@ Public Class requerimientoCajaPersForm
         Return False
     End Function
 
-    Private Function recuperarCodSC(ByVal est As Integer, ByVal codPers As Integer, ByVal codSede As String, ByVal myTrans As SqlTransaction) As Integer
+    Private Function recuperarCodSC(ByVal est As Integer, ByVal codPers As Integer, ByVal codSede As String, ByVal codObra As String, ByVal myTrans As SqlTransaction) As Integer
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = "select isnull(max(codSC),0) from TSolicitudCaja where estSol=" & est & " and codPers=" & codPers & " and codSede='" & codSede & "'"
+        cmdCampo.CommandText = "select isnull(max(codSC),0) from TSolicitudCaja where estSol=" & est & " and codPers=" & codPers & " and codSede='" & codSede & "'" & " and codObra='" & codObra & "'"
         cmdCampo.Connection = Cn
         cmdCampo.Transaction = myTrans
         Return cmdCampo.ExecuteScalar
     End Function
 
-    Private Function recuperarSalAnt(ByVal codSC As Integer, ByVal myTrans As SqlTransaction) As Integer
+    Private Function recuperarSalAnt(ByVal codSC As Integer, ByVal myTrans As SqlTransaction) As Double
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
         cmdCampo.CommandText = "select salAct from TSolicitudCaja where codSC=" & codSC
@@ -470,26 +476,16 @@ Public Class requerimientoCajaPersForm
         Return cmdCampo.ExecuteScalar
     End Function
 
-    Private Function recuperarExiste(ByVal codPers As Integer) As Integer
+    Private Function recuperarExiste(ByVal codPers As Integer, ByVal codObra As String) As Integer '0=pendiente 1=aprobado 2=procesado  3=anulado  4=OK
         Dim cmdCampo As SqlCommand = New SqlCommand
         cmdCampo.CommandType = CommandType.Text
-        cmdCampo.CommandText = "select COUNT(*) from TSolicitudCaja where estSol in(0,1) and codPers=" & codPers
+        cmdCampo.CommandText = "select COUNT(*) from TSolicitudCaja where estSol in(0,1,2) and codPers=" & codPers & " and codObra='" & codObra & "'"
         cmdCampo.Connection = Cn
         Return cmdCampo.ExecuteScalar
     End Function
 
     Dim vfNuevo1 As String = "nuevo"
     Private Sub btnNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNuevo.Click
-        If BindingSource1.Count > 0 Then  'Existe solicitud sin rendir cuenta
-            MessageBox.Show("Proceso Denegado, tiene una Solicitud sin Rendir Cuenta...", nomNegocio, Nothing, MessageBoxIcon.Stop)
-            Exit Sub
-        End If
-
-        If recuperarExiste(vPass) > 0 Then
-            MessageBox.Show("Proceso Denegado, tiene una Solicitud Pendiente que todabia no se Proceso EGRESO de dinero...", nomNegocio, Nothing, MessageBoxIcon.Stop)
-            Exit Sub
-        End If
-
         If vfNuevo1 = "nuevo" Then
             vfNuevo1 = "guardar"
             Me.btnNuevo.Text = "Guardar"
@@ -499,6 +495,11 @@ Public Class requerimientoCajaPersForm
             StatusBarClass.messageBarraEstado("")
             Me.AcceptButton = Me.btnNuevo
         Else
+            If recuperarExiste(vPass, cbObra.SelectedValue) > 0 Then
+                MessageBox.Show("Proceso Denegado, tiene una Solicitud Pendiente que no se rindio cuenta en obra: " & cbObra.Text.Trim(), nomNegocio, Nothing, MessageBoxIcon.Stop)
+                Exit Sub
+            End If
+
             If ValidaFechaMayorXXXX(date1.Value.Date, 2013) Then
                 MessageBox.Show("Ingrese fecha mayor al año 2012", nomNegocio, Nothing, MessageBoxIcon.Asterisk)
                 Exit Sub
@@ -508,7 +509,7 @@ Public Class requerimientoCajaPersForm
                 Exit Sub
             End If
 
-            Dim resp As String = MessageBox.Show("Esta Segúro de Aperturar Requerimiento de" & Chr(13) & "CAJA CHICA Nº " & txtNro.Text.Trim(), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            Dim resp As String = MessageBox.Show("Esta Segúro de Aperturar Requerimiento de" & Chr(13) & "CAJA CHICA Nº " & txtNro.Text.Trim() & Chr(13) & "para la obra: " & cbObra.Text.Trim(), nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If resp <> 6 Then
                 Exit Sub
             End If
@@ -526,7 +527,7 @@ Public Class requerimientoCajaPersForm
                 StatusBarClass.messageBarraEstado("  PROCESANDO DATOS...")
                 Me.Refresh()
 
-                Dim codSC As Integer = recuperarCodSC(4, vPass, cbSede.SelectedValue, myTrans) '4=Ok rendido
+                Dim codSC As Integer = recuperarCodSC(4, vPass, cbSede.SelectedValue, cbObra.SelectedValue, myTrans) '4=Ok rendido
                 Dim salAnt As Decimal
                 If codSC = 0 Then 'Primer requerimiento de esta persona
                     salAnt = 0
@@ -621,6 +622,7 @@ Public Class requerimientoCajaPersForm
     End Sub
 
     Dim vfModificar As String = "modificar"
+    Dim vfCodObra As String
     Private Sub btnModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnModificar.Click
         If BindingSource1.Position = -1 Then
             StatusBarClass.messageBarraEstado("  No existe Orden de Desembolso a actualizar...")
@@ -652,7 +654,16 @@ Public Class requerimientoCajaPersForm
             txtImpre.Focus()
             StatusBarClass.messageBarraEstado("")
             Me.AcceptButton = Me.btnModificar
+
+            vfCodObra = cbObra.SelectedValue
         Else    'Actualizar
+            If vfCodObra <> cbObra.SelectedValue Then
+                If recuperarExiste(vPass, cbObra.SelectedValue) > 0 Then
+                    MessageBox.Show("Proceso Denegado, tiene una Solicitud Pendiente que no se rindio cuenta en obra: " & cbObra.Text.Trim(), nomNegocio, Nothing, MessageBoxIcon.Stop)
+                    Exit Sub
+                End If
+            End If
+
             If ValidarCampos() Then
                 Exit Sub
             End If
@@ -672,8 +683,16 @@ Public Class requerimientoCajaPersForm
                 StatusBarClass.messageBarraEstado("  ESPERE POR FAVOR, GUARDANDO INFORMACION....")
                 Dim codSC As Integer = BindingSource1.Item(BindingSource1.Position)(0)
 
+                Dim codSC1 As Integer = recuperarCodSC(4, vPass, cbSede.SelectedValue, cbObra.SelectedValue, myTrans) '4=Ok rendido
+                Dim salAnt As Decimal
+                If codSC1 = 0 Then 'Primer requerimiento de esta persona
+                    salAnt = 0
+                Else
+                    salAnt = recuperarSalAnt(codSC1, myTrans)
+                End If
+
                 'TSolicitudCaja
-                comandoUpdate1()
+                comandoUpdate1(salAnt)
                 cmUpdateTable1.Transaction = myTrans
                 If cmUpdateTable1.ExecuteNonQuery() < 1 Then
                     'deshace la transaccion
@@ -724,12 +743,13 @@ Public Class requerimientoCajaPersForm
     End Sub
 
     Dim cmUpdateTable1 As SqlCommand
-    Private Sub comandoUpdate1()
+    Private Sub comandoUpdate1(ByVal salAnt As Decimal)
         cmUpdateTable1 = New SqlCommand
         cmUpdateTable1.CommandType = CommandType.Text
-        cmUpdateTable1.CommandText = "update TSolicitudCaja set fechaSol=@fec,montoSol=@monto,imprevisto=@imp,codObra=@codO,codSede=@codS where codSC=@cod"
+        cmUpdateTable1.CommandText = "update TSolicitudCaja set fechaSol=@fec,salAnt=@sal,montoSol=@monto,imprevisto=@imp,codObra=@codO,codSede=@codS where codSC=@cod"
         cmUpdateTable1.Connection = Cn
         cmUpdateTable1.Parameters.Add("@fec", SqlDbType.Date).Value = date1.Value.Date
+        cmUpdateTable1.Parameters.Add("@sal", SqlDbType.Decimal, 0).Value = salAnt
         cmUpdateTable1.Parameters.Add("@monto", SqlDbType.Decimal, 0).Value = txtTotIns.Text
         cmUpdateTable1.Parameters.Add("@imp", SqlDbType.Decimal, 0).Value = txtImpre.Text
         cmUpdateTable1.Parameters.Add("@codO", SqlDbType.VarChar, 10).Value = cbObra.SelectedValue
