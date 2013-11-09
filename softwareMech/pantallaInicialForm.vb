@@ -1147,4 +1147,11 @@ Public Class pantallaInicialForm
         doc.MdiParent = Me
         doc.Show()
     End Sub
+
+    Private Sub ProveedorToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ProveedorToolStripMenuItem.Click
+        Dim frmProv As New MantProveedor
+        frmProv.MdiParent = Me
+        frmProv.Show()
+
+    End Sub
 End Class

@@ -210,6 +210,7 @@ Public Class MantenimientoTransporteForm
             MessageBox.Show("Debe ingresar una Dirección valida")
             txtDireccion.Focus()
             txtDireccion.SelectAll()
+            Return True
         End If
 
         Return False

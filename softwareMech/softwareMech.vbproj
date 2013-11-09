@@ -503,6 +503,12 @@
     <Compile Include="MantPersonalForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MantProveedor.Designer.vb">
+      <DependentUpon>MantProveedor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantProveedor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MantSesionMesForm.Designer.vb">
       <DependentUpon>MantSesionMesForm.vb</DependentUpon>
     </Compile>
@@ -1031,6 +1037,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MantPersonalForm.resx">
       <DependentUpon>MantPersonalForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantProveedor.resx">
+      <DependentUpon>MantProveedor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MantSesionMesForm.resx">
       <DependentUpon>MantSesionMesForm.vb</DependentUpon>

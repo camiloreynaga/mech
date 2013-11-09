@@ -84,6 +84,7 @@ Partial Class pantallaInicialForm
         Me.opcCaja4 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator
         Me.opcIng = New System.Windows.Forms.ToolStripDropDownButton
+        Me.opcIng1 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator
         Me.opcGuiaRem = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcGuiaRem1 = New System.Windows.Forms.ToolStripMenuItem
@@ -138,7 +139,7 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.opcIng1 = New System.Windows.Forms.ToolStripMenuItem
+        Me.ProveedorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -500,7 +501,7 @@ Partial Class pantallaInicialForm
         '
         'opcCaja
         '
-        Me.opcCaja.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcCaja1, Me.opcCaja5, Me.opcCaja8, Me.opcCaja2, Me.opcCaja3, Me.opcCaja10, Me.ToolStripSeparator24, Me.opcCaja11, Me.ToolStripMenuItem1, Me.ToolStripSeparator21, Me.opcCaja6, Me.opcCaja9, Me.ToolStripSeparator22, Me.opcCaja7, Me.opcCaja4})
+        Me.opcCaja.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcCaja1, Me.opcCaja5, Me.opcCaja8, Me.opcCaja2, Me.opcCaja3, Me.opcCaja10, Me.ToolStripSeparator24, Me.opcCaja11, Me.ToolStripMenuItem1, Me.ToolStripSeparator21, Me.opcCaja6, Me.opcCaja9, Me.ToolStripSeparator22, Me.opcCaja7, Me.opcCaja4, Me.ProveedorToolStripMenuItem})
         Me.opcCaja.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.opcCaja.Image = CType(resources.GetObject("opcCaja.Image"), System.Drawing.Image)
         Me.opcCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -662,6 +663,15 @@ Partial Class pantallaInicialForm
         Me.opcIng.Size = New System.Drawing.Size(94, 20)
         Me.opcIng.Text = "Ingresos..."
         Me.opcIng.ToolTipText = "Ingresos de dineros a cuentas bancarias..."
+        '
+        'opcIng1
+        '
+        Me.opcIng1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.opcIng1.ForeColor = System.Drawing.Color.Navy
+        Me.opcIng1.Image = CType(resources.GetObject("opcIng1.Image"), System.Drawing.Image)
+        Me.opcIng1.Name = "opcIng1"
+        Me.opcIng1.Size = New System.Drawing.Size(186, 22)
+        Me.opcIng1.Text = "Registro de Factura"
         '
         'ToolStripSeparator7
         '
@@ -1128,14 +1138,11 @@ Partial Class pantallaInicialForm
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'opcIng1
+        'ProveedorToolStripMenuItem
         '
-        Me.opcIng1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.opcIng1.ForeColor = System.Drawing.Color.Navy
-        Me.opcIng1.Image = CType(resources.GetObject("opcIng1.Image"), System.Drawing.Image)
-        Me.opcIng1.Name = "opcIng1"
-        Me.opcIng1.Size = New System.Drawing.Size(186, 22)
-        Me.opcIng1.Text = "Registro de Factura"
+        Me.ProveedorToolStripMenuItem.Name = "ProveedorToolStripMenuItem"
+        Me.ProveedorToolStripMenuItem.Size = New System.Drawing.Size(255, 22)
+        Me.ProveedorToolStripMenuItem.Text = "Proveedor"
         '
         'pantallaInicialForm
         '
@@ -1277,4 +1284,5 @@ Partial Class pantallaInicialForm
     Friend WithEvents opcConfSerieCuenta As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents infT4 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents opcIng1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ProveedorToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

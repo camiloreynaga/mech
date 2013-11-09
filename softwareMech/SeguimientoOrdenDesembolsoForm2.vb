@@ -1203,12 +1203,12 @@ Public Class SeguimientoOrdenDesembolsoForm2
         Dim valorFechaFin As New ParameterDiscreteValue
 
         'definiendo los nombres de la variables para el reporte
+
         pFechaIni.Name = "pFechaFin"
         pFechaFin.Name = "pFechaIni"
 
         '----------
         'Definiendo los nombres de los parametros.
-
         valorFechaIni.Value = _fechaIni
         valorFechaFin.Value = _fechaFin
 
