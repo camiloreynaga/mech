@@ -3,7 +3,7 @@ Imports System.Data.SqlClient
 Imports ComponentesSolucion2008
 Imports CrystalDecisions.Shared
 
-Public Class GastosPorDiaForm
+Public Class GastosPorDiaForm2
 
     ''' <summary>
     ''' instancia de objeto DataManager
@@ -175,7 +175,7 @@ Public Class GastosPorDiaForm
     Private Sub filtrando()
         'If BindingSource4.Position >= 0 And BindingSource5.Position >= 0 Then
         bindingSource0.Filter = ""
-        Dim pFiltro As String = BindingSource0.Filter
+        Dim pFiltro As String = bindingSource0.Filter
         Dim pCriterio As String
         If bindingSource0.Position >= 0 Then
 

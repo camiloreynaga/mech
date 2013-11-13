@@ -323,6 +323,12 @@
     <Compile Include="GastosPorDiaForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GastosPorDiaForm2.designer.vb">
+      <DependentUpon>GastosPorDiaForm2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GastosPorDiaForm2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="gerencia1OrdenDesembolsoForm.Designer.vb">
       <DependentUpon>gerencia1OrdenDesembolsoForm.vb</DependentUpon>
     </Compile>
@@ -947,6 +953,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GastosPorDiaForm.resx">
       <DependentUpon>GastosPorDiaForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GastosPorDiaForm2.resx">
+      <DependentUpon>GastosPorDiaForm2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gerencia1OrdenDesembolsoForm.resx">
       <DependentUpon>gerencia1OrdenDesembolsoForm.vb</DependentUpon>
