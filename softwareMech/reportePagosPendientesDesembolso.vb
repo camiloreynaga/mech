@@ -228,16 +228,19 @@ Public Class reportePagosPendientesDesembolso
     End Sub
 
     Private Sub btnImp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImp.Click
-        'creando un wait form y estableciendo el cursor en wait
-        Dim wait As New waitForm
-        wait.Show()
-        Me.Cursor = Cursors.WaitCursor
+        
 
 
         If bindingSource.Position = -1 Then
             StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe datos...")
             Exit Sub
         End If
+
+        'creando un wait form y estableciendo el cursor en wait
+        Dim wait As New waitForm
+        wait.Show()
+        Me.Cursor = Cursors.WaitCursor
+
         Dim datos As DataSetInformesCr = CargarDatos()
         Dim frm As New ReportViewerPagosPendientesDesem(datos)
 

@@ -68,34 +68,48 @@ Public Class GastosPorDiaForm2
                 .Columns("nroDes").HeaderText = "N°_Des"
                 .Columns("nroDes").Width = 55
 
-                .Columns("nroOperacion").HeaderText = "N°"
+                .Columns("nroOperacion").HeaderText = "N°_Op."
                 .Columns("nroOperacion").Width = 50
 
-                .Columns("ruc").Visible = False
-                '.Columns("ruc").HeaderText = "RUC"
-                '.Columns("ruc").Width = 75
+                '.Columns("ruc").Visible = False
+                .Columns("ruc").HeaderText = "RUC"
+                .Columns("ruc").Width = 75
 
-                .Columns("razon").HeaderText = "Razon Social"
+                .Columns("razon").HeaderText = "Proveedor"
                 .Columns("razon").Width = 300
 
-                .Columns("banco").HeaderText = "Banco"
+                .Columns("banco").Visible = False
+                '.HeaderText = "Banco"
+
+                .Columns("bco").HeaderText = "Banco"
                 .Columns("banco").Width = 70
 
-                .Columns("nroCue").HeaderText = "N°_Cuenta"
-                .Columns("nroCue").Width = 140
+                .Columns("nroCue").Visible = False
+
+
+                '.Columns("nroCue").Width = 140
 
                 .Columns("simbolo").HeaderText = ""
                 .Columns("simbolo").Width = 30
 
-                .Columns("montoPago").HeaderText = "Monto"
-                .Columns("montoPago").Width = 80
-                .Columns("montoPago").DefaultCellStyle.Format = "N2"
-                .Columns("montoPago").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns("montoPago").Visible = False
+                '.HeaderText = "Monto"
 
-                .Columns("montoD").HeaderText = "Detracción"
-                .Columns("montoD").Width = 80
-                .Columns("montoD").DefaultCellStyle.Format = "N2"
-                .Columns("montoD").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                .Columns("montoSoles").HeaderText = "Monto_S/."
+
+
+                .Columns("montoSoles").Width = 80
+                .Columns("montoSoles").DefaultCellStyle.Format = "N2"
+                .Columns("montoSoles").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+
+                .Columns("montoD").Visible = False
+                '.HeaderText = "Detracción"
+                .Columns("montoDolares").HeaderText = "Monto_$"
+
+                .Columns("montoDolares").Width = 80
+                .Columns("montoDolares").DefaultCellStyle.Format = "N2"
+                .Columns("montoDolares").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
                 .Columns("codigo").Visible = False
 
@@ -110,9 +124,11 @@ Public Class GastosPorDiaForm2
                 .Columns("concepto").HeaderText = "Concepto"
                 .Columns("concepto").Width = 350
                 .Columns("vanEgreso").Visible = False
-                .Columns("tipoClasif").HeaderText = "Clasificación"
-                .Columns("tipoClasif").DisplayIndex = 2
-                .Columns("tipoClasif").Width = "100"
+                .Columns("tipoClasif").Visible = False
+                '.Columns("tipoClasif").HeaderText = "Clasificación"
+
+                '.Columns("tipoClasif").DisplayIndex = 2
+                '.Columns("tipoClasif").Width = "100"
             End With
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -252,7 +268,7 @@ Public Class GastosPorDiaForm2
 
 
         'SET DATEFORMAT dmy  da formato dd/mm/yyyy para las fechas
-        Dim sele As String = "SET DATEFORMAT dmy select fecPago,nroOperacion,ruc,razon,simbolo,montoPago,montoD,banco,nroCue,(serie +'-'+cast(nroDes as varchar)) nroDes,codBan,codMon,idCue,codigo,nombre,concepto,tipoClasif,vanEgreso from VGastosPorDia where vanEgreso=0 and fecPago between '" & dtpInicio.Text & "' and '" & dtpFin.Text & "'"
+        Dim sele As String = "SET DATEFORMAT dmy select fecPago,(bco+' '+simbolo+' '+longitud4) bco,nroOperacion,ruc,razon,simbolo,montoPago,montoD,MontoSoles,MontoDolares,banco,nroCue,(serie +'-'+cast(nroDes as varchar)) nroDes,codBan,codMon,idCue,codigo,nombre,concepto,tipoClasif,vanEgreso from VGastosPorDia2 where vanEgreso=0 and fecPago between '" & dtpInicio.Text & "' and '" & dtpFin.Text & "'"
         oDataManager.CargarGrilla(sele, CommandType.Text, dgReporte, bindingSource0)
 
         'enlanzando con el binding navigator
@@ -261,23 +277,17 @@ Public Class GastosPorDiaForm2
 
         filtrando()
         ModificandoColumnasDGV()
-        'condicionales para Suma MontoPago S/.
-        Dim _condSumSoles() As String = {"30", "0"}
-        Dim _coluSumSoles() As String = {"codMon", "vanEgreso"}
-
-        'condicionales para Suma Monto pPago US$
-
-        Dim _coluSumDolares() As String = {"codMon", "vanEgreso"}
-        Dim _condSumDolares() As String = {"35", "0"}
-
 
         'txtTotalSoles.Text = oGrilla.SumarColumnaGrillaArray(dgReporte, "montoPago", _coluSumSoles, _condSumSoles)
         'txtTotalDolares.Text = oGrilla.SumarColumnaGrillaArray(dgReporte, "montoPago", _coluSumDolares, _condSumDolares)
 
 
 
-        txtTotalSoles.Text = oGrilla.SumarColumnaGrilla(dgReporte, "montoPago", "codMon", "30") ' oTabla.Compute("Sum(montoPago)", "codMon=30").ToString()
-        txtTotalDolares.Text = oGrilla.SumarColumnaGrilla(dgReporte, "montoPago", "codMon", "35") 'oTabla.Compute("Sum(montoPago)", "codMon=35").ToString()
+        'txtTotalSoles.Text = oGrilla.SumarColumnaGrilla(dgReporte, "montoPago", "codMon", "30") ' oTabla.Compute("Sum(montoPago)", "codMon=30").ToString()
+        'txtTotalDolares.Text = oGrilla.SumarColumnaGrilla(dgReporte, "montoPago", "codMon", "35") 'oTabla.Compute("Sum(montoPago)", "codMon=35").ToString()
+
+        txtTotalSoles.Text = oGrilla.SumarColumnaGrilla(dgReporte, "montoSoles")
+        txtTotalDolares.Text = oGrilla.SumarColumnaGrilla(dgReporte, "montoDolares")
 
 
 
@@ -285,11 +295,11 @@ Public Class GastosPorDiaForm2
         txtTotalDolares.Text = Format(CDbl(txtTotalDolares.Text), "0,0.00")
 
         'Suma Detracciones
-        txtTotalDetraccion.Text = oGrilla.SumarColumnaGrilla(dgReporte, "montoD", "codMon", "30") ' oTabla.Compute("Sum(montoPago)", "codMon=30").ToString()
-        txtDetraccionDolares.Text = oGrilla.SumarColumnaGrilla(dgReporte, "montoD", "codMon", "35") ' oTabla.Compute("Sum(montoPago)", "codMon=30").ToString()
+        'txtTotalDetraccion.Text = oGrilla.SumarColumnaGrilla(dgReporte, "montoD", "codMon", "30") ' oTabla.Compute("Sum(montoPago)", "codMon=30").ToString()
+        'txtDetraccionDolares.Text = oGrilla.SumarColumnaGrilla(dgReporte, "montoD", "codMon", "35") ' oTabla.Compute("Sum(montoPago)", "codMon=30").ToString()
 
-        txtTotalDetraccion.Text = Format(CDbl(txtTotalDetraccion.Text), "0,0.00")
-        txtDetraccionDolares.Text = Format(CDbl(txtDetraccionDolares.Text), "0,0.00")
+        'txtTotalDetraccion.Text = Format(CDbl(txtTotalDetraccion.Text), "0,0.00")
+        'txtDetraccionDolares.Text = Format(CDbl(txtDetraccionDolares.Text), "0,0.00")
 
         'asignando valores de fecha
         _fechaIni = dtpInicio.Text
@@ -377,10 +387,10 @@ Public Class GastosPorDiaForm2
     End Sub
 
     Private Sub btnImp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImp.Click
-        'creando un form de espera y estableciendo el cursor en espera
-        Dim wait As New waitForm
-        wait.Show()
-        Me.Cursor = Cursors.WaitCursor
+
+
+
+
 
 
         If bindingSource0.Position = -1 Then
@@ -388,74 +398,45 @@ Public Class GastosPorDiaForm2
             Exit Sub
         End If
 
+        'creando un form de espera y estableciendo el cursor en espera
+        Dim wait As New waitForm
+        wait.Show()
+        Me.Cursor = Cursors.WaitCursor
+
         'Creando las variables para los parametros
         Dim parameters As New ParameterFields
 
         Dim pFechaIni As ParameterField = New ParameterField
         Dim pFechaFin As ParameterField = New ParameterField
 
-        'Parametros para resultados 
-        Dim pTotalSoles As ParameterField = New ParameterField
-        Dim pTotalSolesDetraccion As ParameterField = New ParameterField
-
-        Dim pTotalDolares As ParameterField = New ParameterField
-        Dim pTotalDolaresDetraccion As ParameterField = New ParameterField
-
         '
         Dim valorFechaIni As New ParameterDiscreteValue
         Dim valorFechaFin As New ParameterDiscreteValue
-
-        '-- 
-        Dim valorTotalSoles As New ParameterDiscreteValue
-        Dim valorTotalSolesDetraccion As New ParameterDiscreteValue
-
-        Dim valorTotalDolares As New ParameterDiscreteValue
-        Dim valorTotalDolaresDetraccion As New ParameterDiscreteValue
 
 
         'Definiendo los nombres
         pFechaIni.Name = "pFechaIni"
         pFechaFin.Name = "pFechaFin"
 
-        pTotalSoles.Name = "pTotalSoles"
-        pTotalSolesDetraccion.Name = "pTotalSolesDetraccion"
-
-        pTotalDolares.Name = "pTotalDolares"
-        pTotalDolaresDetraccion.Name = "pTotalDolaresDetraccion"
-        '---
-        'Definiendo los nombres de los parametros
-
+        'Asignando valores
         valorFechaIni.Value = _fechaIni
         valorFechaFin.Value = _fechaFin
-
-        valorTotalSoles.Value = CDbl(txtTotalSoles.Text)
-        valorTotalSolesDetraccion.Value = CDbl(txtTotalDetraccion.Text)
-
-        valorTotalDolares.Value = CDbl(txtTotalDolares.Text)
-        valorTotalDolaresDetraccion.Value = CDbl(txtDetraccionDolares.Text)
 
         pFechaIni.CurrentValues.Add(valorFechaIni)
         pFechaFin.CurrentValues.Add(valorFechaFin)
 
-        pTotalSoles.CurrentValues.Add(valorTotalSoles)
-        pTotalSolesDetraccion.CurrentValues.Add(valorTotalSolesDetraccion)
-
-        pTotalDolares.CurrentValues.Add(valorTotalDolares)
-        pTotalDolaresDetraccion.CurrentValues.Add(valorTotalDolaresDetraccion)
-
-
         parameters.Add(pFechaIni)
         parameters.Add(pFechaFin)
 
-        parameters.Add(pTotalSoles)
-        parameters.Add(pTotalSolesDetraccion)
-
-        parameters.Add(pTotalDolares)
-        parameters.Add(pTotalDolaresDetraccion)
-
         Dim datos As DataSetInformesCr = CargarDatos()
 
-        Dim frm As New ReportViewerGastosDia(datos)
+        Dim frm As New ReportViewerGastosDia2(datos)
+
+        'verificando la seleccion de un obra
+        If chkObra.Checked = False Then
+            frm._selectObra = True
+        End If
+
 
         frm.CrystalReportViewer1.ParameterFieldInfo = parameters
 
@@ -478,7 +459,7 @@ Public Class GastosPorDiaForm2
 
         For Each row As DataGridViewRow In dgReporte.Rows
 
-            Dim rowInf As DataSetInformesCr.DatosGastosDiaRow = ds.DatosGastosDia.NewDatosGastosDiaRow
+            Dim rowInf As DataSetInformesCr.DatosGastosDia2Row = ds.DatosGastosDia2.NewDatosGastosDia2Row
             rowInf.fecPago = CDate(row.Cells("fecPago").Value)
             rowInf.nroOperacion = CStr(row.Cells("nroOperacion").Value)
             rowInf.ruc = CStr(row.Cells("ruc").Value)
@@ -487,22 +468,20 @@ Public Class GastosPorDiaForm2
             rowInf.montoPago = CDbl(row.Cells("montoPago").Value)
             rowInf.montoD = CDbl(row.Cells("montoD").Value)
             rowInf.nroDes = CStr(row.Cells("nroDes").Value)
+
+            rowInf.montoSoles = CDbl(row.Cells("montoSoles").Value)
+            rowInf.montoDolares = CDbl(row.Cells("montoDolares").Value)
+
             If IsDBNull(row.Cells("concepto").Value) Then
                 rowInf.concepto = ""
             Else
                 rowInf.concepto = CStr(row.Cells("concepto").Value)
             End If
             'banco
-            If IsDBNull(row.Cells("banco").Value) Then
+            If IsDBNull(row.Cells("bco").Value) Then
                 rowInf.banco = ""
             Else
-                rowInf.banco = CStr(row.Cells("banco").Value)
-            End If
-            'nroCuenta
-            If IsDBNull(row.Cells("nroCue").Value) Then
-                rowInf.nroCue = ""
-            Else
-                rowInf.nroCue = CStr(row.Cells("nroCue").Value)
+                rowInf.banco = CStr(row.Cells("bco").Value)
             End If
             'obra
             If IsDBNull(row.Cells("nombre").Value) Then
@@ -511,11 +490,7 @@ Public Class GastosPorDiaForm2
                 rowInf.nombre = CStr(row.Cells("nombre").Value)
             End If
 
-            If IsDBNull(row.Cells("tipoClasif").Value) Then
-                rowInf.codTipCla = ""
-            Else
-                rowInf.codTipCla = CStr(row.Cells("tipoClasif").Value)
-            End If
+           
 
             If IsDBNull(row.Cells("vanEgreso").Value) Then
                 rowInf.vanEgreso = ""
@@ -523,7 +498,7 @@ Public Class GastosPorDiaForm2
                 rowInf.vanEgreso = CInt(row.Cells("vanEgreso").Value)
             End If
 
-            ds.DatosGastosDia.AddDatosGastosDiaRow(rowInf)
+            ds.DatosGastosDia2.AddDatosGastosDia2Row(rowInf)
 
         Next
 

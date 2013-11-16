@@ -68,14 +68,14 @@ Public Class GastosPorDiaForm
                 .Columns("nroDes").HeaderText = "N°_Des"
                 .Columns("nroDes").Width = 55
 
-                .Columns("nroOperacion").HeaderText = "N°"
+                .Columns("nroOperacion").HeaderText = "N°_Op."
                 .Columns("nroOperacion").Width = 50
 
                 .Columns("ruc").Visible = False
                 '.Columns("ruc").HeaderText = "RUC"
                 '.Columns("ruc").Width = 75
 
-                .Columns("razon").HeaderText = "Razon Social"
+                .Columns("razon").HeaderText = "Proveedor"
                 .Columns("razon").Width = 300
 
                 .Columns("banco").HeaderText = "Banco"
@@ -311,7 +311,7 @@ Public Class GastosPorDiaForm
         Me.Close()
     End Sub
 
-
+   
 
     Private Sub cbBanco_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbBanco.SelectedIndexChanged
         Try
@@ -320,9 +320,9 @@ Public Class GastosPorDiaForm
                 oDataManager.CargarCombo(selec, CommandType.Text, cbCuenta, "idCue", "nroCue")
 
                 If cbCuenta.Items.Count = 1 Then
-
+                   
                     chkCuenta.Checked = False
-
+                    
                 End If
 
             End If
@@ -377,16 +377,18 @@ Public Class GastosPorDiaForm
     End Sub
 
     Private Sub btnImp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImp.Click
-        'creando un form de espera y estableciendo el cursor en espera
-        Dim wait As New waitForm
-        wait.Show()
-        Me.Cursor = Cursors.WaitCursor
+        
 
 
         If bindingSource0.Position = -1 Then
             StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe datos...")
             Exit Sub
         End If
+
+        'creando un form de espera y estableciendo el cursor en espera
+        Dim wait As New waitForm
+        wait.Show()
+        Me.Cursor = Cursors.WaitCursor
 
         'Creando las variables para los parametros
         Dim parameters As New ParameterFields

@@ -21,8 +21,10 @@ Partial Class InformeMovCajaChicaForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(InformeMovCajaChicaForm))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
+        Me.btnVerDet = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.lbFin = New System.Windows.Forms.ListBox
         Me.btnCerrar = New System.Windows.Forms.Button
         Me.cbCaja = New System.Windows.Forms.ComboBox
@@ -32,6 +34,26 @@ Partial Class InformeMovCajaChicaForm
         Me.lbIni = New System.Windows.Forms.ListBox
         Me.btnProcesar = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel
+        Me.panelAux = New System.Windows.Forms.Panel
+        Me.Navigator3 = New System.Windows.Forms.BindingNavigator(Me.components)
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripTextBox1 = New System.Windows.Forms.ToolStripTextBox
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripTextBox3 = New System.Windows.Forms.ToolStripTextBox
+        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel
+        Me.txtTotal = New System.Windows.Forms.ToolStripTextBox
+        Me.ToolStripSeparator13 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripButton9 = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator
+        Me.dgTabla3 = New System.Windows.Forms.DataGridView
         Me.Label4 = New System.Windows.Forms.Label
         Me.Navigator2 = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.ToolStripLabel4 = New System.Windows.Forms.ToolStripLabel
@@ -49,6 +71,10 @@ Partial Class InformeMovCajaChicaForm
         Me.dgTabla2 = New System.Windows.Forms.DataGridView
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        Me.panelAux.SuspendLayout()
+        CType(Me.Navigator3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Navigator3.SuspendLayout()
+        CType(Me.dgTabla3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Navigator2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Navigator2.SuspendLayout()
         CType(Me.dgTabla2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,6 +92,7 @@ Partial Class InformeMovCajaChicaForm
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.btnVerDet)
         Me.Panel1.Controls.Add(Me.lbFin)
         Me.Panel1.Controls.Add(Me.btnCerrar)
         Me.Panel1.Controls.Add(Me.cbCaja)
@@ -78,6 +105,20 @@ Partial Class InformeMovCajaChicaForm
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(980, 166)
         Me.Panel1.TabIndex = 7
+        '
+        'btnVerDet
+        '
+        Me.btnVerDet.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnVerDet.Image = CType(resources.GetObject("btnVerDet.Image"), System.Drawing.Image)
+        Me.btnVerDet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnVerDet.Location = New System.Drawing.Point(779, 137)
+        Me.btnVerDet.Name = "btnVerDet"
+        Me.btnVerDet.Size = New System.Drawing.Size(194, 23)
+        Me.btnVerDet.TabIndex = 358
+        Me.btnVerDet.TabStop = False
+        Me.btnVerDet.Text = "Ver detalle de requerimientos"
+        Me.btnVerDet.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnVerDet.UseVisualStyleBackColor = True
         '
         'lbFin
         '
@@ -160,6 +201,7 @@ Partial Class InformeMovCajaChicaForm
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.panelAux)
         Me.Panel2.Controls.Add(Me.Label4)
         Me.Panel2.Controls.Add(Me.Navigator2)
         Me.Panel2.Controls.Add(Me.dgTabla2)
@@ -167,6 +209,171 @@ Partial Class InformeMovCajaChicaForm
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(980, 463)
         Me.Panel2.TabIndex = 336
+        '
+        'panelAux
+        '
+        Me.panelAux.Controls.Add(Me.Navigator3)
+        Me.panelAux.Controls.Add(Me.dgTabla3)
+        Me.panelAux.Location = New System.Drawing.Point(0, 0)
+        Me.panelAux.Name = "panelAux"
+        Me.panelAux.Size = New System.Drawing.Size(980, 358)
+        Me.panelAux.TabIndex = 333
+        '
+        'Navigator3
+        '
+        Me.Navigator3.AddNewItem = Nothing
+        Me.Navigator3.BackColor = System.Drawing.SystemColors.Control
+        Me.Navigator3.CountItem = Me.ToolStripLabel1
+        Me.Navigator3.CountItemFormat = "de {0} insumos"
+        Me.Navigator3.DeleteItem = Nothing
+        Me.Navigator3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Navigator3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripTextBox1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator3, Me.ToolStripTextBox3, Me.ToolStripSeparator5, Me.ToolStripLabel2, Me.txtTotal, Me.ToolStripSeparator13, Me.ToolStripSeparator12, Me.ToolStripButton9, Me.ToolStripSeparator4})
+        Me.Navigator3.Location = New System.Drawing.Point(0, 333)
+        Me.Navigator3.MoveFirstItem = Me.ToolStripButton1
+        Me.Navigator3.MoveLastItem = Me.ToolStripButton4
+        Me.Navigator3.MoveNextItem = Me.ToolStripButton3
+        Me.Navigator3.MovePreviousItem = Me.ToolStripButton2
+        Me.Navigator3.Name = "Navigator3"
+        Me.Navigator3.PositionItem = Me.ToolStripTextBox1
+        Me.Navigator3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
+        Me.Navigator3.Size = New System.Drawing.Size(980, 25)
+        Me.Navigator3.TabIndex = 301
+        Me.Navigator3.Text = "BindingNavigator1"
+        '
+        'ToolStripLabel1
+        '
+        Me.ToolStripLabel1.Name = "ToolStripLabel1"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(85, 22)
+        Me.ToolStripLabel1.Text = "de {0} insumos"
+        Me.ToolStripLabel1.ToolTipText = "Número total de elementos"
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.RightToLeftAutoMirrorImage = True
+        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton1.Text = "Mover primero"
+        '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.RightToLeftAutoMirrorImage = True
+        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton2.Text = "Mover anterior"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripTextBox1
+        '
+        Me.ToolStripTextBox1.AccessibleName = "Posición"
+        Me.ToolStripTextBox1.AutoSize = False
+        Me.ToolStripTextBox1.Name = "ToolStripTextBox1"
+        Me.ToolStripTextBox1.ReadOnly = True
+        Me.ToolStripTextBox1.Size = New System.Drawing.Size(50, 23)
+        Me.ToolStripTextBox1.Text = "0"
+        Me.ToolStripTextBox1.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ToolStripTextBox1.ToolTipText = "Posición actual"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripButton3
+        '
+        Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
+        Me.ToolStripButton3.Name = "ToolStripButton3"
+        Me.ToolStripButton3.RightToLeftAutoMirrorImage = True
+        Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton3.Text = "Mover siguiente"
+        '
+        'ToolStripButton4
+        '
+        Me.ToolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton4.Image = CType(resources.GetObject("ToolStripButton4.Image"), System.Drawing.Image)
+        Me.ToolStripButton4.Name = "ToolStripButton4"
+        Me.ToolStripButton4.RightToLeftAutoMirrorImage = True
+        Me.ToolStripButton4.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton4.Text = "Mover último"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripTextBox3
+        '
+        Me.ToolStripTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ToolStripTextBox3.Enabled = False
+        Me.ToolStripTextBox3.Name = "ToolStripTextBox3"
+        Me.ToolStripTextBox3.Size = New System.Drawing.Size(220, 25)
+        '
+        'ToolStripSeparator5
+        '
+        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripLabel2
+        '
+        Me.ToolStripLabel2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripLabel2.Name = "ToolStripLabel2"
+        Me.ToolStripLabel2.Size = New System.Drawing.Size(44, 22)
+        Me.ToolStripLabel2.Text = "TOTAL"
+        '
+        'txtTotal
+        '
+        Me.txtTotal.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTotal.Name = "txtTotal"
+        Me.txtTotal.Size = New System.Drawing.Size(80, 25)
+        Me.txtTotal.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'ToolStripSeparator13
+        '
+        Me.ToolStripSeparator13.Name = "ToolStripSeparator13"
+        Me.ToolStripSeparator13.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripSeparator12
+        '
+        Me.ToolStripSeparator12.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripSeparator12.Name = "ToolStripSeparator12"
+        Me.ToolStripSeparator12.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripButton9
+        '
+        Me.ToolStripButton9.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripButton9.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ToolStripButton9.ForeColor = System.Drawing.Color.Maroon
+        Me.ToolStripButton9.Image = CType(resources.GetObject("ToolStripButton9.Image"), System.Drawing.Image)
+        Me.ToolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton9.Name = "ToolStripButton9"
+        Me.ToolStripButton9.Size = New System.Drawing.Size(68, 22)
+        Me.ToolStripButton9.Text = "Ocultar"
+        '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
+        '
+        'dgTabla3
+        '
+        Me.dgTabla3.AllowUserToAddRows = False
+        Me.dgTabla3.AllowUserToDeleteRows = False
+        Me.dgTabla3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgTabla3.Location = New System.Drawing.Point(1, 0)
+        Me.dgTabla3.Name = "dgTabla3"
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla3.RowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgTabla3.Size = New System.Drawing.Size(979, 333)
+        Me.dgTabla3.TabIndex = 15
         '
         'Label4
         '
@@ -322,6 +529,12 @@ Partial Class InformeMovCajaChicaForm
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        Me.panelAux.ResumeLayout(False)
+        Me.panelAux.PerformLayout()
+        CType(Me.Navigator3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Navigator3.ResumeLayout(False)
+        Me.Navigator3.PerformLayout()
+        CType(Me.dgTabla3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Navigator2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Navigator2.ResumeLayout(False)
         Me.Navigator2.PerformLayout()
@@ -354,5 +567,26 @@ Partial Class InformeMovCajaChicaForm
     Friend WithEvents btnImp As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator9 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents dgTabla2 As System.Windows.Forms.DataGridView
+    Friend WithEvents btnVerDet As ComponentesSolucion2008.BottomSSP
+    Friend WithEvents panelAux As System.Windows.Forms.Panel
+    Friend WithEvents Navigator3 As System.Windows.Forms.BindingNavigator
+    Friend WithEvents ToolStripLabel1 As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButton2 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripTextBox1 As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripButton3 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButton4 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripTextBox3 As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents ToolStripSeparator5 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripLabel2 As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents txtTotal As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents ToolStripSeparator13 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripSeparator12 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripButton9 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents dgTabla3 As System.Windows.Forms.DataGridView
 
 End Class

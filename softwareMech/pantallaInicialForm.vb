@@ -251,8 +251,8 @@ Public Class pantallaInicialForm
         opcAlmE.Visible = False 'Entrada Almacen
         opcAlmS.Visible = False 'Salida Almacen
         infT2.Visible = False ' informe de gastos por dia
-
-
+        infT5.Visible = False 'Informe de Gastos
+        infT4.Visible = False 'informe de pagos pendientes
         'mostrando apertura periodo mes
         opcOrdDesAperturaMes.Visible = False
 
@@ -358,7 +358,7 @@ Public Class pantallaInicialForm
         opcConfSeriePersonal.Visible = False
 
         infT2.Visible = False ' informe de gastos por dia
-
+        infT5.Visible = False 'Informe de Gastos
 
         'mostrando apertura periodo mes
         opcOrdDesAperturaMes.Visible = False
@@ -471,6 +471,8 @@ Public Class pantallaInicialForm
         'Linea separadora periodo mes / clasificación egresos
         ToolStripSeparator23.Visible = True
 
+        'mostrando seguimiento de desembolso aprobación
+        opcOrdDesSegG.Visible = True
     End Sub
 
     Private Sub PermisosContabilidad()
@@ -495,6 +497,8 @@ Public Class pantallaInicialForm
         opcConfSerieDesem.Visible = False 'Mantenimiento de series de orden de desembolso
 
         infT2.Visible = False ' informe de gastos por dia
+        infT5.Visible = False 'Informe de Gastos
+
 
         'mostrando apertura periodo mes
         opcOrdDesAperturaMes.Visible = True
@@ -533,6 +537,9 @@ Public Class pantallaInicialForm
 
 
         infT2.Visible = False ' informe de gastos por dia
+        infT5.Visible = False 'Informe de Gastos
+        infT4.Visible = False 'informe de pagos pendientes
+
         ToolStripSeparator16.Visible = True  'Linea encima de caja Chica
         opcCaja.Visible = True ' Menu Caja Chica
 
@@ -555,6 +562,9 @@ Public Class pantallaInicialForm
         'Linea separadora periodo mes / clasificación egresos
         ToolStripSeparator23.Visible = True
 
+
+        'mostrando seguimiento de desembolso aprobación
+        opcOrdDesSegG.Visible = True
     End Sub
 
     Private Sub DesactivarMenuSudAdm()
@@ -1148,10 +1158,34 @@ Public Class pantallaInicialForm
         doc.Show()
     End Sub
 
-    Private Sub ProveedorToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ProveedorToolStripMenuItem.Click
+    Private Sub ToolStripMenuItem3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem3.Click
         Dim frmProv As New MantProveedor
         frmProv.MdiParent = Me
         frmProv.Show()
+    End Sub
 
+    Private Sub GastosDiaGerenciaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+
+    End Sub
+
+    Private Sub SeguimientoDesembolsosGerenciaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+        Dim frmSegu As New SeguimientoOrdenDesembolsoForm3
+        frmSegu.MdiParent = Me
+        frmSegu.Show()
+
+    End Sub
+
+    Private Sub ToolStripMenuItem4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles infT5.Click
+        Dim frmGastos As New GastosPorDiaForm2
+        frmGastos.MdiParent = Me
+        frmGastos.Show()
+    End Sub
+
+    Private Sub opcOrdDesSeg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcOrdDesSegG.Click
+        Dim frmSeg As New SeguimientoOrdenDesembolsoForm3
+        frmSeg.MdiParent = Me
+        frmSeg.Show()
     End Sub
 End Class

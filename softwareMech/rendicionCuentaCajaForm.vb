@@ -32,7 +32,7 @@ Public Class rendicionCuentaCajaForm
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select codSC,nro,fechaSol,nomSoli,montoSol,imprevisto,salAnt,totPar,est,nomObra,nomSede,estSol,codObra,codSede,codPers from VSolicitudCajaCuenta where codPers=@codPers"
+        Dim sele As String = "select codSC,nro,fechaSol,nomSoli,montoSol,imprevisto,salAnt,totPar,est,nomObra,nomSede,estSol,codObra,codSede,codPers,requerimiento from VSolicitudCajaCuenta where codPers=@codPers"
         crearDataAdapterTable(daTabla1, sele)
         daTabla1.SelectCommand.Parameters.Add("@codPers", SqlDbType.VarChar, 10).Value = vPass
 
@@ -131,6 +131,7 @@ Public Class rendicionCuentaCajaForm
             txtImpre.Text = BindingSource1.Item(lbSol.SelectedIndex)(5)
             txtSalAnt.Text = BindingSource1.Item(lbSol.SelectedIndex)(6)
             txtTotReq.Text = Format(BindingSource1.Item(lbSol.SelectedIndex)(7), "0,0.00")
+            txtReq.Text = Format(BindingSource1.Item(lbSol.SelectedIndex)(15), "0,0.00")
 
             txtTotEgr.Text = Format(recuperarTotReal(lbSol.SelectedValue), "0,0.00")
             txtSalAct.Text = Format((txtTotReq.Text - txtTotEgr.Text) + txtSalAnt.Text, "0,0.00")
@@ -390,6 +391,7 @@ Public Class rendicionCuentaCajaForm
         Label23.ForeColor = ForeColorLabel
         Label24.ForeColor = ForeColorLabel
         Label25.ForeColor = ForeColorLabel
+        Label26.ForeColor = ForeColorLabel
         cbVis.ForeColor = ForeColorLabel
         btnNuevo.ForeColor = ForeColorButtom
         btnAnula.ForeColor = ForeColorButtom
@@ -498,7 +500,7 @@ Public Class rendicionCuentaCajaForm
             Return True
         End If
 
-        If ValidarCantMayorCero(txtPre.Text) Then
+        If ValidaNroMayorOigualCero(txtPre.Text) Then
             txtPre.errorProv()
             Return True
         End If

@@ -21,8 +21,8 @@ Partial Class rendicionCuentaCajaForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(rendicionCuentaCajaForm))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.txtSalAct = New System.Windows.Forms.TextBox
         Me.Label17 = New System.Windows.Forms.Label
@@ -120,6 +120,8 @@ Partial Class rendicionCuentaCajaForm
         Me.txtPre1 = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.txtNota1 = New System.Windows.Forms.TextBox
         Me.dgTabla1 = New System.Windows.Forms.DataGridView
+        Me.txtReq = New System.Windows.Forms.TextBox
+        Me.Label26 = New System.Windows.Forms.Label
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -142,6 +144,8 @@ Partial Class rendicionCuentaCajaForm
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel1.Controls.Add(Me.txtReq)
+        Me.Panel1.Controls.Add(Me.Label26)
         Me.Panel1.Controls.Add(Me.txtSalAct)
         Me.Panel1.Controls.Add(Me.Label17)
         Me.Panel1.Controls.Add(Me.txtTotEgr)
@@ -204,11 +208,11 @@ Partial Class rendicionCuentaCajaForm
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(804, 34)
+        Me.Label16.Location = New System.Drawing.Point(803, 34)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(88, 15)
+        Me.Label16.Size = New System.Drawing.Size(93, 15)
         Me.Label16.TabIndex = 358
-        Me.Label16.Text = "Total Egreso"
+        Me.Label16.Text = "Total Compra"
         '
         'txtObra
         '
@@ -289,11 +293,11 @@ Partial Class rendicionCuentaCajaForm
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(471, 35)
+        Me.Label8.Location = New System.Drawing.Point(471, 34)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(94, 15)
+        Me.Label8.Size = New System.Drawing.Size(89, 15)
         Me.Label8.TabIndex = 295
-        Me.Label8.Text = "Total Requer."
+        Me.Label8.Text = "Egreso Caja."
         '
         'Label7
         '
@@ -804,8 +808,8 @@ Partial Class rendicionCuentaCajaForm
         Me.dgTabla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgTabla2.Location = New System.Drawing.Point(1, 0)
         Me.dgTabla2.Name = "dgTabla2"
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla2.RowsDefaultCellStyle = DataGridViewCellStyle5
         Me.dgTabla2.Size = New System.Drawing.Size(1044, 290)
         Me.dgTabla2.TabIndex = 15
         '
@@ -1072,11 +1076,34 @@ Partial Class rendicionCuentaCajaForm
         Me.dgTabla1.Location = New System.Drawing.Point(0, 76)
         Me.dgTabla1.Name = "dgTabla1"
         Me.dgTabla1.ReadOnly = True
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgTabla1.RowsDefaultCellStyle = DataGridViewCellStyle6
         Me.dgTabla1.Size = New System.Drawing.Size(1044, 86)
         Me.dgTabla1.TabIndex = 7
         Me.dgTabla1.TabStop = False
+        '
+        'txtReq
+        '
+        Me.txtReq.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.txtReq.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtReq.ForeColor = System.Drawing.Color.White
+        Me.txtReq.Location = New System.Drawing.Point(641, 48)
+        Me.txtReq.Name = "txtReq"
+        Me.txtReq.ReadOnly = True
+        Me.txtReq.Size = New System.Drawing.Size(88, 22)
+        Me.txtReq.TabIndex = 361
+        Me.txtReq.TabStop = False
+        Me.txtReq.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label26.Location = New System.Drawing.Point(638, 33)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(94, 15)
+        Me.Label26.TabIndex = 362
+        Me.Label26.Text = "Reque. Gasto"
         '
         'rendicionCuentaCajaForm
         '
@@ -1208,5 +1235,7 @@ Partial Class rendicionCuentaCajaForm
     Friend WithEvents txtNota1 As System.Windows.Forms.TextBox
     Friend WithEvents dgTabla1 As System.Windows.Forms.DataGridView
     Friend WithEvents btnImprimir As ComponentesSolucion2008.BottomSSP
+    Friend WithEvents txtReq As System.Windows.Forms.TextBox
+    Friend WithEvents Label26 As System.Windows.Forms.Label
 
 End Class

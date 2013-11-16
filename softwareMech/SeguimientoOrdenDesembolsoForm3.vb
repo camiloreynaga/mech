@@ -4,7 +4,8 @@ Imports ComponentesSolucion2008
 Imports CrystalDecisions.Shared
 
 
-Public Class SeguimientoOrdenDesembolsoForm2
+Public Class SeguimientoOrdenDesembolsoForm3
+
 
 #Region "Variables"
     ''' <summary>
@@ -145,12 +146,10 @@ Public Class SeguimientoOrdenDesembolsoForm2
             daTabla1.Fill(dsAlmacen, "VDesembolsoPagos")
             BindingSource1.DataSource = dsAlmacen
             BindingSource1.DataMember = "VDesembolsoPagos"
-            dgPagos.DataSource = BindingSource1 ' 
 
             daTabla2.Fill(dsAlmacen, "VDesembolsoComprobante")
             BindingSource2.DataSource = dsAlmacen
             BindingSource2.DataMember = "VDesembolsoComprobante"
-            dgContabilidad.DataSource = BindingSource2
 
             daTabla3.Fill(dsAlmacen, "VAprobaciones")
             BindingSource3.DataSource = dsAlmacen
@@ -177,7 +176,7 @@ Public Class SeguimientoOrdenDesembolsoForm2
             BindignSource6.DataSource = dsAlmacen
             BindignSource6.DataMember = "TSolicitante"
             BindignSource6.Sort = "solicitante ASC"
-            
+
 
         Catch f As Exception
             MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
@@ -189,105 +188,6 @@ Public Class SeguimientoOrdenDesembolsoForm2
 
     End Sub
 
-    ''' <summary>
-    ''' Cutomiza la grila de Contabilidad
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private Sub ModificandoColumnaDGVConta()
-        'oGrilla.ConfigGrilla(dgContabilidad)
-        dgContabilidad.ReadOnly = True
-        dgContabilidad.AllowUserToAddRows = False
-        dgContabilidad.AllowUserToDeleteRows = False
-        dgContabilidad.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-
-
-        With dgContabilidad
-            .Columns(0).Visible = False
-            .Columns("fecEnt").HeaderText = "Fecha Registro"
-            .Columns("nroConfor").HeaderText = "Nro Documento"
-
-        End With
-
-
-    End Sub
-
-    ''' <summary>
-    ''' Customiza la grilla Pagos
-    ''' 
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private Sub ModificandoColumnasDGVPagos()
-        'oGrilla.ConfigGrilla(dgPagos)
-        dgPagos.ReadOnly = True
-        dgPagos.AllowUserToAddRows = False
-        dgPagos.AllowUserToDeleteRows = False
-
-        'dgPagos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        Try
-            With dgPagos
-                'codigo Desembolo
-                .Columns("codDesembolso").Visible = False
-                'fecha de pago
-                .Columns("fecPago").HeaderText = "Fecha"
-                '.Columns("fecPago").DisplayIndex = 0
-                .Columns("fecPago").Width = 70
-                'Simbolo Moneda
-                .Columns("simbolo").HeaderText = ""
-                .Columns("simbolo").DisplayIndex = 2
-                .Columns("simbolo").Width = 30
-
-                'monto Pagado 
-                .Columns("montoPago").HeaderText = "Monto"
-                .Columns("montoPago").DisplayIndex = 3
-                .Columns("montoPago").Width = 80
-                .Columns("montoPago").DefaultCellStyle.Format = "N2"
-                .Columns("montoPago").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                'Medio de PAgo
-                .Columns("tipoP").HeaderText = "Medio Pago"
-                .Columns("tipoP").DisplayIndex = 5
-                .Columns("tipoP").Width = 220
-                'Moneda
-
-                ' .Columns("monea").DisplayIndex = 7
-                .Columns("moneda").Visible = False
-                'Banco 
-                .Columns("banco").HeaderText = "Banco"
-                .Columns("banco").DisplayIndex = 7
-                .Columns("banco").Width = 100
-                'Numero de Cuenta usada
-                .Columns("nroCue").HeaderText = "N° Cuenta"
-                .Columns("nroCue").DisplayIndex = 8
-                .Columns("nroCue").Width = 160
-
-                'Descripcion del pago
-                .Columns("pagoDet").Visible = False
-                '                .Columns("pagoDet").HeaderText = "Descripción"
-                '.Columns("pagoDet").DisplayIndex = 6
-                '.Columns("pagoDet").Width = 250
-
-                'Monto de detracción
-                .Columns("montoD").HeaderText = "Detracción"
-                .Columns("montoD").DisplayIndex = 4
-                .Columns("montoD").Width = 80
-                .Columns("montoD").DefaultCellStyle.Format = "N2"
-                .Columns("montoD").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-
-
-                'numero Operacion /cheque
-                .Columns("nroP").HeaderText = "N°_Op./Cheq."
-                .Columns("nroP").Width = 85
-                .Columns("nroP").DisplayIndex = 6
-                'Clasificación de pagos 
-                .Columns("clasif").Visible = False
-                '  .Columns("clasif").HeaderText = "Clasificación"
-                '.Columns("clasif").Width = 100
-
-            End With
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-
-        End Try
-    End Sub
 
     ''' <summary>
     ''' Customisa la grilla Desembolsos
@@ -400,15 +300,7 @@ Public Class SeguimientoOrdenDesembolsoForm2
         End With
     End Sub
 
-    Private Sub enlazarTextConta()
-        If dgContabilidad.Rows.Count = 0 Then
-            Exit Sub
-
-        Else
-
-
-        End If
-    End Sub
+    
 
 
     ''' <summary>
@@ -441,96 +333,13 @@ Public Class SeguimientoOrdenDesembolsoForm2
             'txtMonto.Text = BindingSource0.Item(BindingSource0.Position)(7).ToString
             'txtDetraccion.Text = BindingSource0.Item(BindingSource0.Position)(8).ToString
 
-
-            txtFormaPago.Text = BindingSource0.Item(BindingSource0.Position)(12)
-
-            'Datos específicos de desembolso
-            txtMotivoDesem.Text = BindingSource0.Item(BindingSource0.Position)(15)
-            txtObra.Text = BindingSource0.Item(BindingSource0.Position)(10)
-            txtProveedor.Text = BindingSource0.Item(BindingSource0.Position)(11)
-            txtRuc.Text = BindingSource0.Item(BindingSource0.Position)(29)
-
-            txtTelefonoProv.Text = BindingSource0.Item(BindingSource0.Position)(30)
-            txtEmailProv.Text = BindingSource0.Item(BindingSource0.Position)(31)
-            txtCuentaBco.Text = BindingSource0.Item(BindingSource0.Position)(13)
-            txtCuentaDetraccion.Text = BindingSource0.Item(BindingSource0.Position)(14)
-
-            'Factura
-            If BindingSource0.Item(BindingSource0.Position)(16) = 1 Then
-                chkFactura.Checked = True
-            Else
-                chkFactura.Checked = False
-            End If
-
-            'Boleta
-            If BindingSource0.Item(BindingSource0.Position)(17) = 1 Then
-                chkBoleta.Checked = True
-            Else
-                chkBoleta.Checked = False
-            End If
-            'Guia de Remision
-            If BindingSource0.Item(BindingSource0.Position)(18) = 1 Then
-                chkGuiaRemision.Checked = True
-            Else
-                chkGuiaRemision.Checked = False
-            End If
-
-            'Voucher
-            If BindingSource0.Item(BindingSource0.Position)(19) = 1 Then
-                chkVoucher.Checked = True
-            Else
-                chkVoucher.Checked = False
-            End If
-            'Voucher Detracción
-            If BindingSource0.Item(BindingSource0.Position)(20) = 1 Then
-                chkVoucherDetraccion.Checked = True
-            Else
-                chkVoucherDetraccion.Checked = False
-            End If
-            'Recibo de Egresos
-            If BindingSource0.Item(BindingSource0.Position)(21) = 1 Then
-                chkReciboEgreso.Checked = True
-            Else
-                chkReciboEgreso.Checked = False
-            End If
-            'Otro 
-            If BindingSource0.Item(BindingSource0.Position)(22) = 1 Then
-                chkOtros.Checked = True
-            Else
-                chkOtros.Checked = False
-            End If
-
-            '   oGrilla.FormatoContabilidad(txtMonto)
-            '  oGrilla.FormatoContabilidad(txtDetraccion)
+           
 
         End If
     End Sub
 
-    ''' <summary>
-    ''' Enlaza los dotos de la grilla Pagos con los controles del form
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private Sub enlazarTextPagos()
-        If dgPagos.Rows.Count = 0 Then
-            txtDescripcionPago.Clear()
-            txtClasifiPago.Clear()
-
-            Exit Sub
-        Else
-            If BindingSource1.Position >= 0 Then
-                txtDescripcionPago.Text = BindingSource1.Item(BindingSource1.Position)(8)
-                txtClasifiPago.Text = BindingSource1.Item(BindingSource1.Position)(11)
-            End If
-
-        End If
-
-        'Dando formato a los números
-
-        ' oGrilla.FormatoContabilidad(txtMontoPago)
-
-        'oGrilla.FormatoContabilidad(txtDetraccionPago)
-
-    End Sub
+    
+   
 
     ''' <summary>
     ''' Pinta el TextBox Seleccionado con los parametros enviados
@@ -555,15 +364,7 @@ Public Class SeguimientoOrdenDesembolsoForm2
 
 
     End Sub
-    ''' <summary>
-    ''' Enlaza los textos de clasificación y subclasficación
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private Sub enlazarTextClasificacion()
-        txtClasificacion.Text = BindingSource7.Item(0)(0)
-        txtSubClasif.Text = BindingSource7.Item(0)(1)
-
-    End Sub
+  
 
     Private Sub enlazarTextAprobaciones()
         'Dim nro As Integer = BindingSource0.Item(BindingSource0.Position)(0)
@@ -660,40 +461,7 @@ Public Class SeguimientoOrdenDesembolsoForm2
             End If
         Next
 
-        'recorriendo tabs de tabcontrol
-        For j As Integer = 0 To TabControl1.TabPages.Count - 1
-
-            For index As Integer = 0 To TabControl1.TabPages(j).Controls.Count - 1
-                TabControl1.TabPages(j).BackColor = BackColorP
-
-                'TabControl1.TabPages(0).Controls
-                If TypeOf TabControl1.TabPages(j).Controls(index) Is GroupBox Then
-                    TabControl1.TabPages(j).BackColor = BackColorP
-                    oGrilla.configurarColorControl("Label", TabControl1.TabPages(j).Controls(index), ForeColorLabel)
-                    oGrilla.configurarColorControl("CheckBox", TabControl1.TabPages(j).Controls(index), ForeColorLabel)
-
-                    For k As Integer = 0 To TabControl1.TabPages(j).Controls(index).Controls.Count - 1
-                        If TypeOf TabControl1.TabPages(j).Controls(index).Controls(k) Is TextBox Then
-                            CType(TabControl1.TabPages(j).Controls(index).Controls(k), TextBox).ReadOnly = True  ' ForeColorLabel
-                        End If
-
-                    Next
-
-                End If
-                If TypeOf TabControl1.TabPages(j).Controls(index) Is Label Then
-                    TabControl1.TabPages(j).Controls(index).ForeColor = ForeColorLabel
-                End If
-                If TypeOf TabControl1.TabPages(j).Controls(index) Is TextBox Then
-                    CType(TabControl1.TabPages(j).Controls(index), TextBox).ReadOnly = True  ' ForeColorLabel
-                End If
-                If TypeOf TabControl1.TabPages(j).Controls(index) Is CheckBox Then
-                    TabControl1.TabPages(j).Controls(index).ForeColor = ForeColorLabel
-                End If
-
-            Next
-
-        Next
-
+        
         'Para el Group Box del form
         oGrilla.configurarColorControl("Label", GroupBox2, ForeColorLabel)
 
@@ -901,16 +669,10 @@ Public Class SeguimientoOrdenDesembolsoForm2
 
             If vCodDesem <> BindingSource0.Item(BindingSource0.Position)(0) Then
                 'Enlazar los datos de Grilla con los de form
-                enlazarTextPagos()
 
-                Dim queryPagos As String = "Select codDesembolso,fecPago,montoPago,tipoP,moneda,simbolo,nroCue,banco,pagoDet,montoD,nroP,clasif from VPagoDesembolsoSeguimiento where codDesembolso=" & BindingSource0.Item(BindingSource0.Position)(0)
-                '"PA_SeguimientoPagos"
-                oDataManager.CargarGrilla(queryPagos, CommandType.Text, dgPagos, BindingSource1)
-                ModificandoColumnasDGVPagos()
+               
 
-                Dim queryConta As String = "select idOP,fecEnt,nroConfor  from TOrdenDesembolso where idOP =" & BindingSource0.Item(BindingSource0.Position)(0)
-                oDataManager.CargarGrilla(queryConta, CommandType.Text, dgContabilidad, BindingSource2)
-                ModificandoColumnaDGVConta()
+                
 
 
                 Dim _dg As New DataGridView
@@ -937,7 +699,6 @@ Public Class SeguimientoOrdenDesembolsoForm2
 
                 enlazarTextAprobaciones()
 
-                enlazarTextClasificacion()
 
                 'Actualizando la Varible de control
                 vCodDesem = BindingSource0.Item(BindingSource0.Position)(0)
@@ -967,28 +728,20 @@ Public Class SeguimientoOrdenDesembolsoForm2
 
     Private Sub dgDesembolso_CurrentCellChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgDesembolso.CurrentCellChanged
 
-        Me.Cursor = Cursors.WaitCursor
-        Try
-            txtOrdCompra.Text = recuperarNroOrdenCompra(CInt(BindingSource0.Item(BindingSource0.Position)(0)))
-
-        Catch ex As Exception
-
-        Finally
-            Me.Cursor = Cursors.Default
-        End Try
+        
 
     End Sub
 
 
 
-    Private Sub dgPagos_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgPagos.CellClick
+    Private Sub dgPagos_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
 
-        enlazarTextPagos()
+
 
     End Sub
 
-    Private Sub dgContabilidad_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgContabilidad.CellClick
-        enlazarTextConta()
+    Private Sub dgContabilidad_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
+
 
     End Sub
 
@@ -998,26 +751,15 @@ Public Class SeguimientoOrdenDesembolsoForm2
         Close()
     End Sub
 
-    Private Sub TabControl1_Selecting(ByVal sender As System.Object, ByVal e As System.Windows.Forms.TabControlCancelEventArgs) Handles TabControl1.Selecting
+    Private Sub TabControl1_Selecting(ByVal sender As System.Object, ByVal e As System.Windows.Forms.TabControlCancelEventArgs)
 
-        If dgDesembolso.RowCount > 0 Then
-
-            'Comprabando si la grilla tiene la primera columna no visible
-            If dgPagos.Columns("codDesembolso").Visible Then
-                dgPagos.Columns("codDesembolso").Visible = False
-            End If
-            If dgContabilidad.Columns(0).Visible Then
-                dgContabilidad.Columns(0).Visible = False
-            End If
-
-        End If
     End Sub
 
 
     Private Sub btnCerrar_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
-        dgContabilidad.Dispose()
+
         dgDesembolso.Dispose()
-        dgPagos.Dispose()
+
         Me.Close()
     End Sub
 
@@ -1080,7 +822,7 @@ Public Class SeguimientoOrdenDesembolsoForm2
         ' filtrando()
     End Sub
 
-   
+
 
     Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
         If BindingSource0.Position = -1 Then
@@ -1090,30 +832,26 @@ Public Class SeguimientoOrdenDesembolsoForm2
 
         vCodDoc = BindingSource0.Item(BindingSource0.Position)(0)
         vParam1 = cambiarNroTotalLetra()
-        If String.IsNullOrEmpty(txtOrdCompra.Text) = False Then
-            vParam2 = txtOrdCompra.Text.Trim() 'recuperarNroOrdenCompra()
+
+        'recuperar orden de compra
+        Dim _ordCompara As String = recuperarNroOrdenCompra(CInt(BindingSource0.Item(BindingSource0.Position)(0)))
+
+        If String.IsNullOrEmpty(_ordCompara) = False Then
+            vParam2 = _ordCompara 'recuperarNroOrdenCompra()
         Else
             vParam2 = ""
         End If
+
 
         Dim informe As New ReportViewerOrdenDesembolsoForm
         informe.ShowDialog()
     End Sub
 
 
-  
 
-    Private Sub btnOrdCompra_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOrdCompra.Click
-        If txtOrdCompra.Text.Trim() = "" Then
-            MessageBox.Show("Proceso denegado, Orden de Desembolso No tiene relación con Orden de Compra", nomNegocio, Nothing, MessageBoxIcon.Error)
-            Exit Sub
-        End If
 
-        'vCod1 = BindingSource3.Item(BindingSource3.Position)(2) & " - " & BindingSource3.Item(BindingSource3.Position)(3)
-        vNroOrden = RecuperarOrdenCompra(BindingSource0.Item(BindingSource0.Position)(0)) ' txtOrdCompra.Text  '(BindingSource3.Item(BindingSource3.Position)(0)) 'idOP 
-
-        Dim jala As New jalarOrdenCompra2Form
-        jala.ShowDialog()
+    Private Sub btnOrdCompra_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        
     End Sub
 
     Private Sub GroupBox2_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupBox2.Enter
@@ -1203,12 +941,12 @@ Public Class SeguimientoOrdenDesembolsoForm2
         Dim valorFechaFin As New ParameterDiscreteValue
 
         'definiendo los nombres de la variables para el reporte
+
         pFechaIni.Name = "pFechaIni"
         pFechaFin.Name = "pFechaFin"
 
         '----------
         'Definiendo los nombres de los parametros.
-
         valorFechaIni.Value = _fechaIni
         valorFechaFin.Value = _fechaFin
 
@@ -1300,7 +1038,7 @@ Public Class SeguimientoOrdenDesembolsoForm2
 
     End Function
 
-    
+
     Private Sub rdoObra_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rdoObra.CheckedChanged, rdoSerie.CheckedChanged, rdoProveedor.CheckedChanged
         'configurando opciones a filtrar
         If rdoObra.Checked = True Then
@@ -1369,8 +1107,7 @@ Public Class SeguimientoOrdenDesembolsoForm2
 
         'limpiando grilla
         dgDesembolso.DataSource = ""
-        dgPagos.DataSource = ""
-        dgContabilidad.DataSource = ""
+        
 
     End Sub
 End Class

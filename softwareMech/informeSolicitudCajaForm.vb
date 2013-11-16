@@ -17,11 +17,12 @@ Public Class informeSolicitudCajaForm
         Dim wait As New waitForm
         wait.Show()
         'instanciando los dataAdapter con sus comandos select - DatasetAlmacenModule.vb
-        Dim sele As String = "select codSC,nro,fechaSol,nomSoli,montoSol,imprevisto,salAnt,totPar,montoRen,salAct,est,nomObra,estSol,codObra,codSede,codPers from VSolCajaTodo where codPers=@codP or codObra=@codO or codSC>@codS"
+        Dim sele As String = "select codSC,nro,fechaSol,nomSoli,montoSol,imprevisto,salAnt,totPar,requerimiento,montoRen,salAct,est,nomObra,estSol,codObra,codSede,codPers from VSolCajaTodo where codPers=@codP or codObra=@codO or (codPers=@codP1 and codObra=@codO1)"
         crearDataAdapterTable(daTabla1, sele)
         daTabla1.SelectCommand.Parameters.Add("@codP", SqlDbType.Int, 0).Value = 0
         daTabla1.SelectCommand.Parameters.Add("@codO", SqlDbType.VarChar, 10).Value = "ras1313"
-        daTabla1.SelectCommand.Parameters.Add("@codS", SqlDbType.Int, 0).Value = 9999
+        daTabla1.SelectCommand.Parameters.Add("@codP1", SqlDbType.Int, 0).Value = 0
+        daTabla1.SelectCommand.Parameters.Add("@codO1", SqlDbType.VarChar, 10).Value = "ras1313"
 
         sele = "select distinct codPers,nomSoli from VSolCajaTodo TPersonal order by nomSoli"
         crearDataAdapterTable(daTabla2, sele)
@@ -79,24 +80,25 @@ Public Class informeSolicitudCajaForm
 
     Private Sub colorearFila1()
         For j As Short = 0 To BindingSource1.Count - 1
-            If BindingSource1.Item(j)(12) = 1 Then 'Aprobado
-                dgTabla1.Rows(j).Cells(10).Style.BackColor = Color.Green 'Color.YellowGreen
-                dgTabla1.Rows(j).Cells(10).Style.ForeColor = Color.White
+            If BindingSource1.Item(j)(13) = 1 Then 'Aprobado
+                dgTabla1.Rows(j).Cells(11).Style.BackColor = Color.Green 'Color.YellowGreen
+                dgTabla1.Rows(j).Cells(11).Style.ForeColor = Color.White
             End If
-            If BindingSource1.Item(j)(12) = 2 Then 'Procesado
-                dgTabla1.Rows(j).Cells(10).Style.BackColor = Color.Yellow
-                dgTabla1.Rows(j).Cells(10).Style.ForeColor = Color.Red
+            If BindingSource1.Item(j)(13) = 2 Then 'Procesado
+                dgTabla1.Rows(j).Cells(11).Style.BackColor = Color.Yellow
+                dgTabla1.Rows(j).Cells(11).Style.ForeColor = Color.Red
             End If
-            If BindingSource1.Item(j)(12) = 3 Then 'Anulado
-                dgTabla1.Rows(j).Cells(10).Style.BackColor = Color.Red
-                dgTabla1.Rows(j).Cells(10).Style.ForeColor = Color.White
+            If BindingSource1.Item(j)(13) = 3 Then 'Anulado
+                dgTabla1.Rows(j).Cells(11).Style.BackColor = Color.Red
+                dgTabla1.Rows(j).Cells(11).Style.ForeColor = Color.White
             End If
-            If BindingSource1.Item(j)(12) = 4 Then 'Ok Rendido
-                dgTabla1.Rows(j).Cells(10).Style.BackColor = Color.Black
-                dgTabla1.Rows(j).Cells(10).Style.ForeColor = Color.White
+            If BindingSource1.Item(j)(13) = 4 Then 'Ok Rendido
+                dgTabla1.Rows(j).Cells(11).Style.BackColor = Color.Black
+                dgTabla1.Rows(j).Cells(11).Style.ForeColor = Color.White
             End If
             dgTabla1.Rows(j).Cells(7).Style.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             dgTabla1.Rows(j).Cells(8).Style.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            dgTabla1.Rows(j).Cells(9).Style.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Next
     End Sub
 
@@ -120,29 +122,33 @@ Public Class informeSolicitudCajaForm
             .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(5).DefaultCellStyle.Format = "N2"
             .Columns(6).HeaderText = "SaldAnt."
-            .Columns(6).Width = 55
+            .Columns(6).Width = 53
             .Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(6).DefaultCellStyle.Format = "N2"
-            .Columns(7).HeaderText = "TotParcial"
+            .Columns(7).HeaderText = "CajaEgreso"
             .Columns(7).Width = 80
             .Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(7).DefaultCellStyle.Format = "N2"
-            .Columns(8).HeaderText = "TotRendido"
+            .Columns(8).HeaderText = "Requer.Gasto"
             .Columns(8).Width = 80
             .Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(8).DefaultCellStyle.Format = "N2"
-            .Columns(9).HeaderText = "SaldAct."
-            .Columns(9).Width = 55
+            .Columns(9).HeaderText = "TotRendido"
+            .Columns(9).Width = 80
             .Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(9).DefaultCellStyle.Format = "N2"
-            .Columns(10).Width = 80
-            .Columns(10).HeaderText = "Estado"
-            .Columns(11).Width = 274
-            .Columns(11).HeaderText = "Obra Gasto"
-            .Columns(12).Visible = False
+            .Columns(10).HeaderText = "SaldAct."
+            .Columns(10).Width = 53
+            .Columns(10).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(10).DefaultCellStyle.Format = "N2"
+            .Columns(11).Width = 80
+            .Columns(11).HeaderText = "Estado"
+            .Columns(12).Width = 198
+            .Columns(12).HeaderText = "Obra Gasto"
             .Columns(13).Visible = False
             .Columns(14).Visible = False
             .Columns(15).Visible = False
+            .Columns(16).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -250,15 +256,15 @@ Public Class informeSolicitudCajaForm
 
     Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
         dgTabla1.Dispose()
-        'dgTabla2.Dispose()
+        dgTabla2.Dispose()
         Me.Close()
     End Sub
 
     Private Sub RB1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RB1.CheckedChanged, RB2.CheckedChanged, RB3.CheckedChanged
-        If RB1.Checked = True Then 'Todos
-            Label1.Visible = False
-            cbObra.Visible = False
-            cbSol.Visible = False
+        If RB1.Checked = True Then 'por solicitante y obra
+            Label1.Visible = True
+            cbObra.Visible = True
+            cbSol.Visible = True
         End If
         If RB2.Checked = True Then 'solicitante
             Label1.Visible = True
@@ -276,32 +282,37 @@ Public Class informeSolicitudCajaForm
 
     Dim vfVan1 As Boolean = False
     Dim codPers As Integer
+    Dim codPers1 As Integer
     Dim codigo As String
-    Dim codSC As Integer
+    Dim codigo1 As String
     Private Sub btnProcesar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnProcesar.Click
         vfVan1 = False
 
-        If RB1.Checked = True Then 'Todos
+        If RB1.Checked = True Then 'obra y solicitante
             codPers = 0
             codigo = "ras1313"
-            codSC = 0
+            codPers1 = cbSol.SelectedValue
+            codigo1 = cbObra.SelectedValue
         End If
         If RB2.Checked = True Then 'solicitante
             codPers = cbSol.SelectedValue
             codigo = "ras1313"
-            codSC = 9999
+            codPers1 = 0
+            codigo1 = "ras1313"
         End If
         If RB3.Checked = True Then 'Obra
             codPers = 0
             codigo = cbObra.SelectedValue
-            codSC = 9999
+            codPers1 = 0
+            codigo1 = "ras1313"
         End If
 
         Me.Cursor = Cursors.WaitCursor
         dsAlmacen.Tables("VSolCajaTodo").Clear()
         daTabla1.SelectCommand.Parameters("@codP").Value = codPers
         daTabla1.SelectCommand.Parameters("@codO").Value = codigo
-        daTabla1.SelectCommand.Parameters("@codS").Value = codSC
+        daTabla1.SelectCommand.Parameters("@codP1").Value = codPers1
+        daTabla1.SelectCommand.Parameters("@codO1").Value = codigo1
         daTabla1.Fill(dsAlmacen, "VSolCajaTodo")
 
         If BindingSource1.Count = 0 Then

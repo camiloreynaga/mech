@@ -6,11 +6,21 @@ Public Class ReportViewerSeguimientoDesem
 
     Private _datosReporte As DataSetInformesCr
 
+    ''' <summary>
+    ''' 0=Obra
+    ''' 1=Proveedor
+    ''' 2=serie
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public _select As Integer = 0
+
     Private Sub New()
 
         ' Llamada necesaria para el Diseñador de Windows Forms.
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+
+
 
     End Sub
 
@@ -26,10 +36,27 @@ Public Class ReportViewerSeguimientoDesem
         Me.Cursor = Cursors.WaitCursor
         Dim wait As New waitForm
         wait.Show()
+        'reporte Obra
+        If _select = 0 Then
+            Dim informe As New CrSeguimientoDesembolso
+            informe.SetDataSource(_datosReporte)
+            CrystalReportViewer1.ReportSource = informe
+        End If
+        'reporte proveedor
+        If _select = 1 Then
+            Dim informe As New CrSeguimientoDesembolso_Prov
+            informe.SetDataSource(_datosReporte)
+            CrystalReportViewer1.ReportSource = informe
+        End If
+        'reporte serie
+        If _select = 2 Then
 
-        Dim informe As New CrSeguimientoDesembolso
-        informe.SetDataSource(_datosReporte)
-        CrystalReportViewer1.ReportSource = informe
+            Dim informe As New CrSeguimientoDesembolso_Serie
+            informe.SetDataSource(_datosReporte)
+            CrystalReportViewer1.ReportSource = informe
+        End If
+
+
 
 
         wait.Close()

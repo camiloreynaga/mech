@@ -20,10 +20,11 @@ Partial Class informeSolicitudCajaForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(informeSolicitudCajaForm))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(informeSolicitudCajaForm))
         Me.Panel1 = New System.Windows.Forms.Panel
+        Me.btnImprimir = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.cbObra = New System.Windows.Forms.ComboBox
         Me.cbSol = New System.Windows.Forms.ComboBox
         Me.btnProcesar = New ComponentesSolucion2008.BottomSSP(Me.components)
@@ -73,7 +74,6 @@ Partial Class informeSolicitudCajaForm
         Me.Label4 = New System.Windows.Forms.Label
         Me.Label3 = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
-        Me.btnImprimir = New ComponentesSolucion2008.BottomSSP(Me.components)
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -109,14 +109,27 @@ Partial Class informeSolicitudCajaForm
         Me.Panel1.Size = New System.Drawing.Size(1046, 51)
         Me.Panel1.TabIndex = 3
         '
+        'btnImprimir
+        '
+        Me.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
+        Me.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnImprimir.Location = New System.Drawing.Point(967, 25)
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(75, 25)
+        Me.btnImprimir.TabIndex = 336
+        Me.btnImprimir.Text = "Imprimir"
+        Me.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnImprimir.UseVisualStyleBackColor = True
+        '
         'cbObra
         '
         Me.cbObra.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbObra.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbObra.FormattingEnabled = True
-        Me.cbObra.Location = New System.Drawing.Point(384, 17)
+        Me.cbObra.Location = New System.Drawing.Point(507, 2)
         Me.cbObra.Name = "cbObra"
-        Me.cbObra.Size = New System.Drawing.Size(490, 21)
+        Me.cbObra.Size = New System.Drawing.Size(459, 21)
         Me.cbObra.TabIndex = 16
         Me.cbObra.Visible = False
         '
@@ -125,7 +138,7 @@ Partial Class informeSolicitudCajaForm
         Me.cbSol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbSol.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbSol.FormattingEnabled = True
-        Me.cbSol.Location = New System.Drawing.Point(382, 18)
+        Me.cbSol.Location = New System.Drawing.Point(507, 25)
         Me.cbSol.Name = "cbSol"
         Me.cbSol.Size = New System.Drawing.Size(225, 21)
         Me.cbSol.TabIndex = 15
@@ -136,7 +149,7 @@ Partial Class informeSolicitudCajaForm
         Me.btnProcesar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnProcesar.Image = CType(resources.GetObject("btnProcesar.Image"), System.Drawing.Image)
         Me.btnProcesar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnProcesar.Location = New System.Drawing.Point(236, 15)
+        Me.btnProcesar.Location = New System.Drawing.Point(300, 15)
         Me.btnProcesar.Name = "btnProcesar"
         Me.btnProcesar.Size = New System.Drawing.Size(129, 23)
         Me.btnProcesar.TabIndex = 14
@@ -147,7 +160,7 @@ Partial Class informeSolicitudCajaForm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(379, 4)
+        Me.Label1.Location = New System.Drawing.Point(435, 29)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(71, 13)
         Me.Label1.TabIndex = 1
@@ -161,7 +174,7 @@ Partial Class informeSolicitudCajaForm
         Me.GroupBox1.Controls.Add(Me.RB1)
         Me.GroupBox1.Location = New System.Drawing.Point(5, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(225, 41)
+        Me.GroupBox1.Size = New System.Drawing.Size(284, 41)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filtro por:"
@@ -169,7 +182,7 @@ Partial Class informeSolicitudCajaForm
         'RB3
         '
         Me.RB3.AutoSize = True
-        Me.RB3.Location = New System.Drawing.Point(164, 16)
+        Me.RB3.Location = New System.Drawing.Point(222, 16)
         Me.RB3.Name = "RB3"
         Me.RB3.Size = New System.Drawing.Size(52, 17)
         Me.RB3.TabIndex = 2
@@ -180,7 +193,7 @@ Partial Class informeSolicitudCajaForm
         'RB2
         '
         Me.RB2.AutoSize = True
-        Me.RB2.Location = New System.Drawing.Point(73, 17)
+        Me.RB2.Location = New System.Drawing.Point(135, 17)
         Me.RB2.Name = "RB2"
         Me.RB2.Size = New System.Drawing.Size(85, 17)
         Me.RB2.TabIndex = 1
@@ -193,10 +206,10 @@ Partial Class informeSolicitudCajaForm
         Me.RB1.AutoSize = True
         Me.RB1.Location = New System.Drawing.Point(7, 16)
         Me.RB1.Name = "RB1"
-        Me.RB1.Size = New System.Drawing.Size(60, 17)
+        Me.RB1.Size = New System.Drawing.Size(126, 17)
         Me.RB1.TabIndex = 0
         Me.RB1.TabStop = True
-        Me.RB1.Text = "Todos"
+        Me.RB1.Text = "Solicitante y Obra"
         Me.RB1.UseVisualStyleBackColor = True
         '
         'Panel2
@@ -575,19 +588,6 @@ Partial Class informeSolicitudCajaForm
         Me.Label2.Size = New System.Drawing.Size(73, 13)
         Me.Label2.TabIndex = 369
         Me.Label2.Text = "Total Fact.:"
-        '
-        'btnImprimir
-        '
-        Me.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
-        Me.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnImprimir.Location = New System.Drawing.Point(958, 14)
-        Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(75, 25)
-        Me.btnImprimir.TabIndex = 336
-        Me.btnImprimir.Text = "Imprimir"
-        Me.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnImprimir.UseVisualStyleBackColor = True
         '
         'informeSolicitudCajaForm
         '

@@ -20,13 +20,15 @@ Partial Class GastosPorDiaForm2
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GastosPorDiaForm))
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GastosPorDiaForm2))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.dtpInicio = New System.Windows.Forms.DateTimePicker
         Me.dtpFin = New System.Windows.Forms.DateTimePicker
         Me.Label1 = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.txtTotalSoles = New System.Windows.Forms.TextBox
+        Me.Label7 = New System.Windows.Forms.Label
         Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton
@@ -39,12 +41,10 @@ Partial Class GastosPorDiaForm2
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
         Me.btnImp = New System.Windows.Forms.ToolStripButton
         Me.dgReporte = New System.Windows.Forms.DataGridView
+        Me.txtTotalDolares = New System.Windows.Forms.TextBox
+        Me.Label6 = New System.Windows.Forms.Label
         Me.btnCerrar = New System.Windows.Forms.Button
         Me.btnMostrar = New System.Windows.Forms.Button
-        Me.txtTotalDolares = New System.Windows.Forms.TextBox
-        Me.Label7 = New System.Windows.Forms.Label
-        Me.txtTotalSoles = New System.Windows.Forms.TextBox
-        Me.Label6 = New System.Windows.Forms.Label
         Me.cbBanco = New System.Windows.Forms.ComboBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.txtTotalDetraccion = New System.Windows.Forms.TextBox
@@ -67,7 +67,7 @@ Partial Class GastosPorDiaForm2
         'lblTitulo
         '
         Me.lblTitulo.Size = New System.Drawing.Size(950, 23)
-        Me.lblTitulo.Text = "Gastos por día"
+        Me.lblTitulo.Text = "Gastos"
         '
         'lblDerecha
         '
@@ -111,30 +111,51 @@ Partial Class GastosPorDiaForm2
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.txtTotalSoles)
+        Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.BindingNavigator1)
         Me.GroupBox1.Controls.Add(Me.dgReporte)
+        Me.GroupBox1.Controls.Add(Me.txtTotalDolares)
+        Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.btnCerrar)
         Me.GroupBox1.Location = New System.Drawing.Point(20, 75)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(930, 551)
+        Me.GroupBox1.Size = New System.Drawing.Size(930, 574)
         Me.GroupBox1.TabIndex = 5
         Me.GroupBox1.TabStop = False
+        '
+        'txtTotalSoles
+        '
+        Me.txtTotalSoles.Location = New System.Drawing.Point(402, 548)
+        Me.txtTotalSoles.Name = "txtTotalSoles"
+        Me.txtTotalSoles.Size = New System.Drawing.Size(120, 20)
+        Me.txtTotalSoles.TabIndex = 337
+        Me.txtTotalSoles.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(528, 551)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(77, 13)
+        Me.Label7.TabIndex = 335
+        Me.Label7.Text = "Total $USD:"
         '
         'BindingNavigator1
         '
         Me.BindingNavigator1.AddNewItem = Nothing
         Me.BindingNavigator1.CountItem = Me.BindingNavigatorCountItem
         Me.BindingNavigator1.DeleteItem = Nothing
-        Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.None
         Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.btnImp})
-        Me.BindingNavigator1.Location = New System.Drawing.Point(3, 523)
+        Me.BindingNavigator1.Location = New System.Drawing.Point(3, 545)
         Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
         Me.BindingNavigator1.MoveNextItem = Me.BindingNavigatorMoveNextItem
         Me.BindingNavigator1.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.BindingNavigator1.Name = "BindingNavigator1"
         Me.BindingNavigator1.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BindingNavigator1.Size = New System.Drawing.Size(924, 25)
+        Me.BindingNavigator1.Size = New System.Drawing.Size(282, 25)
         Me.BindingNavigator1.TabIndex = 1
         Me.BindingNavigator1.Text = "BindingNavigator1"
         '
@@ -220,15 +241,32 @@ Partial Class GastosPorDiaForm2
         Me.dgReporte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgReporte.Location = New System.Drawing.Point(3, 16)
         Me.dgReporte.Name = "dgReporte"
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.1!)
-        Me.dgReporte.RowsDefaultCellStyle = DataGridViewCellStyle3
-        Me.dgReporte.Size = New System.Drawing.Size(921, 504)
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.1!)
+        Me.dgReporte.RowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgReporte.Size = New System.Drawing.Size(921, 526)
         Me.dgReporte.TabIndex = 0
+        '
+        'txtTotalDolares
+        '
+        Me.txtTotalDolares.Location = New System.Drawing.Point(611, 548)
+        Me.txtTotalDolares.Name = "txtTotalDolares"
+        Me.txtTotalDolares.Size = New System.Drawing.Size(120, 20)
+        Me.txtTotalDolares.TabIndex = 336
+        Me.txtTotalDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(334, 551)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(62, 13)
+        Me.Label6.TabIndex = 334
+        Me.Label6.Text = "Total S/.:"
         '
         'btnCerrar
         '
         Me.btnCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnCerrar.Location = New System.Drawing.Point(497, 555)
+        Me.btnCerrar.Location = New System.Drawing.Point(427, 552)
         Me.btnCerrar.Name = "btnCerrar"
         Me.btnCerrar.Size = New System.Drawing.Size(75, 15)
         Me.btnCerrar.TabIndex = 339
@@ -243,40 +281,6 @@ Partial Class GastosPorDiaForm2
         Me.btnMostrar.TabIndex = 6
         Me.btnMostrar.Text = "Ver"
         Me.btnMostrar.UseVisualStyleBackColor = True
-        '
-        'txtTotalDolares
-        '
-        Me.txtTotalDolares.Location = New System.Drawing.Point(390, 629)
-        Me.txtTotalDolares.Name = "txtTotalDolares"
-        Me.txtTotalDolares.Size = New System.Drawing.Size(120, 20)
-        Me.txtTotalDolares.TabIndex = 336
-        Me.txtTotalDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(307, 632)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(77, 13)
-        Me.Label7.TabIndex = 335
-        Me.Label7.Text = "Total $USD:"
-        '
-        'txtTotalSoles
-        '
-        Me.txtTotalSoles.Location = New System.Drawing.Point(181, 629)
-        Me.txtTotalSoles.Name = "txtTotalSoles"
-        Me.txtTotalSoles.Size = New System.Drawing.Size(120, 20)
-        Me.txtTotalSoles.TabIndex = 337
-        Me.txtTotalSoles.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(113, 632)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(62, 13)
-        Me.Label6.TabIndex = 334
-        Me.Label6.Text = "Total S/.:"
         '
         'cbBanco
         '
@@ -305,6 +309,7 @@ Partial Class GastosPorDiaForm2
         Me.txtTotalDetraccion.Size = New System.Drawing.Size(103, 20)
         Me.txtTotalDetraccion.TabIndex = 345
         Me.txtTotalDetraccion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txtTotalDetraccion.Visible = False
         '
         'Label5
         '
@@ -314,6 +319,7 @@ Partial Class GastosPorDiaForm2
         Me.Label5.Size = New System.Drawing.Size(95, 13)
         Me.Label5.TabIndex = 344
         Me.Label5.Text = "Detracción S/.:"
+        Me.Label5.Visible = False
         '
         'Label4
         '
@@ -323,6 +329,7 @@ Partial Class GastosPorDiaForm2
         Me.Label4.Size = New System.Drawing.Size(84, 13)
         Me.Label4.TabIndex = 344
         Me.Label4.Text = "Detracción $:"
+        Me.Label4.Visible = False
         '
         'txtDetraccionDolares
         '
@@ -331,6 +338,7 @@ Partial Class GastosPorDiaForm2
         Me.txtDetraccionDolares.Size = New System.Drawing.Size(103, 20)
         Me.txtDetraccionDolares.TabIndex = 345
         Me.txtDetraccionDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txtDetraccionDolares.Visible = False
         '
         'chkBanco
         '
@@ -408,7 +416,7 @@ Partial Class GastosPorDiaForm2
         Me.chkObra.Text = "Todos"
         Me.chkObra.UseVisualStyleBackColor = True
         '
-        'GastosPorDiaForm
+        'GastosPorDiaForm2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.CancelButton = Me.btnCerrar
@@ -418,15 +426,10 @@ Partial Class GastosPorDiaForm2
         Me.Controls.Add(Me.txtDetraccionDolares)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.txtTotalDetraccion)
-        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.chkObra)
         Me.Controls.Add(Me.cbCuenta)
         Me.Controls.Add(Me.cbBanco)
-        Me.Controls.Add(Me.txtTotalDolares)
-        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.cbObra)
-        Me.Controls.Add(Me.txtTotalSoles)
-        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.lblCta)
@@ -436,8 +439,10 @@ Partial Class GastosPorDiaForm2
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.dtpFin)
         Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label5)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "GastosPorDiaForm"
+        Me.Name = "GastosPorDiaForm2"
+        Me.Controls.SetChildIndex(Me.Label5, 0)
         Me.Controls.SetChildIndex(Me.Label2, 0)
         Me.Controls.SetChildIndex(Me.dtpFin, 0)
         Me.Controls.SetChildIndex(Me.Label3, 0)
@@ -447,15 +452,10 @@ Partial Class GastosPorDiaForm2
         Me.Controls.SetChildIndex(Me.lblCta, 0)
         Me.Controls.SetChildIndex(Me.GroupBox1, 0)
         Me.Controls.SetChildIndex(Me.Label1, 0)
-        Me.Controls.SetChildIndex(Me.Label6, 0)
-        Me.Controls.SetChildIndex(Me.txtTotalSoles, 0)
         Me.Controls.SetChildIndex(Me.cbObra, 0)
-        Me.Controls.SetChildIndex(Me.Label7, 0)
-        Me.Controls.SetChildIndex(Me.txtTotalDolares, 0)
         Me.Controls.SetChildIndex(Me.cbBanco, 0)
         Me.Controls.SetChildIndex(Me.cbCuenta, 0)
         Me.Controls.SetChildIndex(Me.chkObra, 0)
-        Me.Controls.SetChildIndex(Me.Label5, 0)
         Me.Controls.SetChildIndex(Me.txtTotalDetraccion, 0)
         Me.Controls.SetChildIndex(Me.Label4, 0)
         Me.Controls.SetChildIndex(Me.txtDetraccionDolares, 0)

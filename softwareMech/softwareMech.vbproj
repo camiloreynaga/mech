@@ -207,6 +207,18 @@
       <DependentUpon>CrGastosDia.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrGastosDia21.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrGastosDia2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrGastosDia2_Obra.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrGastosDia2_Obra.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrPagosPendientesDesem.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -217,6 +229,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CrSeguimientoDesembolso.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrSeguimientoDesembolso_Prov.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrSeguimientoDesembolso_Prov.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrSeguimientoDesembolso_Serie.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrSeguimientoDesembolso_Serie.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReport1.vb">
@@ -323,7 +347,7 @@
     <Compile Include="GastosPorDiaForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GastosPorDiaForm2.designer.vb">
+    <Compile Include="GastosPorDiaForm2.Designer.vb">
       <DependentUpon>GastosPorDiaForm2.vb</DependentUpon>
     </Compile>
     <Compile Include="GastosPorDiaForm2.vb">
@@ -509,7 +533,7 @@
     <Compile Include="MantPersonalForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MantProveedor.Designer.vb">
+    <Compile Include="MantProveedor.designer.vb">
       <DependentUpon>MantProveedor.vb</DependentUpon>
     </Compile>
     <Compile Include="MantProveedor.vb">
@@ -681,6 +705,12 @@
     <Compile Include="ReportViewerGastosDia.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReportViewerGastosDia2.Designer.vb">
+      <DependentUpon>ReportViewerGastosDia2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewerGastosDia2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReportViewerGuiaRemEForm.Designer.vb">
       <DependentUpon>ReportViewerGuiaRemEForm.vb</DependentUpon>
     </Compile>
@@ -789,6 +819,12 @@
     <Compile Include="SeguimientoOrdenDesembolsoForm2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SeguimientoOrdenDesembolsoForm3.Designer.vb">
+      <DependentUpon>SeguimientoOrdenDesembolsoForm3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SeguimientoOrdenDesembolsoForm3.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="seleProveedorForm.Designer.vb">
       <DependentUpon>seleProveedorForm.vb</DependentUpon>
     </Compile>
@@ -891,6 +927,14 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrGastosDia.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrGastosDia2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrGastosDia21.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrGastosDia2_Obra.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrGastosDia2_Obra.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrPagosPendientesDesem.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrPagosPendientesDesem.vb</LastGenOutput>
@@ -898,6 +942,14 @@
     <EmbeddedResource Include="CrSeguimientoDesembolso.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrSeguimientoDesembolso.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrSeguimientoDesembolso_Prov.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrSeguimientoDesembolso_Prov.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrSeguimientoDesembolso_Serie.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrSeguimientoDesembolso_Serie.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1131,6 +1183,9 @@
     <EmbeddedResource Include="ReportViewerGastosDia.resx">
       <DependentUpon>ReportViewerGastosDia.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewerGastosDia2.resx">
+      <DependentUpon>ReportViewerGastosDia2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerGuiaRemEForm.resx">
       <DependentUpon>ReportViewerGuiaRemEForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -1184,6 +1239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SeguimientoOrdenDesembolsoForm2.resx">
       <DependentUpon>SeguimientoOrdenDesembolsoForm2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeguimientoOrdenDesembolsoForm3.resx">
+      <DependentUpon>SeguimientoOrdenDesembolsoForm3.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="seleProveedorForm.resx">
       <DependentUpon>seleProveedorForm.vb</DependentUpon>

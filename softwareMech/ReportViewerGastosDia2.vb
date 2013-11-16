@@ -2,9 +2,15 @@
 Imports CrystalDecisions.ReportSource
 Imports CrystalDecisions.Shared
 
-Public Class ReportViewerGastosDia
+Public Class ReportViewerGastosDia2
 
     Private _datosReporte As DataSetInformesCr
+
+    Public _selectObra As Boolean = False
+
+
+
+
 
     Private Sub New()
 
@@ -28,10 +34,23 @@ Public Class ReportViewerGastosDia
         Dim wait As New waitForm
         wait.Show()
 
-        Dim informe As New CrGastosDia
-        informe.SetDataSource(_datosReporte)
-        CrystalReportViewer1.ReportSource = informe
+        ' Dim informe As Object
 
+        If _selectObra = True Then
+            Dim informe As New CrGastosDia2_Obra
+            informe.SetDataSource(_datosReporte)
+            CrystalReportViewer1.ReportSource = informe
+        Else
+            'llamando al reporte adecuado
+            Dim informe As New CrGastosDia2
+            informe.SetDataSource(_datosReporte)
+            CrystalReportViewer1.ReportSource = informe
+        End If
+
+
+        CrystalReportViewer1.DisplayGroupTree = False
+
+        'cerrado de form
         wait.Close()
         Me.Cursor = Cursors.Default
 
@@ -42,7 +61,7 @@ Public Class ReportViewerGastosDia
         'Título del cuadro de diálogo.
         grabar.AddExtension = True
         grabar.Title = "Exportar Informe a PDF"
-        grabar.FileName = "Gastos por Banco "
+        grabar.FileName = "Gastos"
         'Filtro para el tipo de archivo a guardar.
         '
         grabar.Filter = "Adobe Acrobat (*.pdf)|*.pdf" '"Microsoft Excel (*.xls)|*.xls" '& _
@@ -92,5 +111,5 @@ Public Class ReportViewerGastosDia
 
     End Function
 
-   
+
 End Class

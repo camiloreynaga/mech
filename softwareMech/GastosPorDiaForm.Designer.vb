@@ -21,7 +21,7 @@ Partial Class GastosPorDiaForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GastosPorDiaForm))
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.dtpInicio = New System.Windows.Forms.DateTimePicker
         Me.dtpFin = New System.Windows.Forms.DateTimePicker
         Me.Label1 = New System.Windows.Forms.Label
@@ -67,7 +67,7 @@ Partial Class GastosPorDiaForm
         'lblTitulo
         '
         Me.lblTitulo.Size = New System.Drawing.Size(950, 23)
-        Me.lblTitulo.Text = "Gastos por día"
+        Me.lblTitulo.Text = "Gastos por Banco"
         '
         'lblDerecha
         '
@@ -220,8 +220,8 @@ Partial Class GastosPorDiaForm
         Me.dgReporte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgReporte.Location = New System.Drawing.Point(3, 16)
         Me.dgReporte.Name = "dgReporte"
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.1!)
-        Me.dgReporte.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.1!)
+        Me.dgReporte.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgReporte.Size = New System.Drawing.Size(921, 504)
         Me.dgReporte.TabIndex = 0
         '
