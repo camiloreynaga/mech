@@ -2,12 +2,30 @@
 Imports CrystalDecisions.ReportSource
 Imports CrystalDecisions.Shared
 
+''' <summary>
+''' Clase para la configuración de reportes
+''' </summary>
+''' <remarks></remarks>
+Public Class ReportViewerPadre
 
-Public Class ReportViewerPagosPendientesDesem
+#Region "Variables"
 
+    ''' <summary>
+    ''' DataSet CrInformes
+    ''' </summary>
+    ''' <remarks></remarks>
     Private _datosReporte As DataSetInformesCr
 
-    Private Sub New()
+
+#End Region
+
+#Region "Métodos"
+
+    ''' <summary>
+    ''' constructor de la clase
+    ''' </summary>
+    ''' <remarks></remarks>
+    Protected Sub New()
 
         ' Llamada necesaria para el Diseñador de Windows Forms.
         InitializeComponent()
@@ -16,28 +34,14 @@ Public Class ReportViewerPagosPendientesDesem
 
     End Sub
 
+    ''' <summary>
+    ''' constructor con parametros
+    ''' </summary>
+    ''' <param name="datos">DataTable del DataSet CrInformes</param>
+    ''' <remarks></remarks>
     Public Sub New(ByVal datos As DataSetInformesCr)
-
         Me.New()
         _datosReporte = datos
-
-    End Sub
-
-
-    Private Sub ReportViewerPagosPendientesDesem_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
-        Me.Cursor = Cursors.WaitCursor
-        Dim wait As New waitForm
-        wait.Show()
-
-        Dim informe As New CrPagosPendientesDesem
-        informe.SetDataSource(_datosReporte)
-        CrystalReportViewer1.ReportSource = informe
-
-        wait.Close()
-        Me.Cursor = Cursors.Default
-
-        Me.CrystalReportViewer1.DisplayGroupTree = False
 
     End Sub
 
@@ -71,12 +75,17 @@ Public Class ReportViewerPagosPendientesDesem
 
     End Function
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPdf.Click
+    ''' <summary>
+    ''' Guarda en Formato PDF el archivo
+    ''' </summary>
+    ''' <param name="fileName">nombre del archivo</param>
+    ''' <remarks></remarks>
+    Public Sub GuardarPdf(ByVal fileName)
         Dim grabar As SaveFileDialog = New SaveFileDialog
         'Título del cuadro de diálogo.
         grabar.AddExtension = True
         grabar.Title = "Exportar Informe a PDF"
-        grabar.FileName = "Pagos Pendientes "
+        grabar.FileName = fileName
         'Filtro para el tipo de archivo a guardar.
         '
         grabar.Filter = "Adobe Acrobat (*.pdf)|*.pdf" '"Microsoft Excel (*.xls)|*.xls" '& _
@@ -92,6 +101,14 @@ Public Class ReportViewerPagosPendientesDesem
 
             MessageBox.Show("La exportación ha finalizado correctamente.", "Reporte", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
-        ' End If
+
     End Sub
+
+#End Region
+
+#Region "Eventos"
+
+#End Region
+
+    
 End Class

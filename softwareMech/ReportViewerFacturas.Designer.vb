@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class ReportViewerPagosPendientesDesem
+Partial Class ReportViewerFacturas
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -22,9 +22,9 @@ Partial Class ReportViewerPagosPendientesDesem
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportViewerPagosPendientesDesem))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportViewerFacturas))
         Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer
-        Me.btnPdf = New System.Windows.Forms.Button
+        Me.Button1 = New System.Windows.Forms.Button
         Me.SuspendLayout()
         '
         'CrystalReportViewer1
@@ -35,35 +35,34 @@ Partial Class ReportViewerPagosPendientesDesem
         Me.CrystalReportViewer1.Location = New System.Drawing.Point(0, 0)
         Me.CrystalReportViewer1.Name = "CrystalReportViewer1"
         Me.CrystalReportViewer1.SelectionFormula = ""
-        Me.CrystalReportViewer1.Size = New System.Drawing.Size(580, 423)
+        Me.CrystalReportViewer1.Size = New System.Drawing.Size(531, 370)
         Me.CrystalReportViewer1.TabIndex = 0
         Me.CrystalReportViewer1.ViewTimeSelectionFormula = ""
         '
-        'btnPdf
+        'Button1
         '
-        Me.btnPdf.BackColor = System.Drawing.Color.Transparent
-        Me.btnPdf.Image = CType(resources.GetObject("btnPdf.Image"), System.Drawing.Image)
-        Me.btnPdf.Location = New System.Drawing.Point(350, 3)
-        Me.btnPdf.Name = "btnPdf"
-        Me.btnPdf.Size = New System.Drawing.Size(53, 25)
-        Me.btnPdf.TabIndex = 6
-        Me.btnPdf.Text = "PDF"
-        Me.btnPdf.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnPdf.UseVisualStyleBackColor = False
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
+        Me.Button1.Location = New System.Drawing.Point(350, 3)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(53, 25)
+        Me.Button1.TabIndex = 6
+        Me.Button1.Text = "PDF"
+        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.Button1.UseVisualStyleBackColor = False
         '
-        'ReportViewerPagosPendientesDesem
+        'ReportViewerFacturas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(580, 423)
-        Me.Controls.Add(Me.btnPdf)
+        Me.ClientSize = New System.Drawing.Size(531, 370)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.CrystalReportViewer1)
-        Me.Name = "ReportViewerPagosPendientesDesem"
-        Me.Text = "ReportViewerPagosPendientesDesem"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.Name = "ReportViewerFacturas"
+        Me.Text = "ReportViewerFacturas"
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents CrystalReportViewer1 As CrystalDecisions.Windows.Forms.CrystalReportViewer
-    Friend WithEvents btnPdf As System.Windows.Forms.Button
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

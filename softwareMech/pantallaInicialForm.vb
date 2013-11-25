@@ -1188,4 +1188,10 @@ Public Class pantallaInicialForm
         frmSeg.MdiParent = Me
         frmSeg.Show()
     End Sub
+
+    Private Sub FrmFacturasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FrmFacturasToolStripMenuItem.Click
+        Dim segFact As New SeguimientoFacturasForm
+        segFact.MdiParent = Me
+        segFact.Show()
+    End Sub
 End Class

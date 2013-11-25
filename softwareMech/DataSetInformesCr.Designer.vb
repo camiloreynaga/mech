@@ -42,6 +42,8 @@ Partial Public Class DataSetInformesCr
     
     Private tableDatosGastosDia2 As DatosGastosDia2DataTable
     
+    Private tableDatosFactura As DatosFacturaDataTable
+    
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -92,6 +94,9 @@ Partial Public Class DataSetInformesCr
             End If
             If (Not (ds.Tables("DatosGastosDia2")) Is Nothing) Then
                 MyBase.Tables.Add(New DatosGastosDia2DataTable(ds.Tables("DatosGastosDia2")))
+            End If
+            If (Not (ds.Tables("DatosFactura")) Is Nothing) Then
+                MyBase.Tables.Add(New DatosFacturaDataTable(ds.Tables("DatosFactura")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -183,6 +188,15 @@ Partial Public Class DataSetInformesCr
     End Property
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property DatosFactura() As DatosFacturaDataTable
+        Get
+            Return Me.tableDatosFactura
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.ComponentModel.BrowsableAttribute(true),  _
      Global.System.ComponentModel.DesignerSerializationVisibilityAttribute(Global.System.ComponentModel.DesignerSerializationVisibility.Visible)>  _
     Public Overrides Property SchemaSerializationMode() As Global.System.Data.SchemaSerializationMode
@@ -265,6 +279,9 @@ Partial Public Class DataSetInformesCr
             If (Not (ds.Tables("DatosGastosDia2")) Is Nothing) Then
                 MyBase.Tables.Add(New DatosGastosDia2DataTable(ds.Tables("DatosGastosDia2")))
             End If
+            If (Not (ds.Tables("DatosFactura")) Is Nothing) Then
+                MyBase.Tables.Add(New DatosFacturaDataTable(ds.Tables("DatosFactura")))
+            End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
             Me.Namespace = ds.Namespace
@@ -342,6 +359,12 @@ Partial Public Class DataSetInformesCr
                 Me.tableDatosGastosDia2.InitVars
             End If
         End If
+        Me.tableDatosFactura = CType(MyBase.Tables("DatosFactura"),DatosFacturaDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableDatosFactura) Is Nothing) Then
+                Me.tableDatosFactura.InitVars
+            End If
+        End If
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -367,6 +390,8 @@ Partial Public Class DataSetInformesCr
         MyBase.Tables.Add(Me.tableDatosPagosPendientesDesem)
         Me.tableDatosGastosDia2 = New DatosGastosDia2DataTable
         MyBase.Tables.Add(Me.tableDatosGastosDia2)
+        Me.tableDatosFactura = New DatosFacturaDataTable
+        MyBase.Tables.Add(Me.tableDatosFactura)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
@@ -406,6 +431,11 @@ Partial Public Class DataSetInformesCr
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
     Private Function ShouldSerializeDatosGastosDia2() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+    Private Function ShouldSerializeDatosFactura() As Boolean
         Return false
     End Function
     
@@ -480,6 +510,8 @@ Partial Public Class DataSetInformesCr
     Public Delegate Sub DatosPagosPendientesDesemRowChangeEventHandler(ByVal sender As Object, ByVal e As DatosPagosPendientesDesemRowChangeEvent)
     
     Public Delegate Sub DatosGastosDia2RowChangeEventHandler(ByVal sender As Object, ByVal e As DatosGastosDia2RowChangeEvent)
+    
+    Public Delegate Sub DatosFacturaRowChangeEventHandler(ByVal sender As Object, ByVal e As DatosFacturaRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -4206,6 +4238,366 @@ Partial Public Class DataSetInformesCr
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
             attribute2.Name = "tableTypeName"
             attribute2.FixedValue = "DatosGastosDia2DataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0"),  _
+     Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class DatosFacturaDataTable
+        Inherits Global.System.Data.TypedTableBase(Of DatosFacturaRow)
+        
+        Private columnserie As Global.System.Data.DataColumn
+        
+        Private columnnroDes As Global.System.Data.DataColumn
+        
+        Private columnfecDes As Global.System.Data.DataColumn
+        
+        Private columnsimbolo As Global.System.Data.DataColumn
+        
+        Private columnmonto As Global.System.Data.DataColumn
+        
+        Private columnmontoD As Global.System.Data.DataColumn
+        
+        Private columnobra As Global.System.Data.DataColumn
+        
+        Private columnproveedor As Global.System.Data.DataColumn
+        
+        Private columnconcepto As Global.System.Data.DataColumn
+        
+        Private columnnroFactura As Global.System.Data.DataColumn
+        
+        Private columnfecEntrega As Global.System.Data.DataColumn
+        
+        Private columnaprobador As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "DatosFactura"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property serieColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnserie
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nroDesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnroDes
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property fecDesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnfecDes
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property simboloColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsimbolo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property montoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnmonto
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property montoDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnmontoD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property obraColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnobra
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property proveedorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnproveedor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property conceptoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnconcepto
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property nroFacturaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnroFactura
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property fecEntregaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnfecEntrega
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property aprobadorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnaprobador
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As DatosFacturaRow
+            Get
+                Return CType(Me.Rows(index),DatosFacturaRow)
+            End Get
+        End Property
+        
+        Public Event DatosFacturaRowChanging As DatosFacturaRowChangeEventHandler
+        
+        Public Event DatosFacturaRowChanged As DatosFacturaRowChangeEventHandler
+        
+        Public Event DatosFacturaRowDeleting As DatosFacturaRowChangeEventHandler
+        
+        Public Event DatosFacturaRowDeleted As DatosFacturaRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Overloads Sub AddDatosFacturaRow(ByVal row As DatosFacturaRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Overloads Function AddDatosFacturaRow(ByVal serie As String, ByVal nroDes As String, ByVal fecDes As Date, ByVal simbolo As String, ByVal monto As Decimal, ByVal montoD As Decimal, ByVal obra As String, ByVal proveedor As String, ByVal concepto As String, ByVal nroFactura As String, ByVal fecEntrega As Date, ByVal aprobador As String) As DatosFacturaRow
+            Dim rowDatosFacturaRow As DatosFacturaRow = CType(Me.NewRow,DatosFacturaRow)
+            Dim columnValuesArray() As Object = New Object() {serie, nroDes, fecDes, simbolo, monto, montoD, obra, proveedor, concepto, nroFactura, fecEntrega, aprobador}
+            rowDatosFacturaRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowDatosFacturaRow)
+            Return rowDatosFacturaRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As DatosFacturaDataTable = CType(MyBase.Clone,DatosFacturaDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New DatosFacturaDataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Sub InitVars()
+            Me.columnserie = MyBase.Columns("serie")
+            Me.columnnroDes = MyBase.Columns("nroDes")
+            Me.columnfecDes = MyBase.Columns("fecDes")
+            Me.columnsimbolo = MyBase.Columns("simbolo")
+            Me.columnmonto = MyBase.Columns("monto")
+            Me.columnmontoD = MyBase.Columns("montoD")
+            Me.columnobra = MyBase.Columns("obra")
+            Me.columnproveedor = MyBase.Columns("proveedor")
+            Me.columnconcepto = MyBase.Columns("concepto")
+            Me.columnnroFactura = MyBase.Columns("nroFactura")
+            Me.columnfecEntrega = MyBase.Columns("fecEntrega")
+            Me.columnaprobador = MyBase.Columns("aprobador")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Private Sub InitClass()
+            Me.columnserie = New Global.System.Data.DataColumn("serie", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnserie)
+            Me.columnnroDes = New Global.System.Data.DataColumn("nroDes", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnroDes)
+            Me.columnfecDes = New Global.System.Data.DataColumn("fecDes", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnfecDes)
+            Me.columnsimbolo = New Global.System.Data.DataColumn("simbolo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsimbolo)
+            Me.columnmonto = New Global.System.Data.DataColumn("monto", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnmonto)
+            Me.columnmontoD = New Global.System.Data.DataColumn("montoD", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnmontoD)
+            Me.columnobra = New Global.System.Data.DataColumn("obra", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnobra)
+            Me.columnproveedor = New Global.System.Data.DataColumn("proveedor", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnproveedor)
+            Me.columnconcepto = New Global.System.Data.DataColumn("concepto", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnconcepto)
+            Me.columnnroFactura = New Global.System.Data.DataColumn("nroFactura", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnroFactura)
+            Me.columnfecEntrega = New Global.System.Data.DataColumn("fecEntrega", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnfecEntrega)
+            Me.columnaprobador = New Global.System.Data.DataColumn("aprobador", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnaprobador)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function NewDatosFacturaRow() As DatosFacturaRow
+            Return CType(Me.NewRow,DatosFacturaRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New DatosFacturaRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(DatosFacturaRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.DatosFacturaRowChangedEvent) Is Nothing) Then
+                RaiseEvent DatosFacturaRowChanged(Me, New DatosFacturaRowChangeEvent(CType(e.Row,DatosFacturaRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.DatosFacturaRowChangingEvent) Is Nothing) Then
+                RaiseEvent DatosFacturaRowChanging(Me, New DatosFacturaRowChangeEvent(CType(e.Row,DatosFacturaRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.DatosFacturaRowDeletedEvent) Is Nothing) Then
+                RaiseEvent DatosFacturaRowDeleted(Me, New DatosFacturaRowChangeEvent(CType(e.Row,DatosFacturaRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.DatosFacturaRowDeletingEvent) Is Nothing) Then
+                RaiseEvent DatosFacturaRowDeleting(Me, New DatosFacturaRowChangeEvent(CType(e.Row,DatosFacturaRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub RemoveDatosFacturaRow(ByVal row As DatosFacturaRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence
+            Dim ds As DataSetInformesCr = New DataSetInformesCr
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "DatosFacturaDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -8052,6 +8444,310 @@ Partial Public Class DataSetInformesCr
     End Class
     
     '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
+    Partial Public Class DatosFacturaRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableDatosFactura As DatosFacturaDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableDatosFactura = CType(Me.Table,DatosFacturaDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property serie() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosFactura.serieColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'serie' de la tabla 'DatosFactura' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosFactura.serieColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nroDes() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosFactura.nroDesColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nroDes' de la tabla 'DatosFactura' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosFactura.nroDesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property fecDes() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosFactura.fecDesColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fecDes' de la tabla 'DatosFactura' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosFactura.fecDesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property simbolo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosFactura.simboloColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'simbolo' de la tabla 'DatosFactura' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosFactura.simboloColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property monto() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosFactura.montoColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'monto' de la tabla 'DatosFactura' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosFactura.montoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property montoD() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosFactura.montoDColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'montoD' de la tabla 'DatosFactura' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosFactura.montoDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property obra() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosFactura.obraColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'obra' de la tabla 'DatosFactura' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosFactura.obraColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property proveedor() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosFactura.proveedorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'proveedor' de la tabla 'DatosFactura' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosFactura.proveedorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property concepto() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosFactura.conceptoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'concepto' de la tabla 'DatosFactura' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosFactura.conceptoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property nroFactura() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosFactura.nroFacturaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'nroFactura' de la tabla 'DatosFactura' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosFactura.nroFacturaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property fecEntrega() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosFactura.fecEntregaColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fecEntrega' de la tabla 'DatosFactura' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosFactura.fecEntregaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property aprobador() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDatosFactura.aprobadorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'aprobador' de la tabla 'DatosFactura' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDatosFactura.aprobadorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsserieNull() As Boolean
+            Return Me.IsNull(Me.tableDatosFactura.serieColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetserieNull()
+            Me(Me.tableDatosFactura.serieColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnroDesNull() As Boolean
+            Return Me.IsNull(Me.tableDatosFactura.nroDesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnroDesNull()
+            Me(Me.tableDatosFactura.nroDesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsfecDesNull() As Boolean
+            Return Me.IsNull(Me.tableDatosFactura.fecDesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetfecDesNull()
+            Me(Me.tableDatosFactura.fecDesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IssimboloNull() As Boolean
+            Return Me.IsNull(Me.tableDatosFactura.simboloColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetsimboloNull()
+            Me(Me.tableDatosFactura.simboloColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsmontoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosFactura.montoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetmontoNull()
+            Me(Me.tableDatosFactura.montoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsmontoDNull() As Boolean
+            Return Me.IsNull(Me.tableDatosFactura.montoDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetmontoDNull()
+            Me(Me.tableDatosFactura.montoDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsobraNull() As Boolean
+            Return Me.IsNull(Me.tableDatosFactura.obraColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetobraNull()
+            Me(Me.tableDatosFactura.obraColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsproveedorNull() As Boolean
+            Return Me.IsNull(Me.tableDatosFactura.proveedorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetproveedorNull()
+            Me(Me.tableDatosFactura.proveedorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsconceptoNull() As Boolean
+            Return Me.IsNull(Me.tableDatosFactura.conceptoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetconceptoNull()
+            Me(Me.tableDatosFactura.conceptoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsnroFacturaNull() As Boolean
+            Return Me.IsNull(Me.tableDatosFactura.nroFacturaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetnroFacturaNull()
+            Me(Me.tableDatosFactura.nroFacturaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsfecEntregaNull() As Boolean
+            Return Me.IsNull(Me.tableDatosFactura.fecEntregaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetfecEntregaNull()
+            Me(Me.tableDatosFactura.fecEntregaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Function IsaprobadorNull() As Boolean
+            Return Me.IsNull(Me.tableDatosFactura.aprobadorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub SetaprobadorNull()
+            Me(Me.tableDatosFactura.aprobadorColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
@@ -8302,6 +8998,39 @@ Partial Public Class DataSetInformesCr
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public ReadOnly Property Row() As DatosGastosDia2Row
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")>  _
+    Public Class DatosFacturaRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As DatosFacturaRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Sub New(ByVal row As DatosFacturaRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property Row() As DatosFacturaRow
             Get
                 Return Me.eventRow
             End Get

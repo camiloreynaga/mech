@@ -751,10 +751,6 @@ Public Class SeguimientoOrdenDesembolsoForm3
         Close()
     End Sub
 
-    Private Sub TabControl1_Selecting(ByVal sender As System.Object, ByVal e As System.Windows.Forms.TabControlCancelEventArgs)
-
-    End Sub
-
 
     Private Sub btnCerrar_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
 

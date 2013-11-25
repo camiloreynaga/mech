@@ -39,9 +39,28 @@ Public Class cConfigFormControls
             End If
         Next
 
+    End Sub
+    ''' <summary>
+    ''' Condigurar Color de controles seleccionados
+    ''' </summary>
+    ''' <param name="pControl">Nombre de Control Ej. Label </param>
+    ''' <param name="container">Nombre de contenedor Ej. GroupBox</param>
+    ''' <param name="pColor">Color</param>
+    ''' <remarks></remarks>
+    Public Sub configurarColorControl2(ByVal pControl As String, ByVal container As Object, ByVal pColor As Color)
 
+        For index As Integer = 0 To CType(container, ContainerControl).Controls.Count - 1
+
+            Dim tipo As String = CType(container, ContainerControl).Controls(index).GetType().ToString()
+            If CType(container, ContainerControl).Controls(index).GetType().ToString() = "System.Windows.Forms." & pControl Then
+                CType(container, ContainerControl).Controls(index).ForeColor = pColor
+            End If
+
+        Next
 
     End Sub
+
+
     ''' <summary>
     ''' Configurar color de controles seleccionados
     ''' </summary>
@@ -50,7 +69,6 @@ Public Class cConfigFormControls
     ''' <param name="pColor">Color</param>
     ''' <remarks></remarks>
     Public Sub configurarColorControlPanel(ByVal pControl As String, ByVal contenedor As Panel, ByVal pColor As Color)
-
         For index As Integer = 0 To contenedor.Controls.Count - 1
 
 
@@ -227,7 +245,7 @@ Public Class cConfigFormControls
 
                 Next
             Catch ex As Exception
-        End Try
+            End Try
         End If
 
         Return total

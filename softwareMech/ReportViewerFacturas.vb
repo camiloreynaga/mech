@@ -3,7 +3,7 @@ Imports CrystalDecisions.ReportSource
 Imports CrystalDecisions.Shared
 
 
-Public Class ReportViewerPagosPendientesDesem
+Public Class ReportViewerFacturas
 
     Private _datosReporte As DataSetInformesCr
 
@@ -20,24 +20,22 @@ Public Class ReportViewerPagosPendientesDesem
 
         Me.New()
         _datosReporte = datos
-
     End Sub
 
-
-    Private Sub ReportViewerPagosPendientesDesem_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub ReportViewerFacturas_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Me.Cursor = Cursors.WaitCursor
         Dim wait As New waitForm
         wait.Show()
 
-        Dim informe As New CrPagosPendientesDesem
+        Dim informe As New CrFacturasConsolidado
         informe.SetDataSource(_datosReporte)
         CrystalReportViewer1.ReportSource = informe
 
+        CrystalReportViewer1.DisplayGroupTree = False
+
         wait.Close()
         Me.Cursor = Cursors.Default
-
-        Me.CrystalReportViewer1.DisplayGroupTree = False
 
     End Sub
 
@@ -71,12 +69,12 @@ Public Class ReportViewerPagosPendientesDesem
 
     End Function
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPdf.Click
+    Private Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.Click
         Dim grabar As SaveFileDialog = New SaveFileDialog
         'Título del cuadro de diálogo.
         grabar.AddExtension = True
         grabar.Title = "Exportar Informe a PDF"
-        grabar.FileName = "Pagos Pendientes "
+        grabar.FileName = "Facturas"
         'Filtro para el tipo de archivo a guardar.
         '
         grabar.Filter = "Adobe Acrobat (*.pdf)|*.pdf" '"Microsoft Excel (*.xls)|*.xls" '& _

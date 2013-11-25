@@ -556,6 +556,7 @@ as
 GO
 
 --Nueva Vista para Seguimiento de Desembolso
+--
 create view VOrdenDesembolsoSeguimiento
 as
 select TOD.idOP,tod.codigo as codObra,tod.serie,tod.nroDes,tod.fecDes,tod.monto,tod.montoDet,tod.montoDif,
@@ -1183,28 +1184,53 @@ GO
 --25/10/13
 --********************************************************
 
+--********************************************************
+--Autor: CR
+--Descripcion: 
 -- obteniendo las Id de las ordenes de desembolso pendientes
+--FechaCreación/Actualización: 19/11/13 CR
+--*********************************************************
+
 create view vDesembolsoFirmaSolicitante
 as
 select codPers,idOP,tipoA from TPersDesem where tipoa =1 
 
+
+--********************************************************
+--Autor: CR
+--Descripcion:
 -- obteniendo las Id de las ordenes de desembolso aprobadas por gerencia
+--FechaCreación/Actualización: 19/11/13 CR
+--*********************************************************
 create view vDesembolsosFirmaGerencia
 as
 select codPers,idOP,tipoA,estDesem from TPersDesem where tipoA =2 
-
+--********************************************************
+--Autor: CR
+--Descripcion: 
 -- obteniendo las Id de las ordenes de desembolso pagadas por Tesoreria
+--FechaCreación/Actualización: 19/11/13 CR
+--*********************************************************
 create view vDesembolsosFirmaTesoreria
 as
 select codPers,idOP,tipoA,estDesem from TPersDesem where tipoa =3 
-
--- obteniendo las Id de las ordenes de desembolso entregadas a contabilidad
+--********************************************************
+--Autor: CR
+--Descripcion: obteniendo las Id de las ordenes de desembolso entregadas a contabilidad
+--FechaCreación/Actualización: 19/11/13 CR
+--*********************************************************
+-- 
 create view vDesembolsosFirmaContabilidad
 as
 select codPers,idOP,tipoA,estDesem  from TPersDesem where tipoa =4
  
 
--- vista para ver las firmas de cada área
+--********************************************************
+--Autor: CR
+--Descripcion: Muestra las ordenes de desembolso relacionadas con las firmas de
+-- Gerencia,Tesorería,Contabilidad
+--FechaCreación/Actualización: 19/11/13 CR 
+--*********************************************************
 create view vDesembolsosFirma
 as
 select VFS.idOP, VFS.tipoA firmaSolicitante,VFG.estDesem estado_Gere,VFG.tipoA firmaGerencia ,VFT.estDesem estado_Teso, VFT.tipoA firmaTesoreria,VFC.estDesem estado_Conta, VFC.tipoA firmaContabilidad    
@@ -1213,17 +1239,33 @@ left join  vDesembolsosFirmaGerencia VFG on  VFS.idOP=VFG.idOP
 left join vDesembolsosFirmaTesoreria VFT on VFS.idOP=VFT.idOP 
 left join vDesembolsosFirmaContabilidad VFC on VFS.idOP=VFC.idOP  
 
---obteniendo la suma de pagos para las ordenes de desembolso
+
+--********************************************************
+--Autor: CR
+--Descripcion: Muestra la suma total de los montos pagados para las ordenes de desembolso 
+--
+--FechaCreación/Actualización: 19/11/13 CR
+--*********************************************************
 create view vPagosDesembolso
 as
 select idOP ,sum(montoPago) montoPago from TPagoDesembolso where codMon=30 group by idOP 
 
---obteniendo la suma de pagos detracciones para las ordenes de desembolso
+--********************************************************
+--Autor: CR
+--Descripcion: Muestra la suma total de las detraciones (montos) pagados para las ordenes de desembolso 
+--
+--FechaCreación/Actualización: 19/11/13 CR
+--*********************************************************
 create view vPagoDetraccionDesembolso
 as
 select idOp, sum (montoD) montoD from TPagoDesembolso group by idOP 
 
---consulta que muestra los pagos pendientes  
+--********************************************************
+--Autor: CR
+--Descripcion: Muestra los pagos pendientes para las ordenes de desembolso 
+--
+--FechaCreación/Actualización: 19/11/13 CR
+--*********************************************************
 create view vSeguimientoDesembolsoPagos
 as
 select VOD.fecDes, VOD.idOP, VOD.serie, VOD.nroDes,VOD.monto,isnull(VPD.montoPago,0.0)montoPagado,(VOD.monto - isnull(VPD.montoPago,0.0) ) diferencia 
@@ -1237,8 +1279,13 @@ left join vPagosDesembolso VPD on VPD.idOP = VOD.idOP
 left join vPagoDetraccionDesembolso VPDE on VPDE.idOP = VOD.idOP
 --Condicional para pagos pendientes 
 
---vista de ordenes de desembolso pendiente de cierre y aprobados por gerencia
---sólo muestra los IDs
+--********************************************************
+--Autor: CR
+--Descripcion: vista de ordenes de desembolso pendiente de cierre y aprobados por gerencia
+-- sólo muestra los IDs
+--FechaCreación/Actualización: 19/11/13 CR
+--*********************************************************
+
 create view VDesembolsosPendFirmaTesoreria
 as
 select VG.idOP  from vDesembolsosFirmaGerencia VG 

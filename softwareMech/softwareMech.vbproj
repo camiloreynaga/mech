@@ -201,6 +201,12 @@
     <Compile Include="crearMaterialForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CrFacturasConsolidado.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrFacturasConsolidado.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrGastosDia.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -315,6 +321,9 @@
     <Compile Include="DataSetInformesCr.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetInformesCr.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetInformesCr.vb">
       <DependentUpon>DataSetInformesCr.xsd</DependentUpon>
     </Compile>
     <Compile Include="entradaAlmacenGuiaMechForm.designer.vb">
@@ -699,6 +708,12 @@
     <Compile Include="ReportViewerCotizacionForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReportViewerFacturas.Designer.vb">
+      <DependentUpon>ReportViewerFacturas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewerFacturas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReportViewerGastosDia.Designer.vb">
       <DependentUpon>ReportViewerGastosDia.vb</DependentUpon>
     </Compile>
@@ -739,6 +754,12 @@
       <DependentUpon>ReportViewerOrdenDesembolsoForm.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportViewerOrdenDesembolsoForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportViewerPadre.Designer.vb">
+      <DependentUpon>ReportViewerPadre.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewerPadre.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReportViewerPagosPendientesDesem.Designer.vb">
@@ -793,6 +814,12 @@
       <DependentUpon>salidaAlmacenPersForm.vb</DependentUpon>
     </Compile>
     <Compile Include="salidaAlmacenPersForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SeguimientoFacturasForm.Designer.vb">
+      <DependentUpon>SeguimientoFacturasForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SeguimientoFacturasForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SeguimientoGRform.Designer.vb">
@@ -922,6 +949,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="crearMaterialForm.resx">
       <DependentUpon>crearMaterialForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrFacturasConsolidado.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrFacturasConsolidado.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrGastosDia.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1180,6 +1211,9 @@
     <EmbeddedResource Include="ReportViewerCotizacionForm.resx">
       <DependentUpon>ReportViewerCotizacionForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewerFacturas.resx">
+      <DependentUpon>ReportViewerFacturas.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerGastosDia.resx">
       <DependentUpon>ReportViewerGastosDia.vb</DependentUpon>
     </EmbeddedResource>
@@ -1200,6 +1234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerOrdenDesembolsoForm.resx">
       <DependentUpon>ReportViewerOrdenDesembolsoForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewerPadre.resx">
+      <DependentUpon>ReportViewerPadre.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerPagosPendientesDesem.resx">
       <DependentUpon>ReportViewerPagosPendientesDesem.vb</DependentUpon>
@@ -1227,6 +1264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="salidaAlmacenPersForm.resx">
       <DependentUpon>salidaAlmacenPersForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeguimientoFacturasForm.resx">
+      <DependentUpon>SeguimientoFacturasForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SeguimientoGRform.resx">
       <DependentUpon>SeguimientoGRform.vb</DependentUpon>

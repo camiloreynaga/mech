@@ -197,14 +197,14 @@ Public Class reportePagosPendientesDesembolso
         'enlazando con el navigator
         BindingNavigator1.BindingSource = bindingSource
         filtrando()
-
+        'dando formato a la grilla
         ModificandoColumnaDGV()
 
         'mostrando la suma de os importes en la grilla
         txtPendienteDolares.Text = (oGrilla.SumarColumnaGrilla(DgDesembolsos, "diferencia", "simbolo", "US$")).ToString()
         txtPendienteSoles.Text = (oGrilla.SumarColumnaGrilla(DgDesembolsos, "diferencia", "simbolo", "S/.")).ToString()
 
-        'dando formato a la grilla
+
 
         txtPendienteSoles.Text = Format(CDbl(txtPendienteSoles.Text), "0,0.00")
         txtPendienteDolares.Text = Format(CDbl(txtPendienteDolares.Text), "0,0.00")
