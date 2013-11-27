@@ -1134,6 +1134,9 @@ Public Class SeguimientoOrdenDesembolsoForm2
         wait.Show()
         Me.Cursor = Cursors.WaitCursor
 
+        'Validando ingreso de datos
+
+
         Dim fechaInicio As New SqlParameter("@fechaInicio", SqlDbType.Date)
         fechaInicio.Value = dtpInicio.Value
         Dim fechaFin As New SqlParameter("@fechaFin", SqlDbType.Date)

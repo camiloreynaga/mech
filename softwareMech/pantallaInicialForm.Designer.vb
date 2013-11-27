@@ -115,6 +115,7 @@ Partial Class pantallaInicialForm
         Me.infT5 = New System.Windows.Forms.ToolStripMenuItem
         Me.infT3 = New System.Windows.Forms.ToolStripMenuItem
         Me.infT4 = New System.Windows.Forms.ToolStripMenuItem
+        Me.FrmFacturasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator
         Me.opcPersonal = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcPers1 = New System.Windows.Forms.ToolStripMenuItem
@@ -142,7 +143,7 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.FrmFacturasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.FrmToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -884,14 +885,14 @@ Partial Class pantallaInicialForm
         '
         'infT
         '
-        Me.infT.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.infT1, Me.infT2, Me.infT5, Me.infT3, Me.infT4, Me.FrmFacturasToolStripMenuItem})
+        Me.infT.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.infT1, Me.infT2, Me.infT5, Me.infT3, Me.infT4, Me.FrmFacturasToolStripMenuItem, Me.FrmToolStripMenuItem})
         Me.infT.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.infT.Image = CType(resources.GetObject("infT.Image"), System.Drawing.Image)
         Me.infT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.infT.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.infT.Name = "infT"
         Me.infT.Size = New System.Drawing.Size(94, 20)
-        Me.infT.Text = "Informes..."
+        Me.infT.Text = "Ven"
         '
         'infT1
         '
@@ -937,6 +938,12 @@ Partial Class pantallaInicialForm
         Me.infT4.Name = "infT4"
         Me.infT4.Size = New System.Drawing.Size(176, 22)
         Me.infT4.Text = "Pagos Pendientes"
+        '
+        'FrmFacturasToolStripMenuItem
+        '
+        Me.FrmFacturasToolStripMenuItem.Name = "FrmFacturasToolStripMenuItem"
+        Me.FrmFacturasToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.FrmFacturasToolStripMenuItem.Text = "frmFacturas"
         '
         'ToolStripSeparator8
         '
@@ -1168,11 +1175,11 @@ Partial Class pantallaInicialForm
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'FrmFacturasToolStripMenuItem
+        'FrmToolStripMenuItem
         '
-        Me.FrmFacturasToolStripMenuItem.Name = "FrmFacturasToolStripMenuItem"
-        Me.FrmFacturasToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
-        Me.FrmFacturasToolStripMenuItem.Text = "frmFacturas"
+        Me.FrmToolStripMenuItem.Name = "FrmToolStripMenuItem"
+        Me.FrmToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.FrmToolStripMenuItem.Text = "frmVentas"
         '
         'pantallaInicialForm
         '
@@ -1318,4 +1325,5 @@ Partial Class pantallaInicialForm
     Friend WithEvents infT5 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents opcOrdDesSegG As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FrmFacturasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents FrmToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

@@ -127,6 +127,7 @@ Public Class cDataManager
         Catch ex As Exception
             MsgBox(ex.Message)
         Finally
+
             dataR.Close()
 
         End Try

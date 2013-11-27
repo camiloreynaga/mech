@@ -219,7 +219,9 @@ Public Class SeguimientoFacturasForm
 
     Private Sub chkObra_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkObra.CheckedChanged
 
+        'Muetra / Oculta los controles de la lista, de acuerdo al estado del check
         Dim controles As String() = {cbObras.Name}
+
         If chkObra.Checked Then
             mostrarOcultarControles(Me, New List(Of String)(controles), False)
 

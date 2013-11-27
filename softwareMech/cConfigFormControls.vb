@@ -4,6 +4,8 @@ Imports System.Collections
 
 Public Class cConfigFormControls
 
+#Region "DataGridView"
+
     Public Sub ConfigGrilla(ByVal grilla As DataGridView)
 
         'seleción por filas completas
@@ -16,86 +18,6 @@ Public Class cConfigFormControls
         'Next
 
         ' grilla.Rows(0).HeaderCell.Value = 1
-
-    End Sub
-
-    ''' <summary>
-    ''' Configurar color de controles seleccionados
-    ''' </summary>
-    ''' <param name="pControl">Nombre de Control Ej. Label</param>
-    ''' <param name="contenedor">Nombre de contenedor GroupBox</param>
-    ''' <param name="pColor">Color</param>
-    ''' <remarks></remarks>
-    Public Sub configurarColorControl(ByVal pControl As String, ByVal contenedor As GroupBox, ByVal pColor As Color)
-
-        For index As Integer = 0 To contenedor.Controls.Count - 1
-
-
-            Dim tipo As String = contenedor.Controls(index).GetType().ToString()
-            If contenedor.Controls(index).GetType().ToString() = "System.Windows.Forms." & pControl Then
-
-                contenedor.Controls(index).ForeColor = pColor
-
-            End If
-        Next
-
-    End Sub
-    ''' <summary>
-    ''' Condigurar Color de controles seleccionados
-    ''' </summary>
-    ''' <param name="pControl">Nombre de Control Ej. Label </param>
-    ''' <param name="container">Nombre de contenedor Ej. GroupBox</param>
-    ''' <param name="pColor">Color</param>
-    ''' <remarks></remarks>
-    Public Sub configurarColorControl2(ByVal pControl As String, ByVal container As Object, ByVal pColor As Color)
-
-        For index As Integer = 0 To CType(container, ContainerControl).Controls.Count - 1
-
-            Dim tipo As String = CType(container, ContainerControl).Controls(index).GetType().ToString()
-            If CType(container, ContainerControl).Controls(index).GetType().ToString() = "System.Windows.Forms." & pControl Then
-                CType(container, ContainerControl).Controls(index).ForeColor = pColor
-            End If
-
-        Next
-
-    End Sub
-
-
-    ''' <summary>
-    ''' Configurar color de controles seleccionados
-    ''' </summary>
-    ''' <param name="pControl">Nombre de Control Ej. Label</param>
-    ''' <param name="contenedor">Nombre de contenedor panel</param>
-    ''' <param name="pColor">Color</param>
-    ''' <remarks></remarks>
-    Public Sub configurarColorControlPanel(ByVal pControl As String, ByVal contenedor As Panel, ByVal pColor As Color)
-        For index As Integer = 0 To contenedor.Controls.Count - 1
-
-
-            Dim tipo As String = contenedor.Controls(index).GetType().ToString()
-            If contenedor.Controls(index).GetType().ToString() = "System.Windows.Forms." & pControl Then
-
-                contenedor.Controls(index).ForeColor = pColor
-
-            End If
-        Next
-
-
-
-    End Sub
-
-    ''' <summary>
-    ''' Da formato numerico Ej 1,200.00
-    ''' </summary>
-    ''' <param name="numero"></param>
-    ''' <remarks></remarks>
-    Public Sub FormatoContabilidad(ByVal numero As TextBox)
-
-        If String.IsNullOrEmpty(numero.Text) = False Then
-            Dim valor As Double = CDbl(numero.Text)
-            numero.Text = valor.ToString("0,0.00", System.Globalization.CultureInfo.InvariantCulture)
-            'Return numero
-        End If
 
     End Sub
 
@@ -136,6 +58,7 @@ Public Class cConfigFormControls
             End If
         Next
     End Sub
+
     ''' <summary>
     ''' Da color a las filas de un data grid view
     ''' </summary>
@@ -156,6 +79,7 @@ Public Class cConfigFormControls
             End If
         Next
     End Sub
+
     ''' <summary>
     ''' Da color a las filas de un data grid view
     ''' </summary>
@@ -172,7 +96,6 @@ Public Class cConfigFormControls
             grilla.Rows(j).Cells(columna).Style.ForeColor = pForeColor
         Next
     End Sub
-
 
     ''' <summary>
     ''' Configurar el Estilo (Font) de la columna por cada fila
@@ -215,6 +138,15 @@ Public Class cConfigFormControls
         Return total
     End Function
 
+    ''' <summary>
+    ''' Suma las columnas dentro de la grilla
+    ''' </summary>
+    ''' <param name="Dgv">DataGridView</param>
+    ''' <param name="columnaSuma">Array de columnas a sumar</param>
+    ''' <param name="columnaCondicion">Array de columna condición para la suma</param>
+    ''' <param name="condicion">Condicion a evalur</param>
+    ''' <returns>Resultado en decimales</returns>
+    ''' <remarks></remarks>
     Public Function SumarColumnaGrillaArray(ByVal Dgv As DataGridView, ByVal columnaSuma As String, ByVal columnaCondicion() As String, ByVal condicion() As String) As Double
         Dim total As Double = 0.0
         Dim verifica As Boolean = True
@@ -269,4 +201,117 @@ Public Class cConfigFormControls
         End Try
         Return total
     End Function
+#End Region
+
+#Region "Form"
+
+
+
+    ''' <summary>
+    ''' Configurar color de controles seleccionados
+    ''' </summary>
+    ''' <param name="pControl">Nombre de Control Ej. Label</param>
+    ''' <param name="contenedor">Nombre de contenedor GroupBox</param>
+    ''' <param name="pColor">Color</param>
+    ''' <remarks></remarks>
+    Public Sub configurarColorControl(ByVal pControl As String, ByVal contenedor As GroupBox, ByVal pColor As Color)
+
+        For index As Integer = 0 To contenedor.Controls.Count - 1
+
+
+            Dim tipo As String = contenedor.Controls(index).GetType().ToString()
+            If contenedor.Controls(index).GetType().ToString() = "System.Windows.Forms." & pControl Then
+
+                contenedor.Controls(index).ForeColor = pColor
+
+            End If
+        Next
+
+    End Sub
+
+    ''' <summary>
+    ''' Condigurar Color de controles seleccionados
+    ''' </summary>
+    ''' <param name="pControl">Nombre de Control Ej. Label </param>
+    ''' <param name="container">Nombre de contenedor Ej. GroupBox</param>
+    ''' <param name="pColor">Color</param>
+    ''' <remarks></remarks>
+    Public Sub configurarColorControl2(ByVal pControl As String, ByVal container As Object, ByVal pColor As Color)
+        Try
+            'CType(container, Control).Controls.co()
+        
+            For index As Integer = 0 To CType(container, Control).Controls.Count - 1
+
+                Dim tipo As String = CType(container, Control).Controls(index).GetType().ToString()
+                If CType(container, Control).Controls(index).GetType().ToString() = "System.Windows.Forms." & pControl Then
+                    CType(container, Control).Controls(index).ForeColor = pColor
+                End If
+
+            Next
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+
+    ''' <summary>
+    ''' Configurar color de controles seleccionados
+    ''' </summary>
+    ''' <param name="pControl">Nombre de Control Ej. Label</param>
+    ''' <param name="contenedor">Nombre de contenedor panel</param>
+    ''' <param name="pColor">Color</param>
+    ''' <remarks></remarks>
+    Public Sub configurarColorControlPanel(ByVal pControl As String, ByVal contenedor As Panel, ByVal pColor As Color)
+        For index As Integer = 0 To contenedor.Controls.Count - 1
+
+
+            Dim tipo As String = contenedor.Controls(index).GetType().ToString()
+            If contenedor.Controls(index).GetType().ToString() = "System.Windows.Forms." & pControl Then
+
+                contenedor.Controls(index).ForeColor = pColor
+
+            End If
+        Next
+
+
+
+    End Sub
+
+
+
+    ''' <summary>
+    ''' Da formato numerico Ej 1,200.00
+    ''' </summary>
+    ''' <param name="numero"></param>
+    ''' <remarks></remarks>
+    Public Sub FormatoContabilidad(ByVal numero As TextBox)
+
+        If String.IsNullOrEmpty(numero.Text) = False Then
+            Dim valor As Double = CDbl(numero.Text)
+            numero.Text = valor.ToString("0,0.00", System.Globalization.CultureInfo.InvariantCulture)
+            'Return numero
+        End If
+
+    End Sub
+
+    ''' <summary>
+    ''' muestra una colección de controles dento de un contenedor
+    ''' </summary>
+    ''' <param name="container">contenedor</param>
+    ''' <param name="_controls">controles a evaluar</param>
+    ''' <param name="action">visible true or false</param>
+    ''' <remarks></remarks>
+    Public Sub mostrarOcultarControles(ByVal container As Object, ByVal _controls As List(Of String), ByVal action As Boolean)
+
+        'convertir el objeto container en contenedor
+        For index As Integer = 0 To _controls.Count - 1
+            'estableciendo la propiedad visible de los controles de la lista
+            CType(container, ContainerControl).Controls(_controls(index)).Visible = action
+        Next
+
+    End Sub
+
+#End Region
+
 End Class

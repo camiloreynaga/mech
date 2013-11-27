@@ -398,6 +398,12 @@
     <Compile Include="informeSolicitudCajaForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="IntervaloFecha.Designer.vb">
+      <DependentUpon>IntervaloFecha.vb</DependentUpon>
+    </Compile>
+    <Compile Include="IntervaloFecha.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="jalarCotizacionForm.Designer.vb">
       <DependentUpon>jalarCotizacionForm.vb</DependentUpon>
     </Compile>
@@ -676,6 +682,12 @@
       <DependentUpon>ReporteCardexForm.vb</DependentUpon>
     </Compile>
     <Compile Include="ReporteCardexForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteDocVenta.Designer.vb">
+      <DependentUpon>ReporteDocVenta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteDocVenta.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="reportePagosPendientesDesembolso.Designer.vb">
@@ -1058,6 +1070,9 @@
     <EmbeddedResource Include="informeSolicitudCajaForm.resx">
       <DependentUpon>informeSolicitudCajaForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="IntervaloFecha.resx">
+      <DependentUpon>IntervaloFecha.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="jalarCotizacionForm.resx">
       <DependentUpon>jalarCotizacionForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -1195,6 +1210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReporteCardexForm.resx">
       <DependentUpon>ReporteCardexForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteDocVenta.resx">
+      <DependentUpon>ReporteDocVenta.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="reportePagosPendientesDesembolso.resx">
       <DependentUpon>reportePagosPendientesDesembolso.vb</DependentUpon>
