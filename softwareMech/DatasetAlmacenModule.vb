@@ -13,7 +13,7 @@ Module DatasetAlmacenModule
     Public daTPers As SqlDataAdapter
     Public daTProd As SqlDataAdapter
     Public daTProvee As SqlDataAdapter
-    Public daTCliente As SqlDataAdapter
+    Public daTCli As SqlDataAdapter
     Public daTAlm As SqlDataAdapter
     Public daVNeg As SqlDataAdapter
     Public daVDoc As SqlDataAdapter

@@ -321,11 +321,32 @@ Public Class SeguimientoFacturasForm
         End If
         'mostrando datos para Proveedor
         If rdoProv.Checked Then
+
+            'validando selección de proveedor
+            If (cbProv.SelectedIndex = -1) Then
+                MessageBox.Show("Por favor seleccione un valor valido.", nomNegocio, Nothing, MessageBoxIcon.Error)
+
+                cbProv.Focus()
+                wait.Close()
+                Me.Cursor = Cursors.Default
+                Exit Sub
+            End If
+
             query += "WHERE codProv =" & cbProv.SelectedValue
             oDataManager.CargarGrilla(query, CommandType.Text, dgDesembolso, BindingSource0)
         End If
         'mostrando datos para serie
         If rdoSerie.Checked Then
+            'validando ingreso de serie
+            If (cbSerie.SelectedIndex = -1) Then
+                MessageBox.Show("Por favor seleccione un valor valido.", nomNegocio, Nothing, MessageBoxIcon.Error)
+
+                cbSerie.Focus()
+                wait.Close()
+                Me.Cursor = Cursors.Default
+                Exit Sub
+            End If
+
             query += "WHERE serie = " & cbSerie.SelectedValue
             oDataManager.CargarGrilla(query, CommandType.Text, dgDesembolso, BindingSource0)
         End If

@@ -52,6 +52,7 @@ Partial Class ReporteDocVenta
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
         Me.dgvVentas = New System.Windows.Forms.DataGridView
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
+        Me.lblMonedaTotal = New System.Windows.Forms.Label
         Me.lblMonedaIGV = New System.Windows.Forms.Label
         Me.lblMonedaSubtotal = New System.Windows.Forms.Label
         Me.Label3 = New System.Windows.Forms.Label
@@ -72,7 +73,8 @@ Partial Class ReporteDocVenta
         Me.BindingNavigatorSeparator5 = New System.Windows.Forms.ToolStripSeparator
         Me.dgDetalleVenta = New System.Windows.Forms.DataGridView
         Me.btnCancel = New System.Windows.Forms.Button
-        Me.lblMonedaTotal = New System.Windows.Forms.Label
+        Me.btnImprimir = New System.Windows.Forms.ToolStripButton
+        Me.chkObra = New System.Windows.Forms.CheckBox
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -225,6 +227,7 @@ Partial Class ReporteDocVenta
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.chkObra)
         Me.GroupBox1.Controls.Add(Me.BindingNavigator1)
         Me.GroupBox1.Controls.Add(Me.dgvVentas)
         Me.GroupBox1.Location = New System.Drawing.Point(20, 72)
@@ -239,7 +242,7 @@ Partial Class ReporteDocVenta
         Me.BindingNavigator1.CountItem = Me.BindingNavigatorCountItem
         Me.BindingNavigator1.DeleteItem = Nothing
         Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
+        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.btnImprimir})
         Me.BindingNavigator1.Location = New System.Drawing.Point(3, 232)
         Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -346,6 +349,15 @@ Partial Class ReporteDocVenta
         Me.GroupBox3.Size = New System.Drawing.Size(852, 230)
         Me.GroupBox3.TabIndex = 31
         Me.GroupBox3.TabStop = False
+        '
+        'lblMonedaTotal
+        '
+        Me.lblMonedaTotal.AutoSize = True
+        Me.lblMonedaTotal.Location = New System.Drawing.Point(709, 208)
+        Me.lblMonedaTotal.Name = "lblMonedaTotal"
+        Me.lblMonedaTotal.Size = New System.Drawing.Size(31, 13)
+        Me.lblMonedaTotal.TabIndex = 4
+        Me.lblMonedaTotal.Text = "US$"
         '
         'lblMonedaIGV
         '
@@ -521,14 +533,28 @@ Partial Class ReporteDocVenta
         Me.btnCancel.Text = "cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
-        'lblMonedaTotal
+        'btnImprimir
         '
-        Me.lblMonedaTotal.AutoSize = True
-        Me.lblMonedaTotal.Location = New System.Drawing.Point(709, 208)
-        Me.lblMonedaTotal.Name = "lblMonedaTotal"
-        Me.lblMonedaTotal.Size = New System.Drawing.Size(31, 13)
-        Me.lblMonedaTotal.TabIndex = 4
-        Me.lblMonedaTotal.Text = "US$"
+        Me.btnImprimir.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
+        Me.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(71, 22)
+        Me.btnImprimir.Text = "Imprimir"
+        Me.btnImprimir.ToolTipText = "Imprimir orden de desembolso"
+        '
+        'chkObra
+        '
+        Me.chkObra.AutoSize = True
+        Me.chkObra.Checked = True
+        Me.chkObra.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkObra.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkObra.Location = New System.Drawing.Point(292, 237)
+        Me.chkObra.Name = "chkObra"
+        Me.chkObra.Size = New System.Drawing.Size(100, 17)
+        Me.chkObra.TabIndex = 2
+        Me.chkObra.Text = "Imprimir Obra"
+        Me.chkObra.UseVisualStyleBackColor = True
         '
         'ReporteDocVenta
         '
@@ -632,4 +658,6 @@ Partial Class ReporteDocVenta
     Friend WithEvents lblMonedaIGV As System.Windows.Forms.Label
     Friend WithEvents lblMonedaSubtotal As System.Windows.Forms.Label
     Friend WithEvents lblMonedaTotal As System.Windows.Forms.Label
+    Friend WithEvents btnImprimir As System.Windows.Forms.ToolStripButton
+    Friend WithEvents chkObra As System.Windows.Forms.CheckBox
 End Class

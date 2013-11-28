@@ -138,7 +138,7 @@ Public Class Num2LetEsp
         astrConversor(0, 7) = "Setecientos"
         astrConversor(0, 8) = "Ochocientos"
         astrConversor(0, 9) = "Novecientos"
-        astrConversor(1, 1) = "Uno"
+        astrConversor(1, 1) = "Un"
         astrConversor(1, 2) = "Dos"
         astrConversor(1, 3) = "Tres"
         astrConversor(1, 4) = "Cuatro"

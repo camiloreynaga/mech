@@ -1189,15 +1189,10 @@ Public Class pantallaInicialForm
         frmSeg.Show()
     End Sub
 
-    Private Sub FrmFacturasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FrmFacturasToolStripMenuItem.Click
-        Dim segFact As New SeguimientoFacturasForm
-        segFact.MdiParent = Me
-        segFact.Show()
-    End Sub
+    Private Sub opcIng2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcIng2.Click
+        Dim frmSeg As New ReporteDocVenta
+        frmSeg.MdiParent = Me
+        frmSeg.Show()
 
-    Private Sub FrmToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FrmToolStripMenuItem.Click
-        Dim rptVentas As New ReporteDocVenta
-        rptVentas.MdiParent = Me
-        rptVentas.Show()
     End Sub
 End Class

@@ -27,7 +27,7 @@ Public Class mantLugarForm
         sele = "select codUbi,ubicacion,'est'=case when estado=1 then 'Abierto' else 'Cerrado' end,color,codigo,estado from TUbicacion"
         crearDataAdapterTable(daTUbi, sele)
         sele = "select codIde,razon,idTipId from TIdentidad where idTipId=1 and estado=1 order by razon"  'idTipId=1 Cliente
-        crearDataAdapterTable(daTCliente, sele)
+        crearDataAdapterTable(daTCli, sele)
 
         Try
             'procedimiento para instanciar el dataSet - DatasetAlmacenModule.vb
@@ -35,7 +35,7 @@ Public Class mantLugarForm
             'llenat el dataSet con los dataAdapter
             daTabla1.Fill(dsAlmacen, "VLugarUbicacion")
             daTUbi.Fill(dsAlmacen, "TUbicacion")
-            daTCliente.Fill(dsAlmacen, "TIdentidad")
+            daTCli.Fill(dsAlmacen, "TIdentidad")
 
             AgregarRelacion()
 

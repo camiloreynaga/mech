@@ -261,6 +261,12 @@
       <DependentUpon>CrystalReport10.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReport11.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport11.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrystalReport2.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -321,9 +327,6 @@
     <Compile Include="DataSetInformesCr.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetInformesCr.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSetInformesCr.vb">
       <DependentUpon>DataSetInformesCr.xsd</DependentUpon>
     </Compile>
     <Compile Include="entradaAlmacenGuiaMechForm.designer.vb">
@@ -398,7 +401,7 @@
     <Compile Include="informeSolicitudCajaForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IntervaloFecha.Designer.vb">
+    <Compile Include="IntervaloFecha.designer.vb">
       <DependentUpon>IntervaloFecha.vb</DependentUpon>
     </Compile>
     <Compile Include="IntervaloFecha.vb">
@@ -684,7 +687,7 @@
     <Compile Include="ReporteCardexForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReporteDocVenta.Designer.vb">
+    <Compile Include="ReporteDocVenta.designer.vb">
       <DependentUpon>ReporteDocVenta.vb</DependentUpon>
     </Compile>
     <Compile Include="ReporteDocVenta.vb">
@@ -720,7 +723,13 @@
     <Compile Include="ReportViewerCotizacionForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportViewerFacturas.Designer.vb">
+    <Compile Include="ReportViewerDocVentaForm.Designer.vb">
+      <DependentUpon>ReportViewerDocVentaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewerDocVentaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportViewerFacturas.designer.vb">
       <DependentUpon>ReportViewerFacturas.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportViewerFacturas.vb">
@@ -768,7 +777,7 @@
     <Compile Include="ReportViewerOrdenDesembolsoForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportViewerPadre.Designer.vb">
+    <Compile Include="ReportViewerPadre.designer.vb">
       <DependentUpon>ReportViewerPadre.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportViewerPadre.vb">
@@ -828,7 +837,7 @@
     <Compile Include="salidaAlmacenPersForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SeguimientoFacturasForm.Designer.vb">
+    <Compile Include="SeguimientoFacturasForm.designer.vb">
       <DependentUpon>SeguimientoFacturasForm.vb</DependentUpon>
     </Compile>
     <Compile Include="SeguimientoFacturasForm.vb">
@@ -1001,6 +1010,10 @@
     <EmbeddedResource Include="CrystalReport10.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport10.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport11.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport11.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1228,6 +1241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerCotizacionForm.resx">
       <DependentUpon>ReportViewerCotizacionForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewerDocVentaForm.resx">
+      <DependentUpon>ReportViewerDocVentaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerFacturas.resx">
       <DependentUpon>ReportViewerFacturas.vb</DependentUpon>

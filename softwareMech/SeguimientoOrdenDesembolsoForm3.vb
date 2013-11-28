@@ -889,16 +889,42 @@ Public Class SeguimientoOrdenDesembolsoForm3
 
 
         If rdoObra.Checked = True Then
+
+           
+
             consulta += " where fecDes between @fechaInicio and @fechaFin "
             oDataManager.CargarGrilla(consulta, parametros, CommandType.Text, dgDesembolso, BindingSource0)
         End If
 
         If rdoProveedor.Checked = True Then
+
+            'validando selección de proveedor
+            If (cbProveedor.SelectedIndex = -1) Then
+                MessageBox.Show("Por favor seleccione un valor valido.", nomNegocio, Nothing, MessageBoxIcon.Error)
+
+                cbProveedor.Focus()
+                wait.Close()
+                Me.Cursor = Cursors.Default
+                Exit Sub
+            End If
+
             consulta += " WHERE codIde =" & cbProveedor.SelectedValue
             oDataManager.CargarGrilla(consulta, CommandType.Text, dgDesembolso, BindingSource0)
         End If
 
         If rdoSerie.Checked = True Then
+
+            'validando selección de serie
+            If (cbSerie.SelectedIndex = -1) Then
+                MessageBox.Show("Por favor seleccione un valor valido.", nomNegocio, Nothing, MessageBoxIcon.Error)
+
+                cbSerie.Focus()
+                wait.Close()
+                Me.Cursor = Cursors.Default
+                Exit Sub
+            End If
+
+
             consulta += " WHERE serie =" & cbSerie.SelectedValue
             oDataManager.CargarGrilla(consulta, CommandType.Text, dgDesembolso, BindingSource0)
         End If

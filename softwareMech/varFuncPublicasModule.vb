@@ -82,6 +82,25 @@ Module varFuncPublicasModule
     Public vCodUbi As Integer
     Public vCodGuia As Integer
     Public vObs As String
+    Public vCliente As String
+    Public vDir As String
+    Public vRuc As String
+    Public vCan1 As String
+    Public vCan2 As String
+    Public vDet1 As String
+    Public vDet2 As String
+    Public vPre1 As String
+    Public vPre2 As String
+    Public vTot1 As String
+    Public vTot2 As String
+    Public vDes1 As String
+    Public vDes2 As String
+    Public vObra As String
+    Public vLetra As String
+    Public vSub As String
+    Public vIgv1 As String
+    Public vTot As String
+    Public vMon As String
 
     Public vParam1 As String
     Public vParam2 As String

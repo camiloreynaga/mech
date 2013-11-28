@@ -1,7 +1,7 @@
 
 --********************************************************
 --Autor: CR
---Descripcion:
+--Descripcion:vista para facturas entregadas
 -- Gerencia,Tesorería,Contabilidad
 --FechaCreación/Actualización: 19/11/13 CR 
 --*********************************************************
@@ -30,6 +30,14 @@ and TOD.fecDes Between '01/10/2013' and '31/10/2013'
 
 ---
 -- comprobantes pendientes de entrega
+
+--********************************************************
+--Autor: CR
+--Descripcion:vista para facturas pendientes de entrega
+-- Gerencia,Tesorería,Contabilidad
+--FechaCreación/Actualización: 19/11/13 CR 
+--*********************************************************
+
 create view vFacturasPendientes
 as
 select TOD.idOP,TOD.serie,TOD.nroDes,TOD.fecDes,

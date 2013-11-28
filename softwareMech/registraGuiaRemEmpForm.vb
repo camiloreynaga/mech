@@ -1682,4 +1682,8 @@ Public Class registraGuiaRemEmpForm
             End If
         End Try
     End Sub
+
+    Private Sub lbOrden_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbOrden.SelectedIndexChanged
+
+    End Sub
 End Class

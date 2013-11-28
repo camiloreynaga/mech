@@ -8,6 +8,7 @@ Public Class InformeMovCajaChicaForm
     Dim BindingSource3 As New BindingSource
     Dim BindingSource4 As New BindingSource
     Dim BindingSource5 As New BindingSource
+    Dim BindingSource6 As New BindingSource
 
     Private Sub InformeMovCajaChicaForm_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Leave
         Me.Close()
@@ -37,7 +38,11 @@ Public Class InformeMovCajaChicaForm
         daVKardex.SelectCommand.Parameters.Add("@codDia2", SqlDbType.Int, 0).Value = 0
         daVKardex.SelectCommand.Parameters.Add("@codCC", SqlDbType.Int, 0).Value = 0
 
-        sele = "select codDetSol,cant1,uniMed,insumo,prec1,totPar,comp,areaM,estApro,obsSol,tipoM,nom,obsApro,codApro,codMat,codAreaM,codTipM,codSC,codDC,nroOtros,compCheck,estDet from VDetSolCaja where codSC=@cod"
+        sele = "select codSC,nro,fechaSol,nomSoli,montoSol,imprevisto,salAnt,totPar,requerimiento,montoRen,salAct,est,nomObra,estSol,codObra,codSede,codPers from VSolCajaTodo where codSC=@codSC"
+        crearDataAdapterTable(daTabla3, sele)
+        daTabla3.SelectCommand.Parameters.Add("@codSC", SqlDbType.Int, 0).Value = 0
+
+        sele = "select codDetSol,tipoM,insumo,cant1,prec1,totPar,comp,fecha,comp1,nroOtros,cant2,prec2,totReal,estRen1,nom,obsRen,ingre,areaM,codRen,codMat,codAreaM,codTipM,codSC,codDC,compCheck,estRen,compRen,ingreso,obsSol from VDetSolCajaCuenta where codSC=@cod"
         crearDataAdapterTable(daDetDoc, sele)
         daDetDoc.SelectCommand.Parameters.Add("@cod", SqlDbType.Int, 0).Value = 0
 
@@ -48,7 +53,12 @@ Public Class InformeMovCajaChicaForm
             daTabla1.Fill(dsAlmacen, "VDiaCaja")
             daTabla2.Fill(dsAlmacen, "VCajaObra")
             daVKardex.Fill(dsAlmacen, "VMovimientoCaja")
-            daDetDoc.Fill(dsAlmacen, "VDetSolCaja")
+
+            daTabla3.Fill(dsAlmacen, "VSolCajaTodo")
+            daDetDoc.Fill(dsAlmacen, "VDetSolCajaCuenta")
+
+            BindingSource6.DataSource = dsAlmacen
+            BindingSource6.DataMember = "VSolCajaTodo"
 
             BindingSource1.DataSource = dsAlmacen
             BindingSource1.DataMember = "VDiaCaja"
@@ -77,13 +87,25 @@ Public Class InformeMovCajaChicaForm
             BindingSource3.Sort = "nroMC"
 
             BindingSource5.DataSource = dsAlmacen
-            BindingSource5.DataMember = "VDetSolCaja"
+            BindingSource5.DataMember = "VDetSolCajaCuenta"
             Navigator3.BindingSource = BindingSource5
             dgTabla3.DataSource = BindingSource5
-            BindingSource5.Sort = "codAreaM,codDetSol"
+            BindingSource5.Sort = "codTipM,codDetSol"
             ModificarColumnasDGV()
 
             configurarColorControl()
+
+            txtNro.DataBindings.Add("Text", BindingSource6, "nro")
+            txtFec.DataBindings.Add("Text", BindingSource6, "fechaSol")
+            txtSol.DataBindings.Add("Text", BindingSource6, "nomSoli")
+            txtObra.DataBindings.Add("Text", BindingSource6, "nomObra")
+            txtTotIns.DataBindings.Add("Text", BindingSource6, "montoSol")
+            txtImpre.DataBindings.Add("Text", BindingSource6, "imprevisto")
+            txtSalAnt.DataBindings.Add("Text", BindingSource6, "salAnt")
+            txtTotReq.DataBindings.Add("Text", BindingSource6, "totPar")
+            txtReq.DataBindings.Add("Text", BindingSource6, "requerimiento")
+            txtTotEgr.DataBindings.Add("Text", BindingSource6, "montoRen")
+            txtSalAct.DataBindings.Add("Text", BindingSource6, "salAct")
 
             BindingSource1.MoveLast()
             BindingSource2.MoveLast()
@@ -101,49 +123,7 @@ Public Class InformeMovCajaChicaForm
 
     Private Sub InformeMovCajaChicaForm_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         vfVAn1 = True
-        visualizarDet()
-
-        panelAux.Visible = False  'ocultando el datagrid de detalle de requrimientos
-    End Sub
-
-    Dim vfVAn1 As Boolean = False
-    Private Sub dgTabla2_CurrentCellChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgTabla2.CurrentCellChanged
-        If vfVAn1 Then
-            visualizarDet()
-        End If
-    End Sub
-
-    Dim codSC As Integer
-    Private Sub visualizarDet()
-        If BindingSource3.Position = -1 Then
-            Exit Sub
-        End If
-
-        If IsNumeric(BindingSource3.Item(BindingSource3.Position)(24)) Then
-            codSC = BindingSource3.Item(BindingSource3.Position)(24)
-        Else
-            codSC = 0
-        End If
-
-        Me.Cursor = Cursors.WaitCursor
-        dsAlmacen.Tables("VDetSolCaja").Clear()
-        daDetDoc.SelectCommand.Parameters("@cod").Value = codSC
-        daDetDoc.Fill(dsAlmacen, "VDetSolCaja")
-        colorearFila()
-        Me.Cursor = Cursors.Default
-    End Sub
-
-    Private Sub colorearFila()
-        For j As Short = 0 To BindingSource5.Count - 1
-            If BindingSource5.Item(j)(21) = 1 Then 'Aprobado
-                dgTabla3.Rows(j).Cells(8).Style.BackColor = Color.Green 'Color.YellowGreen
-                dgTabla3.Rows(j).Cells(8).Style.ForeColor = Color.White
-            End If
-            If BindingSource5.Item(j)(21) = 2 Then 'Observado
-                dgTabla3.Rows(j).Cells(8).Style.BackColor = Color.Yellow
-                dgTabla3.Rows(j).Cells(8).Style.ForeColor = Color.Red
-            End If
-        Next
+        Panel3.Visible = False  'ocultando el datagrid de detalle de requrimientos
     End Sub
 
     Private Sub ModificarColumnasDGV()
@@ -208,53 +188,77 @@ Public Class InformeMovCajaChicaForm
 
         With dgTabla3
             .Columns(0).Visible = False
-            .Columns(1).Width = 45
-            .Columns(1).HeaderText = "Cant."
-            .Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(1).Width = 80
+            .Columns(1).HeaderText = "Tipo_Insumo"
             .Columns(1).ReadOnly = True 'NO editable
-            .Columns(2).Width = 45
-            .Columns(2).HeaderText = "Unid."
+            .Columns(2).HeaderText = "Descripción Insumo"
+            .Columns(2).Width = 280
             .Columns(2).ReadOnly = True 'NO editable
-            .Columns(3).HeaderText = "Descripción Insumo"
-            .Columns(3).Width = 340
+            .Columns(3).Width = 45
+            .Columns(3).HeaderText = "Cant"
+            .Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(3).ReadOnly = True 'NO editable
-            .Columns(4).Width = 60
-            .Columns(4).HeaderText = "PrecUni"
+            .Columns(4).Width = 50
+            .Columns(4).HeaderText = "PreUni"
             .Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(4).ReadOnly = True 'NO editable
-            .Columns(5).Width = 70
-            .Columns(5).HeaderText = "TotParcial"
+            .Columns(5).Width = 55
+            .Columns(5).HeaderText = "Total"
             .Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(5).DefaultCellStyle.Format = "#,##0.00"
             .Columns(5).ReadOnly = True 'NO editable
-            .Columns(6).HeaderText = "Comprob."
-            .Columns(6).Width = 70
+            .Columns(6).HeaderText = "Entrega"
+            .Columns(6).Width = 55
             .Columns(6).ReadOnly = True 'NO editable
-            .Columns(7).HeaderText = "Area_Insumo"
-            .Columns(7).Width = 100
+            .Columns(6).Visible = False
+            .Columns(7).HeaderText = "Fec_Doc."
+            .Columns(7).Width = 70
             .Columns(7).ReadOnly = True 'NO editable
-            .Columns(8).HeaderText = "Estado"
-            .Columns(8).Width = 75
+            .Columns(8).HeaderText = "Comprob."
+            .Columns(8).Width = 70
             .Columns(8).ReadOnly = True 'NO editable
-            .Columns(9).Width = 200
-            .Columns(9).HeaderText = "Observacion solicitante"
-            .Columns(10).HeaderText = "Tipo_Insumo"
-            .Columns(10).Width = 100
+            .Columns(9).HeaderText = "Nº Doc."
+            .Columns(9).Width = 100
+            .Columns(9).ReadOnly = True 'NO editable
+            .Columns(10).Width = 45
+            .Columns(10).HeaderText = "Cant"
+            .Columns(10).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(10).ReadOnly = True 'NO editable
-            .Columns(11).Width = 100
-            .Columns(11).HeaderText = "Verificador"
+            .Columns(11).Width = 55
+            .Columns(11).HeaderText = "PrecUni"
+            .Columns(11).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(11).ReadOnly = True 'NO editable
-            .Columns(12).Width = 300
-            .Columns(12).HeaderText = "Observacion verificador"
+            .Columns(12).Width = 65
+            .Columns(12).HeaderText = "TotalReal"
+            .Columns(12).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            .Columns(12).DefaultCellStyle.Format = "#,##0.00"
             .Columns(12).ReadOnly = True 'NO editable
-            .Columns(13).Visible = False
-            .Columns(14).Visible = False
-            .Columns(15).Visible = False
-            .Columns(16).Visible = False
-            .Columns(17).Visible = False
+            .Columns(13).HeaderText = "Estado"
+            .Columns(13).Width = 75
+            .Columns(13).ReadOnly = True 'NO editable
+            .Columns(14).Width = 100
+            .Columns(14).HeaderText = "Verificador"
+            .Columns(14).ReadOnly = True 'NO editable
+            .Columns(15).Width = 200
+            .Columns(15).HeaderText = "Observacion Verificador"
+            .Columns(15).ReadOnly = True 'NO editable
+            .Columns(16).HeaderText = "Ingreso"
+            .Columns(16).Width = 75
+            .Columns(16).ReadOnly = True 'NO editable
+            .Columns(17).HeaderText = "Area_Insumo"
+            .Columns(17).Width = 100
+            .Columns(17).ReadOnly = True 'NO editable
             .Columns(18).Visible = False
             .Columns(19).Visible = False
             .Columns(20).Visible = False
             .Columns(21).Visible = False
+            .Columns(22).Visible = False
+            .Columns(23).Visible = False
+            .Columns(24).Visible = False
+            .Columns(25).Visible = False
+            .Columns(26).Visible = False
+            .Columns(27).Visible = False
+            .Columns(28).Visible = False
             .ColumnHeadersDefaultCellStyle.BackColor = HeaderBackColorP
             .ColumnHeadersDefaultCellStyle.ForeColor = HeaderForeColorP
             .RowHeadersDefaultCellStyle.BackColor = HeaderBackColorP
@@ -273,6 +277,19 @@ Public Class InformeMovCajaChicaForm
         Label2.ForeColor = ForeColorLabel
         Label3.ForeColor = ForeColorLabel
         Label4.ForeColor = ForeColorLabel
+        Label5.ForeColor = ForeColorLabel
+        Label6.ForeColor = ForeColorLabel
+        Label7.ForeColor = ForeColorLabel
+        Label8.ForeColor = ForeColorLabel
+        Label9.ForeColor = ForeColorLabel
+        Label10.ForeColor = ForeColorLabel
+        Label11.ForeColor = ForeColorLabel
+        Label12.ForeColor = ForeColorLabel
+        Label13.ForeColor = ForeColorLabel
+        Label14.ForeColor = ForeColorLabel
+        Label15.ForeColor = ForeColorLabel
+        GroupBox2.ForeColor = ForeColorLabel
+        GroupBox3.ForeColor = ForeColorLabel
         btnProcesar.ForeColor = ForeColorButtom
         btnCerrar.ForeColor = ForeColorButtom
     End Sub
@@ -315,7 +332,7 @@ Public Class InformeMovCajaChicaForm
 
     Private Sub btnProcesar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnProcesar.Click
         vfVAn1 = False
-        panelAux.Visible = False  'ocultando el datagrid de detalle de requrimientos
+        Panel3.Visible = False  'ocultando el datagrid de detalle de requrimientos
         visualizarKardex()
         vfVAn1 = True
     End Sub
@@ -346,11 +363,69 @@ Public Class InformeMovCajaChicaForm
         informe.ShowDialog()
     End Sub
 
-    Private Sub btnVerDet_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnVerDet.Click
-        panelAux.Visible = True
+    Dim vfVAn1 As Boolean = False
+    Dim codSC As Integer
+    Private Sub visualizarDet()
+        If BindingSource3.Position = -1 Then
+            Exit Sub
+        End If
+
+        If IsNumeric(BindingSource3.Item(BindingSource3.Position)(24)) Then
+            codSC = BindingSource3.Item(BindingSource3.Position)(24)
+        Else
+            codSC = 0
+        End If
+
+        If codSC = 0 Then
+            MessageBox.Show("Solo operaciones de Egreso se pueden visualizar...", nomNegocio, Nothing, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+        Panel3.Visible = True
+        Me.Cursor = Cursors.WaitCursor
+        dsAlmacen.Tables("VSolCajaTodo").Clear()
+        daTabla3.SelectCommand.Parameters("@codSC").Value = codSC
+        daTabla3.Fill(dsAlmacen, "VSolCajaTodo")
+
+        dsAlmacen.Tables("VDetSolCajaCuenta").Clear()
+        daDetDoc.SelectCommand.Parameters("@cod").Value = codSC
+        daDetDoc.Fill(dsAlmacen, "VDetSolCajaCuenta")
+
+        colorearFila()
+        sumTotal()
+        Me.Cursor = Cursors.Default
     End Sub
 
-    Private Sub ToolStripButton9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton9.Click
-        panelAux.Visible = False  'ocultando el datagrid de detalle de requrimientos
+    Private Sub colorearFila()
+        For j As Short = 0 To BindingSource5.Count - 1
+            If BindingSource5.Item(j)(25) = 1 Then 'OK
+                dgTabla3.Rows(j).Cells(13).Style.BackColor = Color.Green 'Color.YellowGreen
+                dgTabla3.Rows(j).Cells(13).Style.ForeColor = Color.White
+            End If
+            If BindingSource5.Item(j)(25) = 2 Then 'Observado
+                dgTabla3.Rows(j).Cells(13).Style.BackColor = Color.Yellow
+                dgTabla3.Rows(j).Cells(13).Style.ForeColor = Color.Red
+            End If
+        Next
+    End Sub
+
+    Private Sub sumTotal()
+        If BindingSource2.Position = -1 Then
+            txtTotal.Text = "0.00"
+            txtTotal1.Text = "0.00"
+            Exit Sub
+        End If
+
+        txtTotal.Text = Format((dsAlmacen.Tables("VDetSolCajaCuenta").Compute("Sum(totPar)", Nothing)), "0,0.00")
+        txtTotal1.Text = Format((dsAlmacen.Tables("VDetSolCajaCuenta").Compute("Sum(totReal)", Nothing)), "0,0.00")
+    End Sub
+
+    Private Sub ToolStripButton9_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton9.Click
+        Panel3.Visible = False  'ocultando el datagrid de detalle de requrimientos
+    End Sub
+
+    Private Sub dgTabla2_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgTabla2.CellDoubleClick
+        If vfVAn1 Then
+            visualizarDet()
+        End If
     End Sub
 End Class

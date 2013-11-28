@@ -62,7 +62,9 @@ Public Class ReporteDocVenta
         GroupBox2.ForeColor = ForeColorLabel
         'oGrilla.configurarColorControl("GroupBox", Me, ForeColorLabel)
         'Color para botón
-        oGrilla.configurarColorControl2("CheckBox", Me, ForeColorLabel)
+        'oGrilla.configurarColorControl2("CheckBox", Me, )
+        'chkObra.ForeColor = ForeColorLabel
+        chkObra.BackColor = System.Drawing.SystemColors.Control
 
         oGrilla.configurarColorControl2("Label", GroupBox3, ForeColorLabel)
 
@@ -100,9 +102,9 @@ Public Class ReporteDocVenta
             .Columns("codIde").Visible = False
 
             .Columns("codigo").Visible = False
-            .Columns("nombre").Visible = False
-            '.Columns("nombre").HeaderText = "Obra"
-            '.Columns("nombre").Width = 250
+            '.Columns("nombre").Visible = False
+            .Columns("nombre").HeaderText = "Obra"
+            .Columns("nombre").Width = 250
             .Columns("estado").HeaderText = "Estado"
             .Columns("estado").Width = 70
 
@@ -113,6 +115,8 @@ Public Class ReporteDocVenta
             .Columns("camD").Visible = False
             .Columns("codSerS").Visible = False
             .Columns("calIGV").Visible = False
+            .Columns("codMon").Visible = False
+            .Columns("obs").Visible = False
             '.Columns("camD").HeaderText = "cam"
             '.Columns("camD").Width = 120
 
@@ -330,7 +334,7 @@ Public Class ReporteDocVenta
         _fechaIni = dtpInicio.Text
         _fechaFin = dtpFin.Text
 
-        Dim query As String = "select codDocV,serie,nroDoc,fecDoc,ruc,razon,dir,codIde,codigo,nombre,estado,simbolo,camD,codSerS,calIGV from vDocumentosVentas "
+        Dim query As String = "select codDocV,serie,nroDoc,fecDoc,ruc,razon,dir,codIde,codigo,nombre,estado,simbolo,camD,codSerS,calIGV,codMon,obs from vDocumentosVentas "
 
         'filtrando la consulta
 
@@ -347,7 +351,7 @@ Public Class ReporteDocVenta
             If (cbClient.SelectedIndex = -1) Then
                 MessageBox.Show("Por favor seleccione un valor valido.", nomNegocio, Nothing, MessageBoxIcon.Error)
 
-                cbSerie.Focus()
+                cbClient.Focus()
                 wait.Close()
                 Me.Cursor = Cursors.Default
                 Exit Sub
@@ -422,4 +426,74 @@ Public Class ReporteDocVenta
 
    
     
+    Private Sub btnImprimir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImprimir.Click
+
+        If BindingSource0.Position = -1 Then
+            StatusBarClass.messageBarraEstado("  Proceso Denegado, No existe datos")
+            Exit Sub
+        End If
+
+        'obteninedo datos para parametros
+        vCliente = BindingSource0.Item(BindingSource0.Position)(5) 'Cliente
+        vDir = BindingSource0.Item(BindingSource0.Position)(6)
+        vRuc = BindingSource0.Item(BindingSource0.Position)(4)
+        vObs = BindingSource0.Item(BindingSource0.Position)(16)
+        vFec1 = BindingSource0.Item(BindingSource0.Position)(3)
+        If chkObra.Checked Then
+            vObra = "OBRA: " & BindingSource0.Item(BindingSource0.Position)(9)
+        Else
+            vObra = " "
+        End If
+
+
+        'detalle 
+        vCan1 = Format(BindingSource1.Item(0)(1), "0,0.00")
+        vDet1 = BindingSource1.Item(0)(3)
+        vPre1 = Format(BindingSource1.Item(0)(6), "0,0.00")
+        vTot1 = Format((vCan1 * vPre1), "0,0.00")
+        vDes1 = BindingSource1.Item(0)(4)
+
+        vCan2 = Format(BindingSource1.Item(1)(1), "0,0.00")
+        vDet2 = BindingSource1.Item(1)(3)
+        vPre2 = Format(BindingSource1.Item(1)(6), "0,0.00")
+        vTot2 = Format((vCan2 * vPre2), "0,0.00")
+        vDes2 = BindingSource1.Item(1)(4)
+
+        ''Totales
+        Dim moneda As String
+        If BindingSource0.Item(BindingSource0.Position)(15) = 30 Then
+            moneda = "Nuevos Soles"
+        Else
+            moneda = "Dólares Americanos"
+        End If
+
+
+        vLetra = cambiarNroTotalLetra(txtTotal.Text.Trim(), moneda) 'txtLetraTotal.Text.Trim()
+
+        vSub = txtSubtotal.Text.Trim()
+        vIgv1 = txtIgv.Text.Trim()
+        vTot = txtTotal.Text.Trim()
+        vMon = "TOTAL " & lblMonedaTotal.Text
+
+        Dim informe As New ReportViewerDocVentaForm
+        informe.ShowDialog()
+
+    End Sub
+
+    Private Function cambiarNroTotalLetra(ByVal numero As Object, ByVal moneda As String) As String
+        If IsNumeric(numero) Then
+            Dim cALetra As New Num2LetEsp  'clase definida por el usuario
+            cALetra.Moneda = moneda
+            numero = CDbl(numero)
+            'Inicia el Proceso para identificar la cantidad a convertir
+            If Val(numero) > 0 Then
+                cALetra.Numero = Val(CDbl(numero))
+            End If
+            Return "SON: " & cALetra.ALetra.ToUpper()
+        Else
+            Return ""
+        End If
+
+    End Function
+
 End Class
