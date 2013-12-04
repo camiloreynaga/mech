@@ -54,6 +54,7 @@ Partial Class registraDocVentaEmpForm
         Me.Label4 = New System.Windows.Forms.Label
         Me.txtBuscar = New ComponentesSolucion2008.TextBoxSSP(Me.components)
         Me.Panel3 = New System.Windows.Forms.Panel
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox
         Me.txtTotal = New System.Windows.Forms.TextBox
         Me.lblTotal = New System.Windows.Forms.Label
         Me.txtIGV = New System.Windows.Forms.TextBox
@@ -82,7 +83,6 @@ Partial Class registraDocVentaEmpForm
         Me.Label11 = New System.Windows.Forms.Label
         Me.cbObra = New System.Windows.Forms.ComboBox
         Me.Label9 = New System.Windows.Forms.Label
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.GB3.SuspendLayout()
@@ -498,6 +498,16 @@ Partial Class registraDocVentaEmpForm
         Me.Panel3.Size = New System.Drawing.Size(891, 315)
         Me.Panel3.TabIndex = 2
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(491, 7)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(120, 17)
+        Me.CheckBox1.TabIndex = 339
+        Me.CheckBox1.Text = "No Imprimir Obra"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
         'txtTotal
         '
         Me.txtTotal.Location = New System.Drawing.Point(763, 287)
@@ -780,16 +790,6 @@ Partial Class registraDocVentaEmpForm
         Me.Label9.Size = New System.Drawing.Size(81, 13)
         Me.Label9.TabIndex = 296
         Me.Label9.Text = "Sede / Obra:"
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(491, 7)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(120, 17)
-        Me.CheckBox1.TabIndex = 339
-        Me.CheckBox1.Text = "No Imprimir Obra"
-        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'registraDocVentaEmpForm
         '

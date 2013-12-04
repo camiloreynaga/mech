@@ -293,4 +293,24 @@ Public Class cDataManager
 
     End Function
 
+    ''' <summary>
+    ''' Concatena una nro precediendole de ceros
+    ''' </summary>
+    ''' <param name="nro"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function concatenarCerosNro(ByVal nro As Object) As String
+        Dim value As String = ""
+        If IsNumeric(nro) Then
+
+            Dim contador As Integer = nro.ToString().Count()
+            For i As Integer = 1 To 5 - contador
+                value &= "0"
+            Next
+            value &= nro
+
+        End If
+        Return value
+    End Function
+
 End Class

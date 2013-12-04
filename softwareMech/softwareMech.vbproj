@@ -467,6 +467,12 @@
     <Compile Include="MantCajaChicaForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MantCargo1Form.designer.vb">
+      <DependentUpon>MantCargo1Form.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantCargo1Form.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MantCargoForm.Designer.vb">
       <DependentUpon>MantCargoForm.vb</DependentUpon>
     </Compile>
@@ -549,6 +555,18 @@
       <DependentUpon>MantPersonalForm.vb</DependentUpon>
     </Compile>
     <Compile Include="MantPersonalForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantPersonalObra.Designer.vb">
+      <DependentUpon>MantPersonalObra.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantPersonalObra.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantPersPlaForm.Designer.vb">
+      <DependentUpon>MantPersPlaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantPersPlaForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MantProveedor.designer.vb">
@@ -1116,6 +1134,9 @@
     <EmbeddedResource Include="MantCajaChicaForm.resx">
       <DependentUpon>MantCajaChicaForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MantCargo1Form.resx">
+      <DependentUpon>MantCargo1Form.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MantCargoForm.resx">
       <DependentUpon>MantCargoForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -1157,6 +1178,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MantPersonalForm.resx">
       <DependentUpon>MantPersonalForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantPersonalObra.resx">
+      <DependentUpon>MantPersonalObra.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantPersPlaForm.resx">
+      <DependentUpon>MantPersPlaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MantProveedor.resx">
       <DependentUpon>MantProveedor.vb</DependentUpon>
@@ -1371,6 +1398,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\images\plus_verde.png" />
+    <None Include="bin\images\minus_rojo.png" />
     <Content Include="SSP1.ico" />
   </ItemGroup>
   <ItemGroup>

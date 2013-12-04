@@ -1275,7 +1275,11 @@ Public Class registraDocVentaEmpForm
         vPre1 = txtPre1.Text.Trim()
         vTot1 = txtTot1.Text.Trim()
         vDes1 = txtDes1.Text.Trim()
-        vObra = "OBRA: " & cbObra.Text.Trim()
+        If CheckBox1.Checked Then
+            vObra = ""
+        Else
+            vObra = "OBRA: " & cbObra.Text.Trim()
+        End If
 
         vCan2 = txtCan2.Text.Trim()
         vDet2 = txtDet2.Text.Trim()
@@ -1289,7 +1293,13 @@ Public Class registraDocVentaEmpForm
         vTot = txtTotal.Text.Trim()
         vMon = lblTotal.Text.Trim()
 
+        vSerie = lbDoc.Text.Trim()
+
         Dim informe As New ReportViewerDocVentaForm
         informe.ShowDialog()
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBox1.CheckedChanged
+
     End Sub
 End Class

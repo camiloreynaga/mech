@@ -1195,4 +1195,22 @@ Public Class pantallaInicialForm
         frmSeg.Show()
 
     End Sub
+
+    Private Sub opcPla2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcPla2.Click
+        Dim mant As New MantCargo1Form
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
+
+    Private Sub opcPla1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcPla1.Click
+        Dim mant As New MantPersPlaForm
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
+
+    Private Sub AsignarPersonalObraToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AsignarPersonalObraToolStripMenuItem.Click
+        Dim frmPO As New mantPersonalObra
+        frmPO.MdiParent = Me
+        frmPO.Show()
+    End Sub
 End Class

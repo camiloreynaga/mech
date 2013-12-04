@@ -444,7 +444,7 @@ Public Class ReporteDocVenta
         Else
             vObra = " "
         End If
-
+        vSerie = BindingSource0.Item(BindingSource0.Position)(1) & "-" & concatenarNro(BindingSource0.Item(BindingSource0.Position)(2))
 
         'detalle 
         vCan1 = Format(BindingSource1.Item(0)(1), "0,0.00")
@@ -475,6 +475,7 @@ Public Class ReporteDocVenta
         vTot = txtTotal.Text.Trim()
         vMon = "TOTAL " & lblMonedaTotal.Text
 
+
         Dim informe As New ReportViewerDocVentaForm
         informe.ShowDialog()
 
@@ -493,7 +494,26 @@ Public Class ReporteDocVenta
         Else
             Return ""
         End If
+    End Function
 
+    ''' <summary>
+    ''' Concatena una nro precediendole de ceros
+    ''' </summary>
+    ''' <param name="nro"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function concatenarNro(ByVal nro As Object) As String
+        Dim value As String = ""
+        If IsNumeric(nro) Then
+
+            Dim contador As Integer = nro.ToString().Count()
+            For i As Integer = 1 To 5 - contador
+                value &= "0"
+            Next
+            value &= nro
+
+        End If
+        Return value
     End Function
 
 End Class

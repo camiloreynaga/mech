@@ -44,6 +44,8 @@ Public Class ReportViewerDocVentaForm
         reporte.SetParameterValue("param19", vIgv1)     'parametro creado en el diseñador
         reporte.SetParameterValue("param20", vTot)     'parametro creado en el diseñador
         reporte.SetParameterValue("param21", vMon)     'parametro creado en el diseñador
+        reporte.SetParameterValue("param21", vMon)     'parametro creado en el diseñador
+        reporte.SetParameterValue("param22", vSerie)     'parametro creado en el diseñador
 
         CReportViewer.DisplayGroupTree = False
         CReportViewer.ReportSource = reporte
