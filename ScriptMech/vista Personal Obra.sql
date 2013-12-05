@@ -10,13 +10,25 @@ select codigo,nombre  from TLugarTrabajo where estado =1
 
 select TP.codPer,tp.dni,(TP.nombre +' '+ TP.apePat +' '+TP.apeMat) nombre,tp.sexo  from tpersona TP
 
+select count(*) from TPersObra WHERE codPer  = 
+
+select codigo from TPersObra WHERE codPer =23
+
+select * from TPersObra 
 
 
 --consulta para grilla personal por Obra
 
 select codPO,codPer,dni,nombre,sexo,codigo  from vPersonalObra 
 
---Vista para personal por Obra
+--
+
+--********************************************************
+--Autor: CR
+--Descripcion: Vista para personal por Obra asignados
+-- 
+--FechaCreación/Actualización: 04/12/13 CR
+--*********************************************************
 
 CREATE VIEW vPersonalObra
 as
