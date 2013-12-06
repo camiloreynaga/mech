@@ -24,13 +24,14 @@ select
 	TL.nombre, -- nombre del lugar de trabajo
 	TI.ruc,--ruc del cliente
 	TI.razon,--nombre del cliente
-	VPV.PV --precio de venta
+	VPV.PV, --precio de venta
+	TDV.codSers, --cod de la serie del documetno
+	TMO.simbolo --Simbolo de la moneda usada
 from TDocVenta TDV
 inner join TLugarTrabajo TL on TL.codigo =TDV.codigo 
 inner join TIdentidad TI on TI.codIde =TDV.codIde 
 inner join vPrecioVenta VPV on VPV.codDocV=TDV.codDocV 
-
-
+inner join TMoneda TMO on TMO.codMon  = TDV.codMon 
 
 
 --********************************************************
@@ -52,7 +53,14 @@ select codDocV,nombre,fecDoc,fecCan,tipoDoc,doc,serie,nroDoc,ruc,razon,PV,codIde
 
 --****************************
 --Reporte para compras
+--********************************************************
+--Autor: CR
+--Descripcion: muestra los datos de reporte de compras para contabilidad 
 
+--FechaCreación/Actualización: 04/12/13 CR
+--*********************************************************
+create view vReporteComprasConta
+as
 select
 	 TOD.idOP,
 	 '' as fechaEmision, --fecha de emisión de la factura 
@@ -77,7 +85,7 @@ select
 		then '0'+REPLACE(LEFT(TOD.nroConfor,CHARINDEX('-',TOD.nroConfor)),'-','')
 		else ''
 	 end serie,
-	 SUBSTRING(TOD.nroConfor,0,CHARINDEX('-',TOD.nroConfor)) nroFact,
+	 SUBSTRING(TOD.nroConfor,CHARINDEX('-',TOD.nroConfor)+1,LEN(TOD.nroConfor)) nroFact,
 	 --CASE when   
 	 
 	 --end
@@ -102,13 +110,17 @@ select
 	 TPD.nroP, -- nro de operación
 	 TPD.fecPago, --Fecha de pago
 	 '' codigoCuenta, -- codigo de cuenta bancaria
-	 TOD.nroCta --número de cuenta bancaria origen
-	 
+	 TOD.nroCta, --número de cuenta bancaria origen
+	 TOD.codIde -- codigo de proveedor
 from TPagoDesembolso TPD
 inner join TOrdenDesembolso TOD on TOD.idOP=TPD.idOP  
 inner join TIdentidad TID on TID.codIde = TOD.codIde 
 inner join TTipoPago TMP on TMP.codTipP= TPD.codTipP
 inner join TMoneda TMO on TMO.codMon = TPD.codMon  
+
+--consulta para windowsForm
+
+select idOP,fechaEmision,fechaVenc,Doc,codigoDoc,serie,nroFact,ruc,razon,codGravado,gravado,monto,simbolo,montoPago,percep1,percep2,fechaEmiD,codigoD,nroD,montoD,codCuenta,descrCuenta,codTipoPago,tipoPago,nroP,fecPago,codigoCuenta,nroCta,codIde from vReporteComprasConta
 
 select * from TOrdenDesembolso 
 

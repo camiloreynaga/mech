@@ -48,6 +48,27 @@ Public Class ReporteDocVenta
 #End Region
 
 #Region "Métodos"
+
+    ''' <summary>
+    ''' Concatena una nro precediendole de ceros
+    ''' </summary>
+    ''' <param name="nro"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Private Function concatenarNro(ByVal nro As Object) As String
+        Dim value As String = ""
+        If IsNumeric(nro) Then
+
+            Dim contador As Integer = nro.ToString().Count()
+            For i As Integer = 1 To 5 - contador
+                value &= "0"
+            Next
+            value &= nro
+
+        End If
+        Return value
+    End Function
+
     ''' <summary>
     ''' configura los controles del form
     ''' </summary>
@@ -72,7 +93,10 @@ Public Class ReporteDocVenta
 
     End Sub
 
-
+    ''' <summary>
+    ''' customiza la presentación del las columnas de la grilla
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub ModificandoColumnaDGV()
 
         dgvVentas.ReadOnly = True
@@ -123,7 +147,10 @@ Public Class ReporteDocVenta
         End With
 
     End Sub
-
+    ''' <summary>
+    ''' customiza la presentación del las columnas de la grilla Detalle
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub ModificandoColumnaDetalleDGV()
         dgDetalleVenta.ReadOnly = True
         dgDetalleVenta.AllowUserToAddRows = False
@@ -204,7 +231,7 @@ Public Class ReporteDocVenta
 
 
 
-#End Region
+
 
 
 
@@ -496,24 +523,8 @@ Public Class ReporteDocVenta
         End If
     End Function
 
-    ''' <summary>
-    ''' Concatena una nro precediendole de ceros
-    ''' </summary>
-    ''' <param name="nro"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Private Function concatenarNro(ByVal nro As Object) As String
-        Dim value As String = ""
-        If IsNumeric(nro) Then
+    
 
-            Dim contador As Integer = nro.ToString().Count()
-            For i As Integer = 1 To 5 - contador
-                value &= "0"
-            Next
-            value &= nro
 
-        End If
-        Return value
-    End Function
-
+#End Region
 End Class

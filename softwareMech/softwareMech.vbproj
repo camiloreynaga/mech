@@ -38,6 +38,10 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.69.1.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Ejemplo de codigo\Exportar Excel\ClosedXML_v0.69.1.0\ClosedXML.dll</HintPath>
+    </Reference>
     <Reference Include="ComponentesSolucion2008, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\ComponentesSolucion2008\ComponentesSolucion2008\bin\Release\ComponentesSolucion2008.dll</HintPath>
@@ -48,6 +52,10 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Ejemplo de codigo\Exportar Excel\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -705,10 +713,22 @@
     <Compile Include="ReporteCardexForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="reporteComparaToContaForm.Designer.vb">
+      <DependentUpon>reporteComparaToContaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="reporteComparaToContaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReporteDocVenta.designer.vb">
       <DependentUpon>ReporteDocVenta.vb</DependentUpon>
     </Compile>
     <Compile Include="ReporteDocVenta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteMaestro.designer.vb">
+      <DependentUpon>ReporteMaestro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteMaestro.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="reportePagosPendientesDesembolso.Designer.vb">
@@ -721,6 +741,12 @@
       <DependentUpon>reporteStockForm.vb</DependentUpon>
     </Compile>
     <Compile Include="reporteStockForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reporteVentasToContaForm.Designer.vb">
+      <DependentUpon>reporteVentasToContaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="reporteVentasToContaForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReportViewerAprobacionDesembolso.Designer.vb">
@@ -1251,14 +1277,23 @@
     <EmbeddedResource Include="ReporteCardexForm.resx">
       <DependentUpon>ReporteCardexForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="reporteComparaToContaForm.resx">
+      <DependentUpon>reporteComparaToContaForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReporteDocVenta.resx">
       <DependentUpon>ReporteDocVenta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteMaestro.resx">
+      <DependentUpon>ReporteMaestro.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="reportePagosPendientesDesembolso.resx">
       <DependentUpon>reportePagosPendientesDesembolso.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="reporteStockForm.resx">
       <DependentUpon>reporteStockForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reporteVentasToContaForm.resx">
+      <DependentUpon>reporteVentasToContaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewerAprobacionDesembolso.resx">
       <DependentUpon>ReportViewerAprobacionDesembolso.vb</DependentUpon>

@@ -27,31 +27,44 @@ Partial Class pantallaInicialForm
         Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar
         Me.ToolStripProgressBar2 = New System.Windows.Forms.ToolStripProgressBar
         Me.ToolStripSeparator0 = New System.Windows.Forms.ToolStripSeparator
-        Me.opcClien_Prov = New System.Windows.Forms.ToolStripButton
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator16 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator27 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator17 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator20 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator10 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripSeparator11 = New System.Windows.Forms.ToolStripSeparator
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox
+        Me.opcClien_Prov = New System.Windows.Forms.ToolStripButton
         Me.opcInsumo = New System.Windows.Forms.ToolStripSplitButton
         Me.opcInsumoArea = New System.Windows.Forms.ToolStripMenuItem
         Me.opcInsumoTipo = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator2_1 = New System.Windows.Forms.ToolStripSeparator
         Me.opcInsumoUnd = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator
         Me.opcRequerimientoObra = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcReqSolicitud = New System.Windows.Forms.ToolStripMenuItem
         Me.opcReqAprobacion = New System.Windows.Forms.ToolStripMenuItem
         Me.opcReqSeguimiento = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
         Me.opcCotizacion = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcCot1 = New System.Windows.Forms.ToolStripMenuItem
         Me.opcCot2 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator4_1 = New System.Windows.Forms.ToolStripSeparator
         Me.opcCot3 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator
         Me.opcOrdenCompra = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcOrden1 = New System.Windows.Forms.ToolStripMenuItem
         Me.opcOrden2 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator5_1 = New System.Windows.Forms.ToolStripSeparator
         Me.opcOrden3 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator
         Me.opcOrdDesembolso = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcOrdDesApertura = New System.Windows.Forms.ToolStripMenuItem
         Me.opcOrdDesAprobacion = New System.Windows.Forms.ToolStripMenuItem
@@ -66,7 +79,6 @@ Partial Class pantallaInicialForm
         Me.opcClasifEgreso = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator23 = New System.Windows.Forms.ToolStripSeparator
         Me.opcOrdDesAperturaMes = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator16 = New System.Windows.Forms.ToolStripSeparator
         Me.opcCaja = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcCaja1 = New System.Windows.Forms.ToolStripMenuItem
         Me.opcCaja5 = New System.Windows.Forms.ToolStripMenuItem
@@ -84,16 +96,13 @@ Partial Class pantallaInicialForm
         Me.opcCaja7 = New System.Windows.Forms.ToolStripMenuItem
         Me.opcCaja4 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator
         Me.opcIng = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcIng1 = New System.Windows.Forms.ToolStripMenuItem
         Me.opcIng2 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator27 = New System.Windows.Forms.ToolStripSeparator
         Me.opcPla = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcPla1 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator28 = New System.Windows.Forms.ToolStripSeparator
         Me.opcPla2 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator
         Me.opcGuiaRem = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcGuiaRem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.opcGuiaRem3 = New System.Windows.Forms.ToolStripMenuItem
@@ -102,31 +111,29 @@ Partial Class pantallaInicialForm
         Me.ToolStripSeparator15 = New System.Windows.Forms.ToolStripSeparator
         Me.opcGuiaRem2 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator
         Me.opcAlmE = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcAlmE1 = New System.Windows.Forms.ToolStripMenuItem
         Me.opcAlmE3 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator19 = New System.Windows.Forms.ToolStripSeparator
         Me.opcAlmE2 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator17 = New System.Windows.Forms.ToolStripSeparator
         Me.opcAlmS = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcAlmS1 = New System.Windows.Forms.ToolStripMenuItem
         Me.opcAlmS2 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator18 = New System.Windows.Forms.ToolStripSeparator
         Me.opcAlmS3 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator20 = New System.Windows.Forms.ToolStripSeparator
         Me.infT = New System.Windows.Forms.ToolStripDropDownButton
         Me.infT1 = New System.Windows.Forms.ToolStripMenuItem
         Me.infT2 = New System.Windows.Forms.ToolStripMenuItem
         Me.infT5 = New System.Windows.Forms.ToolStripMenuItem
         Me.infT3 = New System.Windows.Forms.ToolStripMenuItem
         Me.infT4 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator
+        Me.AsignarPersonalObraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.ReporteMaestroToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.ReporteVentasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.opcPersonal = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcPers1 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator9_1 = New System.Windows.Forms.ToolStripSeparator
         Me.opcPers3 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator
         Me.opcConfigurar = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcConfObra = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator13 = New System.Windows.Forms.ToolStripSeparator
@@ -142,16 +149,12 @@ Partial Class pantallaInicialForm
         Me.opcConfCambiarContra = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator10_2 = New System.Windows.Forms.ToolStripSeparator
         Me.opcConfBkBD = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator10 = New System.Windows.Forms.ToolStripSeparator
         Me.opcAce = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripSeparator11 = New System.Windows.Forms.ToolStripSeparator
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.AsignarPersonalObraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.ReporteComprasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TSMenu
@@ -182,6 +185,104 @@ Partial Class pantallaInicialForm
         Me.ToolStripSeparator0.Name = "ToolStripSeparator0"
         Me.ToolStripSeparator0.Size = New System.Drawing.Size(94, 6)
         '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(94, 6)
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(94, 6)
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(94, 6)
+        '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(94, 6)
+        '
+        'ToolStripSeparator5
+        '
+        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(94, 6)
+        '
+        'ToolStripSeparator16
+        '
+        Me.ToolStripSeparator16.Name = "ToolStripSeparator16"
+        Me.ToolStripSeparator16.Size = New System.Drawing.Size(94, 6)
+        '
+        'ToolStripSeparator6
+        '
+        Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(94, 6)
+        '
+        'ToolStripSeparator27
+        '
+        Me.ToolStripSeparator27.Name = "ToolStripSeparator27"
+        Me.ToolStripSeparator27.Size = New System.Drawing.Size(94, 6)
+        '
+        'ToolStripSeparator7
+        '
+        Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(94, 6)
+        '
+        'ToolStripSeparator12
+        '
+        Me.ToolStripSeparator12.Name = "ToolStripSeparator12"
+        Me.ToolStripSeparator12.Size = New System.Drawing.Size(94, 6)
+        '
+        'ToolStripSeparator17
+        '
+        Me.ToolStripSeparator17.Name = "ToolStripSeparator17"
+        Me.ToolStripSeparator17.Size = New System.Drawing.Size(94, 6)
+        '
+        'ToolStripSeparator20
+        '
+        Me.ToolStripSeparator20.Name = "ToolStripSeparator20"
+        Me.ToolStripSeparator20.Size = New System.Drawing.Size(94, 6)
+        '
+        'ToolStripSeparator8
+        '
+        Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(94, 6)
+        '
+        'ToolStripSeparator9
+        '
+        Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(94, 6)
+        '
+        'ToolStripSeparator10
+        '
+        Me.ToolStripSeparator10.Name = "ToolStripSeparator10"
+        Me.ToolStripSeparator10.Size = New System.Drawing.Size(94, 6)
+        '
+        'ToolStripSeparator11
+        '
+        Me.ToolStripSeparator11.Name = "ToolStripSeparator11"
+        Me.ToolStripSeparator11.Size = New System.Drawing.Size(94, 6)
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 715)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(960, 25)
+        Me.StatusStrip1.TabIndex = 4
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(1, 1)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(97, 44)
+        Me.PictureBox1.TabIndex = 3
+        Me.PictureBox1.TabStop = False
+        '
         'opcClien_Prov
         '
         Me.opcClien_Prov.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -193,11 +294,6 @@ Partial Class pantallaInicialForm
         Me.opcClien_Prov.Size = New System.Drawing.Size(94, 20)
         Me.opcClien_Prov.Text = "Cliente/Prov."
         Me.opcClien_Prov.ToolTipText = "Mantenimiento de Proveedores - Clientes"
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(94, 6)
         '
         'opcInsumo
         '
@@ -242,11 +338,6 @@ Partial Class pantallaInicialForm
         Me.opcInsumoUnd.Size = New System.Drawing.Size(245, 22)
         Me.opcInsumoUnd.Text = "Mantenimiento Unidad Medida"
         '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(94, 6)
-        '
         'opcRequerimientoObra
         '
         Me.opcRequerimientoObra.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcReqSolicitud, Me.opcReqAprobacion, Me.opcReqSeguimiento})
@@ -286,11 +377,6 @@ Partial Class pantallaInicialForm
         Me.opcReqSeguimiento.Name = "opcReqSeguimiento"
         Me.opcReqSeguimiento.Size = New System.Drawing.Size(295, 22)
         Me.opcReqSeguimiento.Text = "Seguimiento Requerimientos de Obra"
-        '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(94, 6)
         '
         'opcCotizacion
         '
@@ -337,11 +423,6 @@ Partial Class pantallaInicialForm
         Me.opcCot3.Text = "Mantenimiento Forma Pago"
         Me.opcCot3.ToolTipText = "Mantenimiento de formas de pago..."
         '
-        'ToolStripSeparator4
-        '
-        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(94, 6)
-        '
         'opcOrdenCompra
         '
         Me.opcOrdenCompra.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcOrden1, Me.opcOrden2, Me.ToolStripSeparator5_1, Me.opcOrden3})
@@ -384,11 +465,6 @@ Partial Class pantallaInicialForm
         Me.opcOrden3.Name = "opcOrden3"
         Me.opcOrden3.Size = New System.Drawing.Size(249, 22)
         Me.opcOrden3.Text = "Mant. Emp. Transporte"
-        '
-        'ToolStripSeparator5
-        '
-        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(94, 6)
         '
         'opcOrdDesembolso
         '
@@ -511,11 +587,6 @@ Partial Class pantallaInicialForm
         Me.opcOrdDesAperturaMes.Size = New System.Drawing.Size(283, 22)
         Me.opcOrdDesAperturaMes.Text = "Aperturar Periodo Mes..."
         Me.opcOrdDesAperturaMes.ToolTipText = "Aperturar Mes - Cerrar Mes "
-        '
-        'ToolStripSeparator16
-        '
-        Me.ToolStripSeparator16.Name = "ToolStripSeparator16"
-        Me.ToolStripSeparator16.Size = New System.Drawing.Size(94, 6)
         '
         'opcCaja
         '
@@ -674,11 +745,6 @@ Partial Class pantallaInicialForm
         Me.ToolStripMenuItem3.Text = "Proveedores"
         Me.ToolStripMenuItem3.ToolTipText = "Solo utilizar esta opción si se confundio en abrir una fecha de dia erronea"
         '
-        'ToolStripSeparator6
-        '
-        Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(94, 6)
-        '
         'opcIng
         '
         Me.opcIng.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcIng1, Me.opcIng2})
@@ -708,11 +774,6 @@ Partial Class pantallaInicialForm
         Me.opcIng2.Name = "opcIng2"
         Me.opcIng2.Size = New System.Drawing.Size(214, 22)
         Me.opcIng2.Text = "Seguimiento de Facturas"
-        '
-        'ToolStripSeparator27
-        '
-        Me.ToolStripSeparator27.Name = "ToolStripSeparator27"
-        Me.ToolStripSeparator27.Size = New System.Drawing.Size(94, 6)
         '
         'opcPla
         '
@@ -746,11 +807,6 @@ Partial Class pantallaInicialForm
         Me.opcPla2.Name = "opcPla2"
         Me.opcPla2.Size = New System.Drawing.Size(227, 22)
         Me.opcPla2.Text = "Manten. Cargo Personal"
-        '
-        'ToolStripSeparator7
-        '
-        Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
-        Me.ToolStripSeparator7.Size = New System.Drawing.Size(94, 6)
         '
         'opcGuiaRem
         '
@@ -825,11 +881,6 @@ Partial Class pantallaInicialForm
         Me.ToolStripMenuItem2.Text = "Mant. Vehiculo Chofer"
         Me.ToolStripMenuItem2.ToolTipText = "Mantenimiento de Motivo de Guia de Remisión"
         '
-        'ToolStripSeparator12
-        '
-        Me.ToolStripSeparator12.Name = "ToolStripSeparator12"
-        Me.ToolStripSeparator12.Size = New System.Drawing.Size(94, 6)
-        '
         'opcAlmE
         '
         Me.opcAlmE.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.opcAlmE1, Me.opcAlmE3, Me.ToolStripSeparator19, Me.opcAlmE2})
@@ -876,11 +927,6 @@ Partial Class pantallaInicialForm
         Me.opcAlmE2.Size = New System.Drawing.Size(303, 22)
         Me.opcAlmE2.Text = "Entrada Almacen Sin Guia Remisión"
         Me.opcAlmE2.ToolTipText = "Ingresos de insumos a Almacenes sin Guia de Remisión proveedor.."
-        '
-        'ToolStripSeparator17
-        '
-        Me.ToolStripSeparator17.Name = "ToolStripSeparator17"
-        Me.ToolStripSeparator17.Size = New System.Drawing.Size(94, 6)
         '
         'opcAlmS
         '
@@ -930,14 +976,9 @@ Partial Class pantallaInicialForm
         Me.opcAlmS3.Text = "Salida Almacen con Personal Responsable"
         Me.opcAlmS3.ToolTipText = "Salida de Almacen con Personal Responsable al que se le entrega..."
         '
-        'ToolStripSeparator20
-        '
-        Me.ToolStripSeparator20.Name = "ToolStripSeparator20"
-        Me.ToolStripSeparator20.Size = New System.Drawing.Size(94, 6)
-        '
         'infT
         '
-        Me.infT.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.infT1, Me.infT2, Me.infT5, Me.infT3, Me.infT4, Me.AsignarPersonalObraToolStripMenuItem})
+        Me.infT.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.infT1, Me.infT2, Me.infT5, Me.infT3, Me.infT4, Me.AsignarPersonalObraToolStripMenuItem, Me.ReporteMaestroToolStripMenuItem, Me.ReporteVentasToolStripMenuItem, Me.ReporteComprasToolStripMenuItem})
         Me.infT.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.infT.Image = CType(resources.GetObject("infT.Image"), System.Drawing.Image)
         Me.infT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -952,7 +993,7 @@ Partial Class pantallaInicialForm
         Me.infT1.ForeColor = System.Drawing.Color.Navy
         Me.infT1.Image = CType(resources.GetObject("infT1.Image"), System.Drawing.Image)
         Me.infT1.Name = "infT1"
-        Me.infT1.Size = New System.Drawing.Size(176, 22)
+        Me.infT1.Size = New System.Drawing.Size(179, 22)
         Me.infT1.Text = "Kardex"
         '
         'infT2
@@ -961,7 +1002,7 @@ Partial Class pantallaInicialForm
         Me.infT2.ForeColor = System.Drawing.Color.Navy
         Me.infT2.Image = CType(resources.GetObject("infT2.Image"), System.Drawing.Image)
         Me.infT2.Name = "infT2"
-        Me.infT2.Size = New System.Drawing.Size(176, 22)
+        Me.infT2.Size = New System.Drawing.Size(179, 22)
         Me.infT2.Text = "Gastos por Banco"
         '
         'infT5
@@ -970,7 +1011,7 @@ Partial Class pantallaInicialForm
         Me.infT5.ForeColor = System.Drawing.Color.Navy
         Me.infT5.Image = CType(resources.GetObject("infT5.Image"), System.Drawing.Image)
         Me.infT5.Name = "infT5"
-        Me.infT5.Size = New System.Drawing.Size(176, 22)
+        Me.infT5.Size = New System.Drawing.Size(179, 22)
         Me.infT5.Text = "Gastos "
         '
         'infT3
@@ -979,7 +1020,7 @@ Partial Class pantallaInicialForm
         Me.infT3.ForeColor = System.Drawing.Color.Navy
         Me.infT3.Image = CType(resources.GetObject("infT3.Image"), System.Drawing.Image)
         Me.infT3.Name = "infT3"
-        Me.infT3.Size = New System.Drawing.Size(176, 22)
+        Me.infT3.Size = New System.Drawing.Size(179, 22)
         Me.infT3.Text = "Stock "
         '
         'infT4
@@ -988,13 +1029,26 @@ Partial Class pantallaInicialForm
         Me.infT4.ForeColor = System.Drawing.Color.Navy
         Me.infT4.Image = CType(resources.GetObject("infT4.Image"), System.Drawing.Image)
         Me.infT4.Name = "infT4"
-        Me.infT4.Size = New System.Drawing.Size(176, 22)
+        Me.infT4.Size = New System.Drawing.Size(179, 22)
         Me.infT4.Text = "Pagos Pendientes"
         '
-        'ToolStripSeparator8
+        'AsignarPersonalObraToolStripMenuItem
         '
-        Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
-        Me.ToolStripSeparator8.Size = New System.Drawing.Size(94, 6)
+        Me.AsignarPersonalObraToolStripMenuItem.Name = "AsignarPersonalObraToolStripMenuItem"
+        Me.AsignarPersonalObraToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.AsignarPersonalObraToolStripMenuItem.Text = "Asignar Personal Obra"
+        '
+        'ReporteMaestroToolStripMenuItem
+        '
+        Me.ReporteMaestroToolStripMenuItem.Name = "ReporteMaestroToolStripMenuItem"
+        Me.ReporteMaestroToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.ReporteMaestroToolStripMenuItem.Text = "reporte maestro"
+        '
+        'ReporteVentasToolStripMenuItem
+        '
+        Me.ReporteVentasToolStripMenuItem.Name = "ReporteVentasToolStripMenuItem"
+        Me.ReporteVentasToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.ReporteVentasToolStripMenuItem.Text = "reporte ventas"
         '
         'opcPersonal
         '
@@ -1030,11 +1084,6 @@ Partial Class pantallaInicialForm
         Me.opcPers3.Size = New System.Drawing.Size(246, 22)
         Me.opcPers3.Text = "Mantenimiento Cargo Personal"
         Me.opcPers3.Visible = False
-        '
-        'ToolStripSeparator9
-        '
-        Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
-        Me.ToolStripSeparator9.Size = New System.Drawing.Size(94, 6)
         '
         'opcConfigurar
         '
@@ -1163,11 +1212,6 @@ Partial Class pantallaInicialForm
         Me.opcConfBkBD.Text = "Backup base de datos"
         Me.opcConfBkBD.Visible = False
         '
-        'ToolStripSeparator10
-        '
-        Me.ToolStripSeparator10.Name = "ToolStripSeparator10"
-        Me.ToolStripSeparator10.Size = New System.Drawing.Size(94, 6)
-        '
         'opcAce
         '
         Me.opcAce.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1179,29 +1223,6 @@ Partial Class pantallaInicialForm
         Me.opcAce.Size = New System.Drawing.Size(94, 20)
         Me.opcAce.Text = "Acerca de..."
         Me.opcAce.ToolTipText = "Acerca de..."
-        '
-        'ToolStripSeparator11
-        '
-        Me.ToolStripSeparator11.Name = "ToolStripSeparator11"
-        Me.ToolStripSeparator11.Size = New System.Drawing.Size(94, 6)
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(1, 1)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(97, 44)
-        Me.PictureBox1.TabIndex = 3
-        Me.PictureBox1.TabStop = False
-        '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 715)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(960, 25)
-        Me.StatusStrip1.TabIndex = 4
-        Me.StatusStrip1.Text = "StatusStrip1"
         '
         'ToolStripStatusLabel1
         '
@@ -1215,17 +1236,17 @@ Partial Class pantallaInicialForm
         Me.ToolStripStatusLabel1.Image = CType(resources.GetObject("ToolStripStatusLabel1.Image"), System.Drawing.Image)
         Me.ToolStripStatusLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(945, 20)
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(425, 20)
         Me.ToolStripStatusLabel1.Spring = True
         Me.ToolStripStatusLabel1.Text = "Soluciones Software Perú S.A.C. - Copyright (c)  2005 - 2013 SSP SAC - Cusco Perú" & _
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'AsignarPersonalObraToolStripMenuItem
+        'ReporteComprasToolStripMenuItem
         '
-        Me.AsignarPersonalObraToolStripMenuItem.Name = "AsignarPersonalObraToolStripMenuItem"
-        Me.AsignarPersonalObraToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
-        Me.AsignarPersonalObraToolStripMenuItem.Text = "Asignar Personal Obra"
+        Me.ReporteComprasToolStripMenuItem.Name = "ReporteComprasToolStripMenuItem"
+        Me.ReporteComprasToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.ReporteComprasToolStripMenuItem.Text = "reporte compras"
         '
         'pantallaInicialForm
         '
@@ -1244,9 +1265,9 @@ Partial Class pantallaInicialForm
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.TSMenu.ResumeLayout(False)
         Me.TSMenu.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1377,4 +1398,7 @@ Partial Class pantallaInicialForm
     Friend WithEvents ToolStripSeparator28 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents opcPla2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AsignarPersonalObraToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ReporteMaestroToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ReporteVentasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ReporteComprasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

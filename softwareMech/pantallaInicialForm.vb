@@ -1213,4 +1213,23 @@ Public Class pantallaInicialForm
         frmPO.MdiParent = Me
         frmPO.Show()
     End Sub
+
+    Private Sub ReporteMaestroToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReporteMaestroToolStripMenuItem.Click
+        Dim frmMaster As New ReporteMaestro
+        frmMaster.MdiParent = Me
+        frmMaster.Show()
+    End Sub
+
+    Private Sub ReporteVentasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReporteVentasToolStripMenuItem.Click
+        Dim frmVentas As New reporteVentasToContaForm
+        frmVentas.MdiParent = Me
+        frmVentas.Show()
+
+    End Sub
+
+    Private Sub ReporteComprasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReporteComprasToolStripMenuItem.Click
+        Dim frmCompras As New reporteComparaToContaForm
+        frmCompras.MdiParent = Me
+        frmCompras.Show()
+    End Sub
 End Class
