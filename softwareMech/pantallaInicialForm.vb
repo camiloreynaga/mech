@@ -293,7 +293,7 @@ Public Class pantallaInicialForm
 
         opcCotizacion.Visible = False
         opcOrdenCompra.Visible = False
-        opcIng.Visible = False
+        'opcIng.Visible = False
         'opcCaja.Visible = False 'Caja Chica
 
         opcOrdDesAprobacion.Visible = False
@@ -401,7 +401,7 @@ Public Class pantallaInicialForm
         opcOrdDesModPago.Visible = False
         opcOrdDesCtasBco.Visible = False
 
-        opcIng.Visible = False
+        'opcIng.Visible = False
 
         'opcCaja.Visible = False 'Caja Chica
         opcGuiaRem.Visible = True ' Guia de remision
@@ -489,7 +489,7 @@ Public Class pantallaInicialForm
         opcOrdDesAprobacion.Visible = False
         opcOrdDesRegPagos.Visible = False
 
-        opcIng.Visible = False
+        'opcIng.Visible = False
         opcGuiaRem.Visible = False
         opcPersonal.Visible = False
         opcConfObra.Visible = False
@@ -1208,28 +1208,45 @@ Public Class pantallaInicialForm
         mant.Show()
     End Sub
 
-    Private Sub AsignarPersonalObraToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AsignarPersonalObraToolStripMenuItem.Click
-        Dim frmPO As New mantPersonalObra
-        frmPO.MdiParent = Me
-        frmPO.Show()
+    Private Sub opcPla3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcPla3.Click
+        Dim mant As New MantMesPlaForm
+        mant.MdiParent = Me
+        mant.Show()
     End Sub
 
-    Private Sub ReporteMaestroToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReporteMaestroToolStripMenuItem.Click
-        Dim frmMaster As New ReporteMaestro
-        frmMaster.MdiParent = Me
-        frmMaster.Show()
+    Private Sub opcPla4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcPla4.Click
+        Dim mant As New MantLeyendaPlaForm
+        mant.MdiParent = Me
+        mant.Show()
     End Sub
 
-    Private Sub ReporteVentasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReporteVentasToolStripMenuItem.Click
-        Dim frmVentas As New reporteVentasToContaForm
-        frmVentas.MdiParent = Me
-        frmVentas.Show()
-
+    Private Sub opcPla5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcPla5.Click
+        Dim mant As New mantRegimenLabForm
+        mant.MdiParent = Me
+        mant.Show()
     End Sub
 
-    Private Sub ReporteComprasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReporteComprasToolStripMenuItem.Click
-        Dim frmCompras As New reporteComparaToContaForm
-        frmCompras.MdiParent = Me
-        frmCompras.Show()
+    Private Sub opcPla6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcPla6.Click
+        Dim mant As New mantPersonalObra
+        mant.MdiParent = Me
+        mant.Show()
+    End Sub
+
+    Private Sub ToolStripMenuItem5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem5.Click
+        Dim rptFacturas As New SeguimientoFacturasForm
+        rptFacturas.MdiParent = Me
+        rptFacturas.Show()
+    End Sub
+
+    Private Sub ToolStripMenuItem4_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem4.Click
+        Dim rptVentas As New reporteVentasToContaForm
+        rptVentas.MdiParent = Me
+        rptVentas.Show()
+    End Sub
+
+    Private Sub ToolStripMenuItem6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem6.Click
+        Dim rptCompras As New reporteComprasToContaForm
+        rptCompras.MdiParent = Me
+        rptCompras.Show()
     End Sub
 End Class

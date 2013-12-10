@@ -395,6 +395,6 @@ Partial Class ReporteMaestro
     Protected Friend WithEvents cbSerie As System.Windows.Forms.ComboBox
     Protected Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Protected Friend WithEvents dgv As System.Windows.Forms.DataGridView
-    Protected Friend WithEvents BindingNavigator1 As System.Windows.Forms.BindingNavigator
     Protected Friend WithEvents btnCancel As System.Windows.Forms.Button
+    Public WithEvents BindingNavigator1 As System.Windows.Forms.BindingNavigator
 End Class

@@ -147,6 +147,7 @@
     </Compile>
     <Compile Include="cConfigFormControls.vb" />
     <Compile Include="cDataManager.vb" />
+    <Compile Include="cExportXlsx.vb" />
     <Compile Include="chekeoSolicitudReqForm.Designer.vb">
       <DependentUpon>chekeoSolicitudReqForm.vb</DependentUpon>
     </Compile>
@@ -517,6 +518,12 @@
     <Compile Include="MantIdentidadForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MantLeyendaPlaForm.designer.vb">
+      <DependentUpon>MantLeyendaPlaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantLeyendaPlaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="mantLugarForm.Designer.vb">
       <DependentUpon>mantLugarForm.vb</DependentUpon>
     </Compile>
@@ -527,6 +534,12 @@
       <DependentUpon>MantMaterialForm.vb</DependentUpon>
     </Compile>
     <Compile Include="MantMaterialForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantMesPlaForm.designer.vb">
+      <DependentUpon>MantMesPlaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MantMesPlaForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MantMotivoGuiaForm.designer.vb">
@@ -581,6 +594,12 @@
       <DependentUpon>MantProveedor.vb</DependentUpon>
     </Compile>
     <Compile Include="MantProveedor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mantRegimenLabForm.Designer.vb">
+      <DependentUpon>mantRegimenLabForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="mantRegimenLabForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MantSesionMesForm.Designer.vb">
@@ -713,10 +732,10 @@
     <Compile Include="ReporteCardexForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="reporteComparaToContaForm.Designer.vb">
-      <DependentUpon>reporteComparaToContaForm.vb</DependentUpon>
+    <Compile Include="reporteComprasToContaForm.Designer.vb">
+      <DependentUpon>reporteComprasToContaForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="reporteComparaToContaForm.vb">
+    <Compile Include="reporteComprasToContaForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReporteDocVenta.designer.vb">
@@ -1181,11 +1200,17 @@
     <EmbeddedResource Include="MantIdentidadForm.resx">
       <DependentUpon>MantIdentidadForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MantLeyendaPlaForm.resx">
+      <DependentUpon>MantLeyendaPlaForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mantLugarForm.resx">
       <DependentUpon>mantLugarForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MantMaterialForm.resx">
       <DependentUpon>MantMaterialForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantMesPlaForm.resx">
+      <DependentUpon>MantMesPlaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MantMotivoGuiaForm.resx">
       <DependentUpon>MantMotivoGuiaForm.vb</DependentUpon>
@@ -1213,6 +1238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MantProveedor.resx">
       <DependentUpon>MantProveedor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mantRegimenLabForm.resx">
+      <DependentUpon>mantRegimenLabForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MantSesionMesForm.resx">
       <DependentUpon>MantSesionMesForm.vb</DependentUpon>
@@ -1277,8 +1305,8 @@
     <EmbeddedResource Include="ReporteCardexForm.resx">
       <DependentUpon>ReporteCardexForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="reporteComparaToContaForm.resx">
-      <DependentUpon>reporteComparaToContaForm.vb</DependentUpon>
+    <EmbeddedResource Include="reporteComprasToContaForm.resx">
+      <DependentUpon>reporteComprasToContaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReporteDocVenta.resx">
       <DependentUpon>ReporteDocVenta.vb</DependentUpon>
@@ -1433,8 +1461,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\images\plus_verde.png" />
-    <None Include="bin\images\minus_rojo.png" />
+    <None Include="Resources\plus_verde.png" />
+    <None Include="Resources\minus_rojo.png" />
+    <None Include="Resources\plus_rojo.png" />
     <Content Include="SSP1.ico" />
   </ItemGroup>
   <ItemGroup>

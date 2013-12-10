@@ -162,22 +162,12 @@ Public Class reporteVentasToContaForm
     End Sub
 
     Private Sub btnExcel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExcel.Click
-
-        Dim wb As New XLWorkbook()
-        Dim ws As IXLWorksheet
-
-        ws = wb.Worksheets.Add("Contacts")
-        For index As Integer = 0 To dgv.Columns.Count() - 1
-            If dgv.Columns(index).Visible Then
-                ws.Cell(2, index + 2).Value = dgv.Columns(index).HeaderText
-            End If
-
-
-        Next
-
-        wb.SaveAs("Excel01.xlsx")
-
+        Dim _xls As New cExportXlsx
+        _xls.export2Excel(2, 2, "Pruebas 01", dgv)
 
 
     End Sub
+
+   
+
 End Class

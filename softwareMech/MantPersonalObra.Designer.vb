@@ -24,8 +24,8 @@ Partial Class mantPersonalObra
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(mantPersonalObra))
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.txtBuscaPersona = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
@@ -194,8 +194,8 @@ Partial Class mantPersonalObra
         Me.dgPersonal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgPersonal.Location = New System.Drawing.Point(3, 19)
         Me.dgPersonal.Name = "dgPersonal"
-        DataGridViewCellStyle13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgPersonal.RowsDefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgPersonal.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgPersonal.Size = New System.Drawing.Size(412, 499)
         Me.dgPersonal.TabIndex = 0
         '
@@ -319,8 +319,8 @@ Partial Class mantPersonalObra
         Me.dgPersonalObra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgPersonalObra.Location = New System.Drawing.Point(3, 19)
         Me.dgPersonalObra.Name = "dgPersonalObra"
-        DataGridViewCellStyle14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgPersonalObra.RowsDefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgPersonalObra.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgPersonalObra.Size = New System.Drawing.Size(412, 499)
         Me.dgPersonalObra.TabIndex = 0
         '

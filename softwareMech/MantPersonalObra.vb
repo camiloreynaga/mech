@@ -300,7 +300,7 @@ Public Class mantPersonalObra
         End If
 
         'mensaje 
-        Dim resp As String = MessageBox.Show("¿Está seguro de asignar a: " & bindingSource0.Item(bindingSource0.Position)(2) & Chr(13) _
+        Dim resp As String = MessageBox.Show("¿Está seguro de ASIGNAR  a: " & bindingSource0.Item(bindingSource0.Position)(2) & Chr(13) _
                                             & "a la obra: " & cbObra.Text & " ?" _
                                             , nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
@@ -360,7 +360,7 @@ Public Class mantPersonalObra
 
     Private Sub btnQuitar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnQuitar.Click
 
-        Dim resp As String = MessageBox.Show("¿Está seguro de quitar a: " & bindingSource1.Item(bindingSource1.Position)(3) & Chr(13) _
+        Dim resp As String = MessageBox.Show("¿Está seguro de QUITAR a: " & bindingSource1.Item(bindingSource1.Position)(3) & Chr(13) _
                                              & "de la obra: " & cbObra.Text & " ?" _
                                              , nomNegocio, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If resp <> 6 Then
@@ -451,4 +451,6 @@ Public Class mantPersonalObra
         End If
 
     End Sub
+
+    
 End Class
