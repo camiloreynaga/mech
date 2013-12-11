@@ -197,6 +197,10 @@ Public Class reporteComprasToContaForm
 
     Private Sub btnExcel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExcel.Click
         Dim _xls As New cExportXlsx
-        _xls.export2Excel(2, 2, "Compras 02", dgv)
+        Dim fileName As String = _xls.saveFileXlsx()
+        If Not String.IsNullOrEmpty(fileName) Then
+            _xls.export2Excel(3, 2, fileName, "Compras ", dgv, Me.lblTitulo.Text)
+        End If
+
     End Sub
 End Class
