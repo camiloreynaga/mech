@@ -1249,4 +1249,10 @@ Public Class pantallaInicialForm
         rptCompras.MdiParent = Me
         rptCompras.Show()
     End Sub
+
+    Private Sub ImportarXlsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ImportarXlsToolStripMenuItem.Click
+        Dim frmImpor As New ImportXlsxForm
+        frmImpor.MdiParent = Me
+        frmImpor.Show()
+    End Sub
 End Class
