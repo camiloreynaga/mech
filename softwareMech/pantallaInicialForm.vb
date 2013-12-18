@@ -1250,9 +1250,21 @@ Public Class pantallaInicialForm
         rptCompras.Show()
     End Sub
 
-    Private Sub ImportarXlsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ImportarXlsToolStripMenuItem.Click
-        Dim frmImpor As New ImportXlsxForm
-        frmImpor.MdiParent = Me
-        frmImpor.Show()
+    Private Sub opcIng3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcIng3.Click
+        Dim ing As New procesarIngresoFacturaForm
+        ing.MdiParent = Me
+        ing.Show()
+    End Sub
+
+    Private Sub opcIng4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcIng4.Click
+        Dim tranf As New procesarTrasfCuentaForm
+        tranf.MdiParent = Me
+        tranf.Show()
+    End Sub
+
+    Private Sub ImportsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ImportsToolStripMenuItem.Click
+        Dim frmImport As New ImportXlsxForm
+        frmImport.MdiParent = Me
+        frmImport.Show()
     End Sub
 End Class

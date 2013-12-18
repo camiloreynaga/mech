@@ -689,6 +689,18 @@
     <Compile Include="procesarIngresoCajaChicaForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="procesarIngresoFacturaForm.Designer.vb">
+      <DependentUpon>procesarIngresoFacturaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="procesarIngresoFacturaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="procesarTrasfCuentaForm.Designer.vb">
+      <DependentUpon>procesarTrasfCuentaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="procesarTrasfCuentaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="registraComprobantePago.Designer.vb">
       <DependentUpon>registraComprobantePago.vb</DependentUpon>
     </Compile>
@@ -1292,6 +1304,12 @@
     <EmbeddedResource Include="procesarIngresoCajaChicaForm.resx">
       <DependentUpon>procesarIngresoCajaChicaForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="procesarIngresoFacturaForm.resx">
+      <DependentUpon>procesarIngresoFacturaForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="procesarTrasfCuentaForm.resx">
+      <DependentUpon>procesarTrasfCuentaForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="registraComprobantePago.resx">
       <DependentUpon>registraComprobantePago.vb</DependentUpon>
     </EmbeddedResource>
@@ -1482,9 +1500,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TEMP\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

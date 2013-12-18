@@ -46,8 +46,19 @@ Public Class cImportXlsx
 
     End Function
 
+    Private Sub createColumn(ByVal data As DataTable)
+        data.Columns.Add(New DataColumn())
+
+
+    End Sub
+
     Public Sub readWorkSheet(ByVal input As Stream, ByVal stringTable As IList(Of String), ByVal data As DataTable)
         Using reader As XmlReader = XmlReader.Create(input)
+
+            Dim columns As New List(Of String)
+            Dim nroCol As Integer = 0
+            Dim recuentoCol As Integer = 0
+
 
             Dim row As DataRow = Nothing
             Dim columnIndex As Integer = 0
@@ -55,16 +66,48 @@ Public Class cImportXlsx
             Dim value As Integer
 
             While reader.Read()
+
+             
+
+                'XmlNodeType.
+
                 If reader.NodeType = XmlNodeType.Element Then
+
+                    'reader.na()
+
+                    'data.Columns.Add( 
+
+
                     Select Case reader.Name
 
                         Case "row"
-                            row = data.NewRow
-                            data.Rows.Add(row)
+                            nroCol = reader.GetAttribute("r")
+
+
+                            
                             columnIndex = 0
                         Case "c"
+
+                            If nroCol = 1 Then
+                                createColumn(data)
+
+                            Else
+                                If recuentoCol < columnIndex Then
+                                    createColumn(data)
+                                End If
+
+                            End If
+
+                            If columnIndex = 0 Then
+                                'añadiendo fila
+                                row = data.NewRow
+                                data.Rows.Add(row)
+                            End If
+
+                            'evaluando el tipo de valor
                             type = reader.GetAttribute("t")
                             reader.Read()
+
                             value = CInt(reader.ReadElementString())
 
                             If type = "s" Then
@@ -73,6 +116,8 @@ Public Class cImportXlsx
                                 row(columnIndex) = value
                             End If
                             columnIndex += 1
+                            'obteniendo la última cantidad de columnas
+                            recuentoCol = columnIndex
                     End Select
 
                 End If

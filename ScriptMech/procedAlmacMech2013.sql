@@ -219,11 +219,6 @@ as
 	RETURN  @Identity
 GO
 
---------EJECUTAR AHORITA-----------------
------------09/10/2013-----------------------
-------------------------------------
--- Ejecuatar en el Server
-
 --DROP procedure PA_InsertOrdenDesembolso
 create procedure PA_InsertOrdenDesembolso
 	@ser varchar(5),@nroD int,@fecD date,@codMon int,@mon decimal(10,2),@mon1 decimal(8,2),@mon2 decimal(10,2),@est int,@cod varchar(10),@codIde int,
@@ -251,9 +246,39 @@ as
 	RETURN  @Identity
 GO
 
+create procedure PA_InsertDocVenta
+	@ser varchar(5),@nro int,@fecD date,@fecC varchar(10),@idSesM int,@codSerS int, @codIde int, @est int,@igv decimal(6,2),@calIGV int,@codMon int,
+	@cam decimal(5,2),@obs varchar(200),@hist varchar(500),@codigo varchar(10),
+	@Identity int output
+as
+	insert into TDocVenta(serie,nroDoc,fecDoc,fecCan,idSesM,codSerS,codIde,estado,igv,calIGV,codMon,camD,obs,hist,codigo)
+	 values (@ser,@nro,@fecD,@fecC,@idSesM,@codSerS,@codIde,@est,@igv,@calIGV,@codMon,@cam,@obs,@hist,@codigo)
+	 SET @Identity=@@IDENTITY 
+	 Return @Identity
+GO
 
-
-
+create procedure PA_InsertDetalleVenta
+	@can decimal(8,2),@uni varchar(20),@det varchar(100),@lin varchar(200),@pre decimal(13,2),@codD int,
+	@Identity int output --parametro de salida
+as
+	insert into TDetalleVenta(cant,unidad,detalle,linea,preUni,codDocV) 
+		values(@can,@uni,@det,@lin,@pre,@codD)	
+	SET @Identity = @@Identity
+	
+	RETURN  @Identity
+GO
+--------EJECUTAR-----------------
+-----------05/12/2013------------
+---------------------------------
+create procedure PA_InsertRegLab
+	@dia1 int,@dia2 int,
+	@Identity int output --parametro de salida
+as
+	insert into TRegLab(diaLab,diaDes) values(@dia1,@dia2)	
+	SET @Identity = @@Identity
+	
+	RETURN  @Identity
+GO
 
 
 

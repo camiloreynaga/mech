@@ -123,12 +123,10 @@ insert TTipoMovCaja(tipoMov) values ('EGRESO')--2
 GO
 --select * from TTipoMovCaja
 
-
---*****************************************************
---------------------EJECUTAR 09/10/2013----------------------
---*****************************************************
 insert TTipoMovimiento(tipoMov) values ('EGRESO')--1
 insert TTipoMovimiento(tipoMov) values ('INGRESO')--2
+insert TTipoMovimiento(tipoMov) values ('TRANSF. SALIDA')--3
+insert TTipoMovimiento(tipoMov) values ('TRANSF. ENTRADA')--4
 GO
 --select * from TTipoMovimiento
 insert TClasificacion(clasificacion,idTM) values ('',1)--1
@@ -152,3 +150,37 @@ insert into TMes(mes) values('NOVIEMBRE') --11
 insert into TMes(mes) values('DICIEMBRE') --12
 GO
 --select * from TMes
+--*****************************************************
+--------------------EJECUTAR 05/12/2013----------------------
+--*****************************************************
+insert into TMesPla(mes) values('ENERO') --1
+insert into TMesPla(mes) values('FEBRERO') --2
+insert into TMesPla(mes) values('MARZO') --3
+insert into TMesPla(mes) values('ABRIL') --4
+insert into TMesPla(mes) values('MAYO') --5
+insert into TMesPla(mes) values('JUNIO') --6
+insert into TMesPla(mes) values('JULIO') --7
+insert into TMesPla(mes) values('AGOSTO') --8
+insert into TMesPla(mes) values('SETIEMBRE') --9
+insert into TMesPla(mes) values('OCTUBRE') --10
+insert into TMesPla(mes) values('NOVIEMBRE') --11
+insert into TMesPla(mes) values('DICIEMBRE') --12
+GO
+--select * from TMesPla
+
+insert into TDiaPla(dia) values('LUNES') --1
+insert into TDiaPla(dia) values('MARTES') --2
+insert into TDiaPla(dia) values('MIERCOLES') --3
+insert into TDiaPla(dia) values('JUEVES') --4
+insert into TDiaPla(dia) values('VIERNES') --5
+insert into TDiaPla(dia) values('SABADO') --6
+insert into TDiaPla(dia) values('DOMINGO') --7
+GO
+--select * from TDiaPla
+--*****************************************************
+--------------EJECUTAR 19/12/2013----------------------
+--*****************************************************
+insert TTipoMovimiento(tipoMov) values ('TRANSF. SALIDA')--3
+insert TTipoMovimiento(tipoMov) values ('TRANSF. ENTRADA')--4
+GO
+--select * from TTipoMovimiento

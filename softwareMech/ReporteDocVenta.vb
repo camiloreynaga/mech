@@ -105,8 +105,9 @@ Public Class ReporteDocVenta
             '.Columns("nombre").Visible = False
             .Columns("nombre").HeaderText = "Obra"
             .Columns("nombre").Width = 250
+            .Columns("estado").DisplayIndex = 0
             .Columns("estado").HeaderText = "Estado"
-            .Columns("estado").Width = 70
+            .Columns("estado").Width = 80
 
             .Columns("simbolo").Visible = False
             ' .Columns("simbolo").HeaderText = ""
@@ -117,6 +118,8 @@ Public Class ReporteDocVenta
             .Columns("calIGV").Visible = False
             .Columns("codMon").Visible = False
             .Columns("obs").Visible = False
+
+            .Columns("codestado").Visible = False
             '.Columns("camD").HeaderText = "cam"
             '.Columns("camD").Width = 120
 
@@ -148,6 +151,11 @@ Public Class ReporteDocVenta
             .Columns("preUni").DefaultCellStyle.Format = "N2"
             .Columns("preUni").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
+            .Columns("subtotal").HeaderText = "Parcial"
+            .Columns("subtotal").Width = 90
+            .Columns("subtotal").DefaultCellStyle.Format = "N2"
+            .Columns("subtotal").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
         End With
 
 
@@ -170,18 +178,18 @@ Public Class ReporteDocVenta
             Select Case tipoCalculo
                 'igv incluido
                 Case 1
-                    total = oGrilla.SumarColumnaGrilla(dgDetalleVenta, "preUni")
+                    total = oGrilla.SumarColumnaGrilla(dgDetalleVenta, "subtotal")
                     subTotal = total / 1.18
                     Igv = total - subTotal
                     'igv por incluir
                 Case 2
-                    subTotal = oGrilla.SumarColumnaGrilla(dgDetalleVenta, "preUni")
+                    subTotal = oGrilla.SumarColumnaGrilla(dgDetalleVenta, "subtotal")
                     Igv = subTotal * 0.18
                     total = subTotal * 1.18
 
                     'sin igv
                 Case 0
-                    total = oGrilla.SumarColumnaGrilla(dgDetalleVenta, "preUni")
+                    total = oGrilla.SumarColumnaGrilla(dgDetalleVenta, "subtotal")
 
             End Select
             'asignando valores a textbox
@@ -194,6 +202,25 @@ Public Class ReporteDocVenta
             lblMonedaTotal.Text = simbolo
 
         End If
+
+    End Sub
+
+    ''' <summary>
+    ''' Da color a la celda estado de la grilla principal
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub colorearCeldaGrilla()
+
+        '0 Abierto
+        oGrilla.colorearFilasDGV(dgvVentas, "estado", "codestado", 0, Color.White, Color.Black)
+        '1 Cerrado
+        oGrilla.colorearFilasDGV(dgvVentas, "estado", "codestado", 1, Color.Yellow, Color.Red)
+        '2 anulado
+        oGrilla.colorearFilasDGV(dgvVentas, "estado", "codestado", 2, Color.Red, Color.White)
+        '3 Procesado ingreso
+        oGrilla.colorearFilasDGV(dgvVentas, "estado", "codestado", 3, Color.Green, Color.White)
+        '4 archivado
+        oGrilla.colorearFilasDGV(dgvVentas, "estado", "codestado", 4, Color.Black, Color.White)
 
     End Sub
 
@@ -334,7 +361,7 @@ Public Class ReporteDocVenta
         _fechaIni = dtpInicio.Text
         _fechaFin = dtpFin.Text
 
-        Dim query As String = "select codDocV,serie,nroDoc,fecDoc,ruc,razon,dir,codIde,codigo,nombre,estado,simbolo,camD,codSerS,calIGV,codMon,obs from vDocumentosVentas "
+        Dim query As String = "select codDocV,serie,nroDoc,fecDoc,ruc,razon,dir,codIde,codigo,nombre,estado,simbolo,camD,codSerS,calIGV,codMon,obs,codEstado from vDocumentosVentas "
 
         'filtrando la consulta
 
@@ -386,6 +413,10 @@ Public Class ReporteDocVenta
         'modificar columnas
         ModificandoColumnaDGV()
 
+        'Dando color a la celda estado
+        colorearCeldaGrilla()
+
+
         'limpiando grilla detalle
         If dgvVentas.RowCount = 0 Then
             dgvVentas.DataSource = ""
@@ -405,7 +436,7 @@ Public Class ReporteDocVenta
             dgDetalleVenta.DataSource = ""
         Else
 
-            Dim query As String = "select codDV,cant,unidad,detalle,linea,simbolo, preUni from TDetalleVenta TD inner join vDocumentosVentas TDV on TDV.codDocV =  TD.codDocV where TD.codDocV =" & BindingSource0.Item(BindingSource0.Position)(0)
+            Dim query As String = "select codDV,cant,unidad,detalle,linea,simbolo, preUni,(preUni*cant) subtotal from TDetalleVenta TD inner join vDocumentosVentas TDV on TDV.codDocV =  TD.codDocV where TD.codDocV =" & BindingSource0.Item(BindingSource0.Position)(0)
 
             oDataManager.CargarGrilla(query, CommandType.Text, dgDetalleVenta, BindingSource1)
 
@@ -516,4 +547,8 @@ Public Class ReporteDocVenta
         Return value
     End Function
 
+    
+    Private Sub dgvVentas_Sorted(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgvVentas.Sorted
+        colorearCeldaGrilla()
+    End Sub
 End Class

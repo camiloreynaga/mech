@@ -10,7 +10,7 @@ select * from TDocVenta
 create  view vDocumentosVentas
 as 
 select TDV.codDocV,TDV.serie, TDV.nroDoc,TDV.fecDoc,TDV.fecCan,TDV.idSesM,TDV.codSerS,TDV.codIde,TDV.estado codEstado,
-'estado'=case when TDV.estado=0 then 'ABIERTO' when TDV.estado=1 then 'COBRADO' else 'ANULADO' end,  
+'estado'=case when TDV.estado=0 then 'ABIERTO' when TDV.estado=1 then 'CERRADO' when TDV.estado=2 then 'ANULADO' when TDV.estado=3 then 'PROCESADO INGRESO' when TDV.estado=4 then 'ARCHIVADO' end,  
 
 TDV.igv,TDV.calIGV,TDV.codMon,TDv.codigo,TIDE.razon,TIDE.ruc,TIDE.dir,TLU.nombre,TMO.simbolo,TDV.camD,TDV.obs          
 from TDocVenta TDV

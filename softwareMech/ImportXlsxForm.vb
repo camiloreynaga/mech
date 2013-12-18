@@ -25,9 +25,9 @@ Public Class ImportXlsxForm
 
         Dim table As New DataTable
 
-        table.Columns.Add(New DataColumn("id"))
-        table.Columns.Add(New DataColumn("name"))
-        table.Columns.Add(New DataColumn())
+        'table.Columns.Add(New DataColumn("id"))
+        'table.Columns.Add(New DataColumn("name"))
+        'table.Columns.Add(New DataColumn())
 
         Return table
 
@@ -74,6 +74,10 @@ Public Class ImportXlsxForm
     Private Sub btnImport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnImport.Click
 
         Dim fileName As String = showOpenFileDialog()
+
+        If String.IsNullOrEmpty(fileName) Then
+            Exit Sub
+        End If
 
         Dim table As DataTable = createDataTable()
 

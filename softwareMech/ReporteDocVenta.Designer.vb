@@ -24,8 +24,8 @@ Partial Class ReporteDocVenta
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReporteDocVenta))
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
         Me.rdoFecha = New System.Windows.Forms.RadioButton
         Me.rdoSerie = New System.Windows.Forms.RadioButton
@@ -40,6 +40,7 @@ Partial Class ReporteDocVenta
         Me.lblDel = New System.Windows.Forms.Label
         Me.cbSerie = New System.Windows.Forms.ComboBox
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.chkObra = New System.Windows.Forms.CheckBox
         Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton
@@ -50,6 +51,7 @@ Partial Class ReporteDocVenta
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator
+        Me.btnImprimir = New System.Windows.Forms.ToolStripButton
         Me.dgvVentas = New System.Windows.Forms.DataGridView
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
         Me.lblMonedaTotal = New System.Windows.Forms.Label
@@ -73,8 +75,6 @@ Partial Class ReporteDocVenta
         Me.BindingNavigatorSeparator5 = New System.Windows.Forms.ToolStripSeparator
         Me.dgDetalleVenta = New System.Windows.Forms.DataGridView
         Me.btnCancel = New System.Windows.Forms.Button
-        Me.btnImprimir = New System.Windows.Forms.ToolStripButton
-        Me.chkObra = New System.Windows.Forms.CheckBox
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,7 +88,7 @@ Partial Class ReporteDocVenta
         '
         'lblTitulo
         '
-        Me.lblTitulo.Size = New System.Drawing.Size(898, 23)
+        Me.lblTitulo.Size = New System.Drawing.Size(1050, 23)
         Me.lblTitulo.Text = "Reporte de documentos de venta"
         '
         'lblDerecha
@@ -232,9 +232,22 @@ Partial Class ReporteDocVenta
         Me.GroupBox1.Controls.Add(Me.dgvVentas)
         Me.GroupBox1.Location = New System.Drawing.Point(20, 72)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(852, 260)
+        Me.GroupBox1.Size = New System.Drawing.Size(1030, 260)
         Me.GroupBox1.TabIndex = 30
         Me.GroupBox1.TabStop = False
+        '
+        'chkObra
+        '
+        Me.chkObra.AutoSize = True
+        Me.chkObra.Checked = True
+        Me.chkObra.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkObra.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkObra.Location = New System.Drawing.Point(292, 237)
+        Me.chkObra.Name = "chkObra"
+        Me.chkObra.Size = New System.Drawing.Size(100, 17)
+        Me.chkObra.TabIndex = 2
+        Me.chkObra.Text = "Imprimir Obra"
+        Me.chkObra.UseVisualStyleBackColor = True
         '
         'BindingNavigator1
         '
@@ -250,7 +263,7 @@ Partial Class ReporteDocVenta
         Me.BindingNavigator1.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.BindingNavigator1.Name = "BindingNavigator1"
         Me.BindingNavigator1.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BindingNavigator1.Size = New System.Drawing.Size(846, 25)
+        Me.BindingNavigator1.Size = New System.Drawing.Size(1024, 25)
         Me.BindingNavigator1.TabIndex = 1
         Me.BindingNavigator1.Text = "BindingNavigator1"
         '
@@ -321,14 +334,24 @@ Partial Class ReporteDocVenta
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
         Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
         '
+        'btnImprimir
+        '
+        Me.btnImprimir.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
+        Me.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(71, 22)
+        Me.btnImprimir.Text = "Imprimir"
+        Me.btnImprimir.ToolTipText = "Imprimir orden de desembolso"
+        '
         'dgvVentas
         '
         Me.dgvVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvVentas.Location = New System.Drawing.Point(3, 11)
         Me.dgvVentas.Name = "dgvVentas"
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvVentas.RowsDefaultCellStyle = DataGridViewCellStyle7
-        Me.dgvVentas.Size = New System.Drawing.Size(843, 218)
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvVentas.RowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgvVentas.Size = New System.Drawing.Size(1024, 218)
         Me.dgvVentas.TabIndex = 0
         '
         'GroupBox3
@@ -346,7 +369,7 @@ Partial Class ReporteDocVenta
         Me.GroupBox3.Controls.Add(Me.dgDetalleVenta)
         Me.GroupBox3.Location = New System.Drawing.Point(20, 332)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(852, 230)
+        Me.GroupBox3.Size = New System.Drawing.Size(1030, 230)
         Me.GroupBox3.TabIndex = 31
         Me.GroupBox3.TabStop = False
         '
@@ -518,9 +541,9 @@ Partial Class ReporteDocVenta
         Me.dgDetalleVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgDetalleVenta.Location = New System.Drawing.Point(3, 19)
         Me.dgDetalleVenta.Name = "dgDetalleVenta"
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgDetalleVenta.RowsDefaultCellStyle = DataGridViewCellStyle8
-        Me.dgDetalleVenta.Size = New System.Drawing.Size(843, 180)
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgDetalleVenta.RowsDefaultCellStyle = DataGridViewCellStyle2
+        Me.dgDetalleVenta.Size = New System.Drawing.Size(1024, 180)
         Me.dgDetalleVenta.TabIndex = 0
         '
         'btnCancel
@@ -533,35 +556,12 @@ Partial Class ReporteDocVenta
         Me.btnCancel.Text = "cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
-        'btnImprimir
-        '
-        Me.btnImprimir.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
-        Me.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(71, 22)
-        Me.btnImprimir.Text = "Imprimir"
-        Me.btnImprimir.ToolTipText = "Imprimir orden de desembolso"
-        '
-        'chkObra
-        '
-        Me.chkObra.AutoSize = True
-        Me.chkObra.Checked = True
-        Me.chkObra.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkObra.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkObra.Location = New System.Drawing.Point(292, 237)
-        Me.chkObra.Name = "chkObra"
-        Me.chkObra.Size = New System.Drawing.Size(100, 17)
-        Me.chkObra.TabIndex = 2
-        Me.chkObra.Text = "Imprimir Obra"
-        Me.chkObra.UseVisualStyleBackColor = True
-        '
         'ReporteDocVenta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnCancel
-        Me.ClientSize = New System.Drawing.Size(898, 601)
+        Me.ClientSize = New System.Drawing.Size(1050, 601)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.cbClient)

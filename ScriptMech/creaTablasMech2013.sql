@@ -423,7 +423,7 @@ create table TCuentaBan
 	codMon int,
 	codBan int,
 	estado int,			--1=activo   0=inactivo	
-	saldoBan decimal(12,2) default 0,
+	saldoBan decimal(13,2) default 0,
 	foreign key(codMon) references TMoneda,
 	foreign key(codBan) references TBanco
 )
@@ -801,9 +801,9 @@ create table TMovimientoMech
 	idCue int, --cuenta banco donde esta el saldo
 	codPagD int, --Desembolso para egreso
 	codDocC int,  --Ingreso Doc. (Factura)
-	montoIng decimal(12,2),
-	montoEgr decimal(12,2),
-	saldoMov decimal(12,2),
+	montoIng decimal(13,2),
+	montoEgr decimal(13,2),
+	saldoMov decimal(13,2),
 	codPers int,  --pers procesa
 	descrip varchar(200) default '',
 	foreign key(idSesM) references TSesionMes,
@@ -812,11 +812,152 @@ create table TMovimientoMech
 	foreign key (idCue) references TCuentaBan,
 	foreign key(codPers) references TPersonal,
 )
+-- YA CREADO
+create table TProveedor
+(	codProv int identity primary key,
+	razon varchar(60),
+	ruc varchar(11),
+	dir varchar(120),
+	fono varchar(60),
+	email varchar(30),
+	repres varchar(60),
+	estado int, 	--1=Activo 0=Inactivo
+	cuentaBan varchar(60) default '',
+	cuentaDet varchar(60) default ''
+)
+-------MODULO SEGUIMIENTO REQUERIMIENTO OBRA------
+-----------------EJECUTAR 25/11/2013------------------
+------------------------------------------------------
+-- DROP table TDocCompra
+create table TDocVenta
+(	codDocV int identity(1,1) primary key,
+	serie varchar(5),
+	nroDoc int,
+	fecDoc date,
+	fecCan varchar(10),
+	idSesM int,
+	codSerS int,
+	codIde int,		--CLIENTE
+	estado int,	--0=abierto,1=cerrado,2=anulado
+	igv decimal(6,2),
+	calIGV int,  --0=Boleta otros  1=Tipo IGV 2=TipoIGV
+	codMon int,
+	camD decimal(5,2),
+	obs varchar(200),
+	hist varchar(500), --quien creo/modifico/anulo y en que fecha
+	codigo varchar(10),
+	foreign key (codigo) references TLugarTrabajo,
+	foreign key(idSesM) references TSesionMes,
+	foreign key(codSerS) references TSerieSede,
+	foreign key(codIde) references TIdentidad,
+	foreign key(codMon) references TMoneda,
+	foreign key (codigo) references TLugarTrabajo
+)
+
+--DROP table TDetalleCompra
+create table TDetalleVenta
+(	codDV int identity(1,1) primary key,
+	cant decimal(8,2),
+	unidad varchar(20),
+	detalle varchar(100),
+	linea varchar(200), --descripcion de obra
+	preUni decimal(13,2),
+	codDocV int,
+	foreign key(codDocV) references TDocVenta
+)
+
+create table TCargoPers
+(	codCar int identity primary key,
+	cargo varchar(30)  
+	
+)
+--REGISTROS DE PERSONAL PLANILLAS
+create table TPersona
+(	codPer int identity primary key,
+	nombre varchar(20),
+	apePat varchar(20),
+	apeMat varchar(20),
+	dni varchar(8),
+	sexo varchar(3), --Mas Fem
+	fecNac date,
+	dir varchar(60),
+	fono varchar(60),
+	email varchar(100),
+	estado int, 	--1=Activo 0=Inactivo
+	codCar int,
+	foreign key(codCar) references TCargoPers
+)
+
+create table TPersObra
+(	codPO int identity primary key,
+	codPer int,
+	codigo varchar(10),	--codigo Obra...
+	foreign key(codPer) references TPersona,
+	foreign key(codigo) references TLugarTrabajo
+)
+-------MODULO SEGUIMIENTO REQUERIMIENTO OBRA------
+-----------------EJECUTAR 05/12/2013------------------
+------------------------------------------------------
+create table TMesPla
+(	idMes int identity primary key,
+	mes varchar(20)  --  Setiembre
+)
+
+create table TSesionMesPla
+(	idSesM int identity primary key,
+	idMes int,
+	ano int,	--2013
+	estado int, --1=abierto  2=cerrado
+	foreign key(idMes) references TMesPla,
+)
+
+create table TDiaPla
+(	codDia int identity primary key,
+	dia varchar(20)  --  Lunes
+)
+
+create table TLeyendaPla
+(	codLP int identity primary key,
+	leyenda varchar(20),  --  Asistencia
+	abrev varchar(3), --A
+	est int  --1=aistencia 0=No asistio
+)
+
+create table TRegLab
+(	codReg int identity primary key,
+	diaLab int,  --  23
+	diaDes int	 --	 7
+)
+
+create table TNroReg
+(	idNro int identity primary key,
+	nro int,	--1  2  3  4  5 ...
+	codReg int,
+	foreign key(codReg) references TRegLab
+)
+
+create table TTareo
+(	codTar int identity primary key,
+	codigo varchar(10),	--codigo Obra...
+	codPer int,
+	idSesM int,
+	codDia int,
+	fecha date,
+	codReg int,
+	idNro int,
+	codLP int,
+	foreign key(codigo) references TLugarTrabajo,
+	foreign key(codPer) references TPersona,
+	foreign key(idSesM) references TSesionMesPla,
+	foreign key(codDia) references TDiaPla,
+	foreign key(codReg) references TRegLab,
+	foreign key(idNro) references TNroReg,
+	foreign key(codLP) references TLeyendaPla
+)
 
 -------MODULO SEGUIMIENTO REQUERIMIENTO OBRA------
------------------EJECUTAR 09/11/2013------------------
+-----------------EJECUTAR 19/12/2013------------------
 ------------------------------------------------------
-
 create table TSegRequerObra
 (	codSRO int identity(1,1) primary key,
 	codDetS int,	-- TDetalleSol linea de insumo de TSolicitud
@@ -839,45 +980,10 @@ create table TMedioPago
 	foreign key(idCue) references TCuentaBan
 )	
 
-
 create table TSerieCheque
 (	codSC int identity primary key,
 	codMP int,	
 	codSerP int,
 	foreign key(codMP) references TMedioPago,
 	foreign key(codSerP) references TSeriePago
-)
-
--- DROP table TDocCompra
-create table TDocVenta
-(	codDocV int identity(1,1) primary key,
-	serie varchar(5),
-	nroDoc int,
-	fecDoc date,
-	fecCan varchar(10),
-	idSesM int,
-	codSerS int,
-	codIde int,		--CLIENTE
-	estado int,	--0=abierto,1=cerrado,2=anulado
-	igv decimal(6,2),
-	calIGV int,  --0=Boleta otros  1=Tipo IGV 2=TipoIGV
-	codMon int,
-	camD decimal(5,2),
-	obs varchar(200),
-	hist varchar(500), --quien creo/modifico/anulo y en que fecha
-	foreign key(idSesM) references TSesionMes,
-	foreign key(codSerS) references TSerieSede,
-	foreign key(codIde) references TIdentidad,
-	foreign key(codMon) references TMoneda
-)
-
---DROP table TDetalleCompra
-create table TDetalleVenta
-(	codDV int identity(1,1) primary key,
-	cant decimal(8,2),
-	unidad varchar(20),
-	detalle varchar(300),
-	preUni decimal(12,2),
-	codDocV int,
-	foreign key(codDocV) references TDocVenta
 )
