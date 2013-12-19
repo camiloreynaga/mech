@@ -52,12 +52,47 @@ Public Class cImportXlsx
 
     End Sub
 
-    Public Sub readWorkSheet(ByVal input As Stream, ByVal stringTable As IList(Of String), ByVal data As DataTable)
+    'condor de columnas
+
+    Public Function nroColumnas(ByVal input As Stream) As List(Of Integer)
+
         Using reader As XmlReader = XmlReader.Create(input)
 
-            Dim columns As New List(Of String)
-            Dim nroCol As Integer = 0
-            Dim recuentoCol As Integer = 0
+            Dim columns As New List(Of Integer)
+            Dim columCount As Integer = 0
+
+            While reader.Read()
+
+                If reader.NodeType = XmlNodeType.Element Then
+
+                    Select Case reader.Name
+
+                        Case "row"
+                            columns.Add(columCount)
+                            columCount = 0
+
+                        Case "c"
+
+                            reader.Read()
+                            columCount += 1
+
+                    End Select
+
+                End If
+
+            End While
+
+
+            Return columns
+        End Using
+
+    End Function
+
+
+
+    Public Sub readWorkSheet(ByVal input As Stream, ByVal stringTable As IList(Of String), ByVal data As DataTable)
+
+        Using reader As XmlReader = XmlReader.Create(input)
 
 
             Dim row As DataRow = Nothing
@@ -65,59 +100,48 @@ Public Class cImportXlsx
             Dim type As String
             Dim value As Integer
 
+
+
             While reader.Read()
 
-             
-
-                'XmlNodeType.
-
                 If reader.NodeType = XmlNodeType.Element Then
-
-                    'reader.na()
-
-                    'data.Columns.Add( 
-
 
                     Select Case reader.Name
 
                         Case "row"
-                            nroCol = reader.GetAttribute("r")
 
-
-                            
+                            'añadiendo fila
+                            row = data.NewRow
+                            data.Rows.Add(row)
                             columnIndex = 0
                         Case "c"
 
-                            If nroCol = 1 Then
-                                createColumn(data)
-
-                            Else
-                                If recuentoCol < columnIndex Then
-                                    createColumn(data)
-                                End If
-
-                            End If
-
-                            If columnIndex = 0 Then
-                                'añadiendo fila
-                                row = data.NewRow
-                                data.Rows.Add(row)
-                            End If
-
                             'evaluando el tipo de valor
                             type = reader.GetAttribute("t")
-                            reader.Read()
 
-                            value = CInt(reader.ReadElementString())
+                            'reader.Read()
+                        Case "v"
 
-                            If type = "s" Then
-                                row(columnIndex) = stringTable(value)
-                            Else
-                                row(columnIndex) = value
+
+                            Dim g As String = reader.ReadElementString()
+                            If Not String.IsNullOrEmpty(g.Trim()) Then
+
+                                If IsNumeric(g) Then
+                                    value = CInt(g) 'CInt(reader.ReadElementString())
+
+
+                                    If type = "s" Then
+                                        row(columnIndex) = stringTable(value)
+                                    Else
+                                        row(columnIndex) = value
+                                    End If
+                                End If
                             End If
-                            columnIndex += 1
-                            'obteniendo la última cantidad de columnas
-                            recuentoCol = columnIndex
+
+
+
+
+                                columnIndex += 1
                     End Select
 
                 End If

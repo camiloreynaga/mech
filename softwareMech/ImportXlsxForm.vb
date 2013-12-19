@@ -21,9 +21,13 @@ Public Class ImportXlsxForm
 
 #Region "Métodos"
 
-    Private Function createDataTable() as DataTable 
+    Private Function createDataTable(ByVal nroColumnas As Integer) As DataTable
 
         Dim table As New DataTable
+
+        For i As Integer = 0 To nroColumnas - 1
+            table.Columns.Add(New DataColumn())
+        Next
 
         'table.Columns.Add(New DataColumn("id"))
         'table.Columns.Add(New DataColumn("name"))
@@ -79,7 +83,8 @@ Public Class ImportXlsxForm
             Exit Sub
         End If
 
-        Dim table As DataTable = createDataTable()
+        Dim table As DataTable ' = createDataTable()
+
 
         'oImport.DeleteDirectoryContents(tempDir)
 
@@ -93,6 +98,15 @@ Public Class ImportXlsxForm
         End Using
 
         ' Open XML file with worksheet data..
+        Using stream = New FileStream(Path.Combine(tempDir, "xl\worksheets\sheet1.xml"), FileMode.Open, FileAccess.Read)
+            ' ..and call helper method that parses that XML and fills DataTable with values.
+            'oImport.readWorkSheet(stream, stringTable, createDataTable())
+            table = createDataTable(oImport.nroColumnas(stream).Max())
+
+        End Using
+
+
+
         Using stream = New FileStream(Path.Combine(tempDir, "xl\worksheets\sheet1.xml"), FileMode.Open, FileAccess.Read)
             ' ..and call helper method that parses that XML and fills DataTable with values.
             'oImport.readWorkSheet(stream, stringTable, createDataTable())
