@@ -132,6 +132,7 @@ Partial Class pantallaInicialForm
         Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem
+        Me.ImportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator
         Me.opcPersonal = New System.Windows.Forms.ToolStripDropDownButton
         Me.opcPers1 = New System.Windows.Forms.ToolStripMenuItem
@@ -159,7 +160,6 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.ImportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -1095,6 +1095,12 @@ Partial Class pantallaInicialForm
         Me.ToolStripMenuItem6.Size = New System.Drawing.Size(196, 22)
         Me.ToolStripMenuItem6.Text = "Compras"
         '
+        'ImportsToolStripMenuItem
+        '
+        Me.ImportsToolStripMenuItem.Name = "ImportsToolStripMenuItem"
+        Me.ImportsToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.ImportsToolStripMenuItem.Text = "Imports"
+        '
         'ToolStripSeparator8
         '
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
@@ -1324,12 +1330,6 @@ Partial Class pantallaInicialForm
         Me.ToolStripStatusLabel1.Text = "Soluciones Software Perú S.A.C. - Copyright (c)  2005 - 2013 SSP SAC - Cusco Perú" & _
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'ImportsToolStripMenuItem
-        '
-        Me.ImportsToolStripMenuItem.Name = "ImportsToolStripMenuItem"
-        Me.ImportsToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
-        Me.ImportsToolStripMenuItem.Text = "Imports"
         '
         'pantallaInicialForm
         '

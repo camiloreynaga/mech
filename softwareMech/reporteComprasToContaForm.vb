@@ -195,12 +195,30 @@ Public Class reporteComprasToContaForm
 
     End Sub
 
-    Private Sub btnExcel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExcel.Click
+    Private Sub btnExcel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+
+    End Sub
+
+
+    Private Sub btnExcel1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExcel1.Click
+
+        'validando grilla
+        If dgv.RowCount = 0 Then
+            Exit Sub
+        End If
+
+        Dim wait As New waitForm
+        wait.Show()
+
         Dim _xls As New cExportXlsx
         Dim fileName As String = _xls.saveFileXlsx()
         If Not String.IsNullOrEmpty(fileName) Then
             _xls.export2Excel(3, 2, fileName, "Compras ", dgv, Me.lblTitulo.Text)
         End If
+
+        wait.Close()
+
 
     End Sub
 End Class

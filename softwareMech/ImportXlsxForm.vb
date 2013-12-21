@@ -28,11 +28,6 @@ Public Class ImportXlsxForm
         For i As Integer = 0 To nroColumnas - 1
             table.Columns.Add(New DataColumn())
         Next
-
-        'table.Columns.Add(New DataColumn("id"))
-        'table.Columns.Add(New DataColumn("name"))
-        'table.Columns.Add(New DataColumn())
-
         Return table
 
 
@@ -89,12 +84,18 @@ Public Class ImportXlsxForm
         'oImport.DeleteDirectoryContents(tempDir)
 
         oImport.unzipFile(fileName, tempDir)
-
+        'tabla para strings
         Dim stringTable As IList(Of String)
+        Dim styleTable As IList(Of Integer)
+
         ' Open XML file with table of all unique strings used in the workbook..
         Using stream = New FileStream(Path.Combine(tempDir, "xl\sharedStrings.xml"), FileMode.Open, FileAccess.Read)
             ' ..and call helper method that parses that XML and returns an array of strings.
             stringTable = oImport.readStringTable(stream)
+        End Using
+
+        Using Stream = New FileStream(Path.Combine(tempDir, "xl\styles.xml"), FileMode.Open, FileAccess.Read)
+            styleTable = oImport.readStyleTable(Stream)
         End Using
 
         ' Open XML file with worksheet data..
@@ -110,7 +111,7 @@ Public Class ImportXlsxForm
         Using stream = New FileStream(Path.Combine(tempDir, "xl\worksheets\sheet1.xml"), FileMode.Open, FileAccess.Read)
             ' ..and call helper method that parses that XML and fills DataTable with values.
             'oImport.readWorkSheet(stream, stringTable, createDataTable())
-            oImport.readWorkSheet(stream, stringTable, table)
+            oImport.readWorkSheet(stream, stringTable, styleTable, table)
         End Using
 
 

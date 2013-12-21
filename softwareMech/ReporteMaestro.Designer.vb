@@ -24,7 +24,7 @@ Partial Class ReporteMaestro
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReporteMaestro))
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
         Me.rdoFecha = New System.Windows.Forms.RadioButton
         Me.rdoSerie = New System.Windows.Forms.RadioButton
@@ -39,6 +39,7 @@ Partial Class ReporteMaestro
         Me.lblDel = New System.Windows.Forms.Label
         Me.cbSerie = New System.Windows.Forms.ComboBox
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.btnExcel1 = New System.Windows.Forms.Button
         Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton
@@ -52,7 +53,6 @@ Partial Class ReporteMaestro
         Me.btnImprimir = New System.Windows.Forms.ToolStripButton
         Me.dgv = New System.Windows.Forms.DataGridView
         Me.btnCancel = New System.Windows.Forms.Button
-        Me.btnExcel = New System.Windows.Forms.Button
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -201,7 +201,7 @@ Partial Class ReporteMaestro
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.btnExcel)
+        Me.GroupBox1.Controls.Add(Me.btnExcel1)
         Me.GroupBox1.Controls.Add(Me.BindingNavigator1)
         Me.GroupBox1.Controls.Add(Me.dgv)
         Me.GroupBox1.Location = New System.Drawing.Point(20, 72)
@@ -209,6 +209,15 @@ Partial Class ReporteMaestro
         Me.GroupBox1.Size = New System.Drawing.Size(852, 507)
         Me.GroupBox1.TabIndex = 30
         Me.GroupBox1.TabStop = False
+        '
+        'btnExcel1
+        '
+        Me.btnExcel1.Location = New System.Drawing.Point(293, 479)
+        Me.btnExcel1.Name = "btnExcel1"
+        Me.btnExcel1.Size = New System.Drawing.Size(65, 25)
+        Me.btnExcel1.TabIndex = 35
+        Me.btnExcel1.Text = "EXCEl"
+        Me.btnExcel1.UseVisualStyleBackColor = True
         '
         'BindingNavigator1
         '
@@ -310,8 +319,8 @@ Partial Class ReporteMaestro
         Me.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv.Location = New System.Drawing.Point(3, 11)
         Me.dgv.Name = "dgv"
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgv.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgv.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgv.Size = New System.Drawing.Size(843, 465)
         Me.dgv.TabIndex = 0
         '
@@ -324,14 +333,6 @@ Partial Class ReporteMaestro
         Me.btnCancel.TabIndex = 32
         Me.btnCancel.Text = "cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
-        '
-        'btnExcel
-        '
-        Me.btnExcel.Location = New System.Drawing.Point(293, 479)
-        Me.btnExcel.Name = "btnExcel"
-        Me.btnExcel.Size = New System.Drawing.Size(65, 25)
-        Me.btnExcel.TabIndex = 35
-        Me.btnExcel.UseVisualStyleBackColor = True
         '
         'ReporteMaestro
         '
@@ -407,5 +408,5 @@ Partial Class ReporteMaestro
     Protected Friend WithEvents dgv As System.Windows.Forms.DataGridView
     Protected Friend WithEvents btnCancel As System.Windows.Forms.Button
     Public WithEvents BindingNavigator1 As System.Windows.Forms.BindingNavigator
-    Friend WithEvents btnExcel As System.Windows.Forms.Button
+    Protected WithEvents btnExcel1 As System.Windows.Forms.Button
 End Class

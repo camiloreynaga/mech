@@ -22,7 +22,6 @@ Partial Class reporteVentasToContaForm
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.btnExcel = New System.Windows.Forms.Button
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.BindingSource0, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -32,10 +31,8 @@ Partial Class reporteVentasToContaForm
         'btnVer
         '
         '
-        'GroupBox1
+        'btnExcel
         '
-        Me.GroupBox1.Controls.Add(Me.btnExcel)
-        Me.GroupBox1.Controls.SetChildIndex(Me.btnExcel, 0)
         '
         'lblTitulo
         '
@@ -44,15 +41,6 @@ Partial Class reporteVentasToContaForm
         'lblDerecha
         '
         Me.lblDerecha.Size = New System.Drawing.Size(14, 556)
-        '
-        'btnExcel
-        '
-        Me.btnExcel.Location = New System.Drawing.Point(293, 479)
-        Me.btnExcel.Name = "btnExcel"
-        Me.btnExcel.Size = New System.Drawing.Size(65, 25)
-        Me.btnExcel.TabIndex = 2
-        Me.btnExcel.Text = "XLSX"
-        Me.btnExcel.UseVisualStyleBackColor = True
         '
         'reporteVentasToContaForm
         '
@@ -85,5 +73,4 @@ Partial Class reporteVentasToContaForm
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents btnExcel As System.Windows.Forms.Button
 End Class
