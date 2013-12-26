@@ -1267,4 +1267,11 @@ Public Class pantallaInicialForm
         frmImport.MdiParent = Me
         frmImport.Show()
     End Sub
+
+    Private Sub MantMedPagoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MantMedPagoToolStripMenuItem.Click
+        Dim frmMedioPago As New mantMedioPagoForm
+        frmMedioPago.MdiParent = Me
+        frmMedioPago.Show()
+
+    End Sub
 End Class

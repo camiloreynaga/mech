@@ -547,6 +547,12 @@
     <Compile Include="MantMaterialForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="mantMedioPagoForm.Designer.vb">
+      <DependentUpon>mantMedioPagoForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="mantMedioPagoForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MantMesPlaForm.designer.vb">
       <DependentUpon>MantMesPlaForm.vb</DependentUpon>
     </Compile>
@@ -1234,6 +1240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MantMaterialForm.resx">
       <DependentUpon>MantMaterialForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mantMedioPagoForm.resx">
+      <DependentUpon>mantMedioPagoForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MantMesPlaForm.resx">
       <DependentUpon>MantMesPlaForm.vb</DependentUpon>

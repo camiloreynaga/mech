@@ -160,6 +160,7 @@ Partial Class pantallaInicialForm
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.MantMedPagoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TSMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -1009,7 +1010,7 @@ Partial Class pantallaInicialForm
         '
         'infT
         '
-        Me.infT.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.infT1, Me.infT2, Me.infT5, Me.infT3, Me.infT4, Me.ToolStripSeparator26, Me.ToolStripMenuItem5, Me.ToolStripMenuItem4, Me.ToolStripMenuItem6, Me.ImportsToolStripMenuItem})
+        Me.infT.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.infT1, Me.infT2, Me.infT5, Me.infT3, Me.infT4, Me.ToolStripSeparator26, Me.ToolStripMenuItem5, Me.ToolStripMenuItem4, Me.ToolStripMenuItem6, Me.ImportsToolStripMenuItem, Me.MantMedPagoToolStripMenuItem})
         Me.infT.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.infT.Image = CType(resources.GetObject("infT.Image"), System.Drawing.Image)
         Me.infT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1331,6 +1332,12 @@ Partial Class pantallaInicialForm
             ""
         Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'MantMedPagoToolStripMenuItem
+        '
+        Me.MantMedPagoToolStripMenuItem.Name = "MantMedPagoToolStripMenuItem"
+        Me.MantMedPagoToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.MantMedPagoToolStripMenuItem.Text = "mantMedPago"
+        '
         'pantallaInicialForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1492,4 +1499,5 @@ Partial Class pantallaInicialForm
     Friend WithEvents opcIng3 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents opcIng4 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ImportsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MantMedPagoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

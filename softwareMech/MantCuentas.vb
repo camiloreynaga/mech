@@ -296,7 +296,7 @@ Public Class MantCuentas
         With dgMedios
             .Columns("codMP").Visible = False
             .Columns("medioP").HeaderText = "Medio Pago"
-            .Columns("nroM").Visible = False
+            .Columns("nroM").HeaderText = "Código"
             .Columns("idCue").Visible = False
 
 
@@ -347,7 +347,7 @@ Public Class MantCuentas
 
         Else
             txtMedioPago.Text = BindingSource3.Item(BindingSource3.Position)(1)
-
+            txtCodigoM.Text = BindingSource3.Item(BindingSource3.Position)(2)
         End If
 
 
@@ -385,12 +385,13 @@ Public Class MantCuentas
     End Sub
 
 
-    Private Sub comandoInsertMedio(ByVal medio As String)
+    Private Sub comandoInsertMedio(ByVal medio As String, ByVal nroCod As String)
         cmInsertTableMedio = New SqlCommand
         cmInsertTableMedio.CommandType = CommandType.Text
-        cmInsertTableMedio.CommandText = "insert TMedioPago (medioP,idCue,nroM) values (@medio,@idCue,0)"
+        cmInsertTableMedio.CommandText = "insert TMedioPago (medioP,idCue,nroM) values (@medio,@idCue,@codigo)"
         cmInsertTableMedio.Connection = Cn
         cmInsertTableMedio.Parameters.Add("@medio", SqlDbType.VarChar, 60).Value = medio
+        cmInsertTableMedio.Parameters.Add("@codigo", SqlDbType.VarChar, 10).Value = nroCod
         cmInsertTableMedio.Parameters.Add("@idCue", SqlDbType.Int).Value = BindingSource2.Item(BindingSource2.Position)(0)
 
     End Sub
@@ -411,13 +412,14 @@ Public Class MantCuentas
 
     End Sub
 
-    Private Sub comandoUpdateMedio(ByVal medio As String, ByVal codigo As Integer)
+    Private Sub comandoUpdateMedio(ByVal medio As String, ByVal codigo As Integer, ByVal nroCod As String)
 
         cmUpdateTableMedio = New SqlCommand
         cmUpdateTableMedio.CommandType = CommandType.Text
-        cmUpdateTableMedio.CommandText = "update TMedioPago set medioP=@medio where codMP=@codMP"
+        cmUpdateTableMedio.CommandText = "update TMedioPago set medioP=@medio,nroM= @codigo where codMP=@codMP"
         cmUpdateTableMedio.Connection = Cn
         cmUpdateTableMedio.Parameters.Add("@medio", SqlDbType.VarChar, 60).Value = medio
+        cmUpdateTableMedio.Parameters.Add("@codigo", SqlDbType.VarChar, 10).Value = nroCod
         cmUpdateTableMedio.Parameters.Add("@codMP", SqlDbType.Int).Value = codigo
     End Sub
 
@@ -523,7 +525,7 @@ Public Class MantCuentas
 
     Private Function ValidarMedio() As Boolean
         Dim retorna As Boolean = True
-
+        'Valida el medio de pago 
         If validaCampoVacio(txtMedioPago.Text.Trim()) Then
             MessageBox.Show("Ingrese un medio de pago valido: ", nomNegocio, Nothing, MessageBoxIcon.Information)
             txtCuenta.Focus()
@@ -531,12 +533,43 @@ Public Class MantCuentas
             retorna = False
         End If
 
+
+
+
+        'verifica duplicidad de codigos de pago
         If BindingSource3.Find("medioP", txtMedioPago.Text.Trim()) > 0 Then
             MessageBox.Show("Ya existe el medio de pago: " & txtMedioPago.Text.Trim() & Chr(13) & "Cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
             txtMedioPago.Focus()
             txtMedioPago.SelectAll()
             retorna = False
         End If
+
+        Return retorna
+    End Function
+
+    Private Function ValidarCodigoMedioPago() As Boolean
+        Dim retorna As Boolean = True
+
+        'valda el código de medio de pago
+        If validaCampoVacio(txtCodigoM.Text.Trim()) Then
+            MessageBox.Show("Ingrese un código de pago valido: ", nomNegocio, Nothing, MessageBoxIcon.Information)
+            txtCodigoM.Focus()
+            txtCodigoM.SelectAll()
+            retorna = False
+        End If
+
+        Dim ss As String = txtCodigoM.Text.Trim()
+
+        'verifica duplicidad de nombre de medio de pago
+        If BindingSource3.Find("nroM", txtCodigoM.Text.Trim()) > 0 Then
+            MessageBox.Show("Ya existe el código de pago: " & txtCodigoM.Text.Trim() & Chr(13) & "Cancele el proceso", nomNegocio, Nothing, MessageBoxIcon.Information)
+            txtCodigoM.Focus()
+            txtCodigoM.SelectAll()
+            retorna = False
+        End If
+
+
+
         Return retorna
     End Function
 
@@ -573,7 +606,7 @@ Public Class MantCuentas
 
 
 
-    
+
 
     Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
         Me.Close()
@@ -1086,7 +1119,7 @@ Public Class MantCuentas
 
     End Sub
 
-   
+
 
     Private Sub dgCuentas_DataBindingComplete(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewBindingCompleteEventArgs) Handles dgCuentas.DataBindingComplete
         DirectCast(sender, DataGridView).ClearSelection()
@@ -1095,8 +1128,8 @@ Public Class MantCuentas
 
     Private Sub btnNuevoMedio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNuevoMedio.Click
 
-        If ValidarMedio() = False Then
-
+        If ValidarMedio() = False Or ValidarCodigoMedioPago() = False Then
+            Exit Sub
         Else
 
             Dim finalMyTrans As Boolean = False
@@ -1111,7 +1144,7 @@ Public Class MantCuentas
 
                 Dim _medioTemp As String = txtMedioPago.Text.Trim
                 ' comando insertar medio
-                comandoInsertMedio(txtMedioPago.Text.Trim())
+                comandoInsertMedio(txtMedioPago.Text.Trim(), txtCodigoM.Text.Trim())
                 cmInsertTableMedio.Transaction = myTrans
 
                 If cmInsertTableMedio.ExecuteNonQuery() < 1 Then
@@ -1156,67 +1189,100 @@ Public Class MantCuentas
 
     End Sub
 
+    Private Sub ActualizarMedioPago()
+        Me.Refresh()
+
+        Dim FinalMyTrans As Boolean = False
+
+        Dim myTrans As SqlTransaction = Cn.BeginTransaction
+
+        Dim wait As New waitForm
+
+        wait.Show()
+
+        Try
+
+            StatusBarClass.messageBarraEstado(" ESPERE POR FAVOR, GUARDANDO INFORMACIÓN...")
+            comandoUpdateMedio(txtMedioPago.Text.Trim(), BindingSource3.Item(BindingSource3.Position)(0), txtCodigoM.Text.Trim())
+
+            cmUpdateTableMedio.Transaction = myTrans
+
+            If cmUpdateTableMedio.ExecuteNonQuery() < 1 Then
+                myTrans.Rollback()
+                MessageBox.Show("Ocurrio en error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+            End If
+
+            myTrans.Commit()
+            FinalMyTrans = True
+
+            'Actualizando los datos
+            Dim consulta As String = "Select codMP,medioP,nroM,idCue from TMedioPago Where idCue=" & BindingSource2.Item(BindingSource2.Position)(0)
+            oDataManager.CargarGrilla(consulta, CommandType.Text, dgMedios, BindingSource3)
+
+            BindingSource3.Position = BindingSource3.Find("medioP", txtMedioPago.Text.Trim())
+
+            StatusBarClass.messageBarraEstado("  Registro fue actualizado con éxito...")
+
+        Catch f As Exception
+            If FinalMyTrans Then
+                MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            Else
+                myTrans.Rollback()
+                MessageBox.Show(f.Message & Chr(13) & "NO SE ACTUALIZO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
+                Me.Close()
+                Exit Sub
+            End If
+
+        Finally
+            wait.Close()
+
+        End Try
+    End Sub
+
+
     Private Sub btnModificarMedio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnModificarMedio.Click
         Dim _medioTemp As String = BindingSource3.Item(BindingSource3.Position)(1)
+
+        Dim _codigoTemp As String = BindingSource3.Item(BindingSource3.Position)(2)
+
+        'If _codigoTemp.ToUpper() <> txtCodigo.Text.Trim().ToUpper() Then
+        '    If ValidarMedio() = False Then
+        '        Exit Sub
+        '    End If
+        'End If
+
+        If _medioTemp.ToUpper() <> txtMedioPago.Text.Trim().ToUpper() AndAlso _codigoTemp.ToUpper() <> txtCodigoM.Text.Trim().ToUpper() Then
+            If ValidarMedio() = False Then
+                Exit Sub
+            End If
+
+            If ValidarCodigoMedioPago() = False Then
+                Exit Sub
+            End If
+
+            ActualizarMedioPago()
+        End If
 
         If _medioTemp.ToUpper() <> txtMedioPago.Text.Trim().ToUpper() Then
             If ValidarMedio() = False Then
                 Exit Sub
-
-
             Else
-                Me.Refresh()
-
-                Dim FinalMyTrans As Boolean = False
-
-                Dim myTrans As SqlTransaction = Cn.BeginTransaction
-
-                Dim wait As New waitForm
-
-                wait.Show()
-
-                Try
-
-                    StatusBarClass.messageBarraEstado(" ESPERE POR FAVOR, GUARDANDO INFORMACIÓN...")
-                    comandoUpdateMedio(txtMedioPago.Text.Trim(), BindingSource3.Item(BindingSource3.Position)(0))
-
-                    cmUpdateTableMedio.Transaction = myTrans
-
-                    If cmUpdateTableMedio.ExecuteNonQuery() < 1 Then
-                        myTrans.Rollback()
-                        MessageBox.Show("Ocurrio en error, por lo tanto no se guardo la información procesada...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                        Me.Close()
-                    End If
-
-                    myTrans.Commit()
-                    FinalMyTrans = True
-
-                    'Actualizando los datos
-                    Dim consulta As String = "Select codMP,medioP,nroM,idCue from TMedioPago Where idCue=" & BindingSource2.Item(BindingSource2.Position)(0)
-                    oDataManager.CargarGrilla(consulta, CommandType.Text, dgMedios, BindingSource3)
-
-                    BindingSource3.Position = BindingSource3.Find("medioP", txtMedioPago.Text.Trim())
-
-                    StatusBarClass.messageBarraEstado("  Registro fue actualizado con éxito...")
-
-                Catch f As Exception
-                    If FinalMyTrans Then
-                        MessageBox.Show(f.Message & Chr(13) & "NO SE PUEDE EXTRAER LOS DATOS DE LA BD, LA RED ESTA SATURADA...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                        Me.Close()
-                        Exit Sub
-                    Else
-                        myTrans.Rollback()
-                        MessageBox.Show(f.Message & Chr(13) & "NO SE ACTUALIZO EL REGISTRO...PROBLEMAS DE RED...", nomNegocio, Nothing, MessageBoxIcon.Error)
-                        Me.Close()
-                        Exit Sub
-                    End If
-
-                Finally
-                    wait.Close()
-
-                End Try
+                ActualizarMedioPago()
             End If
         End If
+
+        If _codigoTemp.ToUpper() <> txtCodigoM.Text.Trim().ToUpper() Then
+            If ValidarCodigoMedioPago() = False Then
+                Exit Sub
+            Else
+                ActualizarMedioPago()
+            End If
+        End If
+
+
     End Sub
 
     Private Sub btnEliminarMedio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEliminarMedio.Click
@@ -1328,4 +1394,6 @@ Public Class MantCuentas
 
 
     End Sub
+
+    
 End Class
